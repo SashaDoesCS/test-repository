@@ -1,0 +1,708 @@
+timestamp,school,grade,current_mode,currently_rides_bus,would_ride_bus,n_total_columns
+2026-01-12 11:47:30.052,,6th,I walk,,,18
+2026-01-12 11:47:41.197,,6th,I bike/skate/scooter,,,18
+2026-01-12 11:50:00.348,,6th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-12 11:50:15.954,,6th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-12 11:55:27.810,,6th,I carpool with another family,No,,18
+2026-01-12 11:55:28.260,,6th,I bike/skate/scooter,,,18
+2026-01-12 11:57:41.792,Near the school,6th,A parent/guardian drives me,No,Stops nearer my house,18
+2026-01-12 11:58:40.591,Maybe a street next to the middle school.,6th,A parent/guardian drives me,No,Stops nearer my house,18
+2026-01-12 11:59:57.290,,6th,A parent/guardian drives me,No,,18
+2026-01-12 12:12:26.980,,6th,I walk,,,18
+2026-01-12 12:16:14.585,,6th,I walk,,,18
+2026-01-12 12:16:39.354,,6th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-12 12:24:28.067,,6th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-12 14:12:29.606,Street,6th,A parent/guardian drives me,No,Just knowing more about the bus. ,18
+2026-01-12 15:04:44.635,,6th,A parent/guardian drives me,No,,18
+2026-01-12 15:09:45.386,The area in front of the house currently under construction.,6th,A parent/guardian drives me,No,Busses made safer,18
+2026-01-12 15:48:57.629,,6th,I walk,,,18
+2026-01-12 16:45:29.237,I get dropped off and picked up so i dont need to take the bus,6th,A parent/guardian drives me,Yes,I don't really need to take the bus because i have a parent drive me from and to school.,18
+2026-01-12 16:52:25.116,,6th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-12 18:23:53.577,,6th,A parent/guardian drives me,No,,18
+2026-01-12 18:26:11.227,,6th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-12 19:02:38.752,,6th,I bike/skate/scooter,,,18
+2026-01-12 19:30:44.193,,6th,A parent/guardian drives me,No,,18
+2026-01-12 20:39:23.549,,6th,A parent/guardian drives me,No,,18
+2026-01-12 22:03:14.664,,6th,I walk,,,18
+2026-01-13 08:30:32.652,,7th,I walk,,,18
+2026-01-13 08:30:38.482,,7th,I walk,,,18
+2026-01-13 08:31:34.751,,7th,I walk,,,18
+2026-01-13 08:31:51.274,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 08:31:57.581,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 08:32:08.496,,7th,I walk,,,18
+2026-01-13 08:32:18.804,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 08:32:22.546,,7th,I walk,,,18
+2026-01-13 08:32:35.721,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 08:33:05.707,,7th,I carpool with another family,Yes,I have no interest in taking the bus,18
+2026-01-13 08:33:07.821,,7th,I walk,,,18
+2026-01-13 08:33:40.217,safeway,7th,A parent/guardian drives me,No,Stops nearer my house,18
+2026-01-13 08:33:44.609,,7th,I walk,,,18
+2026-01-13 08:33:46.990,no,7th,I carpool with another family,Yes,no,18
+2026-01-13 08:33:52.631,,7th,I carpool with another family,Yes,I have no interest in taking the bus,18
+2026-01-13 08:33:53.150,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 08:33:54.419,,7th,I walk,,,18
+2026-01-13 08:33:58.690,,7th,I carpool with another family,No,,18
+2026-01-13 08:33:59.958,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 08:34:00.124,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 08:34:01.412,,7th,I walk,,,18
+2026-01-13 08:34:02.188,,7th,I bike/skate/scooter,,,18
+2026-01-13 08:34:03.087,,7th,A parent/guardian drives me,No,,18
+2026-01-13 08:34:03.785,,7th,I walk,,,18
+2026-01-13 08:34:09.558,,7th,A parent/guardian drives me,No,,18
+2026-01-13 08:34:17.642,,7th,A parent/guardian drives me,No,,18
+2026-01-13 08:34:24.542,At the Plaza,7th,A parent/guardian drives me,Yes,Stops nearer my house,18
+2026-01-13 08:34:36.153,Safeway,7th,A parent/guardian drives me,No,Subsidized/free bus passes provided,18
+2026-01-13 08:34:46.216,,7th,I walk,,,18
+2026-01-13 08:34:49.576,,7th,I bike/skate/scooter,,,18
+2026-01-13 08:34:51.914,,7th,I walk,,,18
+2026-01-13 08:34:56.937,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 08:34:57.233,,7th,I walk,,,18
+2026-01-13 08:35:00.653,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 08:35:06.662,,7th,I bike/skate/scooter,,,18
+2026-01-13 08:35:13.981,,7th,A parent/guardian drives me,No,,18
+2026-01-13 08:35:16.081,I don't know the street name but I get picked up in a parking lot on the left side of the school which the parking lot is like behind safeway.,7th,A parent/guardian drives me,Yes,Arrives at school at a better time,18
+2026-01-13 08:35:19.116,Merrill dr. (??),7th,A parent/guardian drives me,Yes,Busses made safer,18
+2026-01-13 08:35:23.242,,7th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-13 08:35:29.161,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 08:36:05.531,,7th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-13 08:36:25.180,idk,7th,A parent/guardian drives me,No,Stops nearer my house,18
+2026-01-13 08:36:32.572,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 08:36:34.277,,7th,A parent/guardian drives me,No,,18
+2026-01-13 08:36:37.949,,7th,I walk,,,18
+2026-01-13 08:36:38.914,,7th,A parent/guardian drives me,No,,18
+2026-01-13 08:37:19.948,,7th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-13 08:37:30.013,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 08:37:45.061,,7th,A parent/guardian drives me,No,,18
+2026-01-13 08:38:04.480,Starbucks,7th,A parent/guardian drives me,Yes,Stops nearer my house,18
+2026-01-13 08:38:09.570,The middle school,7th,A parent/guardian drives me,No,Stops nearer my house,18
+2026-01-13 08:38:10.012,At my house.,7th,A parent/guardian drives me,Yes,Stops nearer my house,18
+2026-01-13 08:38:26.688,,7th,I bike/skate/scooter,,,18
+2026-01-13 08:42:12.724,,6th,A parent/guardian drives me,No,,18
+2026-01-13 08:42:16.146,,6th,I bike/skate/scooter,,,18
+2026-01-13 08:43:18.631,,6th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-13 08:43:21.414,middle school,6th,A parent/guardian drives me,Yes,all minus last two,18
+2026-01-13 08:43:45.609,safeway,6th,A parent/guardian drives me,No,Subsidized/free bus passes provided,18
+2026-01-13 08:43:53.618,,6th,I walk,,,18
+2026-01-13 08:44:02.634,,6th,I walk,,,18
+2026-01-13 08:44:13.162,,6th,I walk,,,18
+2026-01-13 08:44:15.770,,6th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 08:44:27.309,,6th,I walk,,,18
+2026-01-13 08:44:27.500,intersection,6th,A parent/guardian drives me,No,Subsidized/free bus passes provided,18
+2026-01-13 08:44:33.404,,6th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 08:44:37.394,,6th,I bike/skate/scooter,,,18
+2026-01-13 08:44:43.674,,6th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 08:44:47.060,,6th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 08:44:50.528,,6th,I bike/skate/scooter,,,18
+2026-01-13 08:45:04.468,,6th,A parent/guardian drives me,No,,18
+2026-01-13 08:45:06.292,,6th,A parent/guardian drives me,No,,18
+2026-01-13 08:45:10.375,,6th,I walk,,,18
+2026-01-13 08:46:20.545,Middle School,6th,A parent/guardian drives me,No,Busses made safer,18
+2026-01-13 08:46:24.610,bradham appartement,7th,I take the bus,Yes,Arrives at my house at a better time,18
+2026-01-13 08:46:29.263,,6th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 08:46:30.679,,6th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 08:46:57.454,I'm not sure. I would say the middle school mostly,6th,A parent/guardian drives me,No,Stops nearer my house,18
+2026-01-13 08:47:55.249,Esther DR.,6th,A parent/guardian drives me,No,Subsidized/free bus passes provided,18
+2026-01-13 08:48:36.356,middle school,6th,A parent/guardian drives me,No,Arrives at school at a better time,18
+2026-01-13 08:48:50.038,middle school,6th,A parent/guardian drives me,No,Subsidized/free bus passes provided,18
+2026-01-13 09:11:28.984,,6th,I walk,,,18
+2026-01-13 09:13:59.588,,6th,I walk,,,18
+2026-01-13 09:14:04.547,,6th,I bike/skate/scooter,,,18
+2026-01-13 09:17:23.843,,6th,I walk,,,18
+2026-01-13 09:17:34.298,,6th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 09:17:36.918,,6th,I walk,,,18
+2026-01-13 09:17:40.143,,6th,I bike/skate/scooter,,,18
+2026-01-13 09:17:41.131,,6th,I bike/skate/scooter,,,18
+2026-01-13 09:17:41.805,,6th,I walk,,,18
+2026-01-13 09:17:54.381,,6th,I walk,,,18
+2026-01-13 09:18:03.663,,6th,I walk,,,18
+2026-01-13 09:18:13.294,,6th,I carpool with another family,No,I have no interest in taking the bus,18
+2026-01-13 09:18:18.460,,6th,I walk,,,18
+2026-01-13 09:18:20.945,,6th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 09:18:30.134,,6th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 09:18:32.494,,6th,I walk,,,18
+2026-01-13 09:18:51.226,,6th,I carpool with another family,Yes,I have no interest in taking the bus,18
+2026-01-13 09:18:52.109,,6th,I walk,,,18
+2026-01-13 09:18:56.382,ums,6th,A parent/guardian drives me,No,Subsidized/free bus passes provided,18
+2026-01-13 09:19:01.659,,6th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-13 09:19:01.923,,6th,I walk,,,18
+2026-01-13 09:19:03.381,the front parking lot,6th,A parent/guardian drives me,No,Arrives at my house at a better time,18
+2026-01-13 09:19:06.237,,6th,I bike/skate/scooter,,,18
+2026-01-13 09:19:28.932,the middle school,6th,A parent/guardian drives me,No,Stops nearer my house,18
+2026-01-13 09:19:48.217,,6th,I walk,,,18
+2026-01-13 09:20:10.476,middle of school,6th,A parent/guardian drives me,No,stops near house,18
+2026-01-13 09:20:12.828,,6th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-13 09:20:17.899,,6th,I bike/skate/scooter,,,18
+2026-01-13 09:21:21.768,the dentist office nere the school,6th,A parent/guardian drives me,No,Stops nearer my house,18
+2026-01-13 09:24:07.485,,6th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-13 09:56:10.915,,6th,I walk,,,18
+2026-01-13 10:03:39.844,,6th,I walk,,,18
+2026-01-13 10:59:23.463,,7th,I walk,,,18
+2026-01-13 11:01:29.801,,7th,I walk,,,18
+2026-01-13 11:01:42.775,,7th,I walk,,,18
+2026-01-13 11:01:48.279,,7th,I walk,,,18
+2026-01-13 11:02:06.087,,7th,I walk,,,18
+2026-01-13 11:02:12.609,,7th,A parent/guardian drives me,No,,18
+2026-01-13 11:02:21.359,,7th,I walk,,,18
+2026-01-13 11:02:36.214,,7th,A parent/guardian drives me,No,,18
+2026-01-13 11:02:36.497,,7th,I walk,,,18
+2026-01-13 11:02:39.311,,7th,I bike/skate/scooter,,,18
+2026-01-13 11:02:39.750,,7th,I bike/skate/scooter,,,18
+2026-01-13 11:02:40.607,,7th,I walk,,,18
+2026-01-13 11:02:57.793,,7th,I walk,,,18
+2026-01-13 11:02:59.384,,7th,I walk,,,18
+2026-01-13 11:03:08.274,,7th,A parent/guardian drives me,No,,18
+2026-01-13 11:03:08.646,,7th,I walk,,,18
+2026-01-13 11:03:14.476,,7th,I bike/skate/scooter,,,18
+2026-01-13 11:03:22.554,,7th,I bike/skate/scooter,,,18
+2026-01-13 11:03:23.250,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 11:03:24.002,IDK,7th,A parent/guardian drives me,Yes,Arrives at school at a better time,18
+2026-01-13 11:03:29.238,,7th,I walk,,,18
+2026-01-13 11:03:32.331,,7th,I walk,,,18
+2026-01-13 11:03:34.507,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 11:03:41.915,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 11:03:44.300,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 11:03:46.982,,7th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-13 11:03:51.274,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 11:04:02.088,Middle School,7th,A parent/guardian drives me,No,Stops nearer my house,18
+2026-01-13 11:04:07.692,,7th,I walk,,,18
+2026-01-13 11:04:09.712,,7th,I walk,,,18
+2026-01-13 11:04:14.462,,7th,A parent/guardian drives me,No,,18
+2026-01-13 11:04:19.346,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 11:04:28.368,entrance,7th,A parent/guardian drives me,No,Busses made safer,18
+2026-01-13 11:04:30.051,,7th,A parent/guardian drives me,No,,18
+2026-01-13 11:04:33.296,,7th,I walk,,,18
+2026-01-13 11:04:40.198,school,7th,I carpool with another family,No,Arrives at my house at a better time,18
+2026-01-13 11:04:46.136,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 11:04:55.317,Near Leigh High School,7th,A parent/guardian drives me,No,Stops nearer my house,18
+2026-01-13 11:04:56.448,,7th,I bike/skate/scooter,,,18
+2026-01-13 11:05:07.371,,7th,I walk,,,18
+2026-01-13 11:05:09.615,,7th,A parent/guardian drives me,No,,18
+2026-01-13 11:05:10.512,,7th,I walk,,,18
+2026-01-13 11:05:12.253,union/los gatos,7th,A parent/guardian drives me,No,i did not know the bus stop near our school,18
+2026-01-13 11:05:12.577,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 11:05:48.375,,7th,I walk,,,18
+2026-01-13 11:06:14.215,Taft,7th,A parent/guardian drives me,No,Stops nearer my house,18
+2026-01-13 11:06:16.721,,7th,A parent/guardian drives me,No,,18
+2026-01-13 11:06:38.865,,7th,I bike/skate/scooter,,,18
+2026-01-13 11:06:47.969,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 11:06:51.191,,7th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-13 11:06:58.000,,7th,I carpool with another family,Yes,I have no interest in taking the bus,18
+2026-01-13 11:07:00.429,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 11:07:00.734,ums,7th,A parent/guardian drives me,Yes,Stops nearer my house,18
+2026-01-13 11:07:32.363,,7th,I carpool with another family,Yes,I have no interest in taking the bus,18
+2026-01-13 11:07:54.190,Tesoro Court near Leigh. I cannot get home later than 3,7th,A parent/guardian drives me,No,Stops nearer my house,18
+2026-01-13 11:08:02.149,I don't know,7th,A parent/guardian drives me,No,Subsidized/free bus passes provided,18
+2026-01-13 11:08:04.827,,7th,A parent/guardian drives me,No,,18
+2026-01-13 11:08:31.941,School,7th,A parent/guardian drives me,No,Subsidized/free bus passes provided,18
+2026-01-13 11:08:41.826,The side gate of Union and front gate,7th,A parent/guardian drives me,No,Stops nearer my house,18
+2026-01-13 11:08:55.093,,7th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-13 11:11:52.116,Across the street from my middle school,7th,A parent/guardian drives me,Yes,Stops nearer my house,18
+2026-01-13 11:15:28.752,,6th,I bike/skate/scooter,,,18
+2026-01-13 11:44:33.192,,6th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 11:45:58.820,,6th,I bike/skate/scooter,,,18
+2026-01-13 11:46:10.892,,6th,I walk,,,18
+2026-01-13 11:46:17.156,,6th,I walk,,,18
+2026-01-13 11:46:29.684,,6th,I bike/skate/scooter,,,18
+2026-01-13 11:46:34.740,,6th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 11:46:39.481,,6th,I walk,,,18
+2026-01-13 11:46:40.783,,6th,I walk,,,18
+2026-01-13 11:46:42.782,,6th,I bike/skate/scooter,,,18
+2026-01-13 11:46:59.032,,6th,I walk,,,18
+2026-01-13 11:47:00.050,,6th,I walk,,,18
+2026-01-13 11:47:13.616,,6th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 11:47:18.334,,6th,I bike/skate/scooter,,,18
+2026-01-13 11:47:21.070,,6th,A parent/guardian drives me,No,,18
+2026-01-13 11:47:54.360,?,6th,A parent/guardian drives me,No,Stops nearer my house,18
+2026-01-13 11:48:05.603,,6th,I carpool with another family,Yes,I have no interest in taking the bus,18
+2026-01-13 11:48:08.277,,6th,I walk,,,18
+2026-01-13 11:48:15.997,,6th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-13 11:48:26.471,,6th,A parent/guardian drives me,No,,18
+2026-01-13 11:48:32.082,,6th,A parent/guardian drives me,No,,18
+2026-01-13 11:49:16.225,My house,6th,A parent/guardian drives me,No,Stops nearer my house,18
+2026-01-13 11:49:49.917,"The front, at the office.",6th,A parent/guardian drives me,Yes,"I don't like taking the bus, I like going in the car with my parent, it is more desireable and it is more fun because i get to talk to them, and I have a trombone i have to take to school and back to home, and I dont think it could go in the bus.",18
+2026-01-13 11:54:15.049,,7th,I bike/skate/scooter,,,18
+2026-01-13 11:54:42.060,,7th,I bike/skate/scooter,,,18
+2026-01-13 11:54:42.552,,7th,I walk,,,18
+2026-01-13 11:54:48.517,,7th,I walk,,,18
+2026-01-13 11:54:51.686,,7th,I bike/skate/scooter,,,18
+2026-01-13 11:55:00.038,,7th,I bike/skate/scooter,,,18
+2026-01-13 11:55:07.187,,7th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-13 11:55:11.900,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 11:55:16.371,,7th,I bike/skate/scooter,,,18
+2026-01-13 11:55:18.326,,7th,I walk,,,18
+2026-01-13 11:55:20.836,,7th,I walk,,,18
+2026-01-13 11:55:22.330,,7th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-13 11:55:31.079,,7th,I walk,,,18
+2026-01-13 11:55:31.316,,7th,I walk,,,18
+2026-01-13 11:55:33.307,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 11:55:41.266,,7th,I walk,,,18
+2026-01-13 11:55:42.396,,7th,I walk,,,18
+2026-01-13 11:55:44.396,,7th,A parent/guardian drives me,No,,18
+2026-01-13 11:55:45.839,,7th,I bike/skate/scooter,,,18
+2026-01-13 11:55:46.973,,7th,I walk,,,18
+2026-01-13 11:55:51.187,,7th,I bike/skate/scooter,,,18
+2026-01-13 11:55:51.622,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 11:55:54.639,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 11:55:55.832,,7th,I bike/skate/scooter,,,18
+2026-01-13 11:55:57.006,,7th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-13 11:55:59.846,,7th,A parent/guardian drives me,No,,18
+2026-01-13 11:56:01.025,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 11:56:04.117,,7th,A parent/guardian drives me,No,,18
+2026-01-13 11:56:04.441,,7th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-13 11:56:11.532,,7th,A parent/guardian drives me,No,,18
+2026-01-13 11:56:14.949,,6th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 11:56:24.990,,7th,I walk,,,18
+2026-01-13 11:56:26.632,,7th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-13 11:56:31.742,Front enterance,7th,A parent/guardian drives me,Yes,Stops nearer my house,18
+2026-01-13 11:56:32.061,,7th,I bike/skate/scooter,,,18
+2026-01-13 11:56:37.611,,7th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-13 11:56:39.377,,7th,A parent/guardian drives me,No,,18
+2026-01-13 11:56:39.501,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 11:56:44.647,,7th,A parent/guardian drives me,No,,18
+2026-01-13 11:56:45.899,,7th,I carpool with another family,Yes,I have no interest in taking the bus,18
+2026-01-13 11:56:46.110,,7th,I walk,,,18
+2026-01-13 11:56:49.322,I don't care,7th,I carpool with another family,No,I dunno,18
+2026-01-13 11:56:49.450,middle school,7th,A parent/guardian drives me,No,Arrives at school at a better time,18
+2026-01-13 11:57:03.700,,7th,A parent/guardian drives me,No,,18
+2026-01-13 11:57:05.254,,7th,I walk,,,18
+2026-01-13 11:57:05.891,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 11:57:26.897,no where ,7th,A parent/guardian drives me,No,Stops nearer my house,18
+2026-01-13 11:57:43.005,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 11:57:49.285,I also don't know,7th,A parent/guardian drives me,No,I don't know,18
+2026-01-13 11:57:50.304,T4,7th,A parent/guardian drives me,No,Stops nearer my house,18
+2026-01-13 11:58:07.380,the same place,7th,A parent/guardian drives me,No,Arrives at school at a better time,18
+2026-01-13 11:58:20.982,School,7th,A parent/guardian drives me,No,Subsidized/free bus passes provided,18
+2026-01-13 11:58:27.828,The Safeway complex.,7th,A parent/guardian drives me,No,Stops nearer my house,18
+2026-01-13 11:58:36.001,school,7th,A parent/guardian drives me,Yes,My mom doesn't allow me to.,18
+2026-01-13 11:59:57.707,On the street next to the school,7th,A parent/guardian drives me,No,Subsidized/free bus passes provided,18
+2026-01-13 12:01:13.562,15549 Union Avenue (Safeway),7th,I carpool with another family,Yes,"I have period zero, which starts at 7:30 AM in the morning. It is more comfortable to have parents and guardians because you know they will wait. The bus stop near my house is a walk with busy cars. ",18
+2026-01-13 12:01:49.860,Los Gatos Almaden and Union,7th,A parent/guardian drives me,No,Subsidized/free bus passes provided,18
+2026-01-13 12:12:26.139,,6th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 12:17:16.290,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 13:14:03.416,,7th,I bike/skate/scooter,,,18
+2026-01-13 13:14:30.963,,7th,I walk,,,18
+2026-01-13 13:14:32.443,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 13:14:56.926,,7th,I walk,,,18
+2026-01-13 13:15:00.176,,7th,I walk,,,18
+2026-01-13 13:15:08.123,,7th,A parent/guardian drives me,No,,18
+2026-01-13 13:15:09.862,,7th,I walk,,,18
+2026-01-13 13:15:16.023,,7th,I walk,,,18
+2026-01-13 13:15:16.200,,7th,I walk,,,18
+2026-01-13 13:15:18.733,,7th,I bike/skate/scooter,,,18
+2026-01-13 13:15:21.115,,7th,I walk,,,18
+2026-01-13 13:15:23.115,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 13:15:25.360,,7th,I bike/skate/scooter,,,18
+2026-01-13 13:15:40.096,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 13:15:40.557,,7th,I walk,,,18
+2026-01-13 13:15:41.276,,7th,I walk,,,18
+2026-01-13 13:15:43.863,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 13:15:55.516,middle school,7th,A parent/guardian drives me,No,Arrives at school at a better time,18
+2026-01-13 13:15:57.294,,7th,I walk,,,18
+2026-01-13 13:16:00.259,,7th,I walk,,,18
+2026-01-13 13:16:02.387,,7th,I bike/skate/scooter,,,18
+2026-01-13 13:16:07.454,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 13:16:08.731,,7th,I walk,,,18
+2026-01-13 13:16:14.295,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 13:16:14.808,,7th,A parent/guardian drives me,No,,18
+2026-01-13 13:16:18.562,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 13:16:18.651,,7th,I bike/skate/scooter,,,18
+2026-01-13 13:16:28.964,,7th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-13 13:16:30.205,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 13:16:31.122,I would respectfully not ride the bus,7th,A parent/guardian drives me,Yes,Nothing,18
+2026-01-13 13:16:34.777,,7th,A parent/guardian drives me,No,,18
+2026-01-13 13:16:36.468,,7th,I walk,,,18
+2026-01-13 13:16:43.558,,7th,I walk,,,18
+2026-01-13 13:16:43.597,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 13:16:44.217,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 13:16:49.524,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 13:16:53.407,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 13:17:02.940,,7th,I walk,,,18
+2026-01-13 13:17:21.238,My house,7th,I carpool with another family,Yes,Stops nearer my house,18
+2026-01-13 13:17:21.378,,7th,A parent/guardian drives me,No,,18
+2026-01-13 13:17:38.950,safeway,7th,A parent/guardian drives me,No,Stops nearer my house,18
+2026-01-13 13:17:46.260,,7th,A parent/guardian drives me,No,,18
+2026-01-13 13:18:03.515,,7th,A parent/guardian drives me,No,,18
+2026-01-13 13:18:09.769,,7th,A parent/guardian drives me,No,,18
+2026-01-13 13:18:12.003,,7th,I walk,,,18
+2026-01-13 13:18:40.726,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 13:18:59.181,Outside the school gate.,7th,A parent/guardian drives me,No,Subsidized/free bus passes provided,18
+2026-01-13 13:19:04.456,,7th,A parent/guardian drives me,No,,18
+2026-01-13 13:19:28.153,Street next to middle school.,7th,A parent/guardian drives me,No,Arrives at school at a better time,18
+2026-01-13 13:19:39.764,,7th,A parent/guardian drives me,No,,18
+2026-01-13 13:21:05.797,Ross wood,7th,A parent/guardian drives me,No,Stops nearer my house,18
+2026-01-13 13:21:36.987,,7th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-13 13:21:48.814,da middle scool,7th,I carpool with another family,No,i now know that i can take a bus 2 school,18
+2026-01-13 13:21:51.488,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 13:22:49.831,"No ideal pickup location, just the middle school",7th,A parent/guardian drives me,Yes,Stops nearer my house,18
+2026-01-13 13:24:48.247,Home or Front gate,7th,A parent/guardian drives me,Yes,i don't know..,18
+2026-01-13 14:04:24.077,,7th,I walk,,,18
+2026-01-13 14:04:24.209,,7th,I bike/skate/scooter,,,18
+2026-01-13 14:04:25.911,,7th,I bike/skate/scooter,,,18
+2026-01-13 14:04:30.928,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 14:04:33.043,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 14:04:33.916,,7th,I walk,,,18
+2026-01-13 14:04:35.181,,7th,I walk,,,18
+2026-01-13 14:04:39.495,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 14:04:44.976,,7th,A parent/guardian drives me,No,,18
+2026-01-13 14:04:47.042,,7th,A parent/guardian drives me,No,,18
+2026-01-13 14:04:47.362,,7th,I bike/skate/scooter,,,18
+2026-01-13 14:05:08.056,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 14:05:08.396,,7th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-13 14:05:12.045,,7th,A parent/guardian drives me,No,,18
+2026-01-13 14:05:15.807,,7th,A parent/guardian drives me,No,,18
+2026-01-13 14:05:23.150,Street,7th,A parent/guardian drives me,Yes,Stops nearer my house,18
+2026-01-13 14:05:34.915,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 14:05:36.368,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 14:05:37.736,,7th,A parent/guardian drives me,No,,18
+2026-01-13 14:05:45.106,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 14:05:54.470,,7th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-13 14:05:55.794,,7th,A parent/guardian drives me,No,,18
+2026-01-13 14:05:58.873,Rosswood,7th,I carpool with another family,No,I had no idea,18
+2026-01-13 14:05:59.050,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 14:05:59.479,,7th,A parent/guardian drives me,No,,18
+2026-01-13 14:06:01.836,Rosswood,7th,A parent/guardian drives me,No,Stops nearer my house,18
+2026-01-13 14:06:30.644,no,7th,A parent/guardian drives me,Yes,I lik car,18
+2026-01-13 14:07:06.092,,7th,I walk,,,18
+2026-01-13 14:07:09.656,,7th,I bike/skate/scooter,,,18
+2026-01-13 14:07:18.578,,7th,I walk,,,18
+2026-01-13 14:07:23.483,,7th,I walk,,,18
+2026-01-13 14:07:25.232,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 14:07:26.380,,7th,I walk,,,18
+2026-01-13 14:07:36.215,,7th,I walk,,,18
+2026-01-13 14:07:39.267,,7th,I walk,,,18
+2026-01-13 14:07:43.023,,7th,I bike/skate/scooter,,,18
+2026-01-13 14:07:46.883,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 14:07:50.970,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 14:08:08.604,,7th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-13 14:08:15.149,Taft Dr (near the side gate),7th,A parent/guardian drives me,No,Stops nearer my house,18
+2026-01-13 14:08:15.943,,7th,I carpool with another family,Yes,I have no interest in taking the bus,18
+2026-01-13 14:08:18.406,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 14:08:21.376,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 14:08:51.944,,7th,I walk,,,18
+2026-01-13 14:09:01.270,,7th,I carpool with another family,No,,18
+2026-01-13 14:09:46.459,A couple of streets away from the school,7th,A parent/guardian drives me,No,Subsidized/free bus passes provided,18
+2026-01-13 14:09:55.645,middle school,7th,A parent/guardian drives me,Yes,Cost,18
+2026-01-13 14:10:09.453,Tate,7th,A parent/guardian drives me,No,Stops nearer my house,18
+2026-01-13 14:10:11.283,Safeway,7th,A parent/guardian drives me,No,Busses made safer,18
+2026-01-13 14:10:15.798,Safeway,7th,A parent/guardian drives me,Yes,Arrives at my house at a better time,18
+2026-01-13 14:10:16.016,,7th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-13 14:10:31.624,rosswood,7th,A parent/guardian drives me,No,Stops nearer my house,18
+2026-01-13 14:11:01.959,safeway plaza or leigh,7th,A parent/guardian drives me,Yes,Stops nearer my house,18
+2026-01-13 14:11:28.505,Front entrance of union,7th,I carpool with another family,No,Arrives at school at a better time,18
+2026-01-13 14:13:57.995,safeway.,7th,A parent/guardian drives me,No,Stops nearer my house,18
+2026-01-13 14:31:11.709,,7th,A parent/guardian drives me,Yes,Subsidized/free bus passes provided,18
+2026-01-13 14:38:14.143,Carlton or Starbucks Area,7th,A parent/guardian drives me,No,Stops nearer my house,18
+2026-01-13 15:04:43.967,,7th,I walk,,,18
+2026-01-13 15:13:56.668,,6th,A parent/guardian drives me,No,,18
+2026-01-13 15:15:11.174,,7th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-13 15:19:27.397,,7th,I bike/skate/scooter,,,18
+2026-01-13 15:35:14.299,My ideal pickup location to return from school is the street Los Gatos Almaden Rd.,6th,A parent/guardian drives me,No,Stops closer to school,18
+2026-01-13 15:57:52.082,,7th,I walk,,,18
+2026-01-13 16:03:25.796,middle school front gate,6th,A parent/guardian drives me,Yes,Stops nearer my house,18
+2026-01-13 17:16:38.142,pedestrian crossing,7th,A parent/guardian drives me,Yes,Arrives at school at a better time,18
+2026-01-13 20:32:04.131,,7th,A parent/guardian drives me,No,,18
+2026-01-14 08:15:29.692,,6th,I walk,,,18
+2026-01-14 08:29:09.196,,8th,I bike/skate/scooter,,,18
+2026-01-14 08:31:22.400,,8th,A parent/guardian drives me,No,,18
+2026-01-14 08:31:51.526,,8th,I walk,,,18
+2026-01-14 08:31:54.074,,8th,I carpool with another family,Yes,I have no interest in taking the bus,18
+2026-01-14 08:31:54.488,,8th,A parent/guardian drives me,No,,18
+2026-01-14 08:31:58.051,,8th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-14 08:32:02.107,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-14 08:32:08.069,,8th,I walk,,,18
+2026-01-14 08:32:14.966,,8th,A parent/guardian drives me,No,,18
+2026-01-14 08:32:16.763,,8th,I walk,,,18
+2026-01-14 08:32:23.216,,8th,A parent/guardian drives me,No,,18
+2026-01-14 08:32:24.196,,8th,I walk,,,18
+2026-01-14 08:32:24.333,,8th,A parent/guardian drives me,No,,18
+2026-01-14 08:32:34.840,,8th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-14 08:32:36.753,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-14 08:32:52.114,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-14 08:33:09.470,,8th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-14 08:33:09.884,,8th,A parent/guardian drives me,No,,18
+2026-01-14 08:33:33.098,idk,8th,A parent/guardian drives me,Yes,Stops nearer my house,18
+2026-01-14 08:33:45.367,no,8th,A parent/guardian drives me,No,nah,18
+2026-01-14 08:33:52.580,,8th,I bike/skate/scooter,,,18
+2026-01-14 08:33:57.252,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-14 10:20:14.091,,8th,I walk,,,18
+2026-01-14 10:20:24.587,,8th,I bike/skate/scooter,,,18
+2026-01-14 10:20:36.715,,8th,I walk,,,18
+2026-01-14 10:20:39.189,,8th,I walk,,,18
+2026-01-14 10:20:45.086,,8th,I walk,,,18
+2026-01-14 10:20:54.016,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-14 10:20:54.324,,8th,A parent/guardian drives me,No,,18
+2026-01-14 10:20:56.306,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-14 10:21:06.213,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-14 10:21:06.306,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-14 10:21:06.808,,8th,I walk,,,18
+2026-01-14 10:21:07.619,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-14 10:21:18.582,,8th,I bike/skate/scooter,,,18
+2026-01-14 10:21:20.797,,8th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-14 10:21:23.795,Street,8th,A parent/guardian drives me,No,Arrives at school at a better time,18
+2026-01-14 10:21:26.885,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-14 10:21:29.675,,8th,A parent/guardian drives me,No,,18
+2026-01-14 10:21:29.841,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-14 10:21:39.886,street,8th,A parent/guardian drives me,No,Stops nearer my house,18
+2026-01-14 10:21:47.273,,8th,A parent/guardian drives me,No,,18
+2026-01-14 10:21:47.339,,8th,A parent/guardian drives me,No,,18
+2026-01-14 10:21:57.700,,8th,A parent/guardian drives me,No,,18
+2026-01-14 10:21:59.179,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-14 10:22:03.148,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-14 10:22:56.782,idk,8th,A parent/guardian drives me,No,Stops nearer my house,18
+2026-01-14 10:22:57.378,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-14 10:23:07.457,Union middle school,6th,A parent/guardian drives me,Yes,Arrives at my house at a better time,18
+2026-01-14 10:23:19.855, ,8th,A parent/guardian drives me,No,Subsidized/free bus passes provided,18
+2026-01-14 10:29:57.227,,8th,A parent/guardian drives me,No,,18
+2026-01-14 11:06:16.059,,8th,I walk,,,18
+2026-01-14 11:06:18.072,,8th,I walk,,,18
+2026-01-14 11:06:26.199,,8th,I bike/skate/scooter,,,18
+2026-01-14 11:06:29.522,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-14 11:06:33.639,,8th,I walk,,,18
+2026-01-14 11:06:34.795,,8th,I walk,,,18
+2026-01-14 11:06:44.105,,8th,I bike/skate/scooter,,,18
+2026-01-14 11:06:47.285,,8th,I bike/skate/scooter,,,18
+2026-01-14 11:06:49.482,,8th,I walk,,,18
+2026-01-14 11:06:53.573,,8th,I walk,,,18
+2026-01-14 11:07:13.748,,8th,I walk,,,18
+2026-01-14 11:07:19.628,,8th,I walk,,,18
+2026-01-14 11:07:26.888,,8th,I walk,,,18
+2026-01-14 11:07:27.995,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-14 11:07:28.131,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-14 11:07:28.132,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-14 11:07:36.542,,8th,A parent/guardian drives me,No,,18
+2026-01-14 11:07:40.238,,8th,A parent/guardian drives me,No,,18
+2026-01-14 11:07:44.902,,8th,I walk,,,18
+2026-01-14 11:07:55.824,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-14 11:08:00.678,,8th,A parent/guardian drives me,No,,18
+2026-01-14 11:08:02.245,,8th,A parent/guardian drives me,No,,18
+2026-01-14 11:08:03.099,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-14 11:08:05.545,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-14 11:08:10.281,,8th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-14 11:08:19.676,,8th,A parent/guardian drives me,No,,18
+2026-01-14 11:08:21.754,,8th,A parent/guardian drives me,No,,18
+2026-01-14 11:08:36.229,Blossom Hill,8th,A parent/guardian drives me,No,Arrives at school at a better time,18
+2026-01-14 11:08:36.945,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-14 11:09:48.089,My house,8th,A parent/guardian drives me,No,Stops nearer my house,18
+2026-01-14 11:09:57.680,bus stop,8th,A parent/guardian drives me,Yes,Subsidized/free bus passes provided,18
+2026-01-14 11:19:13.527,,8th,I walk,,,18
+2026-01-14 12:22:41.200,,8th,I walk,,,18
+2026-01-14 12:22:48.528,,8th,I walk,,,18
+2026-01-14 12:22:55.404,,8th,I walk,,,18
+2026-01-14 12:23:04.045,,8th,I walk,,,18
+2026-01-14 12:23:06.229,,8th,I walk,,,18
+2026-01-14 12:23:09.312,,8th,I walk,,,18
+2026-01-14 12:23:11.861,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-14 12:23:12.105,,8th,A parent/guardian drives me,No,,18
+2026-01-14 12:23:14.550,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-14 12:23:26.143,,8th,A parent/guardian drives me,No,,18
+2026-01-14 12:23:34.000,,8th,A parent/guardian drives me,No,,18
+2026-01-14 12:23:53.912,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-14 12:24:02.632,,8th,A parent/guardian drives me,No,,18
+2026-01-14 12:24:07.104,,8th,A parent/guardian drives me,No,,18
+2026-01-14 12:24:07.768,,8th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-14 12:24:10.539,Intersection near school,8th,A parent/guardian drives me,No,Busses made safer,18
+2026-01-14 12:24:19.620,,8th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-14 12:24:36.335,close to union,8th,A parent/guardian drives me,No,Stops nearer my house,18
+2026-01-14 12:24:47.700,Middle School,8th,A parent/guardian drives me,No,If I was notified that it existed and had more information about it.,18
+2026-01-14 12:24:54.350,i dont know,8th,A parent/guardian drives me,No,Subsidized/free bus passes provided,18
+2026-01-14 12:25:25.009,Westchester or Taft,8th,A parent/guardian drives me,Yes,I have symphonic band in the mornings,18
+2026-01-14 12:25:45.805,close to school,8th,A parent/guardian drives me,No,Arrives at school at a better time,18
+2026-01-14 12:26:04.525,Near Leigh,8th,A parent/guardian drives me,No,Arrives at my house at a better time,18
+2026-01-14 12:26:07.404,cloes to  my house ,8th,I carpool with another family,No,Stops nearer my house,18
+2026-01-14 13:08:11.337,,8th,I bike/skate/scooter,,,18
+2026-01-14 13:08:27.204,,8th,I walk,,,18
+2026-01-14 13:08:28.360,,8th,I walk,,,18
+2026-01-14 13:08:30.435,,8th,I walk,,,18
+2026-01-14 13:08:33.162,,8th,I walk,,,18
+2026-01-14 13:08:40.104,,8th,I walk,,,18
+2026-01-14 13:09:03.853,,8th,A parent/guardian drives me,No,,18
+2026-01-14 13:09:06.208,,8th,I walk,,,18
+2026-01-14 13:09:13.304,,8th,A parent/guardian drives me,No,,18
+2026-01-14 13:09:13.932,,8th,A parent/guardian drives me,No,,18
+2026-01-14 13:09:14.148,,8th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-14 13:09:25.105,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-14 13:09:31.382,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-14 13:09:39.447,,8th,A parent/guardian drives me,No,,18
+2026-01-14 13:09:49.740,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-14 13:10:06.429,,8th,I walk,,,18
+2026-01-14 13:10:08.350,The Middle School,8th,A parent/guardian drives me,Yes,Stops nearer my house,18
+2026-01-14 13:10:11.358,union,8th,A parent/guardian drives me,Yes,Subsidized/free bus passes provided,18
+2026-01-14 13:10:30.196,,8th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-14 13:10:48.228,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-14 13:11:00.359,Near school street,8th,A parent/guardian drives me,Yes,Stops nearer my house,18
+2026-01-14 13:29:22.674,,7th,I walk,,,18
+2026-01-14 17:24:31.981,,8th,I walk,,,18
+2026-01-14 17:46:44.929,I don't know,7th,A parent/guardian drives me,No,If there was a closer bus stop and if it arrived at zero period,18
+2026-01-14 18:05:34.140,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-14 18:37:16.537,,8th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-14 18:43:01.794,,8th,I walk,,,18
+2026-01-14 19:14:18.785,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-14 19:18:25.118,,8th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-14 19:25:53.624,,6th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-14 19:41:34.066,,8th,A parent/guardian drives me,No,,18
+2026-01-14 19:58:49.449,Taft,8th,A parent/guardian drives me,No,Stops nearer my house,18
+2026-01-14 20:17:29.205,,8th,A parent/guardian drives me,No,,18
+2026-01-14 20:44:47.400,,8th,I bike/skate/scooter,,,18
+2026-01-14 20:45:28.386,,8th,I walk,,,18
+2026-01-14 20:45:30.156,,8th,I walk,,,18
+2026-01-14 20:57:39.438,,8th,I walk,,,18
+2026-01-14 21:31:31.837,,8th,I walk,,,18
+2026-01-14 21:39:03.315,,8th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-14 21:59:43.017,,8th,I bike/skate/scooter,,,18
+2026-01-14 22:37:39.736,,8th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-15 06:39:50.853,,8th,I walk,,,18
+2026-01-15 07:28:01.092,,8th,I bike/skate/scooter,,,18
+2026-01-15 08:47:37.928,,8th,I bike/skate/scooter,,,18
+2026-01-15 08:48:58.818,,8th,I walk,,,18
+2026-01-15 08:49:03.953,,8th,A parent/guardian drives me,No,,18
+2026-01-15 08:50:29.752,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-15 08:51:02.023,,8th,I walk,,,18
+2026-01-15 08:52:07.885,,8th,A parent/guardian drives me,No,,18
+2026-01-15 08:53:55.949,,8th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-15 08:53:57.964,,8th,I walk,,,18
+2026-01-15 08:54:14.545,,8th,I bike/skate/scooter,,,18
+2026-01-15 08:54:22.671,,8th,I bike/skate/scooter,,,18
+2026-01-15 08:54:37.488,,8th,I walk,,,18
+2026-01-15 08:54:39.075,,8th,I walk,,,18
+2026-01-15 08:54:41.735,Los gatos almedon,8th,A parent/guardian drives me,Yes,make it for. everyone,18
+2026-01-15 08:54:56.381,,8th,I walk,,,18
+2026-01-15 08:55:01.825,,8th,A parent/guardian drives me,No,,18
+2026-01-15 08:55:51.055,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-15 08:55:57.826,,8th,I walk,,,18
+2026-01-15 08:57:10.045,,8th,I walk,,,18
+2026-01-15 08:57:26.948,Blossom Hill Road,8th,A parent/guardian drives me,No,Busses made safer,18
+2026-01-15 09:00:17.904,taft,8th,A parent/guardian drives me,No,Let it be more known,18
+2026-01-15 09:17:49.387,,8th,A parent/guardian drives me,No,,18
+2026-01-15 09:32:26.616,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-15 10:53:31.754,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-15 10:57:49.974,,8th,A parent/guardian drives me,No,,18
+2026-01-15 11:01:45.999,,8th,I walk,,,18
+2026-01-15 11:05:33.268,,8th,I bike/skate/scooter,,,18
+2026-01-15 11:14:02.913,,8th,A parent/guardian drives me,No,,18
+2026-01-15 11:23:22.539,,8th,I walk,,,18
+2026-01-15 11:29:54.345,,8th,I walk,,,18
+2026-01-15 11:30:05.666,,8th,A parent/guardian drives me,No,,18
+2026-01-15 11:50:16.913,Safeway.,8th,A parent/guardian drives me,Yes,Arrives at my house at a better time,18
+2026-01-15 11:51:29.224,,8th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-15 12:00:55.162,,6th,I walk,,,18
+2026-01-15 12:02:11.173,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-15 12:07:46.299,,8th,A parent/guardian drives me,No,,18
+2026-01-15 12:14:05.279,,8th,A parent/guardian drives me,No,,18
+2026-01-15 12:21:20.121,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-15 12:39:51.649,,8th,I walk,,,18
+2026-01-15 12:40:00.062,,8th,I walk,,,18
+2026-01-15 13:18:42.442,,8th,I walk,,,18
+2026-01-15 13:21:30.551,,8th,A parent/guardian drives me,No,,18
+2026-01-15 13:39:32.319,,8th,A parent/guardian drives me,No,,18
+2026-01-15 13:44:33.586,I dont know,8th,A parent/guardian drives me,No,Subsidized/free bus passes provided,18
+2026-01-15 13:45:38.557,idk,8th,A parent/guardian drives me,No,Subsidized/free bus passes provided,18
+2026-01-15 14:02:57.853,,8th,I bike/skate/scooter,,,18
+2026-01-15 14:13:38.578,,8th,A parent/guardian drives me,No,,18
+2026-01-15 14:15:54.500,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-15 14:20:27.902,,8th,I bike/skate/scooter,,,18
+2026-01-15 14:23:21.726,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-15 14:25:15.194,Safeway,8th,A parent/guardian drives me,Yes,Subsidized/free bus passes provided,18
+2026-01-15 14:33:57.260,,8th,A parent/guardian drives me,No,,18
+2026-01-15 14:46:15.391,,8th,I walk,,,18
+2026-01-15 15:22:57.965,kooser,8th,A parent/guardian drives me,No,Arrives at school at a better time,18
+2026-01-15 15:26:35.223,,8th,A parent/guardian drives me,No,,18
+2026-01-15 15:34:52.075,,8th,I bike/skate/scooter,,,18
+2026-01-15 15:37:14.789,,8th,A parent/guardian drives me,No,,18
+2026-01-15 15:50:14.136,,8th,I walk,,,18
+2026-01-15 16:10:26.400,,8th,A parent/guardian drives me,No,,18
+2026-01-15 16:12:36.288,,8th,I walk,,,18
+2026-01-15 16:28:27.084,,8th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-15 16:37:52.542,,8th,I walk,,,18
+2026-01-15 16:58:48.853,,6th,I walk,,,18
+2026-01-15 18:37:38.580,,8th,I bike/skate/scooter,,,18
+2026-01-15 18:58:06.386,,8th,I walk,,,18
+2026-01-15 19:23:53.145,,8th,A parent/guardian drives me,No,,18
+2026-01-15 20:30:30.953,,7th,A parent/guardian drives me,No,,18
+2026-01-15 20:45:23.148,a street corner or intersection near school (like by safeway or starbucks?),8th,A parent/guardian drives me,No,i'm not sure because I've never tried taking a bus,18
+2026-01-15 22:42:14.430,,8th,I walk,,,18
+2026-01-15 23:21:34.488,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-15 23:57:06.506,,8th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-16 00:10:52.398,,8th,I bike/skate/scooter,,,18
+2026-01-16 08:05:33.158,,8th,I walk,,,18
+2026-01-16 08:35:58.650,also does not matter,8th,A parent/guardian drives me,No,Arrives at school at a better time,18
+2026-01-16 09:41:06.179,,8th,A parent/guardian drives me,No,,18
+2026-01-16 11:08:14.981,payne ave or near my house,6th,A parent/guardian drives me,No,Stops nearer my house,18
+2026-01-16 11:16:18.452,,8th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-16 11:28:29.196,,8th,A parent/guardian drives me,No,,18
+2026-01-16 12:11:41.044,,7th,I walk,,,18
+2026-01-16 12:55:39.871,,8th,I walk,,,18
+2026-01-16 13:23:59.617,,8th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-16 13:25:09.808,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-16 14:41:20.289,,8th,A parent/guardian drives me,No,,18
+2026-01-16 16:01:24.608,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-16 16:12:30.000,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-16 16:28:22.789,,8th,A parent/guardian drives me,No,If the bus could drop people off at school at 7:30,18
+2026-01-16 18:42:14.591,,8th,I walk,,,18
+2026-01-16 21:13:32.248,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-18 22:23:49.173,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-19 19:14:29.200,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-19 20:34:31.075,,8th,A parent/guardian drives me,No,,18
+2026-01-20 08:39:31.535,,6th,I walk,,,18
+2026-01-20 08:40:14.894,,6th,I bike/skate/scooter,,,18
+2026-01-20 08:40:37.542,,6th,I walk,,,18
+2026-01-20 08:40:44.656,,6th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-20 08:40:48.835,,6th,I walk,,,18
+2026-01-20 08:40:55.007,,6th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-20 08:40:55.500,,6th,I walk,,,18
+2026-01-20 08:41:05.947,,6th,I walk,,,18
+2026-01-20 08:41:13.212,,6th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-20 08:41:23.435,,6th,A parent/guardian drives me,No,,18
+2026-01-20 08:41:37.790,,6th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-20 08:41:44.450,,6th,I walk,,,18
+2026-01-20 08:41:48.681,Outside school,6th,A parent/guardian drives me,Yes,Stops nearer my house,18
+2026-01-20 08:41:50.049,the gate,6th,A parent/guardian drives me,Yes,Arrives at school at a better time,18
+2026-01-20 08:42:28.557,middle school,6th,A parent/guardian drives me,Yes,Arrives at my house at a better time,18
+2026-01-20 08:42:31.893,,6th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-20 08:42:55.041,,6th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-20 08:43:47.666,School gate to field,6th,A parent/guardian drives me,No,Arrives at school at a better time,18
+2026-01-20 08:44:03.469,the L gate,6th,A parent/guardian drives me,Yes,nothing,18
+2026-01-20 08:44:13.026,"1458 Nesbit Ct, San Jose, 95120",6th,A parent/guardian drives me,No,"If it arrives nearer my house, if the bus had charger inputs. If the bus had a mini hoop in the back where you could hoop.",18
+2026-01-20 08:44:19.300,will not ride bus.,6th,A parent/guardian drives me,No,Subsidized/free bus passes provided,18
+2026-01-20 08:45:00.371,dont know,6th,A parent/guardian drives me,Yes,Arrives at school at a better time,18
+2026-01-20 08:45:05.804,,6th,A parent/guardian drives me,No,,18
+2026-01-20 08:45:54.307,,6th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-20 08:49:01.995,first entry from school.,6th,A parent/guardian drives me,Yes,already said no need.,18
+2026-01-20 08:50:55.113,,6th,A parent/guardian drives me,No,,18
+2026-01-20 10:55:31.073,,6th,I walk,,,18
+2026-01-20 10:55:32.460,,6th,I walk,,,18
+2026-01-20 10:55:34.672,,6th,I walk,,,18
+2026-01-20 10:55:37.648,,6th,I walk,,,18
+2026-01-20 10:55:38.784,,6th,I walk,,,18
+2026-01-20 10:55:40.655,,6th,I walk,,,18
+2026-01-20 10:55:46.374,,6th,I walk,,,18
+2026-01-20 10:55:46.647,,6th,I walk,,,18
+2026-01-20 10:55:49.480,,6th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-20 10:55:49.862,,6th,I bike/skate/scooter,,,18
+2026-01-20 10:55:56.696,,6th,I walk,,,18
+2026-01-20 10:56:02.312,,6th,I walk,,,18
+2026-01-20 10:56:06.278,,6th,I walk,,,18
+2026-01-20 10:56:09.962,,6th,I walk,,,18
+2026-01-20 10:56:21.771,,6th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-20 10:56:22.014,,6th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-20 10:56:23.626,,6th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-20 10:56:48.151,,6th,I walk,,,18
+2026-01-20 10:56:59.161,,6th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-20 10:56:59.231,,6th,A parent/guardian drives me,No,I have no interest in taking the bus,18
+2026-01-20 10:57:07.876,,6th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-20 10:57:09.134,,6th,A parent/guardian drives me,No,,18
+2026-01-20 10:57:26.464,,6th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-20 10:57:35.611,,6th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-20 10:57:56.246,I don't know.,6th,A parent/guardian drives me,No,Stops nearer my house,18
+2026-01-20 10:57:57.742,,6th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-20 10:58:21.741,my school,6th,A parent/guardian drives me,No,Stops nearer my house,18
+2026-01-20 10:58:41.994,middle school,6th,A parent/guardian drives me,No,Stops nearer my house,18
+2026-01-20 11:01:48.609,,6th,I walk,,,18
+2026-01-20 18:55:34.438,,8th,I walk,,,18
+2026-01-23 09:07:35.286,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-23 11:26:40.417,,8th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-23 14:26:31.797,,6th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-01-28 09:59:09.228,,7th,I walk,,,18
+2026-01-29 19:01:54.491,,6th,A parent/guardian drives me,No,,18
+2026-02-02 16:02:04.615,,6th,I bike/skate/scooter,,,18
+2026-02-04 14:55:28.645,,6th,A parent/guardian drives me,Yes,I have no interest in taking the bus,18
+2026-02-06 11:29:20.210,UMS,6th,A parent/guardian drives me,No,,18

@@ -1,0 +1,28 @@
+stop_id,stop_name,stop_lat,stop_lon,route_ids,is_synthetic
+VTA_1000,Winchester Transit Center,37.258,-121.95,27,True
+VTA_1001,LG Blvd & Lark,37.254,-121.955,27,True
+VTA_1002,LG Blvd & Blossom Hill,37.25,-121.958,27,True
+VTA_1003,LG Blvd & Roberts,37.246,-121.961,27,True
+VTA_1004,LG Blvd & Shannon,37.242,-121.961,27,True
+VTA_1005,LG Blvd & Samaritan,37.238,-121.961,27,True
+VTA_1006,National & Carlton,37.234,-121.961,27,True
+VTA_1007,LG-Almaden & Ross Creek,37.23,-121.96,27,True
+VTA_1008,LG-Almaden & Blossom Valley,37.226,-121.959,27,True
+VTA_1009,N Santa Cruz & Main,37.232,-121.978,27,True
+VTA_1010,S Santa Cruz & University,37.228,-121.978,27,True
+VTA_1011,Blossom Hill & University,37.236,-121.975,27,True
+VTA_1012,Blossom Hill & Los Gatos Blvd,37.238,-121.97,27,True
+VTA_1013,Blossom Hill & Union,37.24,-121.965,27,True
+VTA_1014,Blossom Hill & Camden,37.242,-121.955,27,True
+VTA_1015,Blossom Hill & Leigh,37.244,-121.945,27,True
+VTA_1016,Blossom Hill & Meridian,37.246,-121.935,27,True
+VTA_1017,S Santa Cruz & Hwy 9,37.23,-121.978,76,True
+VTA_1018,SR-17 & Los Gatos Creek,37.222,-121.981,76,True
+VTA_1019,Alma Bridge Rd & SR-17,37.214,-121.988,76,True
+VTA_1020,Lexington Reservoir,37.206,-121.998,76,True
+VTA_1021,Black Rd & SR-17,37.195,-122.012,76,True
+VTA_1022,Redwood Estates,37.183,-122.018,76,True
+VTA_1023,Summit Road & SR-17,37.168,-122.03,76,True
+VTA_1024,Summit & Loma Prieta,37.155,-122.04,76,True
+VTA_1025,Winchester Transit Center (Hwy17X),37.258,-121.95,17X,True
+VTA_1026,Los Gatos (Hwy17X),37.228,-121.978,17X,True

@@ -1,0 +1,223 @@
+stop_id,stop_name,route_ids,district_id
+PS_WVTC,West Valley College Transit Center,,
+1044,Fruitvale & Allendale,"26,51",
+1046,Saratoga & Rossmere,51,
+1047,Saratoga & Herriman,51,
+1048,Saratoga & Seagraves,51,
+1049,Saratoga & Saratoga-Sunnyvale,51,
+1061,Santa Cruz & Nicholson,27,D1
+1062,Main & Santa Cruz,27,D1
+1063,University & Mullen,27,D1
+1064,University & Royce,27,D1
+1065,Los Gatos-Saratoga & University,27,D1
+1066,Santa Cruz & Los Gatos-Saratoga,27,D1
+1068,Santa Cruz & Roberts,27,D1
+1074,Los Gatos & Leroy,27,D7
+1084,Los Gatos-Almaden & Union,27,U2
+1085,Los Gatos-Almaden & Kentfield,27,
+1086,Leigh & Los Gatos-Almaden,27,
+1087,Leigh & Gregg,27,U6
+1088,Leigh & Kay,27,U6
+1089,Blossom Hill & Del Oro,27,U6
+1090,Blossom Hill & Belwood,27,U6
+1091,Blossom Hill & Harwood,27,
+1092,Blossom Hill & Drysdale,27,
+1093,Blossom Hill & Camden,27,
+1094,Blossom Hill & Park Crest,27,U4
+1095,Blossom Hill & Chambertin,27,U5
+1096,Blossom Hill & Vassar,27,U5
+1097,Blossom Hill & Meridian,27,U5
+1100,Blossom Hill & Seifert,27,U5
+1101,Blossom Hill & Ayrshire,27,U5
+1154,Blossom Hill & Ayrshire,27,U5
+1155,Blossom Hill & Kooser,27,U5
+1156,Blossom Hill & Meridian,27,U5
+1157,Meridian & Blossom Hill,64B,U5
+1158,Meridian & Kooser,64B,U4
+1159,Blossom Hill & Vassar,27,U5
+1160,Blossom Hill & Dartmouth,27,U4
+1161,Blossom Hill & Parkcrest,27,U4
+1162,Blossom Hill & Camden,27,
+1163,Blossom Hill & Drysdale,27,
+1164,Blossom Hill & Harwood,27,
+1165,Blossom Hill & Mary Jo,27,U6
+1166,Blossom Hill & Del Oro,27,U6
+1167,Leigh & Blossom Hill,27,U6
+1168,Leigh & Anne,27,
+1169,Los Gatos-Almaden & Leigh,27,
+1170,Los Gatos-Almaden & Sandy,27,U2
+1179,Los Gatos & Los Gatos-Almaden,27,D6
+1181,Los Gatos & Blossom Hill,27,D7
+1185,Santa Cruz & Mariposa,27,D7
+1186,Santa Cruz & Olive,27,D1
+1188,Santa Cruz & Los Gatos-Saratoga,27,D1
+1200,Saratoga & Saratoga-Los Gatos,51,
+1202,Saratoga & Juniper,51,
+1203,Saratoga & Herriman,51,
+1204,Saratoga & Rossmere,51,
+1207,Fruitvale & Allendale,"26,51",
+1686,Camden & Union,"101,37",
+1688,Bascom & Camden,61,
+1690,Union & Foxworthy,61,
+1691,Union & Cambrianna,61,
+1692,Camden & Union,"101,37",
+1693,Camden & New Jersey,37,
+1694,Hillsdale & Ross,37,
+1695,Hillsdale & Kilo,37,
+1696,Hillsdale & Kirk,37,
+1697,Hillsdale & Meridian,37,
+1698,Hillsdale & San Clemente,37,
+1730,Hillsdale & San Clemente,37,
+1731,Hillsdale & Meridian,37,
+1732,Hillsdale & Kirk,37,
+1733,Hillsdale & Manda,37,
+1734,Hillsdale & Ross,37,
+1735,Hillsdale & Camden,37,
+1736,Camden & Leigh,37,
+1737,Camden & New Jersey,37,
+1738,Camden & Taper,37,
+1740,Winchester & Albright,27,D3
+1743,Los Gatos & Del Sol,27,D6
+1744,Samaritan & National,"27,61",D6
+1745,Good Samaritan Hospital,27,D6
+1746,Samaritan & Samaritan,"27,61",D6
+1747,Samaritan & Winton,"27,61",D6
+1748,Samaritan & Cooper,"27,61",D6
+1749,Samaritan & Esther,"27,61",U2
+1750,Union & Samaritan,27,U2
+1751,Union & Carlton,27,U2
+1757,Camden & Highway 85,101,U3
+1814,Union & Heather,27,U2
+1816,Samaritan & Union,"27,61",U2
+1817,Samaritan & Esther,"27,61",U2
+1818,Samaritan & Cooper,"27,61",D6
+1819,Samaritan & Clydelle,"27,61",D6
+1820,Samaritan & Saidel,"27,61",D6
+1821,Good Samaritan Hospital,"27,61",D6
+1822,Samaritan & Medical Center,"27,61",D6
+1823,Los Gatos & Burton,27,D6
+1824,Los Gatos & Bennett,27,D6
+1826,Winchester & Lark,27,D3
+1827,Winchester & Albright,27,D3
+1828,Knowles & Capri,27,D3
+1830,Knowles & Dardanelli,27,D3
+1831,Pollard & El Camino Hospital Los Gatos,27,
+1832,Pollard & Bracebridge,27,
+1833,Burrows & Hacienda,"27,37",
+1834,Hacienda & Gay,"27,37",
+1835,Hacienda & Capri,"27,37",
+1836,Hacienda & Walnut,"27,37",
+2236,Saratoga-Sunnyvale & Walnut,51,
+2237,Saratoga-Sunnyvale & Gerald Zapelli,51,
+2238,Saratoga-Sunnyvale & Herriman,51,
+2309,Saratoga-Sunnyvale & Herriman,51,
+2310,Saratoga-Sunnyvale & Reid,51,
+2311,Saratoga-Sunnyvale & Marion,51,
+2494,Allendale & Portos,"37,57",
+2495,Allendale & Chester,"37,57",
+2496,Quito & Montpere,57,
+2568,Quito & Montpere,57,
+2569,Allendale & Chester,"37,57",
+2570,Allendale & Portos,"37,57",
+2695,Main & Los Gatos Civic Center,27,D7
+2696,Main & Jackson,27,D7
+2697,Los Gatos & Stacia,27,D7
+2698,Santa Cruz & Blossom Hill,27,D7
+2699,Winchester & Daves,27,D5
+2700,Winchester & Vineland,27,D4
+2701,Winchester & Milani,27,D4
+2702,Winchester & Wild,27,D4
+2703,Winchester & La Rinconada,27,D4
+2704,Winchester & Hacienda,"27,37",
+2770,Hacienda & Winchester,"27,37",
+2771,Hacienda & Walnut,"27,37",
+2772,Hacienda & Capri,"27,37",
+2773,Hacienda & Via Ranchero,"27,37",
+2774,Burrows & Hacienda,"27,37",
+2775,Pollard & Bracebridge,27,
+2776,Pollard & Teakwood,27,
+2777,Knowles & Dardanelli,27,D3
+2778,Knowles & Capri,27,D3
+2779,Winchester & Newell,27,D3
+2780,Winchester & La Rinconada,27,D4
+2781,Winchester & Eaton,27,D4
+2782,Winchester & Valley Oak,27,D4
+2783,Winchester & Vineland,27,D4
+2784,Winchester & Daves,27,D5
+2786,Los Gatos-Saratoga & Village Lane,27,D1
+2787,Los Gatos & Simons,27,D7
+2788,Main & Pleasant,27,D7
+2789,Main & Villa,27,D7
+2791,Santa Cruz & Main,27,D1
+2792,Los Gatos & Fillmer,27,D7
+2793,Los Gatos & Nino,27,D7
+2794,Los Gatos & Magneson,27,D7
+2795,Los Gatos & Los Gatos-Almaden (Chirco),27,D6
+2797,Los Gatos & Village Square,27,D6
+2798,Los Gatos & Gateway,27,D6
+2800,Bascom & Samaritan,61,D6
+2802,Bascom & White Oaks,61,
+2803,Bascom & Woodard,61,
+2804,Bascom & Shelley,61,
+2805,Bascom & Jewell,61,
+2806,Union & Stratford,61,U2
+2808,Union & Camden,61,
+2809,Union & Cambrianna,61,
+2810,Union & Foxworthy,61,
+2884,Union & Stratford,61,U2
+2885,Union & Barrett,61,U2
+2888,Bascom & Shamrock,61,
+2889,Bascom & Camden,61,
+2890,Bascom & Shelley,61,
+2891,Bascom & Woodard,61,
+2892,Bascom & White Oaks,61,
+2893,Los Gatos & Garden,27,D6
+2894,Los Gatos & Garden (New Town Center),27,D6
+2895,Los Gatos & Roberts,27,D7
+2896,Los Gatos & Nino,27,D7
+2897,Los Gatos & Caldwell,27,D7
+2904,Camden & Meridian,64B,
+2905,Meridian & Paso Los Cerritos,64B,
+2906,Meridian & Redmond,64B,
+2907,Meridian & Oakglen,64B,
+2908,Meridian & Torrington,64B,U5
+2909,Meridian & Oslo,64B,U5
+2910,Meridian & Dentwood,64B,U4
+2911,Meridian & Portobelo,64B,U3
+2912,Meridian & Branham,64B,U3
+2914,Meridian & Hallbrook,64B,U3
+2915,Meridian & Willowgate,64B,U3
+2916,Meridian & Willowmont,64B,
+2917,Meridian & Hillsdale,64B,
+2969,Meridian & Hillsdale,64B,
+2971,Meridian & Willowmont,64B,
+2972,Meridian & Jacob,64B,U3
+2973,Meridian & Hallbrook,64B,U3
+2975,Meridian & Corte De Callas,64B,U3
+2977,Meridian & Portobelo,64B,U3
+2978,Meridian & Dentwood,64B,U4
+2979,Meridian & Princeton,64B,U4
+2980,Meridian & Blossom Hill,64B,U5
+2981,Meridian & Oslo,64B,U5
+2982,Meridian & Torrington,64B,U5
+2983,Meridian & Oakglen,64B,
+2984,Meridian & Redmond,64B,
+2985,Meridian & Paso Los Cerritos,64B,
+2986,Camden & Leyland Park,64B,
+4432,Camden & Olympia,"101,37",
+4454,Camden & Calvin,"101,37",
+4695,Good Samaritan Hospital,61,D6
+4996,West Valley College (Bay 6),37,
+4997,West Valley College (Bay 5),51,
+4998,West Valley College (Bay 4),26,
+5000,West Valley Transit Center (Bay 2),57,
+5544,Pollard & More,37,
+5545,Pollard & More,37,
+5546,Pollard & Abbott,37,
+5547,Pollard & York,37,
+5548,Pollard & Naramore,37,
+5549,Pollard & Summerwood,37,
+5630,Camden & Paseo Del Oro,37,
+5631,Camden & Esther,37,
+5632,Hillsdale & Camden,37,
+5687,Quito & Ravenwood,37,

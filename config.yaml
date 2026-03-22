@@ -1,0 +1,457 @@
+# ===============================================================
+# Los Gatos Transit CBA -- Master Configuration
+# Milestone A  - Phase A1
+# ===============================================================
+
+project:
+  name: "Los Gatos Bus Transit Cost-Benefit Analysis"
+  version: "0.1.0"
+  analyst: "Transit Economics Team"
+  date_created: "2026-03-17"
+  description: >
+    District-level CBA of the VTA bus transit system serving
+    Los Gatos, CA (95030/95032/95033) and the Union School
+    District service area (95124/95118/95120).
+
+# ===========================================================
+# ANALYSIS PARAMETERS
+# All valuations cite federal guidance. See docs/methods_justification.md
+# ===========================================================
+
+analysis:
+  base_year: 2025
+  time_horizon_operating_years: 20    # FTA guidance for operating investments
+  time_horizon_capital_years: 30      # FTA guidance for capital investments
+  # OMB Circular A-94 discount rates (real)
+  discount_rates: [0.02, 0.035, 0.07]
+  discount_rate_labels: ["2% (OMB low)", "3.5% (OMB infrastructure)", "7% (OMB high)"]
+  monte_carlo_iterations: 10000
+  monte_carlo_seed: 42
+  currency: "USD"
+  inflation_rate: 0.025  # CPI-U trailing 5-year average
+
+# ===========================================================
+# VALUE OF TIME AND SAFETY
+# Source: USDOT BCA Guidance, 2024 revision
+# ===========================================================
+
+valuations:
+  # USDOT Value of Travel Time Savings (2024 update)
+  value_of_time_personal_per_hour: 17.80
+  value_of_time_business_per_hour: 31.90
+  value_of_time_all_purposes_per_hour: 20.60
+  value_of_time_source: "USDOT BCA Guidance 2024, Table 4"
+
+  # USDOT Value of a Statistical Life (2024)
+  vsl: 12_800_000
+  vsl_source: "USDOT VSL Guidance 2024"
+
+  # Crash cost by KABCO severity (FHWA)
+  crash_cost_fatal: 12_800_000
+  crash_cost_serious_injury: 521_300
+  crash_cost_minor_injury: 79_800
+  crash_cost_possible_injury: 48_100
+  crash_cost_pdo: 4_700
+  crash_cost_source: "FHWA crash cost tables (2022 update), inflated to 2025$"
+
+  # EPA Social Cost of Carbon (2025$/metric ton CO2)
+  social_cost_carbon: 56.0
+  scc_discount_rate: 0.03
+  scc_source: "EPA SC-CO2, 2024 update, 3% discount rate central estimate"
+
+# ===========================================================
+# VEHICLE AND EMISSIONS PARAMETERS
+# ===========================================================
+
+vehicle:
+  avg_auto_occupancy: 1.15        # ACS Santa Clara County commute data
+  avg_fuel_price_per_gallon: 5.10  # EIA CA avg, 2025
+  avg_fuel_economy_mpg: 28.5       # EPA fleet average, light-duty 2024
+  auto_operating_cost_per_mile: 0.68  # AAA "Your Driving Costs" 2024
+  auto_operating_cost_source: "AAA Your Driving Costs 2024"
+
+emissions:
+  # g/mile, EPA MOVES3 defaults for Santa Clara County
+  co2_per_vmt_grams: 347.0
+  nox_per_vmt_grams: 0.21
+  pm25_per_vmt_grams: 0.006
+  voc_per_vmt_grams: 0.15
+  emissions_source: "EPA MOVES3.1, Santa Clara County defaults, light-duty gasoline"
+
+  # Transit emission rates (NTD, VTA reported)
+  bus_co2_per_revenue_mile_grams: 2230.0
+  bus_nox_per_revenue_mile_grams: 8.5
+  bus_emission_source: "NTD 2023, VTA Agency Profile"
+
+# ===========================================================
+# TRANSIT OPERATIONS
+# ===========================================================
+
+transit:
+  agency_name: "Valley Transportation Authority"
+  agency_id: "VTA"
+  ntd_agency_id: "90019"
+  gtfs_url: "https://www.vta.org/open-data"
+
+  # Key routes serving Los Gatos (current)
+  active_routes:
+    - route_id: "27"
+      name: "Route 27"
+      description: "Winchester LRT -> Los Gatos -> Santa Teresa LRT"
+      type: "local_bus"
+    - route_id: "17_express"
+      name: "Highway 17 Express"
+      description: "San Jose Diridon -> Santa Cruz (Metro Center)"
+      type: "express_bus"
+
+  # Discontinued routes (for restoration analysis)
+  discontinued_routes:
+    - route_id: "76"
+      name: "Route 76"
+      description: "Downtown Los Gatos -> Summit Road (mountains)"
+      type: "local_bus"
+      discontinued_date: "2010-06-30"
+      reason: "Low ridership / farebox recovery"
+      notes: >
+        Only transit serving 95033 mountain area. Maintained for years
+        primarily for LGHS student access. Bus stop signs still present
+        along corridor. Key candidate for restoration CBA.
+
+  # Operating cost benchmarks (NTD, VTA FY2023)
+  operating_cost_per_revenue_hour: 195.50
+  operating_cost_per_revenue_mile: 14.80
+  fare_recovery_ratio: 0.08
+  avg_fare: 2.00
+  operating_cost_source: "NTD FY2023, VTA Bus Mode"
+
+# ===========================================================
+# BENEFIT ALLOCATION
+# ===========================================================
+
+benefit_allocation:
+  # How to split benefits for cross-district trips
+  # Options: "50_50", "origin_weighted", "destination_weighted", "distance_proportional"
+  cross_district_method: "50_50"
+  cross_district_source: "Boardman et al., CBA: Concepts and Practice, Ch. 6"
+
+# ===========================================================
+# HEALTH PARAMETERS
+# ===========================================================
+
+health:
+  # WHO HEAT methodology values
+  walk_minutes_per_transit_trip: 12.0  # avg walk to/from stop
+  mortality_risk_reduction_per_min_walking: 0.001  # WHO HEAT default
+  health_benefit_per_walking_minute: 0.16  # CDC physical activity valuation
+  health_source: "WHO HEAT v5.2; CDC Economic Burden of Physical Inactivity 2023"
+
+# ===========================================================
+# DEMAND MODEL WEIGHTS
+# Source: TCRP Report 167 methodology
+# ===========================================================
+
+demand_model:
+  weights:
+    population_density: 0.20
+    employment_density: 0.15
+    zero_vehicle_households: 0.20
+    transit_commute_share: 0.15
+    inverse_median_income: 0.15
+    senior_youth_share: 0.15
+  weights_source: "TCRP Report 167, adapted for small-city context"
+
+# ===========================================================
+# SCHOOL ZONES
+# Two parallel analysis layers with independent districting
+# ===========================================================
+
+school_zones:
+  - zone_id: "LGHS"
+    name: "Los Gatos High School Service Area"
+    description: "Covers ZIP 95030, 95032, 95033. Incorporated town + ~100 sq mi mountains."
+    zip_codes: ["95030", "95032", "95033"]
+    district_prefix: "D"
+    boundary_file: "data/geospatial/districts/lghs_zone_boundary.geojson"
+
+  - zone_id: "UNION"
+    name: "Union School District Service Area"
+    description: >
+      ~7 sq mi across eastern Los Gatos, Cambrian, and north Almaden (San Jose).
+      All south of SR-85. Union Middle + Dartmouth Middle.
+    zip_codes: ["95032", "95124", "95118", "95120"]
+    district_prefix: "U"
+    boundary_file: "data/geospatial/districts/union_zone_boundary.geojson"
+
+# ===========================================================
+# DISTRICT DEFINITIONS -- LGHS ZONE (D1-D10)
+# Road-bounded. See docs/district_methodology.md
+# ===========================================================
+
+districts_lghs:
+  - id: "D1"
+    name: "Downtown / Town Core"
+    zone: "LGHS"
+    zip_primary: "95030"
+    description: "Walkable commercial heart. Main St, N. Santa Cruz Ave, civic center."
+    road_boundaries: "W of SR-17  - S of Blossom Hill Rd  - N of foothills"
+    characteristics: ["commercial_center", "walkable", "high_transit_access"]
+    boundary_file: "data/geospatial/districts/D1.geojson"
+    census_block_groups: []  # To be populated in Phase A1 data alignment
+
+  - id: "D2"
+    name: "Vasona / Northwest"
+    zone: "LGHS"
+    zip_primary: "95030"
+    description: "Vasona Lake, Oak Meadow Park, residential green corridor."
+    road_boundaries: "W of SR-17  - N of Blossom Hill Rd  - S of SR-85"
+    characteristics: ["parks", "residential", "vasona_lake"]
+    boundary_file: "data/geospatial/districts/D2.geojson"
+    census_block_groups: []
+
+  - id: "D3"
+    name: "North Gateway"
+    zone: "LGHS"
+    zip_primary: "95032"
+    description: "Above SR-85. Transition to Campbell/Saratoga."
+    road_boundaries: "N of SR-85  - Town boundary"
+    characteristics: ["town_edge", "campbell_border", "saratoga_border"]
+    boundary_file: "data/geospatial/districts/D3.geojson"
+    census_block_groups: []
+
+  - id: "D4"
+    name: "Northeast / Lark-85"
+    zone: "LGHS"
+    zip_primary: "95032"
+    description: "Quiet residential between the two freeways, west of LG Blvd."
+    road_boundaries: "E of SR-17  - S of SR-85  - N of Lark Ave  - W of LG Blvd"
+    characteristics: ["residential", "between_freeways"]
+    boundary_file: "data/geospatial/districts/D4.geojson"
+    census_block_groups: []
+
+  - id: "D5"
+    name: "Central East / Blossom-Lark"
+    zone: "LGHS"
+    zip_primary: "95032"
+    description: "Family neighborhoods, schools, local retail between Lark and Blossom Hill."
+    road_boundaries: "E of SR-17  - S of Lark Ave  - N of Blossom Hill Rd  - W of LG Blvd"
+    characteristics: ["family_residential", "schools", "local_retail"]
+    boundary_file: "data/geospatial/districts/D5.geojson"
+    census_block_groups: []
+
+  - id: "D6"
+    name: "East Los Gatos / Belwood"
+    zone: "LGHS"
+    zip_primary: "95032"
+    description: "E of LG Blvd. Belwood, Belgatos, Surmont. S of SR-85. Overlaps Union SD."
+    road_boundaries: "E of LG Blvd  - S of SR-85  - Town boundary"
+    characteristics: ["belwood_belgatos", "netflix_proximity", "union_sd_overlap"]
+    boundary_file: "data/geospatial/districts/D6.geojson"
+    census_block_groups: []
+
+  - id: "D7"
+    name: "South Hills / Shannon-Almond"
+    zone: "LGHS"
+    zip_primary: "95030"
+    description: "Southern hillsides E of SR-17. Shannon Rd, Roberts Rd, Almond Grove."
+    road_boundaries: "E of SR-17  - S of Blossom Hill Rd  - W of LG Blvd"
+    characteristics: ["hillside", "lower_density", "winding_roads"]
+    boundary_file: "data/geospatial/districts/D7.geojson"
+    census_block_groups: []
+
+  - id: "D8"
+    name: "West Foothills / SR-17 Approach"
+    zone: "LGHS"
+    zip_primary: "95030"
+    description: "Transition zone W of SR-17 between town and mountains."
+    road_boundaries: "W of SR-17  - S/W of D1 & D2  - E of mountain boundary"
+    characteristics: ["foothills", "sr17_corridor", "transition_zone"]
+    boundary_file: "data/geospatial/districts/D8.geojson"
+    census_block_groups: []
+
+  - id: "D9"
+    name: "Lexington / SR-17 Mountain Corridor"
+    zone: "LGHS"
+    zip_primary: "95033"
+    description: "SR-17 mountain corridor. Lexington Reservoir, Redwood Estates. Old VTA Route 76."
+    road_boundaries: "Along SR-17 from town boundary to Summit"
+    characteristics: ["lexington_reservoir", "redwood_estates", "route_76_corridor"]
+    boundary_file: "data/geospatial/districts/D9.geojson"
+    census_block_groups: []
+    notes: >
+      VTA Route 76 (discontinued June 2010) ran through this corridor.
+      Only transit ever serving the mountain area. Kept running for years
+      primarily for LGHS student access. Key restoration candidate.
+
+  - id: "D10"
+    name: "Skyline / Summit Mountains"
+    zone: "LGHS"
+    zip_primary: "95033"
+    description: "Vast mountain area W of SR-17 corridor to Hwy 35. Summit Rd, Chemeketa Park."
+    road_boundaries: "W of D9  - Hwy 35 / Skyline Blvd  - Summit Road"
+    characteristics: ["santa_cruz_mountains", "very_low_density", "cross_county"]
+    boundary_file: "data/geospatial/districts/D10.geojson"
+    census_block_groups: []
+    notes: >
+      Largest district by area (~80+ sq mi), lowest density (~89 ppl/sq mi).
+      Spans Santa Clara and Santa Cruz counties. Schools feed into LGHS.
+
+# ===========================================================
+# DISTRICT DEFINITIONS -- UNION SD ZONE (U1-U6)
+# All south of SR-85. Road-bounded.
+# ===========================================================
+
+districts_union:
+  - id: "U1"
+    name: "Alta Vista / LG West"
+    zone: "UNION"
+    zip_primary: "95032"
+    description: "Western Union SD, partly in Los Gatos. Alta Vista Elementary area."
+    road_boundaries: "S of SR-85  - W of LG-Almaden Rd  - N of foothills"
+    characteristics: ["alta_vista_elem", "los_gatos_side"]
+    feeder_school: "Alta Vista Elementary"
+    middle_school: "Union Middle"
+    boundary_file: "data/geospatial/districts/U1.geojson"
+    census_block_groups: []
+
+  - id: "U2"
+    name: "Noddin / Westhill"
+    zone: "UNION"
+    zip_primary: "95124"
+    description: "Noddin Elementary area. Between LG-Almaden Rd and Camden Ave."
+    road_boundaries: "S of SR-85  - E of LG-Almaden Rd  - W of Camden Ave  - N of Branham"
+    characteristics: ["noddin_elem", "westhill"]
+    feeder_school: "Noddin Elementary"
+    middle_school: "Union Middle"
+    boundary_file: "data/geospatial/districts/U2.geojson"
+    census_block_groups: []
+
+  - id: "U3"
+    name: "Carlton / N. Camden"
+    zone: "UNION"
+    zip_primary: "95124"
+    description: "Carlton Elementary area. S of SR-85, E of Camden Ave, N of Blossom Hill."
+    road_boundaries: "S of SR-85  - E of Camden Ave  - N of Blossom Hill Rd"
+    characteristics: ["carlton_elem", "union_ave"]
+    feeder_school: "Carlton Elementary"
+    middle_school: "Union Middle"
+    boundary_file: "data/geospatial/districts/U3.geojson"
+    census_block_groups: []
+
+  - id: "U4"
+    name: "Oster / Lencar"
+    zone: "UNION"
+    zip_primary: "95124"
+    description: "Oster Elementary area. E of Camden, S of Blossom Hill, N of Branham."
+    road_boundaries: "E of Camden Ave  - S of Blossom Hill Rd  - N of Branham Ln"
+    characteristics: ["oster_elem", "lencar_way"]
+    feeder_school: "Oster Elementary"
+    middle_school: "Dartmouth Middle"
+    boundary_file: "data/geospatial/districts/U4.geojson"
+    census_block_groups: []
+
+  - id: "U5"
+    name: "Lietz / Dartmouth"
+    zone: "UNION"
+    zip_primary: "95118"
+    description: "Lietz Elementary & Dartmouth Middle. S of Branham, E of Camden."
+    road_boundaries: "E of Camden Ave  - S of Branham Ln"
+    characteristics: ["lietz_elem", "dartmouth_middle"]
+    feeder_school: "Lietz Elementary"
+    middle_school: "Dartmouth Middle"
+    boundary_file: "data/geospatial/districts/U5.geojson"
+    census_block_groups: []
+
+  - id: "U6"
+    name: "Guadalupe / S. Almaden"
+    zone: "UNION"
+    zip_primary: "95120"
+    description: "Guadalupe Elementary. SW Union SD near Almaden. Vera Cruz Dr."
+    road_boundaries: "S of Branham Ln  - W of Camden Ave  - Near Almaden"
+    characteristics: ["guadalupe_elem", "almaden_edge"]
+    feeder_school: "Guadalupe Elementary"
+    middle_school: "Dartmouth Middle"
+    boundary_file: "data/geospatial/districts/U6.geojson"
+    census_block_groups: []
+
+# ===========================================================
+# ROAD BARRIERS
+# Used for district boundary enforcement and pedestrian analysis
+# ===========================================================
+
+road_barriers:
+  freeways:
+    - name: "SR-17"
+      type: "freeway"
+      caltrans_route: "17"
+      pems_stations: ["VDS 401632", "VDS 401633"]  # Los Gatos segment
+    - name: "SR-85 (West Valley Freeway)"
+      type: "freeway"
+      caltrans_route: "85"
+      pems_stations: ["VDS 400812", "VDS 400813"]
+
+  major_arterials:
+    - name: "Los Gatos Boulevard"
+      type: "major_arterial"
+      speed_limit_mph: 35
+      aadt_estimate: 23000
+    - name: "Lark Avenue"
+      type: "arterial"
+      speed_limit_mph: 35
+    - name: "Blossom Hill Road"
+      type: "major_arterial"
+      speed_limit_mph: 35
+      aadt_estimate: 11000  # Post SR-85 opening; was 23000 prior
+    - name: "Camden Avenue"
+      type: "major_arterial"
+      speed_limit_mph: 35
+    - name: "Los Gatos-Almaden Road"
+      type: "arterial"
+      speed_limit_mph: 35
+    - name: "Union Avenue"
+      type: "arterial"
+      speed_limit_mph: 30
+    - name: "Branham Lane"
+      type: "arterial"
+      speed_limit_mph: 35
+
+# ===========================================================
+# DATA SOURCES
+# ===========================================================
+
+data_sources:
+  census:
+    dataset: "ACS 5-Year Estimates"
+    vintage: "2019-2023"
+    geography: "block_group"
+    api_base: "https://api.census.gov/data"
+    variables:
+      total_population: "B01001_001E"
+      median_income: "B19013_001E"
+      zero_vehicle_hh: "B08201_002E"
+      total_households: "B08201_001E"
+      transit_commute: "B08301_010E"
+      total_workers: "B08301_001E"
+      pop_under_18: "B09001_001E"
+      pop_65_plus: "B01001_020E"  # simplified; sum multiple bins in code
+
+  gtfs:
+    provider: "VTA"
+    url: "https://www.vta.org/open-data"
+    local_path: "data/geospatial/gtfs/"
+
+  traffic:
+    pems_url: "https://pems.dot.ca.gov/"
+    switrs_url: "https://iswitrs.chp.ca.gov/Reports/jsp/index.jsp"
+
+  geospatial:
+    town_boundary_source: "US Census TIGER/Line, Los Gatos CDP"
+    osm_extract: "Geofabrik California extract, filtered to bounding box"
+
+# ===========================================================
+# COVERAGE ANALYSIS
+# ===========================================================
+
+coverage:
+  walk_access_buffer_miles: 0.50   # Standard 10-min walk
+  walk_access_buffer_close_miles: 0.25  # 5-min walk
+  walk_speed_mph: 3.0

@@ -1,0 +1,853 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "D1",
+        "name": "Downtown / Town Core",
+        "zone": "LGHS",
+        "zip_primary": "95030",
+        "description": "Walkable commercial heart. Main St, N. Santa Cruz Ave, civic center.",
+        "road_boundaries": "W of SR-17  - S of Blossom Hill Rd  - N of foothills"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -121.98,
+              37.236
+            ],
+            [
+              -121.978,
+              37.234
+            ],
+            [
+              -121.978,
+              37.23
+            ],
+            [
+              -121.979,
+              37.226
+            ],
+            [
+              -121.981,
+              37.222
+            ],
+            [
+              -121.984,
+              37.218
+            ],
+            [
+              -121.988,
+              37.216
+            ],
+            [
+              -121.994,
+              37.216
+            ],
+            [
+              -121.998,
+              37.218
+            ],
+            [
+              -122.0,
+              37.222
+            ],
+            [
+              -121.998,
+              37.226
+            ],
+            [
+              -121.995,
+              37.23
+            ],
+            [
+              -121.992,
+              37.232
+            ],
+            [
+              -121.99,
+              37.234
+            ],
+            [
+              -121.985,
+              37.235
+            ],
+            [
+              -121.98,
+              37.236
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "D2",
+        "name": "Vasona / Northwest",
+        "zone": "LGHS",
+        "zip_primary": "95030",
+        "description": "Vasona Lake, Oak Meadow Park, residential green corridor.",
+        "road_boundaries": "W of SR-17  - N of Blossom Hill Rd  - S of SR-85"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -121.98,
+              37.25
+            ],
+            [
+              -121.985,
+              37.248
+            ],
+            [
+              -121.993,
+              37.246
+            ],
+            [
+              -122.0,
+              37.243
+            ],
+            [
+              -122.002,
+              37.238
+            ],
+            [
+              -122.0,
+              37.234
+            ],
+            [
+              -121.995,
+              37.232
+            ],
+            [
+              -121.992,
+              37.232
+            ],
+            [
+              -121.99,
+              37.234
+            ],
+            [
+              -121.985,
+              37.235
+            ],
+            [
+              -121.98,
+              37.236
+            ],
+            [
+              -121.978,
+              37.238
+            ],
+            [
+              -121.979,
+              37.242
+            ],
+            [
+              -121.98,
+              37.246
+            ],
+            [
+              -121.98,
+              37.25
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "D3",
+        "name": "North Gateway",
+        "zone": "LGHS",
+        "zip_primary": "95032",
+        "description": "Above SR-85. Transition to Campbell/Saratoga.",
+        "road_boundaries": "N of SR-85  - Town boundary"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -121.98,
+              37.25
+            ],
+            [
+              -121.975,
+              37.251
+            ],
+            [
+              -121.97,
+              37.252
+            ],
+            [
+              -121.965,
+              37.253
+            ],
+            [
+              -121.96,
+              37.254
+            ],
+            [
+              -121.955,
+              37.255
+            ],
+            [
+              -121.95,
+              37.256
+            ],
+            [
+              -121.948,
+              37.26
+            ],
+            [
+              -121.955,
+              37.262
+            ],
+            [
+              -121.97,
+              37.262
+            ],
+            [
+              -121.98,
+              37.261
+            ],
+            [
+              -121.985,
+              37.258
+            ],
+            [
+              -121.983,
+              37.254
+            ],
+            [
+              -121.98,
+              37.25
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "D4",
+        "name": "Northeast / Lark-85",
+        "zone": "LGHS",
+        "zip_primary": "95032",
+        "description": "Quiet residential between the two freeways, west of LG Blvd.",
+        "road_boundaries": "E of SR-17  - S of SR-85  - N of Lark Ave  - W of LG Blvd"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -121.98,
+              37.25
+            ],
+            [
+              -121.975,
+              37.251
+            ],
+            [
+              -121.97,
+              37.252
+            ],
+            [
+              -121.965,
+              37.253
+            ],
+            [
+              -121.96,
+              37.254
+            ],
+            [
+              -121.961,
+              37.25
+            ],
+            [
+              -121.961,
+              37.246
+            ],
+            [
+              -121.965,
+              37.245
+            ],
+            [
+              -121.97,
+              37.244
+            ],
+            [
+              -121.974,
+              37.243
+            ],
+            [
+              -121.979,
+              37.242
+            ],
+            [
+              -121.98,
+              37.246
+            ],
+            [
+              -121.98,
+              37.25
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "D5",
+        "name": "Central East / Blossom-Lark",
+        "zone": "LGHS",
+        "zip_primary": "95032",
+        "description": "Family neighborhoods, schools, local retail between Lark and Blossom Hill.",
+        "road_boundaries": "E of SR-17  - S of Lark Ave  - N of Blossom Hill Rd  - W of LG Blvd"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -121.979,
+              37.242
+            ],
+            [
+              -121.974,
+              37.243
+            ],
+            [
+              -121.97,
+              37.244
+            ],
+            [
+              -121.965,
+              37.245
+            ],
+            [
+              -121.961,
+              37.246
+            ],
+            [
+              -121.961,
+              37.242
+            ],
+            [
+              -121.961,
+              37.238
+            ],
+            [
+              -121.965,
+              37.238
+            ],
+            [
+              -121.975,
+              37.237
+            ],
+            [
+              -121.98,
+              37.236
+            ],
+            [
+              -121.978,
+              37.238
+            ],
+            [
+              -121.979,
+              37.242
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "D6",
+        "name": "East Los Gatos / Belwood",
+        "zone": "LGHS",
+        "zip_primary": "95032",
+        "description": "E of LG Blvd. Belwood, Belgatos, Surmont. S of SR-85. Overlaps Union SD.",
+        "road_boundaries": "E of LG Blvd  - S of SR-85  - Town boundary"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -121.96,
+              37.254
+            ],
+            [
+              -121.955,
+              37.255
+            ],
+            [
+              -121.95,
+              37.256
+            ],
+            [
+              -121.945,
+              37.257
+            ],
+            [
+              -121.938,
+              37.258
+            ],
+            [
+              -121.938,
+              37.248
+            ],
+            [
+              -121.938,
+              37.24
+            ],
+            [
+              -121.94,
+              37.232
+            ],
+            [
+              -121.945,
+              37.225
+            ],
+            [
+              -121.95,
+              37.222
+            ],
+            [
+              -121.957,
+              37.222
+            ],
+            [
+              -121.959,
+              37.226
+            ],
+            [
+              -121.96,
+              37.23
+            ],
+            [
+              -121.961,
+              37.234
+            ],
+            [
+              -121.961,
+              37.238
+            ],
+            [
+              -121.961,
+              37.242
+            ],
+            [
+              -121.961,
+              37.246
+            ],
+            [
+              -121.961,
+              37.25
+            ],
+            [
+              -121.96,
+              37.254
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "D7",
+        "name": "South Hills / Shannon-Almond",
+        "zone": "LGHS",
+        "zip_primary": "95030",
+        "description": "Southern hillsides E of SR-17. Shannon Rd, Roberts Rd, Almond Grove.",
+        "road_boundaries": "E of SR-17  - S of Blossom Hill Rd  - W of LG Blvd"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -121.98,
+              37.236
+            ],
+            [
+              -121.975,
+              37.237
+            ],
+            [
+              -121.97,
+              37.238
+            ],
+            [
+              -121.965,
+              37.238
+            ],
+            [
+              -121.961,
+              37.238
+            ],
+            [
+              -121.961,
+              37.234
+            ],
+            [
+              -121.96,
+              37.23
+            ],
+            [
+              -121.959,
+              37.226
+            ],
+            [
+              -121.957,
+              37.222
+            ],
+            [
+              -121.958,
+              37.216
+            ],
+            [
+              -121.96,
+              37.21
+            ],
+            [
+              -121.968,
+              37.206
+            ],
+            [
+              -121.975,
+              37.206
+            ],
+            [
+              -121.98,
+              37.21
+            ],
+            [
+              -121.988,
+              37.214
+            ],
+            [
+              -121.984,
+              37.218
+            ],
+            [
+              -121.981,
+              37.222
+            ],
+            [
+              -121.979,
+              37.226
+            ],
+            [
+              -121.978,
+              37.23
+            ],
+            [
+              -121.978,
+              37.234
+            ],
+            [
+              -121.98,
+              37.236
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "D8",
+        "name": "West Foothills / SR-17 Approach",
+        "zone": "LGHS",
+        "zip_primary": "95030",
+        "description": "Transition zone W of SR-17 between town and mountains.",
+        "road_boundaries": "W of SR-17  - S/W of D1 & D2  - E of mountain boundary"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.0,
+              37.243
+            ],
+            [
+              -122.002,
+              37.238
+            ],
+            [
+              -122.0,
+              37.234
+            ],
+            [
+              -121.998,
+              37.23
+            ],
+            [
+              -121.998,
+              37.226
+            ],
+            [
+              -122.0,
+              37.222
+            ],
+            [
+              -121.998,
+              37.218
+            ],
+            [
+              -121.994,
+              37.216
+            ],
+            [
+              -121.988,
+              37.216
+            ],
+            [
+              -121.993,
+              37.21
+            ],
+            [
+              -121.998,
+              37.206
+            ],
+            [
+              -122.004,
+              37.202
+            ],
+            [
+              -122.012,
+              37.198
+            ],
+            [
+              -122.02,
+              37.198
+            ],
+            [
+              -122.028,
+              37.204
+            ],
+            [
+              -122.03,
+              37.212
+            ],
+            [
+              -122.028,
+              37.22
+            ],
+            [
+              -122.024,
+              37.228
+            ],
+            [
+              -122.018,
+              37.236
+            ],
+            [
+              -122.01,
+              37.24
+            ],
+            [
+              -122.0,
+              37.243
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "D9",
+        "name": "Lexington / SR-17 Mountain Corridor",
+        "zone": "LGHS",
+        "zip_primary": "95033",
+        "description": "SR-17 mountain corridor. Lexington Reservoir, Redwood Estates. Old VTA Route 76.",
+        "road_boundaries": "Along SR-17 from town boundary to Summit"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.03,
+              37.212
+            ],
+            [
+              -122.028,
+              37.204
+            ],
+            [
+              -122.02,
+              37.198
+            ],
+            [
+              -122.012,
+              37.198
+            ],
+            [
+              -122.012,
+              37.195
+            ],
+            [
+              -122.02,
+              37.185
+            ],
+            [
+              -122.028,
+              37.175
+            ],
+            [
+              -122.035,
+              37.165
+            ],
+            [
+              -122.04,
+              37.155
+            ],
+            [
+              -122.045,
+              37.14
+            ],
+            [
+              -122.042,
+              37.125
+            ],
+            [
+              -122.035,
+              37.112
+            ],
+            [
+              -122.04,
+              37.105
+            ],
+            [
+              -122.055,
+              37.1
+            ],
+            [
+              -122.068,
+              37.108
+            ],
+            [
+              -122.07,
+              37.13
+            ],
+            [
+              -122.058,
+              37.155
+            ],
+            [
+              -122.046,
+              37.18
+            ],
+            [
+              -122.038,
+              37.2
+            ],
+            [
+              -122.035,
+              37.21
+            ],
+            [
+              -122.03,
+              37.212
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "D10",
+        "name": "Skyline / Summit Mountains",
+        "zone": "LGHS",
+        "zip_primary": "95033",
+        "description": "Vast mountain area W of SR-17 corridor to Hwy 35. Summit Rd, Chemeketa Park.",
+        "road_boundaries": "W of D9  - Hwy 35 / Skyline Blvd  - Summit Road"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.055,
+              37.1
+            ],
+            [
+              -122.04,
+              37.105
+            ],
+            [
+              -122.035,
+              37.112
+            ],
+            [
+              -122.042,
+              37.118
+            ],
+            [
+              -122.068,
+              37.108
+            ],
+            [
+              -122.08,
+              37.1
+            ],
+            [
+              -122.11,
+              37.09
+            ],
+            [
+              -122.138,
+              37.08
+            ],
+            [
+              -122.145,
+              37.075
+            ],
+            [
+              -122.14,
+              37.07
+            ],
+            [
+              -122.11,
+              37.06
+            ],
+            [
+              -122.095,
+              37.06
+            ],
+            [
+              -122.05,
+              37.078
+            ],
+            [
+              -122.042,
+              37.088
+            ],
+            [
+              -122.055,
+              37.1
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

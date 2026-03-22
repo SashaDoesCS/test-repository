@@ -1,0 +1,4 @@
+route_id,route_name,annual_revenue_hours,annual_revenue_miles,annual_boardings,service_days_per_year,status,total_system_stops,cost_by_hour,cost_by_mile,annual_operating_cost,fare_revenue,net_operating_cost
+27,Winchester - Los Gatos - Santa Teresa,9480.0,247500,264000,310,active,165,1853340.0,3663000.0,3663000.0,528000.0,3135000.0
+17X,Highway 17 Express,2295.0,38250,180000,255,active,14,448672.5,566100.0,566100.0,360000.0,206100.0
+76,Los Gatos - Summit Road,540.0,8640,7200,180,discontinued,8,105570.0,127872.0,127872.0,14400.0,113472.0

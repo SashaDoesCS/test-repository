@@ -1,0 +1,7 @@
+agency,cost_per_rev_hour,cost_per_rev_mile,cost_per_boarding,fare_recovery
+VTA (Bus),195.5,14.8,9.77,0.08
+SamTrans,210.3,16.2,11.5,0.1
+AC Transit,188.7,13.5,7.2,0.12
+Santa Cruz Metro,145.2,11.3,8.9,0.09
+Monterey-Salinas Transit,132.8,10.1,10.2,0.11
+Golden Gate Transit,225.4,18.9,15.3,0.15

@@ -1,0 +1,8 @@
+category,annual_benefit,diverted_trips,per_trip_savings,source,avoided_vmt,avoided_crashes,avoided_fatal,avoided_serious,co2_tons_avoided,nox_tons_avoided,pm25_tons_avoided,co2_benefit,criteria_pollutant_benefit,total_walking_minutes,annual_walking_hours,variability_minutes,per_trip_benefit,population_served,per_capita_value
+Travel Time Savings,53354.0,155400.0,0.34,"USDOT BCA Guidance 2024, Section 5",,,,,,,,,,,,,,,
+Vehicle Operating Cost Savings,792540.0,,5.1,AAA Your Driving Costs 2024; FTA CBA guidelines,1165500.0,,,,,,,,,,,,,,
+Crash Reduction,183723.03,,,FHWA crash costs (2022); SWITRS Santa Clara County rates,,1.4,0.0098,0.07,,,,,,,,,,,
+Emission Reduction,26934.7,,,EPA SC-CO2 2024; EPA MOVES3.1; BenMAP-CE,,,,,404.43,0.2448,0.00699,22648.0,4286.71,,,,,,
+Health Benefits (Active Transport),852480.0,,,WHO HEAT v5.2; CDC Physical Activity Economics 2023,,,,,,,,,,5328000.0,88800.0,,,,
+Reliability Benefits,281709.12,,,"USDOT BCA Guidance 2024, Section 5.3",,,,,,,,,,,,6.6,1.81,,
+Option Value,1743975.0,,,TCRP Report 78; Boardman et al. Ch. 6,,,,,,,,,,,,,,69759.0,25.0

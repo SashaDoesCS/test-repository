@@ -1,0 +1,17 @@
+id,name,zone,zip_primary,road_boundaries,area_sq_miles,centroid_lat,centroid_lon,n_vertices
+D1,Downtown / Town Core,LGHS,95030,W of SR-17  - S of Blossom Hill Rd  - N of foothills,1.1518,37.226938,-121.9875,16
+D2,Vasona / Northwest,LGHS,95030,W of SR-17  - N of Blossom Hill Rd  - S of SR-85,1.0433,37.240267,-121.987933,15
+D3,North Gateway,LGHS,95032,N of SR-85  - Town boundary,1.1228,37.255571,-121.968286,14
+D4,Northeast / Lark-85,LGHS,95032,E of SR-17  - S of SR-85  - N of Lark Ave  - W of LG Blvd,0.5814,37.248154,-121.970769,13
+D5,Central East / Blossom-Lark,LGHS,95032,E of SR-17  - S of Lark Ave  - N of Blossom Hill Rd  - W of LG Blvd,0.439,37.240917,-121.970667,12
+D6,East Los Gatos / Belwood,LGHS,95032,E of LG Blvd  - S of SR-85  - Town boundary,2.6338,37.241526,-121.952632,19
+D7,South Hills / Shannon-Almond,LGHS,95030,E of SR-17  - S of Blossom Hill Rd  - W of LG Blvd,2.5204,37.225095,-121.971286,21
+D8,West Foothills / SR-17 Approach,LGHS,95030,W of SR-17  - S/W of D1 & D2  - E of mountain boundary,4.2313,37.220952,-122.00681,21
+D9,Lexington / SR-17 Mountain Corridor,LGHS,95033,Along SR-17 from town boundary to Summit,9.0846,37.164952,-122.037476,21
+D10,Skyline / Summit Mountains,LGHS,95033,W of D9  - Hwy 35 / Skyline Blvd  - Summit Road,11.136,37.0896,-122.080333,15
+U1,Alta Vista / LG West,UNION,95032,S of SR-85  - W of LG-Almaden Rd  - N of foothills,3.5652,37.237462,-121.948115,26
+U2,Noddin / Westhill,UNION,95124,S of SR-85  - E of LG-Almaden Rd  - W of Camden Ave  - N of Branham,1.3263,37.245857,-121.932952,21
+U3,Carlton / N. Camden,UNION,95124,S of SR-85  - E of Camden Ave  - N of Blossom Hill Rd,1.6111,37.256375,-121.910562,16
+U4,Oster / Lencar,UNION,95124,E of Camden Ave  - S of Blossom Hill Rd  - N of Branham Ln,1.0223,37.246562,-121.899438,16
+U5,Lietz / Dartmouth,UNION,95118,E of Camden Ave  - S of Branham Ln,0.935,37.238286,-121.893143,14
+U6,Guadalupe / S. Almaden,UNION,95120,S of Branham Ln  - W of Camden Ave  - Near Almaden,1.9082,37.228667,-121.917667,18
