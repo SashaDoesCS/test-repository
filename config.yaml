@@ -55,9 +55,15 @@ valuations:
   crash_cost_source: "FHWA crash cost tables (2022 update), inflated to 2025$"
 
   # EPA Social Cost of Carbon (2025$/metric ton CO2)
-  social_cost_carbon: 56.0
+  # EPA 2022 comprehensive update (finalized for regulatory use):
+  #   $120/ton at 3% discount rate (central estimate)
+  #   $190/ton at 2.5% discount rate (central estimate)
+  # Prior IWG value ($51/ton 2020$, ~$56 inflated) is no longer current.
+  # Source: EPA, "Report on the Social Cost of Greenhouse Gases" (2022).
+  social_cost_carbon: 120.0
+  social_cost_carbon_low_discount: 190.0   # at 2.5% rate (sensitivity)
   scc_discount_rate: 0.03
-  scc_source: "EPA SC-CO2, 2024 update, 3% discount rate central estimate"
+  scc_source: "EPA SC-CO2 Comprehensive Update 2022 (regulatory), 3% central estimate: $120/tCO2"
 
 # ===========================================================
 # VEHICLE AND EMISSIONS PARAMETERS

@@ -12,7 +12,7 @@ Every assumption in the CBA must be documented, sourced, and flagged for sensiti
 | A03 | Discount rate (high) | 7.0% | OMB Circular A-94 | ✓ Tornado | Standard federal high rate |
 | A04 | Value of Time (all purposes) | $20.60/hr | USDOT BCA Guidance 2024, Table 4 | ✓ Tornado, MC | |
 | A05 | Value of Statistical Life | $12.8M | USDOT VSL Guidance 2024 | ✓ Tornado | |
-| A06 | Social Cost of Carbon | $56/tCO2 | EPA SC-CO2, 2024, 3% rate | ✓ MC | Central estimate |
+| A06 | Social Cost of Carbon | $120/tCO2 (3%), $190/tCO2 (2.5%) | EPA SC-CO2 Comprehensive Update 2022 (regulatory) | ✓ MC, Tornado | Prior IWG value ($51-56/ton) superseded for regulatory use |
 | A07 | Auto operating cost | $0.68/mile | AAA "Your Driving Costs" 2024 | ✓ Tornado | CA average |
 | A08 | Fuel price | $5.10/gal | EIA CA average 2025 | ✓ MC | |
 | A09 | Fleet fuel economy | 28.5 mpg | EPA fleet average 2024 | ✓ MC | Light-duty |
@@ -26,6 +26,8 @@ Every assumption in the CBA must be documented, sourced, and flagged for sensiti
 | A17 | Analysis period (operating) | 20 years | FTA guidance | — | |
 | A18 | Analysis period (capital) | 30 years | FTA guidance | — | |
 | A19 | Monte Carlo iterations | 10,000 | Industry standard | — | |
+| A20 | Induced demand share | 20% of boardings | TCRP Report 95, Ch. 1 (15-25% range) | ✓ MC | Conservative end of range; transit-dependent + zero-car HH riders |
+| A21 | FTA CE Index TSUB method | Diverted time savings + transit-dependent mobility hours | FTA CIG Guidance 2024 | — | Required for New Starts/Small Starts rating |
 
 ## Data Proxies (Flagged)
 

@@ -2,23 +2,32 @@
   {
     "scenario": "Conservative",
     "description": "Real-world base case with corrected parameters",
-    "annual_benefits": 4055518,
+    "annual_benefits": 4658081,
     "annual_costs": 2020200,
     "total_capital": 4825000,
-    "pv_benefits": 60419203,
+    "pv_benefits": 69396207,
     "pv_costs": 39609855,
-    "bcr": 1.525,
-    "net_pv": 20809348,
+    "bcr": 1.752,
+    "net_pv": 29786353,
     "total_boardings": 444000,
     "diverted_trips": 244200,
     "avoided_vmt": 1831500,
     "benefit_categories": [
       {
         "category": "Travel Time Savings",
-        "annual_benefit": 83842.0,
+        "annual_benefit": 83923.4,
         "diverted_trips": 244200,
         "per_trip_savings": 0.34,
-        "source": "USDOT BCA Guidance 2024, Section 5"
+        "vot_weighted": 20.62,
+        "pct_business_trips": 0.2,
+        "source": "USDOT BCA Guidance 2024, Section 5, Table 4 (purpose-specific VOT)"
+      },
+      {
+        "category": "Induced Demand (Accessibility)",
+        "annual_benefit": 561808.0,
+        "induced_trips": 88800,
+        "consumer_surplus_per_trip": 6.33,
+        "source": "TCRP Report 95; Boardman et al. Ch. 5 (demand curve CS triangle)"
       },
       {
         "category": "Vehicle Operating Cost Savings",
@@ -37,11 +46,11 @@
       },
       {
         "category": "Emission Reduction",
-        "annual_benefit": 42325.97,
+        "annual_benefit": 82999.92,
         "co2_tons_avoided": 635.53,
         "nox_tons_avoided": 0.3846,
         "pm25_tons_avoided": 0.01099,
-        "co2_benefit": 35589.71,
+        "co2_benefit": 76263.66,
         "criteria_pollutant_benefit": 6736.26,
         "source": "EPA SC-CO2 2024; EPA MOVES3.1; BenMAP-CE"
       },
@@ -78,29 +87,39 @@
       "congestion": "Observed schedule data: MAD = 2.2 min / 22 min avg trip = 10%",
       "option_value": "$20/capita -- lower bound from Boardman et al. Ch.6 ($10-50 range)",
       "capital": "$30K/stop -- existing VTA stop infrastructure (sign + bench, no shelter)",
-      "cost_growth": "2.0% -- BLS CPI-U West Urban, trailing 3-year"
+      "cost_growth": "2.0% -- BLS CPI-U West Urban, trailing 3-year",
+      "pct_business_trips": "20% conservative -- ACS B08301: 1.8% transit commute share; Hwy 17 Express carries some work trips"
     }
   },
   {
     "scenario": "Moderate",
     "description": "Survey-informed with school access benefits",
-    "annual_benefits": 6085875,
+    "annual_benefits": 6701067,
     "annual_costs": 2020200,
     "total_capital": 4825000,
-    "pv_benefits": 99797199,
+    "pv_benefits": 109885234,
     "pv_costs": 41370309,
-    "bcr": 2.412,
-    "net_pv": 58426890,
+    "bcr": 2.656,
+    "net_pv": 68514925,
     "total_boardings": 444000,
     "diverted_trips": 266400,
     "avoided_vmt": 1998000,
     "benefit_categories": [
       {
         "category": "Travel Time Savings",
-        "annual_benefit": 256099.2,
+        "annual_benefit": 265112.4,
         "diverted_trips": 266400,
-        "per_trip_savings": 0.96,
-        "source": "USDOT BCA Guidance 2024, Section 5"
+        "per_trip_savings": 1.0,
+        "vot_weighted": 21.33,
+        "pct_business_trips": 0.25,
+        "source": "USDOT BCA Guidance 2024, Section 5, Table 4 (purpose-specific VOT)"
+      },
+      {
+        "category": "Induced Demand (Accessibility)",
+        "annual_benefit": 561808.0,
+        "induced_trips": 88800,
+        "consumer_surplus_per_trip": 6.33,
+        "source": "TCRP Report 95; Boardman et al. Ch. 5 (demand curve CS triangle)"
       },
       {
         "category": "Vehicle Operating Cost Savings",
@@ -119,11 +138,11 @@
       },
       {
         "category": "Emission Reduction",
-        "annual_benefit": 46173.78,
+        "annual_benefit": 90545.36,
         "co2_tons_avoided": 693.31,
         "nox_tons_avoided": 0.4196,
         "pm25_tons_avoided": 0.01199,
-        "co2_benefit": 38825.14,
+        "co2_benefit": 83196.72,
         "criteria_pollutant_benefit": 7348.64,
         "source": "EPA SC-CO2 2024; EPA MOVES3.1; BenMAP-CE"
       },
@@ -167,29 +186,39 @@
       "additional_boardings": "Union SD survey: 'Yes' respondents x 2 trips/day x 180 school days",
       "school_access": "$2,500/student/yr -- avoided parent driving time + safety (TCRP 78)",
       "n_students": "~350 students at Fisher, Union MS, LGHS who would use if available",
-      "option_value": "$30/capita -- mid-range of stated-preference studies"
+      "option_value": "$30/capita -- mid-range of stated-preference studies",
+      "pct_business_trips": "25% moderate -- mix of commuter express + local bus work trips"
     }
   },
   {
     "scenario": "Optimistic",
     "description": "Best defensible case with property value and full demand",
-    "annual_benefits": 13063491,
+    "annual_benefits": 13793197,
     "annual_costs": 2020200,
     "total_capital": 4825000,
-    "pv_benefits": 236317852,
+    "pv_benefits": 249518190,
     "pv_costs": 41370309,
-    "bcr": 5.712,
-    "net_pv": 194947543,
+    "bcr": 6.031,
+    "net_pv": 208147881,
     "total_boardings": 444000,
     "diverted_trips": 310800,
     "avoided_vmt": 2486400,
     "benefit_categories": [
       {
         "category": "Travel Time Savings",
-        "annual_benefit": 746956.0,
+        "annual_benefit": 798807.8,
         "diverted_trips": 310800,
-        "per_trip_savings": 2.4,
-        "source": "USDOT BCA Guidance 2024, Section 5"
+        "per_trip_savings": 2.57,
+        "vot_weighted": 22.03,
+        "pct_business_trips": 0.3,
+        "source": "USDOT BCA Guidance 2024, Section 5, Table 4 (purpose-specific VOT)"
+      },
+      {
+        "category": "Induced Demand (Accessibility)",
+        "annual_benefit": 622636.0,
+        "induced_trips": 88800,
+        "consumer_surplus_per_trip": 7.01,
+        "source": "TCRP Report 95; Boardman et al. Ch. 5 (demand curve CS triangle)"
       },
       {
         "category": "Vehicle Operating Cost Savings",
@@ -208,11 +237,11 @@
       },
       {
         "category": "Emission Reduction",
-        "annual_benefit": 57460.7,
+        "annual_benefit": 112678.68,
         "co2_tons_avoided": 862.78,
         "nox_tons_avoided": 0.5221,
         "pm25_tons_avoided": 0.01492,
-        "co2_benefit": 48315.72,
+        "co2_benefit": 103533.7,
         "criteria_pollutant_benefit": 9144.98,
         "source": "EPA SC-CO2 2024; EPA MOVES3.1; BenMAP-CE"
       },
@@ -263,7 +292,8 @@
       "property_value": "2% uplift within 0.5mi -- APTA meta-analysis 2019",
       "school_access": "$3,000/student -- includes full avoided VMT + parent time",
       "option_value": "$40/capita -- upper mid-range from Boardman et al.",
-      "benefit_growth": "2.5% -- assumes TOD and service improvements"
+      "benefit_growth": "2.5% -- assumes TOD and service improvements",
+      "pct_business_trips": "30% optimistic -- assumes improved commuter service draws more work trips"
     }
   }
 ]

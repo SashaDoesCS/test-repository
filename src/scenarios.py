@@ -31,6 +31,8 @@ class Scenario:
     avg_transit_trip_min: float
     avg_auto_trip_miles: float
     congestion_variability_pct: float   # For reliability benefit
+    # VOT trip-purpose split (USDOT BCA Guidance 2024, Table 4)
+    pct_business_trips: float           # Share of trips that are employer-paid business travel
     # Valuations
     option_value_per_capita: float
     benefit_growth_rate: float          # Annual real growth in benefits
@@ -72,6 +74,7 @@ def get_conservative_scenario() -> Scenario:
         avg_transit_trip_min=35.0,
         avg_auto_trip_miles=7.5,
         congestion_variability_pct=0.10,
+        pct_business_trips=0.20,  # Conservative: mostly personal/school trips (ACS: 1.8% transit commute)
         option_value_per_capita=20.0,
         benefit_growth_rate=0.005,
         cost_growth_rate=0.020,
@@ -88,6 +91,7 @@ def get_conservative_scenario() -> Scenario:
             "option_value": "$20/capita -- lower bound from Boardman et al. Ch.6 ($10-50 range)",
             "capital": "$30K/stop -- existing VTA stop infrastructure (sign + bench, no shelter)",
             "cost_growth": "2.0% -- BLS CPI-U West Urban, trailing 3-year",
+            "pct_business_trips": "20% conservative -- ACS B08301: 1.8% transit commute share; Hwy 17 Express carries some work trips",
         },
     )
 
@@ -114,6 +118,7 @@ def get_moderate_scenario() -> Scenario:
         avg_transit_trip_min=32.0,  # Slightly faster with service optimization
         avg_auto_trip_miles=7.5,
         congestion_variability_pct=0.18,  # Observed: worst stops avg 4+ min on 22 min trip
+        pct_business_trips=0.25,  # Moderate: Hwy 17 Express commuters + Route 27 SJ workers
         option_value_per_capita=30.0,
         benefit_growth_rate=0.015,
         cost_growth_rate=0.025,
@@ -130,6 +135,7 @@ def get_moderate_scenario() -> Scenario:
             "school_access": "$2,500/student/yr -- avoided parent driving time + safety (TCRP 78)",
             "n_students": "~350 students at Fisher, Union MS, LGHS who would use if available",
             "option_value": "$30/capita -- mid-range of stated-preference studies",
+            "pct_business_trips": "25% moderate -- mix of commuter express + local bus work trips",
         },
     )
 
@@ -154,6 +160,7 @@ def get_optimistic_scenario() -> Scenario:
         avg_transit_trip_min=30.0,  # Service improvements
         avg_auto_trip_miles=8.0,
         congestion_variability_pct=0.25,  # SR-17 peak variability
+        pct_business_trips=0.30,  # Optimistic: more commuter ridership with service improvements
         option_value_per_capita=40.0,
         benefit_growth_rate=0.025,
         cost_growth_rate=0.025,
@@ -170,6 +177,7 @@ def get_optimistic_scenario() -> Scenario:
             "school_access": "$3,000/student -- includes full avoided VMT + parent time",
             "option_value": "$40/capita -- upper mid-range from Boardman et al.",
             "benefit_growth": "2.5% -- assumes TOD and service improvements",
+            "pct_business_trips": "30% optimistic -- assumes improved commuter service draws more work trips",
         },
     )
 
@@ -206,22 +214,28 @@ def compute_scenario_benefits(
         compute_travel_time_savings, compute_voc_savings,
         compute_crash_reduction_benefits, compute_emission_benefits,
         compute_health_benefits, compute_reliability_benefits,
-        compute_option_value, get_benefit_params,
+        compute_option_value, compute_induced_demand_benefits,
+        get_benefit_params, load_config,
     )
 
     # Build params with scenario overrides
-    # (load from config, then override option value)
-    from src.benefit_model import load_config
     config = load_config()
     params = get_benefit_params(config)
 
     benefits = []
 
-    # Standard 7 categories with scenario parameters
+    # Standard benefit categories with scenario parameters
     benefits.append(compute_travel_time_savings(
         total_boardings, scenario.avg_auto_trip_min,
         scenario.avg_transit_trip_min, params,
         pct_diverted_from_auto=scenario.pct_diverted_from_auto,
+        pct_business_trips=scenario.pct_business_trips,
+    ))
+    # Induced demand: trips that only exist because transit exists (TCRP 95)
+    benefits.append(compute_induced_demand_benefits(
+        total_boardings, params,
+        avg_auto_trip_miles=scenario.avg_auto_trip_miles,
+        avg_auto_trip_min=scenario.avg_auto_trip_min,
     ))
     benefits.append(compute_voc_savings(
         total_boardings, scenario.avg_auto_trip_miles, params,

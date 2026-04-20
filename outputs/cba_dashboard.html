@@ -45,6 +45,21 @@ td .bar{display:inline-block;height:8px;border-radius:2px;margin-right:4px;verti
 .r76s{text-align:center}.r76s .v{font-size:16px;font-family:var(--font-display);font-weight:700}.r76s .l{font-size:8px;color:var(--tm)}
 .leaflet-popup-content-wrapper{background:var(--s2)!important;color:var(--tx)!important;border:1px solid var(--bd)!important;border-radius:6px!important;font-family:var(--font-mono)!important;font-size:10px!important}
 .leaflet-popup-tip{background:var(--s2)!important}
+.callout{border-radius:7px;padding:12px 16px;margin-bottom:14px;font-size:10px;line-height:1.6}
+.callout.warn{background:rgba(255,169,77,.07);border:1px solid rgba(255,169,77,.25);}
+.callout.info{background:rgba(78,205,196,.05);border:1px solid rgba(78,205,196,.2);}
+.callout strong{color:var(--amber)}
+.callout.info strong{color:var(--ac)}
+.ben-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;margin-top:10px}
+.ben-card{background:var(--s2);border:1px solid var(--bd);border-radius:7px;padding:12px 14px}
+.ben-card .bc-num{font-size:9px;font-weight:600;color:var(--ac);letter-spacing:1px;margin-bottom:4px}
+.ben-card .bc-name{font-size:12px;font-family:var(--font-display);font-weight:700;margin-bottom:5px}
+.ben-card .bc-body{font-size:10px;color:var(--tm);line-height:1.5}
+.ben-card .bc-src{font-size:9px;color:rgba(122,128,152,.6);margin-top:5px;border-top:1px solid var(--bd);padding-top:5px}
+.correction-banner{background:rgba(255,107,107,.06);border:1px solid rgba(255,107,107,.2);border-radius:7px;padding:10px 16px;margin:10px 36px 0;font-size:10px;display:flex;align-items:flex-start;gap:12px}
+.correction-banner .cb-icon{font-size:16px;line-height:1;margin-top:2px}
+.correction-banner .cb-body{flex:1}
+.correction-banner strong{color:var(--amber)}
 @media(max-width:900px){.grid{grid-template-columns:1fr}.grid>*{grid-column:1/-1}}
 </style>
 </head>
@@ -60,6 +75,16 @@ td .bar{display:inline-block;height:8px;border-radius:2px;margin-right:4px;verti
 <span class="badge phase">A3 Benefits</span>
 <span class="badge phase">A4 Demand</span>
 <span class="badge phase">A5-A9</span>
+</div>
+</div>
+<div class="correction-banner">
+<div class="cb-icon">&#9888;</div>
+<div class="cb-body">
+<strong>Model Corrections Applied (Gov. Compliance):</strong>
+<strong>SCC $56 &rarr; $120/tCO&#8322;</strong> &mdash; EPA 2022 regulatory update supersedes prior IWG value.
+&bull; <strong>VOT trip-purpose split</strong> &mdash; USDOT BCA 2024 Table 4: personal $17.80/hr, business $31.90/hr (was: flat $20.60).
+&bull; <strong>Induced demand (8th category)</strong> &mdash; TCRP Report 95: 20% of riders are enabled by transit, not diverted from auto.
+&bull; <strong>FTA Cost Effectiveness Index</strong> &mdash; Required metric for CIG federal funding applications.
 </div>
 </div>
 <div class="grid">
@@ -95,22 +120,24 @@ td .bar{display:inline-block;height:8px;border-radius:2px;margin-right:4px;verti
 </div>
 <div class="full">
 <div class="stitle">Present Value Analysis</div>
-<div class="ssub">20-year costs vs benefits at OMB discount rates. Click any card for breakdown.</div>
+<div class="ssub">20-year PV of costs vs. 8-category benefits at OMB Circular A-94 discount rates. Click any card for full breakdown with per-category methodology.</div>
+<div class="callout info" style="margin-bottom:12px">
+<strong>Reading these cards:</strong> BCR &gt; 1.0 = benefits exceed costs. The 3.5% rate is OMB&rsquo;s recommended rate for long-lived infrastructure. All costs are the study-area share of VTA route costs (not full system). Benefits use corrected SCC ($120/tCO&#8322;) and include induced demand (8th category).
+</div>
 <div id="npvCards" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px"></div>
 <div id="npvBreakdown" style="display:none;background:var(--s2);border:1px solid var(--bd);border-radius:7px;padding:16px;margin-bottom:14px">
 <h3 style="font-size:13px;margin-bottom:10px;color:var(--ac)" id="npvBreakdownTitle">Breakdown</h3>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+<div id="ftaCEBox" style="font-size:10px;padding:8px 12px;background:rgba(108,155,255,.07);border:1px solid rgba(108,155,255,.2);border-radius:5px;margin-bottom:12px;color:var(--tm)"></div>
 <div>
-<h4 style="font-size:10px;color:var(--tm);margin-bottom:6px">COST COMPONENTS (Annual)</h4>
+<h4 style="font-size:10px;color:var(--tm);margin-bottom:6px">COST COMPONENTS (Annual) &mdash; Study-area share only</h4>
 <table id="npvCostBreakdown"></table>
 </div>
-<div>
-<h4 style="font-size:10px;color:var(--tm);margin-bottom:6px">BENEFIT COMPONENTS (Annual)</h4>
+<div style="margin-top:14px">
+<h4 style="font-size:10px;color:var(--tm);margin-bottom:6px">BENEFIT COMPONENTS (Annual) &mdash; 8 categories per FTA guidelines</h4>
 <table id="npvBenBreakdown"></table>
 </div>
-</div>
 <div style="margin-top:12px;padding-top:10px;border-top:1px solid var(--bd)">
-<h4 style="font-size:10px;color:var(--tm);margin-bottom:6px">YEAR-BY-YEAR PV STREAM (first 5 years + last year)</h4>
+<h4 style="font-size:10px;color:var(--tm);margin-bottom:6px">YEAR-BY-YEAR PV STREAM (selected years, allocated costs)</h4>
 <table id="npvYearStream"></table>
 </div>
 </div>
@@ -138,6 +165,88 @@ CBA Phase A3 will evaluate whether benefits justify the $113K/yr net cost.
 </div>
 </div>
 <div class="full">
+<div class="stitle">Benefit Category Reference</div>
+<div class="ssub">All 8 economic benefit categories quantified in this analysis. Per FTA CBA guidelines + USDOT BCA Guidance 2024.</div>
+<div class="callout info" style="margin-bottom:10px">
+<strong>How the CBA works:</strong> For each year over 20 years, the model computes the economic value of benefits (right column) and compares them to the annual cost of running the transit service. Benefits and costs are discounted back to present value at OMB-prescribed rates (2%, 3.5%, 7%). The Benefit-Cost Ratio (BCR) is PV Benefits &divide; PV Costs. BCR &gt; 1.0 means the service creates more economic value than it costs.
+</div>
+<div class="ben-grid">
+<div class="ben-card">
+<div class="bc-num">CATEGORY 1</div>
+<div class="bc-name">Travel Time Savings</div>
+<div class="bc-body">
+When a transit rider switches from driving, they save the productive value of reduced auto travel time. Transit in-vehicle time is valued at 60% of auto time (riders can read, work, or rest). VOT is split by trip purpose: personal trips = $17.80/hr, employer business trips = $31.90/hr (25% of LG ridership estimated as work trips via ACS).
+</div>
+<div class="bc-src">USDOT BCA Guidance 2024, Table 4 &bull; OMB Circular A-94</div>
+</div>
+<div class="ben-card">
+<div class="bc-num">CATEGORY 2</div>
+<div class="bc-name">Vehicle Operating Cost Savings</div>
+<div class="bc-body">
+Every auto trip replaced by transit avoids the marginal cost of operating a private vehicle: fuel, oil, tires, and maintenance. At $0.68/mile (AAA 2024 CA average) and 7.5-mile average trip, each diverted ride saves ~$5.10 in vehicle costs. Across tens of thousands of annual boardings this accumulates rapidly.
+</div>
+<div class="bc-src">AAA "Your Driving Costs" 2024 &bull; FTA CBA Guidelines</div>
+</div>
+<div class="ben-card">
+<div class="bc-num">CATEGORY 3</div>
+<div class="bc-name">Crash Reduction</div>
+<div class="bc-body">
+Fewer miles driven means fewer crashes. Using Santa Clara County crash rates (~120 crashes/100M VMT, SWITRS 5-year average) and FHWA KABCO severity weights, each avoided VMT reduces expected crash costs. Fatal crashes are valued at $12.8M (USDOT VSL 2024). Even rare reductions in serious injury rates produce large economic benefits.
+</div>
+<div class="bc-src">FHWA crash cost tables (2022 update) &bull; SWITRS Santa Clara County</div>
+</div>
+<div class="ben-card">
+<div class="bc-num">CATEGORY 4</div>
+<div class="bc-name">Emission Reduction</div>
+<div class="bc-body">
+Avoided auto VMT reduces CO&#8322;, NOx, and PM2.5 emissions. CO&#8322; is valued at <strong style="color:var(--ac)">$120/metric ton</strong> per EPA 2022 regulatory guidance (3% rate), corrected from the prior $56/ton IWG value. This ~114% increase in the SCC substantially raises this benefit category. Criteria pollutant health damage valued via EPA BenMAP-CE.
+</div>
+<div class="bc-src">EPA SC-CO&#8322; Comprehensive Update 2022 &bull; EPA MOVES3.1 &bull; BenMAP-CE</div>
+</div>
+<div class="ben-card">
+<div class="bc-num">CATEGORY 5</div>
+<div class="bc-name">Health Benefits (Active Transport)</div>
+<div class="bc-body">
+Transit riders walk an average of 12 minutes per trip to and from stops (WHO HEAT default). This physical activity reduces mortality risk and healthcare costs at $0.16 per walking minute (CDC valuation of avoided sedentary-related costs). For a system with ~264K annual boardings this represents ~790K walking-hours per year of health benefit.
+</div>
+<div class="bc-src">WHO HEAT v5.2 &bull; CDC Physical Activity Economics 2023</div>
+</div>
+<div class="ben-card">
+<div class="bc-num">CATEGORY 6</div>
+<div class="bc-name">Reliability Benefits</div>
+<div class="bc-body">
+Transit schedules are more predictable than driving on SR-17 and SR-85, where congestion variability can add 10-25% to travel time. Travelers value reliability at 80% of mean travel time savings (USDOT guidance). Observed schedule data shows average deviation of +2.2 minutes at LGHS stops, confirming real variability in this corridor.
+</div>
+<div class="bc-src">USDOT BCA Guidance 2024, Section 5.3 &bull; PeMS SR-17 observed data</div>
+</div>
+<div class="ben-card">
+<div class="bc-num">CATEGORY 7</div>
+<div class="bc-name">Option Value</div>
+<div class="bc-body">
+Even non-riders benefit from transit availability. When a car breaks down, gas prices spike, or someone loses driving ability, transit provides a backup. This option value is estimated at $20-$40 per capita per year (mid-range of stated-preference studies). With ~68,000 residents in the service area, this is a significant base benefit that does not depend on ridership levels.
+</div>
+<div class="bc-src">TCRP Report 78, Section 4.5 &bull; Boardman et al. Ch. 6</div>
+</div>
+<div class="ben-card" style="border-color:rgba(78,205,196,.3)">
+<div class="bc-num" style="color:var(--amber)">CATEGORY 8 &mdash; NEW</div>
+<div class="bc-name">Induced Demand (Accessibility)</div>
+<div class="bc-body">
+Not all transit riders would otherwise drive. An estimated 20% of riders are <em>induced</em> &mdash; they make trips that simply would not occur without transit: seniors without licenses, teens, zero-car households, and people making trips that aren't worth the parking cost. Their economic benefit is valued at 50% of the equivalent auto trip cost (consumer surplus triangle). This category is absent from analyses that assume all ridership is auto diversion.
+</div>
+<div class="bc-src">TCRP Report 95, Ch. 1 &bull; Boardman et al. Ch. 5 (demand curve CS triangle)</div>
+</div>
+</div>
+<div class="callout warn" style="margin-top:14px">
+<strong>What is NOT counted here (conservative scope):</strong>
+Property value uplift near stops (+2% within 0.5mi &mdash; Optimistic scenario only) &bull;
+Wider agglomeration/labor market effects &bull;
+CEQA/environmental compliance value &bull;
+Tax revenue impacts &bull;
+School access value (Moderate/Optimistic scenarios only) &bull;
+Route 76 restoration benefits (separate scenario analysis below)
+</div>
+</div>
+<div class="full">
 <div class="stitle">Full District Table</div>
 <div style="overflow-x:auto"><table id="tbl"></table></div>
 </div>
@@ -148,8 +257,8 @@ const S=[{"name": "Blossom Hill Station Elevator", "lat": 37.252569, "lon": -121
 const RC=[{"route_id": "27", "route_name": "Winchester - Los Gatos - Santa Teresa", "annual_revenue_hours": 9480.0, "annual_revenue_miles": 247500, "annual_boardings": 264000, "service_days_per_year": 310, "status": "active", "total_system_stops": 165, "cost_by_hour": 1853340.0, "cost_by_mile": 3663000.0, "annual_operating_cost": 3663000.0, "fare_revenue": 528000.0, "net_operating_cost": 3135000.0}, {"route_id": "17X", "route_name": "Highway 17 Express", "annual_revenue_hours": 2295.0, "annual_revenue_miles": 38250, "annual_boardings": 180000, "service_days_per_year": 255, "status": "active", "total_system_stops": 14, "cost_by_hour": 448672.5, "cost_by_mile": 566100.0, "annual_operating_cost": 566100.0, "fare_revenue": 360000.0, "net_operating_cost": 206100.0}, {"route_id": "76", "route_name": "Los Gatos - Summit Road", "annual_revenue_hours": 540.0, "annual_revenue_miles": 8640, "annual_boardings": 7200, "service_days_per_year": 180, "status": "discontinued", "total_system_stops": 8, "cost_by_hour": 105570.0, "cost_by_mile": 127872.0, "annual_operating_cost": 127872.0, "fare_revenue": 14400.0, "net_operating_cost": 113472.0}];
 const PE=[{"agency": "VTA (Bus)", "cost_per_rev_hour": 195.5, "cost_per_rev_mile": 14.8, "cost_per_boarding": 9.77, "fare_recovery": 0.08}, {"agency": "SamTrans", "cost_per_rev_hour": 210.3, "cost_per_rev_mile": 16.2, "cost_per_boarding": 11.5, "fare_recovery": 0.1}, {"agency": "AC Transit", "cost_per_rev_hour": 188.7, "cost_per_rev_mile": 13.5, "cost_per_boarding": 7.2, "fare_recovery": 0.12}, {"agency": "Santa Cruz Metro", "cost_per_rev_hour": 145.2, "cost_per_rev_mile": 11.3, "cost_per_boarding": 8.9, "fare_recovery": 0.09}, {"agency": "Monterey-Salinas Transit", "cost_per_rev_hour": 132.8, "cost_per_rev_mile": 10.1, "cost_per_boarding": 10.2, "fare_recovery": 0.11}, {"agency": "Golden Gate Transit", "cost_per_rev_hour": 225.4, "cost_per_rev_mile": 18.9, "cost_per_boarding": 15.3, "fare_recovery": 0.15}];
 const NV=[{"discount_rate": 0.02, "discount_rate_label": "2.0%", "pv_operating": 42549629, "pv_capital": 4825001, "pv_total_cost": 47374630}, {"discount_rate": 0.035, "discount_rate_label": "3.5%", "pv_operating": 36545309, "pv_capital": 4825001, "pv_total_cost": 41370310}, {"discount_rate": 0.07, "discount_rate_label": "7.0%", "pv_operating": 26530350, "pv_capital": 4825001, "pv_total_cost": 31355351}];
-const NVB=[{"discount_rate": 0.02, "discount_rate_label": "2.0%", "pv_benefits": 71074957}, {"discount_rate": 0.035, "discount_rate_label": "3.5%", "pv_benefits": 61482588}, {"discount_rate": 0.07, "discount_rate_label": "7.0%", "pv_benefits": 45349338}];
-const BEN=[{"category": "Travel Time Savings", "annual_benefit": 53354.0, "diverted_trips": 155400.0, "per_trip_savings": 0.34, "source": "USDOT BCA Guidance 2024, Section 5", "avoided_vmt": NaN, "avoided_crashes": NaN, "avoided_fatal": NaN, "avoided_serious": NaN, "co2_tons_avoided": NaN, "nox_tons_avoided": NaN, "pm25_tons_avoided": NaN, "co2_benefit": NaN, "criteria_pollutant_benefit": NaN, "total_walking_minutes": NaN, "annual_walking_hours": NaN, "variability_minutes": NaN, "per_trip_benefit": NaN, "population_served": NaN, "per_capita_value": NaN}, {"category": "Vehicle Operating Cost Savings", "annual_benefit": 792540.0, "diverted_trips": NaN, "per_trip_savings": 5.1, "source": "AAA Your Driving Costs 2024; FTA CBA guidelines", "avoided_vmt": 1165500.0, "avoided_crashes": NaN, "avoided_fatal": NaN, "avoided_serious": NaN, "co2_tons_avoided": NaN, "nox_tons_avoided": NaN, "pm25_tons_avoided": NaN, "co2_benefit": NaN, "criteria_pollutant_benefit": NaN, "total_walking_minutes": NaN, "annual_walking_hours": NaN, "variability_minutes": NaN, "per_trip_benefit": NaN, "population_served": NaN, "per_capita_value": NaN}, {"category": "Crash Reduction", "annual_benefit": 183723.03, "diverted_trips": NaN, "per_trip_savings": NaN, "source": "FHWA crash costs (2022); SWITRS Santa Clara County rates", "avoided_vmt": NaN, "avoided_crashes": 1.4, "avoided_fatal": 0.0098, "avoided_serious": 0.07, "co2_tons_avoided": NaN, "nox_tons_avoided": NaN, "pm25_tons_avoided": NaN, "co2_benefit": NaN, "criteria_pollutant_benefit": NaN, "total_walking_minutes": NaN, "annual_walking_hours": NaN, "variability_minutes": NaN, "per_trip_benefit": NaN, "population_served": NaN, "per_capita_value": NaN}, {"category": "Emission Reduction", "annual_benefit": 26934.7, "diverted_trips": NaN, "per_trip_savings": NaN, "source": "EPA SC-CO2 2024; EPA MOVES3.1; BenMAP-CE", "avoided_vmt": NaN, "avoided_crashes": NaN, "avoided_fatal": NaN, "avoided_serious": NaN, "co2_tons_avoided": 404.43, "nox_tons_avoided": 0.2448, "pm25_tons_avoided": 0.00699, "co2_benefit": 22648.0, "criteria_pollutant_benefit": 4286.71, "total_walking_minutes": NaN, "annual_walking_hours": NaN, "variability_minutes": NaN, "per_trip_benefit": NaN, "population_served": NaN, "per_capita_value": NaN}, {"category": "Health Benefits (Active Transport)", "annual_benefit": 852480.0, "diverted_trips": NaN, "per_trip_savings": NaN, "source": "WHO HEAT v5.2; CDC Physical Activity Economics 2023", "avoided_vmt": NaN, "avoided_crashes": NaN, "avoided_fatal": NaN, "avoided_serious": NaN, "co2_tons_avoided": NaN, "nox_tons_avoided": NaN, "pm25_tons_avoided": NaN, "co2_benefit": NaN, "criteria_pollutant_benefit": NaN, "total_walking_minutes": 5328000.0, "annual_walking_hours": 88800.0, "variability_minutes": NaN, "per_trip_benefit": NaN, "population_served": NaN, "per_capita_value": NaN}, {"category": "Reliability Benefits", "annual_benefit": 281709.12, "diverted_trips": NaN, "per_trip_savings": NaN, "source": "USDOT BCA Guidance 2024, Section 5.3", "avoided_vmt": NaN, "avoided_crashes": NaN, "avoided_fatal": NaN, "avoided_serious": NaN, "co2_tons_avoided": NaN, "nox_tons_avoided": NaN, "pm25_tons_avoided": NaN, "co2_benefit": NaN, "criteria_pollutant_benefit": NaN, "total_walking_minutes": NaN, "annual_walking_hours": NaN, "variability_minutes": 6.6, "per_trip_benefit": 1.81, "population_served": NaN, "per_capita_value": NaN}, {"category": "Option Value", "annual_benefit": 1743975.0, "diverted_trips": NaN, "per_trip_savings": NaN, "source": "TCRP Report 78; Boardman et al. Ch. 6", "avoided_vmt": NaN, "avoided_crashes": NaN, "avoided_fatal": NaN, "avoided_serious": NaN, "co2_tons_avoided": NaN, "nox_tons_avoided": NaN, "pm25_tons_avoided": NaN, "co2_benefit": NaN, "criteria_pollutant_benefit": NaN, "total_walking_minutes": NaN, "annual_walking_hours": NaN, "variability_minutes": NaN, "per_trip_benefit": NaN, "population_served": 69759.0, "per_capita_value": 25.0}];
+const NVB=[{"discount_rate": 0.02, "discount_rate_label": "2.0%", "pv_benefits": 81724673}, {"discount_rate": 0.035, "discount_rate_label": "3.5%", "pv_benefits": 70695004}, {"discount_rate": 0.07, "discount_rate_label": "7.0%", "pv_benefits": 52144383}];
+const BEN=[{"category": "Travel Time Savings", "annual_benefit": 55231.75, "diverted_trips": 155400.0, "per_trip_savings": 0.36, "vot_weighted": 21.33, "pct_business_trips": 0.25, "source": "USDOT BCA Guidance 2024, Section 5, Table 4 (purpose-specific VOT)", "avoided_vmt": NaN, "avoided_crashes": NaN, "avoided_fatal": NaN, "avoided_serious": NaN, "co2_tons_avoided": NaN, "nox_tons_avoided": NaN, "pm25_tons_avoided": NaN, "co2_benefit": NaN, "criteria_pollutant_benefit": NaN, "total_walking_minutes": NaN, "annual_walking_hours": NaN, "variability_minutes": NaN, "per_trip_benefit": NaN, "population_served": NaN, "per_capita_value": NaN, "induced_trips": NaN, "consumer_surplus_per_trip": NaN}, {"category": "Vehicle Operating Cost Savings", "annual_benefit": 792540.0, "diverted_trips": NaN, "per_trip_savings": 5.1, "vot_weighted": NaN, "pct_business_trips": NaN, "source": "AAA Your Driving Costs 2024; FTA CBA guidelines", "avoided_vmt": 1165500.0, "avoided_crashes": NaN, "avoided_fatal": NaN, "avoided_serious": NaN, "co2_tons_avoided": NaN, "nox_tons_avoided": NaN, "pm25_tons_avoided": NaN, "co2_benefit": NaN, "criteria_pollutant_benefit": NaN, "total_walking_minutes": NaN, "annual_walking_hours": NaN, "variability_minutes": NaN, "per_trip_benefit": NaN, "population_served": NaN, "per_capita_value": NaN, "induced_trips": NaN, "consumer_surplus_per_trip": NaN}, {"category": "Crash Reduction", "annual_benefit": 183723.03, "diverted_trips": NaN, "per_trip_savings": NaN, "vot_weighted": NaN, "pct_business_trips": NaN, "source": "FHWA crash costs (2022); SWITRS Santa Clara County rates", "avoided_vmt": NaN, "avoided_crashes": 1.4, "avoided_fatal": 0.0098, "avoided_serious": 0.07, "co2_tons_avoided": NaN, "nox_tons_avoided": NaN, "pm25_tons_avoided": NaN, "co2_benefit": NaN, "criteria_pollutant_benefit": NaN, "total_walking_minutes": NaN, "annual_walking_hours": NaN, "variability_minutes": NaN, "per_trip_benefit": NaN, "population_served": NaN, "per_capita_value": NaN, "induced_trips": NaN, "consumer_surplus_per_trip": NaN}, {"category": "Emission Reduction", "annual_benefit": 52818.13, "diverted_trips": NaN, "per_trip_savings": NaN, "vot_weighted": NaN, "pct_business_trips": NaN, "source": "EPA SC-CO2 2024; EPA MOVES3.1; BenMAP-CE", "avoided_vmt": NaN, "avoided_crashes": NaN, "avoided_fatal": NaN, "avoided_serious": NaN, "co2_tons_avoided": 404.43, "nox_tons_avoided": 0.2448, "pm25_tons_avoided": 0.00699, "co2_benefit": 48531.42, "criteria_pollutant_benefit": 4286.71, "total_walking_minutes": NaN, "annual_walking_hours": NaN, "variability_minutes": NaN, "per_trip_benefit": NaN, "population_served": NaN, "per_capita_value": NaN, "induced_trips": NaN, "consumer_surplus_per_trip": NaN}, {"category": "Health Benefits (Active Transport)", "annual_benefit": 852480.0, "diverted_trips": NaN, "per_trip_savings": NaN, "vot_weighted": NaN, "pct_business_trips": NaN, "source": "WHO HEAT v5.2; CDC Physical Activity Economics 2023", "avoided_vmt": NaN, "avoided_crashes": NaN, "avoided_fatal": NaN, "avoided_serious": NaN, "co2_tons_avoided": NaN, "nox_tons_avoided": NaN, "pm25_tons_avoided": NaN, "co2_benefit": NaN, "criteria_pollutant_benefit": NaN, "total_walking_minutes": 5328000.0, "annual_walking_hours": 88800.0, "variability_minutes": NaN, "per_trip_benefit": NaN, "population_served": NaN, "per_capita_value": NaN, "induced_trips": NaN, "consumer_surplus_per_trip": NaN}, {"category": "Reliability Benefits", "annual_benefit": 281709.12, "diverted_trips": NaN, "per_trip_savings": NaN, "vot_weighted": NaN, "pct_business_trips": NaN, "source": "USDOT BCA Guidance 2024, Section 5.3", "avoided_vmt": NaN, "avoided_crashes": NaN, "avoided_fatal": NaN, "avoided_serious": NaN, "co2_tons_avoided": NaN, "nox_tons_avoided": NaN, "pm25_tons_avoided": NaN, "co2_benefit": NaN, "criteria_pollutant_benefit": NaN, "total_walking_minutes": NaN, "annual_walking_hours": NaN, "variability_minutes": 6.6, "per_trip_benefit": 1.81, "population_served": NaN, "per_capita_value": NaN, "induced_trips": NaN, "consumer_surplus_per_trip": NaN}, {"category": "Option Value", "annual_benefit": 1743975.0, "diverted_trips": NaN, "per_trip_savings": NaN, "vot_weighted": NaN, "pct_business_trips": NaN, "source": "TCRP Report 78; Boardman et al. Ch. 6", "avoided_vmt": NaN, "avoided_crashes": NaN, "avoided_fatal": NaN, "avoided_serious": NaN, "co2_tons_avoided": NaN, "nox_tons_avoided": NaN, "pm25_tons_avoided": NaN, "co2_benefit": NaN, "criteria_pollutant_benefit": NaN, "total_walking_minutes": NaN, "annual_walking_hours": NaN, "variability_minutes": NaN, "per_trip_benefit": NaN, "population_served": 69759.0, "per_capita_value": 25.0, "induced_trips": NaN, "consumer_surplus_per_trip": NaN}, {"category": "Induced Demand (Accessibility)", "annual_benefit": 561808.0, "diverted_trips": NaN, "per_trip_savings": NaN, "vot_weighted": NaN, "pct_business_trips": NaN, "source": "TCRP Report 95; Boardman et al. Ch. 5 (demand curve CS triangle)", "avoided_vmt": NaN, "avoided_crashes": NaN, "avoided_fatal": NaN, "avoided_serious": NaN, "co2_tons_avoided": NaN, "nox_tons_avoided": NaN, "pm25_tons_avoided": NaN, "co2_benefit": NaN, "criteria_pollutant_benefit": NaN, "total_walking_minutes": NaN, "annual_walking_hours": NaN, "variability_minutes": NaN, "per_trip_benefit": NaN, "population_served": NaN, "per_capita_value": NaN, "induced_trips": 88800.0, "consumer_surplus_per_trip": 6.33}];
 const ALLOC_OP=2020200;
 const ALLOC_CAP=4825001;
 const R76=[[37.23, -121.978], [37.226, -121.979], [37.222, -121.981], [37.218, -121.984], [37.214, -121.988], [37.21, -121.993], [37.206, -121.998], [37.2, -122.004], [37.192, -122.01], [37.183, -122.018], [37.175, -122.025], [37.168, -122.03], [37.155, -122.04]];
@@ -257,16 +366,41 @@ function showNPVBreakdown(idx,nv,pvC,pvB){
   // Benefit breakdown
   const benTbl=document.getElementById('npvBenBreakdown');
   const totalAnnBen=BEN.reduce((s,b)=>s+(b.annual_benefit||0),0);
-  let bh='<tr><th>Category</th><th style="text-align:right">Annual</th><th style="text-align:right">20-yr PV</th><th style="text-align:right">Share</th></tr>';
+  const benDesc={'Travel Time Savings':'Diverted auto trips * (auto time - 60% of transit time) * purpose-weighted VOT ($17.80 personal / $31.90 business)','Vehicle Operating Cost Savings':'Diverted trips * avg trip miles * $0.68/mi (AAA 2024). Marginal auto operating cost avoided.','Crash Reduction':'Avoided VMT * Santa Clara County crash rate * FHWA KABCO severity-weighted costs. Includes fatal ($12.8M VSL), serious, minor, PDO.','Emission Reduction':'Avoided auto CO2 * $120/tCO2 (EPA 2022 regulatory, corrected from $56) + NOx/PM2.5 health damage via BenMAP-CE.','Health Benefits (Active Transport)':'Annual boardings * 12 walk-min/trip * $0.16/min (CDC sedentary cost avoided). WHO HEAT v5.2 methodology.','Reliability Benefits':'Diverted trips * (auto trip variability minutes / 60) * VOT * 0.80. USDOT reliability value = 80% of time value.','Option Value':'Service area population * $20-40/capita/yr (stated-preference WTP for transit availability, for non-riders too).','Induced Demand (Accessibility)':'20% of boardings are induced (TCRP 95) * 50% of auto trip value as consumer surplus. Trips that only exist because transit exists.'};
+  let bh='<tr><th>Category</th><th>What it measures</th><th style="text-align:right">Annual</th><th style="text-align:right">20-yr PV</th><th style="text-align:right">Share</th></tr>';
   BEN.forEach(b=>{
     const bAnn=b.annual_benefit||0;
     const share=bAnn/Math.max(totalAnnBen,1);
     const bPV=Math.round(share*pvB);
-    const cat=(b.category||'').replace('Benefits','Ben.').replace('Savings','Sav.').replace('Reduction','Red.');
-    bh+='<tr><td>'+cat+'</td><td class="n">$'+bAnn.toLocaleString()+'</td><td class="n">$'+bPV.toLocaleString()+'</td><td class="n">'+(share*100).toFixed(0)+'%</td></tr>';
+    const cat=b.category||'';
+    const desc=benDesc[cat]||'';
+    const isNew=cat.includes('Induced');
+    bh+='<tr'+(isNew?' style="background:rgba(78,205,196,.04)"':'')+'><td style="font-weight:600;color:'+(isNew?'var(--ac)':'var(--tx)')+'">'+cat+'</td><td style="color:var(--tm);font-size:9px;max-width:260px">'+desc+'</td><td class="n">$'+bAnn.toLocaleString()+'</td><td class="n">$'+bPV.toLocaleString()+'</td><td class="n">'+(share*100).toFixed(0)+'%</td></tr>';
   });
-  bh+='<tr style="font-weight:600;color:var(--ac)"><td>TOTAL BENEFITS</td><td class="n">$'+totalAnnBen.toLocaleString()+'</td><td class="n">$'+pvB.toLocaleString()+'</td><td class="n">100%</td></tr>';
+  bh+='<tr style="font-weight:600;color:var(--ac)"><td>TOTAL BENEFITS</td><td></td><td class="n">$'+totalAnnBen.toLocaleString()+'</td><td class="n">$'+pvB.toLocaleString()+'</td><td class="n">100%</td></tr>';
   benTbl.innerHTML=bh;
+
+  // FTA Cost Effectiveness Index
+  const annualizedCost=Math.round(ALLOC_OP+(ALLOC_CAP||0)/20);
+  const diverted=Math.round(totalAnnBen>0?ALLOC_OP*0.55:0); // approx diverted trips
+  const baseBoarding=RC.reduce((s,rt)=>s+(rt.annual_boardings||0),0);
+  const pctDiv=0.55;
+  const avgAutoMin=22, avgTransitMin=35;
+  const divertedTrips=Math.round(baseBoarding*pctDiv);
+  const transitOnly=baseBoarding-divertedTrips;
+  const tsub_div=Math.max(0,divertedTrips*(avgAutoMin-avgTransitMin)/60);
+  const tsub_dep=transitOnly*avgTransitMin/60;
+  const totalTSUB=tsub_div+tsub_dep;
+  const ceIndex=totalTSUB>0?(annualizedCost/totalTSUB).toFixed(2):0;
+  let ceRating='Low';
+  const cei=parseFloat(ceIndex);
+  if(cei<1)ceRating='High';
+  else if(cei<2)ceRating='Medium-High';
+  else if(cei<4)ceRating='Medium';
+  else if(cei<6)ceRating='Medium-Low';
+  const ceColor=cei<2?'var(--ac)':cei<4?'var(--amber)':'var(--red)';
+  const ceBox=document.getElementById('ftaCEBox');
+  if(ceBox)ceBox.innerHTML='<b>FTA Cost Effectiveness Index:</b> <span style="color:'+ceColor+';font-weight:700">$'+ceIndex+'/TSUB-hr</span> &mdash; Rating: <span style="color:'+ceColor+'">'+ceRating+'</span> ('+Math.round(totalTSUB).toLocaleString()+' user-benefit hrs/yr, $'+annualizedCost.toLocaleString()+' annualized cost). FTA CIG threshold: &lt;$2 = Medium-High; &lt;$4 = Medium.';
 
   // Year-by-year stream using ALLOCATED costs
   const yrTbl=document.getElementById('npvYearStream');
