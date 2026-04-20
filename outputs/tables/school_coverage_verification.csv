@@ -1,0 +1,3 @@
+school,dismissal_time,pickup_deadline,pickup_window_min,constraint_met,satisfying_trip_id,actual_arrival
+Union_Middle_School,14:25,14:35:00,10,True,OPT_01_T026,14:30:00
+Dartmouth_Middle_School,15:55,16:05:00,10,True,OPT_01_T032,15:56:57

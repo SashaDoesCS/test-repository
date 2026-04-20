@@ -461,3 +461,48 @@ coverage:
   walk_access_buffer_miles: 0.50   # Standard 10-min walk
   walk_access_buffer_close_miles: 0.25  # 5-min walk
   walk_speed_mph: 3.0
+
+# ===========================================================
+# ROUTING OPTIMIZATION (Phase B)
+# FTA Circular 9040.1G  |  ADA 49 CFR Part 37  |  GTFS Static Spec
+# ===========================================================
+
+optimization:
+  bounding_box:
+    north: 37.27
+    south: 37.06
+    east:  -121.88
+    west:  -122.15
+
+  school_windows:
+    - school: "Union_Middle_School"
+      dismissal_time: "14:25"
+      pickup_window_min: 10
+      districts: ["U1", "U2", "U3"]
+    - school: "Dartmouth_Middle_School"
+      dismissal_time: "15:55"
+      pickup_window_min: 10
+      districts: ["U4", "U5", "U6"]
+
+  service_span:
+    start: "06:00"
+    end:   "21:00"
+
+  time_windows:
+    am_peak:    ["06:00", "09:00"]
+    midday:     ["09:00", "14:15"]
+    pm_school:  ["14:15", "16:15"]
+    pm_commute: ["16:15", "18:30"]
+    evening:    ["18:30", "21:00"]
+
+  headways:
+    am_peak:    15
+    midday:     30
+    pm_school:  15
+    pm_commute: 20
+    evening:    30
+
+  walk_buffer_urban_miles:    0.25
+  walk_buffer_suburban_miles: 0.50
+  route76_bcr_threshold:      1.0
+  max_route_one_way_min:      90

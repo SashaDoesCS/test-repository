@@ -59,6 +59,11 @@ from src.benefit_model import (
 )
 from src.demand_model import run_demand_analysis
 from src.scenarios import run_scenario_comparison
+from src.demand_matrix import run_demand_matrix
+from src.network_graph import run_network_graph
+from src.route_optimizer import run_route_optimisation
+from src.schedule_generator import generate_schedule
+from src.gtfs_exporter import export_gtfs
 
 # Configure logging
 logging.basicConfig(
@@ -909,14 +914,101 @@ def main():
     with open("outputs/tables/scenario_detail.json", "w", encoding="utf-8") as f:
         json.dump(scenario_results, f, indent=2, default=str)
 
-    # -- Step 22: Generate Dashboard --
-    logger.info("\nStep 22: Generating interactive dashboard...")
+    # =========================================================
+    # PHASE B: Routing Optimization
+    # =========================================================
+    logger.info("\n" + "=" * 70)
+    logger.info("PHASE B: Routing Optimization")
+    logger.info("=" * 70)
+
+    for d in ["outputs/gtfs_optimised", "data/geospatial"]:
+        Path(d).mkdir(parents=True, exist_ok=True)
+
+    # -- Step B1: O-D Demand Matrix --
+    logger.info("\nStep B1: Building O-D demand matrix...")
+    demand_matrix_result = run_demand_matrix(
+        tdi_df=tdi_df,
+        demographics_df=demo_df,
+        district_manager=dm,
+        config=config,
+        survey_df=survey,
+    )
+    demand_matrix_result["od_matrix"].to_csv(
+        "outputs/tables/od_demand_matrix.csv", index=False)
+    demand_matrix_result["school_demand"].to_csv(
+        "outputs/tables/school_demand_windows.csv", index=False)
+    demand_matrix_result["district_totals"].to_csv(
+        "outputs/tables/district_demand_totals.csv", index=False)
+    logger.info("  O-D pairs: %d  |  School windows: %d",
+                len(demand_matrix_result["od_matrix"]),
+                len(demand_matrix_result["school_demand"]))
+
+    # -- Step B2: Road Network Graph --
+    logger.info("\nStep B2: Building road network graph...")
+    network_result = run_network_graph(stops, config)
+    network_result["travel_time_matrix"].to_csv(
+        "outputs/tables/stop_travel_times.csv", index=False)
+    logger.info("  Stops snapped: %d", len(network_result["stops_snapped"]))
+
+    # -- Step B3: Route Optimisation --
+    logger.info("\nStep B3: Optimising stops and routes...")
+    # Merge district_id and lat/lon into a single candidate_stops DataFrame
+    stop_district = pd.read_csv("outputs/tables/stop_district_matrix.csv")
+    candidate_stops = stops.merge(
+        stop_district[["stop_id", "district_id"]].dropna(subset=["stop_id"]),
+        on="stop_id", how="left",
+    )
+    opt_result = run_route_optimisation(
+        candidate_stops=candidate_stops,
+        coverage_gaps=coverage_df,
+        tdi_df=tdi_df,
+        unmet_need_df=unmet_df,
+        travel_time_matrix=network_result["travel_time_matrix"],
+        od_profiles=demand_matrix_result["tod_profiles"],
+        config=config,
+        route_costs_df=route_costs,
+        scenario_results=scenario_results,
+    )
+    opt_result["routes_df"].to_csv("outputs/tables/optimised_routes.csv", index=False)
+    pd.DataFrame([{
+        "stop_id": s.stop_id, "stop_name": s.stop_name,
+        "stop_lat": s.stop_lat, "stop_lon": s.stop_lon,
+        "district_id": s.district_id, "is_existing": s.is_existing,
+        "is_school_stop": s.is_school_stop, "is_mandatory": s.is_mandatory,
+        "wheelchair_boarding": s.wheelchair_boarding,
+        "demand_score": round(s.demand_score, 4),
+    } for s in opt_result["selected_stops"]]).to_csv(
+        "outputs/tables/selected_stops.csv", index=False)
+    n_new = sum(1 for s in opt_result["selected_stops"] if not s.is_existing)
+    logger.info("  Routes: %d  |  Stops: %d (%d new)",
+                len(opt_result["routes"]), len(opt_result["selected_stops"]), n_new)
+
+    # -- Step B4: Schedule Generation --
+    logger.info("\nStep B4: Generating timetable...")
+    schedule = generate_schedule(
+        opt_result["routes"], network_result["travel_time_matrix"], config)
+    schedule["school_coverage"].to_csv(
+        "outputs/tables/school_coverage_verification.csv", index=False)
+    n_school_trips = sum(1 for t in schedule["all_trips"] if t.is_school_trip)
+    logger.info("  Total trips/day: %d (school: %d)",
+                len(schedule["all_trips"]), n_school_trips)
+
+    # -- Step B5: GTFS Export --
+    logger.info("\nStep B5: Exporting GTFS feed...")
+    gtfs_dir = export_gtfs(
+        opt_result["routes"], schedule, opt_result["selected_stops"],
+        config, output_dir="outputs/gtfs_optimised",
+    )
+    logger.info("  GTFS feed written to %s", gtfs_dir)
+
+    # -- Step B6: Generate Dashboard --
+    logger.info("\nStep B6: Generating interactive dashboard...")
     from src.generate_dashboard import generate_dashboard
     dashboard_path = generate_dashboard("outputs/cba_dashboard.html")
 
     # -- Summary ----------------------------------------------
     print("\n" + "=" * 70)
-    print("PHASE A1 + A2 + A3 + A4 COMPLETE")
+    print("PHASE A1–A4 + PHASE B COMPLETE")
     print("=" * 70)
     print(f"  Districts loaded:     {len(dm.districts)} (10 LGHS + 6 Union)")
     print(f"  Census block groups:  {len(census)}")
@@ -925,7 +1017,13 @@ def main():
     print(f"  Crash records:        {len(crashes)}")
     print(f"  Traffic profiles:     {len(traffic)} hourly records")
     print(f"  Closures:             {len(closures)}")
-    print(f"\n  Outputs in: outputs/tables/")
+    print(f"\n  PHASE B (Routing Optimization):")
+    print(f"  O-D demand pairs:     {len(demand_matrix_result['od_matrix'])}")
+    print(f"  Optimised routes:     {len(opt_result['routes'])}")
+    print(f"  Selected stops:       {len(opt_result['selected_stops'])} ({n_new} new)")
+    print(f"  Total trips/day:      {len(schedule['all_trips'])} ({n_school_trips} school)")
+    print(f"  GTFS feed:            {gtfs_dir}")
+    print(f"\n  All outputs in: outputs/tables/  +  outputs/gtfs_optimised/")
     print(f"  GeoJSON in: data/geospatial/districts/")
     print(f"  Dashboard:  {dashboard_path}")
     print(f"\n  Open the dashboard in your browser to visualize all results.")

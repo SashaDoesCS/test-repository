@@ -1,0 +1,457 @@
+route_id,service_id,trip_id,trip_headsign,direction_id,shape_id,wheelchair_accessible,bikes_allowed
+OPT_01,WEEKDAY,OPT_01_T003,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T004,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T005,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T006,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T007,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T008,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T009,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T010,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T011,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T012,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T013,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T014,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T015,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T016,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T017,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T018,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T019,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T020,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T021,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T022,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T023,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T024,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T025,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T026,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T027,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T028,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T029,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T030,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T031,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T032,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T033,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T034,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T035,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T036,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T037,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T038,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T039,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T040,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T041,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T042,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T043,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T044,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T045,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T046,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T047,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T048,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_01,WEEKDAY,OPT_01_T049,Winchester & Daves,0,shape_OPT_01,1,1
+OPT_02,WEEKDAY,OPT_02_T052,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T053,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T054,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T055,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T056,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T057,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T058,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T059,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T060,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T061,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T062,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T063,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T064,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T065,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T066,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T067,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T068,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T069,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T070,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T071,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T072,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T073,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T074,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T075,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T076,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T077,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T078,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T079,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T080,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T081,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T082,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T083,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T084,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T085,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T086,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T087,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T088,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T089,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T090,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T091,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T092,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T093,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T094,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T095,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T096,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T097,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T098,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T099,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T100,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T101,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T102,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T103,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T104,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_02,WEEKDAY,OPT_02_T105,Meridian & Blossom Hill,0,shape_OPT_02,1,1
+OPT_03,WEEKDAY,OPT_03_T108,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T109,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T110,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T111,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T112,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T113,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T114,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T115,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T116,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T117,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T118,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T119,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T120,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T121,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T122,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T123,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T124,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T125,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T126,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T127,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T128,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T129,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T130,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T131,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T132,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T133,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T134,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T135,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T136,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T137,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T138,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T139,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T140,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T141,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T142,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T143,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T144,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T145,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T146,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T147,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T148,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T149,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T150,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T151,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T152,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T153,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T154,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T155,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T156,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T157,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T158,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T159,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T160,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_03,WEEKDAY,OPT_03_T161,Meridian & Dentwood,0,shape_OPT_03,1,1
+OPT_04,WEEKDAY,OPT_04_T164,Meridian & Torrington,0,shape_OPT_04,1,1
+OPT_04,WEEKDAY,OPT_04_T165,Meridian & Torrington,0,shape_OPT_04,1,1
+OPT_04,WEEKDAY,OPT_04_T166,Meridian & Torrington,0,shape_OPT_04,1,1
+OPT_04,WEEKDAY,OPT_04_T167,Meridian & Torrington,0,shape_OPT_04,1,1
+OPT_04,WEEKDAY,OPT_04_T168,Meridian & Torrington,0,shape_OPT_04,1,1
+OPT_04,WEEKDAY,OPT_04_T169,Meridian & Torrington,0,shape_OPT_04,1,1
+OPT_04,WEEKDAY,OPT_04_T170,Meridian & Torrington,0,shape_OPT_04,1,1
+OPT_04,WEEKDAY,OPT_04_T171,Meridian & Torrington,0,shape_OPT_04,1,1
+OPT_04,WEEKDAY,OPT_04_T172,Meridian & Torrington,0,shape_OPT_04,1,1
+OPT_04,WEEKDAY,OPT_04_T173,Meridian & Torrington,0,shape_OPT_04,1,1
+OPT_04,WEEKDAY,OPT_04_T174,Meridian & Torrington,0,shape_OPT_04,1,1
+OPT_04,WEEKDAY,OPT_04_T175,Meridian & Torrington,0,shape_OPT_04,1,1
+OPT_04,WEEKDAY,OPT_04_T176,Meridian & Torrington,0,shape_OPT_04,1,1
+OPT_04,WEEKDAY,OPT_04_T177,Meridian & Torrington,0,shape_OPT_04,1,1
+OPT_04,WEEKDAY,OPT_04_T178,Meridian & Torrington,0,shape_OPT_04,1,1
+OPT_04,WEEKDAY,OPT_04_T179,Meridian & Torrington,0,shape_OPT_04,1,1
+OPT_04,WEEKDAY,OPT_04_T180,Meridian & Torrington,0,shape_OPT_04,1,1
+OPT_04,WEEKDAY,OPT_04_T181,Meridian & Torrington,0,shape_OPT_04,1,1
+OPT_04,WEEKDAY,OPT_04_T182,Meridian & Torrington,0,shape_OPT_04,1,1
+OPT_04,WEEKDAY,OPT_04_T183,Meridian & Torrington,0,shape_OPT_04,1,1
+OPT_04,WEEKDAY,OPT_04_T184,Meridian & Torrington,0,shape_OPT_04,1,1
+OPT_04,WEEKDAY,OPT_04_T185,Meridian & Torrington,0,shape_OPT_04,1,1
+OPT_04,WEEKDAY,OPT_04_T186,Meridian & Torrington,0,shape_OPT_04,1,1
+OPT_04,WEEKDAY,OPT_04_T187,Meridian & Torrington,0,shape_OPT_04,1,1
+OPT_04,WEEKDAY,OPT_04_T188,Meridian & Torrington,0,shape_OPT_04,1,1
+OPT_04,WEEKDAY,OPT_04_T189,Meridian & Torrington,0,shape_OPT_04,1,1
+OPT_04,WEEKDAY,OPT_04_T190,Meridian & Torrington,0,shape_OPT_04,1,1
+OPT_04,WEEKDAY,OPT_04_T191,Meridian & Torrington,0,shape_OPT_04,1,1
+OPT_04,WEEKDAY,OPT_04_T192,Meridian & Torrington,0,shape_OPT_04,1,1
+OPT_04,WEEKDAY,OPT_04_T193,Meridian & Torrington,0,shape_OPT_04,1,1
+OPT_04,WEEKDAY,OPT_04_T194,Meridian & Torrington,0,shape_OPT_04,1,1
+OPT_04,WEEKDAY,OPT_04_T195,Meridian & Torrington,0,shape_OPT_04,1,1
+OPT_04,WEEKDAY,OPT_04_T196,Meridian & Torrington,0,shape_OPT_04,1,1
+OPT_04,WEEKDAY,OPT_04_T197,Meridian & Torrington,0,shape_OPT_04,1,1
+OPT_04,WEEKDAY,OPT_04_T198,Meridian & Torrington,0,shape_OPT_04,1,1
+OPT_04,WEEKDAY,OPT_04_T199,Meridian & Torrington,0,shape_OPT_04,1,1
+OPT_04,WEEKDAY,OPT_04_T200,Meridian & Torrington,0,shape_OPT_04,1,1
+OPT_04,WEEKDAY,OPT_04_T201,Meridian & Torrington,0,shape_OPT_04,1,1
+OPT_04,WEEKDAY,OPT_04_T202,Meridian & Torrington,0,shape_OPT_04,1,1
+OPT_04,WEEKDAY,OPT_04_T203,Meridian & Torrington,0,shape_OPT_04,1,1
+OPT_04,WEEKDAY,OPT_04_T204,Meridian & Torrington,0,shape_OPT_04,1,1
+OPT_04,WEEKDAY,OPT_04_T205,Meridian & Torrington,0,shape_OPT_04,1,1
+OPT_05,WEEKDAY,OPT_05_T208,Meridian & Oslo,0,shape_OPT_05,1,1
+OPT_05,WEEKDAY,OPT_05_T209,Meridian & Oslo,0,shape_OPT_05,1,1
+OPT_05,WEEKDAY,OPT_05_T210,Meridian & Oslo,0,shape_OPT_05,1,1
+OPT_05,WEEKDAY,OPT_05_T211,Meridian & Oslo,0,shape_OPT_05,1,1
+OPT_05,WEEKDAY,OPT_05_T212,Meridian & Oslo,0,shape_OPT_05,1,1
+OPT_05,WEEKDAY,OPT_05_T213,Meridian & Oslo,0,shape_OPT_05,1,1
+OPT_05,WEEKDAY,OPT_05_T214,Meridian & Oslo,0,shape_OPT_05,1,1
+OPT_05,WEEKDAY,OPT_05_T215,Meridian & Oslo,0,shape_OPT_05,1,1
+OPT_05,WEEKDAY,OPT_05_T216,Meridian & Oslo,0,shape_OPT_05,1,1
+OPT_05,WEEKDAY,OPT_05_T217,Meridian & Oslo,0,shape_OPT_05,1,1
+OPT_05,WEEKDAY,OPT_05_T218,Meridian & Oslo,0,shape_OPT_05,1,1
+OPT_05,WEEKDAY,OPT_05_T219,Meridian & Oslo,0,shape_OPT_05,1,1
+OPT_05,WEEKDAY,OPT_05_T220,Meridian & Oslo,0,shape_OPT_05,1,1
+OPT_05,WEEKDAY,OPT_05_T221,Meridian & Oslo,0,shape_OPT_05,1,1
+OPT_05,WEEKDAY,OPT_05_T222,Meridian & Oslo,0,shape_OPT_05,1,1
+OPT_05,WEEKDAY,OPT_05_T223,Meridian & Oslo,0,shape_OPT_05,1,1
+OPT_05,WEEKDAY,OPT_05_T224,Meridian & Oslo,0,shape_OPT_05,1,1
+OPT_05,WEEKDAY,OPT_05_T225,Meridian & Oslo,0,shape_OPT_05,1,1
+OPT_05,WEEKDAY,OPT_05_T226,Meridian & Oslo,0,shape_OPT_05,1,1
+OPT_05,WEEKDAY,OPT_05_T227,Meridian & Oslo,0,shape_OPT_05,1,1
+OPT_05,WEEKDAY,OPT_05_T228,Meridian & Oslo,0,shape_OPT_05,1,1
+OPT_05,WEEKDAY,OPT_05_T229,Meridian & Oslo,0,shape_OPT_05,1,1
+OPT_05,WEEKDAY,OPT_05_T230,Meridian & Oslo,0,shape_OPT_05,1,1
+OPT_05,WEEKDAY,OPT_05_T231,Meridian & Oslo,0,shape_OPT_05,1,1
+OPT_05,WEEKDAY,OPT_05_T232,Meridian & Oslo,0,shape_OPT_05,1,1
+OPT_05,WEEKDAY,OPT_05_T233,Meridian & Oslo,0,shape_OPT_05,1,1
+OPT_05,WEEKDAY,OPT_05_T234,Meridian & Oslo,0,shape_OPT_05,1,1
+OPT_05,WEEKDAY,OPT_05_T235,Meridian & Oslo,0,shape_OPT_05,1,1
+OPT_05,WEEKDAY,OPT_05_T236,Meridian & Oslo,0,shape_OPT_05,1,1
+OPT_05,WEEKDAY,OPT_05_T237,Meridian & Oslo,0,shape_OPT_05,1,1
+OPT_05,WEEKDAY,OPT_05_T238,Meridian & Oslo,0,shape_OPT_05,1,1
+OPT_05,WEEKDAY,OPT_05_T239,Meridian & Oslo,0,shape_OPT_05,1,1
+OPT_05,WEEKDAY,OPT_05_T240,Meridian & Oslo,0,shape_OPT_05,1,1
+OPT_05,WEEKDAY,OPT_05_T241,Meridian & Oslo,0,shape_OPT_05,1,1
+OPT_05,WEEKDAY,OPT_05_T242,Meridian & Oslo,0,shape_OPT_05,1,1
+OPT_05,WEEKDAY,OPT_05_T243,Meridian & Oslo,0,shape_OPT_05,1,1
+OPT_05,WEEKDAY,OPT_05_T244,Meridian & Oslo,0,shape_OPT_05,1,1
+OPT_05,WEEKDAY,OPT_05_T245,Meridian & Oslo,0,shape_OPT_05,1,1
+OPT_05,WEEKDAY,OPT_05_T246,Meridian & Oslo,0,shape_OPT_05,1,1
+OPT_05,WEEKDAY,OPT_05_T247,Meridian & Oslo,0,shape_OPT_05,1,1
+OPT_05,WEEKDAY,OPT_05_T248,Meridian & Oslo,0,shape_OPT_05,1,1
+OPT_05,WEEKDAY,OPT_05_T249,Meridian & Oslo,0,shape_OPT_05,1,1
+OPT_06,WEEKDAY,OPT_06_T252,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T253,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T254,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T255,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T256,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T257,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T258,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T259,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T260,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T261,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T262,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T263,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T264,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T265,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T266,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T267,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T268,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T269,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T270,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T271,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T272,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T273,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T274,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T275,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T276,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T277,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T278,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T279,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T280,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T281,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T282,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T283,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T284,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T285,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T286,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T287,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T288,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T289,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T290,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T291,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T292,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T293,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T294,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T295,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T296,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T297,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T298,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T299,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T300,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T301,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T302,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T303,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T304,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T305,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T306,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T307,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T308,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T309,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T310,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T311,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T312,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T313,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T314,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T315,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T316,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T317,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_06,WEEKDAY,OPT_06_T318,Meridian & Hallbrook,0,shape_OPT_06,1,1
+OPT_07,WEEKDAY,OPT_07_T321,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T322,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T323,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T324,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T325,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T326,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T327,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T328,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T329,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T330,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T331,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T332,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T333,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T334,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T335,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T336,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T337,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T338,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T339,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T340,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T341,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T342,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T343,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T344,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T345,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T346,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T347,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T348,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,SCHOOL_WEEKDAY,OPT_07_SCH_1425_319,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T349,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T350,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T351,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T352,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T353,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T354,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T355,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T356,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T357,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T358,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T359,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T360,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T361,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T362,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T363,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T364,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T365,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T366,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T367,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T368,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T369,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T370,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T371,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T372,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T373,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T374,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T375,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T376,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T377,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T378,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T379,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T380,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_07,WEEKDAY,OPT_07_T381,Meridian & Corte De Callas,0,shape_OPT_07,1,1
+OPT_08,WEEKDAY,OPT_08_T384,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T385,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T386,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T387,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T388,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T389,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T390,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T391,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T392,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T393,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T394,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T395,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T396,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T397,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T398,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T399,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T400,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T401,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T402,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T403,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T404,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T405,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T406,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T407,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T408,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T409,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T410,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T411,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T412,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T413,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T414,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T415,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T416,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T417,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T418,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T419,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T420,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T421,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T422,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T423,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T424,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T425,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T426,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T427,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T428,Meridian & Portobelo,0,shape_OPT_08,1,1
+OPT_08,WEEKDAY,OPT_08_T429,Meridian & Portobelo,0,shape_OPT_08,1,1
+76_RESTORED,WEEKDAY,76_RESTORED_T430,Summit Road / SR-17,0,shape_76_RESTORED,1,1
+76_RESTORED,WEEKDAY,76_RESTORED_T431,Summit Road / SR-17,0,shape_76_RESTORED,1,1
+76_RESTORED,WEEKDAY,76_RESTORED_T432,Summit Road / SR-17,0,shape_76_RESTORED,1,1
+76_RESTORED,WEEKDAY,76_RESTORED_T433,Summit Road / SR-17,0,shape_76_RESTORED,1,1
+76_RESTORED,WEEKDAY,76_RESTORED_T434,Summit Road / SR-17,0,shape_76_RESTORED,1,1
+76_RESTORED,WEEKDAY,76_RESTORED_T435,Summit Road / SR-17,0,shape_76_RESTORED,1,1
+76_RESTORED,WEEKDAY,76_RESTORED_T436,Summit Road / SR-17,0,shape_76_RESTORED,1,1
+76_RESTORED,WEEKDAY,76_RESTORED_T437,Summit Road / SR-17,0,shape_76_RESTORED,1,1
+76_RESTORED,WEEKDAY,76_RESTORED_T438,Summit Road / SR-17,0,shape_76_RESTORED,1,1
+76_RESTORED,WEEKDAY,76_RESTORED_T439,Summit Road / SR-17,0,shape_76_RESTORED,1,1
+76_RESTORED,WEEKDAY,76_RESTORED_T440,Summit Road / SR-17,0,shape_76_RESTORED,1,1
+76_RESTORED,WEEKDAY,76_RESTORED_T441,Summit Road / SR-17,0,shape_76_RESTORED,1,1
+76_RESTORED,WEEKDAY,76_RESTORED_T442,Summit Road / SR-17,0,shape_76_RESTORED,1,1
+76_RESTORED,WEEKDAY,76_RESTORED_T443,Summit Road / SR-17,0,shape_76_RESTORED,1,1
+76_RESTORED,WEEKDAY,76_RESTORED_T444,Summit Road / SR-17,0,shape_76_RESTORED,1,1
+76_RESTORED,WEEKDAY,76_RESTORED_T445,Summit Road / SR-17,0,shape_76_RESTORED,1,1
+76_RESTORED,WEEKDAY,76_RESTORED_T446,Summit Road / SR-17,0,shape_76_RESTORED,1,1
+76_RESTORED,WEEKDAY,76_RESTORED_T447,Summit Road / SR-17,0,shape_76_RESTORED,1,1
+76_RESTORED,WEEKDAY,76_RESTORED_T448,Summit Road / SR-17,0,shape_76_RESTORED,1,1
+76_RESTORED,WEEKDAY,76_RESTORED_T449,Summit Road / SR-17,0,shape_76_RESTORED,1,1
+76_RESTORED,WEEKDAY,76_RESTORED_T450,Summit Road / SR-17,0,shape_76_RESTORED,1,1
+76_RESTORED,WEEKDAY,76_RESTORED_T451,Summit Road / SR-17,0,shape_76_RESTORED,1,1
+76_RESTORED,WEEKDAY,76_RESTORED_T452,Summit Road / SR-17,0,shape_76_RESTORED,1,1
+76_RESTORED,WEEKDAY,76_RESTORED_T453,Summit Road / SR-17,0,shape_76_RESTORED,1,1
+76_RESTORED,WEEKDAY,76_RESTORED_T454,Summit Road / SR-17,0,shape_76_RESTORED,1,1
+76_RESTORED,WEEKDAY,76_RESTORED_T455,Summit Road / SR-17,0,shape_76_RESTORED,1,1
+76_RESTORED,WEEKDAY,76_RESTORED_T456,Summit Road / SR-17,0,shape_76_RESTORED,1,1
+76_RESTORED,WEEKDAY,76_RESTORED_T457,Summit Road / SR-17,0,shape_76_RESTORED,1,1
+76_RESTORED,WEEKDAY,76_RESTORED_T458,Summit Road / SR-17,0,shape_76_RESTORED,1,1
+76_RESTORED,WEEKDAY,76_RESTORED_T459,Summit Road / SR-17,0,shape_76_RESTORED,1,1
+76_RESTORED,WEEKDAY,76_RESTORED_T460,Summit Road / SR-17,0,shape_76_RESTORED,1,1
+76_RESTORED,WEEKDAY,76_RESTORED_T461,Summit Road / SR-17,0,shape_76_RESTORED,1,1
+76_RESTORED,WEEKDAY,76_RESTORED_T462,Summit Road / SR-17,0,shape_76_RESTORED,1,1
+76_RESTORED,WEEKDAY,76_RESTORED_T463,Summit Road / SR-17,0,shape_76_RESTORED,1,1
+76_RESTORED,WEEKDAY,76_RESTORED_T464,Summit Road / SR-17,0,shape_76_RESTORED,1,1
+76_RESTORED,WEEKDAY,76_RESTORED_T465,Summit Road / SR-17,0,shape_76_RESTORED,1,1
+76_RESTORED,WEEKDAY,76_RESTORED_T466,Summit Road / SR-17,0,shape_76_RESTORED,1,1
+76_RESTORED,WEEKDAY,76_RESTORED_T467,Summit Road / SR-17,0,shape_76_RESTORED,1,1
+76_RESTORED,WEEKDAY,76_RESTORED_T468,Summit Road / SR-17,0,shape_76_RESTORED,1,1
+76_RESTORED,WEEKDAY,76_RESTORED_T469,Summit Road / SR-17,0,shape_76_RESTORED,1,1
+76_RESTORED,WEEKDAY,76_RESTORED_T470,Summit Road / SR-17,0,shape_76_RESTORED,1,1
+76_RESTORED,WEEKDAY,76_RESTORED_T471,Summit Road / SR-17,0,shape_76_RESTORED,1,1

@@ -1,0 +1,62 @@
+route_id,route_name,is_restoration,bcr,estimated_one_way_min,stop_sequence,stop_id,stop_name,stop_lat,stop_lon,district_id,is_existing,is_school_stop,is_mandatory,wheelchair_boarding,demand_score,headway_am_peak,headway_midday,headway_pm_school,headway_pm_commute,headway_evening
+OPT_01,Optimised Route 1 (via Winchester & Daves),False,,13.0,0,2699,Winchester & Daves,37.240436,-121.976643,D5,True,False,True,1,0.0,15,30,12,13,43
+OPT_01,Optimised Route 1 (via Winchester & Daves),False,,13.0,1,1084,Los Gatos-Almaden & Union,37.243344,-121.930625,U2,True,True,True,1,0.0,15,30,12,13,43
+OPT_01,Optimised Route 1 (via Winchester & Daves),False,,13.0,2,1170,Los Gatos-Almaden & Sandy,37.243542,-121.926544,U2,True,True,True,1,0.0,15,30,12,13,43
+OPT_01,Optimised Route 1 (via Winchester & Daves),False,,13.0,3,1814,Union & Heather,37.244221,-121.931141,U2,True,True,True,1,0.0,15,30,12,13,43
+OPT_01,Optimised Route 1 (via Winchester & Daves),False,,13.0,4,2784,Winchester & Daves,37.23975,-121.977014,D5,True,False,True,1,0.0,15,30,12,13,43
+OPT_02,Optimised Route 2 (via Meridian & Blossom Hill),False,,10.2,0,2699,Winchester & Daves,37.240436,-121.976643,D5,True,False,True,1,0.0,13,30,10,10,35
+OPT_02,Optimised Route 2 (via Meridian & Blossom Hill),False,,10.2,1,1087,Leigh & Gregg,37.239651,-121.922812,U6,True,True,True,1,0.0,13,30,10,10,35
+OPT_02,Optimised Route 2 (via Meridian & Blossom Hill),False,,10.2,2,1088,Leigh & Kay,37.236714,-121.922715,U6,True,True,True,1,0.0,13,30,10,10,35
+OPT_02,Optimised Route 2 (via Meridian & Blossom Hill),False,,10.2,3,1094,Blossom Hill & Park Crest,37.237805,-121.898625,U4,True,True,True,1,0.0,13,30,10,10,35
+OPT_02,Optimised Route 2 (via Meridian & Blossom Hill),False,,10.2,4,1095,Blossom Hill & Chambertin,37.239294,-121.895254,U5,True,True,True,1,0.0,13,30,10,10,35
+OPT_02,Optimised Route 2 (via Meridian & Blossom Hill),False,,10.2,5,1096,Blossom Hill & Vassar,37.240475,-121.892713,U5,True,True,True,1,0.0,13,30,10,10,35
+OPT_02,Optimised Route 2 (via Meridian & Blossom Hill),False,,10.2,6,1097,Blossom Hill & Meridian,37.243466,-121.889251,U5,True,True,True,1,0.0,13,30,10,10,35
+OPT_02,Optimised Route 2 (via Meridian & Blossom Hill),False,,10.2,7,2980,Meridian & Blossom Hill,37.243218,-121.889862,U5,True,True,True,1,0.0,13,30,10,10,35
+OPT_03,Optimised Route 3 (via Meridian & Dentwood),False,,11.5,0,2699,Winchester & Daves,37.240436,-121.976643,D5,True,False,True,1,0.0,13,30,10,10,35
+OPT_03,Optimised Route 3 (via Meridian & Dentwood),False,,11.5,1,1089,Blossom Hill & Del Oro,37.23611,-121.920733,U6,True,True,True,1,0.0,13,30,10,10,35
+OPT_03,Optimised Route 3 (via Meridian & Dentwood),False,,11.5,2,1090,Blossom Hill & Belwood,37.236141,-121.916592,U6,True,True,True,1,0.0,13,30,10,10,35
+OPT_03,Optimised Route 3 (via Meridian & Dentwood),False,,11.5,3,1159,Blossom Hill & Vassar,37.240607,-121.892925,U5,True,True,True,1,0.0,13,30,10,10,35
+OPT_03,Optimised Route 3 (via Meridian & Dentwood),False,,11.5,4,1160,Blossom Hill & Dartmouth,37.239132,-121.89614,U4,True,True,True,1,0.0,13,30,10,10,35
+OPT_03,Optimised Route 3 (via Meridian & Dentwood),False,,11.5,5,1161,Blossom Hill & Parkcrest,37.237942,-121.898746,U4,True,True,True,1,0.0,13,30,10,10,35
+OPT_03,Optimised Route 3 (via Meridian & Dentwood),False,,11.5,6,2910,Meridian & Dentwood,37.249317,-121.894675,U4,True,True,True,1,0.0,13,30,10,10,35
+OPT_03,Optimised Route 3 (via Meridian & Dentwood),False,,11.5,7,2978,Meridian & Dentwood,37.249154,-121.894788,U4,True,True,True,1,0.0,13,30,10,10,35
+OPT_04,Optimised Route 4 (via Meridian & Torrington),False,,12.4,0,2699,Winchester & Daves,37.240436,-121.976643,D5,True,False,True,1,0.0,15,30,15,15,60
+OPT_04,Optimised Route 4 (via Meridian & Torrington),False,,12.4,1,1100,Blossom Hill & Seifert,37.245909,-121.886549,U5,True,True,True,1,0.0,15,30,15,15,60
+OPT_04,Optimised Route 4 (via Meridian & Torrington),False,,12.4,2,1101,Blossom Hill & Ayrshire,37.248068,-121.882769,U5,True,True,True,1,0.0,15,30,15,15,60
+OPT_04,Optimised Route 4 (via Meridian & Torrington),False,,12.4,3,1154,Blossom Hill & Ayrshire,37.248246,-121.883055,U5,True,True,True,1,0.0,15,30,15,15,60
+OPT_04,Optimised Route 4 (via Meridian & Torrington),False,,12.4,4,1155,Blossom Hill & Kooser,37.245513,-121.887915,U5,True,True,True,1,0.0,15,30,15,15,60
+OPT_04,Optimised Route 4 (via Meridian & Torrington),False,,12.4,5,1156,Blossom Hill & Meridian,37.243639,-121.889382,U5,True,True,True,1,0.0,15,30,15,15,60
+OPT_04,Optimised Route 4 (via Meridian & Torrington),False,,12.4,6,2908,Meridian & Torrington,37.235259,-121.886826,U5,True,True,True,1,0.0,15,30,15,15,60
+OPT_04,Optimised Route 4 (via Meridian & Torrington),False,,12.4,7,2982,Meridian & Torrington,37.235076,-121.886954,U5,True,True,True,1,0.0,15,30,15,15,60
+OPT_05,Optimised Route 5 (via Meridian & Oslo),False,,10.1,0,2699,Winchester & Daves,37.240436,-121.976643,D5,True,False,True,1,0.0,15,30,15,15,60
+OPT_05,Optimised Route 5 (via Meridian & Oslo),False,,10.1,1,1157,Meridian & Blossom Hill,37.243482,-121.890032,U5,True,True,True,1,0.0,15,30,15,15,60
+OPT_05,Optimised Route 5 (via Meridian & Oslo),False,,10.1,2,2909,Meridian & Oslo,37.238789,-121.886746,U5,True,True,True,1,0.0,15,30,15,15,60
+OPT_05,Optimised Route 5 (via Meridian & Oslo),False,,10.1,3,2981,Meridian & Oslo,37.238615,-121.88692,U5,True,True,True,1,0.0,15,30,15,15,60
+OPT_06,Optimised Route 6 (via Meridian & Hallbrook),False,,15.5,0,2699,Winchester & Daves,37.240436,-121.976643,D5,True,False,True,1,0.0,10,30,7,8,26
+OPT_06,Optimised Route 6 (via Meridian & Hallbrook),False,,15.5,1,1165,Blossom Hill & Mary Jo,37.236318,-121.91716,U6,True,True,True,1,0.0,10,30,7,8,26
+OPT_06,Optimised Route 6 (via Meridian & Hallbrook),False,,15.5,2,1166,Blossom Hill & Del Oro,37.236285,-121.921069,U6,True,True,True,1,0.0,10,30,7,8,26
+OPT_06,Optimised Route 6 (via Meridian & Hallbrook),False,,15.5,3,1167,Leigh & Blossom Hill,37.236438,-121.922506,U6,True,True,True,1,0.0,10,30,7,8,26
+OPT_06,Optimised Route 6 (via Meridian & Hallbrook),False,,15.5,4,1749,Samaritan & Esther,37.25059,-121.935196,U2,True,True,True,1,0.0,10,30,7,8,26
+OPT_06,Optimised Route 6 (via Meridian & Hallbrook),False,,15.5,5,1817,Samaritan & Esther,37.250707,-121.935647,U2,True,True,True,1,0.0,10,30,7,8,26
+OPT_06,Optimised Route 6 (via Meridian & Hallbrook),False,,15.5,6,2914,Meridian & Hallbrook,37.260043,-121.901019,U3,True,True,True,1,0.0,10,30,7,8,26
+OPT_06,Optimised Route 6 (via Meridian & Hallbrook),False,,15.5,7,2915,Meridian & Willowgate,37.263512,-121.902447,U3,True,True,True,1,0.0,10,30,7,8,26
+OPT_06,Optimised Route 6 (via Meridian & Hallbrook),False,,15.5,8,2972,Meridian & Jacob,37.262347,-121.902179,U3,True,True,True,1,0.0,10,30,7,8,26
+OPT_06,Optimised Route 6 (via Meridian & Hallbrook),False,,15.5,9,2973,Meridian & Hallbrook,37.259857,-121.901156,U3,True,True,True,1,0.0,10,30,7,8,26
+OPT_07,Optimised Route 7 (via Meridian & Corte De Callas),False,,12.0,0,2699,Winchester & Daves,37.240436,-121.976643,D5,True,False,True,1,0.0,11,30,8,9,29
+OPT_07,Optimised Route 7 (via Meridian & Corte De Callas),False,,12.0,1,1750,Union & Samaritan,37.250184,-121.931439,U2,True,True,True,1,0.0,11,30,8,9,29
+OPT_07,Optimised Route 7 (via Meridian & Corte De Callas),False,,12.0,2,1751,Union & Carlton,37.248009,-121.931383,U2,True,True,True,1,0.0,11,30,8,9,29
+OPT_07,Optimised Route 7 (via Meridian & Corte De Callas),False,,12.0,3,1816,Samaritan & Union,37.25073,-121.932244,U2,True,True,True,1,0.0,11,30,8,9,29
+OPT_07,Optimised Route 7 (via Meridian & Corte De Callas),False,,12.0,4,2806,Union & Stratford,37.258773,-121.93124,U2,True,True,True,1,0.0,11,30,8,9,29
+OPT_07,Optimised Route 7 (via Meridian & Corte De Callas),False,,12.0,5,2884,Union & Stratford,37.258631,-121.931437,U2,True,True,True,1,0.0,11,30,8,9,29
+OPT_07,Optimised Route 7 (via Meridian & Corte De Callas),False,,12.0,6,2885,Union & Barrett,37.254947,-121.931404,U2,True,True,True,1,0.0,11,30,8,9,29
+OPT_07,Optimised Route 7 (via Meridian & Corte De Callas),False,,12.0,7,2912,Meridian & Branham,37.256514,-121.899072,U3,True,True,True,1,0.0,11,30,8,9,29
+OPT_07,Optimised Route 7 (via Meridian & Corte De Callas),False,,12.0,8,2975,Meridian & Corte De Callas,37.256117,-121.899024,U3,True,True,True,1,0.0,11,30,8,9,29
+OPT_08,Optimised Route 8 (via Meridian & Portobelo),False,,8.2,0,2699,Winchester & Daves,37.240436,-121.976643,D5,True,False,True,1,0.0,15,30,13,13,45
+OPT_08,Optimised Route 8 (via Meridian & Portobelo),False,,8.2,1,1757,Camden & Highway 85,37.249553,-121.909844,U3,True,True,True,1,0.0,15,30,13,13,45
+OPT_08,Optimised Route 8 (via Meridian & Portobelo),False,,8.2,2,2911,Meridian & Portobelo,37.254304,-121.897346,U3,True,True,True,1,0.0,15,30,13,13,45
+OPT_08,Optimised Route 8 (via Meridian & Portobelo),False,,8.2,3,2977,Meridian & Portobelo,37.253513,-121.896974,U3,True,True,True,1,0.0,15,30,13,13,45
+76_RESTORED,Route 76 Restored (Downtown LG → Summit via SR-17),True,2.62,35.0,0,76_DT_LG,Downtown Los Gatos,37.2249,-121.9806,D1,True,False,False,1,0.0,15,30,15,15,60
+76_RESTORED,Route 76 Restored (Downtown LG → Summit via SR-17),True,2.62,35.0,1,76_OLD_SANTA_CRUZ,Old Santa Cruz Hwy / Aldercroft,37.21,-122.01,D8,False,False,False,1,0.0,15,30,15,15,60
+76_RESTORED,Route 76 Restored (Downtown LG → Summit via SR-17),True,2.62,35.0,2,76_LEXINGTON,Lexington Reservoir,37.185,-122.035,D9,False,False,False,1,0.0,15,30,15,15,60
+76_RESTORED,Route 76 Restored (Downtown LG → Summit via SR-17),True,2.62,35.0,3,76_REDWOOD_EST,Redwood Estates,37.165,-122.055,D9,False,False,False,1,0.0,15,30,15,15,60
+76_RESTORED,Route 76 Restored (Downtown LG → Summit via SR-17),True,2.62,35.0,4,76_SUMMIT,Summit Road / SR-17,37.15,-122.07,D9,False,False,False,1,0.0,15,30,15,15,60
