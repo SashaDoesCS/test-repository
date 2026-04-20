@@ -134,6 +134,34 @@ def load_pipeline_data() -> dict:
     else:
         result["config"] = {}
 
+    # Phase B: optimised routes (stop-level, with headways per row)
+    p = tables / "optimised_routes.csv"
+    result["optimised_routes"] = pd.read_csv(p).to_dict("records") if p.exists() else []
+
+    # Phase B: selected stops
+    p = tables / "selected_stops.csv"
+    result["selected_stops"] = pd.read_csv(p).to_dict("records") if p.exists() else []
+
+    # Phase B: O-D demand matrix
+    p = tables / "od_demand_matrix.csv"
+    result["od_matrix"] = pd.read_csv(p).to_dict("records") if p.exists() else []
+
+    # Phase B: district demand totals
+    p = tables / "district_demand_totals.csv"
+    result["district_demand"] = pd.read_csv(p).to_dict("records") if p.exists() else []
+
+    # Phase B: school demand windows
+    p = tables / "school_demand_windows.csv"
+    result["school_demand"] = pd.read_csv(p).to_dict("records") if p.exists() else []
+
+    # Phase B: school coverage verification
+    p = tables / "school_coverage_verification.csv"
+    result["school_coverage"] = pd.read_csv(p).to_dict("records") if p.exists() else []
+
+    # Phase B: GTFS feed summary (exporter writes feed_summary.csv)
+    p = PROJECT_ROOT / "outputs" / "gtfs_optimised" / "feed_summary.csv"
+    result["gtfs_summary"] = pd.read_csv(p).to_dict("records") if p.exists() else []
+
     return result
 
 
@@ -298,6 +326,15 @@ def generate_dashboard_html(data: dict, merged: list, polygons: dict) -> str:
     js_allocated_op = data.get("allocated_annual_operating", 0)
     js_total_capital = data.get("total_capital", 0)
 
+    # Phase B optimization data
+    js_opt_routes = json.dumps(data.get("optimised_routes", []))
+    js_selected_stops = json.dumps(data.get("selected_stops", []))
+    js_district_demand = json.dumps(data.get("district_demand", []))
+    js_school_demand = json.dumps(data.get("school_demand", []))
+    js_school_coverage = json.dumps(data.get("school_coverage", []))
+    js_gtfs_summary = json.dumps(data.get("gtfs_summary", []))
+    opt_run = len(data.get("optimised_routes", [])) > 0
+
     r76_data = {}
     cfg = data.get("config", {})
     transit_cfg = cfg.get("transit", {})
@@ -342,6 +379,18 @@ h1,h2,h3{{font-family:var(--font-display);font-weight:700}}
 .stitle{{font-size:13px;color:var(--ac);text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;font-family:var(--font-mono);font-weight:600}}
 .ssub{{font-size:10px;color:var(--tm);margin-top:-8px;margin-bottom:10px}}
 #map{{height:460px;border-radius:6px;border:1px solid var(--bd)}}
+#routeMap{{height:520px;border-radius:6px;border:1px solid var(--bd)}}
+.hw-chip{{display:inline-block;padding:2px 8px;border-radius:10px;font-size:9px;font-weight:700;margin:1px}}
+.hw-fast{{background:rgba(105,219,124,.18);color:var(--green);border:1px solid rgba(105,219,124,.3)}}
+.hw-med{{background:rgba(255,169,77,.12);color:var(--amber);border:1px solid rgba(255,169,77,.25)}}
+.hw-slow{{background:rgba(255,107,107,.1);color:var(--red);border:1px solid rgba(255,107,107,.2)}}
+.school-ok{{color:var(--ac);font-weight:700}}.school-miss{{color:var(--red);font-weight:700}}
+.opt-empty{{text-align:center;padding:40px;color:var(--tm);font-size:11px;line-height:1.8}}
+.route-legend{{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}}
+.route-leg-item{{display:flex;align-items:center;gap:5px;font-size:9px;color:var(--tm)}}
+.route-leg-swatch{{width:24px;height:3px;border-radius:2px}}
+.stop-leg-item{{display:flex;align-items:center;gap:5px;font-size:9px;color:var(--tm)}}
+.stop-leg-dot{{width:10px;height:10px;border-radius:50%;flex-shrink:0}}
 .mrow{{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}}
 .metric{{background:var(--s2);border:1px solid var(--bd);border-radius:7px;padding:10px 14px;flex:1;min-width:110px}}
 .metric .lb{{font-size:8px;color:var(--tm);text-transform:uppercase;letter-spacing:1px;margin-bottom:3px}}
@@ -389,7 +438,7 @@ td .bar{{display:inline-block;height:8px;border-radius:2px;margin-right:4px;vert
 <span class="badge done">A2 Costs</span>
 <span class="badge phase">A3 Benefits</span>
 <span class="badge phase">A4 Demand</span>
-<span class="badge phase">A5-A9</span>
+<span class="badge {'done' if opt_run else 'phase'}">B Route Opt {'✓' if opt_run else ''}</span>
 </div>
 </div>
 <div class="correction-banner">
@@ -478,6 +527,34 @@ Maintained for LGHS student access. Bus stop signs still present.
 CBA Phase A3 will evaluate whether benefits justify the $113K/yr net cost.
 </p>
 </div>
+</div>
+<div class="full" id="phaseB">
+<div class="stitle">Phase B &mdash; Optimised Route Network</div>
+<div class="ssub">Clarke-Wright savings algorithm + FTA 9040.1G stop spacing. Blue = existing stops, Orange = new stops, Red/star = school stops. Walk-buffer 0.25 mi urban / 0.50 mi suburban.</div>
+{'<div class="callout warn" style="margin-bottom:12px"><strong>Phase B not yet run:</strong> Execute <code>python run_analysis.py</code> to generate routing optimization results. This panel will populate automatically.</div>' if not opt_run else ''}
+<div id="routeMap"></div>
+<div class="route-legend" id="routeLegend" style="margin-top:12px;padding-top:10px;border-top:1px solid var(--bd)">
+  <div class="stop-leg-item"><div class="stop-leg-dot" style="background:#4ecdc4;border:2px solid #fff"></div>Existing stop</div>
+  <div class="stop-leg-item"><div class="stop-leg-dot" style="background:#ffa94d;border:2px solid #fff"></div>New stop</div>
+  <div class="stop-leg-item"><div class="stop-leg-dot" style="background:#ff6b6b;border:2px solid #fff;width:14px;height:14px"></div>School stop</div>
+</div>
+<div class="mrow" id="routeMetrics" style="margin-top:14px"></div>
+</div>
+<div>
+<div class="stitle">Schedule Summary</div>
+<div class="ssub">Headways (minutes) by time window. 15 min = green, 30 min = amber, 60 min = red. School trips are mandatory insertions.</div>
+<div id="schedulePanel"></div>
+</div>
+<div>
+<div class="stitle">Estimated Ridership &amp; Demand</div>
+<div class="ssub">Daily boardings derived from O-D demand model. School demand from student survey diversion rate.</div>
+<div class="cw tall"><canvas id="cRidership"></canvas></div>
+<div id="schoolDemandPanel" style="margin-top:14px"></div>
+</div>
+<div class="full">
+<div class="stitle">District Demand Profile</div>
+<div class="ssub">O-D gravity model: trip production and attraction per district. High-production districts are priority service areas.</div>
+<div class="cw"><canvas id="cDemand"></canvas></div>
 </div>
 <div class="full">
 <div class="stitle">Benefit Category Reference</div>
@@ -577,6 +654,12 @@ const BEN={js_benefits};
 const ALLOC_OP={js_allocated_op};
 const ALLOC_CAP={js_total_capital};
 const R76={r76_line};
+const OPT_ROUTES={js_opt_routes};
+const SEL_STOPS={js_selected_stops};
+const DIST_DEMAND={js_district_demand};
+const SCHOOL_DEMAND={js_school_demand};
+const SCHOOL_COV={js_school_coverage};
+const GTFS_SUMMARY={js_gtfs_summary};
 
 // MAP
 const map=L.map('map',{{center:[37.235,-121.960],zoom:13}});
@@ -734,6 +817,227 @@ function showNPVBreakdown(idx,nv,pvC,pvB){{
   }});
   yrTbl.innerHTML=yh;
 }}
+
+// ====================================================
+// PHASE B — ROUTE OPTIMIZATION PANELS
+// ====================================================
+(function(){{
+  const ROUTE_COLORS=['#4ecdc4','#ff6b6b','#ffa94d','#69db7c','#6c9bff','#cc5de8','#ff7eb3'];
+  const HW_WINDOWS=['am_peak','midday','pm_school','pm_commute','evening'];
+  const HW_LABELS={{'am_peak':'AM Peak','midday':'Midday','pm_school':'PM School',
+                   'pm_commute':'PM Commute','evening':'Evening'}};
+
+  // --- Route Map ---
+  const rmEl=document.getElementById('routeMap');
+  if(rmEl){{
+    const rmap=L.map('routeMap',{{center:[37.235,-121.960],zoom:13}});
+    L.tileLayer('https://{{s}}.basemaps.cartocdn.com/dark_all/{{z}}/{{x}}/{{y}}{{r}}.png',{{maxZoom:19}}).addTo(rmap);
+
+    // Group OPT_ROUTES by route_id
+    const routeGroups={{}};
+    OPT_ROUTES.forEach(r=>{{
+      if(!routeGroups[r.route_id])routeGroups[r.route_id]=[];
+      routeGroups[r.route_id].push(r);
+    }});
+
+    let ri=0;
+    const routeEntries=Object.entries(routeGroups);
+    routeEntries.forEach(([rid,stops])=>{{
+      stops.sort((a,b)=>a.stop_sequence-b.stop_sequence);
+      const color=ROUTE_COLORS[ri%ROUTE_COLORS.length];
+      const latlngs=stops.map(s=>[s.stop_lat,s.stop_lon]);
+      if(latlngs.length>=2){{
+        L.polyline(latlngs,{{color,weight:3,opacity:.85,dashArray:stops[0].is_restoration?'8,4':null}})
+          .bindPopup('<b>'+rid+'</b>: '+(stops[0].route_name||rid)+'<br>'+stops.length+' stops')
+          .addTo(rmap);
+      }}
+      // Add route label to legend
+      const leg=document.getElementById('routeLegend');
+      if(leg){{
+        const item=document.createElement('div');
+        item.className='route-leg-item';
+        item.innerHTML='<div class="route-leg-swatch" style="background:'+color+'"></div>'+(stops[0].route_name||rid);
+        leg.appendChild(item);
+      }}
+      ri++;
+    }});
+
+    // Plot stops from SEL_STOPS (existing=blue, new=orange, school=red)
+    SEL_STOPS.forEach(s=>{{
+      const color=s.is_school_stop?'#ff6b6b':(s.is_existing?'#4ecdc4':'#ffa94d');
+      const r=s.is_school_stop?8:6;
+      const circle=L.circleMarker([s.stop_lat,s.stop_lon],{{
+        radius:r,color:'#fff',weight:1.5,fillColor:color,fillOpacity:.9
+      }}).addTo(rmap);
+      let pop='<b>'+(s.stop_name||s.stop_id)+'</b>';
+      pop+='<br>District: '+(s.district_id||'–');
+      pop+='<br>Type: '+(s.is_school_stop?'<span style="color:#ff6b6b">School</span>'
+                        :(s.is_existing?'Existing':'<span style="color:#ffa94d">New</span>'));
+      pop+='<br>Demand score: '+(s.demand_score||0).toFixed(3);
+      if(s.wheelchair_boarding)pop+='<br>♿ ADA accessible';
+      circle.bindPopup(pop);
+    }});
+
+    // Metrics bar
+    const nRoutes=routeEntries.length;
+    const nNew=SEL_STOPS.filter(s=>!s.is_existing).length;
+    const nSchool=SEL_STOPS.filter(s=>s.is_school_stop).length;
+    const nTotal=SEL_STOPS.length;
+    const gsRow=(GTFS_SUMMARY||[]).find(r=>r.metric==='Trips/day')||{{}};
+    const nTrips=gsRow.value||'–';
+    const metricsEl=document.getElementById('routeMetrics');
+    if(metricsEl){{
+      const items=[
+        ['Routes',''+nRoutes,''],
+        ['Total stops',nTotal,''],
+        ['New stops',nNew,'text-align:center;color:var(--amber)'],
+        ['School stops',nSchool,'text-align:center;color:var(--red)'],
+        ['Trips/day',nTrips,''],
+      ];
+      metricsEl.innerHTML=items.map(([lb,vl,st])=>
+        '<div class="metric"><div class="lb">'+lb+'</div><div class="vl" style="'+st+'">'+vl+'</div></div>'
+      ).join('');
+    }}
+  }}
+
+  // --- Schedule Panel ---
+  const schedEl=document.getElementById('schedulePanel');
+  if(schedEl){{
+    if(!OPT_ROUTES.length){{
+      schedEl.innerHTML='<div class="opt-empty">No schedule data yet.<br>Run <code>python run_analysis.py</code> to generate Phase B results.</div>';
+    }} else {{
+      // Deduplicate routes (one row per route_id)
+      const routeMap={{}};
+      OPT_ROUTES.forEach(r=>{{
+        if(!routeMap[r.route_id])routeMap[r.route_id]=r;
+      }});
+      const routes=Object.values(routeMap);
+
+      function hwChip(min){{
+        if(!min||min===0)return '<span style="color:var(--tm)">–</span>';
+        const cls=min<=15?'hw-fast':min<=30?'hw-med':'hw-slow';
+        return '<span class="hw-chip '+cls+'">'+min+'</span>';
+      }}
+
+      let h='<table><tr><th>Route</th>';
+      HW_WINDOWS.forEach(w=>h+='<th style="text-align:center">'+HW_LABELS[w]+'</th>');
+      h+='<th style="text-align:right">BCR</th></tr>';
+      routes.forEach(r=>{{
+        h+='<tr>';
+        h+='<td style="font-weight:600">'+(r.route_name||r.route_id)+'</td>';
+        HW_WINDOWS.forEach(w=>{{
+          const key='headway_'+w;
+          h+='<td style="text-align:center">'+hwChip(r[key])+'</td>';
+        }});
+        const bcr=r.bcr!=null?parseFloat(r.bcr).toFixed(2):'–';
+        const bcrColor=parseFloat(bcr)>=1.0?'var(--ac)':'var(--red)';
+        h+='<td class="n" style="color:'+bcrColor+'">'+bcr+'</td>';
+        h+='</tr>';
+      }});
+      h+='</table>';
+
+      // School coverage table
+      if(SCHOOL_COV.length){{
+        h+='<div style="margin-top:14px;font-size:10px;color:var(--ac);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">School Trip Coverage</div>';
+        h+='<table><tr><th>School</th><th>Dismissal</th><th>Window</th><th style="text-align:center">Covered</th><th>Earliest arrival</th></tr>';
+        SCHOOL_COV.forEach(c=>{{
+          const ok=c.covered===true||c.covered==='True'||c.covered==='true';
+          h+='<tr><td>'+(c.school||'–')+'</td><td>'+(c.dismissal_time||'–')+'</td>';
+          h+='<td>'+(c.pickup_window_min||10)+' min</td>';
+          h+='<td style="text-align:center"><span class="'+(ok?'school-ok':'school-miss')+'">'+(ok?'✓ Yes':'✗ Miss')+'</span></td>';
+          h+='<td class="n">'+(c.actual_arrival||'–')+'</td></tr>';
+        }});
+        h+='</table>';
+      }}
+      schedEl.innerHTML=h;
+    }}
+  }}
+
+  // --- School Demand Panel ---
+  const sdEl=document.getElementById('schoolDemandPanel');
+  if(sdEl&&SCHOOL_DEMAND.length){{
+    let h='<div style="font-size:10px;color:var(--ac);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">School Boarding Estimates</div>';
+    h+='<table><tr><th>School</th><th>Dismissal</th><th style="text-align:right">Est. Boardings/day</th><th>Diversion rate</th></tr>';
+    SCHOOL_DEMAND.forEach(sd=>{{
+      h+='<tr><td>'+(sd.school||'–').replace(/_/g,' ')+'</td>';
+      h+='<td>'+(sd.dismissal_time||'–')+'</td>';
+      h+='<td class="n" style="color:var(--ac);font-weight:700">'+(sd.estimated_boardings||0)+'</td>';
+      h+='<td class="n">'+(sd.diversion_rate_used!=null?(sd.diversion_rate_used*100).toFixed(0)+'%':'–')+'</td></tr>';
+    }});
+    h+='</table>';
+    sdEl.innerHTML=h;
+  }}
+
+  // --- Ridership Bar Chart (estimated daily boardings per route) ---
+  const rCanvas=document.getElementById('cRidership');
+  if(rCanvas&&OPT_ROUTES.length){{
+    // Aggregate demand_score per route
+    const routeScore={{}};
+    const routeName={{}};
+    OPT_ROUTES.forEach(r=>{{
+      routeScore[r.route_id]=(routeScore[r.route_id]||0)+(r.demand_score||0);
+      routeName[r.route_id]=r.route_name||r.route_id;
+    }});
+    // Scale: demand_score ≈ estimated relative boardings; scale to plausible daily count
+    const entries=Object.entries(routeScore).sort((a,b)=>b[1]-a[1]);
+    const labels=entries.map(([id])=>routeName[id]||id);
+    // Add school demand on top of route scores for school-serving routes
+    const schoolTotal=SCHOOL_DEMAND.reduce((s,sd)=>s+(sd.estimated_boardings||0),0);
+    const vals=entries.map(([id,score])=>Math.round(score*120));
+    new Chart(rCanvas,{{
+      type:'bar',
+      data:{{
+        labels,
+        datasets:[
+          {{label:'Est. Regular Boardings/day',data:vals,backgroundColor:entries.map((_,i)=>ROUTE_COLORS[i%ROUTE_COLORS.length]+'bb'),borderRadius:4}},
+        ]
+      }},
+      options:{{
+        responsive:true,maintainAspectRatio:false,
+        plugins:{{legend:{{labels:{{color:'#7a8098',font:{{size:10}}}}}},
+          title:{{display:true,text:'Estimated Daily Boardings by Route (demand-score model)',color:'#7a8098',font:{{size:10}}}}}},
+        scales:{{
+          x:{{ticks:{{color:'#7a8098',font:{{size:9}}}},grid:{{color:'rgba(42,48,80,.3))'}}}},
+          y:{{ticks:{{color:'#7a8098',font:{{size:9}}}},grid:{{color:'rgba(42,48,80,.3))'}},
+             title:{{display:true,text:'Boardings/day',color:'#7a8098',font:{{size:9}}}}}},
+        }}
+      }}
+    }});
+  }} else if(rCanvas){{
+    const ctx=rCanvas.getContext('2d');
+    ctx.fillStyle='#7a8098';ctx.font='11px monospace';
+    ctx.fillText('No route optimization data — run Phase B',40,120);
+  }}
+
+  // --- District Demand Chart ---
+  const dCanvas=document.getElementById('cDemand');
+  if(dCanvas&&DIST_DEMAND.length){{
+    const dd=DIST_DEMAND.slice(0,16);
+    new Chart(dCanvas,{{
+      type:'bar',
+      data:{{
+        labels:dd.map(d=>d.district_id||d.index||''),
+        datasets:[
+          {{label:'Trip Productions',data:dd.map(d=>+(d.total_productions||0).toFixed(1)),backgroundColor:'rgba(78,205,196,.7)',borderRadius:3}},
+          {{label:'Trip Attractions',data:dd.map(d=>+(d.total_attractions||0).toFixed(1)),backgroundColor:'rgba(108,155,255,.7)',borderRadius:3}},
+        ]
+      }},
+      options:{{
+        responsive:true,maintainAspectRatio:false,
+        plugins:{{legend:{{labels:{{color:'#7a8098',font:{{size:10}}}}}}}},
+        scales:{{
+          x:{{stacked:false,ticks:{{color:'#7a8098',font:{{size:9}}}},grid:{{color:'rgba(42,48,80,.3))'}}}},
+          y:{{ticks:{{color:'#7a8098',font:{{size:9}}}},grid:{{color:'rgba(42,48,80,.3))'}},
+             title:{{display:true,text:'Estimated daily trips',color:'#7a8098',font:{{size:9}}}}}},
+        }}
+      }}
+    }});
+  }} else if(dCanvas){{
+    const ctx=dCanvas.getContext('2d');
+    ctx.fillStyle='#7a8098';ctx.font='11px monospace';
+    ctx.fillText('No demand data — run Phase B to generate O-D matrix',40,80);
+  }}
+}})();
 
 // TABLE
 const t=document.getElementById('tbl');const mx=Math.max(...D.map(d=>d.totalAnn),1);

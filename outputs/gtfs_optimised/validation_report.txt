@@ -1,0 +1,4 @@
+GTFS Validation Report
+========================================
+gtfs-kit not installed; validation skipped.
+Install with: pip install gtfs-kit
