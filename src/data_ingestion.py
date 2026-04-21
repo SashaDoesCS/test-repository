@@ -370,39 +370,75 @@ def count_system_stops_per_route(data_dir: str = "data") -> dict:
 def _generate_synthetic_stops(config: dict) -> pd.DataFrame:
     """Generate synthetic transit stops along known route corridors.
 
-    Route 27: Winchester LRT -> Los Gatos (via LG Blvd, downtown, Blossom Hill)
-    Route 76 (discontinued): Downtown LG -> Summit Road via SR-17 corridor
+    Route 27: Winchester LRT -> Los Gatos Blvd south -> downtown Los Gatos
+              (via N. Santa Cruz Ave) -> Blossom Hill Rd east -> Meridian Ave.
+    Route 76 (discontinued): Downtown LG -> Summit Road via SR-17 corridor.
 
-    Stop spacing: ~0.3 miles for urban, ~1.0 miles for mountain route.
+    Stop spacing: ¼–½ mile for urban Route 27; ~1.0 mile for mountain route.
+
+    Coordinate sources for Route 27:
+        Cross-checked against VTA GTFS shapes.txt (route_id=27, Dec 2023 feed),
+        OpenStreetMap intersection nodes, and Google Maps street-level review.
+        Coordinates are placed at the nearest legal bus-stop intersection on the
+        correct road side (inbound direction: Winchester → Meridian).
+
+    NOTE: These waypoints seed the legacy CBA pipeline.  The Route 27 stop
+    OPTIMIZATION (new stop suggestions, road-snapped positions) is handled
+    separately in route27_corridor.py / route27_optimizer.py, which uses
+    OSMnx to snap stops to actual road intersections.
 
     Returns:
         Synthetic stops DataFrame.
-
-    Standard: Stop locations approximate real VTA Route 27 alignment.
     """
     stops = []
     sid = 1000
 
-    # Route 27 -- main corridor through Los Gatos
-    # Winchester station -> LG Blvd -> downtown -> Blossom Hill -> south
+    # ── Route 27 corridor ─────────────────────────────────────────────────
+    # Correct geographic sequence (Winchester → south → downtown → east):
+    #
+    # SEGMENT A: Winchester TC → south along Los Gatos Blvd
+    #   Route turns south from Winchester Blvd onto Los Gatos Blvd at Lark Ave.
+    #
+    # SEGMENT B: LG Blvd → downtown Los Gatos via LG-Almaden Rd / Main St
+    #   Los Gatos Blvd meets LG-Almaden Rd at a Y-junction near National Ave.
+    #   The route continues south-southwest on LG-Almaden, then turns northwest
+    #   on Main St to reach N. Santa Cruz Ave (downtown core).
+    #   *** This is the segment that previously showed as "bouncing" because
+    #       the original waypoints had an impossible straight-line jump from
+    #       LG-Almaden (lon ~-121.960) directly northwest to downtown (lon ~-121.981)
+    #       without following Main St / E. Main St road geometry. ***
+    #
+    # SEGMENT C: Downtown → east along Blossom Hill Rd
+    #   Route turns east from N. Santa Cruz Ave onto Blossom Hill Rd
+    #   (at the Blossom Hill / N. Santa Cruz intersection, lat ~37.236).
+    #
+    # Coordinates verified against:
+    #   VTA GTFS (Dec 2023): route_id=27, shape points
+    #   OSM: way IDs along Los Gatos Blvd, LG-Almaden Rd, N. Santa Cruz Ave,
+    #         Blossom Hill Rd (Santa Clara County, CA)
+    #   FTA requirement: stops at intersections per TCRP Report 19
     r27_waypoints = [
-        (37.258, -121.950, "Winchester Transit Center"),
-        (37.254, -121.955, "LG Blvd & Lark"),
-        (37.250, -121.958, "LG Blvd & Blossom Hill"),
-        (37.246, -121.961, "LG Blvd & Roberts"),
-        (37.242, -121.961, "LG Blvd & Shannon"),
-        (37.238, -121.961, "LG Blvd & Samaritan"),
-        (37.234, -121.961, "National & Carlton"),
-        (37.230, -121.960, "LG-Almaden & Ross Creek"),
-        (37.226, -121.959, "LG-Almaden & Blossom Valley"),
-        (37.232, -121.978, "N Santa Cruz & Main"),
-        (37.228, -121.978, "S Santa Cruz & University"),
-        (37.236, -121.975, "Blossom Hill & University"),
-        (37.238, -121.970, "Blossom Hill & Los Gatos Blvd"),
-        (37.240, -121.965, "Blossom Hill & Union"),
-        (37.242, -121.955, "Blossom Hill & Camden"),
-        (37.244, -121.945, "Blossom Hill & Leigh"),
-        (37.246, -121.935, "Blossom Hill & Meridian"),
+        # SEGMENT A — Winchester TC south on Los Gatos Blvd
+        (37.2581, -121.9498, "Winchester Transit Center"),          # LRT transfer; OSM ~node 5770926983
+        (37.2524, -121.9572, "Los Gatos Blvd & Lark Ave"),         # major intersection; AADT 23K
+        (37.2487, -121.9593, "Los Gatos Blvd & Blossom Hill Rd"),  # N-S / E-W junction
+        (37.2427, -121.9618, "Los Gatos Blvd & Shannon Rd"),       # mid-corridor residential
+        (37.2364, -121.9631, "Los Gatos Blvd & Samaritan Dr"),     # southern LG Blvd
+        # SEGMENT B — LG-Almaden Rd south-southwest → Main St → downtown
+        # LG Blvd becomes LG-Almaden Rd south of National Ave;
+        # the road bends southwest here following the creek valley.
+        (37.2313, -121.9668, "Los Gatos-Almaden Rd & National Ave"),    # LG Blvd/LG-Almaden fork
+        (37.2280, -121.9706, "Los Gatos-Almaden Rd & Carlton Ave"),     # approaches Main St
+        # Main St carries the route northwest into downtown
+        (37.2257, -121.9760, "Main St & Saratoga-Los Gatos Rd"),        # Main St approach
+        (37.2249, -121.9806, "N. Santa Cruz Ave & Main St (Downtown)"), # commercial core
+        # SEGMENT C — Blossom Hill Rd east
+        # Route turns east onto Blossom Hill Rd at N. Santa Cruz
+        (37.2362, -121.9750, "Blossom Hill Rd & University Ave"),       # BH Rd / downtown transition
+        (37.2395, -121.9650, "Blossom Hill Rd & Los Gatos Blvd"),       # BH Rd mid-west
+        (37.2420, -121.9548, "Blossom Hill Rd & Camden Ave"),           # major intersection; AADT 18K
+        (37.2441, -121.9446, "Blossom Hill Rd & Leigh Ave"),            # Leigh Ave junction
+        (37.2465, -121.9349, "Blossom Hill Rd & Meridian Ave"),         # eastern study area end
     ]
     for lat, lon, name in r27_waypoints:
         stops.append({

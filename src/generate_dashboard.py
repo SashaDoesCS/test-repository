@@ -162,6 +162,28 @@ def load_pipeline_data() -> dict:
     p = PROJECT_ROOT / "outputs" / "gtfs_optimised" / "feed_summary.csv"
     result["gtfs_summary"] = pd.read_csv(p).to_dict("records") if p.exists() else []
 
+    # Route 27 stop suggestions (new stop recommendations)
+    p = tables / "route27_stop_suggestions.csv"
+    if p.exists():
+        r27_df = pd.read_csv(p)
+        # Replace NaN with None for clean JSON serialization
+        r27_df = r27_df.where(pd.notnull(r27_df), None)
+        result["route27_suggestions"] = r27_df.to_dict("records")
+    else:
+        result["route27_suggestions"] = []
+
+    # Route 27 path GeoJSON (road-following line for the map)
+    import json as _json
+    p = PROJECT_ROOT / "data" / "geospatial" / "route27_path.geojson"
+    if p.exists():
+        try:
+            with open(p, "r", encoding="utf-8") as f:
+                result["route27_geojson"] = _json.load(f)
+        except Exception:
+            result["route27_geojson"] = None
+    else:
+        result["route27_geojson"] = None
+
     return result
 
 
@@ -335,6 +357,15 @@ def generate_dashboard_html(data: dict, merged: list, polygons: dict) -> str:
     js_gtfs_summary = json.dumps(data.get("gtfs_summary", []))
     opt_run = len(data.get("optimised_routes", [])) > 0
 
+    # Route 27 stop suggestions
+    r27_suggestions = data.get("route27_suggestions", [])
+    js_r27_suggestions = json.dumps(r27_suggestions)
+    js_r27_geojson = json.dumps(data.get("route27_geojson"))
+    r27_run = len(r27_suggestions) > 0
+    r27_new_count = sum(1 for s in r27_suggestions if s.get("status") == "NEW_SUGGEST")
+    r27_high_count = sum(1 for s in r27_suggestions
+                         if s.get("status") == "NEW_SUGGEST" and s.get("priority") == "HIGH")
+
     r76_data = {}
     cfg = data.get("config", {})
     transit_cfg = cfg.get("transit", {})
@@ -439,6 +470,7 @@ td .bar{{display:inline-block;height:8px;border-radius:2px;margin-right:4px;vert
 <span class="badge phase">A3 Benefits</span>
 <span class="badge phase">A4 Demand</span>
 <span class="badge {'done' if opt_run else 'phase'}">B Route Opt {'✓' if opt_run else ''}</span>
+<span class="badge {'done' if r27_run else 'phase'}">Rt27 {'✓ ' + str(r27_new_count) + ' new stops' if r27_run else 'pending'}</span>
 </div>
 </div>
 <div class="correction-banner">
@@ -639,6 +671,30 @@ Route 76 restoration benefits (separate scenario analysis below)
 </div>
 </div>
 <div class="full">
+<div class="stitle">Route 27 Stop Optimization &amp; New Stop Suggestions</div>
+<div class="ssub">
+  Linear spacing algorithm per FTA Circular 9040.1G §5.2.2.
+  Only Route 27 is eligible for modification in this study.
+  BCR method: USDOT BCA 2024 / TCRP Report 167 / NTD FY2023 / OMB A-94 3.5%.
+  <strong style="color:var(--ac)">Teal = existing stop | Orange = suggested NEW stop (BCR ≥ 1) | Red = HIGH priority (BCR ≥ 2)</strong>
+</div>
+{'<div class="callout warn" style="margin-bottom:12px"><strong>Route 27 analysis not yet run:</strong> Execute <code>python run_analysis.py</code> to generate stop suggestions. Install <code>osmnx</code> for road-snapped results.</div>' if not r27_run else ''}
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px">
+  <div class="metric"><div class="lb">Stops in sequence</div><div class="vl ac" id="r27TotalStops">—</div><div class="su">optimized corridor</div></div>
+  <div class="metric"><div class="lb">Existing retained</div><div class="vl" id="r27ExistingStops">—</div><div class="su">VTA GTFS stops</div></div>
+  <div class="metric"><div class="lb">New suggestions</div><div class="vl" style="color:var(--amber)" id="r27NewStops">—</div><div class="su">gap-fill candidates</div></div>
+  <div class="metric"><div class="lb">HIGH priority</div><div class="vl" style="color:var(--red)" id="r27HighStops">—</div><div class="su">BCR ≥ 2.0</div></div>
+  <div class="metric"><div class="lb">Corridor length</div><div class="vl" id="r27Miles">—</div><div class="su">Winchester → Meridian</div></div>
+</div>
+<div id="route27Map" style="height:500px;border-radius:6px;border:1px solid var(--bd);margin-bottom:14px"></div>
+<div style="font-size:10px;color:var(--tm);margin-bottom:10px">
+  Map shows road-following path (OSMnx Dijkstra shortest-path between anchor waypoints).
+  Open <code>data/geospatial/route27_path.geojson</code> in QGIS or geojson.io to inspect road alignment.
+  Spacing standard: ¼ mi urban (D1–D5,D7), ½ mi suburban (U-districts, D6, D8+).
+</div>
+<div id="route27SuggTable"></div>
+</div>
+<div class="full">
 <div class="stitle">Full District Table</div>
 <div style="overflow-x:auto"><table id="tbl"></table></div>
 </div>
@@ -660,6 +716,8 @@ const DIST_DEMAND={js_district_demand};
 const SCHOOL_DEMAND={js_school_demand};
 const SCHOOL_COV={js_school_coverage};
 const GTFS_SUMMARY={js_gtfs_summary};
+const R27_SUGGESTIONS={js_r27_suggestions};
+const R27_GEOJSON={js_r27_geojson};
 
 // MAP
 const map=L.map('map',{{center:[37.235,-121.960],zoom:13}});
@@ -1037,6 +1095,177 @@ function showNPVBreakdown(idx,nv,pvC,pvB){{
     ctx.fillStyle='#7a8098';ctx.font='11px monospace';
     ctx.fillText('No demand data — run Phase B to generate O-D matrix',40,80);
   }}
+}})();
+
+// ====================================================
+// ROUTE 27 STOP SUGGESTIONS MAP + TABLE
+// Standard: FTA Circular 9040.1G §5.2.2, TCRP Report 19
+// BCR: USDOT BCA 2024 / OMB Circular A-94 / NTD FY2023
+// ====================================================
+(function(){{
+  const mapEl=document.getElementById('route27Map');
+  if(!mapEl)return;
+
+  const rmap=L.map('route27Map',{{center:[37.237,-121.955],zoom:13}});
+  L.tileLayer('https://{{s}}.basemaps.cartocdn.com/dark_all/{{z}}/{{x}}/{{y}}{{r}}.png',{{maxZoom:19}}).addTo(rmap);
+
+  // Draw road-following path if GeoJSON available
+  if(R27_GEOJSON&&R27_GEOJSON.features){{
+    R27_GEOJSON.features.forEach(f=>{{
+      if(f.geometry.type==='LineString'){{
+        const coords=f.geometry.coordinates.map(c=>[c[1],c[0]]);
+        L.polyline(coords,{{color:'#4ecdc4',weight:4,opacity:.7,dashArray:null}})
+          .bindPopup('<b>Route 27 corridor path</b><br>Road-following path (OSMnx Dijkstra)<br>'
+            +(f.properties.total_length_ft?'Length: '+(f.properties.total_length_ft/5280).toFixed(2)+' mi':''))
+          .addTo(rmap);
+      }}
+    }});
+    // Draw anchor waypoints as small markers
+    R27_GEOJSON.features.forEach(f=>{{
+      if(f.geometry.type==='Point'&&f.properties.type==='anchor_waypoint'){{
+        const [lon,lat]=f.geometry.coordinates;
+        L.circleMarker([lat,lon],{{radius:4,color:'#4ecdc4',fillColor:'#4ecdc4',fillOpacity:.5,weight:1}})
+          .bindTooltip('<b>Anchor</b>: '+f.properties.name+'<br><small style="color:var(--tm)">'+f.properties.note+'</small>')
+          .addTo(rmap);
+      }}
+    }});
+  }}
+
+  // Plot stops from R27_SUGGESTIONS
+  let nTotal=0,nExist=0,nNew=0,nHigh=0,maxMi=0;
+  R27_SUGGESTIONS.forEach(s=>{{
+    if(s.stop_lat==null||s.stop_lon==null)return;
+    nTotal++;
+    const isNew=s.status==='NEW_SUGGEST';
+    const isHigh=isNew&&s.priority==='HIGH';
+    const isMed=isNew&&s.priority==='MEDIUM';
+    if(!isNew)nExist++;else nNew++;
+    if(isHigh)nHigh++;
+    if((s.s_coord_mi||0)>maxMi)maxMi=s.s_coord_mi;
+
+    let color='#4ecdc4';   // existing
+    let radius=6;
+    if(isHigh){{color='#ff6b6b';radius=10;}}
+    else if(isMed){{color='#ffa94d';radius=8;}}
+    else if(isNew){{color='#ffa94d';radius=7;}}
+
+    let pop='<b>'+(s.stop_name||s.stop_id||'Stop')+'</b>';
+    pop+='<br>Status: <span style="color:'+(isNew?color:'#4ecdc4')+'">'+s.status+'</span>';
+    pop+='<br>Priority: '+(s.priority||'—');
+    pop+='<br>District: '+(s.district_id||'—')+' ('+s.zone_type+')';
+    pop+='<br>Position: '+(s.s_coord_mi||0).toFixed(2)+' mi from Winchester TC';
+    if(isNew){{
+      pop+='<hr style="border-color:rgba(120,128,160,.3);margin:5px 0">';
+      pop+='<b style="color:var(--amber)">BCR Analysis (20 yr @ 3.5%)</b>';
+      pop+='<br>Walk-shed pop: '+(s.marginal_walkshed_pop||0).toLocaleString()+' (marginal)';
+      pop+='<br>Est. new riders/day: '+(s.est_new_riders_daily||0).toFixed(1);
+      pop+='<br>Annual benefit: $'+(s.annual_benefit_usd||0).toLocaleString();
+      pop+='<br>Capital cost: $'+(s.capital_cost_usd||0).toLocaleString();
+      pop+='<br><b>BCR: '+(s.bcr_20yr!=null?parseFloat(s.bcr_20yr).toFixed(2):'—')+'</b>';
+      pop+='<br>FTA CEI: $'+(s.fta_cei_per_user_hr!=null?parseFloat(s.fta_cei_per_user_hr).toFixed(2):'—')+'/user-hr';
+      pop+='<br><small style="color:var(--tm)">'+((s.justification||'').slice(0,120))+'…</small>';
+    }}
+    if(s.wheelchair_boarding)pop+='<br>♿ ADA accessible (49 CFR Part 37)';
+
+    const marker=L.circleMarker([s.stop_lat,s.stop_lon],{{
+      radius,color:'#fff',weight:isNew?2:1.5,fillColor:color,fillOpacity:.92
+    }}).addTo(rmap);
+    marker.bindPopup(pop,{{maxWidth:300}});
+
+    // Label new stops with BCR
+    if(isNew&&s.bcr_20yr!=null){{
+      L.marker([s.stop_lat,s.stop_lon],{{
+        icon:L.divIcon({{
+          className:'',
+          html:'<div style="font:700 8px var(--font-mono);color:'+color+';text-shadow:0 1px 3px #000,0 0 6px #000;pointer-events:none;white-space:nowrap">BCR '+parseFloat(s.bcr_20yr).toFixed(1)+'</div>',
+          iconSize:[50,12],iconAnchor:[-4,6]
+        }})
+      }}).addTo(rmap);
+    }}
+  }});
+
+  // Update metrics
+  const setM=(id,v)=>{{const el=document.getElementById(id);if(el)el.textContent=v;}};
+  setM('r27TotalStops',nTotal||'—');
+  setM('r27ExistingStops',nExist||'—');
+  setM('r27NewStops',nNew||'—');
+  setM('r27HighStops',nHigh||'—');
+  setM('r27Miles',maxMi>0?maxMi.toFixed(2)+' mi':'—');
+
+  // Add map legend
+  const legDiv=L.control({{position:'bottomright'}});
+  legDiv.onAdd=function(){{
+    const d=L.DomUtil.create('div');
+    d.style.cssText='background:rgba(20,23,32,.92);border:1px solid rgba(42,48,80,.8);border-radius:6px;padding:10px 14px;font:10px IBM Plex Mono,monospace;color:#d8dce8;min-width:170px';
+    d.innerHTML='<div style="font-size:9px;color:#7a8098;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">Route 27 Legend</div>'
+      +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:4px"><div style="width:28px;height:3px;background:#4ecdc4;border-radius:2px"></div>Corridor path</div>'
+      +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:4px"><div style="width:10px;height:10px;border-radius:50%;background:#4ecdc4;border:2px solid #fff;flex-shrink:0"></div>Existing stop</div>'
+      +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:4px"><div style="width:12px;height:12px;border-radius:50%;background:#ffa94d;border:2px solid #fff;flex-shrink:0"></div>New (MEDIUM)</div>'
+      +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:4px"><div style="width:14px;height:14px;border-radius:50%;background:#ff6b6b;border:2px solid #fff;flex-shrink:0"></div>New (HIGH, BCR≥2)</div>'
+      +'<div style="margin-top:7px;font-size:9px;color:#7a8098">FTA 9040.1G §5.2.2<br>BCR: OMB A-94 3.5%, 20 yr</div>';
+    return d;
+  }};
+  legDiv.addTo(rmap);
+
+  // --- Suggestion Table ---
+  const tblEl=document.getElementById('route27SuggTable');
+  if(!tblEl)return;
+  if(!R27_SUGGESTIONS.length){{
+    tblEl.innerHTML='<div class="opt-empty">No Route 27 suggestion data.<br>Run <code>python run_analysis.py</code> with osmnx installed.</div>';
+    return;
+  }}
+
+  let h='<div style="font-size:10px;color:var(--ac);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">New Stop Recommendations</div>';
+  h+='<div style="font-size:9px;color:var(--tm);margin-bottom:10px">Diversion rate: 8% (TCRP Report 167 §4.3.2) &bull; Value/boarding: $4.20 (USDOT BCA 2024 Table 4, 14-min access savings × $17.80/hr) &bull; Discount: 3.5% real (OMB Circular A-94 §8b) &bull; Horizon: 20 yr &bull; BCR ≥ 1.0 = FTA-justified (49 U.S.C. §5309)</div>';
+
+  const newStops=R27_SUGGESTIONS.filter(s=>s.status==='NEW_SUGGEST');
+  if(!newStops.length){{
+    h+='<div style="color:var(--tm);font-size:10px;padding:14px">No new stops suggested — all corridor segments are within FTA maximum spacing limits.</div>';
+    tblEl.innerHTML=h;
+    return;
+  }}
+
+  h+='<div style="overflow-x:auto"><table>';
+  h+='<tr><th>Position</th><th>Stop Location</th><th>District</th><th>Priority</th>'
+    +'<th style="text-align:right">Marg. Pop</th>'
+    +'<th style="text-align:right">Riders/day</th>'
+    +'<th style="text-align:right">Ann. Benefit</th>'
+    +'<th style="text-align:right">Capital Cost</th>'
+    +'<th style="text-align:right">BCR (20yr)</th>'
+    +'<th style="text-align:right">FTA CEI</th>'
+    +'<th>Gap (mi)</th>'
+    +'<th>Justification</th></tr>';
+
+  newStops.sort((a,b)=>(a.s_coord_ft||0)-(b.s_coord_ft||0)).forEach(s=>{{
+    const bcr=s.bcr_20yr!=null?parseFloat(s.bcr_20yr):null;
+    const bcrColor=bcr==null?'var(--tm)':bcr>=2?'var(--red)':bcr>=1?'var(--amber)':'var(--tm)';
+    const priColor=s.priority==='HIGH'?'var(--red)':s.priority==='MEDIUM'?'var(--amber)':'var(--tm)';
+    const cei=s.fta_cei_per_user_hr!=null?parseFloat(s.fta_cei_per_user_hr):null;
+    const ceiColor=cei==null?'var(--tm)':cei<2?'var(--ac)':cei<4?'var(--amber)':'var(--red)';
+    const gap=(s.gap_before_ft&&s.gap_after_ft)
+      ?((s.gap_before_ft/5280).toFixed(2)+' + '+(s.gap_after_ft/5280).toFixed(2)):'—';
+    const just=(s.justification||'').slice(0,100)+'...';
+    h+='<tr>';
+    h+='<td class="n">'+(s.s_coord_mi||0).toFixed(2)+' mi</td>';
+    h+='<td style="max-width:160px">'+(s.stop_name||s.stop_id||'—')+'</td>';
+    h+='<td style="color:var(--tm)">'+(s.district_id||'—')+'</td>';
+    h+='<td style="color:'+priColor+';font-weight:700">'+(s.priority||'—')+'</td>';
+    h+='<td class="n">'+(s.marginal_walkshed_pop||0).toLocaleString()+'</td>';
+    h+='<td class="n">'+(s.est_new_riders_daily||0).toFixed(1)+'</td>';
+    h+='<td class="n">$'+(s.annual_benefit_usd||0).toLocaleString()+'</td>';
+    h+='<td class="n">$'+(s.capital_cost_usd||0).toLocaleString()+'</td>';
+    h+='<td class="n" style="color:'+bcrColor+';font-weight:700">'+(bcr!=null?bcr.toFixed(2):'—')+'</td>';
+    h+='<td class="n" style="color:'+ceiColor+'">'+(cei!=null?'$'+cei.toFixed(2):'—')+'</td>';
+    h+='<td style="color:var(--tm);font-size:9px">'+gap+'</td>';
+    h+='<td style="font-size:9px;color:var(--tm);max-width:200px">'+just+'</td>';
+    h+='</tr>';
+  }});
+  h+='</table></div>';
+  h+='<div style="margin-top:8px;font-size:9px;color:rgba(122,128,152,.6)">';
+  h+='BCR parameters: diversion_rate=8% (TCRP 167), value/boarding=$4.20 (USDOT BCA 2024), discount=3.5% real (OMB A-94), capital=$25K–$55K (NTD FY2023), operating=$14.1K/yr/stop (NTD FY2023 VTA $195.50/hr × 20-sec dwell × 50 trips/day × 260 days).';
+  h+='<br>FTA CEI threshold: &lt;$2/user-hr = Medium-High; &lt;$4/user-hr = Medium (FTA CIG, 49 U.S.C. §5309).';
+  h+='</div>';
+  tblEl.innerHTML=h;
 }})();
 
 // TABLE
