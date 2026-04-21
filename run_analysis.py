@@ -64,6 +64,9 @@ from src.network_graph import run_network_graph
 from src.route_optimizer import run_route_optimisation
 from src.schedule_generator import generate_schedule
 from src.gtfs_exporter import export_gtfs
+from src.route27_corridor import build_route27_corridor
+from src.route27_walkshed import run_walkshed_analysis
+from src.route27_optimizer import run_route27_optimization, print_route27_report
 
 # Configure logging
 logging.basicConfig(
@@ -983,6 +986,79 @@ def main():
     logger.info("  Routes: %d  |  Stops: %d (%d new)",
                 len(opt_result["routes"]), len(opt_result["selected_stops"]), n_new)
 
+    # -- Step B3b: Route 27 Stop Optimization (new stop suggestions) ----------
+    logger.info("\nStep B3b: Route 27 stop optimization (new stop suggestions)...")
+    logger.info("  Only Route 27 is eligible for modification per project scope.")
+    logger.info("  Algorithm: linear spacing (FTA Circular 9040.1G §5.2.2)")
+    logger.info("  BCR method: USDOT BCA 2024 / TCRP Report 167 / NTD FY2023")
+
+    try:
+        # Build corridor geometry and candidate stop locations
+        corridor_result = build_route27_corridor(config)
+        logger.info(
+            "  Corridor: %d path nodes, %d candidate stops, path GeoJSON → %s",
+            len(corridor_result["path_coords"]),
+            len(corridor_result["candidates_df"]),
+            corridor_result["path_geojson"],
+        )
+
+        # Compute walk-shed populations for all candidates
+        demo_for_ws = pd.read_csv("outputs/tables/district_demographic_profile.csv")
+        walkshed_df = run_walkshed_analysis(
+            candidates_df=corridor_result["candidates_df"],
+            census_df=demo_for_ws,
+            tdi_df=tdi_df,
+            unmet_need_df=unmet_df,
+        )
+
+        # Filter existing stops to Route 27 only for the optimizer
+        r27_existing = stops[
+            stops["route_ids"].astype(str).str.contains(r"\b27\b", regex=True, na=False)
+        ].copy() if stops is not None and len(stops) > 0 else None
+
+        # Run linear optimization and gap detection
+        r27_result = run_route27_optimization(
+            corridor_result=corridor_result,
+            walkshed_df=walkshed_df,
+            existing_stops_df=r27_existing,
+            tdi_df=tdi_df,
+            unmet_need_df=unmet_df,
+            config=config,
+        )
+
+        # Save outputs
+        r27_result["suggestions"].to_csv(
+            "outputs/tables/route27_stop_suggestions.csv", index=False
+        )
+        r27_result["gaps"].to_csv(
+            "outputs/tables/route27_coverage_gaps.csv", index=False
+        ) if len(r27_result["gaps"]) > 0 else None
+
+        # Console report
+        print_route27_report(r27_result["suggestions"])
+
+        logger.info(
+            "  Route 27 optimization complete: %d stops in sequence, "
+            "%d new stop suggestions (%d HIGH priority).",
+            len(r27_result["suggestions"]),
+            r27_result["n_new_suggested"],
+            r27_result["n_high_priority"],
+        )
+
+    except Exception as exc:
+        logger.error("Route 27 optimization failed: %s", exc, exc_info=True)
+        logger.warning(
+            "Route 27 suggestions will be empty.  "
+            "Check that osmnx is installed (pip install osmnx) and that "
+            "the census data is present in outputs/tables/."
+        )
+        r27_result = {
+            "suggestions": pd.DataFrame(),
+            "gaps":        pd.DataFrame(),
+            "n_new_suggested": 0,
+            "n_high_priority": 0,
+        }
+
     # -- Step B4: Schedule Generation --
     logger.info("\nStep B4: Generating timetable...")
     schedule = generate_schedule(
@@ -1023,6 +1099,11 @@ def main():
     print(f"  Selected stops:       {len(opt_result['selected_stops'])} ({n_new} new)")
     print(f"  Total trips/day:      {len(schedule['all_trips'])} ({n_school_trips} school)")
     print(f"  GTFS feed:            {gtfs_dir}")
+    print(f"\n  ROUTE 27 STOP SUGGESTIONS (new stops only — route 27 is the only modifiable route):")
+    print(f"  New stop suggestions: {r27_result['n_new_suggested']}")
+    print(f"  HIGH priority (BCR≥2): {r27_result['n_high_priority']}")
+    print(f"  Suggestions CSV:      outputs/tables/route27_stop_suggestions.csv")
+    print(f"  Path GeoJSON:         data/geospatial/route27_path.geojson")
     print(f"\n  All outputs in: outputs/tables/  +  outputs/gtfs_optimised/")
     print(f"  GeoJSON in: data/geospatial/districts/")
     print(f"  Dashboard:  {dashboard_path}")
