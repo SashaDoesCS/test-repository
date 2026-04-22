@@ -145,7 +145,32 @@ def select_stops(
                if tdi_df is not None and len(tdi_df) > 0 else {})
     gap_pop_map = (coverage_gaps.set_index("district_id")["gap_population"].to_dict()
                    if coverage_gaps is not None and len(coverage_gaps) > 0 else {})
-    total_gap_pop = sum(gap_pop_map.values()) or 1
+
+    # District total population for TDI-weighted demand scoring.
+    # When a district already has stops (gap_population=0), coverage_contribution
+    # would be 0, making demand_score=0 for all non-mandatory stops and causing
+    # the marginal-gain check to break immediately — the demand index is ignored.
+    # Fix: use TDI × total_pop as a demand floor so high-TDI districts always
+    # produce non-zero scores regardless of existing stop coverage.
+    pop_map = {}
+    if coverage_gaps is not None and len(coverage_gaps) > 0 and "total_pop" in coverage_gaps.columns:
+        pop_map = coverage_gaps.set_index("district_id")["total_pop"].to_dict()
+
+    # TDI_DEMAND_FACTOR: fraction of district TDI-weighted population counted as
+    # "effective demand" per stop slot.  0.2 is the minimum to pass the marginal-
+    # gain threshold for smaller in-town districts (D1, D4, D7 ~3K pop, TDI ~0.3-0.5)
+    # while keeping uncovered-district gap-pop (D8, D9, D10 ~400-1350) dominant.
+    _TDI_DEMAND_FACTOR = 0.2
+
+    # Total effective demand = gap population + TDI-weighted population across all
+    # districts.  Used as the denominator in marginal_gain so that stops in
+    # high-demand but already-covered districts don't trigger an immediate break.
+    total_gap_pop = sum(gap_pop_map.values())
+    total_tdi_demand = sum(
+        float(pop_map.get(did, 0)) * tdi_map.get(did, 0.2) * _TDI_DEMAND_FACTOR
+        for did in set(list(gap_pop_map.keys()) + list(tdi_map.keys()))
+    )
+    total_effective_demand = max(total_gap_pop + total_tdi_demand, 1)
 
     # Determine walk buffer per stop (urban vs suburban by district TDI)
     def _walk_buffer(district_id: Optional[str]) -> float:
@@ -163,18 +188,24 @@ def select_stops(
         gap_pop = gap_pop_map.get(did, 0)
         buf = _walk_buffer(did)
 
-        # Coverage contribution: population within walk buffer (approximated
-        # as fraction of district gap population per stop added)
         existing_stops_in_district = int(
             coverage_gaps.loc[coverage_gaps["district_id"] == did, "n_stops"].sum()
             if coverage_gaps is not None else 0
         )
+        # Gap-coverage contribution: marginal uncovered population per additional stop.
         coverage_contribution = gap_pop / max(existing_stops_in_district + 1, 1)
+
+        # TDI demand contribution: ensures stops in high-demand, already-served
+        # districts get non-zero scores so the demand index drives selection.
+        tdi_demand = float(pop_map.get(did, 0)) * demand_weight * _TDI_DEMAND_FACTOR
+
+        # Effective demand blends gap coverage (primary) with TDI demand (floor).
+        effective_demand = coverage_contribution + tdi_demand
 
         # Cost penalty: existing stops cheaper (infrastructure already there)
         cost_factor = 1.0 if is_existing else (1.0 + cost_per_new_stop / 100_000)
 
-        score = (coverage_contribution * demand_weight) / cost_factor
+        score = (effective_demand * demand_weight) / cost_factor
         if is_mandatory:
             score *= 10  # Priority boost for school/equity stops
 
@@ -188,7 +219,7 @@ def select_stops(
             "is_school_stop": is_school,
             "is_mandatory": is_mandatory,
             "demand_score": score,
-            "coverage_pop": int(coverage_contribution),
+            "coverage_pop": int(effective_demand),
             "walk_buffer": buf,
         })
 
@@ -211,7 +242,7 @@ def select_stops(
         if too_close and not cand["is_mandatory"]:
             continue
 
-        marginal_gain = cand["coverage_pop"] / total_gap_pop
+        marginal_gain = cand["coverage_pop"] / total_effective_demand
         if not cand["is_mandatory"] and marginal_gain < coverage_threshold:
             logger.info("Stop selection: marginal gain %.3f%% < threshold, stopping.",
                         marginal_gain * 100)
