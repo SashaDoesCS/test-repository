@@ -79,6 +79,7 @@ class OptimisedRoute:
     stops: List[OptimisedStop]  # ordered stop sequence
     is_restoration: bool = False  # True for Route 76 restoration
     source_route_id: Optional[str] = None  # original GTFS route_id
+    parent_route_id: Optional[str] = None  # for derive_from_existing mode
     estimated_one_way_min: float = 0.0
     bcr: Optional[float] = None
     headways: dict = field(default_factory=dict)  # window → headway_min
@@ -242,36 +243,30 @@ def select_stops(
 # SUB-STAGE 3b: ROUTE DESIGN
 # =====================================================================
 
-def design_routes(
+def _design_routes_hub_spoke(
     selected_stops: List[OptimisedStop],
     travel_time_matrix: pd.DataFrame,
-    config: dict,
+    opt_cfg: dict,
     route_costs_df: Optional[pd.DataFrame] = None,
     scenario_results: Optional[list] = None,
 ) -> List[OptimisedRoute]:
-    """Design transit routes using Clarke-Wright savings algorithm.
-
-    Algorithm:
-    1. Hub = Winchester Transit Center (connects to VTA light rail)
-    2. Compute savings s(i,j) = d(hub,i) + d(hub,j) - d(i,j)
-    3. Merge spurs greedily, highest savings first
-    4. Enforce: route ≤90 min, school stops must appear, no barrier crossings
-    5. Evaluate Route 76 restoration separately
+    """Clarke-Wright hub-and-spoke algorithm. Hub forced at Winchester TC.
 
     Args:
         selected_stops: From select_stops().
         travel_time_matrix: stop_id × stop_id travel time in seconds.
-        config: Full config dict.
+        opt_cfg: optimization sub-config dict.
         route_costs_df: Optional route operating costs (for Route 76 BCR).
         scenario_results: Optional scenario comparison results (for BCR).
 
     Returns:
         List of OptimisedRoute objects.
     """
-    opt_cfg = config.get("optimization", {})
+    route_design_cfg = opt_cfg.get("route_design", {})
     max_route_min = opt_cfg.get("route_max_one_way_min", _MAX_ROUTE_MIN)
     max_route_sec = max_route_min * 60
-    hub_name_fragment = opt_cfg.get("hub_stop_name", "Winchester").lower()
+    hub_name_fragment = route_design_cfg.get("hub_stop_name",
+                        opt_cfg.get("hub_stop_name", "Winchester")).lower()
     r76_bcr_threshold = opt_cfg.get("route_76_restoration_bcr_threshold", 1.0)
 
     if not selected_stops:
@@ -379,12 +374,335 @@ def design_routes(
     if route_76 is not None:
         optimised_routes.append(route_76)
 
-    logger.info("Route design: %d optimised routes produced.", len(optimised_routes))
+    logger.info("Route design (hub_spoke): %d routes produced.", len(optimised_routes))
     for r in optimised_routes:
         logger.info("  %s: %d stops, %.1f min one-way%s",
                     r.route_id, len(r.stops), r.estimated_one_way_min,
                     " [RESTORATION]" if r.is_restoration else "")
     return optimised_routes
+
+
+def _design_routes_corridor(
+    selected_stops: List[OptimisedStop],
+    travel_time_matrix: pd.DataFrame,
+    opt_cfg: dict,
+    route_costs_df: Optional[pd.DataFrame] = None,
+    scenario_results: Optional[list] = None,
+) -> List[OptimisedRoute]:
+    """Corridor clustering: k-means on lat/lon, each cluster ordered by PCA-1.
+
+    No fixed hub — routes follow the dominant geographic direction of each cluster.
+    """
+    try:
+        from sklearn.cluster import KMeans
+        from sklearn.decomposition import PCA
+        import numpy as _np
+    except ImportError:
+        logger.warning("sklearn not installed; falling back to hub_spoke for corridor mode.")
+        return _design_routes_hub_spoke(selected_stops, travel_time_matrix, opt_cfg,
+                                        route_costs_df, scenario_results)
+
+    if len(selected_stops) < 4:
+        return _design_routes_hub_spoke(selected_stops, travel_time_matrix, opt_cfg,
+                                        route_costs_df, scenario_results)
+
+    coords = _np.array([[s.stop_lat, s.stop_lon] for s in selected_stops])
+
+    # Choose k in [4, 6] that minimises inertia per stop (elbow heuristic)
+    best_k, best_labels = 4, None
+    best_inertia_per = float("inf")
+    for k in range(4, 7):
+        if k > len(selected_stops):
+            break
+        km = KMeans(n_clusters=k, random_state=42, n_init=10)
+        labels = km.fit_predict(coords)
+        ipp = km.inertia_ / k
+        if ipp < best_inertia_per:
+            best_inertia_per = ipp
+            best_k = k
+            best_labels = labels
+
+    max_route_min = opt_cfg.get("route_max_one_way_min", _MAX_ROUTE_MIN)
+    r76_bcr_threshold = opt_cfg.get("route_76_restoration_bcr_threshold", 1.0)
+
+    optimised_routes = []
+    for cluster_id in range(best_k):
+        cluster_stops = [s for s, lbl in zip(selected_stops, best_labels) if lbl == cluster_id]
+        if len(cluster_stops) < 2:
+            continue
+
+        # Order by PCA component-1 (dominant direction in this cluster)
+        c_coords = _np.array([[s.stop_lat, s.stop_lon] for s in cluster_stops])
+        if len(cluster_stops) >= 2:
+            pca = PCA(n_components=1)
+            proj = pca.fit_transform(c_coords).flatten()
+            cluster_stops = [s for _, s in sorted(zip(proj, cluster_stops), key=lambda x: x[0])]
+
+        ott = sum(
+            _haversine_miles(cluster_stops[i].stop_lat, cluster_stops[i].stop_lon,
+                              cluster_stops[i+1].stop_lat, cluster_stops[i+1].stop_lon)
+            for i in range(len(cluster_stops)-1)
+        ) / 25.0 * 60  # rough travel time at 25 mph
+
+        r = OptimisedRoute(
+            route_id=f"OPT_{len(optimised_routes)+1:02d}",
+            route_name=f"Corridor Route {len(optimised_routes)+1}",
+            stops=cluster_stops,
+            estimated_one_way_min=round(min(ott, max_route_min), 1),
+        )
+        optimised_routes.append(r)
+
+    route_76 = _evaluate_route_76(opt_cfg, route_costs_df, scenario_results, r76_bcr_threshold)
+    if route_76 is not None:
+        optimised_routes.append(route_76)
+
+    logger.info("Route design (corridor, k=%d): %d routes produced.", best_k, len(optimised_routes))
+    return optimised_routes
+
+
+def _load_gtfs_stop_sequence(route_id_str: str, gtfs_dir: str) -> List[dict]:
+    """Load an ordered stop list for one GTFS route_id.
+
+    Returns list of dicts with stop_id, stop_name, stop_lat, stop_lon.
+    Returns empty list if route not found.
+    """
+    try:
+        trips = pd.read_csv(f"{gtfs_dir}/trips.txt", dtype=str)
+        stop_times = pd.read_csv(f"{gtfs_dir}/stop_times.txt", dtype=str)
+        stops_txt = pd.read_csv(f"{gtfs_dir}/stops.txt", dtype=str)
+    except Exception as exc:
+        logger.warning("Could not read GTFS for route %s: %s", route_id_str, exc)
+        return []
+
+    route_trips = trips[trips["route_id"] == route_id_str]
+    if route_trips.empty:
+        logger.debug("No trips found for route_id=%s", route_id_str)
+        return []
+
+    # Use direction_id=0 representative trip (or first trip)
+    dir0 = route_trips[route_trips["direction_id"] == "0"] if "direction_id" in route_trips.columns else route_trips
+    representative_trip = dir0.iloc[0]["trip_id"] if not dir0.empty else route_trips.iloc[0]["trip_id"]
+
+    trip_stops = stop_times[stop_times["trip_id"] == representative_trip].copy()
+    trip_stops["stop_sequence"] = pd.to_numeric(trip_stops["stop_sequence"], errors="coerce")
+    trip_stops = trip_stops.sort_values("stop_sequence")
+
+    stops_lookup = stops_txt.set_index("stop_id")
+
+    result = []
+    for _, row in trip_stops.iterrows():
+        sid = row["stop_id"]
+        if sid not in stops_lookup.index:
+            continue
+        srow = stops_lookup.loc[sid]
+        result.append({
+            "stop_id": sid,
+            "stop_name": str(srow.get("stop_name", sid)),
+            "stop_lat": float(srow.get("stop_lat", 0)),
+            "stop_lon": float(srow.get("stop_lon", 0)),
+        })
+    return result
+
+
+def _insert_stops_into_sequence(
+    base_sequence: List[dict],
+    candidates: List[OptimisedStop],
+    max_insertions: int,
+    allow_extensions: bool,
+) -> List[OptimisedStop]:
+    """Insert candidate stops into an existing ordered sequence.
+
+    Places each candidate adjacent to the existing stop it is nearest to.
+    Caps at max_insertions. Returns the merged ordered stop list as OptimisedStop objects.
+    """
+    if not base_sequence:
+        return [OptimisedStop(
+            stop_id=s.stop_id, stop_name=s.stop_name,
+            stop_lat=s.stop_lat, stop_lon=s.stop_lon,
+            district_id=s.district_id, is_existing=s.is_existing,
+            is_school_stop=s.is_school_stop, is_mandatory=s.is_mandatory,
+            wheelchair_boarding=s.wheelchair_boarding, demand_score=s.demand_score,
+        ) for s in candidates[:max_insertions]]
+
+    # Build mutable sequence as OptimisedStop
+    seq: List[OptimisedStop] = []
+    existing_ids: set = set()
+    for item in base_sequence:
+        stop = OptimisedStop(
+            stop_id=item["stop_id"], stop_name=item["stop_name"],
+            stop_lat=item["stop_lat"], stop_lon=item["stop_lon"],
+            district_id=None, is_existing=True,
+            is_school_stop=False, is_mandatory=False,
+        )
+        seq.append(stop)
+        existing_ids.add(item["stop_id"])
+
+    insertions = 0
+    for cand in candidates:
+        if insertions >= max_insertions:
+            break
+        if cand.stop_id in existing_ids:
+            continue
+
+        # Find nearest existing stop index
+        nearest_idx = min(
+            range(len(seq)),
+            key=lambda i: _haversine_miles(cand.stop_lat, cand.stop_lon, seq[i].stop_lat, seq[i].stop_lon)
+        )
+        # Insert after nearest stop (or before if at end and allow_extensions)
+        insert_pos = nearest_idx + 1
+        if insert_pos > len(seq) and not allow_extensions:
+            insert_pos = nearest_idx
+        seq.insert(insert_pos, cand)
+        existing_ids.add(cand.stop_id)
+        insertions += 1
+
+    return seq
+
+
+def _design_routes_derive_from_existing(
+    selected_stops: List[OptimisedStop],
+    travel_time_matrix: pd.DataFrame,
+    opt_cfg: dict,
+    existing_routes: Optional[pd.DataFrame] = None,
+    route_costs_df: Optional[pd.DataFrame] = None,
+    scenario_results: Optional[list] = None,
+) -> List[OptimisedRoute]:
+    """Derive optimised routes from existing GTFS route sequences.
+
+    Route 27 is the primary spine; other anchor routes are modified with
+    new/candidate stops. Remaining unassigned stops form corridor clusters.
+    Each emitted route carries parent_route_id.
+    """
+    route_design_cfg = opt_cfg.get("route_design", {})
+    anchor_routes = route_design_cfg.get("anchor_routes", ["27"])
+    primary_route = route_design_cfg.get("primary_route", "27")
+    allow_ext = route_design_cfg.get("allow_extensions", True)
+    max_inserts = route_design_cfg.get("max_stop_insertions_per_route", 6)
+    max_route_min = opt_cfg.get("route_max_one_way_min", _MAX_ROUTE_MIN)
+    r76_bcr_threshold = opt_cfg.get("route_76_restoration_bcr_threshold", 1.0)
+
+    from pathlib import Path
+    gtfs_dir = str(Path(__file__).resolve().parent.parent / "data" / "geospatial" / "gtfs")
+
+    # Sort anchors so primary_route comes first
+    sorted_anchors = [primary_route] + [r for r in anchor_routes if r != primary_route]
+
+    optimised_routes: List[OptimisedRoute] = []
+    assigned_stop_ids: set = set()
+    route_counter = 1
+
+    walk_buf = opt_cfg.get("walk_buffer_urban_miles", 0.25)
+
+    for anchor_id in sorted_anchors:
+        base_seq = _load_gtfs_stop_sequence(anchor_id, gtfs_dir)
+        if not base_seq:
+            logger.info("Anchor route %s not found in GTFS; skipping.", anchor_id)
+            continue
+
+        # Existing stops in this anchor's sequence by stop_id
+        base_stop_ids = {item["stop_id"] for item in base_seq}
+
+        # Find selected stops near this anchor route (within walk_buf of any base stop)
+        nearby_candidates = []
+        for s in selected_stops:
+            if s.stop_id in assigned_stop_ids:
+                continue
+            if s.stop_id in base_stop_ids:
+                assigned_stop_ids.add(s.stop_id)
+                continue
+            # Check proximity to any existing stop in the base sequence
+            near = any(
+                _haversine_miles(s.stop_lat, s.stop_lon, item["stop_lat"], item["stop_lon"]) <= walk_buf
+                for item in base_seq
+            )
+            if near:
+                nearby_candidates.append(s)
+
+        merged_seq = _insert_stops_into_sequence(base_seq, nearby_candidates, max_inserts, allow_ext)
+
+        for stop in merged_seq:
+            assigned_stop_ids.add(stop.stop_id)
+
+        # Estimate travel time from sequence
+        ott = 0.0
+        for i in range(len(merged_seq) - 1):
+            ott += _haversine_miles(
+                merged_seq[i].stop_lat, merged_seq[i].stop_lon,
+                merged_seq[i+1].stop_lat, merged_seq[i+1].stop_lon
+            ) / 25.0 * 60  # 25 mph average
+
+        route_id = f"OPT_{route_counter:02d}"
+        r = OptimisedRoute(
+            route_id=route_id,
+            route_name=f"Optimised Route {route_counter} (from {anchor_id})",
+            stops=merged_seq,
+            parent_route_id=anchor_id,
+            estimated_one_way_min=round(min(ott, max_route_min), 1),
+        )
+        optimised_routes.append(r)
+        route_counter += 1
+        logger.info("  %s derived from anchor %s: %d stops (%d inserted).",
+                    route_id, anchor_id, len(merged_seq), len(nearby_candidates))
+
+    # Remaining unassigned stops → corridor clusters
+    unassigned = [s for s in selected_stops if s.stop_id not in assigned_stop_ids]
+    if unassigned:
+        logger.info("  %d unassigned stops → corridor clusters.", len(unassigned))
+        corridor_routes = _design_routes_corridor(
+            unassigned, travel_time_matrix, opt_cfg,
+            route_costs_df=None, scenario_results=None,
+        )
+        for r in corridor_routes:
+            if r.is_restoration:
+                continue
+            r.route_id = f"OPT_{route_counter:02d}"
+            r.route_name = f"Corridor Route {route_counter}"
+            optimised_routes.append(r)
+            route_counter += 1
+
+    route_76 = _evaluate_route_76(opt_cfg, route_costs_df, scenario_results, r76_bcr_threshold)
+    if route_76 is not None:
+        optimised_routes.append(route_76)
+
+    logger.info("Route design (derive_from_existing): %d routes produced.", len(optimised_routes))
+    return optimised_routes
+
+
+def design_routes(
+    selected_stops: List[OptimisedStop],
+    travel_time_matrix: pd.DataFrame,
+    config: dict,
+    route_costs_df: Optional[pd.DataFrame] = None,
+    scenario_results: Optional[list] = None,
+    existing_routes: Optional[pd.DataFrame] = None,
+    route27_corridor: Optional[dict] = None,
+) -> List[OptimisedRoute]:
+    """Dispatcher: select route design algorithm from config.route_design.mode.
+
+    Modes:
+      derive_from_existing  — anchor existing VTA routes; Route 27 is the spine.
+      corridor              — k-means geographic clustering, PCA-ordered.
+      hub_spoke             — Clarke-Wright savings; Winchester as hub (legacy).
+    """
+    opt_cfg = config.get("optimization", {})
+    mode = opt_cfg.get("route_design", {}).get("mode", "derive_from_existing")
+
+    if mode == "hub_spoke":
+        return _design_routes_hub_spoke(
+            selected_stops, travel_time_matrix, opt_cfg, route_costs_df, scenario_results
+        )
+    elif mode == "corridor":
+        return _design_routes_corridor(
+            selected_stops, travel_time_matrix, opt_cfg, route_costs_df, scenario_results
+        )
+    else:  # derive_from_existing (default)
+        return _design_routes_derive_from_existing(
+            selected_stops, travel_time_matrix, opt_cfg,
+            existing_routes=existing_routes,
+            route_costs_df=route_costs_df,
+            scenario_results=scenario_results,
+        )
 
 
 def _evaluate_route_76(
@@ -576,6 +894,7 @@ def routes_to_dataframe(routes: List[OptimisedRoute]) -> pd.DataFrame:
             rows.append({
                 "route_id": route.route_id,
                 "route_name": route.route_name,
+                "parent_route_id": route.parent_route_id,
                 "is_restoration": route.is_restoration,
                 "bcr": route.bcr,
                 "estimated_one_way_min": route.estimated_one_way_min,
@@ -613,6 +932,7 @@ def run_route_optimisation(
     config: dict,
     route_costs_df: Optional[pd.DataFrame] = None,
     scenario_results: Optional[list] = None,
+    existing_routes: Optional[pd.DataFrame] = None,
 ) -> dict:
     """Run the full three-sub-stage route optimisation pipeline.
 
@@ -629,7 +949,8 @@ def run_route_optimisation(
 
     logger.info("Route optimisation: Stage 3b — Route Design")
     routes = design_routes(
-        selected, travel_time_matrix, config, route_costs_df, scenario_results
+        selected, travel_time_matrix, config, route_costs_df, scenario_results,
+        existing_routes=existing_routes,
     )
 
     logger.info("Route optimisation: Stage 3c — Headway Optimisation")

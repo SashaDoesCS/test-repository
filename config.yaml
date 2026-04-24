@@ -506,3 +506,11 @@ optimization:
   walk_buffer_suburban_miles: 0.50
   route76_bcr_threshold:      1.0
   max_route_one_way_min:      90
+
+  route_design:
+    mode: "derive_from_existing"    # derive_from_existing | corridor | hub_spoke
+    anchor_routes: ["27", "17X", "49"]
+    primary_route: "27"
+    allow_extensions: true
+    max_stop_insertions_per_route: 6
+    hub_stop_name: "Winchester"     # only used when mode=hub_spoke

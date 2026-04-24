@@ -971,6 +971,7 @@ def main():
         config=config,
         route_costs_df=route_costs,
         scenario_results=scenario_results,
+        existing_routes=routes,
     )
     opt_result["routes_df"].to_csv("outputs/tables/optimised_routes.csv", index=False)
     pd.DataFrame([{

@@ -923,6 +923,14 @@ def generate_route_optimization_html(data: dict) -> str:
     js_tdi = json.dumps(data.get("tdi", []))
     js_unmet = json.dumps(data.get("unmet_need", []))
 
+    route_design_mode = (
+        data.get("config", {})
+        .get("optimization", {})
+        .get("route_design", {})
+        .get("mode", "derive_from_existing")
+    )
+    js_route_design_mode = json.dumps(route_design_mode)
+
     r76_line = json.dumps([
         [37.230,-121.978],[37.226,-121.979],[37.222,-121.981],[37.218,-121.984],
         [37.214,-121.988],[37.210,-121.993],[37.206,-121.998],[37.200,-122.004],
@@ -1011,8 +1019,8 @@ td.n{{text-align:right;font-variant-numeric:tabular-nums}}
 
 <div class="full">
 <div class="stitle">Optimised Route Network</div>
-<div class="ssub">Clarke-Wright savings algorithm. Routes radiate from Winchester Transit Center (hub). Teal = existing stop, Orange = new stop, Red = school stop.</div>
-<div class="hub-note"><strong style="color:var(--blue)">Hub: Winchester Transit Center</strong> &mdash; All optimised routes originate here to connect with VTA light rail. This hub-and-spoke design is intentional (Clarke-Wright §3.1). Routes diverge from this single transfer point to serve different corridors.</div>
+{'<div class="ssub">Derived from existing VTA routes. Route 27 is the primary spine; other anchors modified with new/candidate stops.</div>' if route_design_mode == 'derive_from_existing' else ('<div class="ssub">Corridor clustering. No fixed hub. Routes follow dominant geographic direction per district cluster.</div>' if route_design_mode == 'corridor' else '<div class="ssub">Clarke-Wright savings algorithm. Routes radiate from Winchester Transit Center (hub). Teal = existing stop, Orange = new stop, Red = school stop.</div>')}
+{'<div class="hub-note"><strong style="color:var(--blue)">Hub: Winchester Transit Center</strong> &mdash; All optimised routes originate here to connect with VTA light rail. This hub-and-spoke design is intentional (Clarke-Wright §3.1). Routes diverge from this single transfer point to serve different corridors.</div>' if route_design_mode == 'hub_spoke' else ''}
 <div id="routeMap" style="margin-top:10px"></div>
 <div class="route-legend" id="routeLegend" style="margin-top:12px;padding-top:10px;border-top:1px solid var(--bd)">
   <div class="stop-leg-item"><div class="stop-leg-dot" style="background:#4ecdc4;border:2px solid #fff"></div>Existing stop</div>
@@ -1076,6 +1084,7 @@ const R27_SUGGESTIONS={js_r27_suggestions};
 const R27_GEOJSON={js_r27_geojson};
 const TDI_DATA={js_tdi};
 const UNMET_NEED={js_unmet};
+const ROUTE_DESIGN_MODE={js_route_design_mode};
 
 Chart.defaults.color='#7a8098';Chart.defaults.borderColor='rgba(42,48,80,.5)';
 Chart.defaults.font.family="'IBM Plex Mono',monospace";Chart.defaults.font.size=10;
@@ -1108,7 +1117,7 @@ Chart.defaults.font.family="'IBM Plex Mono',monospace";Chart.defaults.font.size=
     const latlngs=stops.map(s=>[s.stop_lat,s.stop_lon]);
     if(latlngs.length>=2){{
       L.polyline(latlngs,{{color,weight:3,opacity:.85,dashArray:stops[0].is_restoration?'8,4':null}})
-        .bindPopup('<b>'+rid+'</b>: '+(stops[0].route_name||rid)+'<br>'+stops.length+' stops<br><small style="color:var(--tm)">Originates at Winchester Hub (VTA connection)</small>')
+        .bindPopup('<b>'+rid+'</b>: '+(stops[0].route_name||rid)+'<br>'+stops.length+' stops'+(stops[0].parent_route_id?'<br><small style="color:var(--tm)">Derived from VTA route '+stops[0].parent_route_id+'</small>':'')+(ROUTE_DESIGN_MODE==='hub_spoke'?'<br><small style="color:var(--tm)">Originates at Winchester Hub (VTA connection)</small>':''))
         .addTo(rmap);
     }}
     const leg=document.getElementById('routeLegend');
@@ -1123,8 +1132,8 @@ Chart.defaults.font.family="'IBM Plex Mono',monospace";Chart.defaults.font.size=
 
   // Plot selected stops
   SEL_STOPS.forEach(s=>{{
-    // Special highlight for Winchester hub
-    const isHub=s.stop_name&&s.stop_name.toLowerCase().includes('winchester');
+    // Winchester hub highlight only in hub_spoke mode
+    const isHub=ROUTE_DESIGN_MODE==='hub_spoke'&&s.stop_name&&s.stop_name.toLowerCase().includes('winchester');
     const color=isHub?'#6c9bff':(s.is_school_stop?'#ff6b6b':(s.is_existing?'#4ecdc4':'#ffa94d'));
     const radius=isHub?12:(s.is_school_stop?8:6);
     const weight=isHub?3:1.5;
