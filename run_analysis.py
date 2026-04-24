@@ -961,6 +961,22 @@ def main():
         stop_district[["stop_id", "district_id"]].dropna(subset=["stop_id"]),
         on="stop_id", how="left",
     )
+
+    # Augment with synthetic candidates in underserved districts
+    from src.candidate_generator import generate_synthetic_candidates
+    districts_df = pd.read_csv("outputs/tables/district_profile_initial.csv")
+    synthetic = generate_synthetic_candidates(
+        existing_stops=candidate_stops,
+        districts=districts_df,
+        unmet_need=unmet_df,
+        tdi=tdi_df,
+    )
+    candidate_stops = pd.concat([candidate_stops, synthetic], ignore_index=True)
+    logger.info(
+        "Candidate pool: %d existing + %d synthetic = %d",
+        len(stops), len(synthetic), len(candidate_stops),
+    )
+
     opt_result = run_route_optimisation(
         candidate_stops=candidate_stops,
         coverage_gaps=coverage_df,
@@ -986,6 +1002,7 @@ def main():
     n_new = sum(1 for s in opt_result["selected_stops"] if not s.is_existing)
     logger.info("  Routes: %d  |  Stops: %d (%d new)",
                 len(opt_result["routes"]), len(opt_result["selected_stops"]), n_new)
+    assert n_new > 0, "No new stops selected — synthetic pipeline is broken"
 
     # -- Step B3b: Route 27 Stop Optimization (new stop suggestions) ----------
     logger.info("\nStep B3b: Route 27 stop optimization (new stop suggestions)...")
