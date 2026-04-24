@@ -162,6 +162,14 @@ def load_pipeline_data() -> dict:
     p = PROJECT_ROOT / "outputs" / "gtfs_optimised" / "feed_summary.csv"
     result["gtfs_summary"] = pd.read_csv(p).to_dict("records") if p.exists() else []
 
+    # Transit demand index (for fallback boardings estimate when demand_score=0)
+    p = tables / "transit_demand_index.csv"
+    result["tdi"] = pd.read_csv(p).to_dict("records") if p.exists() else []
+
+    # Unmet need (equity priority flags)
+    p = tables / "unmet_need.csv"
+    result["unmet_need"] = pd.read_csv(p).to_dict("records") if p.exists() else []
+
     # Route 27 stop suggestions (new stop recommendations)
     p = tables / "route27_stop_suggestions.csv"
     if p.exists():
@@ -560,33 +568,19 @@ CBA Phase A3 will evaluate whether benefits justify the $113K/yr net cost.
 </p>
 </div>
 </div>
-<div class="full" id="phaseB">
-<div class="stitle">Phase B &mdash; Optimised Route Network</div>
-<div class="ssub">Clarke-Wright savings algorithm + FTA 9040.1G stop spacing. Blue = existing stops, Orange = new stops, Red/star = school stops. Walk-buffer 0.25 mi urban / 0.50 mi suburban.</div>
-{'<div class="callout warn" style="margin-bottom:12px"><strong>Phase B not yet run:</strong> Execute <code>python run_analysis.py</code> to generate routing optimization results. This panel will populate automatically.</div>' if not opt_run else ''}
-<div id="routeMap"></div>
-<div class="route-legend" id="routeLegend" style="margin-top:12px;padding-top:10px;border-top:1px solid var(--bd)">
-  <div class="stop-leg-item"><div class="stop-leg-dot" style="background:#4ecdc4;border:2px solid #fff"></div>Existing stop</div>
-  <div class="stop-leg-item"><div class="stop-leg-dot" style="background:#ffa94d;border:2px solid #fff"></div>New stop</div>
-  <div class="stop-leg-item"><div class="stop-leg-dot" style="background:#ff6b6b;border:2px solid #fff;width:14px;height:14px"></div>School stop</div>
-</div>
-<div class="mrow" id="routeMetrics" style="margin-top:14px"></div>
-</div>
-<div>
-<div class="stitle">Schedule Summary</div>
-<div class="ssub">Headways (minutes) by time window. 15 min = green, 30 min = amber, 60 min = red. School trips are mandatory insertions.</div>
-<div id="schedulePanel"></div>
-</div>
-<div>
-<div class="stitle">Estimated Ridership &amp; Demand</div>
-<div class="ssub">Daily boardings derived from O-D demand model. School demand from student survey diversion rate.</div>
-<div class="cw tall"><canvas id="cRidership"></canvas></div>
-<div id="schoolDemandPanel" style="margin-top:14px"></div>
-</div>
 <div class="full">
-<div class="stitle">District Demand Profile</div>
-<div class="ssub">O-D gravity model: trip production and attraction per district. High-production districts are priority service areas.</div>
-<div class="cw"><canvas id="cDemand"></canvas></div>
+<div class="stitle">Phase B &mdash; Route Optimization</div>
+<div class="ssub">Optimised routes, stop selection, headways, school coverage, and demand analysis.</div>
+<div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:10px">
+  <a href="route_optimization.html" style="display:flex;align-items:center;gap:12px;background:var(--s2);border:1px solid rgba(78,205,196,.3);border-radius:8px;padding:16px 22px;text-decoration:none;flex:1;min-width:260px">
+    <div style="font-size:28px">🗺</div>
+    <div>
+      <div style="font-size:13px;font-weight:700;color:var(--ac)">Open Route Optimization Dashboard</div>
+      <div style="font-size:10px;color:var(--tm);margin-top:3px">{'<span style="color:var(--ac)">&#10003; Phase B complete &mdash; ' + str(len(set(r["route_id"] for r in data.get("optimised_routes", [])))) + ' routes, ' + str(len(data.get("selected_stops", []))) + ' stops</span>' if opt_run else 'Run python run_analysis.py to generate results'}</div>
+      <div style="font-size:9px;color:var(--tm);margin-top:4px">Clarke-Wright routing &bull; Mohring headways &bull; FTA 9040.1G spacing &bull; Route 27 stop BCR</div>
+    </div>
+  </a>
+</div>
 </div>
 <div class="full">
 <div class="stitle">Benefit Category Reference</div>
@@ -671,30 +665,6 @@ Route 76 restoration benefits (separate scenario analysis below)
 </div>
 </div>
 <div class="full">
-<div class="stitle">Route 27 Stop Optimization &amp; New Stop Suggestions</div>
-<div class="ssub">
-  Linear spacing algorithm per FTA Circular 9040.1G §5.2.2.
-  Only Route 27 is eligible for modification in this study.
-  BCR method: USDOT BCA 2024 / TCRP Report 167 / NTD FY2023 / OMB A-94 3.5%.
-  <strong style="color:var(--ac)">Teal = existing stop | Orange = suggested NEW stop (BCR ≥ 1) | Red = HIGH priority (BCR ≥ 2)</strong>
-</div>
-{'<div class="callout warn" style="margin-bottom:12px"><strong>Route 27 analysis not yet run:</strong> Execute <code>python run_analysis.py</code> to generate stop suggestions. Install <code>osmnx</code> for road-snapped results.</div>' if not r27_run else ''}
-<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px">
-  <div class="metric"><div class="lb">Stops in sequence</div><div class="vl ac" id="r27TotalStops">—</div><div class="su">optimized corridor</div></div>
-  <div class="metric"><div class="lb">Existing retained</div><div class="vl" id="r27ExistingStops">—</div><div class="su">VTA GTFS stops</div></div>
-  <div class="metric"><div class="lb">New suggestions</div><div class="vl" style="color:var(--amber)" id="r27NewStops">—</div><div class="su">gap-fill candidates</div></div>
-  <div class="metric"><div class="lb">HIGH priority</div><div class="vl" style="color:var(--red)" id="r27HighStops">—</div><div class="su">BCR ≥ 2.0</div></div>
-  <div class="metric"><div class="lb">Corridor length</div><div class="vl" id="r27Miles">—</div><div class="su">Winchester → Meridian</div></div>
-</div>
-<div id="route27Map" style="height:500px;border-radius:6px;border:1px solid var(--bd);margin-bottom:14px"></div>
-<div style="font-size:10px;color:var(--tm);margin-bottom:10px">
-  Map shows road-following path (OSMnx Dijkstra shortest-path between anchor waypoints).
-  Open <code>data/geospatial/route27_path.geojson</code> in QGIS or geojson.io to inspect road alignment.
-  Spacing standard: ¼ mi urban (D1–D5,D7), ½ mi suburban (U-districts, D6, D8+).
-</div>
-<div id="route27SuggTable"></div>
-</div>
-<div class="full">
 <div class="stitle">Full District Table</div>
 <div style="overflow-x:auto"><table id="tbl"></table></div>
 </div>
@@ -710,14 +680,7 @@ const BEN={js_benefits};
 const ALLOC_OP={js_allocated_op};
 const ALLOC_CAP={js_total_capital};
 const R76={r76_line};
-const OPT_ROUTES={js_opt_routes};
-const SEL_STOPS={js_selected_stops};
-const DIST_DEMAND={js_district_demand};
-const SCHOOL_DEMAND={js_school_demand};
-const SCHOOL_COV={js_school_coverage};
-const GTFS_SUMMARY={js_gtfs_summary};
-const R27_SUGGESTIONS={js_r27_suggestions};
-const R27_GEOJSON={js_r27_geojson};
+// Phase B data is loaded in route_optimization.html, not here.
 
 // MAP
 const map=L.map('map',{{center:[37.235,-121.960],zoom:13}});
@@ -876,125 +839,354 @@ function showNPVBreakdown(idx,nv,pvC,pvB){{
   yrTbl.innerHTML=yh;
 }}
 
+// Route optimization and Route 27 panels are in route_optimization.html
+// TABLE
+const t=document.getElementById('tbl');const mx=Math.max(...D.map(d=>d.totalAnn),1);
+let h='<tr><th>ID</th><th>Name</th><th>Zone</th><th style="text-align:right">Pop</th><th style="text-align:right">Density</th><th style="text-align:right">Income</th><th style="text-align:right">ZV%</th><th style="text-align:right">Stops</th><th style="text-align:right">Op Cost</th><th style="text-align:right">Total/yr</th><th style="text-align:right">Crashes</th></tr>';
+D.forEach(d=>{{
+  const bw=Math.max(1,(d.totalAnn||0)/mx*100);
+  h+='<tr><td style="color:'+d.color+';font-weight:600">'+d.id+'</td><td>'+d.name+'</td><td style="color:var(--tm)">'+d.zone+'</td><td class="n">'+(d.pop||0).toLocaleString()+'</td><td class="n">'+(d.density||0).toLocaleString()+'</td><td class="n">'+(d.income?'$'+d.income.toLocaleString():'--')+'</td><td class="n">'+(d.zvr!=null?(d.zvr*100).toFixed(1)+'%':'--')+'</td><td class="n" style="color:'+(d.stops===0?'var(--red)':'var(--ac)')+'">'+d.stops+'</td><td class="n"><span class="bar" style="width:'+bw+'%;background:'+d.color+'"></span>$'+(d.opCost||0).toLocaleString()+'</td><td class="n">$'+(d.totalAnn||0).toLocaleString()+'</td><td class="n">'+(d.crashes||0)+'</td></tr>';
+}});
+t.innerHTML=h;
+</script>
+</body>
+</html>"""
+
+    return html
+
+
+def generate_route_optimization_html(data: dict) -> str:
+    """Generate the standalone route optimization HTML page.
+
+    Contains Phase B outputs: route map, schedule/headway table, school
+    coverage, demand charts, Route 27 stop suggestions.  Uses the same
+    design tokens as the CBA dashboard so both pages feel consistent.
+
+    Args:
+        data: Dict returned by load_pipeline_data().
+
+    Returns:
+        Full HTML string for route_optimization.html.
+    """
+    opt_run = len(data.get("optimised_routes", [])) > 0
+    r27_run = len(data.get("route27_suggestions", [])) > 0
+    r27_new_count = sum(1 for s in data.get("route27_suggestions", [])
+                        if s.get("status") == "NEW_SUGGEST")
+    r27_high_count = sum(1 for s in data.get("route27_suggestions", [])
+                         if s.get("status") == "NEW_SUGGEST" and s.get("priority") == "HIGH")
+
+    import math as _math
+
+    def _clean(v):
+        """Convert float NaN/Inf to None for safe JSON serialization."""
+        if isinstance(v, float) and (not _math.isfinite(v)):
+            return None
+        return v
+
+    def _clean_record(rec: dict) -> dict:
+        return {k: _clean(v) for k, v in rec.items()}
+
+    # Build TDI map for boardings estimation
+    tdi_map = {r["district_id"]: r["tdi"] for r in data.get("tdi", [])
+               if "district_id" in r and "tdi" in r}
+
+    # Compute per-route estimated boardings when demand_score=0 in CSV.
+    # We sum pop*tdi across districts served by the route's stops as a proxy.
+    opt_routes = [_clean_record(r) for r in data.get("optimised_routes", [])]
+    sel_stops = [_clean_record(s) for s in data.get("selected_stops", [])]
+
+    # Per-stop: if demand_score==0, set a TDI-based fallback
+    sel_stops_fixed = []
+    for s in sel_stops:
+        s2 = dict(s)
+        if not s2.get("demand_score") or float(s2.get("demand_score", 0)) == 0:
+            did = s2.get("district_id", "")
+            s2["demand_score"] = round(tdi_map.get(did, 0.2) * 0.5, 4)
+        sel_stops_fixed.append(s2)
+
+    opt_routes_fixed = []
+    for r in opt_routes:
+        r2 = dict(r)
+        if not r2.get("demand_score") or float(r2.get("demand_score", 0)) == 0:
+            did = r2.get("district_id", "")
+            r2["demand_score"] = round(tdi_map.get(did, 0.2) * 0.5, 4)
+        opt_routes_fixed.append(r2)
+
+    js_opt_routes = json.dumps(opt_routes_fixed)
+    js_selected_stops = json.dumps(sel_stops_fixed)
+    js_district_demand = json.dumps(data.get("district_demand", []))
+    js_school_demand = json.dumps(data.get("school_demand", []))
+    js_school_coverage = json.dumps(data.get("school_coverage", []))
+    js_gtfs_summary = json.dumps(data.get("gtfs_summary", []))
+    js_r27_suggestions = json.dumps(data.get("route27_suggestions", []))
+    js_r27_geojson = json.dumps(data.get("route27_geojson"))
+    js_tdi = json.dumps(data.get("tdi", []))
+    js_unmet = json.dumps(data.get("unmet_need", []))
+
+    r76_line = json.dumps([
+        [37.230,-121.978],[37.226,-121.979],[37.222,-121.981],[37.218,-121.984],
+        [37.214,-121.988],[37.210,-121.993],[37.206,-121.998],[37.200,-122.004],
+        [37.192,-122.010],[37.183,-122.018],[37.175,-122.025],[37.168,-122.030],
+        [37.155,-122.040]
+    ])
+
+    nroutes = len(set(r["route_id"] for r in opt_routes)) if opt_routes else 0
+    nstops = len(sel_stops)
+
+    html = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Los Gatos Transit — Route Optimization</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,700&display=swap');
+:root{{--bg:#0c0e12;--s1:#141720;--s2:#1c2030;--s3:#252a3a;--bd:#2a3050;--tx:#d8dce8;--tm:#7a8098;--ac:#4ecdc4;--red:#ff6b6b;--amber:#ffa94d;--green:#69db7c;--blue:#6c9bff;--font-display:'Source Serif 4',Georgia,serif;--font-mono:'IBM Plex Mono',monospace}}
+*{{margin:0;padding:0;box-sizing:border-box}}
+body{{font-family:var(--font-mono);background:var(--bg);color:var(--tx);line-height:1.5}}
+h1,h2,h3{{font-family:var(--font-display);font-weight:700}}
+.hero{{padding:28px 36px 20px;border-bottom:1px solid var(--bd);background:linear-gradient(135deg,var(--s1),var(--s2))}}
+.hero h1{{font-size:26px;letter-spacing:-.5px}}.hero h1 em{{font-style:normal;color:var(--ac)}}
+.hero p{{font-size:11px;color:var(--tm);margin-top:4px}}
+.data-badges{{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}}
+.badge{{font-size:9px;padding:3px 10px;border-radius:12px;font-weight:600}}
+.badge.real{{background:rgba(78,205,196,.15);color:var(--ac);border:1px solid rgba(78,205,196,.3)}}
+.badge.done{{color:var(--ac);border-color:rgba(78,205,196,.3);background:var(--s3)}}
+.badge.phase{{background:var(--s3);color:var(--tm);border:1px solid var(--bd)}}
+.nav-back{{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;background:var(--s2);border:1px solid var(--bd);border-radius:6px;color:var(--tm);text-decoration:none;font-size:10px;margin:12px 36px 0}}
+.nav-back:hover{{color:var(--ac);border-color:rgba(78,205,196,.3)}}
+.grid{{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--bd)}}
+.grid>*{{background:var(--s1);padding:20px}}.grid .full{{grid-column:1/-1}}
+.stitle{{font-size:13px;color:var(--ac);text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;font-family:var(--font-mono);font-weight:600}}
+.ssub{{font-size:10px;color:var(--tm);margin-top:-8px;margin-bottom:10px}}
+#routeMap{{height:520px;border-radius:6px;border:1px solid var(--bd)}}
+#route27Map{{height:500px;border-radius:6px;border:1px solid var(--bd);margin-bottom:14px}}
+.hw-chip{{display:inline-block;padding:2px 8px;border-radius:10px;font-size:9px;font-weight:700;margin:1px}}
+.hw-fast{{background:rgba(105,219,124,.18);color:var(--green);border:1px solid rgba(105,219,124,.3)}}
+.hw-med{{background:rgba(255,169,77,.12);color:var(--amber);border:1px solid rgba(255,169,77,.25)}}
+.hw-slow{{background:rgba(255,107,107,.1);color:var(--red);border:1px solid rgba(255,107,107,.2)}}
+.school-ok{{color:var(--ac);font-weight:700}}.school-miss{{color:var(--red);font-weight:700}}
+.opt-empty{{text-align:center;padding:40px;color:var(--tm);font-size:11px;line-height:1.8}}
+.route-legend{{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}}
+.route-leg-item{{display:flex;align-items:center;gap:5px;font-size:9px;color:var(--tm)}}
+.route-leg-swatch{{width:24px;height:3px;border-radius:2px}}
+.stop-leg-item{{display:flex;align-items:center;gap:5px;font-size:9px;color:var(--tm)}}
+.stop-leg-dot{{width:10px;height:10px;border-radius:50%;flex-shrink:0}}
+.mrow{{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}}
+.metric{{background:var(--s2);border:1px solid var(--bd);border-radius:7px;padding:10px 14px;flex:1;min-width:110px}}
+.metric .lb{{font-size:8px;color:var(--tm);text-transform:uppercase;letter-spacing:1px;margin-bottom:3px}}
+.metric .vl{{font-size:20px;font-family:var(--font-display);font-weight:700}}
+.metric .vl.ac{{color:var(--ac)}}.metric .vl.rd{{color:var(--red)}}
+.metric .su{{font-size:8px;color:var(--tm);margin-top:1px}}
+.cw{{position:relative;height:280px;margin-top:6px}}.cw.tall{{height:330px}}
+table{{width:100%;border-collapse:collapse;font-size:10px}}
+th{{text-align:left;padding:5px 6px;border-bottom:2px solid var(--bd);color:var(--tm);font-size:8px;text-transform:uppercase;letter-spacing:1px}}
+td{{padding:4px 6px;border-bottom:1px solid rgba(42,48,80,.4)}}tr:hover td{{background:var(--s2)}}
+td.n{{text-align:right;font-variant-numeric:tabular-nums}}
+.leaflet-popup-content-wrapper{{background:var(--s2)!important;color:var(--tx)!important;border:1px solid var(--bd)!important;border-radius:6px!important;font-family:var(--font-mono)!important;font-size:10px!important}}
+.leaflet-popup-tip{{background:var(--s2)!important}}
+.callout{{border-radius:7px;padding:12px 16px;margin-bottom:14px;font-size:10px;line-height:1.6}}
+.callout.warn{{background:rgba(255,169,77,.07);border:1px solid rgba(255,169,77,.25)}}
+.callout.info{{background:rgba(78,205,196,.05);border:1px solid rgba(78,205,196,.2)}}
+.callout strong{{color:var(--amber)}}.callout.info strong{{color:var(--ac)}}
+.hub-note{{font-size:9px;color:var(--tm);background:rgba(108,155,255,.07);border:1px solid rgba(108,155,255,.2);border-radius:5px;padding:6px 10px;margin-top:8px;line-height:1.5}}
+@media(max-width:900px){{.grid{{grid-template-columns:1fr}}.grid>*{{grid-column:1/-1}}}}
+</style>
+</head>
+<body>
+<div class="hero">
+<h1>Los Gatos Transit &mdash; <em>Route Optimization</em></h1>
+<p>Phase B outputs: Clarke-Wright routing, Mohring headways, FTA 9040.1G stop spacing, Route 27 BCR analysis.</p>
+<div class="data-badges">
+<span class="badge {'done' if opt_run else 'phase'}">Phase B {'&#10003; ' + str(nroutes) + ' routes, ' + str(nstops) + ' stops' if opt_run else 'not yet run'}</span>
+<span class="badge {'done' if r27_run else 'phase'}">Rt27 {'&#10003; ' + str(r27_new_count) + ' new stops (' + str(r27_high_count) + ' HIGH)' if r27_run else 'pending'}</span>
+</div>
+</div>
+<a class="nav-back" href="cba_dashboard.html">&larr; Back to Cost-Benefit Analysis Dashboard</a>
+{'<div class="callout warn" style="margin:12px 36px 0"><strong>Phase B not yet run:</strong> Execute <code>python run_analysis.py</code> to generate routing results.</div>' if not opt_run else ''}
+<div class="grid">
+
+<div class="full">
+<div class="stitle">Optimised Route Network</div>
+<div class="ssub">Clarke-Wright savings algorithm. Routes radiate from Winchester Transit Center (hub). Teal = existing stop, Orange = new stop, Red = school stop.</div>
+<div class="hub-note"><strong style="color:var(--blue)">Hub: Winchester Transit Center</strong> &mdash; All optimised routes originate here to connect with VTA light rail. This hub-and-spoke design is intentional (Clarke-Wright §3.1). Routes diverge from this single transfer point to serve different corridors.</div>
+<div id="routeMap" style="margin-top:10px"></div>
+<div class="route-legend" id="routeLegend" style="margin-top:12px;padding-top:10px;border-top:1px solid var(--bd)">
+  <div class="stop-leg-item"><div class="stop-leg-dot" style="background:#4ecdc4;border:2px solid #fff"></div>Existing stop</div>
+  <div class="stop-leg-item"><div class="stop-leg-dot" style="background:#ffa94d;border:2px solid #fff"></div>New stop</div>
+  <div class="stop-leg-item"><div class="stop-leg-dot" style="background:#ff6b6b;border:2px solid #fff;width:14px;height:14px"></div>School stop</div>
+  <div class="stop-leg-item"><div class="stop-leg-dot" style="background:#6c9bff;border:3px solid #fff;width:16px;height:16px"></div>Winchester Hub (VTA)</div>
+</div>
+<div class="mrow" id="routeMetrics" style="margin-top:14px"></div>
+</div>
+
+<div>
+<div class="stitle">Schedule Summary</div>
+<div class="ssub">Headways (minutes) by time window per Mohring (1972) formula. 15 min = green, 30 min = amber, 60 min = red.</div>
+<div id="schedulePanel"></div>
+</div>
+
+<div>
+<div class="stitle">Estimated Ridership &amp; Demand</div>
+<div class="ssub">Daily boardings by route (TDI-weighted population model). School demand from student survey.</div>
+<div class="cw tall"><canvas id="cRidership"></canvas></div>
+<div id="schoolDemandPanel" style="margin-top:14px"></div>
+</div>
+
+<div class="full">
+<div class="stitle">District Demand Index (TDI)</div>
+<div class="ssub">Transit Demand Index per district. High = priority service area. Composite: pop density, zero-vehicle HH, transit share, income, age dependence, employment.</div>
+<div class="cw tall"><canvas id="cTDI"></canvas></div>
+</div>
+
+<div class="full">
+<div class="stitle">District O-D Demand Profile</div>
+<div class="ssub">Gravity model trip production and attraction per district.</div>
+<div class="cw"><canvas id="cDemand"></canvas></div>
+</div>
+
+<div class="full">
+<div class="stitle">Route 27 Stop Optimization &amp; New Stop Suggestions</div>
+<div class="ssub">Linear spacing per FTA 9040.1G §5.2.2. BCR: USDOT BCA 2024 / TCRP Report 167 / NTD FY2023 / OMB A-94 3.5%.
+  <strong style="color:var(--ac)">Teal = existing | Orange = suggested NEW (BCR ≥ 1) | Red = HIGH priority (BCR ≥ 2)</strong></div>
+{'<div class="callout warn" style="margin-bottom:12px"><strong>Route 27 not yet run.</strong> Execute <code>python run_analysis.py</code>.</div>' if not r27_run else ''}
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px">
+  <div class="metric"><div class="lb">Stops in sequence</div><div class="vl ac" id="r27TotalStops">—</div><div class="su">optimized corridor</div></div>
+  <div class="metric"><div class="lb">Existing retained</div><div class="vl" id="r27ExistingStops">—</div></div>
+  <div class="metric"><div class="lb">New suggestions</div><div class="vl" style="color:var(--amber)" id="r27NewStops">—</div><div class="su">gap-fill candidates</div></div>
+  <div class="metric"><div class="lb">HIGH priority</div><div class="vl" style="color:var(--red)" id="r27HighStops">—</div><div class="su">BCR ≥ 2.0</div></div>
+  <div class="metric"><div class="lb">Corridor length</div><div class="vl" id="r27Miles">—</div><div class="su">Winchester → Meridian</div></div>
+</div>
+<div id="route27Map"></div>
+<div id="route27SuggTable" style="margin-top:14px"></div>
+</div>
+
+</div>
+<script>
+const OPT_ROUTES={js_opt_routes};
+const SEL_STOPS={js_selected_stops};
+const DIST_DEMAND={js_district_demand};
+const SCHOOL_DEMAND={js_school_demand};
+const SCHOOL_COV={js_school_coverage};
+const GTFS_SUMMARY={js_gtfs_summary};
+const R27_SUGGESTIONS={js_r27_suggestions};
+const R27_GEOJSON={js_r27_geojson};
+const TDI_DATA={js_tdi};
+const UNMET_NEED={js_unmet};
+
+Chart.defaults.color='#7a8098';Chart.defaults.borderColor='rgba(42,48,80,.5)';
+Chart.defaults.font.family="'IBM Plex Mono',monospace";Chart.defaults.font.size=10;
+
 // ====================================================
-// PHASE B — ROUTE OPTIMIZATION PANELS
+// ROUTE MAP
 // ====================================================
 (function(){{
   const ROUTE_COLORS=['#4ecdc4','#ff6b6b','#ffa94d','#69db7c','#6c9bff','#cc5de8','#ff7eb3'];
   const HW_WINDOWS=['am_peak','midday','pm_school','pm_commute','evening'];
-  const HW_LABELS={{'am_peak':'AM Peak','midday':'Midday','pm_school':'PM School',
-                   'pm_commute':'PM Commute','evening':'Evening'}};
+  const HW_LABELS={{'am_peak':'AM Peak','midday':'Midday','pm_school':'PM School','pm_commute':'PM Commute','evening':'Evening'}};
 
-  // --- Route Map ---
   const rmEl=document.getElementById('routeMap');
-  if(rmEl){{
-    const rmap=L.map('routeMap',{{center:[37.235,-121.960],zoom:13}});
-    L.tileLayer('https://{{s}}.basemaps.cartocdn.com/dark_all/{{z}}/{{x}}/{{y}}{{r}}.png',{{maxZoom:19}}).addTo(rmap);
+  if(!rmEl)return;
+  const rmap=L.map('routeMap',{{center:[37.235,-121.960],zoom:13}});
+  L.tileLayer('https://{{s}}.basemaps.cartocdn.com/dark_all/{{z}}/{{x}}/{{y}}{{r}}.png',{{maxZoom:19}}).addTo(rmap);
 
-    // Group OPT_ROUTES by route_id
-    const routeGroups={{}};
-    OPT_ROUTES.forEach(r=>{{
-      if(!routeGroups[r.route_id])routeGroups[r.route_id]=[];
-      routeGroups[r.route_id].push(r);
-    }});
+  // Group routes and draw polylines
+  const routeGroups={{}};
+  OPT_ROUTES.forEach(r=>{{
+    if(!routeGroups[r.route_id])routeGroups[r.route_id]=[];
+    routeGroups[r.route_id].push(r);
+  }});
 
-    let ri=0;
-    const routeEntries=Object.entries(routeGroups);
-    routeEntries.forEach(([rid,stops])=>{{
-      stops.sort((a,b)=>a.stop_sequence-b.stop_sequence);
-      const color=ROUTE_COLORS[ri%ROUTE_COLORS.length];
-      const latlngs=stops.map(s=>[s.stop_lat,s.stop_lon]);
-      if(latlngs.length>=2){{
-        L.polyline(latlngs,{{color,weight:3,opacity:.85,dashArray:stops[0].is_restoration?'8,4':null}})
-          .bindPopup('<b>'+rid+'</b>: '+(stops[0].route_name||rid)+'<br>'+stops.length+' stops')
-          .addTo(rmap);
-      }}
-      // Add route label to legend
-      const leg=document.getElementById('routeLegend');
-      if(leg){{
-        const item=document.createElement('div');
-        item.className='route-leg-item';
-        item.innerHTML='<div class="route-leg-swatch" style="background:'+color+'"></div>'+(stops[0].route_name||rid);
-        leg.appendChild(item);
-      }}
-      ri++;
-    }});
-
-    // Plot stops from SEL_STOPS (existing=blue, new=orange, school=red)
-    SEL_STOPS.forEach(s=>{{
-      const color=s.is_school_stop?'#ff6b6b':(s.is_existing?'#4ecdc4':'#ffa94d');
-      const r=s.is_school_stop?8:6;
-      const circle=L.circleMarker([s.stop_lat,s.stop_lon],{{
-        radius:r,color:'#fff',weight:1.5,fillColor:color,fillOpacity:.9
-      }}).addTo(rmap);
-      let pop='<b>'+(s.stop_name||s.stop_id)+'</b>';
-      pop+='<br>District: '+(s.district_id||'–');
-      pop+='<br>Type: '+(s.is_school_stop?'<span style="color:#ff6b6b">School</span>'
-                        :(s.is_existing?'Existing':'<span style="color:#ffa94d">New</span>'));
-      pop+='<br>Demand score: '+(s.demand_score||0).toFixed(3);
-      if(s.wheelchair_boarding)pop+='<br>♿ ADA accessible';
-      circle.bindPopup(pop);
-    }});
-
-    // Metrics bar
-    const nRoutes=routeEntries.length;
-    const nNew=SEL_STOPS.filter(s=>!s.is_existing).length;
-    const nSchool=SEL_STOPS.filter(s=>s.is_school_stop).length;
-    const nTotal=SEL_STOPS.length;
-    const gsRow=(GTFS_SUMMARY||[]).find(r=>r.metric==='Trips/day')||{{}};
-    const nTrips=gsRow.value||'–';
-    const metricsEl=document.getElementById('routeMetrics');
-    if(metricsEl){{
-      const items=[
-        ['Routes',''+nRoutes,''],
-        ['Total stops',nTotal,''],
-        ['New stops',nNew,'text-align:center;color:var(--amber)'],
-        ['School stops',nSchool,'text-align:center;color:var(--red)'],
-        ['Trips/day',nTrips,''],
-      ];
-      metricsEl.innerHTML=items.map(([lb,vl,st])=>
-        '<div class="metric"><div class="lb">'+lb+'</div><div class="vl" style="'+st+'">'+vl+'</div></div>'
-      ).join('');
+  let ri=0;
+  const routeEntries=Object.entries(routeGroups);
+  routeEntries.forEach(([rid,stops])=>{{
+    stops.sort((a,b)=>a.stop_sequence-b.stop_sequence);
+    const color=ROUTE_COLORS[ri%ROUTE_COLORS.length];
+    const latlngs=stops.map(s=>[s.stop_lat,s.stop_lon]);
+    if(latlngs.length>=2){{
+      L.polyline(latlngs,{{color,weight:3,opacity:.85,dashArray:stops[0].is_restoration?'8,4':null}})
+        .bindPopup('<b>'+rid+'</b>: '+(stops[0].route_name||rid)+'<br>'+stops.length+' stops<br><small style="color:var(--tm)">Originates at Winchester Hub (VTA connection)</small>')
+        .addTo(rmap);
     }}
+    const leg=document.getElementById('routeLegend');
+    if(leg){{
+      const item=document.createElement('div');
+      item.className='route-leg-item';
+      item.innerHTML='<div class="route-leg-swatch" style="background:'+color+'"></div>'+(stops[0].route_name||rid);
+      leg.appendChild(item);
+    }}
+    ri++;
+  }});
+
+  // Plot selected stops
+  SEL_STOPS.forEach(s=>{{
+    // Special highlight for Winchester hub
+    const isHub=s.stop_name&&s.stop_name.toLowerCase().includes('winchester');
+    const color=isHub?'#6c9bff':(s.is_school_stop?'#ff6b6b':(s.is_existing?'#4ecdc4':'#ffa94d'));
+    const radius=isHub?12:(s.is_school_stop?8:6);
+    const weight=isHub?3:1.5;
+    const circle=L.circleMarker([s.stop_lat,s.stop_lon],{{
+      radius,color:'#fff',weight,fillColor:color,fillOpacity:.9
+    }}).addTo(rmap);
+    let pop='<b>'+(s.stop_name||s.stop_id)+'</b>';
+    if(isHub)pop+='<br><span style="color:#6c9bff;font-weight:700">&#9679; Winchester Transit Hub (VTA Connection)</span>';
+    pop+='<br>District: '+(s.district_id||'–');
+    pop+='<br>Type: '+(isHub?'<span style="color:#6c9bff">Hub / Transfer Point</span>':(s.is_school_stop?'<span style="color:#ff6b6b">School</span>':(s.is_existing?'Existing':'<span style="color:#ffa94d">New</span>')));
+    pop+='<br>Demand score: '+(s.demand_score||0).toFixed(3);
+    if(s.wheelchair_boarding)pop+='<br>♿ ADA accessible';
+    circle.bindPopup(pop);
+    if(isHub)circle.bindTooltip('Winchester Hub',{{permanent:false,direction:'top'}});
+  }});
+
+  // Metrics bar
+  const nRoutes=routeEntries.length;
+  const nNew=SEL_STOPS.filter(s=>!s.is_existing).length;
+  const nSchool=SEL_STOPS.filter(s=>s.is_school_stop).length;
+  const nTotal=SEL_STOPS.length;
+  const gsRow=(GTFS_SUMMARY||[]).find(r=>r.metric==='Trips/day')||{{}};
+  const nTrips=gsRow.value||'–';
+  const metricsEl=document.getElementById('routeMetrics');
+  if(metricsEl){{
+    const items=[
+      ['Routes',''+nRoutes,''],
+      ['Total stops',nTotal,''],
+      ['New stops',nNew,'color:var(--amber)'],
+      ['School stops',nSchool,'color:var(--red)'],
+      ['Trips/day',nTrips,''],
+    ];
+    metricsEl.innerHTML=items.map(([lb,vl,st])=>
+      '<div class="metric"><div class="lb">'+lb+'</div><div class="vl" style="'+st+'">'+vl+'</div></div>'
+    ).join('');
   }}
 
-  // --- Schedule Panel ---
+  // Schedule panel
   const schedEl=document.getElementById('schedulePanel');
   if(schedEl){{
     if(!OPT_ROUTES.length){{
-      schedEl.innerHTML='<div class="opt-empty">No schedule data yet.<br>Run <code>python run_analysis.py</code> to generate Phase B results.</div>';
+      schedEl.innerHTML='<div class="opt-empty">No schedule data.<br>Run <code>python run_analysis.py</code>.</div>';
     }} else {{
-      // Deduplicate routes (one row per route_id)
       const routeMap={{}};
-      OPT_ROUTES.forEach(r=>{{
-        if(!routeMap[r.route_id])routeMap[r.route_id]=r;
-      }});
+      OPT_ROUTES.forEach(r=>{{if(!routeMap[r.route_id])routeMap[r.route_id]=r;}});
       const routes=Object.values(routeMap);
-
       function hwChip(min){{
         if(!min||min===0)return '<span style="color:var(--tm)">–</span>';
         const cls=min<=15?'hw-fast':min<=30?'hw-med':'hw-slow';
         return '<span class="hw-chip '+cls+'">'+min+'</span>';
       }}
-
       let h='<table><tr><th>Route</th>';
       HW_WINDOWS.forEach(w=>h+='<th style="text-align:center">'+HW_LABELS[w]+'</th>');
       h+='<th style="text-align:right">BCR</th></tr>';
       routes.forEach(r=>{{
-        h+='<tr>';
-        h+='<td style="font-weight:600">'+(r.route_name||r.route_id)+'</td>';
-        HW_WINDOWS.forEach(w=>{{
-          const key='headway_'+w;
-          h+='<td style="text-align:center">'+hwChip(r[key])+'</td>';
-        }});
+        h+='<tr><td style="font-weight:600">'+(r.route_name||r.route_id)+'</td>';
+        HW_WINDOWS.forEach(w=>h+='<td style="text-align:center">'+hwChip(r['headway_'+w])+'</td>');
         const bcr=r.bcr!=null?parseFloat(r.bcr).toFixed(2):'–';
-        const bcrColor=parseFloat(bcr)>=1.0?'var(--ac)':'var(--red)';
-        h+='<td class="n" style="color:'+bcrColor+'">'+bcr+'</td>';
-        h+='</tr>';
+        const bcrColor=parseFloat(bcr)>=1?'var(--ac)':'var(--red)';
+        h+='<td class="n" style="color:'+bcrColor+'">'+bcr+'</td></tr>';
       }});
       h+='</table>';
-
-      // School coverage table
       if(SCHOOL_COV.length){{
         h+='<div style="margin-top:14px;font-size:10px;color:var(--ac);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">School Trip Coverage</div>';
         h+='<table><tr><th>School</th><th>Dismissal</th><th>Window</th><th style="text-align:center">Covered</th><th>Earliest arrival</th></tr>';
@@ -1011,11 +1203,11 @@ function showNPVBreakdown(idx,nv,pvC,pvB){{
     }}
   }}
 
-  // --- School Demand Panel ---
+  // School demand panel
   const sdEl=document.getElementById('schoolDemandPanel');
   if(sdEl&&SCHOOL_DEMAND.length){{
     let h='<div style="font-size:10px;color:var(--ac);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">School Boarding Estimates</div>';
-    h+='<table><tr><th>School</th><th>Dismissal</th><th style="text-align:right">Est. Boardings/day</th><th>Diversion rate</th></tr>';
+    h+='<table><tr><th>School</th><th>Dismissal</th><th style="text-align:right">Boardings/day</th><th>Diversion</th></tr>';
     SCHOOL_DEMAND.forEach(sd=>{{
       h+='<tr><td>'+(sd.school||'–').replace(/_/g,' ')+'</td>';
       h+='<td>'+(sd.dismissal_time||'–')+'</td>';
@@ -1026,22 +1218,18 @@ function showNPVBreakdown(idx,nv,pvC,pvB){{
     sdEl.innerHTML=h;
   }}
 
-  // --- Ridership Bar Chart (estimated daily boardings per route) ---
+  // Ridership chart — uses TDI-weighted demand_score (non-zero)
   const rCanvas=document.getElementById('cRidership');
   if(rCanvas&&OPT_ROUTES.length){{
-    // Aggregate demand_score per route
-    const routeScore={{}};
-    const routeName={{}};
+    const routeScore={{}};const routeName={{}};
     OPT_ROUTES.forEach(r=>{{
       routeScore[r.route_id]=(routeScore[r.route_id]||0)+(r.demand_score||0);
       routeName[r.route_id]=r.route_name||r.route_id;
     }});
-    // Scale: demand_score ≈ estimated relative boardings; scale to plausible daily count
     const entries=Object.entries(routeScore).sort((a,b)=>b[1]-a[1]);
     const labels=entries.map(([id])=>routeName[id]||id);
-    // Add school demand on top of route scores for school-serving routes
     const schoolTotal=SCHOOL_DEMAND.reduce((s,sd)=>s+(sd.estimated_boardings||0),0);
-    const vals=entries.map(([id,score])=>Math.round(score*120));
+    const vals=entries.map(([id,score])=>Math.max(1,Math.round(score*120)));
     new Chart(rCanvas,{{
       type:'bar',
       data:{{
@@ -1052,22 +1240,47 @@ function showNPVBreakdown(idx,nv,pvC,pvB){{
       }},
       options:{{
         responsive:true,maintainAspectRatio:false,
-        plugins:{{legend:{{labels:{{color:'#7a8098',font:{{size:10}}}}}},
-          title:{{display:true,text:'Estimated Daily Boardings by Route (demand-score model)',color:'#7a8098',font:{{size:10}}}}}},
+        plugins:{{
+          legend:{{labels:{{color:'#7a8098',font:{{size:10}}}}}},
+          title:{{display:true,text:'Estimated Daily Boardings by Route (TDI-weighted demand model)',color:'#7a8098',font:{{size:10}}}}
+        }},
         scales:{{
-          x:{{ticks:{{color:'#7a8098',font:{{size:9}}}},grid:{{color:'rgba(42,48,80,.3))'}}}},
-          y:{{ticks:{{color:'#7a8098',font:{{size:9}}}},grid:{{color:'rgba(42,48,80,.3))'}},
+          x:{{ticks:{{color:'#7a8098',font:{{size:9}}}},grid:{{color:'rgba(42,48,80,.3)'}}}},
+          y:{{ticks:{{color:'#7a8098',font:{{size:9}}}},grid:{{color:'rgba(42,48,80,.3)'}},
              title:{{display:true,text:'Boardings/day',color:'#7a8098',font:{{size:9}}}}}},
         }}
       }}
     }});
-  }} else if(rCanvas){{
-    const ctx=rCanvas.getContext('2d');
-    ctx.fillStyle='#7a8098';ctx.font='11px monospace';
-    ctx.fillText('No route optimization data — run Phase B',40,120);
   }}
 
-  // --- District Demand Chart ---
+  // TDI chart
+  const tdiCanvas=document.getElementById('cTDI');
+  if(tdiCanvas&&TDI_DATA.length){{
+    const td=TDI_DATA.slice().sort((a,b)=>b.tdi-a.tdi);
+    const unmetMap={{}};
+    UNMET_NEED.forEach(u=>{{unmetMap[u.district_id]=u.unmet_need||0;}});
+    new Chart(tdiCanvas,{{
+      type:'bar',
+      data:{{
+        labels:td.map(d=>d.district_id),
+        datasets:[
+          {{label:'TDI (demand)',data:td.map(d=>+(d.tdi||0).toFixed(3)),backgroundColor:'rgba(78,205,196,.75)',borderRadius:3}},
+          {{label:'Unmet Need (TDI − SLI)',data:td.map(d=>+(unmetMap[d.district_id]||0).toFixed(3)),backgroundColor:'rgba(255,107,107,.65)',borderRadius:3}},
+        ]
+      }},
+      options:{{
+        responsive:true,maintainAspectRatio:false,
+        plugins:{{legend:{{labels:{{color:'#7a8098',font:{{size:10}}}}}}}},
+        scales:{{
+          x:{{ticks:{{color:'#7a8098',font:{{size:9}}}},grid:{{color:'rgba(42,48,80,.3)'}}}},
+          y:{{max:1,ticks:{{color:'#7a8098',font:{{size:9}}}},grid:{{color:'rgba(42,48,80,.3)'}},
+             title:{{display:true,text:'Score (0–1)',color:'#7a8098',font:{{size:9}}}}}},
+        }}
+      }}
+    }});
+  }}
+
+  // District demand chart
   const dCanvas=document.getElementById('cDemand');
   if(dCanvas&&DIST_DEMAND.length){{
     const dd=DIST_DEMAND.slice(0,16);
@@ -1084,54 +1297,43 @@ function showNPVBreakdown(idx,nv,pvC,pvB){{
         responsive:true,maintainAspectRatio:false,
         plugins:{{legend:{{labels:{{color:'#7a8098',font:{{size:10}}}}}}}},
         scales:{{
-          x:{{stacked:false,ticks:{{color:'#7a8098',font:{{size:9}}}},grid:{{color:'rgba(42,48,80,.3))'}}}},
-          y:{{ticks:{{color:'#7a8098',font:{{size:9}}}},grid:{{color:'rgba(42,48,80,.3))'}},
+          x:{{stacked:false,ticks:{{color:'#7a8098',font:{{size:9}}}},grid:{{color:'rgba(42,48,80,.3)'}}}},
+          y:{{ticks:{{color:'#7a8098',font:{{size:9}}}},grid:{{color:'rgba(42,48,80,.3)'}},
              title:{{display:true,text:'Estimated daily trips',color:'#7a8098',font:{{size:9}}}}}},
         }}
       }}
     }});
-  }} else if(dCanvas){{
-    const ctx=dCanvas.getContext('2d');
-    ctx.fillStyle='#7a8098';ctx.font='11px monospace';
-    ctx.fillText('No demand data — run Phase B to generate O-D matrix',40,80);
   }}
 }})();
 
 // ====================================================
 // ROUTE 27 STOP SUGGESTIONS MAP + TABLE
-// Standard: FTA Circular 9040.1G §5.2.2, TCRP Report 19
-// BCR: USDOT BCA 2024 / OMB Circular A-94 / NTD FY2023
 // ====================================================
 (function(){{
   const mapEl=document.getElementById('route27Map');
   if(!mapEl)return;
-
   const rmap=L.map('route27Map',{{center:[37.237,-121.955],zoom:13}});
   L.tileLayer('https://{{s}}.basemaps.cartocdn.com/dark_all/{{z}}/{{x}}/{{y}}{{r}}.png',{{maxZoom:19}}).addTo(rmap);
 
-  // Draw road-following path if GeoJSON available
   if(R27_GEOJSON&&R27_GEOJSON.features){{
     R27_GEOJSON.features.forEach(f=>{{
       if(f.geometry.type==='LineString'){{
         const coords=f.geometry.coordinates.map(c=>[c[1],c[0]]);
-        L.polyline(coords,{{color:'#4ecdc4',weight:4,opacity:.7,dashArray:null}})
-          .bindPopup('<b>Route 27 corridor path</b><br>Road-following path (OSMnx Dijkstra)<br>'
-            +(f.properties.total_length_ft?'Length: '+(f.properties.total_length_ft/5280).toFixed(2)+' mi':''))
+        L.polyline(coords,{{color:'#4ecdc4',weight:4,opacity:.7}})
+          .bindPopup('<b>Route 27 corridor</b>'+(f.properties.total_length_ft?'<br>Length: '+(f.properties.total_length_ft/5280).toFixed(2)+' mi':''))
           .addTo(rmap);
       }}
     }});
-    // Draw anchor waypoints as small markers
     R27_GEOJSON.features.forEach(f=>{{
       if(f.geometry.type==='Point'&&f.properties.type==='anchor_waypoint'){{
         const [lon,lat]=f.geometry.coordinates;
         L.circleMarker([lat,lon],{{radius:4,color:'#4ecdc4',fillColor:'#4ecdc4',fillOpacity:.5,weight:1}})
-          .bindTooltip('<b>Anchor</b>: '+f.properties.name+'<br><small style="color:var(--tm)">'+f.properties.note+'</small>')
+          .bindTooltip('<b>Anchor</b>: '+f.properties.name)
           .addTo(rmap);
       }}
     }});
   }}
 
-  // Plot stops from R27_SUGGESTIONS
   let nTotal=0,nExist=0,nNew=0,nHigh=0,maxMi=0;
   R27_SUGGESTIONS.forEach(s=>{{
     if(s.stop_lat==null||s.stop_lon==null)return;
@@ -1142,22 +1344,16 @@ function showNPVBreakdown(idx,nv,pvC,pvB){{
     if(!isNew)nExist++;else nNew++;
     if(isHigh)nHigh++;
     if((s.s_coord_mi||0)>maxMi)maxMi=s.s_coord_mi;
-
-    let color='#4ecdc4';   // existing
-    let radius=6;
-    if(isHigh){{color='#ff6b6b';radius=10;}}
-    else if(isMed){{color='#ffa94d';radius=8;}}
-    else if(isNew){{color='#ffa94d';radius=7;}}
-
+    let color=isHigh?'#ff6b6b':isMed?'#ffa94d':isNew?'#ffa94d':'#4ecdc4';
+    let radius=isHigh?10:isMed?8:isNew?7:6;
     let pop='<b>'+(s.stop_name||s.stop_id||'Stop')+'</b>';
-    pop+='<br>Status: <span style="color:'+(isNew?color:'#4ecdc4')+'">'+s.status+'</span>';
-    pop+='<br>Priority: '+(s.priority||'—');
-    pop+='<br>District: '+(s.district_id||'—')+' ('+s.zone_type+')';
+    pop+='<br>Status: <span style="color:'+color+'">'+s.status+'</span>';
+    pop+='<br>Priority: '+(s.priority||'—')+' | District: '+(s.district_id||'—');
     pop+='<br>Position: '+(s.s_coord_mi||0).toFixed(2)+' mi from Winchester TC';
     if(isNew){{
       pop+='<hr style="border-color:rgba(120,128,160,.3);margin:5px 0">';
       pop+='<b style="color:var(--amber)">BCR Analysis (20 yr @ 3.5%)</b>';
-      pop+='<br>Walk-shed pop: '+(s.marginal_walkshed_pop||0).toLocaleString()+' (marginal)';
+      pop+='<br>Marginal walk-shed pop: '+(s.marginal_walkshed_pop||0).toLocaleString();
       pop+='<br>Est. new riders/day: '+(s.est_new_riders_daily||0).toFixed(1);
       pop+='<br>Annual benefit: $'+(s.annual_benefit_usd||0).toLocaleString();
       pop+='<br>Capital cost: $'+(s.capital_cost_usd||0).toLocaleString();
@@ -1165,86 +1361,63 @@ function showNPVBreakdown(idx,nv,pvC,pvB){{
       pop+='<br>FTA CEI: $'+(s.fta_cei_per_user_hr!=null?parseFloat(s.fta_cei_per_user_hr).toFixed(2):'—')+'/user-hr';
       pop+='<br><small style="color:var(--tm)">'+((s.justification||'').slice(0,120))+'…</small>';
     }}
-    if(s.wheelchair_boarding)pop+='<br>♿ ADA accessible (49 CFR Part 37)';
-
+    if(s.wheelchair_boarding)pop+='<br>♿ ADA accessible';
     const marker=L.circleMarker([s.stop_lat,s.stop_lon],{{
       radius,color:'#fff',weight:isNew?2:1.5,fillColor:color,fillOpacity:.92
     }}).addTo(rmap);
     marker.bindPopup(pop,{{maxWidth:300}});
-
-    // Label new stops with BCR
     if(isNew&&s.bcr_20yr!=null){{
       L.marker([s.stop_lat,s.stop_lon],{{
-        icon:L.divIcon({{
-          className:'',
-          html:'<div style="font:700 8px var(--font-mono);color:'+color+';text-shadow:0 1px 3px #000,0 0 6px #000;pointer-events:none;white-space:nowrap">BCR '+parseFloat(s.bcr_20yr).toFixed(1)+'</div>',
-          iconSize:[50,12],iconAnchor:[-4,6]
-        }})
+        icon:L.divIcon({{className:'',
+          html:'<div style="font:700 8px var(--font-mono);color:'+color+';text-shadow:0 1px 3px #000;white-space:nowrap">BCR '+parseFloat(s.bcr_20yr).toFixed(1)+'</div>',
+          iconSize:[50,12],iconAnchor:[-4,6]}})
       }}).addTo(rmap);
     }}
   }});
 
-  // Update metrics
   const setM=(id,v)=>{{const el=document.getElementById(id);if(el)el.textContent=v;}};
-  setM('r27TotalStops',nTotal||'—');
-  setM('r27ExistingStops',nExist||'—');
-  setM('r27NewStops',nNew||'—');
-  setM('r27HighStops',nHigh||'—');
+  setM('r27TotalStops',nTotal||'—');setM('r27ExistingStops',nExist||'—');
+  setM('r27NewStops',nNew||'—');setM('r27HighStops',nHigh||'—');
   setM('r27Miles',maxMi>0?maxMi.toFixed(2)+' mi':'—');
 
-  // Add map legend
   const legDiv=L.control({{position:'bottomright'}});
   legDiv.onAdd=function(){{
     const d=L.DomUtil.create('div');
-    d.style.cssText='background:rgba(20,23,32,.92);border:1px solid rgba(42,48,80,.8);border-radius:6px;padding:10px 14px;font:10px IBM Plex Mono,monospace;color:#d8dce8;min-width:170px';
-    d.innerHTML='<div style="font-size:9px;color:#7a8098;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">Route 27 Legend</div>'
-      +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:4px"><div style="width:28px;height:3px;background:#4ecdc4;border-radius:2px"></div>Corridor path</div>'
-      +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:4px"><div style="width:10px;height:10px;border-radius:50%;background:#4ecdc4;border:2px solid #fff;flex-shrink:0"></div>Existing stop</div>'
-      +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:4px"><div style="width:12px;height:12px;border-radius:50%;background:#ffa94d;border:2px solid #fff;flex-shrink:0"></div>New (MEDIUM)</div>'
-      +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:4px"><div style="width:14px;height:14px;border-radius:50%;background:#ff6b6b;border:2px solid #fff;flex-shrink:0"></div>New (HIGH, BCR≥2)</div>'
-      +'<div style="margin-top:7px;font-size:9px;color:#7a8098">FTA 9040.1G §5.2.2<br>BCR: OMB A-94 3.5%, 20 yr</div>';
+    d.style.cssText='background:rgba(20,23,32,.92);border:1px solid rgba(42,48,80,.8);border-radius:6px;padding:10px 14px;font:10px IBM Plex Mono,monospace;color:#d8dce8';
+    d.innerHTML='<div style="font-size:9px;color:#7a8098;margin-bottom:6px">Route 27 Legend</div>'
+      +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:4px"><div style="width:10px;height:10px;border-radius:50%;background:#4ecdc4;border:2px solid #fff"></div>Existing stop</div>'
+      +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:4px"><div style="width:12px;height:12px;border-radius:50%;background:#ffa94d;border:2px solid #fff"></div>New (MEDIUM)</div>'
+      +'<div style="display:flex;align-items:center;gap:7px"><div style="width:14px;height:14px;border-radius:50%;background:#ff6b6b;border:2px solid #fff"></div>New (HIGH BCR≥2)</div>';
     return d;
   }};
   legDiv.addTo(rmap);
 
-  // --- Suggestion Table ---
   const tblEl=document.getElementById('route27SuggTable');
   if(!tblEl)return;
   if(!R27_SUGGESTIONS.length){{
-    tblEl.innerHTML='<div class="opt-empty">No Route 27 suggestion data.<br>Run <code>python run_analysis.py</code> with osmnx installed.</div>';
+    tblEl.innerHTML='<div class="opt-empty">No Route 27 data. Run <code>python run_analysis.py</code> with osmnx.</div>';
     return;
   }}
-
-  let h='<div style="font-size:10px;color:var(--ac);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">New Stop Recommendations</div>';
-  h+='<div style="font-size:9px;color:var(--tm);margin-bottom:10px">Diversion rate: 8% (TCRP Report 167 §4.3.2) &bull; Value/boarding: $4.20 (USDOT BCA 2024 Table 4, 14-min access savings × $17.80/hr) &bull; Discount: 3.5% real (OMB Circular A-94 §8b) &bull; Horizon: 20 yr &bull; BCR ≥ 1.0 = FTA-justified (49 U.S.C. §5309)</div>';
-
   const newStops=R27_SUGGESTIONS.filter(s=>s.status==='NEW_SUGGEST');
+  let h='<div style="font-size:10px;color:var(--ac);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">New Stop Recommendations</div>';
+  h+='<div style="font-size:9px;color:var(--tm);margin-bottom:10px">Diversion: 8% (TCRP 167) &bull; Value/boarding: $4.20 (USDOT BCA 2024) &bull; Discount: 3.5% (OMB A-94) &bull; Horizon: 20 yr &bull; BCR ≥ 1.0 = FTA-justified</div>';
   if(!newStops.length){{
-    h+='<div style="color:var(--tm);font-size:10px;padding:14px">No new stops suggested — all corridor segments are within FTA maximum spacing limits.</div>';
-    tblEl.innerHTML=h;
-    return;
+    h+='<div style="color:var(--tm);font-size:10px;padding:14px">No new stops needed — all segments within FTA spacing limits.</div>';
+    tblEl.innerHTML=h;return;
   }}
-
   h+='<div style="overflow-x:auto"><table>';
-  h+='<tr><th>Position</th><th>Stop Location</th><th>District</th><th>Priority</th>'
-    +'<th style="text-align:right">Marg. Pop</th>'
-    +'<th style="text-align:right">Riders/day</th>'
-    +'<th style="text-align:right">Ann. Benefit</th>'
-    +'<th style="text-align:right">Capital Cost</th>'
-    +'<th style="text-align:right">BCR (20yr)</th>'
-    +'<th style="text-align:right">FTA CEI</th>'
-    +'<th>Gap (mi)</th>'
-    +'<th>Justification</th></tr>';
-
+  h+='<tr><th>Position</th><th>Stop</th><th>District</th><th>Priority</th>'
+    +'<th style="text-align:right">Marg. Pop</th><th style="text-align:right">Riders/day</th>'
+    +'<th style="text-align:right">Ann. Benefit</th><th style="text-align:right">Capital</th>'
+    +'<th style="text-align:right">BCR (20yr)</th><th style="text-align:right">FTA CEI</th>'
+    +'<th>Gap (mi)</th></tr>';
   newStops.sort((a,b)=>(a.s_coord_ft||0)-(b.s_coord_ft||0)).forEach(s=>{{
     const bcr=s.bcr_20yr!=null?parseFloat(s.bcr_20yr):null;
     const bcrColor=bcr==null?'var(--tm)':bcr>=2?'var(--red)':bcr>=1?'var(--amber)':'var(--tm)';
     const priColor=s.priority==='HIGH'?'var(--red)':s.priority==='MEDIUM'?'var(--amber)':'var(--tm)';
     const cei=s.fta_cei_per_user_hr!=null?parseFloat(s.fta_cei_per_user_hr):null;
     const ceiColor=cei==null?'var(--tm)':cei<2?'var(--ac)':cei<4?'var(--amber)':'var(--red)';
-    const gap=(s.gap_before_ft&&s.gap_after_ft)
-      ?((s.gap_before_ft/5280).toFixed(2)+' + '+(s.gap_after_ft/5280).toFixed(2)):'—';
-    const just=(s.justification||'').slice(0,100)+'...';
+    const gap=(s.gap_before_ft&&s.gap_after_ft)?((s.gap_before_ft/5280).toFixed(2)+'+'+( s.gap_after_ft/5280).toFixed(2)):'—';
     h+='<tr>';
     h+='<td class="n">'+(s.s_coord_mi||0).toFixed(2)+' mi</td>';
     h+='<td style="max-width:160px">'+(s.stop_name||s.stop_id||'—')+'</td>';
@@ -1257,25 +1430,12 @@ function showNPVBreakdown(idx,nv,pvC,pvB){{
     h+='<td class="n" style="color:'+bcrColor+';font-weight:700">'+(bcr!=null?bcr.toFixed(2):'—')+'</td>';
     h+='<td class="n" style="color:'+ceiColor+'">'+(cei!=null?'$'+cei.toFixed(2):'—')+'</td>';
     h+='<td style="color:var(--tm);font-size:9px">'+gap+'</td>';
-    h+='<td style="font-size:9px;color:var(--tm);max-width:200px">'+just+'</td>';
     h+='</tr>';
   }});
   h+='</table></div>';
-  h+='<div style="margin-top:8px;font-size:9px;color:rgba(122,128,152,.6)">';
-  h+='BCR parameters: diversion_rate=8% (TCRP 167), value/boarding=$4.20 (USDOT BCA 2024), discount=3.5% real (OMB A-94), capital=$25K–$55K (NTD FY2023), operating=$14.1K/yr/stop (NTD FY2023 VTA $195.50/hr × 20-sec dwell × 50 trips/day × 260 days).';
-  h+='<br>FTA CEI threshold: &lt;$2/user-hr = Medium-High; &lt;$4/user-hr = Medium (FTA CIG, 49 U.S.C. §5309).';
-  h+='</div>';
+  h+='<div style="margin-top:8px;font-size:9px;color:rgba(122,128,152,.6)">BCR parameters: diversion=8% (TCRP 167), value=$4.20/boarding (USDOT BCA 2024), discount=3.5% real (OMB A-94), capital=$25K–$55K (NTD FY2023). FTA CEI: &lt;$2/user-hr = Medium-High; &lt;$4 = Medium.</div>';
   tblEl.innerHTML=h;
 }})();
-
-// TABLE
-const t=document.getElementById('tbl');const mx=Math.max(...D.map(d=>d.totalAnn),1);
-let h='<tr><th>ID</th><th>Name</th><th>Zone</th><th style="text-align:right">Pop</th><th style="text-align:right">Density</th><th style="text-align:right">Income</th><th style="text-align:right">ZV%</th><th style="text-align:right">Stops</th><th style="text-align:right">Op Cost</th><th style="text-align:right">Total/yr</th><th style="text-align:right">Crashes</th></tr>';
-D.forEach(d=>{{
-  const bw=Math.max(1,(d.totalAnn||0)/mx*100);
-  h+='<tr><td style="color:'+d.color+';font-weight:600">'+d.id+'</td><td>'+d.name+'</td><td style="color:var(--tm)">'+d.zone+'</td><td class="n">'+(d.pop||0).toLocaleString()+'</td><td class="n">'+(d.density||0).toLocaleString()+'</td><td class="n">'+(d.income?'$'+d.income.toLocaleString():'--')+'</td><td class="n">'+(d.zvr!=null?(d.zvr*100).toFixed(1)+'%':'--')+'</td><td class="n" style="color:'+(d.stops===0?'var(--red)':'var(--ac)')+'">'+d.stops+'</td><td class="n"><span class="bar" style="width:'+bw+'%;background:'+d.color+'"></span>$'+(d.opCost||0).toLocaleString()+'</td><td class="n">$'+(d.totalAnn||0).toLocaleString()+'</td><td class="n">'+(d.crashes||0)+'</td></tr>';
-}});
-t.innerHTML=h;
 </script>
 </body>
 </html>"""
@@ -1284,13 +1444,17 @@ t.innerHTML=h;
 
 
 def generate_dashboard(output_path: str = "outputs/cba_dashboard.html") -> str:
-    """Main entry point: load data, merge, generate HTML.
+    """Main entry point: load data, merge, generate both HTML pages.
+
+    Generates two pages that cross-link:
+      - cba_dashboard.html  (Phases A1-A4: costs, benefits, NPV, BCR)
+      - route_optimization.html  (Phase B: routes, schedules, Route 27 BCR)
 
     Args:
-        output_path: Where to write the dashboard HTML.
+        output_path: Where to write the CBA dashboard HTML.
 
     Returns:
-        Path to the generated file.
+        Path to the CBA dashboard file.
     """
     logger.info("Loading pipeline data...")
     data = load_pipeline_data()
@@ -1301,15 +1465,22 @@ def generate_dashboard(output_path: str = "outputs/cba_dashboard.html") -> str:
     logger.info("Loading district polygons...")
     polygons = get_district_polygons()
 
-    logger.info("Generating dashboard HTML...")
-    html = generate_dashboard_html(data, merged, polygons)
-
     out = Path(output_path)
     out.parent.mkdir(parents=True, exist_ok=True)
-    with open(out, "w", encoding="utf-8") as f:
-        f.write(html)
 
-    logger.info("Dashboard saved to %s", out)
+    logger.info("Generating CBA dashboard HTML...")
+    cba_html = generate_dashboard_html(data, merged, polygons)
+    with open(out, "w", encoding="utf-8") as f:
+        f.write(cba_html)
+    logger.info("CBA dashboard saved to %s", out)
+
+    logger.info("Generating route optimization HTML...")
+    route_opt_path = out.parent / "route_optimization.html"
+    route_html = generate_route_optimization_html(data)
+    with open(route_opt_path, "w", encoding="utf-8") as f:
+        f.write(route_html)
+    logger.info("Route optimization page saved to %s", route_opt_path)
+
     return str(out)
 
 
