@@ -16,7 +16,10 @@ contextily>=1.4.0
 rtree>=1.1.0
 
 # GTFS parsing
-gtfs-kit>=7.0.0
+gtfs-kit>=10.0
+
+# QR code generation (placards)
+qrcode[pil]>=7.4
 
 # Statistical analysis
 scipy>=1.11.0

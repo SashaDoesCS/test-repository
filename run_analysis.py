@@ -988,6 +988,7 @@ def main():
         route_costs_df=route_costs,
         scenario_results=scenario_results,
         existing_routes=routes,
+        districts_df=pd.read_csv("outputs/tables/district_demographic_profile.csv"),
     )
     opt_result["routes_df"].to_csv("outputs/tables/optimised_routes.csv", index=False)
     pd.DataFrame([{
@@ -997,12 +998,21 @@ def main():
         "is_school_stop": s.is_school_stop, "is_mandatory": s.is_mandatory,
         "wheelchair_boarding": s.wheelchair_boarding,
         "demand_score": round(s.demand_score, 4),
+        "estimated_daily_boardings": round(getattr(s, "estimated_daily_boardings", 0.0), 1),
     } for s in opt_result["selected_stops"]]).to_csv(
         "outputs/tables/selected_stops.csv", index=False)
     n_new = sum(1 for s in opt_result["selected_stops"] if not s.is_existing)
     logger.info("  Routes: %d  |  Stops: %d (%d new)",
                 len(opt_result["routes"]), len(opt_result["selected_stops"]), n_new)
     assert n_new > 0, "No new stops selected — synthetic pipeline is broken"
+
+    # Boardings sanity check vs VTA RBS active-route daily baseline
+    total_daily = sum(getattr(s, "estimated_daily_boardings", 0.0) for s in opt_result["selected_stops"])
+    vta_total_daily = route_costs[route_costs["status"] == "active"]["annual_boardings"].sum() / 310
+    assert total_daily < 10 * vta_total_daily, (
+        f"Daily boardings {total_daily:.0f} implausibly high vs VTA actual {vta_total_daily:.0f}"
+    )
+    logger.info("  Est. daily boardings: %.0f (VTA baseline %.0f/day)", total_daily, vta_total_daily)
 
     # -- Step B3b: Route 27 Stop Optimization (new stop suggestions) ----------
     logger.info("\nStep B3b: Route 27 stop optimization (new stop suggestions)...")
@@ -1095,6 +1105,18 @@ def main():
     )
     logger.info("  GTFS feed written to %s", gtfs_dir)
 
+    # -- Step B5b: Render stop placards --
+    logger.info("\nStep B5b: Rendering rider-facing stop placards...")
+    from src.placard_renderer import render_all_placards
+    render_all_placards(
+        gtfs_dir="outputs/gtfs_optimised",
+        selected_stops=opt_result["selected_stops"],
+        out_dir="outputs/placards",
+        parent_route_lookup={r.route_id: r.parent_route_id for r in opt_result["routes"]
+                             if r.parent_route_id},
+    )
+    logger.info("  Placards written to outputs/placards/")
+
     # -- Step B6: Generate Dashboard --
     logger.info("\nStep B6: Generating interactive dashboard...")
     from src.generate_dashboard import generate_dashboard
@@ -1122,7 +1144,7 @@ def main():
     print(f"  HIGH priority (BCR≥2): {r27_result['n_high_priority']}")
     print(f"  Suggestions CSV:      outputs/tables/route27_stop_suggestions.csv")
     print(f"  Path GeoJSON:         data/geospatial/route27_path.geojson")
-    print(f"\n  All outputs in: outputs/tables/  +  outputs/gtfs_optimised/")
+    print(f"\n  All outputs in: outputs/tables/  +  outputs/gtfs_optimised/  +  outputs/placards/")
     print(f"  GeoJSON in: data/geospatial/districts/")
     print(f"  Dashboard:  {dashboard_path}")
     print(f"\n  Open the dashboard in your browser to visualize all results.")

@@ -886,34 +886,11 @@ def generate_route_optimization_html(data: dict) -> str:
     def _clean_record(rec: dict) -> dict:
         return {k: _clean(v) for k, v in rec.items()}
 
-    # Build TDI map for boardings estimation
-    tdi_map = {r["district_id"]: r["tdi"] for r in data.get("tdi", [])
-               if "district_id" in r and "tdi" in r}
-
-    # Compute per-route estimated boardings when demand_score=0 in CSV.
-    # We sum pop*tdi across districts served by the route's stops as a proxy.
     opt_routes = [_clean_record(r) for r in data.get("optimised_routes", [])]
     sel_stops = [_clean_record(s) for s in data.get("selected_stops", [])]
 
-    # Per-stop: if demand_score==0, set a TDI-based fallback
-    sel_stops_fixed = []
-    for s in sel_stops:
-        s2 = dict(s)
-        if not s2.get("demand_score") or float(s2.get("demand_score", 0)) == 0:
-            did = s2.get("district_id", "")
-            s2["demand_score"] = round(tdi_map.get(did, 0.2) * 0.5, 4)
-        sel_stops_fixed.append(s2)
-
-    opt_routes_fixed = []
-    for r in opt_routes:
-        r2 = dict(r)
-        if not r2.get("demand_score") or float(r2.get("demand_score", 0)) == 0:
-            did = r2.get("district_id", "")
-            r2["demand_score"] = round(tdi_map.get(did, 0.2) * 0.5, 4)
-        opt_routes_fixed.append(r2)
-
-    js_opt_routes = json.dumps(opt_routes_fixed)
-    js_selected_stops = json.dumps(sel_stops_fixed)
+    js_opt_routes = json.dumps(opt_routes)
+    js_selected_stops = json.dumps(sel_stops)
     js_district_demand = json.dumps(data.get("district_demand", []))
     js_school_demand = json.dumps(data.get("school_demand", []))
     js_school_coverage = json.dumps(data.get("school_coverage", []))
@@ -1146,6 +1123,7 @@ Chart.defaults.font.family="'IBM Plex Mono',monospace";Chart.defaults.font.size=
     pop+='<br>Type: '+(isHub?'<span style="color:#6c9bff">Hub / Transfer Point</span>':(s.is_school_stop?'<span style="color:#ff6b6b">School</span>':(s.is_existing?'Existing':'<span style="color:#ffa94d">New</span>')));
     pop+='<br>Demand score: '+(s.demand_score||0).toFixed(3);
     if(s.wheelchair_boarding)pop+='<br>♿ ADA accessible';
+    pop+='<br><a href="placards/'+(s.stop_id||'')+'.html" target="_blank" style="color:var(--ac)">View rider placard →</a>';
     circle.bindPopup(pop);
     if(isHub)circle.bindTooltip('Winchester Hub',{{permanent:false,direction:'top'}});
   }});
@@ -1227,7 +1205,7 @@ Chart.defaults.font.family="'IBM Plex Mono',monospace";Chart.defaults.font.size=
     sdEl.innerHTML=h;
   }}
 
-  // Ridership chart — uses TDI-weighted demand_score (non-zero)
+  // Ridership chart — uses estimated_daily_boardings from route optimizer (NHTS trip rate + ACS mode share)
   const rCanvas=document.getElementById('cRidership');
   if(rCanvas&&OPT_ROUTES.length){{
     const routeScore={{}};const routeName={{}};
@@ -1238,7 +1216,11 @@ Chart.defaults.font.family="'IBM Plex Mono',monospace";Chart.defaults.font.size=
     const entries=Object.entries(routeScore).sort((a,b)=>b[1]-a[1]);
     const labels=entries.map(([id])=>routeName[id]||id);
     const schoolTotal=SCHOOL_DEMAND.reduce((s,sd)=>s+(sd.estimated_boardings||0),0);
-    const vals=entries.map(([id,score])=>Math.max(1,Math.round(score*120)));
+    const routeBoardings={{}};
+    OPT_ROUTES.forEach(r=>{{
+      routeBoardings[r.route_id]=(routeBoardings[r.route_id]||0)+(r.estimated_daily_boardings||0);
+    }});
+    const vals=entries.map(([id])=>Math.round(routeBoardings[id]||0));
     new Chart(rCanvas,{{
       type:'bar',
       data:{{
@@ -1251,7 +1233,7 @@ Chart.defaults.font.family="'IBM Plex Mono',monospace";Chart.defaults.font.size=
         responsive:true,maintainAspectRatio:false,
         plugins:{{
           legend:{{labels:{{color:'#7a8098',font:{{size:10}}}}}},
-          title:{{display:true,text:'Estimated Daily Boardings by Route (TDI-weighted demand model)',color:'#7a8098',font:{{size:10}}}}
+          title:{{display:true,text:'Estimated Daily Boardings by Route (NHTS trip rate + ACS mode share)',color:'#7a8098',font:{{size:10}}}}
         }},
         scales:{{
           x:{{ticks:{{color:'#7a8098',font:{{size:9}}}},grid:{{color:'rgba(42,48,80,.3)'}}}},
@@ -1371,6 +1353,7 @@ Chart.defaults.font.family="'IBM Plex Mono',monospace";Chart.defaults.font.size=
       pop+='<br><small style="color:var(--tm)">'+((s.justification||'').slice(0,120))+'…</small>';
     }}
     if(s.wheelchair_boarding)pop+='<br>♿ ADA accessible';
+    if(s.stop_id)pop+='<br><a href="placards/'+(s.stop_id||'')+'.html" target="_blank" style="color:var(--ac)">View rider placard →</a>';
     const marker=L.circleMarker([s.stop_lat,s.stop_lon],{{
       radius,color:'#fff',weight:isNew?2:1.5,fillColor:color,fillOpacity:.92
     }}).addTo(rmap);

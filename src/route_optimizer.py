@@ -70,6 +70,7 @@ class OptimisedStop:
     wheelchair_boarding: int = 1  # ADA: always 1 (accessible)
     demand_score: float = 0.0
     coverage_pop: int = 0
+    estimated_daily_boardings: float = 0.0
 
 
 @dataclass
@@ -237,6 +238,56 @@ def select_stops(
                 sum(1 for s in selected if s.is_existing),
                 sum(1 for s in selected if not s.is_existing))
     return selected
+
+
+def estimate_daily_boardings(
+    stop: "OptimisedStop",
+    tdi_df: pd.DataFrame,
+    districts_df: pd.DataFrame,
+    config: dict,
+    selected_stop_count: int = 1,
+) -> float:
+    """Realistic per-stop daily boarding estimate.
+
+    per_stop_daily = TDI[district] * walk_shed_pop * trip_rate * diversion * service_fraction
+
+    walk_shed_pop approximated as district_pop / selected_stop_count_in_district.
+
+    Sources:
+      - trip_rate ~= 2.5 trips/person/day (NHTS 2022)
+      - diversion ~= 0.02 (ACS B08301 Santa Clara service-area transit mode share)
+      - service_fraction ~= 0.3 (share of walkshed trips this route can serve)
+    Expected range: 5-40 per stop, 30-300 per route.
+    """
+    did = stop.district_id or ""
+
+    # Build TDI lookup
+    tdi_map: dict = {}
+    if tdi_df is not None and len(tdi_df) > 0:
+        tdi_map = {str(r.get("district_id", "")): float(r.get("tdi", 0.2))
+                   for _, r in tdi_df.iterrows()}
+    tdi = tdi_map.get(did, 0.2)
+
+    # Walk-shed population: district_pop / selected_stop_count (fast approximation)
+    walk_shed_pop = 0.0
+    if districts_df is not None and len(districts_df) > 0:
+        id_col = "id" if "id" in districts_df.columns else "district_id"
+        pop_col = next((c for c in ["total_pop", "population"] if c in districts_df.columns), None)
+        if pop_col:
+            row = districts_df[districts_df[id_col].astype(str) == did]
+            if not row.empty:
+                dist_pop = float(row.iloc[0].get(pop_col, 0))
+                walk_shed_pop = dist_pop / max(selected_stop_count, 1)
+
+    if walk_shed_pop <= 0:
+        # Fallback: fixed 500-person walkshed when district data unavailable
+        walk_shed_pop = 500.0
+
+    trip_rate = 2.5          # NHTS 2022
+    diversion = 0.02         # ACS B08301 Santa Clara transit mode share
+    service_fraction = 0.30  # share of walkshed trips this route can serve
+
+    return tdi * walk_shed_pop * trip_rate * diversion * service_fraction
 
 
 # =====================================================================
@@ -909,6 +960,7 @@ def routes_to_dataframe(routes: List[OptimisedRoute]) -> pd.DataFrame:
                 "is_mandatory": stop.is_mandatory,
                 "wheelchair_boarding": stop.wheelchair_boarding,
                 "demand_score": round(stop.demand_score, 4),
+                "estimated_daily_boardings": round(getattr(stop, "estimated_daily_boardings", 0.0), 1),
                 "headway_am_peak": route.headways.get("am_peak"),
                 "headway_midday": route.headways.get("midday"),
                 "headway_pm_school": route.headways.get("pm_school"),
@@ -933,6 +985,7 @@ def run_route_optimisation(
     route_costs_df: Optional[pd.DataFrame] = None,
     scenario_results: Optional[list] = None,
     existing_routes: Optional[pd.DataFrame] = None,
+    districts_df: Optional[pd.DataFrame] = None,
 ) -> dict:
     """Run the full three-sub-stage route optimisation pipeline.
 
@@ -955,6 +1008,16 @@ def run_route_optimisation(
 
     logger.info("Route optimisation: Stage 3c — Headway Optimisation")
     routes = optimise_headways(routes, od_profiles, config)
+
+    # Stage 3d: per-stop daily boarding estimates
+    # Count selected stops per district so walk_shed_pop = district_pop / selected_count
+    from collections import Counter
+    selected_stops_per_district = Counter(s.district_id for s in selected if s.district_id)
+    for stop in selected:
+        stop.estimated_daily_boardings = estimate_daily_boardings(
+            stop, tdi_df, districts_df, config,
+            selected_stop_count=selected_stops_per_district.get(stop.district_id, 1),
+        )
 
     routes_df = routes_to_dataframe(routes)
     return {
