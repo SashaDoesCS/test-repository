@@ -989,6 +989,8 @@ def main():
         scenario_results=scenario_results,
         existing_routes=routes,
         districts_df=pd.read_csv("outputs/tables/district_demographic_profile.csv"),
+        road_graph=network_result["graph"],
+        stops_snapped_df=network_result["stops_snapped"],
     )
     opt_result["routes_df"].to_csv("outputs/tables/optimised_routes.csv", index=False)
     pd.DataFrame([{
@@ -1141,7 +1143,7 @@ def main():
     print(f"  GTFS feed:            {gtfs_dir}")
     print(f"\n  ROUTE 27 STOP SUGGESTIONS (new stops only — route 27 is the only modifiable route):")
     print(f"  New stop suggestions: {r27_result['n_new_suggested']}")
-    print(f"  HIGH priority (BCR≥2): {r27_result['n_high_priority']}")
+    print(f"  HIGH priority (BCR>=2): {r27_result['n_high_priority']}")
     print(f"  Suggestions CSV:      outputs/tables/route27_stop_suggestions.csv")
     print(f"  Path GeoJSON:         data/geospatial/route27_path.geojson")
     print(f"\n  All outputs in: outputs/tables/  +  outputs/gtfs_optimised/  +  outputs/placards/")

@@ -1,0 +1,4 @@
+gap_id,stop_before_name,stop_before_s_ft,stop_after_name,stop_after_s_ft,gap_length_ft,gap_length_mi,max_spacing_ft,gap_excess_ft,district_before,district_after,priority,standard_citation,best_candidate_id,best_stop_lat,best_stop_lon,best_street_names,best_s_coord_ft,best_district_id,best_raw_walkshed_pop,best_equity_walkshed_pop,best_tdi
+GAP_104,Shelley Avenue; White Oaks Road,15729.8,Chirco Drive; Corcel Court; Flintridge Drive,27496.6,11767.0,2.229,3960,7807.0,,,HIGH,FTA Circular 9040.1G §5.2.2,,,,NO CANDIDATE FOUND IN GAP,21613.199999999997,,0,0.0,0.2
+GAP_105,Chirco Drive; Corcel Court; Flintridge Drive,27496.6,,32770.1,5274.0,0.999,3960,1314.0,,,MEDIUM,FTA Circular 9040.1G §5.2.2,,,,NO CANDIDATE FOUND IN GAP,30133.35,,0,0.0,0.2
+GAP_107,,35351.3,Chirco Court; Chirco Drive; Flintridge Drive,40890.5,5539.0,1.049,3960,1579.0,,,HIGH,FTA Circular 9040.1G §5.2.2,,,,NO CANDIDATE FOUND IN GAP,38120.9,,0,0.0,0.2

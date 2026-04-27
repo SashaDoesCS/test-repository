@@ -170,6 +170,10 @@ def load_pipeline_data() -> dict:
     p = tables / "unmet_need.csv"
     result["unmet_need"] = pd.read_csv(p).to_dict("records") if p.exists() else []
 
+    # Phase B: road-following polylines for optimised routes
+    p = tables / "route_shapes.csv"
+    result["route_shapes"] = pd.read_csv(p).to_dict("records") if p.exists() else []
+
     # Route 27 stop suggestions (new stop recommendations)
     p = tables / "route27_stop_suggestions.csv"
     if p.exists():
@@ -191,6 +195,61 @@ def load_pipeline_data() -> dict:
             result["route27_geojson"] = None
     else:
         result["route27_geojson"] = None
+
+    # Step 7: Load original (pre-optimization) Route 27 stops and shape from GTFS
+    # for the "Original Route 27" layer in the map.
+    result["gtfs_route27_stops"] = []
+    result["gtfs_route27_shape"] = []
+    gtfs_dir = PROJECT_ROOT / "data" / "geospatial" / "gtfs"
+    try:
+        import pandas as _pd
+        trips_p = gtfs_dir / "trips.txt"
+        stop_times_p = gtfs_dir / "stop_times.txt"
+        stops_p = gtfs_dir / "stops.txt"
+        if trips_p.exists() and stop_times_p.exists() and stops_p.exists():
+            _trips = _pd.read_csv(trips_p, dtype=str)
+            _stop_times = _pd.read_csv(stop_times_p, dtype=str)
+            _stops = _pd.read_csv(stops_p, dtype=str)
+            # Find route_id matching "27"
+            _r27_trips = _trips[_trips["route_id"] == "27"]
+            if _r27_trips.empty:
+                # fallback: look for route containing "27" in route long name via routes.txt
+                routes_p = gtfs_dir / "routes.txt"
+                if routes_p.exists():
+                    _routes = _pd.read_csv(routes_p, dtype=str)
+                    _r27_route = _routes[
+                        _routes.get("route_long_name", _pd.Series(dtype=str)).str.contains("27", na=False)
+                        | _routes["route_id"].astype(str).str.contains("27", na=False)
+                    ]
+                    if not _r27_route.empty:
+                        _r27_route_id = _r27_route.iloc[0]["route_id"]
+                        _r27_trips = _trips[_trips["route_id"] == _r27_route_id]
+            if not _r27_trips.empty:
+                _dir0 = _r27_trips[_r27_trips.get("direction_id", _pd.Series(dtype=str)) == "0"] if "direction_id" in _r27_trips.columns else _r27_trips
+                _rep_trip = (_dir0.iloc[0] if not _dir0.empty else _r27_trips.iloc[0])["trip_id"]
+                _trip_sts = _stop_times[_stop_times["trip_id"] == _rep_trip].copy()
+                _trip_sts["stop_sequence"] = _pd.to_numeric(_trip_sts["stop_sequence"], errors="coerce")
+                _trip_sts = _trip_sts.sort_values("stop_sequence")
+                _slookup = _stops.set_index("stop_id")
+                _r27_stops_list = []
+                for _, _sr in _trip_sts.iterrows():
+                    _sid = _sr["stop_id"]
+                    if _sid not in _slookup.index:
+                        continue
+                    _srow = _slookup.loc[_sid]
+                    _r27_stops_list.append({
+                        "stop_id": _sid,
+                        "stop_name": str(_srow.get("stop_name", _sid)),
+                        "stop_lat": float(_srow.get("stop_lat", 0)),
+                        "stop_lon": float(_srow.get("stop_lon", 0)),
+                    })
+                result["gtfs_route27_stops"] = _r27_stops_list
+                result["gtfs_route27_shape"] = [
+                    {"lat": s["stop_lat"], "lon": s["stop_lon"]}
+                    for s in _r27_stops_list
+                ]
+    except Exception as _gtfs_exc:
+        pass  # silently degrade; layer will be empty
 
     return result
 
@@ -364,6 +423,12 @@ def generate_dashboard_html(data: dict, merged: list, polygons: dict) -> str:
     js_school_coverage = json.dumps(data.get("school_coverage", []))
     js_gtfs_summary = json.dumps(data.get("gtfs_summary", []))
     opt_run = len(data.get("optimised_routes", [])) > 0
+
+    # Phase B: road-following polylines (NaN → "" for safe JSON)
+    import math as _math
+    def _clean_shape(r):
+        return {k: ("" if isinstance(v, float) and not _math.isfinite(v) else v) for k, v in r.items()}
+    js_route_shapes = json.dumps([_clean_shape(r) for r in data.get("route_shapes", [])])
 
     # Route 27 stop suggestions
     r27_suggestions = data.get("route27_suggestions", [])
@@ -899,6 +964,10 @@ def generate_route_optimization_html(data: dict) -> str:
     js_r27_geojson = json.dumps(data.get("route27_geojson"))
     js_tdi = json.dumps(data.get("tdi", []))
     js_unmet = json.dumps(data.get("unmet_need", []))
+    js_route_shapes = json.dumps([_clean_record(r) for r in data.get("route_shapes", [])])
+    # Step 7: Original Route 27 GTFS data for the "Original Route 27" layer
+    js_gtfs_r27_stops = json.dumps(data.get("gtfs_route27_stops", []))
+    js_gtfs_r27_shape = json.dumps(data.get("gtfs_route27_shape", []))
 
     route_design_mode = (
         data.get("config", {})
@@ -1053,6 +1122,7 @@ td.n{{text-align:right;font-variant-numeric:tabular-nums}}
 <script>
 const OPT_ROUTES={js_opt_routes};
 const SEL_STOPS={js_selected_stops};
+const ROUTE_SHAPES={js_route_shapes};
 const DIST_DEMAND={js_district_demand};
 const SCHOOL_DEMAND={js_school_demand};
 const SCHOOL_COV={js_school_coverage};
@@ -1062,6 +1132,9 @@ const R27_GEOJSON={js_r27_geojson};
 const TDI_DATA={js_tdi};
 const UNMET_NEED={js_unmet};
 const ROUTE_DESIGN_MODE={js_route_design_mode};
+// Step 7: Original Route 27 GTFS data
+const GTFS_R27_STOPS={js_gtfs_r27_stops};
+const GTFS_R27_SHAPE={js_gtfs_r27_shape};
 
 Chart.defaults.color='#7a8098';Chart.defaults.borderColor='rgba(42,48,80,.5)';
 Chart.defaults.font.family="'IBM Plex Mono',monospace";Chart.defaults.font.size=10;
@@ -1079,11 +1152,24 @@ Chart.defaults.font.family="'IBM Plex Mono',monospace";Chart.defaults.font.size=
   const rmap=L.map('routeMap',{{center:[37.235,-121.960],zoom:13}});
   L.tileLayer('https://{{s}}.basemaps.cartocdn.com/dark_all/{{z}}/{{x}}/{{y}}{{r}}.png',{{maxZoom:19}}).addTo(rmap);
 
-  // Group routes and draw polylines
+  // Step 7: Three Leaflet layerGroups for map layer control
+  const optLayer=L.layerGroup();    // Optimized Route 27 (ON by default)
+  const origLayer=L.layerGroup();   // Original Route 27 from GTFS (OFF by default)
+  const schoolLayer=L.layerGroup(); // School stops (ON by default)
+
+  // Group routes and draw polylines into optLayer
   const routeGroups={{}};
   OPT_ROUTES.forEach(r=>{{
     if(!routeGroups[r.route_id])routeGroups[r.route_id]=[];
     routeGroups[r.route_id].push(r);
+  }});
+
+  // Group road-following polylines by route_id (Phase 3 — uses OSM shortest-
+  // path geometry rather than straight lines between stops).
+  const optShapeMap={{}};
+  (ROUTE_SHAPES||[]).forEach(p=>{{
+    if(!optShapeMap[p.route_id])optShapeMap[p.route_id]=[];
+    optShapeMap[p.route_id].push([+p.lat,+p.lon]);
   }});
 
   let ri=0;
@@ -1091,11 +1177,14 @@ Chart.defaults.font.family="'IBM Plex Mono',monospace";Chart.defaults.font.size=
   routeEntries.forEach(([rid,stops])=>{{
     stops.sort((a,b)=>a.stop_sequence-b.stop_sequence);
     const color=ROUTE_COLORS[ri%ROUTE_COLORS.length];
-    const latlngs=stops.map(s=>[s.stop_lat,s.stop_lon]);
+    // Prefer road-following polyline; fall back to straight-line through stops.
+    const latlngs=(optShapeMap[rid]&&optShapeMap[rid].length>=2)
+      ? optShapeMap[rid]
+      : stops.map(s=>[s.stop_lat,s.stop_lon]);
     if(latlngs.length>=2){{
       L.polyline(latlngs,{{color,weight:3,opacity:.85,dashArray:stops[0].is_restoration?'8,4':null}})
         .bindPopup('<b>'+rid+'</b>: '+(stops[0].route_name||rid)+'<br>'+stops.length+' stops'+(stops[0].parent_route_id?'<br><small style="color:var(--tm)">Derived from VTA route '+stops[0].parent_route_id+'</small>':'')+(ROUTE_DESIGN_MODE==='hub_spoke'?'<br><small style="color:var(--tm)">Originates at Winchester Hub (VTA connection)</small>':''))
-        .addTo(rmap);
+        .addTo(optLayer);
     }}
     const leg=document.getElementById('routeLegend');
     if(leg){{
@@ -1107,7 +1196,7 @@ Chart.defaults.font.family="'IBM Plex Mono',monospace";Chart.defaults.font.size=
     ri++;
   }});
 
-  // Plot selected stops
+  // Plot selected stops — non-school into optLayer, school into schoolLayer
   SEL_STOPS.forEach(s=>{{
     // Winchester hub highlight only in hub_spoke mode
     const isHub=ROUTE_DESIGN_MODE==='hub_spoke'&&s.stop_name&&s.stop_name.toLowerCase().includes('winchester');
@@ -1116,17 +1205,47 @@ Chart.defaults.font.family="'IBM Plex Mono',monospace";Chart.defaults.font.size=
     const weight=isHub?3:1.5;
     const circle=L.circleMarker([s.stop_lat,s.stop_lon],{{
       radius,color:'#fff',weight,fillColor:color,fillOpacity:.9
-    }}).addTo(rmap);
+    }});
     let pop='<b>'+(s.stop_name||s.stop_id)+'</b>';
     if(isHub)pop+='<br><span style="color:#6c9bff;font-weight:700">&#9679; Winchester Transit Hub (VTA Connection)</span>';
-    pop+='<br>District: '+(s.district_id||'–');
+    pop+='<br>District: '+(s.district_id||'-');
     pop+='<br>Type: '+(isHub?'<span style="color:#6c9bff">Hub / Transfer Point</span>':(s.is_school_stop?'<span style="color:#ff6b6b">School</span>':(s.is_existing?'Existing':'<span style="color:#ffa94d">New</span>')));
     pop+='<br>Demand score: '+(s.demand_score||0).toFixed(3);
-    if(s.wheelchair_boarding)pop+='<br>♿ ADA accessible';
-    pop+='<br><a href="placards/'+(s.stop_id||'')+'.html" target="_blank" style="color:var(--ac)">View rider placard →</a>';
+    if(s.wheelchair_boarding)pop+='<br>ADA accessible';
+    pop+='<br><a href="placards/'+(s.stop_id||'')+'.html" target="_blank" style="color:var(--ac)">View rider placard</a>';
     circle.bindPopup(pop);
     if(isHub)circle.bindTooltip('Winchester Hub',{{permanent:false,direction:'top'}});
+    if(s.is_school_stop){{
+      circle.addTo(schoolLayer);
+    }}else{{
+      circle.addTo(optLayer);
+    }}
   }});
+
+  // Step 7: Original Route 27 layer (dashed gray polyline + gray stop markers)
+  if(GTFS_R27_SHAPE&&GTFS_R27_SHAPE.length>=2){{
+    const origLatlngs=GTFS_R27_SHAPE.map(p=>[+p.lat,+p.lon]);
+    L.polyline(origLatlngs,{{color:'#888',weight:2,opacity:.65,dashArray:'6,4'}})
+      .bindPopup('<b>Original VTA Route 27</b><br>Pre-optimization GTFS shape')
+      .addTo(origLayer);
+  }}
+  (GTFS_R27_STOPS||[]).forEach(s=>{{
+    L.circleMarker([s.stop_lat,s.stop_lon],{{
+      radius:5,color:'#888',weight:1.5,fillColor:'#aaa',fillOpacity:.7
+    }}).bindPopup('<b>'+(s.stop_name||s.stop_id)+'</b><br><span style="color:#888">Original Route 27 stop</span>')
+      .addTo(origLayer);
+  }});
+
+  // Add optLayer and schoolLayer to map by default; origLayer off by default
+  optLayer.addTo(rmap);
+  schoolLayer.addTo(rmap);
+
+  // Step 7: Layer control with three distinct layerGroups
+  L.control.layers({{}},{{
+    'Optimized Route 27': optLayer,
+    'Original Route 27': origLayer,
+    'School Stops': schoolLayer,
+  }},{{collapsed:false}}).addTo(rmap);
 
   // Metrics bar
   const nRoutes=routeEntries.length;
@@ -1165,10 +1284,12 @@ Chart.defaults.font.family="'IBM Plex Mono',monospace";Chart.defaults.font.size=
       }}
       let h='<table><tr><th>Route</th>';
       HW_WINDOWS.forEach(w=>h+='<th style="text-align:center">'+HW_LABELS[w]+'</th>');
-      h+='<th style="text-align:right">BCR</th></tr>';
+      h+='<th style="text-align:right">Diversion</th><th style="text-align:right">BCR</th></tr>';
       routes.forEach(r=>{{
         h+='<tr><td style="font-weight:600">'+(r.route_name||r.route_id)+'</td>';
         HW_WINDOWS.forEach(w=>h+='<td style="text-align:center">'+hwChip(r['headway_'+w])+'</td>');
+        const div=r.diversion_rate!=null?(parseFloat(r.diversion_rate)*100).toFixed(1)+'%':'8.0%';
+        h+='<td class="n" style="color:var(--tm)">'+div+'</td>';
         const bcr=r.bcr!=null?parseFloat(r.bcr).toFixed(2):'–';
         const bcrColor=parseFloat(bcr)>=1?'var(--ac)':'var(--red)';
         h+='<td class="n" style="color:'+bcrColor+'">'+bcr+'</td></tr>';

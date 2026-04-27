@@ -1,0 +1,5294 @@
+{
+  "type": "FeatureCollection",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "EPSG:4326"
+    }
+  },
+  "metadata": {
+    "title": "VTA Route 27 \u2014 Corridor Path and Candidate Stops",
+    "generated_by": "route27_corridor.py",
+    "standard": "FTA Circular 9040.1G, TCRP Report 19",
+    "anchor_count": 10,
+    "candidate_count": 217
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -121.950518,
+            37.2585462
+          ],
+          [
+            -121.94888,
+            37.2582347
+          ],
+          [
+            -121.9486218,
+            37.2578952
+          ],
+          [
+            -121.9492843,
+            37.2569674
+          ],
+          [
+            -121.9494347,
+            37.256778
+          ],
+          [
+            -121.9497745,
+            37.256378
+          ],
+          [
+            -121.9503741,
+            37.2556558
+          ],
+          [
+            -121.9506967,
+            37.2553644
+          ],
+          [
+            -121.9508897,
+            37.2551404
+          ],
+          [
+            -121.9518578,
+            37.2538469
+          ],
+          [
+            -121.952419,
+            37.2531699
+          ],
+          [
+            -121.9537803,
+            37.2515169
+          ],
+          [
+            -121.953905,
+            37.2513543
+          ],
+          [
+            -121.9545976,
+            37.250543
+          ],
+          [
+            -121.9561834,
+            37.2483928
+          ],
+          [
+            -121.9567362,
+            37.2482441
+          ],
+          [
+            -121.9576016,
+            37.2486673
+          ],
+          [
+            -121.9579393,
+            37.248833
+          ],
+          [
+            -121.9587556,
+            37.249507
+          ],
+          [
+            -121.9576816,
+            37.2526561
+          ],
+          [
+            -121.954789,
+            37.2570082
+          ],
+          [
+            -121.9532131,
+            37.2591673
+          ],
+          [
+            -121.9483755,
+            37.2668132
+          ],
+          [
+            -121.946907,
+            37.2690905
+          ],
+          [
+            -121.9473955,
+            37.2681038
+          ],
+          [
+            -121.9487826,
+            37.2651976
+          ],
+          [
+            -121.9489449,
+            37.2635782
+          ],
+          [
+            -121.9489293,
+            37.2629727
+          ],
+          [
+            -121.9489097,
+            37.2614835
+          ],
+          [
+            -121.948899,
+            37.2607389
+          ],
+          [
+            -121.948889,
+            37.2601173
+          ],
+          [
+            -121.94888,
+            37.2582347
+          ],
+          [
+            -121.9486218,
+            37.2578952
+          ],
+          [
+            -121.9492843,
+            37.2569674
+          ],
+          [
+            -121.9494347,
+            37.256778
+          ],
+          [
+            -121.9497745,
+            37.256378
+          ],
+          [
+            -121.9503741,
+            37.2556558
+          ],
+          [
+            -121.9506967,
+            37.2553644
+          ],
+          [
+            -121.9508897,
+            37.2551404
+          ],
+          [
+            -121.9518578,
+            37.2538469
+          ],
+          [
+            -121.952419,
+            37.2531699
+          ],
+          [
+            -121.9537803,
+            37.2515169
+          ],
+          [
+            -121.953905,
+            37.2513543
+          ],
+          [
+            -121.9545976,
+            37.250543
+          ],
+          [
+            -121.9561834,
+            37.2483928
+          ],
+          [
+            -121.9567362,
+            37.2482441
+          ],
+          [
+            -121.9576016,
+            37.2486673
+          ],
+          [
+            -121.9579393,
+            37.248833
+          ],
+          [
+            -121.95886,
+            37.2492831
+          ],
+          [
+            -121.961186,
+            37.2504475
+          ],
+          [
+            -121.9610533,
+            37.2505967
+          ],
+          [
+            -121.9598407,
+            37.2505316
+          ],
+          [
+            -121.9597658,
+            37.2492811
+          ],
+          [
+            -121.9734463,
+            37.2293952
+          ],
+          [
+            -121.9751192,
+            37.2266201
+          ],
+          [
+            -121.9751604,
+            37.2265738
+          ],
+          [
+            -121.9753883,
+            37.2266756
+          ],
+          [
+            -121.9747589,
+            37.2264687
+          ],
+          [
+            -121.9749355,
+            37.2266041
+          ],
+          [
+            -121.974843,
+            37.2267086
+          ],
+          [
+            -121.97326,
+            37.2292839
+          ],
+          [
+            -121.9611907,
+            37.2462497
+          ],
+          [
+            -121.9590695,
+            37.2489433
+          ],
+          [
+            -121.9587273,
+            37.2490521
+          ],
+          [
+            -121.9586246,
+            37.2490092
+          ],
+          [
+            -121.9576787,
+            37.2485681
+          ],
+          [
+            -121.9567787,
+            37.2481373
+          ],
+          [
+            -121.9566784,
+            37.2477575
+          ],
+          [
+            -121.9578077,
+            37.24628
+          ],
+          [
+            -121.96053,
+            37.2411985
+          ],
+          [
+            -121.9608578,
+            37.2410921
+          ],
+          [
+            -121.9611784,
+            37.2411925
+          ],
+          [
+            -121.9613984,
+            37.2413055
+          ],
+          [
+            -121.9614041,
+            37.2413194
+          ],
+          [
+            -121.9615138,
+            37.2413517
+          ],
+          [
+            -121.9615319,
+            37.2413413
+          ],
+          [
+            -121.9618232,
+            37.2414406
+          ],
+          [
+            -121.9625652,
+            37.2418112
+          ],
+          [
+            -121.9618232,
+            37.2414406
+          ],
+          [
+            -121.9615462,
+            37.2412962
+          ],
+          [
+            -121.9614346,
+            37.2412539
+          ],
+          [
+            -121.9611784,
+            37.2411925
+          ],
+          [
+            -121.9608578,
+            37.2410921
+          ],
+          [
+            -121.9607001,
+            37.2408309
+          ],
+          [
+            -121.9615091,
+            37.2391438
+          ],
+          [
+            -121.9619001,
+            37.2383145
+          ],
+          [
+            -121.9623501,
+            37.2374008
+          ],
+          [
+            -121.962533,
+            37.2369899
+          ],
+          [
+            -121.962689,
+            37.2366706
+          ],
+          [
+            -121.9627157,
+            37.2366166
+          ],
+          [
+            -121.9630484,
+            37.2359002
+          ],
+          [
+            -121.9631314,
+            37.2357312
+          ],
+          [
+            -121.9631882,
+            37.2356103
+          ],
+          [
+            -121.9630273,
+            37.235579
+          ],
+          [
+            -121.9629686,
+            37.235703
+          ],
+          [
+            -121.9628777,
+            37.235895
+          ],
+          [
+            -121.9627198,
+            37.2362285
+          ],
+          [
+            -121.962689,
+            37.2366706
+          ],
+          [
+            -121.9627157,
+            37.2366166
+          ],
+          [
+            -121.9630484,
+            37.2359002
+          ],
+          [
+            -121.9631314,
+            37.2357312
+          ],
+          [
+            -121.9631882,
+            37.2356103
+          ],
+          [
+            -121.9633462,
+            37.2352743
+          ],
+          [
+            -121.9639909,
+            37.2338791
+          ],
+          [
+            -121.9642846,
+            37.2332533
+          ],
+          [
+            -121.9644421,
+            37.2329094
+          ],
+          [
+            -121.9646425,
+            37.2323322
+          ],
+          [
+            -121.965341,
+            37.2308241
+          ],
+          [
+            -121.96572,
+            37.2300182
+          ],
+          [
+            -121.9667696,
+            37.2287151
+          ],
+          [
+            -121.9671305,
+            37.2282766
+          ],
+          [
+            -121.9674491,
+            37.2278896
+          ],
+          [
+            -121.9678178,
+            37.2274416
+          ],
+          [
+            -121.9678896,
+            37.2273517
+          ],
+          [
+            -121.9683123,
+            37.2268347
+          ],
+          [
+            -121.9690308,
+            37.225944
+          ],
+          [
+            -121.9694413,
+            37.2254491
+          ],
+          [
+            -121.9699573,
+            37.2253809
+          ],
+          [
+            -121.9710163,
+            37.2257113
+          ],
+          [
+            -121.9723286,
+            37.2259862
+          ],
+          [
+            -121.9727327,
+            37.2260299
+          ],
+          [
+            -121.9747182,
+            37.2265136
+          ],
+          [
+            -121.9753465,
+            37.226712
+          ],
+          [
+            -121.9771338,
+            37.2272962
+          ],
+          [
+            -121.9786082,
+            37.2277686
+          ],
+          [
+            -121.9785458,
+            37.2279242
+          ],
+          [
+            -121.9783811,
+            37.2280152
+          ],
+          [
+            -121.9768012,
+            37.2284913
+          ],
+          [
+            -121.9758046,
+            37.229066
+          ],
+          [
+            -121.9768012,
+            37.2284913
+          ],
+          [
+            -121.9783811,
+            37.2280152
+          ],
+          [
+            -121.9785458,
+            37.2279242
+          ],
+          [
+            -121.9786768,
+            37.2279692
+          ],
+          [
+            -121.978767,
+            37.2278227
+          ],
+          [
+            -121.9795229,
+            37.2282553
+          ],
+          [
+            -121.9795763,
+            37.2281239
+          ],
+          [
+            -121.9798823,
+            37.2274981
+          ],
+          [
+            -121.980238,
+            37.2267544
+          ],
+          [
+            -121.9803002,
+            37.2245276
+          ],
+          [
+            -121.980238,
+            37.2267544
+          ],
+          [
+            -121.9798823,
+            37.2274981
+          ],
+          [
+            -121.9795763,
+            37.2281239
+          ],
+          [
+            -121.9795229,
+            37.2282553
+          ],
+          [
+            -121.978627,
+            37.2301709
+          ],
+          [
+            -121.9783151,
+            37.2308515
+          ],
+          [
+            -121.9781904,
+            37.2311211
+          ],
+          [
+            -121.9779276,
+            37.2316612
+          ],
+          [
+            -121.9777064,
+            37.2321179
+          ],
+          [
+            -121.9771802,
+            37.2332379
+          ],
+          [
+            -121.9761809,
+            37.2353399
+          ],
+          [
+            -121.9763078,
+            37.2362925
+          ],
+          [
+            -121.9762708,
+            37.2358298
+          ],
+          [
+            -121.9761809,
+            37.2353399
+          ],
+          [
+            -121.9742534,
+            37.2345004
+          ],
+          [
+            -121.9731458,
+            37.2342669
+          ],
+          [
+            -121.9681612,
+            37.2354696
+          ],
+          [
+            -121.9658387,
+            37.2360368
+          ],
+          [
+            -121.964102,
+            37.2358298
+          ],
+          [
+            -121.9636407,
+            37.2357245
+          ],
+          [
+            -121.9631882,
+            37.2356103
+          ],
+          [
+            -121.9630273,
+            37.235579
+          ],
+          [
+            -121.9629686,
+            37.235703
+          ],
+          [
+            -121.9628777,
+            37.235895
+          ],
+          [
+            -121.9627198,
+            37.2362285
+          ],
+          [
+            -121.9625418,
+            37.2366047
+          ],
+          [
+            -121.9621954,
+            37.2373365
+          ],
+          [
+            -121.9617476,
+            37.2382666
+          ],
+          [
+            -121.961349,
+            37.2391032
+          ],
+          [
+            -121.9606337,
+            37.2406106
+          ],
+          [
+            -121.9597741,
+            37.2408873
+          ],
+          [
+            -121.9592338,
+            37.2410855
+          ],
+          [
+            -121.958183,
+            37.2414104
+          ],
+          [
+            -121.9571807,
+            37.2417152
+          ],
+          [
+            -121.9553561,
+            37.2421775
+          ],
+          [
+            -121.9542265,
+            37.2424419
+          ],
+          [
+            -121.9533516,
+            37.2425951
+          ],
+          [
+            -121.9524716,
+            37.2427543
+          ],
+          [
+            -121.9520168,
+            37.2428124
+          ],
+          [
+            -121.9509954,
+            37.2430106
+          ],
+          [
+            -121.9500722,
+            37.2431872
+          ],
+          [
+            -121.9498712,
+            37.2432228
+          ],
+          [
+            -121.9491716,
+            37.2433449
+          ],
+          [
+            -121.9487036,
+            37.2434287
+          ],
+          [
+            -121.9476674,
+            37.2435967
+          ],
+          [
+            -121.9462353,
+            37.2435856
+          ],
+          [
+            -121.9458631,
+            37.2434605
+          ],
+          [
+            -121.9454201,
+            37.2433712
+          ],
+          [
+            -121.9435599,
+            37.2433598
+          ],
+          [
+            -121.9419952,
+            37.2433784
+          ],
+          [
+            -121.9408,
+            37.2433887
+          ],
+          [
+            -121.9375594,
+            37.2434211
+          ],
+          [
+            -121.9350072,
+            37.2446052
+          ],
+          [
+            -121.9353455,
+            37.2454998
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Route 27 corridor path",
+        "description": "Stitched road-network path between anchor waypoints",
+        "source": "OSMnx Dijkstra shortest-path or straight-line fallback",
+        "total_length_ft": 80969.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9498,
+          37.2581
+        ]
+      },
+      "properties": {
+        "name": "Winchester Transit Center",
+        "type": "anchor_waypoint",
+        "note": "VTA LRT transfer point; Route 27 northern terminus. OSM node ~5770926983 (Winchester Blvd & Lark Ave transit plaza)."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9572,
+          37.2524
+        ]
+      },
+      "properties": {
+        "name": "Los Gatos Blvd & Lark Ave",
+        "type": "anchor_waypoint",
+        "note": "Major signalized intersection. Route 27 turns south onto Los Gatos Blvd. AADT ~23,000 (Caltrans PeMS 2022)."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9593,
+          37.2487
+        ]
+      },
+      "properties": {
+        "name": "Los Gatos Blvd & Blossom Hill Rd",
+        "type": "anchor_waypoint",
+        "note": "Key N-S / E-W junction. Blossom Hill Rd corridor begins here. Signal with bus pull-out per VTA field survey notes (2019)."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9618,
+          37.2427
+        ]
+      },
+      "properties": {
+        "name": "Los Gatos Blvd & Shannon Rd",
+        "type": "anchor_waypoint",
+        "note": "Mid-corridor residential transition. Existing VTA stop per GTFS stops.txt (stop_id approx 2699 area)."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9631,
+          37.2364
+        ]
+      },
+      "properties": {
+        "name": "Los Gatos Blvd & Samaritan Dr",
+        "type": "anchor_waypoint",
+        "note": "Southern residential cluster. Transition from Los Gatos Blvd to Los Gatos-Almaden Rd alignment."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.976,
+          37.229
+        ]
+      },
+      "properties": {
+        "name": "Los Gatos-Almaden Rd & Main St",
+        "type": "anchor_waypoint",
+        "note": "Route transitions from LG-Almaden onto Main St approaching downtown. OSM way ~Los Gatos-Almaden Rd, approaches N. Santa Cruz Ave fork."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9806,
+          37.2249
+        ]
+      },
+      "properties": {
+        "name": "N. Santa Cruz Ave & Main St (Downtown Los Gatos)",
+        "type": "anchor_waypoint",
+        "note": "Highest-density pedestrian zone; commercial core. FTA transit-oriented development node. Existing VTA stops on both directions of N. Santa Cruz Ave."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.975,
+          37.2362
+        ]
+      },
+      "properties": {
+        "name": "Blossom Hill Rd & University Ave",
+        "type": "anchor_waypoint",
+        "note": "Route 27 turns east onto Blossom Hill Rd after downtown loop. Gateway to Union SD corridor."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9548,
+          37.243
+        ]
+      },
+      "properties": {
+        "name": "Blossom Hill Rd & Camden Ave",
+        "type": "anchor_waypoint",
+        "note": "Major signalized intersection. Camden Ave is a primary N-S arterial (AADT ~18,000, Caltrans 2022). Transfer point between Route 27 and north-south services."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9349,
+          37.2465
+        ]
+      },
+      "properties": {
+        "name": "Blossom Hill Rd & Meridian Ave",
+        "type": "anchor_waypoint",
+        "note": "Eastern end of study-area corridor. Blossom Hill LRT station ~0.4 mi further east. Meridian Ave is a major arterial (AADT ~35,000)."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.950518,
+          37.2585462
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65573029",
+        "street_names": "Browning Avenue; Holmes Avenue; Kilmer Avenue",
+        "s_coord_ft": 0.0,
+        "s_coord_mi": 0.0,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65573029 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9498,
+          37.2581
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_FORCE_001",
+        "street_names": "Winchester Transit Center",
+        "s_coord_ft": 231.3,
+        "s_coord_mi": 0.044,
+        "activity_type": "lrt_transfer",
+        "is_forced": true,
+        "is_mandatory": true,
+        "source": "VTA GTFS stops.txt (parent station PS_WINC area)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.94888,
+          37.2582347
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65447842",
+        "street_names": "Browning Avenue; White Oaks Road",
+        "s_coord_ft": 489.0,
+        "s_coord_mi": 0.093,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65447842 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9486218,
+          37.2578952
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65447844",
+        "street_names": "South Bascom Avenue; White Oaks Avenue; White Oaks Road",
+        "s_coord_ft": 633.8,
+        "s_coord_mi": 0.12,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65447844 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9484854,
+          37.257823
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_4176821264",
+        "street_names": "South Bascom Avenue; White Oaks Avenue",
+        "s_coord_ft": 633.8,
+        "s_coord_mi": 0.12,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 4176821264 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9492843,
+          37.2569674
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_4176821259",
+        "street_names": "South Bascom Avenue",
+        "s_coord_ft": 1023.1,
+        "s_coord_mi": 0.194,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 4176821259 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9494347,
+          37.256778
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65656088",
+        "street_names": "Loretta Lane; South Bascom Avenue",
+        "s_coord_ft": 1104.8,
+        "s_coord_mi": 0.209,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65656088 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9497745,
+          37.256378
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65656091",
+        "street_names": "Apsis Avenue; South Bascom Avenue",
+        "s_coord_ft": 1281.0,
+        "s_coord_mi": 0.243,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65656091 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9503741,
+          37.2556558
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_1102887875",
+        "street_names": "South Bascom Avenue",
+        "s_coord_ft": 1596.8,
+        "s_coord_mi": 0.302,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 1102887875 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9506967,
+          37.2553644
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65441718",
+        "street_names": "East Mozart Avenue; South Bascom Avenue",
+        "s_coord_ft": 1738.5,
+        "s_coord_mi": 0.329,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65441718 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9507249,
+          37.2550901
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_5068132048",
+        "street_names": "South Bascom Avenue",
+        "s_coord_ft": 1814.3,
+        "s_coord_mi": 0.344,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 5068132048 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9508897,
+          37.2551404
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_310964413",
+        "street_names": "South Bascom Avenue",
+        "s_coord_ft": 1837.6,
+        "s_coord_mi": 0.348,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 310964413 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.951552,
+          37.2549937
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_1080005446",
+        "street_names": "",
+        "s_coord_ft": 2012.4,
+        "s_coord_mi": 0.381,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 1080005446 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9521952,
+          37.2541729
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_310961089",
+        "street_names": "",
+        "s_coord_ft": 2366.8,
+        "s_coord_mi": 0.448,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 310961089 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9518578,
+          37.2538469
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_310961689",
+        "street_names": "Los Gatos Boulevard; South Bascom Avenue",
+        "s_coord_ft": 2386.8,
+        "s_coord_mi": 0.452,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 310961689 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.952419,
+          37.2531699
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65468410",
+        "street_names": "Burton Road; Los Gatos Boulevard; Samaritan Drive",
+        "s_coord_ft": 2682.7,
+        "s_coord_mi": 0.508,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65468410 (degree=8)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9537803,
+          37.2515169
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65668124",
+        "street_names": "Los Gatos Boulevard; Terreno de Flores Lane",
+        "s_coord_ft": 3403.8,
+        "s_coord_mi": 0.645,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65668124 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.953905,
+          37.2513543
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_4176845761",
+        "street_names": "Los Gatos Boulevard",
+        "s_coord_ft": 3473.3,
+        "s_coord_mi": 0.658,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 4176845761 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9545011,
+          37.2505003
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_11245168964",
+        "street_names": "Los Gatos Boulevard; Walker Street",
+        "s_coord_ft": 3831.1,
+        "s_coord_mi": 0.726,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 11245168964 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9550507,
+          37.2507419
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_10783668864",
+        "street_names": "Mills Street; Walker Street",
+        "s_coord_ft": 3831.1,
+        "s_coord_mi": 0.726,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 10783668864 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9545976,
+          37.250543
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_11245168966",
+        "street_names": "Los Gatos Boulevard; Walker Street",
+        "s_coord_ft": 3831.1,
+        "s_coord_mi": 0.726,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 11245168966 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9555673,
+          37.2491084
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_11245168962",
+        "street_names": "Los Gatos Boulevard",
+        "s_coord_ft": 4420.1,
+        "s_coord_mi": 0.837,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 11245168962 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9561834,
+          37.2483928
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_1103465216",
+        "street_names": "Los Gatos Boulevard",
+        "s_coord_ft": 4740.7,
+        "s_coord_mi": 0.898,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 1103465216 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.956411,
+          37.2480743
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65625198",
+        "street_names": "Lark Avenue; Los Gatos Boulevard",
+        "s_coord_ft": 4830.3,
+        "s_coord_mi": 0.915,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65625198 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9567362,
+          37.2482441
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_1103465162",
+        "street_names": "Lark Avenue",
+        "s_coord_ft": 4910.2,
+        "s_coord_mi": 0.93,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 1103465162 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9576016,
+          37.2486673
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65385477",
+        "street_names": "Lark Avenue; Turner Street",
+        "s_coord_ft": 5205.1,
+        "s_coord_mi": 0.986,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65385477 (degree=5)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9579393,
+          37.248833
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_9453457484",
+        "street_names": "Lark Avenue",
+        "s_coord_ft": 5320.3,
+        "s_coord_mi": 1.008,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 9453457484 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9587556,
+          37.249507
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_310962243",
+        "street_names": "",
+        "s_coord_ft": 5661.9,
+        "s_coord_mi": 1.072,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 310962243 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9584047,
+          37.2499692
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_8347638377",
+        "street_names": "Bartlett Street; Briggs Court; Shore Street",
+        "s_coord_ft": 5858.9,
+        "s_coord_mi": 1.11,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 8347638377 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9582797,
+          37.2507721
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_310962874",
+        "street_names": "",
+        "s_coord_ft": 6145.2,
+        "s_coord_mi": 1.164,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 310962874 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.958632,
+          37.2514147
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_7048863238",
+        "street_names": "",
+        "s_coord_ft": 6322.1,
+        "s_coord_mi": 1.197,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 7048863238 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9572,
+          37.2524
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_FORCE_006",
+        "street_names": "Los Gatos Towne Center (LG Blvd & Lark)",
+        "s_coord_ft": 6821.2,
+        "s_coord_mi": 1.292,
+        "activity_type": "retail_anchor",
+        "is_forced": true,
+        "is_mandatory": false,
+        "source": "Los Gatos Municipal Code commercial zone boundary; high pedestrian activity"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9576816,
+          37.2526561
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_310962519",
+        "street_names": "",
+        "s_coord_ft": 6852.3,
+        "s_coord_mi": 1.298,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 310962519 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9574255,
+          37.2536798
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_310961241",
+        "street_names": "",
+        "s_coord_ft": 7194.0,
+        "s_coord_mi": 1.363,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 310961241 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9562345,
+          37.2548656
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_310960278",
+        "street_names": "",
+        "s_coord_ft": 7760.1,
+        "s_coord_mi": 1.47,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 310960278 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9559212,
+          37.2559619
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_310951427",
+        "street_names": "",
+        "s_coord_ft": 8133.5,
+        "s_coord_mi": 1.54,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 310951427 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9552281,
+          37.2562519
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_310960174",
+        "street_names": "",
+        "s_coord_ft": 8348.4,
+        "s_coord_mi": 1.581,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 310960174 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.954789,
+          37.2570082
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_310960273",
+        "street_names": "",
+        "s_coord_ft": 8648.5,
+        "s_coord_mi": 1.638,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 310960273 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9532131,
+          37.2591673
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_1080001365",
+        "street_names": "",
+        "s_coord_ft": 9559.4,
+        "s_coord_mi": 1.81,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 1080001365 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.95133,
+          37.2620048
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_1079999436",
+        "street_names": "",
+        "s_coord_ft": 10734.6,
+        "s_coord_mi": 2.033,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 1079999436 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9467066,
+          37.2693746
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_8935145217",
+        "street_names": "White Oaks Road",
+        "s_coord_ft": 13616.2,
+        "s_coord_mi": 2.579,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 8935145217 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.94682,
+          37.2690548
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_664378518",
+        "street_names": "White Oaks Road",
+        "s_coord_ft": 13616.2,
+        "s_coord_mi": 2.579,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 664378518 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.946907,
+          37.2690905
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65386522",
+        "street_names": "White Oaks Road",
+        "s_coord_ft": 13616.2,
+        "s_coord_mi": 2.579,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65386522 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9473955,
+          37.2681038
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_6214870730",
+        "street_names": "White Oaks Road",
+        "s_coord_ft": 14003.1,
+        "s_coord_mi": 2.652,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 6214870730 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9487826,
+          37.2651976
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65447865",
+        "street_names": "Redding Road; White Oaks Road",
+        "s_coord_ft": 15137.2,
+        "s_coord_mi": 2.867,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65447865 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9489449,
+          37.2635782
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65447826",
+        "street_names": "Shelley Avenue; White Oaks Road",
+        "s_coord_ft": 15729.8,
+        "s_coord_mi": 2.979,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65447826 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9489293,
+          37.2629727
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65438955",
+        "street_names": "Pope Court; White Oaks Road",
+        "s_coord_ft": 15950.8,
+        "s_coord_mi": 3.021,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65438955 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9489097,
+          37.2614835
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65447837",
+        "street_names": "White Oaks Court; White Oaks Road",
+        "s_coord_ft": 16494.1,
+        "s_coord_mi": 3.124,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65447837 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.948899,
+          37.2607389
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65447841",
+        "street_names": "White Oaks Road; Woodard Road",
+        "s_coord_ft": 16765.8,
+        "s_coord_mi": 3.175,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65447841 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.948889,
+          37.2601173
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_315024456",
+        "street_names": "Hatcher Court; White Oaks Road",
+        "s_coord_ft": 16992.5,
+        "s_coord_mi": 3.218,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 315024456 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.95886,
+          37.2492831
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_310962242",
+        "street_names": "Lark Avenue",
+        "s_coord_ft": 22824.4,
+        "s_coord_mi": 4.323,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 310962242 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.958934,
+          37.2491576
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_1103465179",
+        "street_names": "Lark Avenue",
+        "s_coord_ft": 22824.4,
+        "s_coord_mi": 4.323,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 1103465179 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9615185,
+          37.2506062
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_2754035502",
+        "street_names": "Lark Avenue",
+        "s_coord_ft": 23622.3,
+        "s_coord_mi": 4.474,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 2754035502 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.961186,
+          37.2504475
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65472139",
+        "street_names": "Garden Hill Drive; Lark Avenue",
+        "s_coord_ft": 23622.3,
+        "s_coord_mi": 4.474,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65472139 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9612753,
+          37.2503576
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_1103465221",
+        "street_names": "Garden Hill Drive; Lark Avenue",
+        "s_coord_ft": 23622.3,
+        "s_coord_mi": 4.474,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 1103465221 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9610533,
+          37.2505967
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_6566050941",
+        "street_names": "",
+        "s_coord_ft": 23689.0,
+        "s_coord_mi": 4.487,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 6566050941 (degree=5)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9598407,
+          37.2505316
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_4703345082",
+        "street_names": "",
+        "s_coord_ft": 24042.0,
+        "s_coord_mi": 4.553,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 4703345082 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9597658,
+          37.2492811
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_310961260",
+        "street_names": "",
+        "s_coord_ft": 24498.7,
+        "s_coord_mi": 4.64,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 310961260 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.964678,
+          37.2420419
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65573610",
+        "street_names": "Chirco Drive; Corcel Court; Flintridge Drive",
+        "s_coord_ft": 27496.6,
+        "s_coord_mi": 5.208,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65573610 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9655827,
+          37.2412121
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65453239",
+        "street_names": "Farley Road; Flintridge Drive",
+        "s_coord_ft": 27906.6,
+        "s_coord_mi": 5.285,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65453239 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9666804,
+          37.2398948
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65457350",
+        "street_names": "Frank Avenue; Frank Court; Placer Oaks Road",
+        "s_coord_ft": 28491.7,
+        "s_coord_mi": 5.396,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65457350 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9734463,
+          37.2293952
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_310947709",
+        "street_names": "",
+        "s_coord_ft": 32770.1,
+        "s_coord_mi": 6.206,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 310947709 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9751192,
+          37.2266201
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_1079980501",
+        "street_names": "",
+        "s_coord_ft": 33893.1,
+        "s_coord_mi": 6.419,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 1079980501 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9751604,
+          37.2265738
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_26506871",
+        "street_names": "",
+        "s_coord_ft": 33913.8,
+        "s_coord_mi": 6.423,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 26506871 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9753883,
+          37.2266756
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_349309699",
+        "street_names": "Los Gatos-Saratoga Road",
+        "s_coord_ft": 33989.7,
+        "s_coord_mi": 6.437,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 349309699 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9747589,
+          37.2264687
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_261624950",
+        "street_names": "Los Gatos-Saratoga Road",
+        "s_coord_ft": 34187.5,
+        "s_coord_mi": 6.475,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 261624950 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9749355,
+          37.2266041
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_1079981287",
+        "street_names": "",
+        "s_coord_ft": 34258.7,
+        "s_coord_mi": 6.488,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 1079981287 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.974843,
+          37.2267086
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_26497327",
+        "street_names": "",
+        "s_coord_ft": 34305.3,
+        "s_coord_mi": 6.497,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 26497327 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.97326,
+          37.2292839
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_310946868",
+        "street_names": "",
+        "s_coord_ft": 35351.3,
+        "s_coord_mi": 6.695,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 310946868 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9637773,
+          37.2424358
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65563972",
+        "street_names": "Chirco Court; Chirco Drive; Flintridge Drive",
+        "s_coord_ft": 40890.5,
+        "s_coord_mi": 7.744,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65563972 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9617046,
+          37.2447088
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65422271",
+        "street_names": "Benedict Lane; Corinne Drive; Garden Lane; Sunray Drive",
+        "s_coord_ft": 41933.7,
+        "s_coord_mi": 7.942,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65422271 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9611907,
+          37.2462497
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_310962627",
+        "street_names": "",
+        "s_coord_ft": 42464.4,
+        "s_coord_mi": 8.043,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 310962627 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9599958,
+          37.2483217
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_310961963",
+        "street_names": "",
+        "s_coord_ft": 43265.1,
+        "s_coord_mi": 8.194,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 310961963 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9590695,
+          37.2489433
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_310962724",
+        "street_names": "",
+        "s_coord_ft": 43624.2,
+        "s_coord_mi": 8.262,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 310962724 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9587273,
+          37.2490521
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_1080010667",
+        "street_names": "Lark Avenue",
+        "s_coord_ft": 43731.2,
+        "s_coord_mi": 8.282,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 1080010667 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9586246,
+          37.2490092
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_9778892535",
+        "street_names": "Lark Avenue",
+        "s_coord_ft": 43764.9,
+        "s_coord_mi": 8.289,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 9778892535 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9576787,
+          37.2485681
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_1103465120",
+        "street_names": "Highland Oaks Drive; Lark Avenue",
+        "s_coord_ft": 44083.2,
+        "s_coord_mi": 8.349,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 1103465120 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9567787,
+          37.2481373
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_4706047386",
+        "street_names": "Lark Avenue",
+        "s_coord_ft": 44388.2,
+        "s_coord_mi": 8.407,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 4706047386 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.956469,
+          37.2479952
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_1103465150",
+        "street_names": "Lark Avenue; Los Gatos Boulevard",
+        "s_coord_ft": 44466.2,
+        "s_coord_mi": 8.422,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 1103465150 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.956292,
+          37.2479818
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_360010753",
+        "street_names": "Lark Avenue; Los Gatos Boulevard",
+        "s_coord_ft": 44487.2,
+        "s_coord_mi": 8.426,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 360010753 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9566784,
+          37.2477575
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_1103465123",
+        "street_names": "Los Gatos Boulevard",
+        "s_coord_ft": 44529.8,
+        "s_coord_mi": 8.434,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 1103465123 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9578077,
+          37.24628
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65493269",
+        "street_names": "Garden Lane; Los Gatos Boulevard",
+        "s_coord_ft": 45160.7,
+        "s_coord_mi": 8.553,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65493269 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9576699,
+          37.2462114
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_360010707",
+        "street_names": "Garden Lane; Gateway Drive; Los Gatos Boulevard",
+        "s_coord_ft": 45160.7,
+        "s_coord_mi": 8.553,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 360010707 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.96053,
+          37.2411985
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_3901611989",
+        "street_names": "Los Gatos Boulevard",
+        "s_coord_ft": 47176.1,
+        "s_coord_mi": 8.935,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 3901611989 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9604591,
+          37.240978
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_360010710",
+        "street_names": "Los Gatos Almaden Road; Los Gatos Boulevard",
+        "s_coord_ft": 47176.2,
+        "s_coord_mi": 8.935,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 360010710 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9606091,
+          37.2410235
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65563960",
+        "street_names": "Chirco Drive; Los Gatos Almaden Road; Los Gatos Boulevard",
+        "s_coord_ft": 47214.6,
+        "s_coord_mi": 8.942,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65563960 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9608578,
+          37.2410921
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_3901611977",
+        "street_names": "Chirco Drive",
+        "s_coord_ft": 47278.9,
+        "s_coord_mi": 8.954,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 3901611977 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9611784,
+          37.2411925
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_3666549765",
+        "street_names": "Chirco Drive",
+        "s_coord_ft": 47378.9,
+        "s_coord_mi": 8.973,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 3666549765 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9613984,
+          37.2413055
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_11293595917",
+        "street_names": "Chirco Drive",
+        "s_coord_ft": 47455.0,
+        "s_coord_mi": 8.988,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 11293595917 (degree=5)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9614041,
+          37.2413194
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_11293595928",
+        "street_names": "Benedict Lane; Chirco Drive",
+        "s_coord_ft": 47460.3,
+        "s_coord_mi": 8.989,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 11293595928 (degree=5)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.961427,
+          37.2415503
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_2129936133",
+        "street_names": "Benedict Lane",
+        "s_coord_ft": 47494.3,
+        "s_coord_mi": 8.995,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 2129936133 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9615138,
+          37.2413517
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65563965",
+        "street_names": "Chirco Drive",
+        "s_coord_ft": 47494.3,
+        "s_coord_mi": 8.995,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65563965 (degree=5)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9615319,
+          37.2413413
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_11293595921",
+        "street_names": "Chirco Drive",
+        "s_coord_ft": 47500.7,
+        "s_coord_mi": 8.996,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 11293595921 (degree=5)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9618232,
+          37.2414406
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_4548713594",
+        "street_names": "Chirco Drive",
+        "s_coord_ft": 47592.8,
+        "s_coord_mi": 9.014,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 4548713594 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9625652,
+          37.2418112
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65563969",
+        "street_names": "Chirco Drive; Corinne Drive; Sunray Drive",
+        "s_coord_ft": 47847.2,
+        "s_coord_mi": 9.062,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65563969 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9615462,
+          37.2412962
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_11293595916",
+        "street_names": "Chirco Drive",
+        "s_coord_ft": 48197.7,
+        "s_coord_mi": 9.128,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 11293595916 (degree=5)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9614346,
+          37.2412539
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_11293595922",
+        "street_names": "Chirco Drive",
+        "s_coord_ft": 48233.6,
+        "s_coord_mi": 9.135,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 11293595922 (degree=5)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9607001,
+          37.2408309
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_3901611961",
+        "street_names": "Los Gatos Boulevard",
+        "s_coord_ft": 48517.1,
+        "s_coord_mi": 9.189,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 3901611961 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9615091,
+          37.2391438
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65453263",
+        "street_names": "Farley Road; Los Gatos Boulevard",
+        "s_coord_ft": 49175.9,
+        "s_coord_mi": 9.314,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65453263 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9619001,
+          37.2383145
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65457336",
+        "street_names": "Frank Avenue; Los Gatos Boulevard",
+        "s_coord_ft": 49499.1,
+        "s_coord_mi": 9.375,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65457336 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9623501,
+          37.2374008
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65639243",
+        "street_names": "Leroy Avenue; Los Gatos Boulevard",
+        "s_coord_ft": 49857.1,
+        "s_coord_mi": 9.443,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65639243 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.962533,
+          37.2369899
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_6835952534",
+        "street_names": "Los Gatos Boulevard",
+        "s_coord_ft": 50016.1,
+        "s_coord_mi": 9.473,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 6835952534 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.962689,
+          37.2366706
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65593523",
+        "street_names": "Los Gatos Boulevard; Placer Oaks Road",
+        "s_coord_ft": 50141.1,
+        "s_coord_mi": 9.496,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65593523 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9627157,
+          37.2366166
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_6835952560",
+        "street_names": "Los Gatos Boulevard",
+        "s_coord_ft": 50162.3,
+        "s_coord_mi": 9.5,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 6835952560 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9630484,
+          37.2359002
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_8940882875",
+        "street_names": "Los Gatos Boulevard",
+        "s_coord_ft": 50440.9,
+        "s_coord_mi": 9.553,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 8940882875 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9631314,
+          37.2357312
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65616196",
+        "street_names": "Blossom Hill Road; Los Gatos Boulevard",
+        "s_coord_ft": 50507.1,
+        "s_coord_mi": 9.566,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65616196 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9631882,
+          37.2356103
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_1105655262",
+        "street_names": "Blossom Hill Road; Los Gatos Boulevard",
+        "s_coord_ft": 50554.2,
+        "s_coord_mi": 9.575,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 1105655262 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9630273,
+          37.235579
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_1105654949",
+        "street_names": "Blossom Hill Road; Los Gatos Boulevard",
+        "s_coord_ft": 50602.3,
+        "s_coord_mi": 9.584,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 1105654949 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.96265,
+          37.2355198
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_3901576279",
+        "street_names": "Blossom Hill Road",
+        "s_coord_ft": 50602.3,
+        "s_coord_mi": 9.584,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 3901576279 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9626172,
+          37.2356413
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_3901576282",
+        "street_names": "Blossom Hill Road",
+        "s_coord_ft": 50650.7,
+        "s_coord_mi": 9.593,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 3901576282 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9629686,
+          37.235703
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_360010714",
+        "street_names": "Blossom Hill Road; Los Gatos Boulevard",
+        "s_coord_ft": 50650.7,
+        "s_coord_mi": 9.593,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 360010714 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9628777,
+          37.235895
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_3901576300",
+        "street_names": "Los Gatos Boulevard",
+        "s_coord_ft": 50725.5,
+        "s_coord_mi": 9.607,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 3901576300 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9627198,
+          37.2362285
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_2031016791",
+        "street_names": "Los Gatos Boulevard",
+        "s_coord_ft": 50855.5,
+        "s_coord_mi": 9.632,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 2031016791 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9631325,
+          37.2353515
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_5805817963",
+        "street_names": "Los Gatos Boulevard",
+        "s_coord_ft": 51504.4,
+        "s_coord_mi": 9.755,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 5805817963 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9633462,
+          37.2352743
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_3901576263",
+        "street_names": "Los Gatos Boulevard",
+        "s_coord_ft": 51561.1,
+        "s_coord_mi": 9.765,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 3901576263 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9639909,
+          37.2338791
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65622310",
+        "street_names": "Los Gatos Boulevard; Magneson Loop",
+        "s_coord_ft": 52103.4,
+        "s_coord_mi": 9.868,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65622310 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9638553,
+          37.233844
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_360010716",
+        "street_names": "Los Gatos Boulevard; Magneson Loop",
+        "s_coord_ft": 52103.4,
+        "s_coord_mi": 9.868,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 360010716 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9642846,
+          37.2332533
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65489554",
+        "street_names": "Los Gatos Boulevard; Roberts Road",
+        "s_coord_ft": 52347.1,
+        "s_coord_mi": 9.914,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65489554 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9641557,
+          37.233214
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_360027212",
+        "street_names": "Los Gatos Boulevard; Roberts Road",
+        "s_coord_ft": 52347.1,
+        "s_coord_mi": 9.914,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 360027212 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9641867,
+          37.2331481
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_4556191447",
+        "street_names": "Los Gatos Boulevard",
+        "s_coord_ft": 52366.5,
+        "s_coord_mi": 9.918,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 4556191447 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9644421,
+          37.2329094
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65591634",
+        "street_names": "Los Gatos Boulevard; Shannon Road",
+        "s_coord_ft": 52480.7,
+        "s_coord_mi": 9.94,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65591634 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9640074,
+          37.2328175
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_4556191452",
+        "street_names": "Shannon Road",
+        "s_coord_ft": 52480.7,
+        "s_coord_mi": 9.94,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 4556191452 (degree=5)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9643167,
+          37.2328721
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_360010718",
+        "street_names": "Los Gatos Boulevard; Shannon Road",
+        "s_coord_ft": 52480.7,
+        "s_coord_mi": 9.94,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 360010718 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9646425,
+          37.2323322
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65531981",
+        "street_names": "Los Gatos Boulevard; Mitchell Avenue",
+        "s_coord_ft": 52699.1,
+        "s_coord_mi": 9.981,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65531981 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.965341,
+          37.2308241
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65439323",
+        "street_names": "Los Gatos Boulevard; Nino Avenue",
+        "s_coord_ft": 53285.5,
+        "s_coord_mi": 10.092,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65439323 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.96572,
+          37.2300182
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_360010720",
+        "street_names": "Los Gatos Boulevard",
+        "s_coord_ft": 53599.5,
+        "s_coord_mi": 10.151,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 360010720 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9667696,
+          37.2287151
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65433155",
+        "street_names": "Los Gatos Boulevard; Spencer Avenue",
+        "s_coord_ft": 54164.2,
+        "s_coord_mi": 10.258,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65433155 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9671305,
+          37.2282766
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65669074",
+        "street_names": "Los Gatos Boulevard; Pine Avenue",
+        "s_coord_ft": 54355.5,
+        "s_coord_mi": 10.295,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65669074 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9674491,
+          37.2278896
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_435827525",
+        "street_names": "Andre Court; Los Gatos Boulevard",
+        "s_coord_ft": 54524.3,
+        "s_coord_mi": 10.327,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 435827525 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9678178,
+          37.2274416
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65494012",
+        "street_names": "Kennedy Road; Los Gatos Boulevard",
+        "s_coord_ft": 54719.7,
+        "s_coord_mi": 10.364,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65494012 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9678896,
+          37.2273517
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_347441935",
+        "street_names": "Caldwell Avenue; Los Gatos Boulevard",
+        "s_coord_ft": 54758.5,
+        "s_coord_mi": 10.371,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 347441935 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9683123,
+          37.2268347
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65566980",
+        "street_names": "Fillmer Avenue; Los Gatos Boulevard",
+        "s_coord_ft": 54983.6,
+        "s_coord_mi": 10.414,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65566980 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9690308,
+          37.225944
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65475482",
+        "street_names": "Harding Avenue; Los Gatos Boulevard",
+        "s_coord_ft": 55369.8,
+        "s_coord_mi": 10.487,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65475482 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9694413,
+          37.2254491
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_5805817962",
+        "street_names": "Los Gatos Boulevard",
+        "s_coord_ft": 55586.2,
+        "s_coord_mi": 10.528,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 5805817962 (degree=5)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9696123,
+          37.2252398
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65469146",
+        "street_names": "Los Gatos Boulevard; Los Gatos-Saratoga Road",
+        "s_coord_ft": 55643.7,
+        "s_coord_mi": 10.539,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65469146 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9697383,
+          37.2250856
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_12603445872",
+        "street_names": "Los Gatos Boulevard",
+        "s_coord_ft": 55686.0,
+        "s_coord_mi": 10.547,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 12603445872 (degree=5)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9699573,
+          37.2253809
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_4175861976",
+        "street_names": "Los Gatos-Saratoga Road",
+        "s_coord_ft": 55738.1,
+        "s_coord_mi": 10.556,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 4175861976 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9709997,
+          37.2254438
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65638721",
+        "street_names": "Bella Vista Avenue",
+        "s_coord_ft": 56040.1,
+        "s_coord_mi": 10.614,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65638721 (degree=5)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9710163,
+          37.2257113
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_362725173",
+        "street_names": "Los Gatos-Saratoga Road",
+        "s_coord_ft": 56068.5,
+        "s_coord_mi": 10.619,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 362725173 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9723286,
+          37.2259862
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_383992599",
+        "street_names": "Alberto Way; Los Gatos-Saratoga Road",
+        "s_coord_ft": 56462.7,
+        "s_coord_mi": 10.694,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 383992599 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9723816,
+          37.2258688
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65464754",
+        "street_names": "Alberto Way; Los Gatos-Saratoga Road",
+        "s_coord_ft": 56474.4,
+        "s_coord_mi": 10.696,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65464754 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9727327,
+          37.2260299
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_383991708",
+        "street_names": "Los Gatos-Saratoga Road",
+        "s_coord_ft": 56581.1,
+        "s_coord_mi": 10.716,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 383991708 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9727956,
+          37.225936
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65382445",
+        "street_names": "Los Gatos-Saratoga Road",
+        "s_coord_ft": 56592.6,
+        "s_coord_mi": 10.718,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65382445 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9747182,
+          37.2265136
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_383989707",
+        "street_names": "Los Gatos-Saratoga Road",
+        "s_coord_ft": 57184.3,
+        "s_coord_mi": 10.83,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 383989707 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9753465,
+          37.226712
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_383988634",
+        "street_names": "Los Gatos-Saratoga Road",
+        "s_coord_ft": 57380.6,
+        "s_coord_mi": 10.868,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 383988634 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9771338,
+          37.2272962
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_383988646",
+        "street_names": "Los Gatos-Saratoga Road",
+        "s_coord_ft": 57941.8,
+        "s_coord_mi": 10.974,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 383988646 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9771942,
+          37.2272236
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_1079971730",
+        "street_names": "Los Gatos-Saratoga Road",
+        "s_coord_ft": 57952.4,
+        "s_coord_mi": 10.976,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 1079971730 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9786082,
+          37.2277686
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_383993812",
+        "street_names": "Los Gatos-Saratoga Road; Woodland Avenue",
+        "s_coord_ft": 58403.5,
+        "s_coord_mi": 11.061,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 383993812 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9785458,
+          37.2279242
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_4707295183",
+        "street_names": "Woodland Avenue",
+        "s_coord_ft": 58463.1,
+        "s_coord_mi": 11.073,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 4707295183 (degree=5)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9785529,
+          37.2282045
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_4707295188",
+        "street_names": "Wraight Avenue",
+        "s_coord_ft": 58521.3,
+        "s_coord_mi": 11.084,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 4707295188 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9783811,
+          37.2280152
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_358298691",
+        "street_names": "Creekside Village Drive; Woodland Avenue",
+        "s_coord_ft": 58521.3,
+        "s_coord_mi": 11.084,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 358298691 (degree=5)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9773277,
+          37.2286896
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65497334",
+        "street_names": "Bird Avenue; Chester Street; Woodland Avenue",
+        "s_coord_ft": 58879.1,
+        "s_coord_mi": 11.151,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65497334 (degree=5)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9770567,
+          37.2283556
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_358298814",
+        "street_names": "Creekside Village Drive",
+        "s_coord_ft": 58927.6,
+        "s_coord_mi": 11.161,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 358298814 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9768012,
+          37.2284913
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_358298813",
+        "street_names": "Creekside Village Drive",
+        "s_coord_ft": 59012.0,
+        "s_coord_mi": 11.177,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 358298813 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9758046,
+          37.229066
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_358299021",
+        "street_names": "Creekside Village Drive",
+        "s_coord_ft": 59369.4,
+        "s_coord_mi": 11.244,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 358299021 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9786068,
+          37.2280876
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_2506626412",
+        "street_names": "Wraight Avenue",
+        "s_coord_ft": 60317.2,
+        "s_coord_mi": 11.424,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 2506626412 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9786768,
+          37.2279692
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_4707295187",
+        "street_names": "Woodland Avenue; Wraight Avenue",
+        "s_coord_ft": 60317.2,
+        "s_coord_mi": 11.424,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 4707295187 (degree=5)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.978767,
+          37.2278227
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_383984129",
+        "street_names": "Los Gatos-Saratoga Road",
+        "s_coord_ft": 60376.8,
+        "s_coord_mi": 11.435,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 383984129 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9795229,
+          37.2282553
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_517275759",
+        "street_names": "Los Gatos-Saratoga Road; University Avenue",
+        "s_coord_ft": 60647.2,
+        "s_coord_mi": 11.486,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 517275759 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9795763,
+          37.2281239
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65546644",
+        "street_names": "Los Gatos-Saratoga Road; University Avenue",
+        "s_coord_ft": 60697.5,
+        "s_coord_mi": 11.496,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65546644 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9798823,
+          37.2274981
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_358299495",
+        "street_names": "Boyer Lane; University Avenue",
+        "s_coord_ft": 60942.5,
+        "s_coord_mi": 11.542,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 358299495 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.980238,
+          37.2267544
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65541965",
+        "street_names": "Bentley Avenue; Edelen Avenue; University Avenue",
+        "s_coord_ft": 61232.9,
+        "s_coord_mi": 11.597,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65541965 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9803384,
+          37.2265445
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65567225",
+        "street_names": "Bachman Avenue; University Avenue",
+        "s_coord_ft": 61310.4,
+        "s_coord_mi": 11.612,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65567225 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9806,
+          37.2249
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_FORCE_002",
+        "street_names": "Downtown Los Gatos (N. Santa Cruz & Main)",
+        "s_coord_ft": 61912.7,
+        "s_coord_mi": 11.726,
+        "activity_type": "commercial_core",
+        "is_forced": true,
+        "is_mandatory": true,
+        "source": "VTA GTFS existing stop; VTA Route 27 GTFS stop_times.txt"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9803002,
+          37.2245276
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65480074",
+        "street_names": "Bentley Avenue; Edelen Avenue; Miles Avenue",
+        "s_coord_ft": 62045.4,
+        "s_coord_mi": 11.751,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65480074 (degree=8)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.978627,
+          37.2301709
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65481661",
+        "street_names": "Chester Street; University Avenue",
+        "s_coord_ft": 64189.4,
+        "s_coord_mi": 12.157,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65481661 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9783151,
+          37.2308515
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65458308",
+        "street_names": "Towne Terrace; University Avenue",
+        "s_coord_ft": 64453.7,
+        "s_coord_mi": 12.207,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65458308 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9780559,
+          37.2307995
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_5284766452",
+        "street_names": "Towne Terrace",
+        "s_coord_ft": 64453.7,
+        "s_coord_mi": 12.207,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 5284766452 (degree=5)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9781904,
+          37.2311211
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_5284766457",
+        "street_names": "University Avenue",
+        "s_coord_ft": 64558.5,
+        "s_coord_mi": 12.227,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 5284766457 (degree=5)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9779276,
+          37.2316612
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65474248",
+        "street_names": "Andrews Street; University Avenue",
+        "s_coord_ft": 64769.8,
+        "s_coord_mi": 12.267,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65474248 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9777064,
+          37.2321179
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65606782",
+        "street_names": "Avery Lane; Hubbell Way; University Avenue",
+        "s_coord_ft": 64948.4,
+        "s_coord_mi": 12.301,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65606782 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9771802,
+          37.2332379
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65489539",
+        "street_names": "Roberts Road; University Avenue",
+        "s_coord_ft": 65384.6,
+        "s_coord_mi": 12.383,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65489539 (degree=8)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9761809,
+          37.2353399
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65606785",
+        "street_names": "Blossom Hill Road; University Avenue",
+        "s_coord_ft": 66204.6,
+        "s_coord_mi": 12.539,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65606785 (degree=8)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9763078,
+          37.2362925
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_347440823",
+        "street_names": "University Avenue",
+        "s_coord_ft": 66554.0,
+        "s_coord_mi": 12.605,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 347440823 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9762708,
+          37.2358298
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_1103393617",
+        "street_names": "University Avenue",
+        "s_coord_ft": 66723.2,
+        "s_coord_mi": 12.637,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 1103393617 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9765819,
+          37.2355311
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_1103393700",
+        "street_names": "Blossom Hill Road",
+        "s_coord_ft": 66809.3,
+        "s_coord_mi": 12.653,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 1103393700 (degree=5)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9742534,
+          37.2345004
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65616179",
+        "street_names": "Blossom Hill Road; Oak Meadow Drive",
+        "s_coord_ft": 67541.9,
+        "s_coord_mi": 12.792,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65616179 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9731458,
+          37.2342669
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65489528",
+        "street_names": "Blossom Hill Road; Roberts Road",
+        "s_coord_ft": 67874.7,
+        "s_coord_mi": 12.855,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65489528 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9681612,
+          37.2354696
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65489559",
+        "street_names": "Blossom Hill Road; Roberts Road",
+        "s_coord_ft": 69387.5,
+        "s_coord_mi": 13.142,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65489559 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9658387,
+          37.2360368
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_262617992",
+        "street_names": "Blossom Hill Road; Oak Rim Way",
+        "s_coord_ft": 70093.1,
+        "s_coord_mi": 13.275,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 262617992 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.964102,
+          37.2358298
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_1105654988",
+        "street_names": "Blossom Hill Road",
+        "s_coord_ft": 70603.1,
+        "s_coord_mi": 13.372,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 1105654988 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9636407,
+          37.2357245
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_3901576287",
+        "street_names": "Blossom Hill Road",
+        "s_coord_ft": 70742.5,
+        "s_coord_mi": 13.398,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 3901576287 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9633921,
+          37.2357663
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_3901576292",
+        "street_names": "Blossom Hill Road",
+        "s_coord_ft": 70810.7,
+        "s_coord_mi": 13.411,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 3901576292 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9625418,
+          37.2366047
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_360027295",
+        "street_names": "Los Gatos Boulevard",
+        "s_coord_ft": 71328.4,
+        "s_coord_mi": 13.509,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 360027295 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9621954,
+          37.2373365
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_360010728",
+        "street_names": "Leroy Avenue; Los Gatos Boulevard",
+        "s_coord_ft": 71613.7,
+        "s_coord_mi": 13.563,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 360010728 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9617476,
+          37.2382666
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_360027361",
+        "street_names": "Frank Avenue; Los Gatos Boulevard",
+        "s_coord_ft": 71977.1,
+        "s_coord_mi": 13.632,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 360027361 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.961349,
+          37.2391032
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_360010713",
+        "street_names": "Farley Road; Los Gatos Boulevard",
+        "s_coord_ft": 72303.5,
+        "s_coord_mi": 13.694,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 360010713 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9606337,
+          37.2406106
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_360010711",
+        "street_names": "Los Gatos Boulevard",
+        "s_coord_ft": 72891.3,
+        "s_coord_mi": 13.805,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 360010711 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9597741,
+          37.2408873
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_360028145",
+        "street_names": "Los Gatos Almaden Road",
+        "s_coord_ft": 73160.6,
+        "s_coord_mi": 13.856,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 360028145 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9592338,
+          37.2410855
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65585887",
+        "street_names": "Los Gatos Almaden Road; Peach Blossom Lane",
+        "s_coord_ft": 73333.4,
+        "s_coord_mi": 13.889,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65585887 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.958183,
+          37.2414104
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65445119",
+        "street_names": "Carlton Avenue; Los Gatos Almaden Road",
+        "s_coord_ft": 73660.8,
+        "s_coord_mi": 13.951,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65445119 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9571807,
+          37.2417152
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65543386",
+        "street_names": "Cherry Blossom Lane; Los Gatos Almaden Road",
+        "s_coord_ft": 73972.4,
+        "s_coord_mi": 14.01,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65543386 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9553561,
+          37.2421775
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65585880",
+        "street_names": "Gardenia Way; Los Gatos Almaden Road",
+        "s_coord_ft": 74528.5,
+        "s_coord_mi": 14.115,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65585880 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9542265,
+          37.2424419
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_373628356",
+        "street_names": "Hollycrest Drive; Los Gatos Almaden Road",
+        "s_coord_ft": 74870.4,
+        "s_coord_mi": 14.18,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 373628356 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9533516,
+          37.2425951
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65585874",
+        "street_names": "Greendale Drive; Los Gatos Almaden Road",
+        "s_coord_ft": 75130.6,
+        "s_coord_mi": 14.229,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65585874 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9524716,
+          37.2427543
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65585872",
+        "street_names": "Lester Lane; Los Gatos Almaden Road",
+        "s_coord_ft": 75392.7,
+        "s_coord_mi": 14.279,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65585872 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9520168,
+          37.2428124
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65496095",
+        "street_names": "Longwood Drive; Los Gatos Almaden Road",
+        "s_coord_ft": 75526.5,
+        "s_coord_mi": 14.304,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65496095 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9509954,
+          37.2430106
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65585863",
+        "street_names": "Loma Vista Avenue; Loma Vista Court; Los Gatos Almaden Road",
+        "s_coord_ft": 75831.8,
+        "s_coord_mi": 14.362,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65585863 (degree=8)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9500722,
+          37.2431872
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65583261",
+        "street_names": "Leila Court; Los Gatos Almaden Road",
+        "s_coord_ft": 76107.5,
+        "s_coord_mi": 14.414,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65583261 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9498712,
+          37.2432228
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65585861",
+        "street_names": "Linda Avenue; Los Gatos Almaden Road",
+        "s_coord_ft": 76167.3,
+        "s_coord_mi": 14.426,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65585861 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9491716,
+          37.2433449
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65585859",
+        "street_names": "Los Gatos Almaden Road; National Avenue",
+        "s_coord_ft": 76375.3,
+        "s_coord_mi": 14.465,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65585859 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9487036,
+          37.2434287
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65585857",
+        "street_names": "El Gato Lane; Los Gatos Almaden Road",
+        "s_coord_ft": 76514.6,
+        "s_coord_mi": 14.491,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65585857 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9476674,
+          37.2435967
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65484516",
+        "street_names": "Los Gatos Almaden Road; Verde Court",
+        "s_coord_ft": 76821.7,
+        "s_coord_mi": 14.55,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65484516 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9462353,
+          37.2435856
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65473257",
+        "street_names": "Camino del Cerro; Los Gatos Almaden Road",
+        "s_coord_ft": 77237.7,
+        "s_coord_mi": 14.628,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65473257 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9461622,
+          37.2433084
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_1105810080",
+        "street_names": "Camino del Cerro",
+        "s_coord_ft": 77284.8,
+        "s_coord_mi": 14.637,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 1105810080 (degree=5)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9458631,
+          37.2434605
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_1105810092",
+        "street_names": "Los Gatos Almaden Road",
+        "s_coord_ft": 77355.0,
+        "s_coord_mi": 14.651,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 1105810092 (degree=5)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9454201,
+          37.2433712
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65585852",
+        "street_names": "Los Gatos Almaden Road; Redstone Drive",
+        "s_coord_ft": 77487.7,
+        "s_coord_mi": 14.676,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65585852 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9435599,
+          37.2433598
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65499550",
+        "street_names": "Escobar Avenue; Los Gatos Almaden Road",
+        "s_coord_ft": 78028.0,
+        "s_coord_mi": 14.778,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65499550 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9419952,
+          37.2433784
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65584282",
+        "street_names": "Los Gatos Almaden Road; Ross Creek Court",
+        "s_coord_ft": 78482.4,
+        "s_coord_mi": 14.864,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65584282 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9408,
+          37.2433887
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65580856",
+        "street_names": "Aurora Lane; Los Gatos Almaden Road",
+        "s_coord_ft": 78829.6,
+        "s_coord_mi": 14.93,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65580856 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9375594,
+          37.2434211
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65467292",
+        "street_names": "Los Gatos Almaden Road; Rosswood Drive",
+        "s_coord_ft": 79770.8,
+        "s_coord_mi": 15.108,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65467292 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.896,
+          37.239
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_FORCE_004",
+        "street_names": "Dartmouth Middle School (Leigh Ave)",
+        "s_coord_ft": 80628.6,
+        "s_coord_mi": 15.271,
+        "activity_type": "school",
+        "is_forced": true,
+        "is_mandatory": true,
+        "source": "Union School District facility map"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.8411,
+          37.2528
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_FORCE_005",
+        "street_names": "Blossom Hill LRT Station (transfer)",
+        "s_coord_ft": 80628.6,
+        "s_coord_mi": 15.271,
+        "activity_type": "lrt_transfer",
+        "is_forced": true,
+        "is_mandatory": false,
+        "source": "VTA GTFS stops.txt (stop_id PS_BLSM)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9350072,
+          37.2446052
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65467291",
+        "street_names": "Esther Drive; Rosswood Drive",
+        "s_coord_ft": 80628.6,
+        "s_coord_mi": 15.271,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65467291 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9098,
+          37.2496
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_FORCE_007",
+        "street_names": "Camden Ave & Highway 85 (transit hub area)",
+        "s_coord_ft": 80628.6,
+        "s_coord_mi": 15.271,
+        "activity_type": "major_intersection",
+        "is_forced": true,
+        "is_mandatory": false,
+        "source": "Caltrans SR-85 / Camden Ave interchange; existing VTA stop stop_id 1757"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9353455,
+          37.2454998
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65545396",
+        "street_names": "Esther Drive; Sufonet Drive",
+        "s_coord_ft": 80969.5,
+        "s_coord_mi": 15.335,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65545396 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9319,
+          37.2517
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_FORCE_003",
+        "street_names": "Union Middle School (Dartmouth/Union Ave area)",
+        "s_coord_ft": 80969.5,
+        "s_coord_mi": 15.335,
+        "activity_type": "school",
+        "is_forced": true,
+        "is_mandatory": true,
+        "source": "Union School District facility map; FTA Title VI \u00a77 school access"
+      }
+    }
+  ]
+}

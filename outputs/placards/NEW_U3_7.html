@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stop Placard — Synthetic U3 #7</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#141720;color:#d8dce8;font-family:IBM Plex Mono,Consolas,monospace;font-size:12px;padding:16px;max-width:720px;margin:0 auto}
+  .card{background:rgba(20,23,40,.9);border:1px solid rgba(42,48,80,.8);border-radius:8px;padding:16px;margin-bottom:12px}
+  h2{font-size:15px;font-weight:700;color:#fff;margin-bottom:8px}
+  .section-label{font-size:9px;color:#7a8098;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+  #mini-map{height:220px;border-radius:6px;border:1px solid rgba(42,48,80,.8)}
+  a{color:#6c9bff;text-decoration:none}
+  a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div style="margin-bottom:10px">
+  <a href="index.html" style="font-size:10px;color:#7a8098">← All placards</a>
+  &nbsp;|&nbsp;
+  <a href="../route_optimization.html" style="font-size:10px;color:#7a8098">Route dashboard →</a>
+</div>
+
+<!-- Header band -->
+<div class="card">
+  <div class="section-label">Routes serving this stop</div>
+  <div style="margin-bottom:10px"><span style="background:#4b7bec22;border:1px solid #4b7bec;border-radius:4px;padding:2px 8px;color:#4b7bec;font-size:11px;font-weight:700;margin-right:6px">&#9679; Route OPT_06 → Union & Stratford</span></div>
+  <h2>Synthetic U3 #7</h2>
+  <div style="color:#7a8098;font-size:10px;margin-top:4px">
+    Stop ID: NEW_U3_7 &nbsp;|&nbsp; District: U3 &nbsp;|&nbsp; <span style="color:#ffa94d">New stop</span>
+     &nbsp;|&nbsp; ♿ ADA accessible
+  </div>
+</div>
+
+<!-- Strip diagram -->
+
+<div style="margin:16px 0">
+  <div style="font-size:10px;color:#7a8098;margin-bottom:6px">Stop sequence</div>
+  <div class="mermaid" style="font-size:10px">graph LR
+  s18["Synthetic U3 #6"]
+  s19["Union & Barrett"]
+  THIS["**Synthetic U3 #7**"]
+  s21["Union & Stratford"]
+  s22["Union & Stratford"]
+  s18 --> s19 --> THIS --> s21 --> s22</div>
+</div>
+
+<!-- Mini-map -->
+<div class="card">
+  <div class="section-label">Map</div>
+  <div id="mini-map"></div>
+</div>
+
+<!-- Timetable -->
+<div class="card">
+  <div class="section-label">Schedule (from optimised GTFS)</div>
+  
+<table style="border-collapse:collapse;font-size:10px;width:100%;color:#d8dce8">
+  <thead><tr style="color:#7a8098;border-bottom:1px solid rgba(42,48,80,.6)">
+    <th style="padding:3px 8px;text-align:left">Weekday</th>
+    <th style="padding:3px 8px;text-align:left">Weekend</th>
+  </tr></thead>
+  <tbody><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">07:45</td><td style="padding:2px 8px">07:45</td></tr><tr style="background:transparent"><td style="padding:2px 8px">07:55</td><td style="padding:2px 8px">07:55</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">08:05</td><td style="padding:2px 8px">08:05</td></tr><tr style="background:transparent"><td style="padding:2px 8px">08:15</td><td style="padding:2px 8px">08:15</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">08:25</td><td style="padding:2px 8px">08:25</td></tr><tr style="background:transparent"><td style="padding:2px 8px">08:35</td><td style="padding:2px 8px">08:35</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">08:45</td><td style="padding:2px 8px">08:45</td></tr><tr style="background:transparent"><td style="padding:2px 8px">08:55</td><td style="padding:2px 8px">08:55</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">09:05</td><td style="padding:2px 8px">09:05</td></tr><tr style="background:transparent"><td style="padding:2px 8px">09:15</td><td style="padding:2px 8px">09:15</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">09:25</td><td style="padding:2px 8px">09:25</td></tr><tr style="background:transparent"><td style="padding:2px 8px">09:35</td><td style="padding:2px 8px">09:35</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">09:45</td><td style="padding:2px 8px">09:45</td></tr><tr style="background:transparent"><td style="padding:2px 8px">09:55</td><td style="padding:2px 8px">09:55</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">10:05</td><td style="padding:2px 8px">10:05</td></tr><tr style="background:transparent"><td style="padding:2px 8px">10:15</td><td style="padding:2px 8px">10:15</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">10:25</td><td style="padding:2px 8px">10:25</td></tr><tr style="background:transparent"><td style="padding:2px 8px">10:35</td><td style="padding:2px 8px">10:35</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">10:45</td><td style="padding:2px 8px">10:45</td></tr><tr style="background:transparent"><td style="padding:2px 8px">11:15</td><td style="padding:2px 8px">11:15</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">11:45</td><td style="padding:2px 8px">11:45</td></tr><tr style="background:transparent"><td style="padding:2px 8px">12:15</td><td style="padding:2px 8px">12:15</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">12:45</td><td style="padding:2px 8px">12:45</td></tr><tr style="background:transparent"><td style="padding:2px 8px">13:15</td><td style="padding:2px 8px">13:15</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">13:45</td><td style="padding:2px 8px">13:45</td></tr><tr style="background:transparent"><td style="padding:2px 8px">14:15</td><td style="padding:2px 8px">14:15</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">14:45</td><td style="padding:2px 8px">14:45</td></tr><tr style="background:transparent"><td style="padding:2px 8px">15:15</td><td style="padding:2px 8px">15:15</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">15:45</td><td style="padding:2px 8px">15:45</td></tr><tr style="background:transparent"><td style="padding:2px 8px">16:15</td><td style="padding:2px 8px">16:15</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">16:22</td><td style="padding:2px 8px">16:22</td></tr><tr style="background:transparent"><td style="padding:2px 8px">16:29</td><td style="padding:2px 8px">16:29</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">16:36</td><td style="padding:2px 8px">16:36</td></tr><tr style="background:transparent"><td style="padding:2px 8px">16:43</td><td style="padding:2px 8px">16:43</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">16:50</td><td style="padding:2px 8px">16:50</td></tr><tr style="background:transparent"><td style="padding:2px 8px">16:57</td><td style="padding:2px 8px">16:57</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">17:04</td><td style="padding:2px 8px">17:04</td></tr><tr style="background:transparent"><td style="padding:2px 8px">17:11</td><td style="padding:2px 8px">17:11</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">17:18</td><td style="padding:2px 8px">17:18</td></tr><tr style="background:transparent"><td style="padding:2px 8px">17:25</td><td style="padding:2px 8px">17:25</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">17:32</td><td style="padding:2px 8px">17:32</td></tr><tr style="background:transparent"><td style="padding:2px 8px">17:39</td><td style="padding:2px 8px">17:39</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">17:46</td><td style="padding:2px 8px">17:46</td></tr><tr style="background:transparent"><td style="padding:2px 8px">17:53</td><td style="padding:2px 8px">17:53</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">18:00</td><td style="padding:2px 8px">18:00</td></tr><tr style="background:transparent"><td style="padding:2px 8px">18:08</td><td style="padding:2px 8px">18:08</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">18:16</td><td style="padding:2px 8px">18:16</td></tr><tr style="background:transparent"><td style="padding:2px 8px">18:24</td><td style="padding:2px 8px">18:24</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">18:32</td><td style="padding:2px 8px">18:32</td></tr><tr style="background:transparent"><td style="padding:2px 8px">18:40</td><td style="padding:2px 8px">18:40</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">18:48</td><td style="padding:2px 8px">18:48</td></tr><tr style="background:transparent"><td style="padding:2px 8px">18:56</td><td style="padding:2px 8px">18:56</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">19:04</td><td style="padding:2px 8px">19:04</td></tr><tr style="background:transparent"><td style="padding:2px 8px">19:12</td><td style="padding:2px 8px">19:12</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">19:20</td><td style="padding:2px 8px">19:20</td></tr><tr style="background:transparent"><td style="padding:2px 8px">19:28</td><td style="padding:2px 8px">19:28</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">19:36</td><td style="padding:2px 8px">19:36</td></tr><tr style="background:transparent"><td style="padding:2px 8px">19:44</td><td style="padding:2px 8px">19:44</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">19:52</td><td style="padding:2px 8px">19:52</td></tr><tr style="background:transparent"><td style="padding:2px 8px">20:00</td><td style="padding:2px 8px">20:00</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">20:08</td><td style="padding:2px 8px">20:08</td></tr><tr style="background:transparent"><td style="padding:2px 8px">20:16</td><td style="padding:2px 8px">20:16</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">20:43</td><td style="padding:2px 8px">20:43</td></tr><tr style="background:transparent"><td style="padding:2px 8px">21:10</td><td style="padding:2px 8px">21:10</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">21:37</td><td style="padding:2px 8px">21:37</td></tr><tr style="background:transparent"><td style="padding:2px 8px">22:04</td><td style="padding:2px 8px">22:04</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">22:31</td><td style="padding:2px 8px">22:31</td></tr></tbody>
+</table>
+</div>
+
+<!-- Footer: QR -->
+<div class="card" style="display:flex;gap:16px;align-items:flex-start">
+  <div>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXIAAAFyAQAAAADAX2ykAAACn0lEQVR4nO2bS26jQBCGvxqQvARpDuCjNDeYI0U+Um4AR/EN6GWkRv8surFxokweIghGVQskzLf4pVZ1PW3iKzb8+hIOzjvvvPPOO+/8e7wVqzGzGoZ2Mog1EOdv3YZ6nF+ZD5KkEdQzGeF6knVNAqgkSXrkf1qP8yvzsXioPY2VGM4JXazO37JPb6vH+XX4+tW7hrbCaKYamOxN9bQ3/c5/l1ffSNbtRo/z3+Fn/20ERDAADX8qWbjWSURYOvHe9Dv/KX4wM7MWCCPY03UOvR1TTp+31eP8Snw+x7uHajgngMmgebHi2Nvpcf4neOvmWhdijS7nhHoqkU861li3oR7n1+V1acG6RoImAfEks3uTo3nx+/mYPCpWHFZ9/i2hvikPaKTcAun3pt/5z/BmdlJ20yDJuniSPV3LrZx7WlvqcX4t/qG/kYPw7yTilFMrC88nQY7EW+hx/id49bPrApNZR6UyZPD86tD8HH9HIIwl/hKUgCblSJxfPf4ekWceDlUlg1octyT1TXn4+R6SR3o8VRopl75hLI+F+fkekx/MjOEsSeNkpQjOVe9kDC1Yt6Ue51fi5/u5Scy+WqLuwp0X1/Xe9Dv/GV66lq4kQwuzw5b+pNnZ9zcOyuf613Kte62ThTw6qgS8lP5k6G8jiL3pd/4D06OVC1kSYYRSE3v+fGz+vj9JuNYl3cpOfB8sbajH+bX4kl+V/clKeaCQM62Rhf96fXRoPt42nONJurRzkVQ82ecL/w9fztK6WOclO6CaN+0OoN/5hb3ej7UwthA01RrOqbacZD3P7rs7/c7/217vT4pYJQOwMCIjtjCcb0tYe9Pv/Ac2zxeAnDDP/0pZplZj5fXRMfk3+5O3Ny0+NMn7G84777zzzju/Hv8X2om2A/TCveAAAAAASUVORK5CYII=" style="width:80px;height:80px;border-radius:4px" alt="QR">
+    <div style="font-size:9px;color:#7a8098;margin-top:4px;text-align:center">Scan to open<br>route dashboard</div>
+  </div>
+  <div style="font-size:10px;color:#7a8098">
+    <div><b style="color:#d8dce8">Synthetic U3 #7</b></div>
+    <div>ID: NEW_U3_7</div>
+    <div>Lat: 37.25992 / Lon: -121.92069</div>
+    <div>♿ ADA accessible</div>
+    <div style="margin-top:8px">Generated by Los Gatos Transit CBA</div>
+  </div>
+</div>
+
+<script>
+mermaid.initialize({startOnLoad:true,theme:'dark',themeVariables:{fontSize:'10px'}});
+
+const NEARBY=[{"id": "NEW_U3_1", "name": "Synthetic U3 #1", "lat": 37.250871, "lon": -121.912228, "is_this": false}, {"id": "NEW_U3_4", "name": "Synthetic U3 #4", "lat": 37.257872, "lon": -121.909043, "is_this": false}, {"id": "NEW_U3_5", "name": "Synthetic U3 #5", "lat": 37.257226, "lon": -121.911374, "is_this": false}, {"id": "NEW_U3_6", "name": "Synthetic U3 #6", "lat": 37.256646, "lon": -121.913687, "is_this": false}, {"id": "2885", "name": "Union & Barrett", "lat": 37.254947, "lon": -121.931404, "is_this": false}, {"id": "NEW_U3_7", "name": "Synthetic U3 #7", "lat": 37.259923, "lon": -121.920695, "is_this": true}, {"id": "2884", "name": "Union & Stratford", "lat": 37.258631, "lon": -121.931437, "is_this": false}, {"id": "2806", "name": "Union & Stratford", "lat": 37.258773, "lon": -121.93124, "is_this": false}];
+const MAP_LAT=37.259923;
+const MAP_LON=-121.920695;
+
+const map=L.map('mini-map',{attributionControl:false,zoomControl:true}).setView([MAP_LAT,MAP_LON],15);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',{
+  attribution:'&copy; OpenStreetMap / CartoDB'
+}).addTo(map);
+
+// Route polyline (dim) from nearby stops
+if(NEARBY.length>1){
+  const pts=NEARBY.map(s=>[s.lat,s.lon]);
+  L.polyline(pts,{color:'#6c9bff',weight:2,opacity:.35,dashArray:'4 4'}).addTo(map);
+}
+
+// Upstream/downstream stops
+NEARBY.forEach(s=>{
+  if(s.is_this){
+    L.circleMarker([s.lat,s.lon],{radius:10,color:'#fff',weight:2,fillColor:'#ffa94d',fillOpacity:.95})
+      .addTo(map).bindPopup('<b>'+s.name+'</b><br><i>This stop</i>');
+  }else{
+    L.circleMarker([s.lat,s.lon],{radius:5,color:'#fff',weight:1,fillColor:'#6c9bff',fillOpacity:.75})
+      .addTo(map).bindPopup(s.name);
+  }
+});
+</script>
+</body>
+</html>

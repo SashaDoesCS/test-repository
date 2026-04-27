@@ -12,6 +12,7 @@ import logging
 import math
 import pickle
 from pathlib import Path
+from typing import List, Optional, Tuple
 
 import pandas as pd
 
@@ -24,8 +25,11 @@ _R_MILES = 3958.8
 _MI_PER_DEG_LAT = 69.0
 _MI_PER_DEG_LON = 54.6  # cos(37°) × 69
 
-# Where the pipeline caches the OSMnx road graph (written by route27_corridor.py)
+# Where the pipeline caches the OSMnx road graph (written by route27_corridor.py).
+# network_graph.pkl covers the full study-area bounding box (incl. D9/Summit area)
+# and is checked first; route27_network.pkl covers only the Route 27 corridor.
 _NETWORK_CACHE_CANDIDATES = [
+    PROJECT_ROOT / "data" / "geospatial" / "network_graph.pkl",
     PROJECT_ROOT / "data" / "geospatial" / "route27_network.pkl",
     PROJECT_ROOT / "data" / "cache" / "route27_road_network.pkl",
 ]
@@ -105,6 +109,48 @@ def _candidates_from_graph(
     return candidates
 
 
+def _min_dist_to_polyline_miles(
+    lat: float,
+    lon: float,
+    polyline: List[Tuple[float, float]],
+) -> float:
+    """Return minimum haversine distance (miles) from (lat, lon) to any vertex of polyline."""
+    if not polyline:
+        return float("inf")
+    return min(_haversine_miles(lat, lon, plat, plon) for plat, plon in polyline)
+
+
+def _filter_by_corridor(
+    candidates: list,
+    corridor_polyline: List[Tuple[float, float]],
+    corridor_buffer_m: float,
+) -> list:
+    """Drop candidates farther than corridor_buffer_m from the corridor polyline.
+
+    Uses haversine distance to each vertex of the polyline as a fast approximation.
+    Logs a warning (for Opus tuning) if all candidates are filtered out.
+    """
+    if not corridor_polyline:
+        return candidates
+    buffer_miles = corridor_buffer_m / 1609.344
+    kept = [
+        (lat, lon) for lat, lon in candidates
+        if _min_dist_to_polyline_miles(lat, lon, corridor_polyline) <= buffer_miles
+    ]
+    n_dropped = len(candidates) - len(kept)
+    if n_dropped:
+        logger.debug("Corridor filter: dropped %d/%d candidates (buffer=%.0fm).",
+                     n_dropped, len(candidates), corridor_buffer_m)
+    if not kept and candidates:
+        logger.warning(
+            "Corridor filter rejected ALL %d candidates (buffer=%.0fm). "
+            "No synthetic stops will be added for this district on this route. "
+            "Consider loosening corridor_buffer_m for Opus tuning.",
+            len(candidates), corridor_buffer_m,
+        )
+    return kept
+
+
 def _candidates_grid_fallback(
     centroid_lat: float,
     centroid_lon: float,
@@ -146,6 +192,8 @@ def generate_synthetic_candidates(
     tdi: pd.DataFrame,
     spacing_ft: int = 1320,
     max_per_district: int = 8,
+    corridor_polyline: Optional[List[Tuple[float, float]]] = None,
+    corridor_buffer_m: float = 400.0,
 ) -> pd.DataFrame:
     """Generate synthetic bus stop candidates in underserved districts.
 
@@ -162,6 +210,11 @@ def generate_synthetic_candidates(
         tdi: has district_id column (for schema alignment).
         spacing_ft: candidate spacing in feet (1320 = ¼ mile, FTA Circular 9040.1G).
         max_per_district: cap on unique candidates per district.
+        corridor_polyline: optional list of (lat, lon) tuples defining the existing
+            route corridor. When provided, candidates farther than corridor_buffer_m
+            from the nearest vertex are dropped. Greenfield calls omit this arg.
+        corridor_buffer_m: maximum distance (metres) a candidate may be from the
+            corridor_polyline. Default 400 m. Tune via Opus agent.
 
     Returns:
         DataFrame with columns: stop_id, stop_name, stop_lat, stop_lon,
@@ -235,6 +288,10 @@ def generate_synthetic_candidates(
                 existing_latlons, spacing_miles, exclusion_miles, max_collect,
             )
 
+        # Apply corridor filter if provided
+        if corridor_polyline:
+            raw = _filter_by_corridor(raw, corridor_polyline, corridor_buffer_m)
+
         # Deduplicate: keep first max_per_district unique candidates
         seen = []
         for lat, lon in raw:
@@ -259,7 +316,29 @@ def generate_synthetic_candidates(
         logger.info("  District %s: %d synthetic candidates placed.", did, len(seen))
 
     if rows:
-        return pd.DataFrame(rows)
+        result_df = pd.DataFrame(rows)
+        # Step 8: Drop candidates outside the Los Gatos bounding box.
+        # This guards against grid/graph candidates that land outside the study area.
+        import yaml as _yaml
+        _cfg_path = PROJECT_ROOT / "config.yaml"
+        _bbox = {"lat_min": 37.10, "lat_max": 37.30, "lon_min": -122.05, "lon_max": -121.90}
+        try:
+            with open(_cfg_path, "r", encoding="utf-8") as _f:
+                _cfg = _yaml.safe_load(_f)
+            _bbox = _cfg.get("optimization", {}).get("los_gatos_bbox", _bbox)
+        except Exception:
+            pass
+        _n_before = len(result_df)
+        result_df = result_df[
+            (result_df["stop_lat"] >= _bbox["lat_min"])
+            & (result_df["stop_lat"] <= _bbox["lat_max"])
+            & (result_df["stop_lon"] >= _bbox["lon_min"])
+            & (result_df["stop_lon"] <= _bbox["lon_max"])
+        ]
+        _n_dropped = _n_before - len(result_df)
+        if _n_dropped > 0:
+            logger.info("BBox guard: dropped %d candidates outside Los Gatos bbox.", _n_dropped)
+        return result_df
     return pd.DataFrame(columns=[
         "stop_id", "stop_name", "stop_lat", "stop_lon",
         "district_id", "route_ids", "is_synthetic", "wheelchair_boarding",

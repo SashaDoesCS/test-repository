@@ -468,6 +468,14 @@ coverage:
 # ===========================================================
 
 optimization:
+  route_27_only_mode: true   # Skip greenfield/restoration designers; only run Route 27 derive-from-existing
+
+  los_gatos_bbox:
+    lat_min: 37.10
+    lat_max: 37.30
+    lon_min: -122.05
+    lon_max: -121.75    # Extended east to cover Winchester LRT (~-121.788) and full Route 27 corridor
+
   bounding_box:
     north: 37.27
     south: 37.06

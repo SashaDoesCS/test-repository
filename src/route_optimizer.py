@@ -41,6 +41,49 @@ _MIN_STOPS = 4
 # Maximum one-way route travel time (minutes)
 _MAX_ROUTE_MIN = 90
 
+# ── Free parameters (tuned 2026-04-24) ────────────────────────────────
+# Penalty weight for bearing changes in 2-opt resequencing (seconds per degree
+# of cumulative bearing change).  0.5 s/deg means a 180° U-turn adds 90 s.
+# Empirically the bend penalty runs 30-90% of approx travel cost on dense
+# corridor routes (OPT_02/06/07).  That is intentionally aggressive: these
+# routes have many near-coincident stops where time-only 2-opt produces
+# zigzags, and the smoothing dominance is what drives the post-fix degenerate-
+# leg drop from 38% to 9%.  Lowering further regresses zigzag rate; raising
+# starts to add detour distance.  Keep at 0.5.
+MONOTONICITY_WEIGHT: float = 0.5
+
+# Penalty per metre of detour when inserting a synthetic stop into an existing
+# route sequence.  0.01 boardings/m means a 100 m detour costs 1 boarding/day.
+# In practice the upstream corridor filter (400 m buffer applied in
+# create_routes) rejects off-corridor candidates before scoring, so this acts
+# as a redundant ranking tiebreaker rather than a primary gate.  Harmless at
+# this value — leaving unchanged.
+INSERT_DETOUR_ALPHA: float = 0.01
+
+# Step 2: Cap on net synthetic stop additions to Route 27. Opus will tune.
+MAX_SYNTHETIC_ADDITIONS: int = 8
+
+# Step 2: If True, low-boarding existing (non-mandatory, non-school) stops
+# can be pruned to make budget for higher-scoring synthetic candidates.
+# Disabled (2026-04-26): stop removal runs BEFORE stops are scored in
+# Stage 3f, so demand_score on base GTFS stops is uninitialised (0.0) and
+# the pruner removes all base stops indiscriminately. Re-enable only after
+# moving the pruning step to after Stage 3f or providing a real comparison.
+ALLOW_STOP_REMOVAL: bool = False
+
+# Step 3: Demand attribution divisor cap. Beyond this many stops in one
+# quarter-mile district, additional stops fragment the same riders rather
+# than capturing new ones. Opus will tune.
+MAX_STOPS_PER_DISTRICT_DIVISOR: int = 4
+
+# Investigation A (2026-04-26): corridor buffer for synthetic-stop insertion
+# into derive-from-existing routes. 0.25mi (FTA urban walk) yielded only 2 of
+# 58 synthetic candidates. 0.5mi (FTA suburban walk) yields 8 — matches the
+# user's 5-10 target. Defensible: a route can detour up to a half-mile to
+# pick up significant demand without dramatically increasing travel time.
+CORRIDOR_BUFFER_MILES: float = 0.5
+# ──────────────────────────────────────────────────────────────────────
+
 
 def _haversine_miles(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
     """Return great-circle distance in miles."""
@@ -51,6 +94,80 @@ def _haversine_miles(lat1: float, lon1: float, lat2: float, lon2: float) -> floa
          + math.cos(math.radians(lat1)) * math.cos(math.radians(lat2))
          * math.sin(dlon / 2) ** 2)
     return R * 2 * math.asin(math.sqrt(a))
+
+
+def _bearing(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
+    """Return forward azimuth in degrees [0, 360) from point 1 to point 2."""
+    lat1_r = math.radians(lat1)
+    lat2_r = math.radians(lat2)
+    dlon_r = math.radians(lon2 - lon1)
+    x = math.sin(dlon_r) * math.cos(lat2_r)
+    y = (math.cos(lat1_r) * math.sin(lat2_r)
+         - math.sin(lat1_r) * math.cos(lat2_r) * math.cos(dlon_r))
+    return (math.degrees(math.atan2(x, y)) + 360) % 360
+
+
+def _sum_bearing_changes(seq: list) -> float:
+    """Sum of absolute bearing changes (degrees, normalised 0–180) over interior vertices.
+
+    Args:
+        seq: list of OptimisedStop objects with stop_lat / stop_lon attributes.
+    Returns:
+        Cumulative bearing-change in degrees across all interior stops.
+    """
+    if len(seq) < 3:
+        return 0.0
+    total = 0.0
+    for i in range(1, len(seq) - 1):
+        b_in  = _bearing(seq[i-1].stop_lat, seq[i-1].stop_lon,
+                         seq[i].stop_lat,   seq[i].stop_lon)
+        b_out = _bearing(seq[i].stop_lat,   seq[i].stop_lon,
+                         seq[i+1].stop_lat, seq[i+1].stop_lon)
+        diff = abs(b_out - b_in)
+        if diff > 180:
+            diff = 360 - diff
+        total += diff
+    return total
+
+
+def _two_opt_resequence(
+    stops: list,
+    travel_time_fn,
+) -> list:
+    """2-opt improvement of a stop sequence, penalising bearing back-tracking.
+
+    Args:
+        stops: List of OptimisedStop objects.
+        travel_time_fn: callable(stop_id_a, stop_id_b) → float (seconds).
+
+    Returns:
+        Reordered list of OptimisedStop objects.
+    """
+    if len(stops) <= 3:
+        return stops
+
+    def tour_cost(seq: list) -> float:
+        travel = sum(
+            travel_time_fn(seq[k].stop_id, seq[k + 1].stop_id)
+            for k in range(len(seq) - 1)
+        )
+        monotonicity_penalty = _sum_bearing_changes(seq) * MONOTONICITY_WEIGHT
+        return travel + monotonicity_penalty
+
+    best = list(stops)
+    best_cost = tour_cost(best)
+    improved = True
+    while improved:
+        improved = False
+        for i in range(1, len(best) - 1):
+            for j in range(i + 1, len(best)):
+                candidate = best[:i] + best[i:j + 1][::-1] + best[j + 1:]
+                c = tour_cost(candidate)
+                if c < best_cost - 1e-9:
+                    best = candidate
+                    best_cost = c
+                    improved = True
+    return best
 
 
 # =====================================================================
@@ -84,6 +201,9 @@ class OptimisedRoute:
     estimated_one_way_min: float = 0.0
     bcr: Optional[float] = None
     headways: dict = field(default_factory=dict)  # window → headway_min
+    polyline: list = field(default_factory=list)  # (lat, lon) road-following geometry
+    diversion_rate: float = 0.08  # Step 4: per-route diversion rate from config default
+    route_total_demand: float = 0.0  # Step 3: aggregate demand sanity-check (not divided by stops)
 
 
 # =====================================================================
@@ -308,7 +428,12 @@ def estimate_daily_boardings(
             row = districts_df[districts_df[id_col].astype(str) == did]
             if not row.empty:
                 dist_pop = float(row.iloc[0].get(pop_col, 0))
-                walk_shed_pop = dist_pop / max(selected_stop_count, 1)
+                # Cap divisor: beyond MAX_STOPS_PER_DISTRICT_DIVISOR stops in
+                # one district, additional stops fragment the same riders rather
+                # than capturing new ones (Step 3 fix).
+                walk_shed_pop = dist_pop / max(
+                    min(selected_stop_count, MAX_STOPS_PER_DISTRICT_DIVISOR), 1
+                )
 
     if walk_shed_pop <= 0:
         # Fallback: fixed 500-person walkshed when district data unavailable
@@ -613,28 +738,59 @@ def _insert_stops_into_sequence(
         stop = OptimisedStop(
             stop_id=item["stop_id"], stop_name=item["stop_name"],
             stop_lat=item["stop_lat"], stop_lon=item["stop_lon"],
-            district_id=None, is_existing=True,
+            district_id=item.get("district_id"),  # Investigation B: was hardcoded None
+            is_existing=True,
             is_school_stop=False, is_mandatory=False,
         )
         seq.append(stop)
         existing_ids.add(item["stop_id"])
 
     insertions = 0
+    # Score each candidate by demand_gain - INSERT_DETOUR_ALPHA * detour_distance_m,
+    # then insert the best-scoring candidates first (up to max_insertions).
+    scored_candidates = []
+    _miles_to_m = 1609.344
     for cand in candidates:
+        if cand.stop_id in existing_ids:
+            continue
+        demand_gain = getattr(cand, "demand_score", 0.0)
+
+        # Find best insertion position (minimises detour triangle inequality)
+        best_pos = 1
+        best_detour_m = float("inf")
+        for pos in range(1, len(seq) + 1):
+            prev = seq[pos - 1] if pos > 0 else seq[0]
+            nxt  = seq[pos] if pos < len(seq) else seq[-1]
+            if pos == 0 or pos > len(seq):
+                # Extension: cost is just distance to endpoint
+                detour = _haversine_miles(
+                    cand.stop_lat, cand.stop_lon, prev.stop_lat, prev.stop_lon
+                ) * _miles_to_m
+            else:
+                d_prev_cand = _haversine_miles(prev.stop_lat, prev.stop_lon,
+                                               cand.stop_lat, cand.stop_lon) * _miles_to_m
+                d_cand_next = _haversine_miles(cand.stop_lat, cand.stop_lon,
+                                               nxt.stop_lat, nxt.stop_lon) * _miles_to_m
+                d_prev_next = _haversine_miles(prev.stop_lat, prev.stop_lon,
+                                               nxt.stop_lat, nxt.stop_lon) * _miles_to_m
+                detour = d_prev_cand + d_cand_next - d_prev_next
+            if detour < best_detour_m:
+                best_detour_m = detour
+                best_pos = pos
+
+        score = demand_gain - INSERT_DETOUR_ALPHA * max(0.0, best_detour_m)
+        scored_candidates.append((score, best_pos, cand))
+
+    # Sort by descending score; insert best candidates first
+    scored_candidates.sort(key=lambda x: -x[0])
+    for score, best_pos, cand in scored_candidates:
         if insertions >= max_insertions:
             break
         if cand.stop_id in existing_ids:
             continue
-
-        # Find nearest existing stop index
-        nearest_idx = min(
-            range(len(seq)),
-            key=lambda i: _haversine_miles(cand.stop_lat, cand.stop_lon, seq[i].stop_lat, seq[i].stop_lon)
-        )
-        # Insert after nearest stop (or before if at end and allow_extensions)
-        insert_pos = nearest_idx + 1
-        if insert_pos > len(seq) and not allow_extensions:
-            insert_pos = nearest_idx
+        insert_pos = best_pos
+        if not allow_extensions:
+            insert_pos = min(insert_pos, len(seq))
         seq.insert(insert_pos, cand)
         existing_ids.add(cand.stop_id)
         insertions += 1
@@ -676,16 +832,71 @@ def _design_routes_derive_from_existing(
 
     walk_buf = opt_cfg.get("walk_buffer_urban_miles", 0.25)
 
+    # Load stop->district map once so base GTFS stops can be enriched with
+    # district_id (otherwise estimate_daily_boardings falls back to TDI=0.2 +
+    # walk_shed_pop=500 for those stops, which produced the 126 vs 1432 gap).
+    stop_to_district: dict = {}
+    try:
+        sdm = pd.read_csv("outputs/tables/stop_district_matrix.csv", dtype=str)
+        for _, row in sdm.iterrows():
+            sid = str(row.get("stop_id", ""))
+            did = row.get("district_id")
+            if pd.notna(did) and str(did) not in ("nan", ""):
+                stop_to_district[sid] = str(did)
+        logger.info("Loaded stop->district map: %d entries with valid districts.", len(stop_to_district))
+    except Exception as exc:
+        logger.warning("Could not load stop_district_matrix (%s); base stops will lack district_id.", exc)
+
+    # Nearest-district fallback for stops outside any LG district polygon
+    # (e.g. Route 27 stops in San Jose past lon -121.88). Using centroid distance.
+    district_centroids: list = []
+    try:
+        dprof = pd.read_csv("outputs/tables/district_profile_initial.csv")
+        for _, drow in dprof.iterrows():
+            district_centroids.append((
+                str(drow.get("id") or drow.get("district_id")),
+                float(drow["centroid_lat"]),
+                float(drow["centroid_lon"]),
+            ))
+    except Exception:
+        pass
+
+    def _nearest_district(lat: float, lon: float) -> Optional[str]:
+        if not district_centroids:
+            return None
+        best = min(district_centroids,
+                   key=lambda c: _haversine_miles(lat, lon, c[1], c[2]))
+        return best[0]
+
     for anchor_id in sorted_anchors:
         base_seq = _load_gtfs_stop_sequence(anchor_id, gtfs_dir)
         if not base_seq:
             logger.info("Anchor route %s not found in GTFS; skipping.", anchor_id)
             continue
 
+        # Enrich base_seq with district_id from the matrix (Investigation B fix).
+        # Falls back to nearest-district by centroid for stops outside LG bbox.
+        for item in base_seq:
+            sid = str(item["stop_id"])
+            d = stop_to_district.get(sid)
+            if d is None:
+                d = _nearest_district(item["stop_lat"], item["stop_lon"])
+            item["district_id"] = d
+
         # Existing stops in this anchor's sequence by stop_id
         base_stop_ids = {item["stop_id"] for item in base_seq}
 
-        # Find selected stops near this anchor route (within walk_buf of any base stop)
+        # Build corridor polyline from the base sequence (for insertion filtering)
+        base_corridor = [(float(item["stop_lat"]), float(item["stop_lon"])) for item in base_seq]
+        # Corridor buffer: use CORRIDOR_BUFFER_MILES (looser than walk_buf so
+        # synthetic candidates in adjacent districts can join the route).
+        corridor_buf_m = CORRIDOR_BUFFER_MILES * 1609.344
+
+        # Find SYNTHETIC stops near this anchor route within CORRIDOR_BUFFER_MILES.
+        # We deliberately exclude existing GTFS stops not on this route from
+        # insertion: the user's intent is "add new coverage to Route 27", not
+        # "absorb other VTA routes' stops". Existing-stop reshuffling would be
+        # a separate operation.
         nearby_candidates = []
         for s in selected_stops:
             if s.stop_id in assigned_stop_ids:
@@ -693,15 +904,84 @@ def _design_routes_derive_from_existing(
             if s.stop_id in base_stop_ids:
                 assigned_stop_ids.add(s.stop_id)
                 continue
-            # Check proximity to any existing stop in the base sequence
+            if s.is_existing:
+                continue  # only synthetic candidates can be inserted
             near = any(
-                _haversine_miles(s.stop_lat, s.stop_lon, item["stop_lat"], item["stop_lon"]) <= walk_buf
+                _haversine_miles(s.stop_lat, s.stop_lon, item["stop_lat"], item["stop_lon"]) <= CORRIDOR_BUFFER_MILES
                 for item in base_seq
             )
             if near:
                 nearby_candidates.append(s)
 
+        # Apply corridor filter via candidate_generator helper
+        if nearby_candidates and base_corridor:
+            try:
+                from src.candidate_generator import _filter_by_corridor
+                corridor_latlon = [(s.stop_lat, s.stop_lon) for s in nearby_candidates]
+                filtered_latlon = set(
+                    _filter_by_corridor(corridor_latlon, base_corridor, corridor_buf_m)
+                )
+                if filtered_latlon:
+                    nearby_candidates = [
+                        s for s in nearby_candidates
+                        if (s.stop_lat, s.stop_lon) in filtered_latlon
+                    ]
+                else:
+                    logger.warning(
+                        "Corridor filter for anchor %s rejected all %d nearby candidates; "
+                        "proceeding without additional stops.",
+                        anchor_id, len(nearby_candidates),
+                    )
+                    nearby_candidates = []
+            except Exception as _exc:
+                logger.debug("Corridor filter skipped (%s).", _exc)
+
         merged_seq = _insert_stops_into_sequence(base_seq, nearby_candidates, max_inserts, allow_ext)
+
+        # Step 2: Enforce synthetic stop cap (MAX_SYNTHETIC_ADDITIONS).
+        # Count net synthetic additions; if over cap, trim lowest-scoring ones.
+        # If ALLOW_STOP_REMOVAL is True, also prune weak existing stops to
+        # free budget for higher-scoring synthetic candidates.
+        _synthetic_in_seq = [s for s in merged_seq if not s.is_existing]
+        _existing_non_mandatory = [
+            s for s in merged_seq
+            if s.is_existing and not s.is_mandatory and not s.is_school_stop
+        ]
+        if len(_synthetic_in_seq) > MAX_SYNTHETIC_ADDITIONS:
+            # Sort synthetic stops ascending by demand_score; remove weakest first
+            _synthetic_sorted = sorted(_synthetic_in_seq, key=lambda s: s.demand_score)
+            _to_remove = {s.stop_id for s in _synthetic_sorted[:len(_synthetic_in_seq) - MAX_SYNTHETIC_ADDITIONS]}
+            merged_seq = [s for s in merged_seq if s.stop_id not in _to_remove]
+            logger.info(
+                "  Synthetic cap: trimmed %d synthetic stops to stay within MAX_SYNTHETIC_ADDITIONS=%d.",
+                len(_to_remove), MAX_SYNTHETIC_ADDITIONS,
+            )
+        if ALLOW_STOP_REMOVAL and _existing_non_mandatory:
+            # If any low-boarding existing stop scores below the weakest accepted
+            # synthetic stop, remove it to improve overall route quality.
+            _synthetic_remaining = [s for s in merged_seq if not s.is_existing]
+            if _synthetic_remaining:
+                _min_synthetic_score = min(s.demand_score for s in _synthetic_remaining)
+                _weak_existing = {
+                    s.stop_id for s in _existing_non_mandatory
+                    if s.demand_score < _min_synthetic_score * 0.5
+                }
+                if _weak_existing:
+                    merged_seq = [s for s in merged_seq if s.stop_id not in _weak_existing]
+                    logger.info(
+                        "  ALLOW_STOP_REMOVAL: pruned %d low-value existing stops.",
+                        len(_weak_existing),
+                    )
+
+        # Apply 2-opt resequencing with monotonicity penalty
+        def _tt_fn(a_id: str, b_id: str) -> float:
+            if travel_time_matrix is not None and len(travel_time_matrix) > 0:
+                try:
+                    return float(travel_time_matrix.loc[a_id, b_id])
+                except (KeyError, ValueError):
+                    pass
+            return 600.0
+        merged_seq = _two_opt_resequence(merged_seq, _tt_fn)
 
         for stop in merged_seq:
             assigned_stop_ids.add(stop.stop_id)
@@ -728,8 +1008,10 @@ def _design_routes_derive_from_existing(
                     route_id, anchor_id, len(merged_seq), len(nearby_candidates))
 
     # Remaining unassigned stops → corridor clusters
+    # (Gated off in route_27_only_mode — only Route 27 is processed)
+    _route_27_only_inner = opt_cfg.get("route_27_only_mode", False)
     unassigned = [s for s in selected_stops if s.stop_id not in assigned_stop_ids]
-    if unassigned:
+    if unassigned and not _route_27_only_inner:
         logger.info("  %d unassigned stops → corridor clusters.", len(unassigned))
         corridor_routes = _design_routes_corridor(
             unassigned, travel_time_matrix, opt_cfg,
@@ -742,10 +1024,13 @@ def _design_routes_derive_from_existing(
             r.route_name = f"Corridor Route {route_counter}"
             optimised_routes.append(r)
             route_counter += 1
+    elif unassigned and _route_27_only_inner:
+        logger.info("  %d unassigned stops skipped (route_27_only_mode=True).", len(unassigned))
 
-    route_76 = _evaluate_route_76(opt_cfg, route_costs_df, scenario_results, r76_bcr_threshold)
-    if route_76 is not None:
-        optimised_routes.append(route_76)
+    if not _route_27_only_inner:
+        route_76 = _evaluate_route_76(opt_cfg, route_costs_df, scenario_results, r76_bcr_threshold)
+        if route_76 is not None:
+            optimised_routes.append(route_76)
 
     logger.info("Route design (derive_from_existing): %d routes produced.", len(optimised_routes))
     return optimised_routes
@@ -766,8 +1051,35 @@ def design_routes(
       derive_from_existing  — anchor existing VTA routes; Route 27 is the spine.
       corridor              — k-means geographic clustering, PCA-ordered.
       hub_spoke             — Clarke-Wright savings; Winchester as hub (legacy).
+
+    When route_27_only_mode is True (Step 1), bypass all greenfield/restoration
+    designers and run only _design_routes_derive_from_existing for Route 27.
+    The gated functions (_design_routes_corridor, _design_routes_hub_spoke,
+    _evaluate_route_76) are NOT deleted — re-enable by setting the flag False.
     """
     opt_cfg = config.get("optimization", {})
+    route_27_only = opt_cfg.get("route_27_only_mode", False)
+
+    if route_27_only:
+        logger.info("route_27_only_mode=True: running derive_from_existing for Route 27 only.")
+        # Override anchor_routes so only Route 27 is processed
+        import copy
+        opt_cfg_27 = copy.deepcopy(opt_cfg)
+        rd = opt_cfg_27.setdefault("route_design", {})
+        rd["anchor_routes"] = ["27"]
+        rd["primary_route"] = "27"
+        rd["mode"] = "derive_from_existing"
+        routes = _design_routes_derive_from_existing(
+            selected_stops, travel_time_matrix, opt_cfg_27,
+            existing_routes=existing_routes,
+            route_costs_df=None,        # skip Route 76 inside derive_from_existing
+            scenario_results=None,
+        )
+        # Gate off any restoration routes that snuck in (e.g. if Route 76 BCR met
+        # threshold via _evaluate_route_76 — should not happen with None args above)
+        routes = [r for r in routes if not r.is_restoration]
+        return routes
+
     mode = opt_cfg.get("route_design", {}).get("mode", "derive_from_existing")
 
     if mode == "hub_spoke":
@@ -997,6 +1309,8 @@ def routes_to_dataframe(routes: List[OptimisedRoute]) -> pd.DataFrame:
                 "headway_pm_school": route.headways.get("pm_school"),
                 "headway_pm_commute": route.headways.get("pm_commute"),
                 "headway_evening": route.headways.get("evening"),
+                "diversion_rate": round(getattr(route, "diversion_rate", 0.08), 4),
+                "route_total_demand": round(getattr(route, "route_total_demand", 0.0), 1),
             })
     return pd.DataFrame(rows)
 
@@ -1017,6 +1331,8 @@ def run_route_optimisation(
     scenario_results: Optional[list] = None,
     existing_routes: Optional[pd.DataFrame] = None,
     districts_df: Optional[pd.DataFrame] = None,
+    road_graph=None,
+    stops_snapped_df: Optional[pd.DataFrame] = None,
 ) -> dict:
     """Run the full three-sub-stage route optimisation pipeline.
 
@@ -1040,14 +1356,43 @@ def run_route_optimisation(
     logger.info("Route optimisation: Stage 3c — Headway Optimisation")
     routes = optimise_headways(routes, od_profiles, config)
 
-    # Stage 3d: per-stop daily boarding estimates
-    # Count selected stops per district so walk_shed_pop = district_pop / selected_count
+    # Stage 3d: road-following polylines (uses OSM network if available)
+    if road_graph is not None or True:
+        try:
+            from src.network_graph import compute_route_polyline
+            for route in routes:
+                route.polyline = compute_route_polyline(
+                    route.stops, road_graph, stops_snapped_df
+                )
+            logger.info("Route polylines computed for %d routes.", len(routes))
+        except Exception as exc:
+            logger.warning("Polyline computation failed (%s); routes will use stop centroids.", exc)
+
+    # Stage 3f: per-stop daily boarding estimates
+    # Include every stop on every route, not just `selected` — Route 76 (and any
+    # other restoration path) builds synthetic stops inline that bypass select_stops.
     from collections import Counter
-    selected_stops_per_district = Counter(s.district_id for s in selected if s.district_id)
-    for stop in selected:
+    all_stops_by_id: dict = {s.stop_id: s for s in selected}
+    for r in routes:
+        for s in r.stops:
+            all_stops_by_id.setdefault(s.stop_id, s)
+    all_stops = list(all_stops_by_id.values())
+    selected_stops_per_district = Counter(s.district_id for s in all_stops if s.district_id)
+    for stop in all_stops:
         stop.estimated_daily_boardings = estimate_daily_boardings(
             stop, tdi_df, districts_df, config,
             selected_stop_count=selected_stops_per_district.get(stop.district_id, 1),
+        )
+
+    # Step 4: populate diversion_rate on each route from config
+    _diversion_rate_cfg = config.get("benefit", {}).get("diversion_rate", 0.08)
+    for route in routes:
+        route.diversion_rate = _diversion_rate_cfg
+
+    # Step 3: compute route_total_demand as sum of per-stop boardings (sanity-check field)
+    for route in routes:
+        route.route_total_demand = sum(
+            getattr(s, "estimated_daily_boardings", 0.0) for s in route.stops
         )
 
     routes_df = routes_to_dataframe(routes)

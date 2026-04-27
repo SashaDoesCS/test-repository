@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stop Placard — Synthetic U6 #4</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#141720;color:#d8dce8;font-family:IBM Plex Mono,Consolas,monospace;font-size:12px;padding:16px;max-width:720px;margin:0 auto}
+  .card{background:rgba(20,23,40,.9);border:1px solid rgba(42,48,80,.8);border-radius:8px;padding:16px;margin-bottom:12px}
+  h2{font-size:15px;font-weight:700;color:#fff;margin-bottom:8px}
+  .section-label{font-size:9px;color:#7a8098;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+  #mini-map{height:220px;border-radius:6px;border:1px solid rgba(42,48,80,.8)}
+  a{color:#6c9bff;text-decoration:none}
+  a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div style="margin-bottom:10px">
+  <a href="index.html" style="font-size:10px;color:#7a8098">← All placards</a>
+  &nbsp;|&nbsp;
+  <a href="../route_optimization.html" style="font-size:10px;color:#7a8098">Route dashboard →</a>
+</div>
+
+<!-- Header band -->
+<div class="card">
+  <div class="section-label">Routes serving this stop</div>
+  <div style="margin-bottom:10px"><span style="background:#6c9bff22;border:1px solid #6c9bff;border-radius:4px;padding:2px 8px;color:#6c9bff;font-size:11px;font-weight:700;margin-right:6px">&#9679; Route OPT_01 → Santa Teresa Station (derived from VTA 27)</span></div>
+  <h2>Synthetic U6 #4</h2>
+  <div style="color:#7a8098;font-size:10px;margin-top:4px">
+    Stop ID: NEW_U6_4 &nbsp;|&nbsp; District: U6 &nbsp;|&nbsp; <span style="color:#ffa94d">New stop</span>
+     &nbsp;|&nbsp; ♿ ADA accessible
+  </div>
+</div>
+
+<!-- Strip diagram -->
+
+<div style="margin:16px 0">
+  <div style="font-size:10px;color:#7a8098;margin-bottom:6px">Stop sequence</div>
+  <div class="mermaid" style="font-size:10px">graph LR
+  s21["Blossom Hill & Meridia…"]
+  s22["Blossom Hill & Chamber…"]
+  THIS["**Synthetic U6 #4**"]
+  s24["Synthetic U6 #6"]
+  s25["Synthetic U6 #8"]
+  s21 --> s22 --> THIS --> s24 --> s25</div>
+</div>
+
+<!-- Mini-map -->
+<div class="card">
+  <div class="section-label">Map</div>
+  <div id="mini-map"></div>
+</div>
+
+<!-- Timetable -->
+<div class="card">
+  <div class="section-label">Schedule (from optimised GTFS)</div>
+  
+<table style="border-collapse:collapse;font-size:10px;width:100%;color:#d8dce8">
+  <thead><tr style="color:#7a8098;border-bottom:1px solid rgba(42,48,80,.6)">
+    <th style="padding:3px 8px;text-align:left">Weekday</th>
+    <th style="padding:3px 8px;text-align:left">Weekend</th>
+  </tr></thead>
+  <tbody><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">06:29</td><td style="padding:2px 8px">06:29</td></tr><tr style="background:transparent"><td style="padding:2px 8px">06:37</td><td style="padding:2px 8px">06:37</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">06:45</td><td style="padding:2px 8px">06:45</td></tr><tr style="background:transparent"><td style="padding:2px 8px">06:53</td><td style="padding:2px 8px">06:53</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">07:01</td><td style="padding:2px 8px">07:01</td></tr><tr style="background:transparent"><td style="padding:2px 8px">07:09</td><td style="padding:2px 8px">07:09</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">07:17</td><td style="padding:2px 8px">07:17</td></tr><tr style="background:transparent"><td style="padding:2px 8px">07:25</td><td style="padding:2px 8px">07:25</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">07:33</td><td style="padding:2px 8px">07:33</td></tr><tr style="background:transparent"><td style="padding:2px 8px">07:41</td><td style="padding:2px 8px">07:41</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">07:49</td><td style="padding:2px 8px">07:49</td></tr><tr style="background:transparent"><td style="padding:2px 8px">07:57</td><td style="padding:2px 8px">07:57</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">08:05</td><td style="padding:2px 8px">08:05</td></tr><tr style="background:transparent"><td style="padding:2px 8px">08:13</td><td style="padding:2px 8px">08:13</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">08:21</td><td style="padding:2px 8px">08:21</td></tr><tr style="background:transparent"><td style="padding:2px 8px">08:29</td><td style="padding:2px 8px">08:29</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">08:37</td><td style="padding:2px 8px">08:37</td></tr><tr style="background:transparent"><td style="padding:2px 8px">08:45</td><td style="padding:2px 8px">08:45</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">08:53</td><td style="padding:2px 8px">08:53</td></tr><tr style="background:transparent"><td style="padding:2px 8px">09:01</td><td style="padding:2px 8px">09:01</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">09:09</td><td style="padding:2px 8px">09:09</td></tr><tr style="background:transparent"><td style="padding:2px 8px">09:17</td><td style="padding:2px 8px">09:17</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">09:25</td><td style="padding:2px 8px">09:25</td></tr><tr style="background:transparent"><td style="padding:2px 8px">09:33</td><td style="padding:2px 8px">09:33</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">10:03</td><td style="padding:2px 8px">10:03</td></tr><tr style="background:transparent"><td style="padding:2px 8px">10:33</td><td style="padding:2px 8px">10:33</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">11:03</td><td style="padding:2px 8px">11:03</td></tr><tr style="background:transparent"><td style="padding:2px 8px">11:33</td><td style="padding:2px 8px">11:33</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">12:03</td><td style="padding:2px 8px">12:03</td></tr><tr style="background:transparent"><td style="padding:2px 8px">12:33</td><td style="padding:2px 8px">12:33</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">13:03</td><td style="padding:2px 8px">13:03</td></tr><tr style="background:transparent"><td style="padding:2px 8px">13:33</td><td style="padding:2px 8px">13:33</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">14:03</td><td style="padding:2px 8px">14:03</td></tr><tr style="background:transparent"><td style="padding:2px 8px">14:33</td><td style="padding:2px 8px">14:33</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">15:03</td><td style="padding:2px 8px">15:03</td></tr><tr style="background:transparent"><td style="padding:2px 8px">15:09</td><td style="padding:2px 8px">15:09</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">15:15</td><td style="padding:2px 8px">15:15</td></tr><tr style="background:transparent"><td style="padding:2px 8px">15:21</td><td style="padding:2px 8px">15:21</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">15:27</td><td style="padding:2px 8px">15:27</td></tr><tr style="background:transparent"><td style="padding:2px 8px">15:33</td><td style="padding:2px 8px">15:33</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">15:39</td><td style="padding:2px 8px">15:39</td></tr><tr style="background:transparent"><td style="padding:2px 8px">15:45</td><td style="padding:2px 8px">15:45</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">15:51</td><td style="padding:2px 8px">15:51</td></tr><tr style="background:transparent"><td style="padding:2px 8px">15:57</td><td style="padding:2px 8px">15:57</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">16:03</td><td style="padding:2px 8px">16:03</td></tr><tr style="background:transparent"><td style="padding:2px 8px">16:09</td><td style="padding:2px 8px">16:09</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">16:15</td><td style="padding:2px 8px">16:15</td></tr><tr style="background:transparent"><td style="padding:2px 8px">16:21</td><td style="padding:2px 8px">16:21</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">16:27</td><td style="padding:2px 8px">16:27</td></tr><tr style="background:transparent"><td style="padding:2px 8px">16:33</td><td style="padding:2px 8px">16:33</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">16:39</td><td style="padding:2px 8px">16:39</td></tr><tr style="background:transparent"><td style="padding:2px 8px">16:45</td><td style="padding:2px 8px">16:45</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">16:51</td><td style="padding:2px 8px">16:51</td></tr><tr style="background:transparent"><td style="padding:2px 8px">16:57</td><td style="padding:2px 8px">16:57</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">17:03</td><td style="padding:2px 8px">17:03</td></tr><tr style="background:transparent"><td style="padding:2px 8px">17:09</td><td style="padding:2px 8px">17:09</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">17:15</td><td style="padding:2px 8px">17:15</td></tr><tr style="background:transparent"><td style="padding:2px 8px">17:21</td><td style="padding:2px 8px">17:21</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">17:27</td><td style="padding:2px 8px">17:27</td></tr><tr style="background:transparent"><td style="padding:2px 8px">17:33</td><td style="padding:2px 8px">17:33</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">17:39</td><td style="padding:2px 8px">17:39</td></tr><tr style="background:transparent"><td style="padding:2px 8px">17:45</td><td style="padding:2px 8px">17:45</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">17:51</td><td style="padding:2px 8px">17:51</td></tr><tr style="background:transparent"><td style="padding:2px 8px">17:57</td><td style="padding:2px 8px">17:57</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">18:03</td><td style="padding:2px 8px">18:03</td></tr><tr style="background:transparent"><td style="padding:2px 8px">18:09</td><td style="padding:2px 8px">18:09</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">18:15</td><td style="padding:2px 8px">18:15</td></tr><tr style="background:transparent"><td style="padding:2px 8px">18:21</td><td style="padding:2px 8px">18:21</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">18:27</td><td style="padding:2px 8px">18:27</td></tr><tr style="background:transparent"><td style="padding:2px 8px">18:33</td><td style="padding:2px 8px">18:33</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">18:39</td><td style="padding:2px 8px">18:39</td></tr><tr style="background:transparent"><td style="padding:2px 8px">18:45</td><td style="padding:2px 8px">18:45</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">18:51</td><td style="padding:2px 8px">18:51</td></tr><tr style="background:transparent"><td style="padding:2px 8px">18:57</td><td style="padding:2px 8px">18:57</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">19:03</td><td style="padding:2px 8px">19:03</td></tr><tr style="background:transparent"><td style="padding:2px 8px">19:23</td><td style="padding:2px 8px">19:23</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">19:43</td><td style="padding:2px 8px">19:43</td></tr><tr style="background:transparent"><td style="padding:2px 8px">20:03</td><td style="padding:2px 8px">20:03</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">20:23</td><td style="padding:2px 8px">20:23</td></tr><tr style="background:transparent"><td style="padding:2px 8px">20:43</td><td style="padding:2px 8px">20:43</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">21:03</td><td style="padding:2px 8px">21:03</td></tr><tr style="background:transparent"><td style="padding:2px 8px">21:23</td><td style="padding:2px 8px">21:23</td></tr></tbody>
+</table>
+</div>
+
+<!-- Footer: QR -->
+<div class="card" style="display:flex;gap:16px;align-items:flex-start">
+  <div>
+    <div style="width:80px;height:80px;background:rgba(42,48,80,.4);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:9px;color:#7a8098">QR N/A</div>
+    <div style="font-size:9px;color:#7a8098;margin-top:4px;text-align:center">Scan to open<br>route dashboard</div>
+  </div>
+  <div style="font-size:10px;color:#7a8098">
+    <div><b style="color:#d8dce8">Synthetic U6 #4</b></div>
+    <div>ID: NEW_U6_4</div>
+    <div>Lat: 37.23344 / Lon: -121.90934</div>
+    <div>♿ ADA accessible</div>
+    <div style="margin-top:8px">Generated by Los Gatos Transit CBA</div>
+  </div>
+</div>
+
+<script>
+mermaid.initialize({startOnLoad:true,theme:'dark',themeVariables:{fontSize:'10px'}});
+
+const NEARBY=[{"id": "1096", "name": "Blossom Hill & Vassar", "lat": 37.240475, "lon": -121.892713, "is_this": false}, {"id": "1101", "name": "Blossom Hill & Ayrshire", "lat": 37.248068, "lon": -121.882769, "is_this": false}, {"id": "1100", "name": "Blossom Hill & Seifert", "lat": 37.245909, "lon": -121.886549, "is_this": false}, {"id": "1097", "name": "Blossom Hill & Meridian", "lat": 37.243466, "lon": -121.889251, "is_this": false}, {"id": "1095", "name": "Blossom Hill & Chambertin", "lat": 37.239294, "lon": -121.895254, "is_this": false}, {"id": "NEW_U6_4", "name": "Synthetic U6 #4", "lat": 37.233441, "lon": -121.909336, "is_this": true}, {"id": "NEW_U6_6", "name": "Synthetic U6 #6", "lat": 37.231283, "lon": -121.909278, "is_this": false}, {"id": "NEW_U6_8", "name": "Synthetic U6 #8", "lat": 37.23161, "lon": -121.916539, "is_this": false}, {"id": "NEW_U6_2", "name": "Synthetic U6 #2", "lat": 37.236166, "lon": -121.925867, "is_this": false}, {"id": "NEW_U4_5", "name": "Synthetic U4 #5", "lat": 37.240872, "lon": -121.907896, "is_this": false}, {"id": "NEW_U4_1", "name": "Synthetic U4 #1", "lat": 37.240196, "lon": -121.902455, "is_this": false}];
+const MAP_LAT=37.233441;
+const MAP_LON=-121.909336;
+
+const map=L.map('mini-map',{attributionControl:false,zoomControl:true}).setView([MAP_LAT,MAP_LON],15);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',{
+  attribution:'&copy; OpenStreetMap / CartoDB'
+}).addTo(map);
+
+// Route polyline (dim) from nearby stops
+if(NEARBY.length>1){
+  const pts=NEARBY.map(s=>[s.lat,s.lon]);
+  L.polyline(pts,{color:'#6c9bff',weight:2,opacity:.35,dashArray:'4 4'}).addTo(map);
+}
+
+// Upstream/downstream stops
+NEARBY.forEach(s=>{
+  if(s.is_this){
+    L.circleMarker([s.lat,s.lon],{radius:10,color:'#fff',weight:2,fillColor:'#ffa94d',fillOpacity:.95})
+      .addTo(map).bindPopup('<b>'+s.name+'</b><br><i>This stop</i>');
+  }else{
+    L.circleMarker([s.lat,s.lon],{radius:5,color:'#fff',weight:1,fillColor:'#6c9bff',fillOpacity:.75})
+      .addTo(map).bindPopup(s.name);
+  }
+});
+</script>
+</body>
+</html>

@@ -1,10 +1,2 @@
 route_id,agency_id,route_short_name,route_long_name,route_type,route_color,route_text_color
-OPT_01,VTA,01,Optimised Route 1 (via Winchester & Daves),3,CC0000,FFFFFF
-OPT_02,VTA,02,Optimised Route 2 (via Meridian & Blossom Hill),3,CC0000,FFFFFF
-OPT_03,VTA,03,Optimised Route 3 (via Meridian & Dentwood),3,CC0000,FFFFFF
-OPT_04,VTA,04,Optimised Route 4 (via Meridian & Torrington),3,CC0000,FFFFFF
-OPT_05,VTA,05,Optimised Route 5 (via Meridian & Oslo),3,CC0000,FFFFFF
-OPT_06,VTA,06,Optimised Route 6 (via Meridian & Hallbrook),3,CC0000,FFFFFF
-OPT_07,VTA,07,Optimised Route 7 (via Meridian & Corte De Callas),3,CC0000,FFFFFF
-OPT_08,VTA,08,Optimised Route 8 (via Meridian & Portobelo),3,CC0000,FFFFFF
-76_RESTORED,VTA,76_RESTORED,Route 76 Restored (Downtown LG → Summit via SR-17),3,FF8C00,FFFFFF
+OPT_01,VTA,01,Optimised Route 1 (from 27),3,CC0000,FFFFFF
