@@ -85,6 +85,7 @@ from src.route27_corridor import (
     SUBURBAN_DISTRICTS,
     STOP_SPACING,
     _haversine_ft,
+    project_to_path,
 )
 from src.route27_walkshed import (
     compute_marginal_walkshed,
@@ -193,6 +194,8 @@ def select_route27_stops(
     candidates_df: pd.DataFrame,
     existing_stops_df: Optional[pd.DataFrame],
     config: dict,
+    path_coords: Optional[list] = None,
+    path_s_coords: Optional[list] = None,
 ) -> Tuple[pd.DataFrame, pd.DataFrame]:
     """Select the optimal linear stop sequence for Route 27.
 
@@ -211,6 +214,9 @@ def select_route27_stops(
             If provided, these are merged into the candidate set as high-priority
             existing stops.
         config: Pipeline config dict.
+        path_coords: Corridor path [(lat, lon), ...] — used to project
+            unmatched existing stops to their correct s-coordinate (Bug 1 fix).
+        path_s_coords: Cumulative arc-length (ft) at each path node.
 
     Returns:
         (selected_df, unselected_df) — both sorted by s_coord_ft.
@@ -225,7 +231,11 @@ def select_route27_stops(
 
     # Merge existing GTFS stops as preferred candidates
     if existing_stops_df is not None and len(existing_stops_df) > 0:
-        df = _merge_existing_stops(df, existing_stops_df)
+        df = _merge_existing_stops(
+            df, existing_stops_df,
+            path_coords=path_coords,
+            path_s_coords=path_s_coords,
+        )
 
     selected_indices: List[int] = []
     last_s_ft = -99_999.0
@@ -322,6 +332,8 @@ def _score_candidate(row: pd.Series) -> float:
 def _merge_existing_stops(
     candidates_df: pd.DataFrame,
     existing_stops_df: pd.DataFrame,
+    path_coords: Optional[list] = None,
+    path_s_coords: Optional[list] = None,
 ) -> pd.DataFrame:
     """Tag existing GTFS stops as preferred candidates.
 
@@ -330,6 +342,19 @@ def _merge_existing_stops(
     there; removing it would require capital destruction).
 
     Existing stops not already in candidates_df are appended.
+
+    Bug 1 fix: unmatched existing stops previously defaulted to
+    s_coord_ft=0.0 (clustering at Winchester TC), causing the spacing
+    filter to drop all but one.  This function now projects each
+    unmatched stop onto the corridor path to compute the correct
+    s_coord_ft.  Stops that project more than 500 ft from the path
+    are skipped (they belong to a different alignment).
+
+    Args:
+        candidates_df: Candidate stop DataFrame.
+        existing_stops_df: VTA GTFS existing stops.
+        path_coords: Corridor path [(lat, lon), ...].
+        path_s_coords: Cumulative arc-length (ft) at each path node.
     """
     df = candidates_df.copy()
     if "is_existing" not in df.columns:
@@ -337,10 +362,19 @@ def _merge_existing_stops(
     if "is_mandatory" not in df.columns:
         df["is_mandatory"] = False
 
+    have_path = (
+        path_coords is not None
+        and path_s_coords is not None
+        and len(path_coords) >= 2
+    )
+    # Max distance from path for an "existing" stop to be considered on-route
+    _MAX_SNAP_FT = 500.0
+
     added = []
+    skipped = 0
     for _, ex in existing_stops_df.iterrows():
-        ex_lat = ex.get("stop_lat", ex.get("lat", 0.0))
-        ex_lon = ex.get("stop_lon", ex.get("lon", 0.0))
+        ex_lat = float(ex.get("stop_lat", ex.get("lat", 0.0)))
+        ex_lon = float(ex.get("stop_lon", ex.get("lon", 0.0)))
 
         # Check if a candidate is already close to this existing stop
         matched = False
@@ -353,31 +387,57 @@ def _merge_existing_stops(
                 break
 
         if not matched:
-            # Append as a new candidate row (will be treated as existing)
+            # Bug 1 fix: compute correct s_coord_ft via path projection
+            if have_path:
+                s_ft, snap_dist_ft = project_to_path(
+                    ex_lat, ex_lon, path_coords, path_s_coords
+                )
+                if snap_dist_ft > _MAX_SNAP_FT:
+                    logger.debug(
+                        "Existing stop %s skipped: snap_dist=%.0f ft > %.0f ft "
+                        "(not on Route 27 alignment).",
+                        ex.get("stop_id", "?"), snap_dist_ft, _MAX_SNAP_FT,
+                    )
+                    skipped += 1
+                    continue
+            else:
+                # No path available — use stored value if present, else 0
+                s_ft = float(ex.get("s_coord_ft", 0.0))
+                snap_dist_ft = 0.0
+
             new_row = {
-                "candidate_id":        str(ex.get("stop_id", f"EX_{len(added)}")),
-                "stop_lat":            ex_lat,
-                "stop_lon":            ex_lon,
-                "s_coord_ft":          ex.get("s_coord_ft", 0.0),
-                "district_id":         ex.get("district_id", None),
-                "is_existing":         True,
-                "is_mandatory":        True,
-                "is_forced":           False,
-                "street_names":        ex.get("stop_name", ""),
-                "raw_walkshed_pop":    0,
-                "equity_walkshed_pop": 0.0,
+                "candidate_id":          str(ex.get("stop_id", f"EX_{len(added)}")),
+                "stop_lat":              ex_lat,
+                "stop_lon":              ex_lon,
+                "s_coord_ft":            round(s_ft, 1),
+                "district_id":           ex.get("district_id", None),
+                "is_existing":           True,
+                "is_mandatory":          True,
+                "is_forced":             False,
+                "street_names":          ex.get("stop_name", ""),
+                "raw_walkshed_pop":      0,
+                "equity_walkshed_pop":   0.0,
                 "marginal_walkshed_pop": 0,
-                "tdi":                 0.2,
-                "equity_priority":     False,
-                "activity_type":       "existing_vta_stop",
-                "source":              "VTA GTFS stops.txt",
+                "tdi":                   0.2,
+                "equity_priority":       False,
+                "activity_type":         "existing_vta_stop",
+                "source":                "VTA GTFS stops.txt",
             }
             added.append(new_row)
 
     if added:
         df = pd.concat([df, pd.DataFrame(added)], ignore_index=True)
         df = df.sort_values("s_coord_ft").reset_index(drop=True)
-        logger.info("Appended %d existing GTFS stops not in candidate set.", len(added))
+        logger.info(
+            "Appended %d existing GTFS stops not in candidate set "
+            "(%d skipped — off-route).",
+            len(added), skipped,
+        )
+    elif skipped:
+        logger.info(
+            "%d existing GTFS stops skipped as off-route (snap > %.0f ft).",
+            skipped, _MAX_SNAP_FT,
+        )
 
     return df
 
@@ -907,8 +967,14 @@ def run_route27_optimization(
     config["_equity_districts"] = equity_districts
 
     # Stage 1: Linear stop selection
+    # Thread path geometry through so _merge_existing_stops can project
+    # unmatched stops to their correct s_coord_ft (Bug 1 fix).
+    path_coords   = corridor_result.get("path_coords")
+    path_s_coords = corridor_result.get("path_s_coords")
     selected_df, unselected_df = select_route27_stops(
-        walkshed_df, existing_stops_df, config
+        walkshed_df, existing_stops_df, config,
+        path_coords=path_coords,
+        path_s_coords=path_s_coords,
     )
 
     # Update marginal walk-shed for selected stops
