@@ -2,13 +2,13 @@
   {
     "scenario": "Conservative",
     "description": "Real-world base case with corrected parameters",
-    "annual_benefits": 4658081,
+    "annual_benefits": 4658224,
     "annual_costs": 2020200,
     "total_capital": 4825000,
-    "pv_benefits": 69396207,
+    "pv_benefits": 69398341,
     "pv_costs": 39609855,
     "bcr": 1.752,
-    "net_pv": 29786353,
+    "net_pv": 29788487,
     "total_boardings": 444000,
     "diverted_trips": 244200,
     "avoided_vmt": 1831500,
@@ -63,9 +63,11 @@
       },
       {
         "category": "Reliability Benefits",
-        "annual_benefit": 147561.92,
+        "annual_benefit": 147705.18,
         "variability_minutes": 2.2,
         "per_trip_benefit": 0.6,
+        "vot_weighted": 20.62,
+        "pct_business_trips": 0.2,
         "source": "USDOT BCA Guidance 2024, Section 5.3"
       },
       {
@@ -94,13 +96,13 @@
   {
     "scenario": "Moderate",
     "description": "Survey-informed with school access benefits",
-    "annual_benefits": 6701067,
+    "annual_benefits": 6711265,
     "annual_costs": 2020200,
     "total_capital": 4825000,
-    "pv_benefits": 109885234,
+    "pv_benefits": 110052459,
     "pv_costs": 41370309,
-    "bcr": 2.656,
-    "net_pv": 68514925,
+    "bcr": 2.66,
+    "net_pv": 68682150,
     "total_boardings": 444000,
     "diverted_trips": 266400,
     "avoided_vmt": 1998000,
@@ -155,9 +157,11 @@
       },
       {
         "category": "Reliability Benefits",
-        "annual_benefit": 289757.95,
+        "annual_benefit": 299955.74,
         "variability_minutes": 4.0,
-        "per_trip_benefit": 1.09,
+        "per_trip_benefit": 1.13,
+        "vot_weighted": 21.33,
+        "pct_business_trips": 0.25,
         "source": "USDOT BCA Guidance 2024, Section 5.3"
       },
       {
@@ -193,13 +197,13 @@
   {
     "scenario": "Optimistic",
     "description": "Best defensible case with property value and full demand",
-    "annual_benefits": 13793197,
+    "annual_benefits": 13830234,
     "annual_costs": 2020200,
     "total_capital": 4825000,
-    "pv_benefits": 249518190,
+    "pv_benefits": 250188187,
     "pv_costs": 41370309,
-    "bcr": 6.031,
-    "net_pv": 208147881,
+    "bcr": 6.048,
+    "net_pv": 208817878,
     "total_boardings": 444000,
     "diverted_trips": 310800,
     "avoided_vmt": 2486400,
@@ -254,9 +258,11 @@
       },
       {
         "category": "Reliability Benefits",
-        "annual_benefit": 533540.0,
+        "annual_benefit": 570577.0,
         "variability_minutes": 6.2,
-        "per_trip_benefit": 1.72,
+        "per_trip_benefit": 1.84,
+        "vot_weighted": 22.03,
+        "pct_business_trips": 0.3,
         "source": "USDOT BCA Guidance 2024, Section 5.3"
       },
       {

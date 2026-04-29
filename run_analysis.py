@@ -77,8 +77,16 @@ logging.basicConfig(
 logger = logging.getLogger("run_analysis")
 
 
-def main():
-    """Execute the full Phase A1 pipeline."""
+def main(cba_only: bool = False):
+    """Execute the pipeline.
+
+    Args:
+        cba_only: If True, run only Phase A1–A4 + scenario comparison
+            (the cost-benefit analysis), skipping Phase B route optimization,
+            schedule generation, GTFS export, and Route 27 corridor work.
+            The dashboard is still generated; Phase B panels render empty
+            via their existing fallback messages.
+    """
     logger.info("=" * 70)
     logger.info("LOS GATOS TRANSIT CBA -- Phase A1 Pipeline")
     logger.info("=" * 70)
@@ -918,6 +926,35 @@ def main():
         json.dump(scenario_results, f, indent=2, default=str)
 
     # =========================================================
+    # CBA-ONLY EXIT POINT
+    # =========================================================
+    # When invoked with cba_only=True (e.g. via run_cba.py), stop here:
+    # generate the dashboard from the A1-A4 + scenario outputs only and
+    # return. The dashboard already renders empty Phase B / Route 27
+    # panels gracefully via their existing fallback messages.
+    if cba_only:
+        logger.info("\n" + "=" * 70)
+        logger.info("CBA-ONLY MODE -- Skipping Phase B (route optimization)")
+        logger.info("=" * 70)
+        from src.generate_dashboard import generate_dashboard
+        dashboard_path = generate_dashboard("outputs/cba_dashboard.html")
+        print("\n" + "=" * 70)
+        print("CBA PIPELINE COMPLETE (Phase A1-A4 + Scenarios)")
+        print("=" * 70)
+        print(f"  Districts loaded:     {len(dm.districts)} (10 LGHS + 6 Union)")
+        print(f"  Census block groups:  {len(census)}")
+        print(f"  Transit stops:        {len(stops)}")
+        print(f"  Routes:               {len(routes)}")
+        print(f"  Crash records:        {len(crashes)}")
+        print(f"  Traffic profiles:     {len(traffic)} hourly records")
+        print(f"  Closures:             {len(closures)}")
+        print(f"\n  All CBA outputs in: outputs/tables/")
+        print(f"  Dashboard:          {dashboard_path}")
+        print(f"\n  Phase B (route optimization) skipped.")
+        print(f"  Run `python run_analysis.py` for the full pipeline.")
+        return 0
+
+    # =========================================================
     # PHASE B: Routing Optimization
     # =========================================================
     logger.info("\n" + "=" * 70)
@@ -1155,4 +1192,5 @@ def main():
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    cba_only = "--cba-only" in sys.argv
+    sys.exit(main(cba_only=cba_only))

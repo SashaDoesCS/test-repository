@@ -346,6 +346,171 @@ def get_stop_locations(data: dict) -> list[dict]:
     return stops
 
 
+# ---------------------------------------------------------------------------
+# Glossary of domain terms displayed in the dashboard.
+# Keys are matched (case-sensitive for acronyms, case-insensitive for phrases)
+# against the rendered HTML text; first occurrence per text node is wrapped
+# in a .jargon span with a hover tooltip.
+# ---------------------------------------------------------------------------
+GLOSSARY: dict[str, str] = {
+    "BCR": (
+        "Benefit-Cost Ratio. Present value of total benefits divided by present "
+        "value of total costs. BCR > 1.0 means the project's economic value "
+        "exceeds its cost and is worth funding."
+    ),
+    "NPV": (
+        "Net Present Value. The sum of all future cash flows (benefits minus "
+        "costs) discounted to today's dollars. Positive NPV = net economic gain "
+        "over the analysis period."
+    ),
+    "PV": (
+        "Present Value. The current worth of a future sum of money, discounted "
+        "at a chosen rate to reflect the time value of money."
+    ),
+    "VOT": (
+        "Value of Time. The dollar value assigned to one hour of travel time, "
+        "used to monetize travel time savings. USDOT 2024 guidance: $17.80/hr "
+        "personal trips, $31.90/hr employer business trips."
+    ),
+    "VSL": (
+        "Value of a Statistical Life. The dollar amount used in regulatory "
+        "analysis to represent the economic cost of a fatality. USDOT 2024 "
+        "sets VSL at $12.8 million per fatality."
+    ),
+    "VMT": (
+        "Vehicle Miles Traveled. The total miles driven by motor vehicles in "
+        "a given area and period. Reducing VMT cuts emissions, crashes, and "
+        "congestion."
+    ),
+    "SCC": (
+        "Social Cost of Carbon. The estimated economic damage caused by "
+        "emitting one metric ton of CO₂. EPA 2022 regulatory update sets "
+        "SCC at $120/ton (3% discount rate), up from the prior $56/ton IWG value."
+    ),
+    "KABCO": (
+        "Crash severity scale: K = Fatal, A = Severe Injury, B = Moderate "
+        "Injury, C = Minor Injury, O = Property Damage Only. Used by FHWA "
+        "and SWITRS to weight crash costs in safety benefit calculations."
+    ),
+    "NTD": (
+        "National Transit Database. FTA's annual data collection from U.S. "
+        "transit agencies covering ridership, costs, and service statistics. "
+        "Used here for peer benchmarking of VTA operating costs."
+    ),
+    "FTA": (
+        "Federal Transit Administration. The U.S. DOT agency that funds, "
+        "regulates, and provides technical guidance for public transit. "
+        "Administers the Capital Investment Grant (CIG) program."
+    ),
+    "USDOT": (
+        "U.S. Department of Transportation. Sets federal BCA guidance values "
+        "including VOT, VSL, and discount rate recommendations used throughout "
+        "this analysis."
+    ),
+    "OMB Circular A-94": (
+        "Office of Management and Budget Circular A-94. The federal guidelines "
+        "for benefit-cost analysis of government programs. Prescribes the "
+        "discount rates (2%, 3.5%, 7%) used in this dashboard."
+    ),
+    "TCRP": (
+        "Transit Cooperative Research Program. A federally funded research "
+        "program that produces peer-reviewed transit planning guidance. "
+        "TCRP Report 95 underpins the induced-demand category; Report 78 "
+        "underpins option value estimates."
+    ),
+    "MOVES3.1": (
+        "EPA's Motor Vehicle Emission Simulator (version 3.1). Used to "
+        "estimate per-mile emission factors for CO₂, NOx, and PM2.5 "
+        "from avoided automobile trips."
+    ),
+    "BenMAP-CE": (
+        "EPA's Environmental Benefits Mapping and Analysis Program — Community "
+        "Edition. Translates changes in air pollutant concentrations to "
+        "health outcomes and economic damages. Used for criteria pollutant "
+        "benefits in Category 4."
+    ),
+    "WHO HEAT": (
+        "World Health Organization Health Economic Assessment Tool. Quantifies "
+        "the mortality-reduction benefit of walking and cycling. Version 5.2 "
+        "default: 12 walk-minutes per transit trip, valued at $0.16/min."
+    ),
+    "CIG": (
+        "Capital Investment Grant. FTA's primary discretionary funding program "
+        "for major transit projects (New Starts, Small Starts, Core Capacity). "
+        "Applications require a Cost Effectiveness Index below FTA thresholds."
+    ),
+    "CEI": (
+        "Cost Effectiveness Index (also FTA Cost Effectiveness Index). Annual "
+        "net project cost divided by annualized user benefits in hours "
+        "(TSUB-hours). FTA CIG threshold: < $2/TSUB-hr = Medium-High; "
+        "< $4 = Medium."
+    ),
+    "TSUB": (
+        "Transportation System User Benefit. The FTA metric for CIG cost "
+        "effectiveness. Measures time saved by diverted auto users plus transit "
+        "travel time for transit-dependent users, in hours per year."
+    ),
+    "ACS": (
+        "American Community Survey. The U.S. Census Bureau's annual survey "
+        "providing estimates of demographics, income, commute mode, and "
+        "vehicle availability — the primary source of equity and demand data "
+        "in this analysis."
+    ),
+    "GTFS": (
+        "General Transit Feed Specification. The open standard format for "
+        "transit schedules (stops.txt, trips.txt, stop_times.txt, etc.). "
+        "This analysis ingests VTA's GTFS feed for stop locations, routes, "
+        "and headways."
+    ),
+    "SWITRS": (
+        "Statewide Integrated Traffic Records System. California's crash "
+        "database maintained by CHP. Used to derive Santa Clara County crash "
+        "rates (~120 crashes per 100M VMT) for Category 3 safety benefits."
+    ),
+    "induced demand": (
+        "Trips that only happen because transit exists — riders who would "
+        "not otherwise have made the trip by any mode. Estimated at 20% of "
+        "boardings (TCRP Report 95). Valued via consumer surplus (50% of "
+        "equivalent auto trip value) rather than auto diversion savings."
+    ),
+    "option value": (
+        "The economic value that non-riders place on the mere availability "
+        "of transit — insurance against car breakdown, gas price spikes, "
+        "or loss of driving ability. Estimated at $20–$40 per capita per year "
+        "from stated-preference surveys (TCRP Report 78)."
+    ),
+    "consumer surplus": (
+        "The economic benefit a consumer receives beyond what they pay. In "
+        "transit CBA, induced riders gain a 'triangle' of consumer surplus "
+        "equal to roughly 50% of the auto trip cost they would have faced — "
+        "because their willingness to pay is lower than that cost."
+    ),
+    "diversion rate": (
+        "The share of transit riders who previously made the same trip by "
+        "private automobile. Auto-diversion riders generate vehicle operating "
+        "cost savings, time savings, crash reduction, and emission reduction "
+        "benefits. Complementary share = induced demand riders."
+    ),
+    "walk-shed": (
+        "The area reachable on foot within a given time (typically 5–10 min / "
+        "0.25–0.5 mile) from a transit stop. A larger walk-shed means the stop "
+        "serves more potential riders without transfers or feeder services."
+    ),
+    "discount rate": (
+        "The annual rate used to convert future dollars into present-value "
+        "dollars. Higher rates reduce the weight given to distant future "
+        "benefits. OMB Circular A-94 prescribes 2%, 3.5%, and 7% for "
+        "infrastructure BCA sensitivity testing."
+    ),
+    "FTA Circular 9040.1G": (
+        "FTA's Formula Grants for Rural Areas program guidance circular. "
+        "Sets minimum stop spacing, accessibility, and service standards "
+        "for federally funded rural and suburban transit. Used as the "
+        "baseline stop-spacing criterion in Phase B route optimization."
+    ),
+}
+
+
 def generate_dashboard_html(data: dict, merged: list, polygons: dict) -> str:
     """Generate the full dashboard HTML with embedded data.
 
@@ -454,6 +619,28 @@ def generate_dashboard_html(data: dict, merged: list, polygons: dict) -> str:
         [37.155,-122.040]
     ])
 
+    # Build glossary HTML section (alphabetical by term)
+    _gl_items = []
+    for _term in sorted(GLOSSARY.keys(), key=str.lower):
+        _slug = _term.lower().replace(" ", "-").replace("/", "-").replace(".", "")
+        _def_html = GLOSSARY[_term].replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+        _gl_items.append(
+            f'<dt id="gl-{_slug}"><a href="#gl-{_slug}" style="color:var(--ac);text-decoration:none">{_term}</a></dt>'
+            f"<dd>{_def_html}</dd>"
+        )
+    _gl_body = "\n".join(_gl_items)
+    glossary_html = (
+        '<section id="glossary" class="full">\n'
+        '<div class="stitle">Glossary</div>\n'
+        '<div class="ssub">Acronyms and key concepts used throughout this dashboard. '
+        'Underlined terms in the page text show a tooltip on hover.</div>\n'
+        f'<dl class="glossary-grid">\n{_gl_body}\n</dl>\n'
+        "</section>"
+    )
+
+    # Serialize glossary to JSON for JS auto-wrapping
+    js_glossary = json.dumps(GLOSSARY)
+
     html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -529,6 +716,22 @@ td .bar{{display:inline-block;height:8px;border-radius:2px;margin-right:4px;vert
 .correction-banner .cb-body{{flex:1}}
 .correction-banner strong{{color:var(--amber)}}
 @media(max-width:900px){{.grid{{grid-template-columns:1fr}}.grid>*{{grid-column:1/-1}}}}
+/* ---- Jargon tooltips ---- */
+.jargon{{border-bottom:1px dotted var(--ac);cursor:help;color:inherit;text-decoration:none;background:rgba(78,205,196,.04);padding:0 1px;border-radius:2px;transition:background 120ms}}
+.jargon:hover,.jargon:focus{{background:rgba(78,205,196,.18);outline:none}}
+.jargon-tip{{position:fixed;z-index:99999;max-width:300px;background:var(--s2);border:1px solid var(--bd);border-radius:7px;padding:10px 13px;font-size:10px;line-height:1.55;color:var(--tx);box-shadow:0 6px 22px rgba(0,0,0,.55);display:none}}
+.jargon-tip .jt-term{{font-weight:700;color:var(--ac);margin-bottom:4px;font-size:11px;font-family:var(--font-mono)}}
+/* ---- Glossary section ---- */
+.glossary-grid{{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:0 28px}}
+.glossary-grid dt{{font-weight:700;color:var(--ac);font-size:10px;padding:6px 0 1px;border-top:1px solid rgba(42,48,80,.5);scroll-margin-top:80px;border-radius:3px;transition:background 200ms,padding-left 200ms}}
+.glossary-grid dd{{color:var(--tm);font-size:9px;line-height:1.55;margin:0 0 4px 0;padding-bottom:4px;border-radius:3px;transition:background 200ms}}
+@keyframes glossFlash{{
+  0%{{background:rgba(78,205,196,.55);box-shadow:0 0 0 4px rgba(78,205,196,.35)}}
+  60%{{background:rgba(78,205,196,.22)}}
+  100%{{background:transparent;box-shadow:none}}
+}}
+.glossary-grid dt.gloss-flash,.glossary-grid dd.gloss-flash{{animation:glossFlash 1800ms ease-out}}
+.glossary-grid dt.gloss-flash{{padding-left:6px;color:#fff}}
 </style>
 </head>
 <body>
@@ -733,7 +936,9 @@ Route 76 restoration benefits (separate scenario analysis below)
 <div class="stitle">Full District Table</div>
 <div style="overflow-x:auto"><table id="tbl"></table></div>
 </div>
+{glossary_html}
 </div>
+<div class="jargon-tip" id="jargonTip"><div class="jt-term" id="jargonTipTerm"></div><div id="jargonTipBody"></div></div>
 <script>
 const D={js_districts};
 const S={js_stops};
@@ -888,7 +1093,8 @@ function showNPVBreakdown(idx,nv,pvC,pvB){{
 
   // Year-by-year stream using ALLOCATED costs
   const yrTbl=document.getElementById('npvYearStream');
-  const costGrowth=0.020; const benGrowth=0.005;
+  // Source of truth: cost_model.compute_cost_npv (2.5%/yr), benefit_model.compute_benefit_npv (1.0%/yr)
+  const costGrowth=0.025; const benGrowth=0.010;
   let yh='<tr><th>Year</th><th style="text-align:right">Cost (nominal)</th><th style="text-align:right">Benefit (nominal)</th><th style="text-align:right">PV Cost</th><th style="text-align:right">PV Benefit</th><th style="text-align:right">Cumulative Net PV</th></tr>';
   let cumNet=-(ALLOC_CAP||0);
   yh+='<tr style="color:var(--tm)"><td>0 (Capital)</td><td class="n">--</td><td class="n">--</td><td class="n">$'+(ALLOC_CAP||0).toLocaleString()+'</td><td class="n">--</td><td class="n">$'+Math.round(cumNet).toLocaleString()+'</td></tr>';
@@ -903,6 +1109,227 @@ function showNPVBreakdown(idx,nv,pvC,pvB){{
   }});
   yrTbl.innerHTML=yh;
 }}
+
+// ---- Glossary tooltip + auto-wrap (robust) ----
+// Wraps EVERY occurrence (not just the first), re-wraps dynamically-injected
+// content via MutationObserver, uses delegated mouseover/mouseout with a
+// settle delay so cursor can move from term -> tooltip without flicker, and
+// flashes the glossary entry on click-through so you can spot it.
+const GLOSS={js_glossary};
+(function(){{
+  const tip=document.getElementById('jargonTip');
+  const tipTerm=document.getElementById('jargonTipTerm');
+  const tipBody=document.getElementById('jargonTipBody');
+  let hideTimer=null;
+  let activeTerm=null;
+
+  function showTip(el){{
+    if(hideTimer){{clearTimeout(hideTimer);hideTimer=null;}}
+    const key=el.dataset.term;
+    if(activeTerm===key&&tip.style.display==='block'){{positionTip(el);return;}}
+    activeTerm=key;
+    tipTerm.textContent=key;
+    tipBody.textContent=GLOSS[key]||'';
+    tip.style.display='block';
+    positionTip(el);
+  }}
+  function positionTip(el){{
+    const r=el.getBoundingClientRect();
+    const tw=tip.offsetWidth||300,th=tip.offsetHeight||90;
+    let left=r.left;
+    let top=r.bottom+8;
+    if(left+tw>window.innerWidth-8)left=window.innerWidth-tw-8;
+    if(top+th>window.innerHeight-8)top=Math.max(4,r.top-th-8);
+    tip.style.left=Math.max(4,left)+'px';
+    tip.style.top=top+'px';
+  }}
+  function scheduleHide(){{
+    if(hideTimer)clearTimeout(hideTimer);
+    hideTimer=setTimeout(function(){{tip.style.display='none';activeTerm=null;}},180);
+  }}
+
+  // Delegated hover — finds the nearest .jargon ancestor of the target so
+  // child <a> elements inside the span keep the tooltip open.
+  document.addEventListener('mouseover',function(e){{
+    const j=e.target.closest&&e.target.closest('.jargon');
+    if(j){{showTip(j);return;}}
+    // Hovering the tooltip itself counts as "still on" — keep it visible.
+    if(e.target.closest&&e.target.closest('#jargonTip')){{
+      if(hideTimer){{clearTimeout(hideTimer);hideTimer=null;}}
+      return;
+    }}
+  }});
+  document.addEventListener('mouseout',function(e){{
+    const j=e.target.closest&&e.target.closest('.jargon');
+    const t=e.target.closest&&e.target.closest('#jargonTip');
+    if(!j&&!t)return;
+    // Did the cursor leave to either a jargon span or the tip? Then keep open.
+    const to=e.relatedTarget;
+    if(to&&to.closest&&(to.closest('.jargon')||to.closest('#jargonTip')))return;
+    scheduleHide();
+  }});
+
+  // Click on a wrapped term: smooth-scroll to glossary entry and flash it.
+  document.addEventListener('click',function(e){{
+    const a=e.target.closest&&e.target.closest('.jargon');
+    if(!a)return;
+    e.preventDefault();
+    const term=a.dataset.term;
+    const slug=slugify(term);
+    const dt=document.getElementById('gl-'+slug);
+    if(!dt)return;
+    dt.scrollIntoView({{behavior:'smooth',block:'center'}});
+    flashEntry(dt);
+    // Update history without jumping
+    if(history.replaceState)history.replaceState(null,'','#gl-'+slug);
+  }});
+
+  function flashEntry(dt){{
+    const dd=dt.nextElementSibling;
+    [dt,dd].forEach(function(n){{
+      if(!n)return;
+      n.classList.remove('gloss-flash');
+      // Force reflow so re-adding the class restarts the animation
+      void n.offsetWidth;
+      n.classList.add('gloss-flash');
+    }});
+  }}
+
+  // ---- Auto-wrap ----
+  const skipTags=new Set(['SCRIPT','STYLE','CANVAS','SVG','A','BUTTON','INPUT','TEXTAREA','SELECT','OPTION']);
+  const skipClassSubstrings=['jargon','jargon-tip','leaflet','glossary'];
+  const terms=Object.keys(GLOSS).sort(function(a,b){{return b.length-a.length;}});
+  const acronymRe=/^[A-Z0-9\\s.\\/&-]+$/;
+  // Pre-build per-term match regexes once
+  const termMeta=terms.map(function(term){{
+    const isAcronym=acronymRe.test(term);
+    const escaped=term.replace(/[.*+?^${{}}()|[\\]\\\\]/g,'\\$&');
+    // Word-boundary match. For acronyms we keep case-sensitivity strict.
+    return {{term:term,re:new RegExp('\\\\b'+escaped+'\\\\b',isAcronym?'g':'gi')}};
+  }});
+
+  // Must match Python build (`_term.lower().replace(" ","-").replace("/","-").replace(".","")`)
+  // exactly so anchors line up with the dt IDs emitted server-side.
+  function slugify(s){{return s.toLowerCase().split('.').join('').split(' ').join('-').split('/').join('-');}}
+
+  function shouldSkipElement(el){{
+    if(!el||!el.tagName)return true;
+    if(skipTags.has(el.tagName))return true;
+    const cls=(typeof el.className==='string'?el.className:(el.className&&el.className.baseVal)||'');
+    for(let i=0;i<skipClassSubstrings.length;i++){{
+      if(cls.indexOf(skipClassSubstrings[i])>=0)return true;
+    }}
+    // Don't wrap inside the popover itself
+    if(el.id==='jargonTip')return true;
+    return false;
+  }}
+
+  function wrapTextNode(node){{
+    const text=node.textContent;
+    if(!text||text.length<2||!/[A-Za-z]/.test(text))return false;
+    // Find first match across all terms (longest-first), produce ALL matches.
+    // Strategy: scan the text once per term; collect non-overlapping matches.
+    const matches=[];
+    for(let i=0;i<termMeta.length;i++){{
+      const tm=termMeta[i];
+      tm.re.lastIndex=0;
+      let m;
+      while((m=tm.re.exec(text))!==null){{
+        // Reject overlap with already-claimed range
+        const start=m.index,end=start+m[0].length;
+        let overlap=false;
+        for(let k=0;k<matches.length;k++){{
+          if(!(end<=matches[k].start||start>=matches[k].end)){{overlap=true;break;}}
+        }}
+        if(!overlap)matches.push({{start:start,end:end,term:tm.term,match:m[0]}});
+      }}
+    }}
+    if(!matches.length)return false;
+    matches.sort(function(a,b){{return a.start-b.start;}});
+    const parent=node.parentNode;
+    if(!parent)return false;
+    const frag=document.createDocumentFragment();
+    let cursor=0;
+    for(let i=0;i<matches.length;i++){{
+      const mm=matches[i];
+      if(mm.start>cursor)frag.appendChild(document.createTextNode(text.slice(cursor,mm.start)));
+      const span=document.createElement('span');
+      span.className='jargon';
+      span.dataset.term=mm.term;
+      span.dataset.glossWrapped='1';
+      span.tabIndex=0;
+      span.setAttribute('role','button');
+      span.setAttribute('aria-label',mm.term+': '+(GLOSS[mm.term]||''));
+      span.textContent=mm.match;
+      frag.appendChild(span);
+      cursor=mm.end;
+    }}
+    if(cursor<text.length)frag.appendChild(document.createTextNode(text.slice(cursor)));
+    parent.replaceChild(frag,node);
+    return true;
+  }}
+
+  function walk(root){{
+    if(!root||shouldSkipElement(root))return;
+    // Use a TreeWalker for performance and to avoid recursion limits.
+    const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{{
+      acceptNode:function(n){{
+        // Skip text inside excluded ancestors
+        let p=n.parentNode;
+        while(p&&p!==root){{
+          if(shouldSkipElement(p))return NodeFilter.FILTER_REJECT;
+          p=p.parentNode;
+        }}
+        return NodeFilter.FILTER_ACCEPT;
+      }}
+    }});
+    const targets=[];
+    let n;
+    while((n=walker.nextNode()))targets.push(n);
+    targets.forEach(wrapTextNode);
+  }}
+
+  function run(){{walk(document.body);}}
+
+  if(document.readyState==='loading'){{
+    document.addEventListener('DOMContentLoaded',run);
+  }} else {{
+    run();
+  }}
+
+  // Re-wrap dynamically-injected content (NPV breakdown, schedule panel,
+  // school demand, district demand, route 27 table, etc.). Coalesce updates
+  // through requestAnimationFrame to avoid thrashing during big innerHTML
+  // replacements.
+  let pending=null;
+  const observer=new MutationObserver(function(records){{
+    const roots=[];
+    for(let i=0;i<records.length;i++){{
+      const r=records[i];
+      for(let j=0;j<r.addedNodes.length;j++){{
+        const node=r.addedNodes[j];
+        if(node.nodeType===1&&!shouldSkipElement(node)&&!node.dataset.glossWrapped){{
+          roots.push(node);
+        }}
+      }}
+    }}
+    if(!roots.length)return;
+    if(pending)cancelAnimationFrame(pending);
+    pending=requestAnimationFrame(function(){{
+      pending=null;
+      roots.forEach(walk);
+    }});
+  }});
+  observer.observe(document.body,{{childList:true,subtree:true}});
+
+  // Highlight the glossary entry if the page is opened with #gl-... in URL.
+  window.addEventListener('load',function(){{
+    if(location.hash&&location.hash.indexOf('#gl-')===0){{
+      const dt=document.getElementById(location.hash.slice(1));
+      if(dt)flashEntry(dt);
+    }}
+  }});
+}})();
 
 // Route optimization and Route 27 panels are in route_optimization.html
 // TABLE
