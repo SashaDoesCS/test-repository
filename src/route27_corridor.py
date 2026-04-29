@@ -48,8 +48,16 @@ import pandas as pd
 
 logger = logging.getLogger(__name__)
 
+# Default GTFS directory (relative to project root)
+_GTFS_DIR_DEFAULT = Path("data/geospatial/gtfs")
+
 # ---------------------------------------------------------------------------
 # ROUTE 27 ANCHOR WAYPOINTS
+#
+# DEPRECATED-as-primary: these anchors are now the FALLBACK path only.
+# The primary corridor source is VTA's published GTFS shapes.txt, loaded
+# via load_route27_shape_from_gtfs().  The anchors are retained so that
+# the system degrades gracefully when GTFS files are unavailable.
 #
 # These ten waypoints define the corridor shape.  OSMnx stitches them into
 # a continuous road path; the waypoints themselves do NOT have to be exact
@@ -256,6 +264,187 @@ def _project_point_onto_segment(
 
 
 # ---------------------------------------------------------------------------
+# REUSABLE PATH-PROJECTION (extracted for shared use in optimizer Bug 1 fix)
+# ---------------------------------------------------------------------------
+
+def project_to_path(
+    lat: float,
+    lon: float,
+    path_coords: List[Tuple[float, float]],
+    path_s_coords: List[float],
+) -> Tuple[float, float]:
+    """Project a point onto the corridor path and return its s-coordinate.
+
+    Uses flat-earth segment projection (acceptable over the ~8 mi Route 27
+    corridor).  Returns (s_ft, snap_dist_ft) where:
+      s_ft          — arc-length from path start (Winchester TC) in feet
+      snap_dist_ft  — perpendicular distance from point to nearest path segment
+
+    Args:
+        lat, lon:       WGS84 decimal degrees of the point to project.
+        path_coords:    List of (lat, lon) tuples defining the corridor path.
+        path_s_coords:  Cumulative arc-length (ft) at each path node.
+
+    Returns:
+        (s_ft, snap_dist_ft) — both in feet.
+    """
+    if len(path_coords) < 2:
+        return 0.0, 0.0
+
+    path_xy = [(plon, plat) for plat, plon in path_coords]
+    best_s = 0.0
+    best_dist = float("inf")
+    for seg_i in range(len(path_xy) - 1):
+        ax, ay = path_xy[seg_i]
+        bx, by = path_xy[seg_i + 1]
+        cx, cy, t = _project_point_onto_segment(lon, lat, ax, ay, bx, by)
+        dlat = (lat - cy) * 364_000  # ft per degree lat at 37°N
+        dlon = (lon - cx) * 288_500  # ft per degree lon at 37°N
+        dist_ft = math.sqrt(dlat ** 2 + dlon ** 2)
+        if dist_ft < best_dist:
+            best_dist = dist_ft
+            seg_len = _haversine_ft(
+                path_coords[seg_i][0], path_coords[seg_i][1],
+                path_coords[seg_i + 1][0], path_coords[seg_i + 1][1],
+            )
+            best_s = path_s_coords[seg_i] + t * seg_len
+    return best_s, best_dist
+
+
+# ---------------------------------------------------------------------------
+# GTFS SHAPE LOADER (P1.1 — primary corridor source)
+# ---------------------------------------------------------------------------
+
+def load_route27_shape_from_gtfs(
+    gtfs_dir: Path = _GTFS_DIR_DEFAULT,
+) -> Optional[List[Tuple[float, float]]]:
+    """Load Route 27's published corridor geometry from VTA GTFS shapes.txt.
+
+    Steps:
+      1. Read routes.txt — find row with route_id == "27" (or
+         route_short_name == "27" if route_id is non-numeric).
+      2. Read trips.txt filtered to that route_id.  Pick the shape_id with
+         the most trips in direction_id == 0 (Winchester → Santa Teresa).
+      3. Read shapes.txt filtered to that shape_id, sort by
+         shape_pt_sequence, return [(lat, lon), ...].
+
+    This eliminates Bugs 2 and 3 simultaneously:
+      • Bug 2: The GTFS shape extends to Santa Teresa Stn — the full route.
+      • Bug 3: No Dijkstra stitching; published shape follows actual roads.
+
+    Args:
+        gtfs_dir: Path to the directory containing routes.txt, trips.txt,
+                  and shapes.txt.  Defaults to data/geospatial/gtfs/.
+
+    Returns:
+        List of (lat, lon) tuples if successful, None on any failure.
+    """
+    gtfs_dir = Path(gtfs_dir)
+
+    # ---- 1. Find route_id for Route 27 ------------------------------------
+    routes_path = gtfs_dir / "routes.txt"
+    if not routes_path.exists():
+        logger.warning("GTFS routes.txt not found at %s.", routes_path)
+        return None
+    try:
+        routes_df = pd.read_csv(routes_path, dtype=str)
+    except Exception as exc:
+        logger.warning("Could not read routes.txt: %s", exc)
+        return None
+
+    # Try matching route_id first, then route_short_name
+    route_mask = routes_df.get("route_id", pd.Series(dtype=str)) == "27"
+    if not route_mask.any():
+        route_mask = routes_df.get("route_short_name", pd.Series(dtype=str)) == "27"
+    if not route_mask.any():
+        logger.warning("Route 27 not found in routes.txt.")
+        return None
+
+    route_id = routes_df.loc[route_mask, "route_id"].iloc[0]
+    logger.info("GTFS: Route 27 found with route_id='%s'.", route_id)
+
+    # ---- 2. Find the dominant direction-0 shape_id -------------------------
+    trips_path = gtfs_dir / "trips.txt"
+    if not trips_path.exists():
+        logger.warning("GTFS trips.txt not found at %s.", trips_path)
+        return None
+    try:
+        trips_df = pd.read_csv(trips_path, dtype=str)
+    except Exception as exc:
+        logger.warning("Could not read trips.txt: %s", exc)
+        return None
+
+    r27_trips = trips_df[trips_df["route_id"] == route_id].copy()
+    if r27_trips.empty:
+        logger.warning("No trips found for route_id='%s'.", route_id)
+        return None
+
+    # Filter to direction_id == 0; fall back to all trips if column missing
+    if "direction_id" in r27_trips.columns:
+        dir0 = r27_trips[r27_trips["direction_id"] == "0"]
+        if dir0.empty:
+            logger.warning(
+                "No direction_id=0 trips for route 27; using all directions."
+            )
+            dir0 = r27_trips
+    else:
+        dir0 = r27_trips
+
+    # Pick shape_id with most trips (longest/canonical service pattern)
+    if "shape_id" not in dir0.columns or dir0["shape_id"].isna().all():
+        logger.warning("No shape_id column in trips.txt for route 27.")
+        return None
+    shape_counts = dir0["shape_id"].value_counts()
+    shape_id = shape_counts.index[0]
+    logger.info(
+        "GTFS: Using shape_id='%s' (%d trips, direction_id=0).",
+        shape_id, shape_counts.iloc[0],
+    )
+
+    # ---- 3. Load shape points and return ------------------------------------
+    shapes_path = gtfs_dir / "shapes.txt"
+    if not shapes_path.exists():
+        logger.warning("GTFS shapes.txt not found at %s.", shapes_path)
+        return None
+    try:
+        shapes_df = pd.read_csv(shapes_path, dtype=str)
+    except Exception as exc:
+        logger.warning("Could not read shapes.txt: %s", exc)
+        return None
+
+    shape_pts = shapes_df[shapes_df["shape_id"] == shape_id].copy()
+    if shape_pts.empty:
+        logger.warning("No shape points found for shape_id='%s'.", shape_id)
+        return None
+
+    try:
+        shape_pts["shape_pt_sequence"] = pd.to_numeric(
+            shape_pts["shape_pt_sequence"], errors="coerce"
+        )
+        shape_pts = shape_pts.dropna(subset=["shape_pt_sequence"])
+        shape_pts = shape_pts.sort_values("shape_pt_sequence")
+        coords = [
+            (float(row["shape_pt_lat"]), float(row["shape_pt_lon"]))
+            for _, row in shape_pts.iterrows()
+        ]
+    except Exception as exc:
+        logger.warning("Error parsing shape points: %s", exc)
+        return None
+
+    if not coords:
+        logger.warning("Empty coordinate list for shape_id='%s'.", shape_id)
+        return None
+
+    logger.info(
+        "GTFS shape loaded: shape_id='%s', %d points, length=%.2f mi.",
+        shape_id,
+        len(coords),
+        compute_s_coordinates(coords)[-1] / 5280 if len(coords) > 1 else 0.0,
+    )
+    return coords
+
+
+# ---------------------------------------------------------------------------
 # ROAD NETWORK BUILDING
 # ---------------------------------------------------------------------------
 
@@ -456,33 +645,47 @@ def compute_s_coordinates(path_coords: List[Tuple[float, float]]) -> List[float]
 # INTERSECTION EXTRACTION
 # ---------------------------------------------------------------------------
 
+# Highway types that indicate unsafe stop locations (no pedestrian access)
+# Source: OSM highway tag values for controlled-access roads
+_UNSAFE_HIGHWAY_TYPES = {"motorway", "motorway_link", "trunk_link"}
+
+
 def extract_intersection_candidates(
     G,
     path_coords: List[Tuple[float, float]],
     path_s_coords: List[float],
-    snap_tolerance_ft: float = 150.0,
+    snap_tolerance_ft: float = 200.0,
 ) -> pd.DataFrame:
-    """Extract intersection nodes on or near the stitched route path.
+    """Extract intersection nodes on or near the route path.
 
     A node is included if:
       (a) It is on the path (direct inclusion), OR
-      (b) Its closest point on the path is within snap_tolerance_ft.
+      (b) Its closest projected point on the path is within snap_tolerance_ft.
 
     Degree-1 and degree-2 nodes (dead ends and through-roads with no cross
     street) are filtered out — they are not legal bus stop locations.
 
+    Nodes adjacent to motorway/motorway_link/trunk_link edges are excluded
+    as pedestrian access is not feasible.
+
+    The candidate's stop_lat/stop_lon is set to the PROJECTED point on the
+    shape (not the OSM node location) so that downstream spacing checks use
+    the actual on-route position.  The original OSM node coordinates are
+    preserved in osm_node_lat/osm_node_lon for traceability.
+
     Args:
         G: OSMnx MultiDiGraph (or None).
-        path_coords: Stitched path from stitch_corridor_path().
+        path_coords: Corridor path from GTFS shape or stitch_corridor_path().
         path_s_coords: Arc-length values from compute_s_coordinates().
         snap_tolerance_ft: Maximum perpendicular distance from path for
-            inclusion (default 150 ft = ~45 m, one city block width).
+            inclusion (default 200 ft — tightened from 150 ft to reduce
+            off-route candidates when using the GTFS shape directly).
 
     Returns:
         DataFrame with columns:
-            candidate_id, stop_lat, stop_lon, s_coord_ft, osm_node_id,
-            street_name, cross_street, node_degree, on_path,
-            snap_dist_ft, is_forced, activity_type
+            candidate_id, stop_lat, stop_lon, osm_node_lat, osm_node_lon,
+            s_coord_ft, osm_node_id, street_names, node_degree,
+            snap_dist_ft, is_forced, activity_type, source
     """
     if G is None or len(path_coords) < 2:
         logger.warning(
@@ -490,20 +693,23 @@ def extract_intersection_candidates(
         )
         return pd.DataFrame()
 
-    # Build path as flat list for projection (use lon as x, lat as y for math)
-    path_xy = [(lon, lat) for lat, lon in path_coords]
+    # Build path as flat list for projection (lon as x, lat as y)
+    path_xy = [(plon, plat) for plat, plon in path_coords]
 
-    def _project_to_path(lon: float, lat: float):
-        """Return (s_coord_ft, snap_dist_ft) for a point near the path."""
+    def _projected_point(node_lon: float, node_lat: float):
+        """Return (proj_lat, proj_lon, s_ft, dist_ft) for a node near path."""
         best_s = 0.0
         best_dist = float("inf")
+        best_proj_lat = node_lat
+        best_proj_lon = node_lon
         for seg_i in range(len(path_xy) - 1):
             ax, ay = path_xy[seg_i]
             bx, by = path_xy[seg_i + 1]
-            cx, cy, t = _project_point_onto_segment(lon, lat, ax, ay, bx, by)
-            # Distance in feet (flat-earth, scaled by degrees-to-feet)
-            dlat = (lat - cy) * 364_000  # ft per degree lat at 37°N
-            dlon = (lon - cx) * 288_500  # ft per degree lon at 37°N
+            cx, cy, t = _project_point_onto_segment(
+                node_lon, node_lat, ax, ay, bx, by
+            )
+            dlat = (node_lat - cy) * 364_000
+            dlon = (node_lon - cx) * 288_500
             dist_ft = math.sqrt(dlat ** 2 + dlon ** 2)
             if dist_ft < best_dist:
                 best_dist = dist_ft
@@ -512,25 +718,43 @@ def extract_intersection_candidates(
                     path_coords[seg_i + 1][0], path_coords[seg_i + 1][1],
                 )
                 best_s = path_s_coords[seg_i] + t * seg_len
-        return best_s, best_dist
+                best_proj_lat = cy   # projected point lat (y in lon/lat space)
+                best_proj_lon = cx   # projected point lon (x in lon/lat space)
+        return best_proj_lat, best_proj_lon, best_s, best_dist
 
     # Collect all graph nodes (OSM intersections)
     records = []
     for node_id, data in G.nodes(data=True):
-        lat = data.get("y", 0.0)
-        lon = data.get("x", 0.0)
+        osm_lat = data.get("y", 0.0)
+        osm_lon = data.get("x", 0.0)
         degree = G.degree(node_id)
 
         # Skip dead-ends and simple through-nodes — not valid stop locations
         if degree < 3:
             continue
 
-        s_ft, dist_ft = _project_to_path(lon, lat)
+        # Feasibility filter: skip nodes adjacent to controlled-access highways
+        # where pedestrian access is not possible.
+        # Source: OSM highway tag; TCRP Report 19 §3.2.1
+        unsafe = False
+        for _, _, edge_data in G.edges(node_id, data=True):
+            hw = edge_data.get("highway", "")
+            if isinstance(hw, list):
+                if any(h in _UNSAFE_HIGHWAY_TYPES for h in hw):
+                    unsafe = True
+                    break
+            elif hw in _UNSAFE_HIGHWAY_TYPES:
+                unsafe = True
+                break
+        if unsafe:
+            continue
+
+        proj_lat, proj_lon, s_ft, dist_ft = _projected_point(osm_lon, osm_lat)
 
         if dist_ft > snap_tolerance_ft:
             continue  # Too far from the path
 
-        # Extract street name from adjacent edges
+        # Extract street names from adjacent edges
         street_names = set()
         for _, _, edge_data in G.edges(node_id, data=True):
             name = edge_data.get("name", "")
@@ -540,17 +764,21 @@ def extract_intersection_candidates(
                 street_names.add(name)
 
         records.append({
-            "candidate_id": f"R27_OSM_{node_id}",
-            "stop_lat": lat,
-            "stop_lon": lon,
-            "s_coord_ft": round(s_ft, 1),
-            "osm_node_id": node_id,
-            "street_names": "; ".join(sorted(street_names)),
-            "node_degree": degree,
-            "snap_dist_ft": round(dist_ft, 1),
-            "is_forced": False,
+            "candidate_id":  f"R27_OSM_{node_id}",
+            # Snap candidate position to the corridor shape (P1.3)
+            "stop_lat":      proj_lat,
+            "stop_lon":      proj_lon,
+            # Original OSM node for traceability
+            "osm_node_lat":  osm_lat,
+            "osm_node_lon":  osm_lon,
+            "s_coord_ft":    round(s_ft, 1),
+            "osm_node_id":   node_id,
+            "street_names":  "; ".join(sorted(street_names)),
+            "node_degree":   degree,
+            "snap_dist_ft":  round(dist_ft, 1),
+            "is_forced":     False,
             "activity_type": "intersection",
-            "source": f"OSM node {node_id} (degree={degree})",
+            "source":        f"OSM node {node_id} (degree={degree})",
         })
 
     if not records:
@@ -600,33 +828,13 @@ def add_forced_candidates(
     if forced is None:
         forced = FORCED_CANDIDATES
 
-    path_xy = [(lon, lat) for lat, lon in path_coords]
-
-    def _s_for_point(lat: float, lon: float) -> float:
-        best_s = 0.0
-        best_dist = float("inf")
-        for seg_i in range(len(path_xy) - 1):
-            ax, ay = path_xy[seg_i]
-            bx, by = path_xy[seg_i + 1]
-            _, _, t = _project_point_onto_segment(lon, lat, ax, ay, bx, by)
-            cx = ax + t * (bx - ax)
-            cy = ay + t * (by - ay)
-            dlat = (lat - cy) * 364_000
-            dlon = (lon - cx) * 288_500
-            dist_ft = math.sqrt(dlat ** 2 + dlon ** 2)
-            if dist_ft < best_dist:
-                best_dist = dist_ft
-                seg_len = _haversine_ft(
-                    path_coords[seg_i][0], path_coords[seg_i][1],
-                    path_coords[seg_i + 1][0], path_coords[seg_i + 1][1],
-                )
-                best_s = path_s_coords[seg_i] + t * seg_len
-        return best_s
-
     forced_rows = []
     for fc in forced:
         lat, lon = fc["stop_lat"], fc["stop_lon"]
-        s_ft = _s_for_point(lat, lon) if len(path_coords) >= 2 else 0.0
+        if len(path_coords) >= 2:
+            s_ft, _ = project_to_path(lat, lon, path_coords, path_s_coords)
+        else:
+            s_ft = 0.0
         forced_rows.append({
             "candidate_id":  fc["stop_id"],
             "stop_lat":      lat,
@@ -766,43 +974,75 @@ def build_route27_corridor(config: dict) -> dict:
     """Run the full corridor-building pipeline.
 
     Steps:
-      1. Build (or load cached) OSM road network for the corridor.
-      2. Stitch ROUTE_27_ANCHORS into a continuous road path.
+      1. Determine corridor source:
+         - "gtfs_shapes" (default): load VTA published shapes.txt geometry.
+           Falls back to anchor stitch if GTFS unavailable.
+         - "anchors": OSMnx Dijkstra stitch of ROUTE_27_ANCHORS (legacy).
+      2. Build (or load cached) OSM road network for candidate extraction.
       3. Compute s-coordinates (cumulative arc-length in feet).
-      4. Extract intersection candidates within 150 ft of the path.
+      4. Extract intersection candidates within 200 ft of the path.
       5. Append forced activity-generator candidates.
       6. Export GeoJSON for GIS inspection.
 
+    Config key:
+        route27_optimization.corridor_source: "gtfs_shapes" | "anchors"
+        Default: "gtfs_shapes"
+
     Args:
-        config: Full pipeline config dict (used for bbox / cache paths).
+        config: Full pipeline config dict.
 
     Returns:
         Dict with keys:
             graph:            OSMnx MultiDiGraph or None
-            path_coords:      List[(lat, lon)] — road-following path
+            path_coords:      List[(lat, lon)] — corridor path
             path_s_coords:    List[float]      — arc-length (ft) per path node
             candidates_df:    DataFrame        — all candidate stop locations
             path_geojson:     str              — path to exported GeoJSON
+            corridor_source:  str              — "gtfs_shapes" or "anchors"
     """
+    r27_cfg = config.get("route27_optimization", {})
+    corridor_source = r27_cfg.get("corridor_source", "gtfs_shapes")
+
     logger.info("=" * 60)
     logger.info("ROUTE 27 CORRIDOR BUILD")
-    logger.info("  Anchors:  %d waypoints", len(ROUTE_27_ANCHORS))
+    logger.info("  Corridor source: %s", corridor_source)
     logger.info("  Forced candidates: %d activity generators", len(FORCED_CANDIDATES))
     logger.info("  Spacing standard: FTA Circular 9040.1G §5.2.2")
     logger.info("=" * 60)
 
     G = build_route27_road_network(config)
-    path_coords = stitch_corridor_path(G, ROUTE_27_ANCHORS)
+
+    # ---- Determine path_coords ----
+    path_coords = None
+
+    if corridor_source == "gtfs_shapes":
+        gtfs_dir = Path(
+            config.get("gtfs_dir", "data/geospatial/gtfs")
+        )
+        path_coords = load_route27_shape_from_gtfs(gtfs_dir)
+        if path_coords is None:
+            logger.warning(
+                "GTFS shape unavailable — falling back to anchor stitch."
+            )
+            corridor_source = "anchors"
+
+    if path_coords is None:
+        # Anchor stitch fallback (DEPRECATED-as-primary)
+        logger.info("Using anchor stitch (fallback) for corridor path.")
+        path_coords = stitch_corridor_path(G, ROUTE_27_ANCHORS)
+
     path_s_coords = compute_s_coordinates(path_coords)
 
     total_length_ft = path_s_coords[-1] if path_s_coords else 0.0
     logger.info(
-        "Stitched path: %d nodes, total length %.2f mi (%.0f ft).",
+        "Corridor path: %d points, total length %.2f mi (%.0f ft).  "
+        "Source: %s.",
         len(path_coords), total_length_ft / 5280, total_length_ft,
+        corridor_source,
     )
 
     intersection_df = extract_intersection_candidates(
-        G, path_coords, path_s_coords, snap_tolerance_ft=150.0
+        G, path_coords, path_s_coords, snap_tolerance_ft=200.0
     )
 
     candidates_df = add_forced_candidates(
@@ -820,9 +1060,10 @@ def build_route27_corridor(config: dict) -> dict:
     )
 
     return {
-        "graph":          G,
-        "path_coords":    path_coords,
-        "path_s_coords":  path_s_coords,
-        "candidates_df":  candidates_df,
-        "path_geojson":   geojson_path,
+        "graph":            G,
+        "path_coords":      path_coords,
+        "path_s_coords":    path_s_coords,
+        "candidates_df":    candidates_df,
+        "path_geojson":     geojson_path,
+        "corridor_source":  corridor_source,
     }
