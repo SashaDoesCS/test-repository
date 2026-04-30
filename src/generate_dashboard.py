@@ -696,9 +696,14 @@ def generate_dashboard_html(data: dict, merged: list, polygons: dict) -> str:
     js_r27_suggestions = json.dumps(r27_suggestions)
     js_r27_geojson = json.dumps(data.get("route27_geojson"))
     r27_run = len(r27_suggestions) > 0
-    r27_new_count = sum(1 for s in r27_suggestions if s.get("status") == "NEW_SUGGEST")
+    # P1.11: route27_optimizer emits two new-stop statuses: NEW_SUGGEST (gap-fill
+    # candidates with full BCR) and NEW_IN_SELECTION (FTA-spacing candidates,
+    # no BCR).  Counters previously only saw NEW_SUGGEST, so the dashboard
+    # showed "0 new stops" even when the optimizer produced 13.
+    _NEW_STATUSES = {"NEW_SUGGEST", "NEW_IN_SELECTION"}
+    r27_new_count = sum(1 for s in r27_suggestions if s.get("status") in _NEW_STATUSES)
     r27_high_count = sum(1 for s in r27_suggestions
-                         if s.get("status") == "NEW_SUGGEST" and s.get("priority") == "HIGH")
+                         if s.get("status") in _NEW_STATUSES and s.get("priority") == "HIGH")
 
     r76_data = {}
     cfg = data.get("config", {})
@@ -1461,10 +1466,13 @@ def generate_route_optimization_html(data: dict) -> str:
     """
     opt_run = len(data.get("optimised_routes", [])) > 0
     r27_run = len(data.get("route27_suggestions", [])) > 0
+    # P1.11: see counterpart in generate_main_html — count both NEW_SUGGEST
+    # and NEW_IN_SELECTION as "new stops" for headline metrics.
+    _NEW_STATUSES = {"NEW_SUGGEST", "NEW_IN_SELECTION"}
     r27_new_count = sum(1 for s in data.get("route27_suggestions", [])
-                        if s.get("status") == "NEW_SUGGEST")
+                        if s.get("status") in _NEW_STATUSES)
     r27_high_count = sum(1 for s in data.get("route27_suggestions", [])
-                         if s.get("status") == "NEW_SUGGEST" and s.get("priority") == "HIGH")
+                         if s.get("status") in _NEW_STATUSES and s.get("priority") == "HIGH")
 
     import math as _math
 
@@ -1972,11 +1980,16 @@ Chart.defaults.font.family="'IBM Plex Mono',monospace";Chart.defaults.font.size=
     }});
   }}
 
+  // P1.11: route27_optimizer emits NEW_SUGGEST (gap-fill, full BCR) and
+  // NEW_IN_SELECTION (FTA-spacing pick, no BCR).  Treat both as "new" for
+  // counting/styling; only show BCR popup section when BCR is populated.
+  const isNewStatus=s=>s&&typeof s.status==='string'&&s.status.indexOf('NEW_')===0;
   let nTotal=0,nExist=0,nNew=0,nHigh=0,maxMi=0;
   R27_SUGGESTIONS.forEach(s=>{{
     if(s.stop_lat==null||s.stop_lon==null)return;
     nTotal++;
-    const isNew=s.status==='NEW_SUGGEST';
+    const isNew=isNewStatus(s);
+    const hasBcr=s.bcr_20yr!=null;
     const isHigh=isNew&&s.priority==='HIGH';
     const isMed=isNew&&s.priority==='MEDIUM';
     if(!isNew)nExist++;else nNew++;
@@ -1988,16 +2001,19 @@ Chart.defaults.font.family="'IBM Plex Mono',monospace";Chart.defaults.font.size=
     pop+='<br>Status: <span style="color:'+color+'">'+s.status+'</span>';
     pop+='<br>Priority: '+(s.priority||'—')+' | District: '+(s.district_id||'—');
     pop+='<br>Position: '+(s.s_coord_mi||0).toFixed(2)+' mi from Winchester TC';
-    if(isNew){{
+    if(isNew&&hasBcr){{
       pop+='<hr style="border-color:rgba(120,128,160,.3);margin:5px 0">';
       pop+='<b style="color:var(--amber)">BCR Analysis (20 yr @ 3.5%)</b>';
       pop+='<br>Marginal walk-shed pop: '+(s.marginal_walkshed_pop||0).toLocaleString();
       pop+='<br>Est. new riders/day: '+(s.est_new_riders_daily||0).toFixed(1);
       pop+='<br>Annual benefit: $'+(s.annual_benefit_usd||0).toLocaleString();
       pop+='<br>Capital cost: $'+(s.capital_cost_usd||0).toLocaleString();
-      pop+='<br><b>BCR: '+(s.bcr_20yr!=null?parseFloat(s.bcr_20yr).toFixed(2):'—')+'</b>';
+      pop+='<br><b>BCR: '+parseFloat(s.bcr_20yr).toFixed(2)+'</b>';
       pop+='<br>FTA CEI: $'+(s.fta_cei_per_user_hr!=null?parseFloat(s.fta_cei_per_user_hr).toFixed(2):'—')+'/user-hr';
       pop+='<br><small style="color:var(--tm)">'+((s.justification||'').slice(0,120))+'…</small>';
+    }}else if(isNew){{
+      pop+='<hr style="border-color:rgba(120,128,160,.3);margin:5px 0">';
+      pop+='<small style="color:var(--tm)">Selected via FTA spacing algorithm; no BCR yet (gap-fill BCR runs only for spacing-violation gaps).</small>';
     }}
     if(s.wheelchair_boarding)pop+='<br>♿ ADA accessible';
     if(s.stop_id)pop+='<br><a href="placards/'+(s.stop_id||'')+'.html" target="_blank" style="color:var(--ac)">View rider placard →</a>';
@@ -2005,7 +2021,7 @@ Chart.defaults.font.family="'IBM Plex Mono',monospace";Chart.defaults.font.size=
       radius,color:'#fff',weight:isNew?2:1.5,fillColor:color,fillOpacity:.92
     }}).addTo(rmap);
     marker.bindPopup(pop,{{maxWidth:300}});
-    if(isNew&&s.bcr_20yr!=null){{
+    if(isNew&&hasBcr){{
       L.marker([s.stop_lat,s.stop_lon],{{
         icon:L.divIcon({{className:'',
           html:'<div style="font:700 8px var(--font-mono);color:'+color+';text-shadow:0 1px 3px #000;white-space:nowrap">BCR '+parseFloat(s.bcr_20yr).toFixed(1)+'</div>',
@@ -2024,9 +2040,9 @@ Chart.defaults.font.family="'IBM Plex Mono',monospace";Chart.defaults.font.size=
     const d=L.DomUtil.create('div');
     d.style.cssText='background:rgba(20,23,32,.92);border:1px solid rgba(42,48,80,.8);border-radius:6px;padding:10px 14px;font:10px IBM Plex Mono,monospace;color:#d8dce8';
     d.innerHTML='<div style="font-size:9px;color:#7a8098;margin-bottom:6px">Route 27 Legend</div>'
-      +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:4px"><div style="width:10px;height:10px;border-radius:50%;background:#4ecdc4;border:2px solid #fff"></div>Existing stop</div>'
-      +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:4px"><div style="width:12px;height:12px;border-radius:50%;background:#ffa94d;border:2px solid #fff"></div>New (MEDIUM)</div>'
-      +'<div style="display:flex;align-items:center;gap:7px"><div style="width:14px;height:14px;border-radius:50%;background:#ff6b6b;border:2px solid #fff"></div>New (HIGH BCR≥2)</div>';
+      +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:4px"><div style="width:10px;height:10px;border-radius:50%;background:#4ecdc4;border:2px solid #fff"></div>Existing stop (EXISTING_KEEP)</div>'
+      +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:4px"><div style="width:12px;height:12px;border-radius:50%;background:#ffa94d;border:2px solid #fff"></div>New (NEW_IN_SELECTION / MEDIUM)</div>'
+      +'<div style="display:flex;align-items:center;gap:7px"><div style="width:14px;height:14px;border-radius:50%;background:#ff6b6b;border:2px solid #fff"></div>New gap-fill (NEW_SUGGEST HIGH, BCR≥2)</div>';
     return d;
   }};
   legDiv.addTo(rmap);
@@ -2037,7 +2053,7 @@ Chart.defaults.font.family="'IBM Plex Mono',monospace";Chart.defaults.font.size=
     tblEl.innerHTML='<div class="opt-empty">No Route 27 data. Run <code>python run_analysis.py</code> with osmnx.</div>';
     return;
   }}
-  const newStops=R27_SUGGESTIONS.filter(s=>s.status==='NEW_SUGGEST');
+  const newStops=R27_SUGGESTIONS.filter(isNewStatus);
   let h='<div style="font-size:10px;color:var(--ac);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">New Stop Recommendations</div>';
   h+='<div style="font-size:9px;color:var(--tm);margin-bottom:10px">Diversion: 8% (TCRP 167) &bull; Value/boarding: $4.20 (USDOT BCA 2024) &bull; Discount: 3.5% (OMB A-94) &bull; Horizon: 20 yr &bull; BCR ≥ 1.0 = FTA-justified</div>';
   if(!newStops.length){{
