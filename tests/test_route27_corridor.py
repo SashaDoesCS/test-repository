@@ -93,16 +93,16 @@ def test_corridor_uses_gtfs_when_available():
 
 @pytest.mark.integration
 def test_all_candidates_within_snap_tolerance():
-    """Every row in candidates_df has snap_dist_ft <= 200."""
+    """Every row in candidates_df has snap_dist_ft <= 300 (P1.9 default)."""
     config = {}
     result = build_route27_corridor(config)
     df = result["candidates_df"]
     if df is None or len(df) == 0:
         pytest.skip("No candidates produced (OSM graph unavailable).")
-    # Forced candidates have snap_dist_ft=0; OSM candidates should be ≤200
-    over_limit = df[df["snap_dist_ft"] > 200]
+    # Forced candidates have snap_dist_ft=0; OSM candidates should be ≤300
+    over_limit = df[df["snap_dist_ft"] > 300]
     assert len(over_limit) == 0, (
-        f"{len(over_limit)} candidates exceed 200 ft snap tolerance:\n"
+        f"{len(over_limit)} candidates exceed 300 ft snap tolerance:\n"
         f"{over_limit[['candidate_id', 'snap_dist_ft']].to_string()}"
     )
 
@@ -112,10 +112,17 @@ def test_all_candidates_within_snap_tolerance():
 # ---------------------------------------------------------------------------
 
 def test_no_zero_s_coord_unmatched():
-    """Unmatched existing stop gets correct s_coord_ft > 0 (or is dropped as off-route)."""
+    """Unmatched existing stop placed exactly on the path is appended with
+    s_coord_ft matching the expected arc-length (within ±100 ft) — NOT
+    silently dropped, NOT clustered at s=0.
+
+    P1.7 hardening: previously this test accepted both 'appended with s>0'
+    and 'silently dropped'.  That hides the regression where the unmatched
+    stop is dropped because path coords were missing.  Now we require
+    presence and an accurate s-coordinate.
+    """
     path_coords, path_s_coords = _simple_path()
 
-    # Build a minimal candidates_df with one stop nowhere near the existing stop
     candidates_df = pd.DataFrame([{
         "candidate_id":          "R27_OSM_TEST_1",
         "stop_lat":              37.2581,
@@ -136,12 +143,17 @@ def test_no_zero_s_coord_unmatched():
         "snap_dist_ft":          0.0,
     }])
 
-    # Existing stop near Downtown LG — clearly not at s=0
+    # Place the existing stop exactly at path_coords[1] (LG Blvd & Lark).
+    # Its expected s-coordinate is path_s_coords[1].
+    existing_lat = path_coords[1][0]
+    existing_lon = path_coords[1][1]
+    expected_s = path_s_coords[1]
+
     existing_df = pd.DataFrame([{
-        "stop_id":   "EX_DWNTWN",
-        "stop_name": "N. Santa Cruz & Main",
-        "stop_lat":  37.2249,
-        "stop_lon":  -121.9806,
+        "stop_id":   "EX_LGBLVD_LARK",
+        "stop_name": "LG Blvd & Lark",
+        "stop_lat":  existing_lat,
+        "stop_lon":  existing_lon,
     }])
 
     result_df = _merge_existing_stops(
@@ -150,17 +162,67 @@ def test_no_zero_s_coord_unmatched():
         path_s_coords=path_s_coords,
     )
 
-    # Find the appended row
-    ex_rows = result_df[result_df["candidate_id"] == "EX_DWNTWN"]
-    if len(ex_rows) == 0:
-        # Acceptable: stop was dropped because snap_dist > 500 ft
-        # (straight-line path may be far from actual stop)
-        pass
-    else:
-        s_val = ex_rows.iloc[0]["s_coord_ft"]
-        assert s_val > 0, (
-            f"Unmatched existing stop got s_coord_ft={s_val}; expected > 0"
-        )
+    ex_rows = result_df[result_df["candidate_id"] == "EX_LGBLVD_LARK"]
+    assert len(ex_rows) == 1, (
+        "On-path existing stop must be appended (not silently dropped). "
+        f"Got {len(ex_rows)} rows."
+    )
+    s_val = ex_rows.iloc[0]["s_coord_ft"]
+    assert s_val > 0, (
+        f"Unmatched existing stop got s_coord_ft={s_val}; expected > 0"
+    )
+    assert abs(s_val - expected_s) < 100, (
+        f"s_coord_ft={s_val:.1f} differs from expected {expected_s:.1f} "
+        f"by more than 100 ft"
+    )
+
+
+def test_far_offshape_stop_dropped():
+    """An existing stop > 500 ft off the path is dropped (not appended at s=0).
+
+    Guards against the regression where off-route stops re-cluster at s=0.
+    """
+    path_coords, path_s_coords = _simple_path()
+
+    candidates_df = pd.DataFrame([{
+        "candidate_id":          "R27_OSM_TEST_1",
+        "stop_lat":              37.2581,
+        "stop_lon":              -121.9498,
+        "s_coord_ft":            0.0,
+        "district_id":           None,
+        "is_existing":           False,
+        "is_mandatory":          False,
+        "is_forced":             False,
+        "street_names":          "X & Y",
+        "raw_walkshed_pop":      100,
+        "equity_walkshed_pop":   100.0,
+        "marginal_walkshed_pop": 100,
+        "tdi":                   0.3,
+        "equity_priority":       False,
+        "activity_type":         "intersection",
+        "source":                "test",
+        "snap_dist_ft":          0.0,
+    }])
+
+    # Far-off-path stop: ~3 miles south of any path point.
+    existing_df = pd.DataFrame([{
+        "stop_id":   "EX_FAR",
+        "stop_name": "Far Off Route",
+        "stop_lat":  37.180,
+        "stop_lon":  -121.900,
+    }])
+
+    result_df = _merge_existing_stops(
+        candidates_df, existing_df,
+        path_coords=path_coords,
+        path_s_coords=path_s_coords,
+    )
+
+    ex_rows = result_df[result_df["candidate_id"] == "EX_FAR"]
+    assert len(ex_rows) == 0, (
+        "Off-route existing stop (>500 ft snap_dist) must be dropped, "
+        f"not appended.  Got {len(ex_rows)} rows."
+    )
 
 
 def test_no_zero_s_coord_unmatched_on_path():
@@ -325,3 +387,63 @@ def test_project_to_path_basic():
                                    path_coords, path_s_coords)
     assert s_end > 1000, f"Last point s={s_end}, expected >1000 ft"
     assert d_end < 10, f"Last point dist={d_end} ft, expected <10 ft"
+
+
+def test_project_to_path_empty_path():
+    """P1.8: empty path returns (0.0, inf) — never (0.0, 0.0).
+
+    Regression guard: if the corridor failed to load and path_coords is
+    empty, we must NOT silently report snap_dist=0 (which would let any
+    point be accepted as 'on the path').  Returning inf forces the
+    snap-distance filter to drop the point.
+    """
+    s, d = project_to_path(37.25, -121.96, [], [])
+    assert s == 0.0
+    assert d == float("inf"), f"Empty path should return inf, got {d}"
+
+
+def test_project_to_path_single_point():
+    """P1.8: a path with only one point is degenerate — (0.0, inf)."""
+    s, d = project_to_path(37.25, -121.96, [(37.25, -121.96)], [0.0])
+    assert s == 0.0
+    assert d == float("inf"), f"Single-point path should return inf, got {d}"
+
+
+# ---------------------------------------------------------------------------
+# P1.9 — Known Route 27 intersections present
+# ---------------------------------------------------------------------------
+
+@pytest.mark.integration
+def test_known_route27_intersections_present():
+    """Two well-known Route 27 intersections survive snap+filter and reach
+    candidates_df.  Coordinates approximate; we look for any candidate
+    within ~400 ft of each reference point.
+
+    Reference points (Google Maps):
+      - Camden Ave & Blossom Hill Rd:  ~37.243, -121.955
+      - Los Gatos Blvd & Lark Ave:     ~37.252, -121.957
+    """
+    config = {}
+    result = build_route27_corridor(config)
+    df = result["candidates_df"]
+    if df is None or len(df) == 0:
+        pytest.skip("No candidates produced (OSM graph unavailable).")
+
+    references = [
+        ("Camden & Blossom Hill", 37.243, -121.955),
+        ("LG Blvd & Lark",        37.252, -121.957),
+    ]
+
+    missing = []
+    for name, ref_lat, ref_lon in references:
+        # 400 ft ≈ 0.0011° lat at 37°N
+        dlat = (df["stop_lat"] - ref_lat) * 364_000
+        dlon = (df["stop_lon"] - ref_lon) * 288_500
+        dist_ft = (dlat ** 2 + dlon ** 2) ** 0.5
+        if dist_ft.min() > 400:
+            missing.append(f"{name} (closest candidate {dist_ft.min():.0f} ft)")
+
+    assert not missing, (
+        "Known Route 27 intersections missing from candidates_df:\n  "
+        + "\n  ".join(missing)
+    )
