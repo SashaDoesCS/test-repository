@@ -225,8 +225,21 @@ def load_pipeline_data() -> dict:
                         _r27_route_id = _r27_route.iloc[0]["route_id"]
                         _r27_trips = _trips[_trips["route_id"] == _r27_route_id]
             if not _r27_trips.empty:
+                # P1.10: VTA Route 27 has multiple service patterns (full corridor +
+                # short-turns).  Picking _dir0.iloc[0] silently selected a short-turn
+                # in some feeds, erasing Los Gatos from the upper-map "Original
+                # Route 27" layer.  Pick the LONGEST trip in dir-0 instead so we
+                # always render the full Winchester ↔ Santa Teresa pattern.
                 _dir0 = _r27_trips[_r27_trips.get("direction_id", _pd.Series(dtype=str)) == "0"] if "direction_id" in _r27_trips.columns else _r27_trips
-                _rep_trip = (_dir0.iloc[0] if not _dir0.empty else _r27_trips.iloc[0])["trip_id"]
+                _candidate_trips = _dir0 if not _dir0.empty else _r27_trips
+                _trip_lengths = (
+                    _stop_times[_stop_times["trip_id"].isin(_candidate_trips["trip_id"])]
+                    .groupby("trip_id").size()
+                )
+                if len(_trip_lengths) == 0:
+                    _rep_trip = _candidate_trips.iloc[0]["trip_id"]
+                else:
+                    _rep_trip = _trip_lengths.idxmax()
                 _trip_sts = _stop_times[_stop_times["trip_id"] == _rep_trip].copy()
                 _trip_sts["stop_sequence"] = _pd.to_numeric(_trip_sts["stop_sequence"], errors="coerce")
                 _trip_sts = _trip_sts.sort_values("stop_sequence")
@@ -244,10 +257,44 @@ def load_pipeline_data() -> dict:
                         "stop_lon": float(_srow.get("stop_lon", 0)),
                     })
                 result["gtfs_route27_stops"] = _r27_stops_list
-                result["gtfs_route27_shape"] = [
-                    {"lat": s["stop_lat"], "lon": s["stop_lon"]}
-                    for s in _r27_stops_list
-                ]
+
+                # P1.10: Build the "Original Route 27" polyline from shapes.txt
+                # (the canonical road-following geometry) instead of a stop chain
+                # that flattens curves through Los Gatos.  Falls back to the
+                # stop-chain only when shapes.txt is missing the trip's shape_id.
+                _r27_shape_pts: list[dict] = []
+                _shapes_p = gtfs_dir / "shapes.txt"
+                _rep_shape_id = (
+                    _candidate_trips.loc[_candidate_trips["trip_id"] == _rep_trip, "shape_id"].iloc[0]
+                    if "shape_id" in _candidate_trips.columns
+                    and (_candidate_trips["trip_id"] == _rep_trip).any()
+                    else None
+                )
+                if _shapes_p.exists() and _rep_shape_id:
+                    try:
+                        _shapes = _pd.read_csv(_shapes_p, dtype=str)
+                        _trip_shape = _shapes[_shapes["shape_id"] == _rep_shape_id].copy()
+                        _trip_shape["shape_pt_sequence"] = _pd.to_numeric(
+                            _trip_shape["shape_pt_sequence"], errors="coerce"
+                        )
+                        _trip_shape = _trip_shape.sort_values("shape_pt_sequence")
+                        for _, _pt in _trip_shape.iterrows():
+                            try:
+                                _r27_shape_pts.append({
+                                    "lat": float(_pt["shape_pt_lat"]),
+                                    "lon": float(_pt["shape_pt_lon"]),
+                                })
+                            except (TypeError, ValueError):
+                                continue
+                    except Exception:
+                        _r27_shape_pts = []
+                if not _r27_shape_pts:
+                    # Fallback: connect stops in sequence (legacy behaviour).
+                    _r27_shape_pts = [
+                        {"lat": s["stop_lat"], "lon": s["stop_lon"]}
+                        for s in _r27_stops_list
+                    ]
+                result["gtfs_route27_shape"] = _r27_shape_pts
     except Exception as _gtfs_exc:
         pass  # silently degrade; layer will be empty
 
