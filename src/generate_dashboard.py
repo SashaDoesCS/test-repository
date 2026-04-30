@@ -352,161 +352,210 @@ def get_stop_locations(data: dict) -> list[dict]:
 # against the rendered HTML text; first occurrence per text node is wrapped
 # in a .jargon span with a hover tooltip.
 # ---------------------------------------------------------------------------
+# NOTE: Values are TRUSTED HTML (not auto-escaped) so cross-reference anchors
+# (<a href="#gl-...">) and external source links (<a href="https://...">)
+# render directly.  Pre-encode ampersands inside URL query strings as &amp;
+# if you ever add one.
+_LINK_BCA = '<a href="https://www.transportation.gov/sites/dot.gov/files/2024-11/Benefit%20Cost%20Analysis%20Guidance%202025%20Update%20(Final).pdf" target="_blank" style="color:var(--ac)">USDOT BCA Guidance 2024</a>'
+_LINK_OMB_A94 = '<a href="https://whitehouse.gov/wp-content/uploads/2023/11/CircularA-94.pdf" target="_blank" style="color:var(--ac)">OMB Circular A-94</a>'
+_LINK_FTA_CIG = '<a href="https://www.transit.dot.gov/CIG" target="_blank" style="color:var(--ac)">FTA CIG Policy Guidance</a>'
+_LINK_TCRP_95 = '<a href="https://www.trb.org/publications/tcrp/tcrp_rpt_95c9.pdf" target="_blank" style="color:var(--ac)">TCRP Report 95</a>'
+_LINK_TCRP_78 = '<a href="https://www.trb.org/publications/tcrp/tcrp78/guidebook/tcrp78.pdf" target="_blank" style="color:var(--ac)">Report 78</a>'
+
 GLOSSARY: dict[str, str] = {
     "BCR": (
         "Benefit-Cost Ratio. Present value of total benefits divided by present "
-        "value of total costs. BCR > 1.0 means the project's economic value "
-        "exceeds its cost and is worth funding."
+        "value of total costs. BCR &gt; 1.0 means the project's economic value "
+        "exceeds its cost and is worth funding. See also: "
+        '<a href="#gl-npv">NPV</a>, <a href="#gl-discount-rate">discount rate</a>. '
+        f'Methodology: {_LINK_BCA}.'
     ),
     "NPV": (
         "Net Present Value. The sum of all future cash flows (benefits minus "
         "costs) discounted to today's dollars. Positive NPV = net economic gain "
-        "over the analysis period."
+        "over the analysis period. See also: "
+        '<a href="#gl-bcr">BCR</a>, <a href="#gl-discount-rate">discount rate</a>, '
+        '<a href="#gl-pv">PV</a>.'
     ),
     "PV": (
         "Present Value. The current worth of a future sum of money, discounted "
-        "at a chosen rate to reflect the time value of money."
+        "at a chosen rate to reflect the time value of money. See also: "
+        '<a href="#gl-npv">NPV</a>, <a href="#gl-discount-rate">discount rate</a>.'
     ),
     "VOT": (
         "Value of Time. The dollar value assigned to one hour of travel time, "
-        "used to monetize travel time savings. USDOT 2024 guidance: $17.80/hr "
-        "personal trips, $31.90/hr employer business trips."
+        f"used to monetize travel time savings. {_LINK_BCA}: $17.80/hr "
+        "personal trips, $31.90/hr employer business trips. See also: "
+        '<a href="#gl-vsl">VSL</a>.'
     ),
     "VSL": (
         "Value of a Statistical Life. The dollar amount used in regulatory "
         "analysis to represent the economic cost of a fatality. USDOT 2024 "
-        "sets VSL at $12.8 million per fatality."
+        "sets VSL at $12.8 million per fatality. Source: "
+        '<a href="https://www.transportation.gov/resources/value-of-a-statistical-life-guidance" target="_blank" style="color:var(--ac)">USDOT VSL Guidance</a>. '
+        'See also: <a href="#gl-kabco">KABCO</a>.'
     ),
     "VMT": (
         "Vehicle Miles Traveled. The total miles driven by motor vehicles in "
         "a given area and period. Reducing VMT cuts emissions, crashes, and "
-        "congestion."
+        "congestion. Emission factors from "
+        '<a href="#gl-moves31">MOVES3.1</a>; crash costs from '
+        '<a href="#gl-kabco">KABCO</a> scale.'
     ),
     "SCC": (
         "Social Cost of Carbon. The estimated economic damage caused by "
-        "emitting one metric ton of CO₂. EPA 2022 regulatory update sets "
-        "SCC at $120/ton (3% discount rate), up from the prior $56/ton IWG value."
+        "emitting one metric ton of CO₂. "
+        '<a href="https://www.epa.gov/system/files/documents/2023-12/epa_scghg_2023_report_final.pdf" target="_blank" style="color:var(--ac)">EPA SC-GHG Report (Dec 2023)</a> '
+        "sets SCC at $120/ton (3% discount rate), up from the prior $56/ton IWG "
+        'value. See also: <a href="#gl-moves31">MOVES3.1</a>, '
+        '<a href="#gl-vmt">VMT</a>.'
     ),
     "KABCO": (
         "Crash severity scale: K = Fatal, A = Severe Injury, B = Moderate "
         "Injury, C = Minor Injury, O = Property Damage Only. Used by FHWA "
-        "and SWITRS to weight crash costs in safety benefit calculations."
+        'and <a href="#gl-switrs">SWITRS</a> to weight crash costs in safety '
+        'benefit calculations. Source: <a href="https://safety.fhwa.dot.gov/hsip/docs/fhwasa17071.pdf" target="_blank" style="color:var(--ac)">FHWA Crash Costs for Highway Safety Analysis</a>.'
     ),
     "NTD": (
-        "National Transit Database. FTA's annual data collection from U.S. "
-        "transit agencies covering ridership, costs, and service statistics. "
-        "Used here for peer benchmarking of VTA operating costs."
+        'National Transit Database. <a href="#gl-fta">FTA</a>\'s annual data '
+        "collection from U.S. transit agencies covering ridership, costs, "
+        "and service statistics. Used here for peer benchmarking of VTA "
+        'operating costs. <a href="https://www.transit.dot.gov/ntd" target="_blank" style="color:var(--ac)">transit.dot.gov/ntd</a>'
     ),
     "FTA": (
         "Federal Transit Administration. The U.S. DOT agency that funds, "
         "regulates, and provides technical guidance for public transit. "
-        "Administers the Capital Investment Grant (CIG) program."
+        'Administers the <a href="#gl-cig">Capital Investment Grant (CIG)</a> '
+        'program. <a href="https://www.transit.dot.gov" target="_blank" style="color:var(--ac)">transit.dot.gov</a>'
     ),
     "USDOT": (
         "U.S. Department of Transportation. Sets federal BCA guidance values "
-        "including VOT, VSL, and discount rate recommendations used throughout "
-        "this analysis."
+        'including <a href="#gl-vot">VOT</a>, <a href="#gl-vsl">VSL</a>, and '
+        '<a href="#gl-discount-rate">discount rate</a> recommendations used '
+        f"throughout this analysis. BCA Guidance: {_LINK_BCA}."
     ),
     "OMB Circular A-94": (
         "Office of Management and Budget Circular A-94. The federal guidelines "
         "for benefit-cost analysis of government programs. Prescribes the "
-        "discount rates (2%, 3.5%, 7%) used in this dashboard."
+        '<a href="#gl-discount-rate">discount rates</a> (2%, 3.5%, 7%) used '
+        f"in this dashboard. {_LINK_OMB_A94}"
     ),
     "TCRP": (
         "Transit Cooperative Research Program. A federally funded research "
         "program that produces peer-reviewed transit planning guidance. "
-        "TCRP Report 95 underpins the induced-demand category; Report 78 "
-        "underpins option value estimates."
+        f'{_LINK_TCRP_95} underpins the <a href="#gl-induced-demand">induced-demand</a> '
+        f'category; {_LINK_TCRP_78} underpins '
+        '<a href="#gl-option-value">option value</a> estimates. All reports: '
+        '<a href="https://www.trb.org/TCRP/TCRP.aspx" target="_blank" style="color:var(--ac)">trb.org/TCRP</a>.'
     ),
     "MOVES3.1": (
         "EPA's Motor Vehicle Emission Simulator (version 3.1). Used to "
         "estimate per-mile emission factors for CO₂, NOx, and PM2.5 "
-        "from avoided automobile trips."
+        'from avoided automobile trips. <a href="https://www.epa.gov/moves/latest-version-motor-vehicle-emission-simulator-moves" target="_blank" style="color:var(--ac)">EPA MOVES page</a>. '
+        'See also: <a href="#gl-scc">SCC</a>, <a href="#gl-vmt">VMT</a>, '
+        '<a href="#gl-benmap-ce">BenMAP-CE</a>.'
     ),
     "BenMAP-CE": (
         "EPA's Environmental Benefits Mapping and Analysis Program — Community "
         "Edition. Translates changes in air pollutant concentrations to "
         "health outcomes and economic damages. Used for criteria pollutant "
-        "benefits in Category 4."
+        'benefits in Category 4. <a href="https://www.epa.gov/benmap" target="_blank" style="color:var(--ac)">EPA BenMAP page</a>. '
+        'See also: <a href="#gl-moves31">MOVES3.1</a>, <a href="#gl-scc">SCC</a>.'
     ),
     "WHO HEAT": (
         "World Health Organization Health Economic Assessment Tool. Quantifies "
         "the mortality-reduction benefit of walking and cycling. Version 5.2 "
-        "default: 12 walk-minutes per transit trip, valued at $0.16/min."
+        'default: 12 walk-minutes per transit trip, valued at $0.16/min. '
+        '<a href="https://www.who.int/tools/heat-for-walking-and-cycling" target="_blank" style="color:var(--ac)">WHO HEAT tool</a>; '
+        '<a href="https://www.who.int/publications/m/item/health-economic-assessment-tool-(-heat)--for-walking-and-for-cycling.-methods-and-user-guide-on-physical-activity--air-pollution--road-fatalities-and-carbon-impact-assessments--2024-update" target="_blank" style="color:var(--ac)">2024 methods guide</a>.'
     ),
     "CIG": (
-        "Capital Investment Grant. FTA's primary discretionary funding program "
-        "for major transit projects (New Starts, Small Starts, Core Capacity). "
-        "Applications require a Cost Effectiveness Index below FTA thresholds."
+        'Capital Investment Grant. <a href="#gl-fta">FTA</a>\'s primary '
+        "discretionary funding program for major transit projects (New Starts, "
+        "Small Starts, Core Capacity). Applications require a "
+        '<a href="#gl-cei">Cost Effectiveness Index</a> below FTA thresholds. '
+        '<a href="https://www.transit.dot.gov/CIG" target="_blank" style="color:var(--ac)">transit.dot.gov/CIG</a>'
     ),
     "CEI": (
         "Cost Effectiveness Index (also FTA Cost Effectiveness Index). Annual "
         "net project cost divided by annualized user benefits in hours "
-        "(TSUB-hours). FTA CIG threshold: < $2/TSUB-hr = Medium-High; "
-        "< $4 = Medium."
+        '(<a href="#gl-tsub">TSUB</a>-hours). <a href="#gl-cig">FTA CIG</a> '
+        "threshold: &lt; $2/TSUB-hr = Medium-High; &lt; $4 = Medium. Source: "
+        f"{_LINK_FTA_CIG}."
     ),
     "TSUB": (
-        "Transportation System User Benefit. The FTA metric for CIG cost "
-        "effectiveness. Measures time saved by diverted auto users plus transit "
-        "travel time for transit-dependent users, in hours per year."
+        'Transportation System User Benefit. The <a href="#gl-fta">FTA</a> '
+        'metric for <a href="#gl-cig">CIG</a> cost effectiveness. Measures '
+        "time saved by diverted auto users plus transit travel time for "
+        'transit-dependent users, in hours per year. See <a href="#gl-cei">CEI</a>. '
+        f"Source: {_LINK_FTA_CIG}."
     ),
     "ACS": (
         "American Community Survey. The U.S. Census Bureau's annual survey "
         "providing estimates of demographics, income, commute mode, and "
         "vehicle availability — the primary source of equity and demand data "
-        "in this analysis."
+        'in this analysis. <a href="https://www.census.gov/programs-surveys/acs" target="_blank" style="color:var(--ac)">census.gov/acs</a>'
     ),
     "GTFS": (
         "General Transit Feed Specification. The open standard format for "
         "transit schedules (stops.txt, trips.txt, stop_times.txt, etc.). "
         "This analysis ingests VTA's GTFS feed for stop locations, routes, "
-        "and headways."
+        'and headways. Spec: <a href="https://gtfs.org/schedule/reference/" target="_blank" style="color:var(--ac)">gtfs.org</a>; '
+        'VTA feed: <a href="https://www.vta.org/go/developers" target="_blank" style="color:var(--ac)">vta.org/developers</a>.'
     ),
     "SWITRS": (
         "Statewide Integrated Traffic Records System. California's crash "
         "database maintained by CHP. Used to derive Santa Clara County crash "
-        "rates (~120 crashes per 100M VMT) for Category 3 safety benefits."
+        'rates (~120 crashes per 100M <a href="#gl-vmt">VMT</a>) for Category 3 '
+        'safety benefits. Data access: <a href="https://tims.berkeley.edu/help/SWITRS.php" target="_blank" style="color:var(--ac)">UC Berkeley TIMS</a> '
+        'or <a href="https://iswitrs.chp.ca.gov/" target="_blank" style="color:var(--ac)">CHP iSWITRS</a>.'
     ),
     "induced demand": (
         "Trips that only happen because transit exists — riders who would "
         "not otherwise have made the trip by any mode. Estimated at 20% of "
-        "boardings (TCRP Report 95). Valued via consumer surplus (50% of "
+        f"boardings ({_LINK_TCRP_95}, Ch. 9). Valued via "
+        '<a href="#gl-consumer-surplus">consumer surplus</a> (50% of '
         "equivalent auto trip value) rather than auto diversion savings."
     ),
     "option value": (
         "The economic value that non-riders place on the mere availability "
         "of transit — insurance against car breakdown, gas price spikes, "
         "or loss of driving ability. Estimated at $20–$40 per capita per year "
-        "from stated-preference surveys (TCRP Report 78)."
+        f'from stated-preference surveys ({_LINK_TCRP_78}). See also: '
+        '<a href="#gl-tcrp">TCRP</a>.'
     ),
     "consumer surplus": (
         "The economic benefit a consumer receives beyond what they pay. In "
-        "transit CBA, induced riders gain a 'triangle' of consumer surplus "
-        "equal to roughly 50% of the auto trip cost they would have faced — "
-        "because their willingness to pay is lower than that cost."
+        'transit CBA, <a href="#gl-induced-demand">induced</a> riders gain a '
+        "'triangle' of consumer surplus equal to roughly 50% of the auto trip "
+        "cost they would have faced — because their willingness to pay is "
+        'lower than that cost. Textbook treatment: <a href="https://www.cambridge.org/us/universitypress/subjects/economics/public-economics-and-public-policy/cost-benefit-analysis-concepts-and-practice-5th-edition" target="_blank" style="color:var(--ac)">Boardman et al., Ch. 3</a>.'
     ),
     "diversion rate": (
         "The share of transit riders who previously made the same trip by "
         "private automobile. Auto-diversion riders generate vehicle operating "
         "cost savings, time savings, crash reduction, and emission reduction "
-        "benefits. Complementary share = induced demand riders."
+        'benefits. Complementary share = <a href="#gl-induced-demand">induced demand</a> riders.'
     ),
     "walk-shed": (
         "The area reachable on foot within a given time (typically 5–10 min / "
         "0.25–0.5 mile) from a transit stop. A larger walk-shed means the stop "
-        "serves more potential riders without transfers or feeder services."
+        "serves more potential riders without transfers or feeder services. "
+        'Buffer standards from <a href="https://www.transit.dot.gov/sites/fta.dot.gov/files/2024-09/C9040.1H-Circular-11-01-2024.pdf" target="_blank" style="color:var(--ac)">FTA Circular 9040.1H</a>.'
     ),
     "discount rate": (
         "The annual rate used to convert future dollars into present-value "
         "dollars. Higher rates reduce the weight given to distant future "
-        "benefits. OMB Circular A-94 prescribes 2%, 3.5%, and 7% for "
-        "infrastructure BCA sensitivity testing."
+        f"benefits. {_LINK_OMB_A94} prescribes 2%, 3.5%, and 7% for "
+        'infrastructure BCA sensitivity testing. See also: '
+        '<a href="#gl-npv">NPV</a>, <a href="#gl-pv">PV</a>.'
     ),
     "FTA Circular 9040.1G": (
-        "FTA's Formula Grants for Rural Areas program guidance circular. "
-        "Sets minimum stop spacing, accessibility, and service standards "
-        "for federally funded rural and suburban transit. Used as the "
-        "baseline stop-spacing criterion in Phase B route optimization."
+        '<a href="#gl-fta">FTA</a>\'s Formula Grants for Rural Areas program '
+        "guidance circular. Sets minimum stop spacing, accessibility, and "
+        "service standards for federally funded rural and suburban transit. "
+        "Used as the baseline stop-spacing criterion in Phase B route "
+        'optimization. Superseded by <a href="https://www.transit.dot.gov/sites/fta.dot.gov/files/2024-09/C9040.1H-Circular-11-01-2024.pdf" target="_blank" style="color:var(--ac)">Circular 9040.1H (Nov 2024)</a>.'
     ),
 }
 
@@ -623,7 +672,10 @@ def generate_dashboard_html(data: dict, merged: list, polygons: dict) -> str:
     _gl_items = []
     for _term in sorted(GLOSSARY.keys(), key=str.lower):
         _slug = _term.lower().replace(" ", "-").replace("/", "-").replace(".", "")
-        _def_html = GLOSSARY[_term].replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+        # Glossary values are authored as trusted HTML containing cross-refs
+        # (<a href="#gl-...">) and external source links (<a href="https://...">).
+        # Authors must pre-encode ampersands as &amp; in URL query strings.
+        _def_html = GLOSSARY[_term]
         _gl_items.append(
             f'<dt id="gl-{_slug}"><a href="#gl-{_slug}" style="color:var(--ac);text-decoration:none">{_term}</a></dt>'
             f"<dd>{_def_html}</dd>"
