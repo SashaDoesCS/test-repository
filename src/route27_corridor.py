@@ -267,18 +267,18 @@ def _project_point_onto_segment(
 # REUSABLE PATH-PROJECTION (extracted for shared use in optimizer Bug 1 fix)
 # ---------------------------------------------------------------------------
 
-def project_to_path(
+def project_to_path_with_point(
     lat: float,
     lon: float,
     path_coords: List[Tuple[float, float]],
     path_s_coords: List[float],
-) -> Tuple[float, float]:
-    """Project a point onto the corridor path and return its s-coordinate.
+) -> Tuple[float, float, float, float]:
+    """Project a point onto the corridor path; return s-coord, snap distance,
+    and the projected (lat, lon) on the path.
 
-    Uses flat-earth segment projection (acceptable over the ~8 mi Route 27
-    corridor).  Returns (s_ft, snap_dist_ft) where:
-      s_ft          — arc-length from path start (Winchester TC) in feet
-      snap_dist_ft  — perpendicular distance from point to nearest path segment
+    Single authoritative flat-earth conversion in this file.
+    Flat-earth constants:  364,000 ft/degree lat, 288,500 ft/degree lon at 37°N.
+    # Source: standard geodetic approximation for Santa Clara County (~37°N)
 
     Args:
         lat, lon:       WGS84 decimal degrees of the point to project.
@@ -286,14 +286,22 @@ def project_to_path(
         path_s_coords:  Cumulative arc-length (ft) at each path node.
 
     Returns:
-        (s_ft, snap_dist_ft) — both in feet.
+        (s_ft, snap_dist_ft, proj_lat, proj_lon)
+          s_ft          — arc-length from path start (Winchester TC) in feet
+          snap_dist_ft  — perpendicular distance from point to nearest path segment
+          proj_lat      — latitude of the projected (snapped) point on the path
+          proj_lon      — longitude of the projected (snapped) point on the path
+        When path has fewer than 2 points, returns (0.0, inf, lat, lon) so that
+        callers applying a snap-distance filter correctly exclude the point.
     """
     if len(path_coords) < 2:
-        return 0.0, 0.0
+        return 0.0, float("inf"), lat, lon
 
     path_xy = [(plon, plat) for plat, plon in path_coords]
     best_s = 0.0
     best_dist = float("inf")
+    best_proj_lat = lat
+    best_proj_lon = lon
     for seg_i in range(len(path_xy) - 1):
         ax, ay = path_xy[seg_i]
         bx, by = path_xy[seg_i + 1]
@@ -308,7 +316,31 @@ def project_to_path(
                 path_coords[seg_i + 1][0], path_coords[seg_i + 1][1],
             )
             best_s = path_s_coords[seg_i] + t * seg_len
-    return best_s, best_dist
+            best_proj_lat = cy   # projected point lat (y in lon/lat space)
+            best_proj_lon = cx   # projected point lon (x in lon/lat space)
+    return best_s, best_dist, best_proj_lat, best_proj_lon
+
+
+def project_to_path(
+    lat: float,
+    lon: float,
+    path_coords: List[Tuple[float, float]],
+    path_s_coords: List[float],
+) -> Tuple[float, float]:
+    """Project a point onto the corridor path; return (s_ft, snap_dist_ft).
+
+    Delegates to project_to_path_with_point — exactly one flat-earth
+    conversion exists in this file.
+
+    Returns:
+        (s_ft, snap_dist_ft) — both in feet.
+        When path has fewer than 2 points, returns (0.0, inf) so that
+        callers applying a snap-distance filter correctly exclude the point.
+    """
+    s_ft, snap_dist_ft, _, _ = project_to_path_with_point(
+        lat, lon, path_coords, path_s_coords
+    )
+    return s_ft, snap_dist_ft
 
 
 # ---------------------------------------------------------------------------
@@ -654,7 +686,7 @@ def extract_intersection_candidates(
     G,
     path_coords: List[Tuple[float, float]],
     path_s_coords: List[float],
-    snap_tolerance_ft: float = 200.0,
+    snap_tolerance_ft: float = 300.0,
 ) -> pd.DataFrame:
     """Extract intersection nodes on or near the route path.
 
@@ -693,34 +725,8 @@ def extract_intersection_candidates(
         )
         return pd.DataFrame()
 
-    # Build path as flat list for projection (lon as x, lat as y)
-    path_xy = [(plon, plat) for plat, plon in path_coords]
-
-    def _projected_point(node_lon: float, node_lat: float):
-        """Return (proj_lat, proj_lon, s_ft, dist_ft) for a node near path."""
-        best_s = 0.0
-        best_dist = float("inf")
-        best_proj_lat = node_lat
-        best_proj_lon = node_lon
-        for seg_i in range(len(path_xy) - 1):
-            ax, ay = path_xy[seg_i]
-            bx, by = path_xy[seg_i + 1]
-            cx, cy, t = _project_point_onto_segment(
-                node_lon, node_lat, ax, ay, bx, by
-            )
-            dlat = (node_lat - cy) * 364_000
-            dlon = (node_lon - cx) * 288_500
-            dist_ft = math.sqrt(dlat ** 2 + dlon ** 2)
-            if dist_ft < best_dist:
-                best_dist = dist_ft
-                seg_len = _haversine_ft(
-                    path_coords[seg_i][0], path_coords[seg_i][1],
-                    path_coords[seg_i + 1][0], path_coords[seg_i + 1][1],
-                )
-                best_s = path_s_coords[seg_i] + t * seg_len
-                best_proj_lat = cy   # projected point lat (y in lon/lat space)
-                best_proj_lon = cx   # projected point lon (x in lon/lat space)
-        return best_proj_lat, best_proj_lon, best_s, best_dist
+    # P1.6: Use shared project_to_path_with_point helper — single
+    # authoritative flat-earth conversion lives in that function.
 
     # Collect all graph nodes (OSM intersections)
     records = []
@@ -749,7 +755,9 @@ def extract_intersection_candidates(
         if unsafe:
             continue
 
-        proj_lat, proj_lon, s_ft, dist_ft = _projected_point(osm_lon, osm_lat)
+        s_ft, dist_ft, proj_lat, proj_lon = project_to_path_with_point(
+            osm_lat, osm_lon, path_coords, path_s_coords
+        )
 
         if dist_ft > snap_tolerance_ft:
             continue  # Too far from the path
@@ -1042,7 +1050,7 @@ def build_route27_corridor(config: dict) -> dict:
     )
 
     intersection_df = extract_intersection_candidates(
-        G, path_coords, path_s_coords, snap_tolerance_ft=200.0
+        G, path_coords, path_s_coords, snap_tolerance_ft=300.0
     )
 
     candidates_df = add_forced_candidates(
