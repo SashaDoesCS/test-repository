@@ -840,18 +840,29 @@ def add_forced_candidates(
     for fc in forced:
         lat, lon = fc["stop_lat"], fc["stop_lon"]
         if len(path_coords) >= 2:
-            s_ft, _ = project_to_path(lat, lon, path_coords, path_s_coords)
+            # P1.12: snap forced candidates onto the GTFS shape.  The hardcoded
+            # activity-generator coordinates (school doors, LRT plazas, retail
+            # centroids) sit 100–1000 ft off the road; rendering them at the
+            # original coords leaves stop markers floating off the polyline.
+            # Store the snapped point as stop_lat/stop_lon (where the bus
+            # actually stops) and record the original snap distance for QA.
+            s_ft, snap_dist, snap_lat, snap_lon = project_to_path_with_point(
+                lat, lon, path_coords, path_s_coords
+            )
+            stop_lat, stop_lon = snap_lat, snap_lon
         else:
             s_ft = 0.0
+            snap_dist = 0.0
+            stop_lat, stop_lon = lat, lon
         forced_rows.append({
             "candidate_id":  fc["stop_id"],
-            "stop_lat":      lat,
-            "stop_lon":      lon,
+            "stop_lat":      stop_lat,
+            "stop_lon":      stop_lon,
             "s_coord_ft":    round(s_ft, 1),
             "osm_node_id":   None,
             "street_names":  fc["stop_name"],
             "node_degree":   99,          # forced candidates always included
-            "snap_dist_ft":  0.0,
+            "snap_dist_ft":  round(snap_dist, 1),
             "is_forced":     True,
             "is_mandatory":  fc.get("is_mandatory", False),
             "activity_type": fc.get("activity_type", "forced"),

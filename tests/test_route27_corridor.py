@@ -99,10 +99,17 @@ def test_all_candidates_within_snap_tolerance():
     df = result["candidates_df"]
     if df is None or len(df) == 0:
         pytest.skip("No candidates produced (OSM graph unavailable).")
-    # Forced candidates have snap_dist_ft=0; OSM candidates should be ≤300
-    over_limit = df[df["snap_dist_ft"] > 300]
+    # OSM intersection candidates must be within tolerance.  Forced candidates
+    # (P1.12) record the original off-corridor distance for QA but their
+    # rendered stop_lat/stop_lon is now the snapped point on the path, so they
+    # are exempt from the tolerance check.
+    if "is_forced" in df.columns:
+        osm_only = df[~df["is_forced"].fillna(False).astype(bool)]
+    else:
+        osm_only = df
+    over_limit = osm_only[osm_only["snap_dist_ft"] > 300]
     assert len(over_limit) == 0, (
-        f"{len(over_limit)} candidates exceed 300 ft snap tolerance:\n"
+        f"{len(over_limit)} OSM candidates exceed 300 ft snap tolerance:\n"
         f"{over_limit[['candidate_id', 'snap_dist_ft']].to_string()}"
     )
 

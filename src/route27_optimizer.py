@@ -702,7 +702,55 @@ def build_stop_suggestions(
 
     # -- Existing/selected stops --
     for _, row in selected_df.iterrows():
-        status = "EXISTING_KEEP" if row.get("is_existing", False) else "NEW_IN_SELECTION"
+        is_existing = bool(row.get("is_existing", False))
+        status = "EXISTING_KEEP" if is_existing else "NEW_IN_SELECTION"
+        is_school = "school" in str(row.get("activity_type", "")).lower()
+
+        # P1.12: NEW_IN_SELECTION rows incur new capital + operating cost just
+        # like NEW_SUGGEST gap-fills.  The previous code zeroed all BCR fields
+        # for everything in this loop, so the dashboard showed NaN/0 for every
+        # newly-selected stop.  Compute BCR for non-existing rows by reusing
+        # compute_stop_bcr with a synthetic "best_*" record built from the
+        # selection row's walkshed population and TDI.
+        if is_existing:
+            bcr_fields = {
+                "est_new_riders_daily": 0,
+                "est_annual_boardings": 0,
+                "annual_benefit_usd":   0,
+                "capital_cost_usd":     0,
+                "pv_benefits_usd":      0,
+                "pv_total_costs_usd":   0,
+                "net_pv_usd":           0,
+                "bcr_20yr":             None,
+                "fta_cei_per_user_hr":  None,
+                "justification":        "Existing VTA stop retained in optimized sequence.",
+            }
+        else:
+            sel_record = pd.Series({
+                "best_raw_walkshed_pop": row.get("marginal_walkshed_pop",
+                                                 row.get("raw_walkshed_pop", 0)),
+                "best_tdi":              row.get("tdi", 0.2),
+                "best_district_id":      row.get("district_id", None),
+                "best_street_names":     row.get("street_names", "") if is_school else "",
+            })
+            bcr_inputs = compute_stop_bcr(sel_record)
+            bcr_fields = {
+                "est_new_riders_daily": bcr_inputs["est_new_riders_daily"],
+                "est_annual_boardings": bcr_inputs["est_annual_boardings"],
+                "annual_benefit_usd":   bcr_inputs["annual_benefit_usd"],
+                "capital_cost_usd":     bcr_inputs["capital_cost_usd"],
+                "pv_benefits_usd":      bcr_inputs["pv_benefits_usd"],
+                "pv_total_costs_usd":   bcr_inputs["pv_total_costs_usd"],
+                "net_pv_usd":           bcr_inputs["net_pv_usd"],
+                "bcr_20yr":             bcr_inputs["bcr_20yr"],
+                "fta_cei_per_user_hr":  bcr_inputs["fta_cei_per_user_hr"],
+                "justification":        (
+                    f"Selected via FTA §5.2.2 spacing algorithm.  "
+                    f"BCR={bcr_inputs['bcr_20yr']:.2f} at 3.5% over 20 yr "
+                    f"(walk-shed pop {bcr_inputs['marginal_walkshed_pop']:,})."
+                ),
+            }
+
         rows.append({
             "stop_id":              row.get("candidate_id", ""),
             "stop_name":            row.get("street_names", ""),
@@ -714,9 +762,9 @@ def build_stop_suggestions(
             "zone_type":            _zone_type(row.get("district_id")),
             "status":               status,
             "priority":             "—",
-            "is_existing":          bool(row.get("is_existing", False)),
+            "is_existing":          is_existing,
             "is_mandatory":         bool(row.get("is_mandatory", False)),
-            "is_school_stop":       "school" in str(row.get("activity_type", "")).lower(),
+            "is_school_stop":       is_school,
             "wheelchair_boarding":  1,   # ADA: all stops — 49 CFR Part 37
             "walk_buffer_ft":       row.get("walk_buffer_ft", _walk_buffer_ft(row.get("district_id"))),
             "raw_walkshed_pop":     row.get("raw_walkshed_pop", 0),
@@ -724,19 +772,9 @@ def build_stop_suggestions(
             "equity_walkshed_pop":  row.get("equity_walkshed_pop", 0),
             "tdi":                  round(row.get("tdi", 0.2), 3),
             "equity_priority":      bool(row.get("equity_priority", False)),
-            # BCR fields blank for existing stops (no new cost incurred)
-            "est_new_riders_daily": 0,
-            "est_annual_boardings": 0,
-            "annual_benefit_usd":   0,
-            "capital_cost_usd":     0,
-            "pv_benefits_usd":      0,
-            "pv_total_costs_usd":   0,
-            "net_pv_usd":           0,
-            "bcr_20yr":             None,
-            "fta_cei_per_user_hr":  None,
+            **bcr_fields,
             "gap_before_ft":        None,
             "gap_after_ft":         None,
-            "justification":        "Existing VTA stop or selected via spacing algorithm.",
             "data_sources":         row.get("source", "VTA GTFS / OSM"),
         })
 
