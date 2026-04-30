@@ -1097,9 +1097,11 @@ def main(cba_only: bool = False):
         r27_result["suggestions"].to_csv(
             "outputs/tables/route27_stop_suggestions.csv", index=False
         )
+        # Always write gaps CSV (even if empty) so mtime reflects current run.
+        # A stale CSV from a prior run is not acceptable as evidence of 0 gaps.
         r27_result["gaps"].to_csv(
             "outputs/tables/route27_coverage_gaps.csv", index=False
-        ) if len(r27_result["gaps"]) > 0 else None
+        )
 
         # Console report
         print_route27_report(r27_result["suggestions"])
