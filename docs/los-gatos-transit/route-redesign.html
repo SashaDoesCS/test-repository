@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Route Redesign, Los Gatos Transit</title>
+<meta name="description" content="The interactive route-redesign tool for Los Gatos transit. Corridor maps, candidate stops, headway scheduling, and ridership projections.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="canonical" href="https://lgthinktank.com/los-gatos-transit/route-redesign.html">
+<meta property="og:title" content="Route Redesign, Los Gatos Transit">
+<meta property="og:description" content="The interactive route-redesign tool. Corridor maps, candidate stops, headway scheduling, and ridership projections.">
+<meta property="og:url" content="https://lgthinktank.com/los-gatos-transit/route-redesign.html">
+<link rel="stylesheet" href="/assets/theme.css">
+<script src="/assets/theme.js" defer></script>
+<style>
+/* ── Page-specific ─────────────────────────────────── */
+.status-banner {
+  background: rgba(255, 169, 77, .06);
+  border: 1px solid rgba(255, 169, 77, .25);
+  border-radius: 8px;
+  padding: 12px 18px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--amber);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.status-banner::before {
+  content: '';
+  display: block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--amber);
+  flex-shrink: 0;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .3; }
+}
+
+/* What-is-in-it grid */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.feature-card {
+  background: var(--s1);
+  border: 1px solid var(--bd);
+  border-radius: 8px;
+  padding: 20px 18px;
+  transition: border-color 180ms;
+}
+
+.feature-card:hover { border-color: var(--ac); }
+
+.feature-card .fc-num {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--ac);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.feature-card h3 {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: var(--tx);
+}
+
+.feature-card p {
+  font-size: 13px;
+  color: var(--tm);
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* Data chips */
+.data-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 16px;
+}
+
+.data-chip {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  border: 1px solid var(--bd);
+  color: var(--tm);
+  background: var(--s2);
+}
+
+.data-chip.live {
+  background: rgba(78, 205, 196, .08);
+  border-color: rgba(78, 205, 196, .3);
+  color: var(--ac);
+}
+
+.data-chip.pending {
+  background: rgba(255, 169, 77, .06);
+  border-color: rgba(255, 169, 77, .25);
+  color: var(--amber);
+}
+
+/* Route stat row */
+.route-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1px;
+  background: var(--bd);
+  border: 1px solid var(--bd);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 24px 0;
+}
+
+.route-stat {
+  background: var(--s1);
+  padding: 18px 16px;
+}
+
+.route-stat .rs-val {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--ac);
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+
+.route-stat .rs-val.warn  { color: var(--amber); }
+.route-stat .rs-val.alert { color: var(--red); }
+
+.route-stat .rs-lbl {
+  font-size: 12px;
+  color: var(--tm);
+  line-height: 1.4;
+}
+
+/* Method table */
+.method-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin-top: 16px;
+}
+
+.method-table th {
+  text-align: left;
+  padding: 7px 10px;
+  border-bottom: 2px solid var(--bd);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--tm);
+}
+
+.method-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid rgba(42, 48, 80, .35);
+  color: var(--tm);
+  vertical-align: top;
+  line-height: 1.55;
+}
+
+.method-table td:first-child {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--ac);
+  white-space: nowrap;
+  font-size: 12px;
+}
+
+.method-table tr:last-child td { border-bottom: none; }
+.method-table tr:hover td { background: var(--s2); }
+
+/* Corrections banner */
+.corrections {
+  background: rgba(255, 107, 107, .05);
+  border: 1px solid rgba(255, 107, 107, .2);
+  border-radius: 8px;
+  padding: 14px 18px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.corrections strong { color: var(--amber); }
+
+.corrections ul {
+  margin: 10px 0 0 18px;
+  padding: 0;
+}
+
+.corrections li { margin-bottom: 6px; }
+.corrections li:last-child { margin-bottom: 0; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="brand" href="/">
+    <span class="brand-mark">LG</span>
+    Los Gatos Think Tank
+  </a>
+  <nav>
+    <a href="/">Home</a>
+    <a href="analysis.html">Analysis</a>
+    <a href="route-redesign.html">Route redesign</a>
+    <a href="stops/">Stops</a>
+    <button class="theme-toggle" type="button" aria-label="Toggle theme">
+      <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button>
+  </nav>
+</header>
+
+<section class="advo-hero">
+  <div class="wrap">
+    <div class="status-banner">In progress, finalizing public dashboard</div>
+    <h1>Route redesign, <em>coming together.</em></h1>
+    <p class="lede">
+      The interactive route-redesign tool, corridor maps, candidate stops,
+      headway scheduling, and ridership projections, is being finalized.
+      The numbers it depends on are already published in the
+      <a href="analysis.html">cost-benefit analysis</a>. This page explains what is in it
+      and what comes next.
+    </p>
+    <div class="cta-row">
+      <a class="btn" href="analysis.html">Read the analysis now</a>
+      <a class="btn btn-ghost" href="index.html">Back to project home</a>
+    </div>
+  </div>
+</section>
+
+<!-- Key figures from Phase B -->
+<section class="sec">
+  <div class="wrap">
+    <div class="eyebrow">Phase B results, already computed</div>
+    <h2>What the optimization found</h2>
+    <p style="font-size: 16px; color: var(--tm); max-width: 680px; margin-bottom: 0;">
+      The Clarke-Wright routing algorithm and FTA Circular 9040.1G stop spacing standard have
+      already been run. These numbers are from the pipeline output. The public-facing
+      dashboard to present them is what remains.
+    </p>
+
+    <div class="route-stats">
+      <div class="route-stat">
+        <div class="rs-val">13</div>
+        <div class="rs-lbl">New candidate stops identified on Route 27 corridor</div>
+      </div>
+      <div class="route-stat">
+        <div class="rs-val">117</div>
+        <div class="rs-lbl">Total stops in optimized network (existing + new)</div>
+      </div>
+      <div class="route-stat">
+        <div class="rs-val ac" style="color:var(--ac)">1.71</div>
+        <div class="rs-lbl">BCR, Route 27 current network (20-yr, 3.5% discount)</div>
+      </div>
+      <div class="route-stat">
+        <div class="rs-val warn">~264K</div>
+        <div class="rs-lbl">Current annual boardings, Route 27</div>
+      </div>
+      <div class="route-stat">
+        <div class="rs-val" style="color:var(--ac)">~317K</div>
+        <div class="rs-lbl">Projected annual boardings, optimized Route 27 (+20%)</div>
+      </div>
+      <div class="route-stat">
+        <div class="rs-val warn" id="r76-bcr-stat">&lt;1.0</div>
+        <div class="rs-lbl">BCR, Route 76 restoration scenario — not yet sufficient to recommend</div>
+      </div>
+    </div>
+
+    <div class="data-chips">
+      <span class="data-chip live">Clarke-Wright savings algorithm</span>
+      <span class="data-chip live">FTA Circular 9040.1G spacing</span>
+      <span class="data-chip live">Mohring (1972) headway formula</span>
+      <span class="data-chip live">BCR per stop, OMB A-94 3.5%, 20 yr</span>
+      <span class="data-chip live">GTFS output, 8 files</span>
+      <span class="data-chip pending">Public corridor map</span>
+      <span class="data-chip pending">Ridership projection display</span>
+    </div>
+  </div>
+</section>
+
+<!-- What will be on this page -->
+<section class="sec">
+  <div class="wrap">
+    <h2>What will be on this page</h2>
+
+    <div class="callout info">
+      <strong>Estimated availability:</strong> the pipeline already generates the underlying
+      data. What remains is the public-facing version readable without a transit-planning
+      background. Contact <a href="mailto:hello@lgthinktank.com">hello@lgthinktank.com</a>
+      to say what would be most useful to see first.
+    </div>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="fc-num">01</div>
+        <h3>Redesigned Route 27 corridor</h3>
+        <p>
+          The optimized Route 27 spine with 13 new candidate stops placed by the model in
+          neighborhoods that currently have no service. Each stop has a benefit-cost ratio
+          under FTA Circular 9040.1G spacing rules. The highest-ranked are mapped first.
+        </p>
+      </div>
+      <div class="feature-card">
+        <div class="fc-num">02</div>
+        <h3>Schedule and headways</h3>
+        <p>
+          Frequency by time-of-day window using the Mohring (1972) wait-time formula,
+          calibrated to the demand model. Includes peak and off-peak headways and the
+          school-trip windows that drive Route 76 demand at LGHS.
+        </p>
+      </div>
+      <div class="feature-card">
+        <div class="fc-num">03</div>
+        <h3>Ridership projections</h3>
+        <p>
+          Daily boardings by route, derived from the Transit Demand Index (population
+          density, zero-vehicle households, transit commute share, income, age dependence,
+          and employment) plus the student survey for school trips.
+        </p>
+      </div>
+      <div class="feature-card">
+        <div class="fc-num">04</div>
+        <h3>Route 76 restoration scenario</h3>
+        <p>
+          The standalone case for restoring service to the 95033 mountain communities
+          that lost their only transit link in 2010. Capital, operating cost, expected
+          boardings, and the BCR comparison against doing nothing.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Route 76 detail -->
+<section class="sec">
+  <div class="wrap-narrow">
+    <h2>Route 76, the case for restoration</h2>
+    <p>
+      Route 76 ran from downtown Los Gatos to Summit Road in the 95033 zip code, serving
+      roughly 8,000 mountain-community residents including students at LGHS. It was
+      discontinued in June 2010. The bus stop signs are still standing.
+    </p>
+    <p>
+      The cost-benefit model has already evaluated the restoration scenario.
+      The numbers below are from Phase A3 of the analysis.
+    </p>
+
+    <div class="route-stats" style="margin-top: 20px;">
+      <div class="route-stat">
+        <div class="rs-val alert">$900K</div>
+        <div class="rs-lbl">Capital investment to restore service</div>
+      </div>
+      <div class="route-stat">
+        <div class="rs-val alert">$128K/yr</div>
+        <div class="rs-lbl">Annual operating cost</div>
+      </div>
+      <div class="route-stat">
+        <div class="rs-val warn">$113K/yr</div>
+        <div class="rs-lbl">Net cost (operating minus fare revenue)</div>
+      </div>
+      <div class="route-stat">
+        <div class="rs-val warn">$17.76</div>
+        <div class="rs-lbl">Cost per boarding</div>
+      </div>
+      <div class="route-stat">
+        <div class="rs-val">~40/day</div>
+        <div class="rs-lbl">Estimated boardings on school days</div>
+      </div>
+      <div class="route-stat">
+        <div class="rs-val">8</div>
+        <div class="rs-lbl">Stops to rehabilitate</div>
+      </div>
+    </div>
+
+    <div class="callout warn" style="margin-top: 20px;">
+      <strong>Note on cost per boarding:</strong> $17.76 per boarding is high relative to
+      Route 27 ($9.77), but comparable to rural transit nationally (NTD peer average: $10
+      to $18). The mountain corridor has low density and long distances. The BCR evaluation
+      under Phase A3 will determine whether social benefits justify the net cost.
+      <a href="analysis.html#glossary">See BCR in the glossary.</a>
+    </div>
+  </div>
+</section>
+
+<!-- Methods applied -->
+<section class="sec">
+  <div class="wrap-narrow">
+    <h2>Methods applied in Phase B</h2>
+
+    <table class="method-table">
+      <thead>
+        <tr>
+          <th>Method</th>
+          <th>What it does</th>
+          <th>Standard</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Clarke-Wright</td>
+          <td>Builds efficient route sequences by merging trip pairs wherever the distance saving is positive. Applied to the 16-district origin-destination matrix.</td>
+          <td>TCRP Report 19</td>
+        </tr>
+        <tr>
+          <td>FTA 9040.1G spacing</td>
+          <td>Minimum and maximum stop spacing rules: quarter-mile in urban zones (D1 to D5, D7), half-mile in suburban zones. Candidate stops that violate spacing are rejected.</td>
+          <td>FTA Circular 9040.1G, now superseded by 9040.1H</td>
+        </tr>
+        <tr>
+          <td>Mohring headways</td>
+          <td>Derives optimal frequency from ridership demand. Higher demand justifies shorter headways because the wait-time cost is shared among more passengers.</td>
+          <td>Mohring (1972), Transport Economics</td>
+        </tr>
+        <tr>
+          <td>Stop BCR</td>
+          <td>Each new candidate stop is evaluated on a 20-year benefit-cost ratio using marginal walkshed population, estimated new boardings, and the USDOT BCA 2024 value per boarding.</td>
+          <td>USDOT BCA Guidance 2024, OMB Circular A-94</td>
+        </tr>
+        <tr>
+          <td>School constraints</td>
+          <td>Union Middle School (14:25 dismissal) and Dartmouth Middle School (15:55 dismissal) are hard constraints. The schedule must deliver a trip within 10 minutes of each dismissal window.</td>
+          <td>Student survey diversion rate, GTFS schedule</td>
+        </tr>
+        <tr>
+          <td>GTFS output</td>
+          <td>The pipeline writes a valid GTFS feed for the optimized network: stops.txt, trips.txt, stop_times.txt, routes.txt, calendar.txt, shapes.txt, agency.txt, feed_info.txt.</td>
+          <td>GTFS Schedule Reference v2.0</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Corrections applied -->
+<section class="sec">
+  <div class="wrap-narrow">
+    <h2>Model corrections applied</h2>
+
+    <div class="corrections">
+      <strong>Four corrections from federal guidance updates are applied throughout this analysis.
+      They differ from the defaults often seen in older transit reports.</strong>
+      <ul>
+        <li>
+          <strong>Social Cost of Carbon raised from $56 to $120 per metric ton CO2.</strong>
+          Per EPA's 2022 regulatory update, which supersedes the older Interagency Working Group
+          value. This roughly doubles the emission-reduction benefit category.
+        </li>
+        <li>
+          <strong>Value of Time split by trip purpose.</strong>
+          USDOT BCA Guidance 2024 Table 4: personal trips at $17.80 per hour, employer business
+          trips at $31.90 per hour. Prior analyses used a flat $20.60 per hour for all trips.
+        </li>
+        <li>
+          <strong>Induced demand counted as an 8th benefit category.</strong>
+          Per TCRP Report 95, roughly 20% of riders are enabled by transit rather than diverted
+          from auto trips. Older analyses miss this group entirely, which understates benefits.
+        </li>
+        <li>
+          <strong>FTA Cost Effectiveness Index reported for every scenario.</strong>
+          The CEI is the required metric for federal Capital Investment Grant applications.
+          Reporting it allows direct comparison against funded projects elsewhere.
+        </li>
+      </ul>
+    </div>
+
+    <div style="margin-top: 20px;">
+      <a class="btn" href="analysis.html">See all corrections in the full analysis</a>
+    </div>
+  </div>
+</section>
+
+<!-- Glossary section -->
+<section class="glossary-section" id="glossary">
+  <div class="wrap">
+    <h2>Glossary</h2>
+    <p class="ssub">Every acronym and key concept used in this project. Hover any underlined term in the page text for a definition. Click to jump here.</p>
+    <dl class="glossary-grid" id="glossary-dl"></dl>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <p>Los Gatos Think Tank, <a href="/">lgthinktank.com</a>. Open data, plain language.
+  &nbsp;·&nbsp; <a href="index.html">Project home</a>
+  &nbsp;·&nbsp; <a href="analysis.html">Full analysis</a>
+  </p>
+</footer>
+
+<script src="/assets/glossary.js"></script>
+</body>
+</html>

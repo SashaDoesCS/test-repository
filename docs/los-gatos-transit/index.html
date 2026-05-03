@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Los Gatos Transit, Cost-Benefit Analysis</title>
+<meta name="description" content="Some Los Gatos bus stops sit empty while whole neighborhoods have no service at all. A federally-grounded cost-benefit analysis of what better transit would actually cost and earn back.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="canonical" href="https://lgthinktank.com/los-gatos-transit/">
+<meta property="og:title" content="Los Gatos Transit, Cost-Benefit Analysis">
+<meta property="og:description" content="Some stops sit empty. Whole neighborhoods have no service. The analysis says the redesign pays back $1.71 in benefits for every $1 spent.">
+<meta property="og:url" content="https://lgthinktank.com/los-gatos-transit/">
+<meta property="og:type" content="article">
+<link rel="stylesheet" href="/assets/theme.css">
+<script src="/assets/theme.js" defer></script>
+<style>
+/* ── Page-specific overrides ───────────────────────── */
+.hero-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ac);
+  margin-bottom: 20px;
+}
+
+.hero-kicker::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 1px;
+  background: var(--ac);
+}
+
+.advo-hero h1 {
+  font-size: clamp(32px, 5vw, 52px);
+  line-height: 1.12;
+  letter-spacing: -.5px;
+  max-width: 760px;
+}
+
+/* Key metrics strip */
+.metrics-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--bd);
+  border-top: 1px solid var(--bd);
+  border-bottom: 1px solid var(--bd);
+}
+
+.metric-cell {
+  background: var(--s1);
+  padding: 28px 24px 24px;
+}
+
+.metric-cell .val {
+  font-family: var(--font-display);
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--ac);
+  margin-bottom: 8px;
+}
+
+.metric-cell .val.alert { color: var(--red); }
+.metric-cell .val.warn  { color: var(--amber); }
+
+.metric-cell .desc {
+  font-size: 14px;
+  color: var(--tx);
+  line-height: 1.45;
+  margin-bottom: 6px;
+}
+
+.metric-cell .src {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--tm);
+  line-height: 1.5;
+}
+
+/* Why-now section */
+.why-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.why-block h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: var(--tx);
+}
+
+.why-block p {
+  font-size: 15px;
+  color: var(--tm);
+  line-height: 1.7;
+  margin-bottom: 12px;
+}
+
+.why-block p strong { color: var(--tx); }
+.why-block p:last-child { margin-bottom: 0; }
+
+/* Method pills */
+.method-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.pill {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 5px 11px;
+  border-radius: 20px;
+  border: 1px solid var(--bd);
+  color: var(--tm);
+  background: var(--s2);
+  white-space: nowrap;
+}
+
+.pill.hi { border-color: rgba(78, 205, 196, .4); color: var(--ac); background: rgba(78, 205, 196, .06); }
+
+/* Timeline strip */
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--bd);
+  border: 1px solid var(--bd);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 32px;
+}
+
+.timeline-step {
+  background: var(--s1);
+  padding: 22px 20px;
+}
+
+.timeline-step .phase {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--tm);
+  margin-bottom: 6px;
+}
+
+.timeline-step .phase-name {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--tx);
+  margin-bottom: 6px;
+}
+
+.timeline-step .phase-status {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.phase-status.done { background: rgba(78, 205, 196, .15); color: var(--ac); border: 1px solid rgba(78, 205, 196, .3); }
+.phase-status.active { background: rgba(255, 169, 77, .12); color: var(--amber); border: 1px solid rgba(255, 169, 77, .3); }
+.phase-status.pending { background: var(--s3); color: var(--tm); border: 1px solid var(--bd); }
+
+.timeline-step p {
+  font-size: 13px;
+  color: var(--tm);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* CTA block */
+.cta-block {
+  background: var(--s1);
+  border: 1px solid var(--bd);
+  border-radius: 10px;
+  padding: 36px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+.cta-block h3 { font-size: 20px; margin-bottom: 6px; }
+.cta-block p { font-size: 14px; color: var(--tm); margin: 0; max-width: 560px; }
+
+/* Data sources inline table */
+.sources-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin-top: 16px;
+}
+
+.sources-table th {
+  text-align: left;
+  padding: 6px 10px;
+  border-bottom: 2px solid var(--bd);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--tm);
+}
+
+.sources-table td {
+  padding: 7px 10px;
+  border-bottom: 1px solid rgba(42, 48, 80, .4);
+  color: var(--tm);
+  vertical-align: top;
+}
+
+.sources-table td:first-child {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--ac);
+  white-space: nowrap;
+}
+
+.sources-table tr:last-child td { border-bottom: none; }
+.sources-table tr:hover td { background: var(--s2); }
+
+@media (max-width: 860px) {
+  .metrics-strip { grid-template-columns: 1fr 1fr; }
+  .why-grid { grid-template-columns: 1fr; gap: 24px; }
+  .timeline { grid-template-columns: 1fr; }
+  .cta-block { flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 520px) {
+  .metrics-strip { grid-template-columns: 1fr; }
+  .metric-cell .val { font-size: 32px; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="brand" href="/">
+    <span class="brand-mark">LG</span>
+    Los Gatos Think Tank
+  </a>
+  <nav>
+    <a href="/">Home</a>
+    <a href="analysis.html">Analysis</a>
+    <a href="route-redesign.html">Route redesign</a>
+    <a href="stops/">Stops</a>
+    <button class="theme-toggle" type="button" aria-label="Toggle theme">
+      <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button>
+  </nav>
+</header>
+
+<section class="advo-hero">
+  <div class="wrap">
+    <div class="hero-kicker">Los Gatos, CA, Public Transit</div>
+    <h1>Some bus stops sit empty. <em>Whole neighborhoods have no bus at all.</em></h1>
+    <p class="lede" style="margin-top: 20px;">
+      Los Gatos has a transit network drawn for a different town. Some stops see almost no riders
+      because they do not connect anywhere people are going. Meanwhile roughly
+      <strong>13,000 residents</strong> live in districts with
+      <strong>no fixed-route service</strong>, including the mountain communities cut off when
+      Route 76 was discontinued in 2010.
+    </p>
+    <p class="lede" style="margin-top: 14px;">
+      We ran the federally prescribed cost-benefit analysis. Even the <strong>current</strong>
+      network, flawed as it is, already returns <strong>$1.71 in benefits for every $1 spent</strong>
+      over 20 years. A redesigned network is projected to do meaningfully better.
+    </p>
+    <div class="cta-row">
+      <a class="btn" href="analysis.html">Read the full analysis</a>
+      <a class="btn btn-ghost" href="route-redesign.html">Route redesign</a>
+      <a class="btn btn-ghost" href="#why-now">Why this matters</a>
+    </div>
+  </div>
+</section>
+
+<!-- Key metrics -->
+<div class="metrics-strip">
+  <div class="metric-cell">
+    <div class="val alert">12,918</div>
+    <div class="desc">Residents in districts with no transit service at all</div>
+    <div class="src">Census ACS 2018-2022, GTFS coverage analysis</div>
+  </div>
+  <div class="metric-cell">
+    <div class="val warn">5 of 16</div>
+    <div class="desc">Districts with zero fixed-route coverage</div>
+    <div class="src">0.25-mile walkshed analysis, GTFS coverage gap = 100%</div>
+  </div>
+  <div class="metric-cell">
+    <div class="val">782</div>
+    <div class="desc">Zero-vehicle households in the study area</div>
+    <div class="src">Census ACS 2018-2022 (table B25044)</div>
+  </div>
+  <div class="metric-cell">
+    <div class="val">$1.71</div>
+    <div class="desc">In benefits returned per $1 spent, current network, 20-year horizon at 3.5% discount</div>
+    <div class="src">USDOT BCA Guidance 2024, OMB Circular A-94</div>
+  </div>
+</div>
+
+<!-- Why now -->
+<section class="sec" id="why-now">
+  <div class="wrap">
+    <div class="why-grid">
+      <div class="why-block">
+        <h3>Why transit gets cut, and why that is a mistake</h3>
+        <p>
+          Public transit gets cut whenever ridership numbers drop, and ridership drops whenever
+          the buses do not go where people need to go. It is a feedback loop that ends with
+          the empty stops you can already see around town.
+        </p>
+        <p>
+          The federal government has already done the hard work of figuring out how to value
+          transit honestly. Travel-time savings, crash reduction, fewer emissions, health benefits
+          from walking to stops, the option value to people who do not ride today but might
+          tomorrow, all of it has a defined methodology under
+          <a href="analysis.html#glossary">FTA cost-benefit guidelines</a> and
+          <a href="analysis.html#glossary">USDOT BCA Guidance 2024</a>.
+        </p>
+        <p>
+          So we ran the numbers, for the existing network, for restoring Route 76, and
+          for a redesigned Route 27 with stops where the demand actually is.
+        </p>
+      </div>
+      <div class="why-block">
+        <h3>What this analysis is and is not</h3>
+        <p>
+          This is a <strong>public-interest analysis</strong>, not a paid advocacy document.
+          Every number links back to its federal source. The pipeline that produces every chart
+          and table is open source, and corrections are applied in public.
+        </p>
+        <p>
+          The analysis intentionally uses a <strong>conservative scope</strong>: property value
+          uplift near stops, wider agglomeration effects, and school-access value are excluded
+          from the baseline scenario. The $1.71 BCR holds even without those items.
+        </p>
+        <div class="method-pills">
+          <span class="pill hi">USDOT BCA Guidance 2024</span>
+          <span class="pill hi">OMB Circular A-94</span>
+          <span class="pill hi">EPA SCC $120/tCO2</span>
+          <span class="pill">FTA CIG / CEI</span>
+          <span class="pill">TCRP Report 95</span>
+          <span class="pill">SWITRS crash data</span>
+          <span class="pill">Census ACS 2018-2022</span>
+          <span class="pill">VTA GTFS feed</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- What is in this project -->
+<section class="sec">
+  <div class="wrap">
+    <h2>What is in this project</h2>
+    <p class="lede" style="max-width:680px; margin-bottom:0;">Three pieces of work, each with the data and methodology open for inspection.</p>
+
+    <div class="proj-grid">
+      <a class="proj-card" href="analysis.html">
+        <span class="status">Live</span>
+        <h3>Cost-benefit analysis</h3>
+        <p>
+          16 districts, 8 federally recognized benefit categories, 20-year present value at
+          OMB-prescribed discount rates, peer-benchmarked against VTA and California operators.
+          This is where the $1.71-per-$1 figure comes from.
+        </p>
+        <p class="arrow">Open the full analysis</p>
+      </a>
+      <a class="proj-card" href="route-redesign.html">
+        <span class="status soon">In progress</span>
+        <h3>Route redesign</h3>
+        <p>
+          A reworked Route 27 with 13 candidate new stops in underserved neighborhoods, plus
+          the case for restoring Route 76 to Summit Road. The interactive corridor map and
+          ridership model are being finalized.
+        </p>
+        <p class="arrow">See what is coming</p>
+      </a>
+      <a class="proj-card" href="analysis.html#glossary">
+        <span class="status">Reference</span>
+        <h3>Glossary</h3>
+        <p>
+          Every acronym and agency cited in this project, defined in plain language with links
+          to primary sources. Hover any underlined term in the analysis pages for an instant
+          definition.
+        </p>
+        <p class="arrow">Browse the glossary</p>
+      </a>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-step">
+        <div class="phase">Phase A</div>
+        <div class="phase-name">Cost-Benefit Analysis</div>
+        <span class="phase-status done">Complete</span>
+        <p>16 districts mapped and costed. 8 benefit categories quantified. BCR and NPV computed at all three OMB discount rates.</p>
+      </div>
+      <div class="timeline-step">
+        <div class="phase">Phase B</div>
+        <div class="phase-name">Route Optimization</div>
+        <span class="phase-status done">Complete</span>
+        <p>Clarke-Wright routing, Mohring headways, FTA 9040.1G stop spacing. Route 27 corridor with 13 new stop candidates.</p>
+      </div>
+      <div class="timeline-step">
+        <div class="phase">Phase C</div>
+        <div class="phase-name">Public Presentation</div>
+        <span class="phase-status active">In progress</span>
+        <p>Finalizing the public-facing route-redesign dashboard. Stop-by-stop placards with walkshed maps and benefit-cost ratios.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Methods summary -->
+<section class="sec">
+  <div class="wrap-narrow">
+    <h2>Methods, briefly</h2>
+
+    <table class="sources-table">
+      <thead>
+        <tr>
+          <th>Source</th>
+          <th>What it provides</th>
+          <th>Used for</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Census ACS 2018-2022</td>
+          <td>Block-group demographics, income, commute mode, vehicle ownership</td>
+          <td>Equity analysis, demand model, district profiles</td>
+        </tr>
+        <tr>
+          <td>VTA GTFS feed</td>
+          <td>Stop locations, route geometry, schedules, headways</td>
+          <td>Coverage gaps, walkshed analysis, route optimization</td>
+        </tr>
+        <tr>
+          <td>USDOT BCA Guidance 2024</td>
+          <td>Value of time ($17.80 personal, $31.90 business), reliability weighting</td>
+          <td>Categories 1 and 6 (time savings, reliability)</td>
+        </tr>
+        <tr>
+          <td>EPA SC-GHG 2022 update</td>
+          <td>Social cost of carbon at $120 per metric ton CO2 (3% rate)</td>
+          <td>Category 4 (emission reduction)</td>
+        </tr>
+        <tr>
+          <td>SWITRS / FHWA KABCO</td>
+          <td>Santa Clara County crash rates, severity-weighted costs</td>
+          <td>Category 3 (crash reduction)</td>
+        </tr>
+        <tr>
+          <td>WHO HEAT v5.2</td>
+          <td>12 walk-minutes per trip, $0.16 per walking minute</td>
+          <td>Category 5 (health benefits)</td>
+        </tr>
+        <tr>
+          <td>TCRP Report 95</td>
+          <td>20% induced demand rate, consumer surplus methodology</td>
+          <td>Category 8 (induced demand)</td>
+        </tr>
+        <tr>
+          <td>NTD peer benchmarks</td>
+          <td>California transit agency operating costs per revenue hour</td>
+          <td>VTA cost reasonableness check</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout info" style="margin-top: 24px;">
+      <strong>Plain-English glossary built in.</strong>
+      Acronyms in the analysis page are underlined. Hover or tap for a one-line definition.
+      Click to jump to the full glossary entry at the bottom of the page.
+      <a href="analysis.html#glossary" style="margin-left: 6px;">Jump to glossary</a>
+    </div>
+
+    <div class="cta-block">
+      <div>
+        <h3>Ready to dig in?</h3>
+        <p>The full cost-benefit dashboard has every number, every chart, and every source. The
+          glossary at the bottom defines every term used.</p>
+      </div>
+      <a class="btn" href="analysis.html">Open the full analysis</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <p>Los Gatos Think Tank, <a href="/">lgthinktank.com</a>. Open data, plain language.</p>
+</footer>
+
+</body>
+</html>
