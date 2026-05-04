@@ -44,6 +44,7 @@ body {
   color: var(--tx);
   line-height: 1.6;
   font-size: 15px;
+  word-spacing: -0.05em;
 }
 
 h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; line-height: 1.25; }
