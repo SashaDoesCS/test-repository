@@ -86,6 +86,7 @@ from src.route27_corridor import (
     STOP_SPACING,
     _haversine_ft,
     project_to_path,
+    project_to_path_with_point,
 )
 from src.route27_walkshed import (
     compute_marginal_walkshed,
@@ -294,6 +295,30 @@ def select_route27_stops(
     selected_df = df.loc[selected_indices].copy()
     unselected_df = df.drop(index=selected_indices).copy()
 
+    # Cap non-existing, non-mandatory new stops at max_new_stops.
+    # The demand_score > 0 inclusion clause is effectively unbounded when many
+    # OSM candidates have any equity population; this cap prevents the optimizer
+    # from selecting 80+ new stops and inflating boardings projections.
+    r27_cfg = config.get("route27_optimization", {})
+    max_new_stops = int(r27_cfg.get("max_new_stops", 10))
+    is_existing_s = selected_df.get("is_existing", pd.Series([False] * len(selected_df), index=selected_df.index)).fillna(False)
+    is_mandatory_s = selected_df.get("is_mandatory", pd.Series([False] * len(selected_df), index=selected_df.index)).fillna(False)
+    is_forced_s = selected_df.get("is_forced", pd.Series([False] * len(selected_df), index=selected_df.index)).fillna(False)
+    new_mask = (~is_existing_s) & (~is_mandatory_s) & (~is_forced_s)
+    n_new = int(new_mask.sum())
+    if n_new > max_new_stops:
+        new_indices = selected_df[new_mask].index.tolist()
+        # Score each new stop; keep only the top max_new_stops by demand_score
+        demand_col = selected_df.loc[new_mask, :].apply(_score_candidate, axis=1)
+        keep_new = demand_col.nlargest(max_new_stops).index.tolist()
+        drop_new = [i for i in new_indices if i not in keep_new]
+        logger.info(
+            "max_new_stops cap (%d): trimming %d new stops → keeping %d highest-demand.",
+            max_new_stops, len(drop_new), max_new_stops,
+        )
+        unselected_df = pd.concat([unselected_df, selected_df.loc[drop_new]], ignore_index=False)
+        selected_df = selected_df.drop(index=drop_new)
+
     logger.info(
         "Linear stop selection: %d stops selected (%d existing, %d new mandatory, "
         "%d gap-fill), %d unselected candidates remain.",
@@ -387,9 +412,12 @@ def _merge_existing_stops(
                 break
 
         if not matched:
-            # Bug 1 fix: compute correct s_coord_ft via path projection
+            # Bug 1 / P3 fix: compute s_coord_ft AND snap lat/lon via path projection.
+            # Previously stop_lat/stop_lon was kept at the original GPS coords, which
+            # could be up to _MAX_SNAP_FT (500 ft) off the drawn polyline.  Now we
+            # snap to the path so the stop marker sits ON the route line in the map.
             if have_path:
-                s_ft, snap_dist_ft = project_to_path(
+                s_ft, snap_dist_ft, snap_lat, snap_lon = project_to_path_with_point(
                     ex_lat, ex_lon, path_coords, path_s_coords
                 )
                 if snap_dist_ft > _MAX_SNAP_FT:
@@ -404,11 +432,14 @@ def _merge_existing_stops(
                 # No path available — use stored value if present, else 0
                 s_ft = float(ex.get("s_coord_ft", 0.0))
                 snap_dist_ft = 0.0
+                snap_lat, snap_lon = ex_lat, ex_lon
 
             new_row = {
                 "candidate_id":          str(ex.get("stop_id", f"EX_{len(added)}")),
-                "stop_lat":              ex_lat,
-                "stop_lon":              ex_lon,
+                # P3 fix: use snapped coords so marker sits on the drawn polyline.
+                # Original GPS coords are stored separately for traceability.
+                "stop_lat":              snap_lat,
+                "stop_lon":              snap_lon,
                 "s_coord_ft":            round(s_ft, 1),
                 "district_id":           ex.get("district_id", None),
                 "is_existing":           True,
@@ -970,6 +1001,7 @@ def run_route27_optimization(
     tdi_df: pd.DataFrame,
     unmet_need_df: Optional[pd.DataFrame],
     config: dict,
+    census_df: Optional[pd.DataFrame] = None,
 ) -> dict:
     """Run the full Route 27 stop optimization pipeline.
 
@@ -1023,12 +1055,48 @@ def run_route27_optimization(
         sel_di = selected_df.get("district_id", pd.Series([None] * len(selected_df))).tolist()
 
         walkshed_df = compute_marginal_walkshed(
-            walkshed_df, sel_s, sel_la, sel_lo, sel_di
+            walkshed_df, sel_s, sel_la, sel_lo, sel_di,
+            census_df=census_df,
         )
-        # Refresh unselected with updated marginal pops
+        # Bug 1 fix: merge marginal_walkshed_pop back onto the ORIGINAL selected_df
+        # (which contains is_existing=True flags and appended existing-stop rows
+        # from _merge_existing_stops).  Replacing selected_df wholesale from
+        # walkshed_df would drop any appended rows whose indices don't exist in
+        # walkshed_df, wiping is_existing and turning every stop into NEW_IN_SELECTION.
+        #
+        # Strategy: only copy the recomputed walkshed column(s) back; leave all
+        # other columns (is_existing, is_mandatory, candidate_id, etc.) intact.
+        walkshed_cols = [c for c in walkshed_df.columns if c not in selected_df.columns
+                         or c == "marginal_walkshed_pop"]
+        # Rows that exist in walkshed_df (original candidates — not appended existing stops)
+        in_walkshed_mask = selected_df.index.isin(walkshed_df.index)
+        for col in walkshed_cols:
+            if col not in selected_df.columns:
+                selected_df[col] = None
+            selected_df.loc[in_walkshed_mask, col] = walkshed_df.loc[
+                walkshed_df.index.isin(selected_df.index), col
+            ].values
+
+        # For unselected_df (all rows exist in walkshed_df), a full refresh is safe.
         unselected_df = walkshed_df[
             ~walkshed_df.index.isin(selected_df.index)
         ].copy()
+
+    # Guard: warn (and fail in test) if any NEW_IN_SELECTION row has 0 marginal pop
+    # This catches future regressions where the walkshed join breaks silently.
+    sel_new_mask = ~selected_df.get("is_existing", pd.Series([True] * len(selected_df))).fillna(True)
+    if sel_new_mask.any():
+        zero_pop_new = selected_df[sel_new_mask & (selected_df.get("marginal_walkshed_pop", pd.Series([0] * len(selected_df))).fillna(0) == 0)]
+        if len(zero_pop_new) > 0:
+            logger.warning(
+                "P2 data quality: %d NEW_IN_SELECTION stop(s) have marginal_walkshed_pop=0.  "
+                "This may indicate the walkshed join did not populate population data.  "
+                "Check that district_demographic_profile.csv has lat/lon centroids, or that "
+                "OSM candidates have district_id assigned.  "
+                "Affected stops: %s",
+                len(zero_pop_new),
+                zero_pop_new["candidate_id"].tolist()[:5] if "candidate_id" in zero_pop_new.columns else "see log",
+            )
 
     # Stage 2: Coverage gap detection
     gaps_df = detect_coverage_gaps(selected_df, unselected_df)

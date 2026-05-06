@@ -1,0 +1,3 @@
+school_stop_id,school_name,school_lat,school_lon,nearest_stop_id,nearest_stop_name,nearest_stop_lat,nearest_stop_lon,walking_distance_ft_to_school,within_quarter_mile,fta_threshold_ft,constraint_met
+R27_FORCE_003,"Union Middle School (2130 Los Gatos-Almaden Rd, San Jose)",37.2462,-121.9325,R27_FORCE_003,"Union Middle School (2130 Los Gatos-Almaden Rd, San Jose)",37.2462,-121.93128967,351.5,True,1320.0,True
+R27_FORCE_004,"Dartmouth Middle School (5575 Dartmouth Dr, San Jose)",37.2477,-121.8995,R27_FORCE_004,"Dartmouth Middle School (5575 Dartmouth Dr, San Jose)",37.2444,-121.8998,1207.0,True,1320.0,True

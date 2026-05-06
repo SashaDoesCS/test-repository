@@ -11,7 +11,7 @@
     "generated_by": "route27_corridor.py",
     "standard": "FTA Circular 9040.1G, TCRP Report 19",
     "anchor_count": 10,
-    "candidate_count": 367
+    "candidate_count": 446
   },
   "features": [
     {
@@ -2144,84 +2144,32 @@
             37.23633575
           ],
           [
-            -121.90491486,
-            37.2363472
+            -121.9005,
+            37.237
           ],
           [
-            -121.9040451,
-            37.23635483
+            -121.9,
+            37.239
           ],
           [
-            -121.90359497,
-            37.23635483
+            -121.8999,
+            37.2415
           ],
           [
-            -121.90344238,
-            37.23636246
+            -121.8998,
+            37.2444
           ],
           [
-            -121.9029541,
-            37.23636627
+            -121.8994,
+            37.2415
           ],
           [
-            -121.90271759,
-            37.23638916
+            -121.8987,
+            37.239
           ],
           [
-            -121.90236664,
-            37.23643494
-          ],
-          [
-            -121.90185547,
-            37.23655701
-          ],
-          [
-            -121.90142059,
-            37.23668289
-          ],
-          [
-            -121.90086365,
-            37.23687744
-          ],
-          [
-            -121.90061188,
-            37.23698807
-          ],
-          [
-            -121.89984894,
-            37.23734665
-          ],
-          [
-            -121.89946747,
-            37.23752594
-          ],
-          [
-            -121.89902496,
-            37.23773575
-          ],
-          [
-            -121.89834595,
-            37.23804092
-          ],
-          [
-            -121.89822388,
-            37.23803711
-          ],
-          [
-            -121.89601898,
-            37.23902512
-          ],
-          [
-            -121.8957901,
-            37.23913193
-          ],
-          [
-            -121.89573669,
-            37.23915863
-          ],
-          [
-            -121.89567566,
-            37.23918533
+            -121.8978,
+            37.237
           ],
           [
             -121.89415741,
@@ -3657,7 +3605,7 @@
         "name": "Route 27 corridor path",
         "description": "Stitched road-network path between anchor waypoints",
         "source": "OSMnx Dijkstra shortest-path or straight-line fallback",
-        "total_length_ft": 106151.0
+        "total_length_ft": 110983.0
       }
     },
     {
@@ -4055,6 +4003,46 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -121.96380405910335,
+          37.26917519346948
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65610192",
+        "street_names": "Cora Court; Theresa Avenue",
+        "s_coord_ft": 7017.6,
+        "s_coord_mi": 1.329,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65610192 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.96418724679172,
+          37.269176245434075
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65464704",
+        "street_names": "Fairlands Avenue; Virginia Avenue",
+        "s_coord_ft": 7128.8,
+        "s_coord_mi": 1.35,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65464704 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -121.96418814310776,
           37.26917623609681
         ]
@@ -4068,6 +4056,26 @@
         "is_forced": false,
         "is_mandatory": false,
         "source": "OSM node 65433249 (degree=8)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.96447145758678,
+          37.26917328470285
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65503398",
+        "street_names": "Theresa Avenue; Virginia Avenue",
+        "s_coord_ft": 7211.4,
+        "s_coord_mi": 1.366,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65503398 (degree=6)"
       }
     },
     {
@@ -4095,6 +4103,26 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -121.96608632858567,
+          37.269119112638855
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65545107",
+        "street_names": "Torero Plaza; Via Ranchero",
+        "s_coord_ft": 7683.7,
+        "s_coord_mi": 1.455,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65545107 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -121.9668986,
           37.26911545
         ]
@@ -4108,6 +4136,26 @@
         "is_forced": false,
         "is_mandatory": false,
         "source": "OSM node 65433253 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9669003,
+          37.26911545
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65496369",
+        "street_names": "Gay Avenue; Patricia Court; Scott Court",
+        "s_coord_ft": 7920.0,
+        "s_coord_mi": 1.5,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65496369 (degree=8)"
       }
     },
     {
@@ -4675,6 +4723,26 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -121.9630753,
+          37.26164627
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_4806881098",
+        "street_names": "Capri Drive; Market Street",
+        "s_coord_ft": 14602.7,
+        "s_coord_mi": 2.766,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 4806881098 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -121.9624749466992,
           37.26165193976013
         ]
@@ -4700,34 +4768,14 @@
         ]
       },
       "properties": {
-        "candidate_id": "R27_OSM_1079589814",
+        "candidate_id": "R27_OSM_4806881082",
         "street_names": "Knowles Drive; Winchester Boulevard",
         "s_coord_ft": 14875.8,
         "s_coord_mi": 2.817,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
-        "source": "OSM node 1079589814 (degree=6)"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -121.96213531,
-          37.26163864
-        ]
-      },
-      "properties": {
-        "candidate_id": "R27_OSM_1079474882",
-        "street_names": "Winchester Boulevard",
-        "s_coord_ft": 14875.8,
-        "s_coord_mi": 2.817,
-        "activity_type": "intersection",
-        "is_forced": false,
-        "is_mandatory": false,
-        "source": "OSM node 1079474882 (degree=3)"
+        "source": "OSM node 4806881082 (degree=4)"
       }
     },
     {
@@ -4760,14 +4808,34 @@
         ]
       },
       "properties": {
-        "candidate_id": "R27_OSM_4806881082",
+        "candidate_id": "R27_OSM_1079474882",
+        "street_names": "Winchester Boulevard",
+        "s_coord_ft": 14875.8,
+        "s_coord_mi": 2.817,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 1079474882 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.96213531,
+          37.26163864
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_1079589814",
         "street_names": "Knowles Drive; Winchester Boulevard",
         "s_coord_ft": 14875.8,
         "s_coord_mi": 2.817,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
-        "source": "OSM node 4806881082 (degree=4)"
+        "source": "OSM node 1079589814 (degree=6)"
       }
     },
     {
@@ -5015,6 +5083,26 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -121.96746826,
+          37.25336838
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_2624934549",
+        "street_names": "Lark Avenue",
+        "s_coord_ft": 18270.9,
+        "s_coord_mi": 3.46,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 2624934549 (degree=5)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -121.96748803432071,
           37.25334091510571
         ]
@@ -5135,6 +5223,26 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -121.96799469,
+          37.25249863
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65441151",
+        "street_names": "Brocastle Way; Newell Avenue",
+        "s_coord_ft": 18623.5,
+        "s_coord_mi": 3.527,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65441151 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -121.96805629307504,
           37.25226408634331
         ]
@@ -5208,6 +5316,26 @@
         "is_forced": false,
         "is_mandatory": false,
         "source": "OSM node 65545845 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.97061157,
+          37.24922943
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65531337",
+        "street_names": "Summit Way; Wild Way",
+        "s_coord_ft": 20049.5,
+        "s_coord_mi": 3.797,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65531337 (degree=6)"
       }
     },
     {
@@ -5695,6 +5823,26 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -121.97727203,
+          37.23653412
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_347440823",
+        "street_names": "University Avenue",
+        "s_coord_ft": 25219.3,
+        "s_coord_mi": 4.776,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 347440823 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -121.97744886545559,
           37.236162465596
         ]
@@ -5728,6 +5876,26 @@
         "is_forced": false,
         "is_mandatory": false,
         "source": "OSM node 1116146774 (degree=5)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.97758484,
+          37.23590088
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65609780",
+        "street_names": "Blossom Hill Road; South Pacific Coast Railroad",
+        "s_coord_ft": 25467.6,
+        "s_coord_mi": 4.823,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65609780 (degree=6)"
       }
     },
     {
@@ -5808,6 +5976,26 @@
         "is_forced": false,
         "is_mandatory": false,
         "source": "OSM node 65468031 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.97866821,
+          37.23369217
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65489536",
+        "street_names": "Industrial Way; Roberts Road; South Pacific Coast Railroad",
+        "s_coord_ft": 26332.6,
+        "s_coord_mi": 4.987,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65489536 (degree=8)"
       }
     },
     {
@@ -6015,6 +6203,26 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -121.98066711,
+          37.22877502
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65468019",
+        "street_names": "Almendra Avenue; North Santa Cruz Avenue",
+        "s_coord_ft": 28292.3,
+        "s_coord_mi": 5.358,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65468019 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -121.98061562788405,
           37.2287424185587
         ]
@@ -6095,8 +6303,28 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -121.9806,
-          37.2249
+          -121.97950745,
+          37.22802353
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_358299495",
+        "street_names": "Boyer Lane; University Avenue",
+        "s_coord_ft": 28726.6,
+        "s_coord_mi": 5.441,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 358299495 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.97897339,
+          37.22779083
         ]
       },
       "properties": {
@@ -6435,6 +6663,26 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -121.96981049,
+          37.22528076
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65500893",
+        "street_names": "Los Gatos Boulevard; Wheeler Avenue",
+        "s_coord_ft": 31732.2,
+        "s_coord_mi": 6.01,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65500893 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -121.96972657082024,
           37.22524968138726
         ]
@@ -6568,6 +6816,26 @@
         "is_forced": false,
         "is_mandatory": false,
         "source": "OSM node 347441935 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.96785736,
+          37.22737885
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_3269629592",
+        "street_names": "Caldwell Avenue; Templeton Lane",
+        "s_coord_ft": 32739.9,
+        "s_coord_mi": 6.201,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 3269629592 (degree=6)"
       }
     },
     {
@@ -6980,14 +7248,14 @@
         ]
       },
       "properties": {
-        "candidate_id": "R27_OSM_3901576292",
+        "candidate_id": "R27_OSM_3901576279",
         "street_names": "Blossom Hill Road",
         "s_coord_ft": 36100.5,
         "s_coord_mi": 6.837,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
-        "source": "OSM node 3901576292 (degree=3)"
+        "source": "OSM node 3901576279 (degree=3)"
       }
     },
     {
@@ -7000,14 +7268,14 @@
         ]
       },
       "properties": {
-        "candidate_id": "R27_OSM_3901576279",
+        "candidate_id": "R27_OSM_3901576292",
         "street_names": "Blossom Hill Road",
         "s_coord_ft": 36100.5,
         "s_coord_mi": 6.837,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
-        "source": "OSM node 3901576279 (degree=3)"
+        "source": "OSM node 3901576292 (degree=3)"
       }
     },
     {
@@ -7128,6 +7396,26 @@
         "is_forced": false,
         "is_mandatory": false,
         "source": "OSM node 2031016791 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.96252441,
+          37.23656082
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_6835952566",
+        "street_names": "Placer Oaks Road",
+        "s_coord_ft": 36460.1,
+        "s_coord_mi": 6.905,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 6835952566 (degree=4)"
       }
     },
     {
@@ -7400,14 +7688,14 @@
         ]
       },
       "properties": {
-        "candidate_id": "R27_OSM_65563960",
-        "street_names": "Chirco Drive; Los Gatos Almaden Road; Los Gatos Boulevard",
+        "candidate_id": "R27_OSM_360028145",
+        "street_names": "Los Gatos Almaden Road",
         "s_coord_ft": 38188.5,
         "s_coord_mi": 7.233,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
-        "source": "OSM node 65563960 (degree=6)"
+        "source": "OSM node 360028145 (degree=3)"
       }
     },
     {
@@ -7420,14 +7708,14 @@
         ]
       },
       "properties": {
-        "candidate_id": "R27_OSM_360028145",
-        "street_names": "Los Gatos Almaden Road",
+        "candidate_id": "R27_OSM_3666549765",
+        "street_names": "Chirco Drive",
         "s_coord_ft": 38188.5,
         "s_coord_mi": 7.233,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
-        "source": "OSM node 360028145 (degree=3)"
+        "source": "OSM node 3666549765 (degree=4)"
       }
     },
     {
@@ -7455,6 +7743,26 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -121.96041107,
+          37.24098969
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65563960",
+        "street_names": "Chirco Drive; Los Gatos Almaden Road; Los Gatos Boulevard",
+        "s_coord_ft": 38188.5,
+        "s_coord_mi": 7.233,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65563960 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -121.96035218402643,
           37.24111482028179
         ]
@@ -7468,6 +7776,26 @@
         "is_forced": false,
         "is_mandatory": false,
         "source": "OSM node 3901611989 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.95794805391404,
+          37.24578444163322
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65451069",
+        "street_names": "Garden Lane; Oak Park Drive",
+        "s_coord_ft": 40079.8,
+        "s_coord_mi": 7.591,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65451069 (degree=6)"
       }
     },
     {
@@ -7515,6 +7843,26 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -121.9575882,
+          37.2462616
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65445111",
+        "street_names": "Carlton Avenue; Gateway Drive",
+        "s_coord_ft": 40282.9,
+        "s_coord_mi": 7.629,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65445111 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -121.95651827396648,
           37.24762533755665
         ]
@@ -7540,14 +7888,14 @@
         ]
       },
       "properties": {
-        "candidate_id": "R27_OSM_1103465150",
-        "street_names": "Lark Avenue; Los Gatos Boulevard",
+        "candidate_id": "R27_OSM_4706047386",
+        "street_names": "Lark Avenue",
         "s_coord_ft": 40995.0,
         "s_coord_mi": 7.764,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
-        "source": "OSM node 1103465150 (degree=4)"
+        "source": "OSM node 4706047386 (degree=3)"
       }
     },
     {
@@ -7560,14 +7908,14 @@
         ]
       },
       "properties": {
-        "candidate_id": "R27_OSM_4706047386",
-        "street_names": "Lark Avenue",
+        "candidate_id": "R27_OSM_1103465150",
+        "street_names": "Lark Avenue; Los Gatos Boulevard",
         "s_coord_ft": 40995.0,
         "s_coord_mi": 7.764,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
-        "source": "OSM node 4706047386 (degree=3)"
+        "source": "OSM node 1103465150 (degree=4)"
       }
     },
     {
@@ -7755,8 +8103,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -121.9572,
-          37.2524
+          -121.95414734,
+          37.2509346
         ]
       },
       "properties": {
@@ -7855,8 +8203,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -121.9498,
-          37.2581
+          -121.95095062,
+          37.25305939
         ]
       },
       "properties": {
@@ -7935,6 +8283,86 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -121.9485841,
+          37.25106812
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65433338",
+        "street_names": "Kinghurst Drive; Lost Oaks Drive",
+        "s_coord_ft": 44835.7,
+        "s_coord_mi": 8.492,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65433338 (degree=8)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9476446,
+          37.25107193
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65433336",
+        "street_names": "Kingbrook Drive; Lost Oaks Drive",
+        "s_coord_ft": 45108.5,
+        "s_coord_mi": 8.543,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65433336 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.94671778766258,
+          37.25107608694529
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65433334",
+        "street_names": "Kingdale Drive; Lost Oaks Drive",
+        "s_coord_ft": 45377.7,
+        "s_coord_mi": 8.594,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65433334 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9457899968762,
+          37.25107938157114
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65433332",
+        "street_names": "Kingwood Way; Lost Oaks Drive",
+        "s_coord_ft": 45647.1,
+        "s_coord_mi": 8.645,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65433332 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -121.9449449338283,
           37.251075687902656
         ]
@@ -7948,6 +8376,26 @@
         "is_forced": false,
         "is_mandatory": false,
         "source": "OSM node 8367846709 (degree=5)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.94482483980538,
+          37.25107086237419
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65433329",
+        "street_names": "Elester Court; Elester Drive; Lost Oaks Drive",
+        "s_coord_ft": 45927.5,
+        "s_coord_mi": 8.698,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65433329 (degree=6)"
       }
     },
     {
@@ -8028,6 +8476,26 @@
         "is_forced": false,
         "is_mandatory": false,
         "source": "OSM node 65468462 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9416388,
+          37.25057983
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65506846",
+        "street_names": "Venn Avenue; Winton Way",
+        "s_coord_ft": 46895.6,
+        "s_coord_mi": 8.882,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65506846 (degree=6)"
       }
     },
     {
@@ -8155,19 +8623,19 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -121.9319,
-          37.2517
+          -121.9325357,
+          37.2506485
         ]
       },
       "properties": {
-        "candidate_id": "R27_FORCE_003",
-        "street_names": "Union Middle School (Dartmouth/Union Ave area)",
-        "s_coord_ft": 49677.5,
-        "s_coord_mi": 9.409,
-        "activity_type": "school",
-        "is_forced": true,
-        "is_mandatory": true,
-        "source": "Union School District facility map; FTA Title VI \u00a77 school access"
+        "candidate_id": "R27_OSM_65474075",
+        "street_names": "Bel Escou Drive; Roline Court",
+        "s_coord_ft": 49539.4,
+        "s_coord_mi": 9.382,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65474075 (degree=6)"
       }
     },
     {
@@ -8216,6 +8684,26 @@
         "type": "Point",
         "coordinates": [
           -121.93130493,
+          37.2478317
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65583869",
+        "street_names": "Heimgartner Lane; Stuckey Drive",
+        "s_coord_ft": 50871.1,
+        "s_coord_mi": 9.635,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65583869 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.93130493,
           37.2478287
         ]
       },
@@ -8248,6 +8736,46 @@
         "is_forced": false,
         "is_mandatory": false,
         "source": "OSM node 65467285 (degree=8)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9312898956536,
+          37.24632264221408
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65467284",
+        "street_names": "Rosswood Drive; Stuckey Drive",
+        "s_coord_ft": 51421.7,
+        "s_coord_mi": 9.739,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65467284 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.93128967,
+          37.2462
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_FORCE_003",
+        "street_names": "Union Middle School (2130 Los Gatos-Almaden Rd, San Jose)",
+        "s_coord_ft": 51466.4,
+        "s_coord_mi": 9.747,
+        "activity_type": "school",
+        "is_forced": true,
+        "is_mandatory": true,
+        "source": "Union School District facility map (2130 Los Gatos-Almaden Rd, San Jose, CA 95124); FTA Title VI Circular 4702.1B \u00a77 school-access requirement; Santa Clara Co. Assessor parcel 459-18-075"
       }
     },
     {
@@ -8355,6 +8883,26 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -121.92937411715884,
+          37.24340562005574
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65435378",
+        "street_names": "Hershner Court; Hershner Drive; Howes Drive",
+        "s_coord_ft": 53033.8,
+        "s_coord_mi": 10.044,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65435378 (degree=8)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -121.92849557007305,
           37.24341967717671
         ]
@@ -8368,6 +8916,46 @@
         "is_forced": false,
         "is_mandatory": false,
         "source": "OSM node 65585836 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.92847571144613,
+          37.243419987357605
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65507341",
+        "street_names": "Barbara Drive; Hershner Drive",
+        "s_coord_ft": 53294.8,
+        "s_coord_mi": 10.094,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65507341 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.92755801521513,
+          37.24342889190493
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65632733",
+        "street_names": "Hershner Drive; Kensington Way",
+        "s_coord_ft": 53561.3,
+        "s_coord_mi": 10.144,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65632733 (degree=6)"
       }
     },
     {
@@ -8395,6 +8983,26 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -121.92659454390112,
+          37.24342210919483
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65626669",
+        "street_names": "Herbert Drive; Hershner Drive; Kentfield Drive",
+        "s_coord_ft": 53841.1,
+        "s_coord_mi": 10.197,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65626669 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -121.92626302813756,
           37.243419814617766
         ]
@@ -8415,6 +9023,46 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -121.92625013100614,
+          37.24342014115451
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65568944",
+        "street_names": "Adelaide Way; Sandy Lane",
+        "s_coord_ft": 53941.2,
+        "s_coord_mi": 10.216,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65568944 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.92569651313786,
+          37.24343415795944
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65581200",
+        "street_names": "Herbert Drive; Hershner Drive; Kentfield Drive",
+        "s_coord_ft": 54102.0,
+        "s_coord_mi": 10.247,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65581200 (degree=8)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -121.92569299604348,
           37.243434247007194
         ]
@@ -8428,6 +9076,66 @@
         "is_forced": false,
         "is_mandatory": false,
         "source": "OSM node 65581199 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.92473757330251,
+          37.24345569900804
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65613081",
+        "street_names": "Hershner Drive; Hershner Way",
+        "s_coord_ft": 54380.6,
+        "s_coord_mi": 10.299,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65613081 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.92365548652336,
+          37.24346485469678
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65586650",
+        "street_names": "Gregg Drive; Hershner Drive",
+        "s_coord_ft": 54694.9,
+        "s_coord_mi": 10.359,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65586650 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.92360707387562,
+          37.24346520052731
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65568939",
+        "street_names": "Adelaide Way; Emiline Drive",
+        "s_coord_ft": 54709.0,
+        "s_coord_mi": 10.362,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65568939 (degree=6)"
       }
     },
     {
@@ -8475,26 +9183,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -121.9098,
-          37.2496
-        ]
-      },
-      "properties": {
-        "candidate_id": "R27_FORCE_007",
-        "street_names": "Camden Ave & Highway 85 (transit hub area)",
-        "s_coord_ft": 54983.8,
-        "s_coord_mi": 10.414,
-        "activity_type": "major_intersection",
-        "is_forced": true,
-        "is_mandatory": false,
-        "source": "Caltrans SR-85 / Camden Ave interchange; existing VTA stop stop_id 1757"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           -121.92266074089942,
           37.242645507777944
         ]
@@ -8508,6 +9196,26 @@
         "is_forced": false,
         "is_mandatory": false,
         "source": "OSM node 65624830 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.92265451356157,
+          37.241596287047194
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65437372",
+        "street_names": "Gregg Court; Gregg Drive",
+        "s_coord_ft": 55668.5,
+        "s_coord_mi": 10.543,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65437372 (degree=6)"
       }
     },
     {
@@ -8535,6 +9243,26 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -121.92268087707663,
+          37.23924092633211
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65488804",
+        "street_names": "Anne Way; Laura Drive",
+        "s_coord_ft": 56528.2,
+        "s_coord_mi": 10.706,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65488804 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -121.92267660176749,
           37.23918105658999
         ]
@@ -8548,6 +9276,26 @@
         "is_forced": false,
         "is_mandatory": false,
         "source": "OSM node 65488806 (degree=8)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.92262268,
+          37.23705292
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65562673",
+        "street_names": "Kay Drive; Laura Drive; Sharon Lane",
+        "s_coord_ft": 57326.7,
+        "s_coord_mi": 10.857,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65562673 (degree=6)"
       }
     },
     {
@@ -8595,6 +9343,26 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -121.92075663082495,
+          37.23619859566955
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65600318",
+        "street_names": "Del Oro Drive; Del Oro Place",
+        "s_coord_ft": 58174.6,
+        "s_coord_mi": 11.018,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65600318 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -121.92074622226961,
           37.236198658674034
         ]
@@ -8628,6 +9396,26 @@
         "is_forced": false,
         "is_mandatory": false,
         "source": "OSM node 65589210 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.91863971543545,
+          37.236213935679714
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65457995",
+        "street_names": "Copeland Lane; Copeland Place",
+        "s_coord_ft": 58789.5,
+        "s_coord_mi": 11.134,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65457995 (degree=6)"
       }
     },
     {
@@ -8708,6 +9496,26 @@
         "is_forced": false,
         "is_mandatory": false,
         "source": "OSM node 6800611015 (degree=5)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9169466,
+          37.23622513
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65471621",
+        "street_names": "Belblossom Way; Belwood Gateway",
+        "s_coord_ft": 59281.2,
+        "s_coord_mi": 11.227,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65471621 (degree=6)"
       }
     },
     {
@@ -8815,6 +9623,46 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -121.91092222293781,
+          37.23630109345763
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65661313",
+        "street_names": "Begonia Drive; Milligan Drive; Muir Drive; Myra Drive",
+        "s_coord_ft": 61038.7,
+        "s_coord_mi": 11.56,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65661313 (degree=8)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9107869,
+          37.23630142
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65532659",
+        "street_names": "Begonia Drive; Lobelia Lane",
+        "s_coord_ft": 61078.0,
+        "s_coord_mi": 11.568,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65532659 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -121.91073178009695,
           37.23630163355012
         ]
@@ -8855,14 +9703,54 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -121.90577793720418,
-          37.236335837845374
+          -121.90784454,
+          37.23632431
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65422736",
+        "street_names": "Drysdale Drive; Fern Drive; Kevin Drive; Lauren Drive",
+        "s_coord_ft": 61932.6,
+        "s_coord_mi": 11.73,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65422736 (degree=8)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.90589877086795,
+          37.23633511599772
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65542781",
+        "street_names": "Lilac Blossom Lane; Magnolia Blossom Lane; Rudy Drive",
+        "s_coord_ft": 62497.8,
+        "s_coord_mi": 11.837,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65542781 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.90577581870774,
+          37.236336855023055
         ]
       },
       "properties": {
         "candidate_id": "R27_OSM_65542780",
         "street_names": "Blossom Hill Road; Rudy Drive",
-        "s_coord_ft": 62532.9,
+        "s_coord_ft": 62533.5,
         "s_coord_mi": 11.843,
         "activity_type": "intersection",
         "is_forced": false,
@@ -8875,15 +9763,35 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -121.90488018167676,
-          37.2363475042168
+          -121.90568696111075,
+          37.236348023994616
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65542778",
+        "street_names": "Amby Drive; Rudy Drive",
+        "s_coord_ft": 62559.6,
+        "s_coord_mi": 11.848,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65542778 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.90490436271867,
+          37.23644639283961
         ]
       },
       "properties": {
         "candidate_id": "R27_OSM_372460574",
         "street_names": "Arbor Dell Way; Flower Garden Lane",
-        "s_coord_ft": 62793.6,
-        "s_coord_mi": 11.893,
+        "s_coord_ft": 62789.8,
+        "s_coord_mi": 11.892,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -8895,8 +9803,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -121.904875484601,
-          37.23634754542206
+          -121.90488665100904,
+          37.236448619116125
         ]
       },
       "properties": {
@@ -8915,14 +9823,14 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -121.903942,
-          37.23635483
+          -121.90396687885207,
+          37.23656423004205
         ]
       },
       "properties": {
         "candidate_id": "R27_OSM_4513029003",
         "street_names": "Blossom Hill Road",
-        "s_coord_ft": 63066.2,
+        "s_coord_ft": 63065.4,
         "s_coord_mi": 11.944,
         "activity_type": "intersection",
         "is_forced": false,
@@ -8935,14 +9843,34 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -121.9036265,
-          37.23635483
+          -121.90368700553095,
+          37.23659940876925
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_4513029006",
+        "street_names": "Camden Avenue",
+        "s_coord_ft": 63147.7,
+        "s_coord_mi": 11.96,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 4513029006 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.90365569204214,
+          37.23660334472383
         ]
       },
       "properties": {
         "candidate_id": "R27_OSM_65594033",
         "street_names": "Blossom Hill Road; Camden Avenue",
-        "s_coord_ft": 63157.8,
+        "s_coord_ft": 63156.9,
         "s_coord_mi": 11.962,
         "activity_type": "intersection",
         "is_forced": false,
@@ -8955,19 +9883,19 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -121.9036184,
-          37.23635483
+          -121.90360877722159,
+          37.2366092416906
         ]
       },
       "properties": {
-        "candidate_id": "R27_OSM_4513029006",
+        "candidate_id": "R27_OSM_2057287665",
         "street_names": "Camden Avenue",
-        "s_coord_ft": 63160.1,
-        "s_coord_mi": 11.962,
+        "s_coord_ft": 63170.7,
+        "s_coord_mi": 11.964,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
-        "source": "OSM node 4513029006 (degree=3)"
+        "source": "OSM node 2057287665 (degree=3)"
       }
     },
     {
@@ -8975,14 +9903,14 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -121.90344238,
-          37.23636246
+          -121.90347511707648,
+          37.23662604212647
         ]
       },
       "properties": {
         "candidate_id": "R27_OSM_2057287614",
         "street_names": "Blossom Hill Road; Camden Avenue",
-        "s_coord_ft": 63211.3,
+        "s_coord_ft": 63210.0,
         "s_coord_mi": 11.972,
         "activity_type": "intersection",
         "is_forced": false,
@@ -8995,15 +9923,15 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -121.90061188,
-          37.23698807
+          -121.90061626476903,
+          37.23698538607904
         ]
       },
       "properties": {
         "candidate_id": "R27_OSM_65580651",
         "street_names": "Blossom Hill Road; Princeton Drive; Purdue Place",
-        "s_coord_ft": 64075.2,
-        "s_coord_mi": 12.135,
+        "s_coord_ft": 64050.6,
+        "s_coord_mi": 12.131,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -9015,15 +9943,15 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -121.89983835559467,
-          37.237351624645534
+          -121.90037735294118,
+          37.23749058823529
         ]
       },
       "properties": {
         "candidate_id": "R27_OSM_65450154",
         "street_names": "Blossom Hill Road; Dwight Avenue",
-        "s_coord_ft": 64336.1,
-        "s_coord_mi": 12.185,
+        "s_coord_ft": 64267.3,
+        "s_coord_mi": 12.172,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -9035,19 +9963,19 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -121.89901887981885,
-          37.23773848263852
+          -121.89988950581947,
+          37.24180433123515
         ]
       },
       "properties": {
-        "candidate_id": "R27_OSM_65616274",
-        "street_names": "Blossom Hill Road; Park Crest Drive",
-        "s_coord_ft": 64612.8,
-        "s_coord_mi": 12.237,
+        "candidate_id": "R27_OSM_65432007",
+        "street_names": "Ardmore Way; Ferndale Drive; Kooser Road",
+        "s_coord_ft": 65852.3,
+        "s_coord_mi": 12.472,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
-        "source": "OSM node 65616274 (degree=6)"
+        "source": "OSM node 65432007 (degree=6)"
       }
     },
     {
@@ -9055,15 +9983,155 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -121.8980502878778,
-          37.23811489618198
+          -121.8998150435867,
+          37.243963735985744
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65504002",
+        "street_names": "Calinoma Drive; Joseph Lane",
+        "s_coord_ft": 66640.4,
+        "s_coord_mi": 12.621,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65504002 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.8998,
+          37.2444
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_FORCE_004",
+        "street_names": "Dartmouth Middle School (5575 Dartmouth Dr, San Jose)",
+        "s_coord_ft": 66799.6,
+        "s_coord_mi": 12.651,
+        "activity_type": "school",
+        "is_forced": true,
+        "is_mandatory": true,
+        "source": "Union School District facility map (5575 Dartmouth Dr, San Jose, CA 95118); FTA Title VI Circular 4702.1B \u00a77 school-access requirement; Santa Clara Co. Assessor parcel 459-54-002"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.8998,
+          37.2444
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_FORCE_007",
+        "street_names": "Camden Ave & Highway 85 (transit hub area)",
+        "s_coord_ft": 66799.6,
+        "s_coord_mi": 12.651,
+        "activity_type": "major_intersection",
+        "is_forced": true,
+        "is_mandatory": false,
+        "source": "Caltrans SR-85 / Camden Ave interchange; existing VTA stop stop_id 1757"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.89976514632438,
+          37.24414731085181
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65498192",
+        "street_names": "Brenner Way; Calinoma Drive",
+        "s_coord_ft": 66892.3,
+        "s_coord_mi": 12.669,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65498192 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.89963127934655,
+          37.24317677526254
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65584666",
+        "street_names": "Arbutus Drive; Joseph Lane",
+        "s_coord_ft": 67248.5,
+        "s_coord_mi": 12.736,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65584666 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.89951907957993,
+          37.24236332695449
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65432013",
+        "street_names": "Dartmouth Drive; Kooser Road",
+        "s_coord_ft": 67547.1,
+        "s_coord_mi": 12.793,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65432013 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.89950056616102,
+          37.24222910466745
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65432008",
+        "street_names": "Joseph Lane; Kooser Road",
+        "s_coord_ft": 67596.3,
+        "s_coord_mi": 12.802,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65432008 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.89828526839916,
+          37.23807837422037
         ]
       },
       "properties": {
         "candidate_id": "R27_OSM_65616276",
         "street_names": "Blossom Hill Road",
-        "s_coord_ft": 64930.6,
-        "s_coord_mi": 12.297,
+        "s_coord_ft": 69155.5,
+        "s_coord_mi": 13.098,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -9075,19 +10143,19 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -121.896,
-          37.239
+          -121.89827973180874,
+          37.23806607068607
         ]
       },
       "properties": {
-        "candidate_id": "R27_FORCE_004",
-        "street_names": "Dartmouth Middle School (Leigh Ave)",
-        "s_coord_ft": 65607.6,
-        "s_coord_mi": 12.426,
-        "activity_type": "school",
-        "is_forced": true,
-        "is_mandatory": true,
-        "source": "Union School District facility map"
+        "candidate_id": "R27_OSM_65616274",
+        "street_names": "Blossom Hill Road; Park Crest Drive",
+        "s_coord_ft": 69160.2,
+        "s_coord_mi": 13.099,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65616274 (degree=6)"
       }
     },
     {
@@ -9095,15 +10163,115 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -121.89578283139352,
-          37.23913556362278
+          -121.89793757276507,
+          37.237305717255715
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65540306",
+        "street_names": "Park Crest Drive; Park Manor Drive; Park Ridge Drive",
+        "s_coord_ft": 69454.9,
+        "s_coord_mi": 13.154,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65540306 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.8978,
+          37.237
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65501744",
+        "street_names": "Boone Drive; Park Crest Court; Park Crest Drive",
+        "s_coord_ft": 69573.4,
+        "s_coord_mi": 13.177,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65501744 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.89747419013892,
+          37.23725688298843
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65429509",
+        "street_names": "Bordelais Drive; Bouchard Drive; Domaine Drive; Mireille Drive",
+        "s_coord_ft": 69706.5,
+        "s_coord_mi": 13.202,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65429509 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.89746054694218,
+          37.23726763989168
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65614534",
+        "street_names": "Mireille Drive; Touraine Drive",
+        "s_coord_ft": 69712.1,
+        "s_coord_mi": 13.203,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65614534 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.895902930251,
+          37.238495734183026
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65429495",
+        "street_names": "Bordelais Drive; Bouchard Drive; Domaine Drive; Mireille Drive",
+        "s_coord_ft": 70348.8,
+        "s_coord_mi": 13.324,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65429495 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.89551857915171,
+          37.238798773687925
         ]
       },
       "properties": {
         "candidate_id": "R27_OSM_6800622803",
         "street_names": "Blossom Hill Road; Chambertin Drive",
-        "s_coord_ft": 65687.1,
-        "s_coord_mi": 12.441,
+        "s_coord_ft": 70505.9,
+        "s_coord_mi": 13.353,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -9115,15 +10283,15 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -121.89573669,
-          37.23915863
+          -121.89547828414611,
+          37.2388305440629
         ]
       },
       "properties": {
         "candidate_id": "R27_OSM_65488419",
         "street_names": "Blossom Hill Road; Chambertin Drive; Dartmouth Drive",
-        "s_coord_ft": 65703.0,
-        "s_coord_mi": 12.444,
+        "s_coord_ft": 70522.4,
+        "s_coord_mi": 13.357,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -9135,19 +10303,59 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -121.89569457936079,
-          37.2391770529734
+          -121.89545226048678,
+          37.2388510622736
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_6800622804",
+        "street_names": "Chambertin Drive",
+        "s_coord_ft": 70533.0,
+        "s_coord_mi": 13.359,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 6800622804 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.89544456639102,
+          37.23885712864097
         ]
       },
       "properties": {
         "candidate_id": "R27_OSM_1100547259",
         "street_names": "Blossom Hill Road; Chambertin Drive",
-        "s_coord_ft": 65716.9,
-        "s_coord_mi": 12.446,
+        "s_coord_ft": 70536.2,
+        "s_coord_mi": 13.359,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
         "source": "OSM node 1100547259 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.89484845565802,
+          37.239327128861405
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_3175888773",
+        "street_names": "Le Fevre Drive",
+        "s_coord_ft": 70779.8,
+        "s_coord_mi": 13.405,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 3175888773 (degree=6)"
       }
     },
     {
@@ -9162,8 +10370,8 @@
       "properties": {
         "candidate_id": "R27_OSM_65594788",
         "street_names": "Blossom Hill Road; Harvard Drive",
-        "s_coord_ft": 66231.7,
-        "s_coord_mi": 12.544,
+        "s_coord_ft": 71063.7,
+        "s_coord_mi": 13.459,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -9182,8 +10390,8 @@
       "properties": {
         "candidate_id": "R27_OSM_8700990669",
         "street_names": "Blossom Hill Road",
-        "s_coord_ft": 66725.2,
-        "s_coord_mi": 12.637,
+        "s_coord_ft": 71557.2,
+        "s_coord_mi": 13.553,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -9202,8 +10410,8 @@
       "properties": {
         "candidate_id": "R27_OSM_65606395",
         "street_names": "Blossom Hill Road; Vassar Drive",
-        "s_coord_ft": 66779.3,
-        "s_coord_mi": 12.648,
+        "s_coord_ft": 71611.3,
+        "s_coord_mi": 13.563,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -9222,12 +10430,32 @@
       "properties": {
         "candidate_id": "R27_OSM_65429743",
         "street_names": "Bellagio Drive; Blossom Hill Road",
-        "s_coord_ft": 67000.4,
-        "s_coord_mi": 12.689,
+        "s_coord_ft": 71832.4,
+        "s_coord_mi": 13.605,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
         "source": "OSM node 65429743 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.89179993,
+          37.24100113
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65649982",
+        "street_names": "Dent Avenue; Helmond Lane",
+        "s_coord_ft": 71865.0,
+        "s_coord_mi": 13.611,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65649982 (degree=6)"
       }
     },
     {
@@ -9242,12 +10470,32 @@
       "properties": {
         "candidate_id": "R27_OSM_65616294",
         "street_names": "Blossom Hill Road; Dent Avenue",
-        "s_coord_ft": 67041.6,
-        "s_coord_mi": 12.697,
+        "s_coord_ft": 71873.6,
+        "s_coord_mi": 13.612,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
         "source": "OSM node 65616294 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.89112854,
+          37.24131393
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65587548",
+        "street_names": "Doorn Lane; Rhine Lane; Rotterdam Lane",
+        "s_coord_ft": 72090.9,
+        "s_coord_mi": 13.654,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65587548 (degree=6)"
       }
     },
     {
@@ -9262,8 +10510,8 @@
       "properties": {
         "candidate_id": "R27_OSM_65616297",
         "street_names": "Blossom Hill Road; Doorn Lane; Rhine Lane",
-        "s_coord_ft": 67569.6,
-        "s_coord_mi": 12.797,
+        "s_coord_ft": 72401.6,
+        "s_coord_mi": 13.712,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -9282,12 +10530,32 @@
       "properties": {
         "candidate_id": "R27_OSM_65522275",
         "street_names": "Blossom Hill Road; Holland Lane",
-        "s_coord_ft": 67827.6,
-        "s_coord_mi": 12.846,
+        "s_coord_ft": 72659.6,
+        "s_coord_mi": 13.761,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
         "source": "OSM node 65522275 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.88954926,
+          37.2431488
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65633346",
+        "street_names": "Helmond Lane; Meridian Avenue",
+        "s_coord_ft": 72916.9,
+        "s_coord_mi": 13.81,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65633346 (degree=6)"
       }
     },
     {
@@ -9302,8 +10570,8 @@
       "properties": {
         "candidate_id": "R27_OSM_65616300",
         "street_names": "Blossom Hill Road; Meridian Avenue",
-        "s_coord_ft": 68098.5,
-        "s_coord_mi": 12.897,
+        "s_coord_ft": 72930.5,
+        "s_coord_mi": 13.813,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -9322,12 +10590,32 @@
       "properties": {
         "candidate_id": "R27_OSM_65474205",
         "street_names": "Blossom Hill Road; Waltrip Lane",
-        "s_coord_ft": 68375.6,
-        "s_coord_mi": 12.95,
+        "s_coord_ft": 73207.6,
+        "s_coord_mi": 13.865,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
         "source": "OSM node 65474205 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.88770364142295,
+          37.24542121608026
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_5860059193",
+        "street_names": "Kooser Road",
+        "s_coord_ft": 73942.2,
+        "s_coord_mi": 14.004,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 5860059193 (degree=5)"
       }
     },
     {
@@ -9342,8 +10630,8 @@
       "properties": {
         "candidate_id": "R27_OSM_65616306",
         "street_names": "Blossom Hill Road",
-        "s_coord_ft": 69110.3,
-        "s_coord_mi": 13.089,
+        "s_coord_ft": 73942.3,
+        "s_coord_mi": 14.004,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -9362,8 +10650,8 @@
       "properties": {
         "candidate_id": "R27_OSM_316012289",
         "street_names": "Kooser Road",
-        "s_coord_ft": 69140.6,
-        "s_coord_mi": 13.095,
+        "s_coord_ft": 73972.6,
+        "s_coord_mi": 14.01,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -9382,8 +10670,8 @@
       "properties": {
         "candidate_id": "R27_OSM_1100547241",
         "street_names": "Blossom Hill Road",
-        "s_coord_ft": 69180.5,
-        "s_coord_mi": 13.102,
+        "s_coord_ft": 74012.5,
+        "s_coord_mi": 14.018,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -9402,12 +10690,32 @@
       "properties": {
         "candidate_id": "R27_OSM_65427335",
         "street_names": "",
-        "s_coord_ft": 69238.1,
-        "s_coord_mi": 13.113,
+        "s_coord_ft": 74070.1,
+        "s_coord_mi": 14.028,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
         "source": "OSM node 65427335 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.8873291,
+          37.24560547
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_1100547270",
+        "street_names": "Dellwood Way",
+        "s_coord_ft": 74070.1,
+        "s_coord_mi": 14.028,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 1100547270 (degree=4)"
       }
     },
     {
@@ -9422,8 +10730,8 @@
       "properties": {
         "candidate_id": "R27_OSM_65432024",
         "street_names": "Blossom Hill Road; Kooser Road",
-        "s_coord_ft": 69319.1,
-        "s_coord_mi": 13.129,
+        "s_coord_ft": 74151.1,
+        "s_coord_mi": 14.044,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -9442,8 +10750,8 @@
       "properties": {
         "candidate_id": "R27_OSM_1100547208",
         "street_names": "Blossom Hill Road",
-        "s_coord_ft": 69351.0,
-        "s_coord_mi": 13.135,
+        "s_coord_ft": 74183.0,
+        "s_coord_mi": 14.05,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -9462,8 +10770,8 @@
       "properties": {
         "candidate_id": "R27_OSM_1100547229",
         "street_names": "Blossom Hill Road",
-        "s_coord_ft": 69466.0,
-        "s_coord_mi": 13.156,
+        "s_coord_ft": 74298.0,
+        "s_coord_mi": 14.072,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -9482,8 +10790,8 @@
       "properties": {
         "candidate_id": "R27_OSM_65575847",
         "street_names": "Blossom Hill Road; Seifert Avenue",
-        "s_coord_ft": 69674.3,
-        "s_coord_mi": 13.196,
+        "s_coord_ft": 74506.3,
+        "s_coord_mi": 14.111,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -9502,8 +10810,8 @@
       "properties": {
         "candidate_id": "R27_OSM_65616309",
         "street_names": "Blossom Hill Road; Coniston Way",
-        "s_coord_ft": 69966.9,
-        "s_coord_mi": 13.251,
+        "s_coord_ft": 74798.9,
+        "s_coord_mi": 14.166,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -9522,8 +10830,8 @@
       "properties": {
         "candidate_id": "R27_OSM_1100547352",
         "street_names": "Blossom Hill Road; Coniston Way",
-        "s_coord_ft": 69966.9,
-        "s_coord_mi": 13.251,
+        "s_coord_ft": 74798.9,
+        "s_coord_mi": 14.166,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -9542,8 +10850,8 @@
       "properties": {
         "candidate_id": "R27_OSM_65570363",
         "street_names": "Blossom Hill Road; Croydon Avenue",
-        "s_coord_ft": 70236.3,
-        "s_coord_mi": 13.302,
+        "s_coord_ft": 75068.3,
+        "s_coord_mi": 14.217,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -9562,8 +10870,8 @@
       "properties": {
         "candidate_id": "R27_OSM_1115468516",
         "street_names": "Blossom Hill Road; Hennessy Place",
-        "s_coord_ft": 70247.3,
-        "s_coord_mi": 13.304,
+        "s_coord_ft": 75079.3,
+        "s_coord_mi": 14.22,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -9582,8 +10890,8 @@
       "properties": {
         "candidate_id": "R27_OSM_7715611578",
         "street_names": "Blossom Hill Road",
-        "s_coord_ft": 70884.8,
-        "s_coord_mi": 13.425,
+        "s_coord_ft": 75716.8,
+        "s_coord_mi": 14.34,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -9602,8 +10910,8 @@
       "properties": {
         "candidate_id": "R27_OSM_65616315",
         "street_names": "Ayrshire Drive; Blossom Hill Road",
-        "s_coord_ft": 70991.7,
-        "s_coord_mi": 13.445,
+        "s_coord_ft": 75823.7,
+        "s_coord_mi": 14.361,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -9622,8 +10930,8 @@
       "properties": {
         "candidate_id": "R27_OSM_1100547341",
         "street_names": "Ayrshire Drive; Blossom Hill Road",
-        "s_coord_ft": 71000.7,
-        "s_coord_mi": 13.447,
+        "s_coord_ft": 75832.7,
+        "s_coord_mi": 14.362,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -9642,8 +10950,8 @@
       "properties": {
         "candidate_id": "R27_OSM_65616318",
         "street_names": "Blossom Hill Road; Hoffman Court",
-        "s_coord_ft": 71184.2,
-        "s_coord_mi": 13.482,
+        "s_coord_ft": 76016.2,
+        "s_coord_mi": 14.397,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -9662,8 +10970,8 @@
       "properties": {
         "candidate_id": "R27_OSM_65616321",
         "street_names": "Blossom Hill Road; Hoffman Court",
-        "s_coord_ft": 71488.5,
-        "s_coord_mi": 13.539,
+        "s_coord_ft": 76320.5,
+        "s_coord_mi": 14.455,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -9682,8 +10990,8 @@
       "properties": {
         "candidate_id": "R27_OSM_8229473715",
         "street_names": "Blossom Hill Road",
-        "s_coord_ft": 71529.6,
-        "s_coord_mi": 13.547,
+        "s_coord_ft": 76361.6,
+        "s_coord_mi": 14.462,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -9702,8 +11010,8 @@
       "properties": {
         "candidate_id": "R27_OSM_1100547265",
         "street_names": "Blossom Hill Road; Clovercrest Drive",
-        "s_coord_ft": 71695.9,
-        "s_coord_mi": 13.579,
+        "s_coord_ft": 76527.9,
+        "s_coord_mi": 14.494,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -9722,8 +11030,8 @@
       "properties": {
         "candidate_id": "R27_OSM_65571236",
         "street_names": "Blossom Hill Road; Russo Drive",
-        "s_coord_ft": 71976.9,
-        "s_coord_mi": 13.632,
+        "s_coord_ft": 76808.9,
+        "s_coord_mi": 14.547,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -9742,8 +11050,8 @@
       "properties": {
         "candidate_id": "R27_OSM_1100547261",
         "street_names": "Blossom Hill Road; Russo Drive",
-        "s_coord_ft": 71978.1,
-        "s_coord_mi": 13.632,
+        "s_coord_ft": 76810.1,
+        "s_coord_mi": 14.547,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -9762,8 +11070,8 @@
       "properties": {
         "candidate_id": "R27_OSM_1100547330",
         "street_names": "Blossom Hill Road; Gallup Drive",
-        "s_coord_ft": 72138.6,
-        "s_coord_mi": 13.663,
+        "s_coord_ft": 76970.6,
+        "s_coord_mi": 14.578,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -9782,8 +11090,8 @@
       "properties": {
         "candidate_id": "R27_OSM_8229473712",
         "street_names": "Blossom Hill Road",
-        "s_coord_ft": 72191.7,
-        "s_coord_mi": 13.673,
+        "s_coord_ft": 77023.7,
+        "s_coord_mi": 14.588,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -9802,8 +11110,8 @@
       "properties": {
         "candidate_id": "R27_OSM_4549966664",
         "street_names": "Blossom Hill Road",
-        "s_coord_ft": 73088.8,
-        "s_coord_mi": 13.843,
+        "s_coord_ft": 77920.8,
+        "s_coord_mi": 14.758,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -9822,8 +11130,8 @@
       "properties": {
         "candidate_id": "R27_OSM_4549966661",
         "street_names": "Almaden Expressway",
-        "s_coord_ft": 73209.5,
-        "s_coord_mi": 13.865,
+        "s_coord_ft": 78041.5,
+        "s_coord_mi": 14.781,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -9842,8 +11150,8 @@
       "properties": {
         "candidate_id": "R27_OSM_65616335",
         "street_names": "Almaden Expressway; Blossom Hill Road",
-        "s_coord_ft": 73213.6,
-        "s_coord_mi": 13.866,
+        "s_coord_ft": 78045.6,
+        "s_coord_mi": 14.781,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -9862,12 +11170,32 @@
       "properties": {
         "candidate_id": "R27_OSM_1100547240",
         "street_names": "Almaden Expressway; Blossom Hill Road",
-        "s_coord_ft": 73214.7,
-        "s_coord_mi": 13.866,
+        "s_coord_ft": 78046.7,
+        "s_coord_mi": 14.782,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
         "source": "OSM node 1100547240 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.8753530415596,
+          37.25073057511972
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_3884407181",
+        "street_names": "Almaden Expressway",
+        "s_coord_ft": 78075.6,
+        "s_coord_mi": 14.787,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 3884407181 (degree=3)"
       }
     },
     {
@@ -9882,8 +11210,8 @@
       "properties": {
         "candidate_id": "R27_OSM_369936630",
         "street_names": "Almaden Expressway; Blossom Hill Road",
-        "s_coord_ft": 73282.1,
-        "s_coord_mi": 13.879,
+        "s_coord_ft": 78114.1,
+        "s_coord_mi": 14.794,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -9902,8 +11230,8 @@
       "properties": {
         "candidate_id": "R27_OSM_1100547323",
         "street_names": "Almaden Expressway; Blossom Hill Road",
-        "s_coord_ft": 73285.7,
-        "s_coord_mi": 13.88,
+        "s_coord_ft": 78117.7,
+        "s_coord_mi": 14.795,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -9922,8 +11250,8 @@
       "properties": {
         "candidate_id": "R27_OSM_4549966665",
         "street_names": "Almaden Expressway",
-        "s_coord_ft": 73298.4,
-        "s_coord_mi": 13.882,
+        "s_coord_ft": 78130.4,
+        "s_coord_mi": 14.797,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -9942,8 +11270,8 @@
       "properties": {
         "candidate_id": "R27_OSM_4549966668",
         "street_names": "Blossom Hill Road",
-        "s_coord_ft": 73385.8,
-        "s_coord_mi": 13.899,
+        "s_coord_ft": 78217.8,
+        "s_coord_mi": 14.814,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -9962,8 +11290,8 @@
       "properties": {
         "candidate_id": "R27_OSM_2029243634",
         "street_names": "Blossom Hill Road",
-        "s_coord_ft": 73809.6,
-        "s_coord_mi": 13.979,
+        "s_coord_ft": 78641.6,
+        "s_coord_mi": 14.894,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -9982,8 +11310,8 @@
       "properties": {
         "candidate_id": "R27_OSM_4332696849",
         "street_names": "Blossom Hill Road",
-        "s_coord_ft": 73869.5,
-        "s_coord_mi": 13.99,
+        "s_coord_ft": 78701.5,
+        "s_coord_mi": 14.906,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -10002,8 +11330,8 @@
       "properties": {
         "candidate_id": "R27_OSM_65616349",
         "street_names": "Blossom Hill Road; Sanchez Drive",
-        "s_coord_ft": 74396.5,
-        "s_coord_mi": 14.09,
+        "s_coord_ft": 79228.5,
+        "s_coord_mi": 15.005,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -10022,8 +11350,8 @@
       "properties": {
         "candidate_id": "R27_OSM_1100547277",
         "street_names": "Blossom Hill Road; Sanchez Drive",
-        "s_coord_ft": 74404.4,
-        "s_coord_mi": 14.092,
+        "s_coord_ft": 79236.4,
+        "s_coord_mi": 15.007,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -10042,8 +11370,8 @@
       "properties": {
         "candidate_id": "R27_OSM_4332680082",
         "street_names": "Blossom Hill Road",
-        "s_coord_ft": 74834.8,
-        "s_coord_mi": 14.173,
+        "s_coord_ft": 79666.8,
+        "s_coord_mi": 15.088,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -10062,8 +11390,8 @@
       "properties": {
         "candidate_id": "R27_OSM_5376562627",
         "street_names": "Blossom Hill Road; Blossom River Drive",
-        "s_coord_ft": 74899.2,
-        "s_coord_mi": 14.185,
+        "s_coord_ft": 79731.2,
+        "s_coord_mi": 15.101,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -10082,8 +11410,8 @@
       "properties": {
         "candidate_id": "R27_OSM_5376562623",
         "street_names": "Blossom Hill Road",
-        "s_coord_ft": 75118.7,
-        "s_coord_mi": 14.227,
+        "s_coord_ft": 79950.7,
+        "s_coord_mi": 15.142,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -10102,8 +11430,8 @@
       "properties": {
         "candidate_id": "R27_OSM_5376562628",
         "street_names": "Blossom Hill Road",
-        "s_coord_ft": 75164.8,
-        "s_coord_mi": 14.236,
+        "s_coord_ft": 79996.8,
+        "s_coord_mi": 15.151,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -10122,12 +11450,32 @@
       "properties": {
         "candidate_id": "R27_OSM_2858941068",
         "street_names": "Blossom Hill Road",
-        "s_coord_ft": 75695.2,
-        "s_coord_mi": 14.336,
+        "s_coord_ft": 80527.2,
+        "s_coord_mi": 15.251,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
         "source": "OSM node 2858941068 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.86676658386148,
+          37.25029636242845
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_5376561818",
+        "street_names": "Winfield Boulevard",
+        "s_coord_ft": 80576.9,
+        "s_coord_mi": 15.261,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 5376561818 (degree=4)"
       }
     },
     {
@@ -10142,8 +11490,8 @@
       "properties": {
         "candidate_id": "R27_OSM_1856977824",
         "street_names": "Blossom Hill Road; Winfield Boulevard",
-        "s_coord_ft": 75783.6,
-        "s_coord_mi": 14.353,
+        "s_coord_ft": 80615.6,
+        "s_coord_mi": 15.268,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -10162,8 +11510,8 @@
       "properties": {
         "candidate_id": "R27_OSM_65634694",
         "street_names": "Winfield Boulevard",
-        "s_coord_ft": 75803.5,
-        "s_coord_mi": 14.357,
+        "s_coord_ft": 80635.5,
+        "s_coord_mi": 15.272,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -10182,12 +11530,32 @@
       "properties": {
         "candidate_id": "R27_OSM_4332680079",
         "street_names": "Blossom Hill Road; Winfield Boulevard",
-        "s_coord_ft": 75804.4,
-        "s_coord_mi": 14.357,
+        "s_coord_ft": 80636.4,
+        "s_coord_mi": 15.272,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
         "source": "OSM node 4332680079 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.8665499,
+          37.25029755
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_2858941076",
+        "street_names": "Winfield Boulevard",
+        "s_coord_ft": 80639.8,
+        "s_coord_mi": 15.273,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 2858941076 (degree=5)"
       }
     },
     {
@@ -10202,8 +11570,8 @@
       "properties": {
         "candidate_id": "R27_OSM_2858941058",
         "street_names": "Winfield Boulevard",
-        "s_coord_ft": 75813.4,
-        "s_coord_mi": 14.359,
+        "s_coord_ft": 80645.4,
+        "s_coord_mi": 15.274,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -10222,8 +11590,8 @@
       "properties": {
         "candidate_id": "R27_OSM_1100547248",
         "street_names": "Blossom Hill Road; Winfield Boulevard",
-        "s_coord_ft": 75819.7,
-        "s_coord_mi": 14.36,
+        "s_coord_ft": 80651.7,
+        "s_coord_mi": 15.275,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -10242,8 +11610,8 @@
       "properties": {
         "candidate_id": "R27_OSM_2858941065",
         "street_names": "Blossom Hill Road",
-        "s_coord_ft": 75921.5,
-        "s_coord_mi": 14.379,
+        "s_coord_ft": 80753.5,
+        "s_coord_mi": 15.294,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -10262,8 +11630,8 @@
       "properties": {
         "candidate_id": "R27_OSM_2858941067",
         "street_names": "Blossom Hill Road",
-        "s_coord_ft": 75953.2,
-        "s_coord_mi": 14.385,
+        "s_coord_ft": 80785.2,
+        "s_coord_mi": 15.3,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -10282,8 +11650,8 @@
       "properties": {
         "candidate_id": "R27_OSM_1100547331",
         "street_names": "Blossom Hill Road; Hillview Avenue",
-        "s_coord_ft": 77351.0,
-        "s_coord_mi": 14.65,
+        "s_coord_ft": 82183.0,
+        "s_coord_mi": 15.565,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -10302,8 +11670,8 @@
       "properties": {
         "candidate_id": "R27_OSM_65447979",
         "street_names": "Blossom Hill Road; Hillview Avenue",
-        "s_coord_ft": 77354.6,
-        "s_coord_mi": 14.65,
+        "s_coord_ft": 82186.6,
+        "s_coord_mi": 15.566,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -10322,8 +11690,8 @@
       "properties": {
         "candidate_id": "R27_OSM_2858933386",
         "street_names": "Blossom Hill Road",
-        "s_coord_ft": 77884.8,
-        "s_coord_mi": 14.751,
+        "s_coord_ft": 82716.8,
+        "s_coord_mi": 15.666,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -10342,8 +11710,8 @@
       "properties": {
         "candidate_id": "R27_OSM_2858933388",
         "street_names": "Blossom Hill Road",
-        "s_coord_ft": 77887.5,
-        "s_coord_mi": 14.751,
+        "s_coord_ft": 82719.5,
+        "s_coord_mi": 15.667,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -10362,8 +11730,8 @@
       "properties": {
         "candidate_id": "R27_OSM_2858933396",
         "street_names": "Santa Teresa Boulevard",
-        "s_coord_ft": 78003.0,
-        "s_coord_mi": 14.773,
+        "s_coord_ft": 82835.0,
+        "s_coord_mi": 15.688,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -10380,14 +11748,14 @@
         ]
       },
       "properties": {
-        "candidate_id": "R27_OSM_1100547205",
+        "candidate_id": "R27_OSM_65616374",
         "street_names": "Blossom Hill Road; Santa Teresa Boulevard",
-        "s_coord_ft": 78003.2,
-        "s_coord_mi": 14.773,
+        "s_coord_ft": 82835.2,
+        "s_coord_mi": 15.688,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
-        "source": "OSM node 1100547205 (degree=4)"
+        "source": "OSM node 65616374 (degree=4)"
       }
     },
     {
@@ -10400,14 +11768,14 @@
         ]
       },
       "properties": {
-        "candidate_id": "R27_OSM_65616374",
+        "candidate_id": "R27_OSM_1100547205",
         "street_names": "Blossom Hill Road; Santa Teresa Boulevard",
-        "s_coord_ft": 78003.2,
-        "s_coord_mi": 14.773,
+        "s_coord_ft": 82835.2,
+        "s_coord_mi": 15.688,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
-        "source": "OSM node 65616374 (degree=4)"
+        "source": "OSM node 1100547205 (degree=4)"
       }
     },
     {
@@ -10422,12 +11790,32 @@
       "properties": {
         "candidate_id": "R27_OSM_2858933378",
         "street_names": "Santa Teresa Boulevard",
-        "s_coord_ft": 78003.3,
-        "s_coord_mi": 14.773,
+        "s_coord_ft": 82835.3,
+        "s_coord_mi": 15.689,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
         "source": "OSM node 2858933378 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.85880351580352,
+          37.2502720562478
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_2858933397",
+        "street_names": "Santa Teresa Boulevard",
+        "s_coord_ft": 82889.5,
+        "s_coord_mi": 15.699,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 2858933397 (degree=3)"
       }
     },
     {
@@ -10442,8 +11830,8 @@
       "properties": {
         "candidate_id": "R27_OSM_309052432",
         "street_names": "Blossom Hill Road; Santa Teresa Boulevard",
-        "s_coord_ft": 78057.8,
-        "s_coord_mi": 14.784,
+        "s_coord_ft": 82889.8,
+        "s_coord_mi": 15.699,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -10462,8 +11850,8 @@
       "properties": {
         "candidate_id": "R27_OSM_1100547293",
         "street_names": "Blossom Hill Road; Santa Teresa Boulevard",
-        "s_coord_ft": 78060.4,
-        "s_coord_mi": 14.784,
+        "s_coord_ft": 82892.4,
+        "s_coord_mi": 15.699,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -10482,8 +11870,8 @@
       "properties": {
         "candidate_id": "R27_OSM_2858933377",
         "street_names": "Santa Teresa Boulevard",
-        "s_coord_ft": 78068.8,
-        "s_coord_mi": 14.786,
+        "s_coord_ft": 82900.8,
+        "s_coord_mi": 15.701,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -10502,8 +11890,8 @@
       "properties": {
         "candidate_id": "R27_OSM_2858933385",
         "street_names": "Blossom Hill Road",
-        "s_coord_ft": 78146.7,
-        "s_coord_mi": 14.801,
+        "s_coord_ft": 82978.7,
+        "s_coord_mi": 15.716,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -10522,8 +11910,8 @@
       "properties": {
         "candidate_id": "R27_OSM_2858933387",
         "street_names": "Blossom Hill Road",
-        "s_coord_ft": 78152.6,
-        "s_coord_mi": 14.802,
+        "s_coord_ft": 82984.6,
+        "s_coord_mi": 15.717,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -10542,8 +11930,8 @@
       "properties": {
         "candidate_id": "R27_OSM_4332665498",
         "street_names": "Blossom Hill Road",
-        "s_coord_ft": 78818.5,
-        "s_coord_mi": 14.928,
+        "s_coord_ft": 83650.4,
+        "s_coord_mi": 15.843,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -10562,8 +11950,8 @@
       "properties": {
         "candidate_id": "R27_OSM_447576473",
         "street_names": "Thornwood Drive",
-        "s_coord_ft": 78886.5,
-        "s_coord_mi": 14.941,
+        "s_coord_ft": 83718.5,
+        "s_coord_mi": 15.856,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -10582,8 +11970,8 @@
       "properties": {
         "candidate_id": "R27_OSM_1677588873",
         "street_names": "Blossom Hill Road; Briar Ridge Drive",
-        "s_coord_ft": 78889.6,
-        "s_coord_mi": 14.941,
+        "s_coord_ft": 83721.6,
+        "s_coord_mi": 15.856,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -10602,8 +11990,8 @@
       "properties": {
         "candidate_id": "R27_OSM_6800624829",
         "street_names": "Blossom Hill Road",
-        "s_coord_ft": 78982.7,
-        "s_coord_mi": 14.959,
+        "s_coord_ft": 83814.7,
+        "s_coord_mi": 15.874,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -10622,8 +12010,8 @@
       "properties": {
         "candidate_id": "R27_OSM_6800624828",
         "street_names": "Blossom Hill Road",
-        "s_coord_ft": 79017.6,
-        "s_coord_mi": 14.965,
+        "s_coord_ft": 83849.6,
+        "s_coord_mi": 15.881,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -10642,12 +12030,32 @@
       "properties": {
         "candidate_id": "R27_OSM_1677588847",
         "street_names": "Allen Avenue; Blossom Hill Road",
-        "s_coord_ft": 79326.1,
-        "s_coord_mi": 15.024,
+        "s_coord_ft": 84158.1,
+        "s_coord_mi": 15.939,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
         "source": "OSM node 1677588847 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.853023891588,
+          37.25021711140345
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65438028",
+        "street_names": "Delaware Avenue; Playa Del Rey",
+        "s_coord_ft": 84568.1,
+        "s_coord_mi": 16.017,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65438028 (degree=6)"
       }
     },
     {
@@ -10662,8 +12070,8 @@
       "properties": {
         "candidate_id": "R27_OSM_447089767",
         "street_names": "Blossom Hill Road; Playa Del Rey",
-        "s_coord_ft": 79767.5,
-        "s_coord_mi": 15.107,
+        "s_coord_ft": 84599.5,
+        "s_coord_mi": 16.023,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -10682,8 +12090,8 @@
       "properties": {
         "candidate_id": "R27_OSM_1100547339",
         "street_names": "Blossom Hill Road; Playa Del Rey",
-        "s_coord_ft": 79771.0,
-        "s_coord_mi": 15.108,
+        "s_coord_ft": 84603.0,
+        "s_coord_mi": 16.023,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -10702,8 +12110,8 @@
       "properties": {
         "candidate_id": "R27_OSM_1100547215",
         "street_names": "Blossom Hill Road; Rielly Court",
-        "s_coord_ft": 80551.2,
-        "s_coord_mi": 15.256,
+        "s_coord_ft": 85383.2,
+        "s_coord_mi": 16.171,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -10722,8 +12130,8 @@
       "properties": {
         "candidate_id": "R27_OSM_65616407",
         "street_names": "Blossom Hill Road; Sunny Oaks Drive",
-        "s_coord_ft": 80573.0,
-        "s_coord_mi": 15.26,
+        "s_coord_ft": 85405.0,
+        "s_coord_mi": 16.175,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -10742,8 +12150,8 @@
       "properties": {
         "candidate_id": "R27_OSM_65430165",
         "street_names": "Blossom Hill Road; Morton Way",
-        "s_coord_ft": 80801.2,
-        "s_coord_mi": 15.303,
+        "s_coord_ft": 85633.2,
+        "s_coord_mi": 16.218,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -10762,8 +12170,8 @@
       "properties": {
         "candidate_id": "R27_OSM_1053676251",
         "street_names": "Blossom Hill Road; Farmhouse Court",
-        "s_coord_ft": 80938.7,
-        "s_coord_mi": 15.329,
+        "s_coord_ft": 85770.7,
+        "s_coord_mi": 16.244,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -10782,8 +12190,8 @@
       "properties": {
         "candidate_id": "R27_OSM_1053676249",
         "street_names": "Blossom Hill Road; Cooney Place",
-        "s_coord_ft": 81138.9,
-        "s_coord_mi": 15.367,
+        "s_coord_ft": 85970.9,
+        "s_coord_mi": 16.282,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -10802,12 +12210,52 @@
       "properties": {
         "candidate_id": "R27_OSM_1071697898",
         "street_names": "Blossom Hill Road",
-        "s_coord_ft": 81441.9,
-        "s_coord_mi": 15.425,
+        "s_coord_ft": 86273.9,
+        "s_coord_mi": 16.34,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
         "source": "OSM node 1071697898 (degree=3)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.84689085724092,
+          37.250486123123366
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65519119",
+        "street_names": "Cahalan Avenue; San Lorenzo Drive",
+        "s_coord_ft": 86352.8,
+        "s_coord_mi": 16.355,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65519119 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.84676265535695,
+          37.250488285829086
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_4332664581",
+        "street_names": "Cahalan Avenue",
+        "s_coord_ft": 86390.0,
+        "s_coord_mi": 16.362,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 4332664581 (degree=5)"
       }
     },
     {
@@ -10822,8 +12270,8 @@
       "properties": {
         "candidate_id": "R27_OSM_1100547348",
         "street_names": "Blossom Hill Road; Cahalan Avenue",
-        "s_coord_ft": 81560.9,
-        "s_coord_mi": 15.447,
+        "s_coord_ft": 86392.9,
+        "s_coord_mi": 16.362,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -10842,12 +12290,32 @@
       "properties": {
         "candidate_id": "R27_OSM_65616416",
         "street_names": "Blossom Hill Road; Cahalan Avenue",
-        "s_coord_ft": 81561.4,
-        "s_coord_mi": 15.447,
+        "s_coord_ft": 86393.4,
+        "s_coord_mi": 16.362,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
         "source": "OSM node 65616416 (degree=6)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.84674169035641,
+          37.250488413842234
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65599399",
+        "street_names": "Cahalan Avenue; Lyonburry Place",
+        "s_coord_ft": 86396.1,
+        "s_coord_mi": 16.363,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65599399 (degree=6)"
       }
     },
     {
@@ -10862,12 +12330,32 @@
       "properties": {
         "candidate_id": "R27_OSM_65545911",
         "street_names": "Blossom Hill Road; Southcrest Way",
-        "s_coord_ft": 81999.5,
-        "s_coord_mi": 15.53,
+        "s_coord_ft": 86831.5,
+        "s_coord_mi": 16.445,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
         "source": "OSM node 65545911 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.84521513087903,
+          37.2505036452879
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_3870202021",
+        "street_names": "Carew Way; Southcrest Way",
+        "s_coord_ft": 86839.5,
+        "s_coord_mi": 16.447,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 3870202021 (degree=6)"
       }
     },
     {
@@ -10882,8 +12370,8 @@
       "properties": {
         "candidate_id": "R27_OSM_1100547321",
         "street_names": "Blossom Hill Road",
-        "s_coord_ft": 82153.9,
-        "s_coord_mi": 15.559,
+        "s_coord_ft": 86985.9,
+        "s_coord_mi": 16.475,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -10902,8 +12390,8 @@
       "properties": {
         "candidate_id": "R27_OSM_1100547338",
         "street_names": "Blossom Hill Road",
-        "s_coord_ft": 82154.6,
-        "s_coord_mi": 15.56,
+        "s_coord_ft": 86986.6,
+        "s_coord_mi": 16.475,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -10922,8 +12410,8 @@
       "properties": {
         "candidate_id": "R27_OSM_65526002",
         "street_names": "Blossom Hill Road; Shadowcrest Way",
-        "s_coord_ft": 82249.6,
-        "s_coord_mi": 15.578,
+        "s_coord_ft": 87081.6,
+        "s_coord_mi": 16.493,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -10942,8 +12430,8 @@
       "properties": {
         "candidate_id": "R27_OSM_65616435",
         "street_names": "Blossom Hill Road; Chesbro Avenue",
-        "s_coord_ft": 82769.8,
-        "s_coord_mi": 15.676,
+        "s_coord_ft": 87601.7,
+        "s_coord_mi": 16.591,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -10962,8 +12450,8 @@
       "properties": {
         "candidate_id": "R27_OSM_1100547174",
         "street_names": "Blossom Hill Road; Chesbro Avenue",
-        "s_coord_ft": 82772.6,
-        "s_coord_mi": 15.677,
+        "s_coord_ft": 87604.6,
+        "s_coord_mi": 16.592,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -10982,8 +12470,8 @@
       "properties": {
         "candidate_id": "R27_OSM_6697571128",
         "street_names": "Blossom Hill Road; Indian Avenue",
-        "s_coord_ft": 83129.2,
-        "s_coord_mi": 15.744,
+        "s_coord_ft": 87961.2,
+        "s_coord_mi": 16.659,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -11002,12 +12490,32 @@
       "properties": {
         "candidate_id": "R27_OSM_3743535850",
         "street_names": "Indian Avenue",
-        "s_coord_ft": 83153.3,
-        "s_coord_mi": 15.749,
+        "s_coord_ft": 87985.3,
+        "s_coord_mi": 16.664,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
         "source": "OSM node 3743535850 (degree=4)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.84127045,
+          37.25052643
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65564571",
+        "street_names": "Indian Avenue; Osage Court",
+        "s_coord_ft": 87985.3,
+        "s_coord_mi": 16.664,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65564571 (degree=6)"
       }
     },
     {
@@ -11022,8 +12530,8 @@
       "properties": {
         "candidate_id": "R27_OSM_1100547269",
         "street_names": "Blossom Hill Road",
-        "s_coord_ft": 83163.9,
-        "s_coord_mi": 15.751,
+        "s_coord_ft": 87995.9,
+        "s_coord_mi": 16.666,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -11042,8 +12550,8 @@
       "properties": {
         "candidate_id": "R27_OSM_6697571134",
         "street_names": "Blossom Hill Road",
-        "s_coord_ft": 83219.2,
-        "s_coord_mi": 15.761,
+        "s_coord_ft": 88051.2,
+        "s_coord_mi": 16.676,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -11055,19 +12563,39 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -121.8411,
-          37.2528
+          -121.84146881,
+          37.25236893
         ]
       },
       "properties": {
         "candidate_id": "R27_FORCE_005",
         "street_names": "Blossom Hill LRT Station (transfer)",
-        "s_coord_ft": 83983.4,
-        "s_coord_mi": 15.906,
+        "s_coord_ft": 88815.4,
+        "s_coord_mi": 16.821,
         "activity_type": "lrt_transfer",
         "is_forced": true,
         "is_mandatory": false,
         "source": "VTA GTFS stops.txt (stop_id PS_BLSM)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.84185791,
+          37.25175095
+        ]
+      },
+      "properties": {
+        "candidate_id": "R27_OSM_65438332",
+        "street_names": "Chesbro Avenue; Shirecrest Court",
+        "s_coord_ft": 89280.3,
+        "s_coord_mi": 16.909,
+        "activity_type": "intersection",
+        "is_forced": false,
+        "is_mandatory": false,
+        "source": "OSM node 65438332 (degree=6)"
       }
     },
     {
@@ -11082,8 +12610,8 @@
       "properties": {
         "candidate_id": "R27_OSM_65393023",
         "street_names": "Blossom Hill Road",
-        "s_coord_ft": 84918.8,
-        "s_coord_mi": 16.083,
+        "s_coord_ft": 89750.8,
+        "s_coord_mi": 16.998,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -11102,8 +12630,8 @@
       "properties": {
         "candidate_id": "R27_OSM_3743535853",
         "street_names": "Blossom Hill Road",
-        "s_coord_ft": 85006.7,
-        "s_coord_mi": 16.1,
+        "s_coord_ft": 89838.7,
+        "s_coord_mi": 17.015,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -11122,8 +12650,8 @@
       "properties": {
         "candidate_id": "R27_OSM_65556865",
         "street_names": "Blossom Avenue; Blossom Hill Road",
-        "s_coord_ft": 85396.7,
-        "s_coord_mi": 16.174,
+        "s_coord_ft": 90228.7,
+        "s_coord_mi": 17.089,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
@@ -11142,8 +12670,8 @@
       "properties": {
         "candidate_id": "R27_OSM_248210987",
         "street_names": "Blossom Avenue; Blossom Hill Road",
-        "s_coord_ft": 85406.2,
-        "s_coord_mi": 16.175,
+        "s_coord_ft": 90238.2,
+        "s_coord_mi": 17.091,
         "activity_type": "intersection",
         "is_forced": false,
         "is_mandatory": false,
