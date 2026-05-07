@@ -239,19 +239,6 @@ def main():
     model_data = _compute_from_tables(tables_dir)
 
     # ---- Determine predicted values ----
-    # Predicted baseline: what the model says current stops produce
-    # Best estimate uses existing stops' daily boardings (old optimizer output)
-    predicted_baseline = model_data.get(
-        "predicted_baseline_from_sel_stops",
-        model_data.get("predicted_baseline_annual", 0.0)
-    )
-
-    # Predicted optimised: existing + new stop BCR model annual boardings
-    predicted_optimised = model_data.get(
-        "combined_optimised_annual",
-        model_data.get("predicted_optimised_annual", 0.0)
-    )
-
     # Observed baseline: prefer the LG anchor built from VTA OCT 2025 RBS
     # (per-stop typical-day boardings), fall back to VTA Title VI FY2023.
     try:
@@ -265,6 +252,55 @@ def main():
         anchor = None
         observed_baseline = float(OBSERVED_BASELINE_ANNUAL)
         observed_source_used = OBSERVED_SOURCE
+
+    # SCOPE-CONSISTENCY FIX (post-W6): the headline tile reads "LG-only", so
+    # both predicted_baseline and predicted_optimised must also be LG-only.
+    # Previously they came from selected_stops.csv / route27_stop_suggestions.csv
+    # which are FULL-ROUTE (16.82 mi from Winchester to Meridian, ~158k/yr) and
+    # were being compared to a 60k LG-only baseline -- that comparison was
+    # apples-to-oranges and the calibrated optimised number always over-scaled.
+    #
+    # Prefer the W5 stop-comparison summary, which already does the LG geofence
+    # join and emits {LG_only, full_corridor} baseline/projected pairs. Fall
+    # back to legacy full-route numbers only if W5 hasn't been run.
+    cmp_summary_path = tables_dir / "route27_comparison_summary.csv"
+    using_w5_lg_scope = False
+    predicted_baseline = 0.0
+    predicted_optimised = 0.0
+    full_route_baseline = float(model_data.get(
+        "predicted_baseline_from_sel_stops",
+        model_data.get("predicted_baseline_annual", 0.0),
+    ))
+    full_route_optimised = float(model_data.get(
+        "combined_optimised_annual",
+        model_data.get("predicted_optimised_annual", 0.0),
+    ))
+    if cmp_summary_path.exists():
+        try:
+            cs = pd.read_csv(cmp_summary_path)
+            lg_row = cs[cs["scope"] == "LG_only"]
+            if len(lg_row) > 0:
+                predicted_baseline = float(lg_row.iloc[0]["baseline_annual"])
+                predicted_optimised = float(lg_row.iloc[0]["projected_annual"])
+                using_w5_lg_scope = True
+                logger.info(
+                    "Using W5 LG-only summary (%s) for headline values: "
+                    "baseline=%s/yr, optimised=%s/yr",
+                    cmp_summary_path,
+                    f"{predicted_baseline:,.0f}",
+                    f"{predicted_optimised:,.0f}",
+                )
+        except Exception as exc:
+            logger.warning("Could not read W5 summary (%s); falling back to "
+                           "legacy full-route numbers.", exc)
+    if not using_w5_lg_scope:
+        predicted_baseline = full_route_baseline
+        predicted_optimised = full_route_optimised
+        logger.warning(
+            "W5 LG-only summary unavailable; headline numbers will reflect "
+            "FULL-ROUTE predicted values, which mismatch the LG-only observed "
+            "baseline. Run `python -m src.route27_comparison` after the optimiser."
+        )
 
     # ---- Calibration ----
     if observed_baseline > 0 and predicted_baseline > 0:

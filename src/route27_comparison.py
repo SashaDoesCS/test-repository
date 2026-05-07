@@ -94,10 +94,12 @@ def build_stop_comparison(
     # Each current stop is uniquely keyed by stop_id; carry boardings + LG flag.
     cur = cur.assign(
         current_daily_boardings=cur["weekday_boardings"].astype(float),
+        current_annual_boardings=cur["annual_boardings"].astype(float),
         in_los_gatos=cur["in_geofence"].astype(bool),
     )
     cur_lookup = cur[["stop_id", "stop_name", "stop_lat", "stop_lon",
-                      "current_daily_boardings", "in_los_gatos"]].reset_index(drop=True)
+                      "current_daily_boardings", "current_annual_boardings",
+                      "in_los_gatos"]].reset_index(drop=True)
 
     matched_cur_indices: set[int] = set()
     rows: list[dict] = []
@@ -112,11 +114,15 @@ def build_stop_comparison(
             cur_row = cur_lookup.iloc[idx]
             matched_cur_indices.add(idx)
             current = float(cur_row["current_daily_boardings"])
+            current_annual = float(cur_row["current_annual_boardings"])
             # Kept-stop projected boardings: take the optimiser's est if non-zero
             # (NEW_IN_SELECTION re-uses an existing stop position with model est),
             # otherwise hold current (status quo retention).
             est = float(s.get("est_new_riders_daily") or 0.0)
             projected = est if est > 0 else current
+            # Scale annual proportionally to the daily delta (preserves the
+            # weekday/weekend split the W0 anchor used).
+            projected_annual = (projected / current * current_annual) if current > 0 else current_annual
             rows.append({
                 "stop_id":                    s["stop_id"],
                 "stop_name":                  s["stop_name"],
@@ -126,6 +132,8 @@ def build_stop_comparison(
                 "status":                     "KEPT",
                 "current_daily_boardings":    round(current, 2),
                 "projected_daily_boardings":  round(projected, 2),
+                "current_annual_boardings":   round(current_annual, 0),
+                "projected_annual_boardings": round(projected_annual, 0),
                 "delta_daily":                round(projected - current, 2),
                 "bcr_20yr":                   s.get("bcr_20yr"),
                 "corridor_deviation_ft":      s.get("corridor_deviation_ft", 0),
@@ -141,6 +149,12 @@ def build_stop_comparison(
             # (D1-D10 = LGHS zone, treated as LG context per W0).
             did = str(s.get("district_id", "") or "")
             in_lg = did.startswith("D")
+            # Use a typical LG weekday/weekend split (~46% weekday share of
+            # annual boardings, derived from W0 anchor: 199*255 / (199*255 +
+            # 92*52 + 78*52) = 0.85 weekday share -> annualize via /0.85*255
+            # is overly precise; use the empirical ~ratio:
+            # annual_per_daily = 60000 / 199 ~= 301 ([annual]/[wkdy daily]).
+            est_annual = est * 301
             rows.append({
                 "stop_id":                    s["stop_id"],
                 "stop_name":                  s["stop_name"],
@@ -150,6 +164,8 @@ def build_stop_comparison(
                 "status":                     "NEW",
                 "current_daily_boardings":    0.0,
                 "projected_daily_boardings":  round(est, 2),
+                "current_annual_boardings":   0.0,
+                "projected_annual_boardings": round(est_annual, 0),
                 "delta_daily":                round(est, 2),
                 "bcr_20yr":                   s.get("bcr_20yr"),
                 "corridor_deviation_ft":      s.get("corridor_deviation_ft", 0),
@@ -174,6 +190,7 @@ def build_stop_comparison(
         else:
             kidx, kdist = -1, float("inf")
         current = float(cur_row["current_daily_boardings"])
+        current_annual = float(cur_row["current_annual_boardings"])
         reabsorbed_to_others = round(current * reabsorption_rate, 2)
         rows.append({
             "stop_id":                    cur_row["stop_id"],
@@ -184,6 +201,8 @@ def build_stop_comparison(
             "status":                     "REMOVED",
             "current_daily_boardings":    round(current, 2),
             "projected_daily_boardings":  0.0,
+            "current_annual_boardings":   round(current_annual, 0),
+            "projected_annual_boardings": 0.0,
             "delta_daily":                round(-current, 2),
             "bcr_20yr":                   None,
             "corridor_deviation_ft":      None,
@@ -224,14 +243,27 @@ def compute_summary_tiles(
         new = df[df["status"] == "NEW"]
         removed = df[df["status"] == "REMOVED"]
 
+        # Daily totals (typical weekday)
         baseline_daily = float(kept["current_daily_boardings"].sum() +
                                removed["current_daily_boardings"].sum())
         kept_daily = float(kept["current_daily_boardings"].sum())
         new_daily = float(new["projected_daily_boardings"].sum())
         removed_daily = float(removed["current_daily_boardings"].sum())
         reabsorbed_daily = round(removed_daily * reabsorption_rate, 2)
-        # Projected = kept (held) + reabsorbed-from-removed + new-stop riders
         projected_daily = kept_daily + reabsorbed_daily + new_daily
+
+        # Annual totals using the per-stop annual_boardings column (built by
+        # W0 vta_rbs.py with proper 255/52/52 service-day weights). This keeps
+        # the comparison summary on the SAME SCALE as the W0 LG anchor (~60k/yr
+        # for LG, not 51k as a weekday-only multiplication would suggest).
+        baseline_annual = float(kept["current_annual_boardings"].sum() +
+                                removed["current_annual_boardings"].sum())
+        kept_annual = float(kept["current_annual_boardings"].sum())
+        new_annual = float(new["projected_annual_boardings"].sum())
+        removed_annual = float(removed["current_annual_boardings"].sum())
+        reabsorbed_annual = removed_annual * reabsorption_rate
+        projected_annual = kept_annual + reabsorbed_annual + new_annual
+
         return {
             "scope":                  scope,
             "n_kept":                 int(len(kept)),
@@ -245,10 +277,9 @@ def compute_summary_tiles(
             "removed_daily_boardings": round(removed_daily, 2),
             "reabsorbed_daily_estimate": reabsorbed_daily,
             "reabsorption_rate_used": reabsorption_rate,
-            # Annualized via standard 255 weekday service days
-            "baseline_annual":        int(round(baseline_daily * 255)),
-            "projected_annual":       int(round(projected_daily * 255)),
-            "delta_annual":           int(round((projected_daily - baseline_daily) * 255)),
+            "baseline_annual":        int(round(baseline_annual)),
+            "projected_annual":       int(round(projected_annual)),
+            "delta_annual":           int(round(projected_annual - baseline_annual)),
         }
 
     rows = [
