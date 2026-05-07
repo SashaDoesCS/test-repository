@@ -21,12 +21,36 @@ import logging
 import math
 import pickle
 from pathlib import Path
-from typing import Optional
+from typing import Dict, Optional
 
 import numpy as np
 import pandas as pd
 
 logger = logging.getLogger(__name__)
+
+# ── Free parameter (tuned 2026-04-24) ─────────────────────────────────
+# If either endpoint of a leg snaps farther than this (metres) from its
+# nearest OSM node, skip road-routing for that leg and emit a straight-line
+# interpolation instead.
+# 500 m is a backstop, not the primary defence against bad snaps — that role
+# now belongs to the network_graph.pkl cache priority (see _NETWORK_CACHE_
+# CANDIDATES below).  The remaining stops that trip this gate are real GTFS
+# Route 27 stops in eastern San Jose (lon < -121.88, beyond the cached graph
+# bbox); for those, fallback interpolation is the correct outcome rather
+# than snapping to the nearest in-bbox node 5+ km away.  Tightening below
+# ~300 m would start dropping legitimate within-bbox snaps in low-density
+# foothill areas.
+MAX_SNAP_DISTANCE_M: float = 500.0
+
+# Step 6: Network type for OSMnx graph download.
+# drive_service includes service roads and residential streets buses use.
+# If cached graph was built with a different type, it will be rebuilt.
+_NETWORK_TYPE: str = "drive_service"
+
+# Step 6: Hybrid edge weight for shortest-path routing.
+# 0 = pure length, 1 = pure travel_time. Opus will tune.
+PATH_WEIGHT_TIME_FRACTION: float = 0.7
+# ──────────────────────────────────────────────────────────────────────
 
 # Average bus operating speed (mph → km/h for OSM graph).
 # Used when OSM maxspeed tag is missing.
@@ -59,6 +83,39 @@ def _haversine_km(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
     return R * 2 * math.asin(math.sqrt(a))
 
 
+def _haversine_m(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
+    """Return great-circle distance in metres."""
+    return _haversine_km(lat1, lon1, lat2, lon2) * 1000.0
+
+
+def _great_circle_interpolate(
+    p1: tuple,
+    p2: tuple,
+    n: int = 10,
+) -> list:
+    """Return n evenly-spaced (lat, lon) points along the great-circle from p1 to p2.
+
+    Includes both endpoints.  Uses linear interpolation in (lat, lon) space as a
+    fast approximation (accurate to < 1 m for the short legs encountered here).
+
+    Args:
+        p1: (lat, lon) of start point.
+        p2: (lat, lon) of end point.
+        n:  total number of points (including endpoints).  Minimum 2.
+
+    Returns:
+        list of n (lat, lon) tuples.
+    """
+    n = max(2, n)
+    lat1, lon1 = p1
+    lat2, lon2 = p2
+    return [
+        (lat1 + i / (n - 1) * (lat2 - lat1),
+         lon1 + i / (n - 1) * (lon2 - lon1))
+        for i in range(n)
+    ]
+
+
 # =====================================================================
 # GRAPH CONSTRUCTION
 # =====================================================================
@@ -86,15 +143,17 @@ def build_road_network(bbox: dict, config: dict) -> Optional[object]:
     east = bbox["east"]
     west = bbox["west"]
 
-    logger.info("Downloading OSM road network (bbox: N%.3f S%.3f E%.3f W%.3f)...",
-                north, south, east, west)
+    logger.info("Downloading OSM road network (bbox: N%.3f S%.3f E%.3f W%.3f, type=%s)...",
+                north, south, east, west, _NETWORK_TYPE)
     try:
         G = ox.graph_from_bbox(
             bbox=(north, south, east, west),
-            network_type="drive",
+            network_type=_NETWORK_TYPE,
             simplify=True,
             retain_all=False,
         )
+        # Tag the graph with network_type so cache invalidation can detect stale graphs
+        G.graph["network_type"] = _NETWORK_TYPE
     except Exception as exc:
         logger.warning("OSM download failed (%s); using synthetic graph fallback.", exc)
         return _build_synthetic_graph(config)
@@ -269,6 +328,213 @@ def _haversine_travel_time_matrix(stops_df: pd.DataFrame) -> pd.DataFrame:
 
 
 # =====================================================================
+# ROAD-FOLLOWING POLYLINE (Phase 3)
+# =====================================================================
+
+def compute_route_polyline(
+    stop_seq: list,
+    G,
+    stops_snapped_df: Optional[pd.DataFrame] = None,
+) -> list:
+    """Return a list of (lat, lon) tuples tracing the road network between
+    each consecutive pair of stops in `stop_seq`.
+
+    This is the geometry that is written to GTFS shapes.txt and rendered by
+    the dashboard so that route lines follow real roads (rather than
+    straight-line zig-zags between stop centroids).
+
+    Args:
+        stop_seq: ordered list of OptimisedStop (or any object with
+            stop_id / stop_lat / stop_lon attributes).
+        G: networkx.MultiDiGraph from build_road_network() (or None).
+        stops_snapped_df: DataFrame with stop_id, osm_node_id columns. If
+            absent, we'll snap on-the-fly.
+
+    Returns:
+        list of (lat, lon) tuples, densified along the road network.
+        Falls back to straight-line endpoints when the graph or OSMnx
+        isn't available.
+    """
+    coords = [(float(s.stop_lat), float(s.stop_lon)) for s in stop_seq]
+    if G is None or len(stop_seq) < 2:
+        return coords
+
+    try:
+        import osmnx as ox
+        import networkx as nx
+    except ImportError:
+        return coords
+
+    if getattr(G, "graph", {}).get("synthetic", False):
+        return coords
+
+    # Map stop_id -> OSM node id.
+    node_for_stop: Dict[str, object] = {}
+    if stops_snapped_df is not None and "osm_node_id" in stops_snapped_df.columns:
+        for _, row in stops_snapped_df.iterrows():
+            sid = str(row["stop_id"])
+            nid = row.get("osm_node_id", None)
+            if nid is not None and not pd.isna(nid):
+                node_for_stop[sid] = nid
+
+    polyline: list = []
+    for k in range(len(stop_seq) - 1):
+        a, b = stop_seq[k], stop_seq[k + 1]
+        a_node = node_for_stop.get(str(a.stop_id))
+        b_node = node_for_stop.get(str(b.stop_id))
+
+        # ── Snap-distance gate (Step 4a) ─────────────────────────────
+        # Snap both endpoints if we don't already have their OSM nodes, then
+        # check whether the snap distance exceeds MAX_SNAP_DISTANCE_M.
+        use_interpolated = False
+        try:
+            if a_node is None:
+                a_node = ox.nearest_nodes(G, X=a.stop_lon, Y=a.stop_lat)
+            if b_node is None:
+                b_node = ox.nearest_nodes(G, X=b.stop_lon, Y=b.stop_lat)
+
+            a_ndata = G.nodes[a_node]
+            b_ndata = G.nodes[b_node]
+            a_snap_m = _haversine_m(float(a.stop_lat), float(a.stop_lon),
+                                    float(a_ndata.get("y", a.stop_lat)),
+                                    float(a_ndata.get("x", a.stop_lon)))
+            b_snap_m = _haversine_m(float(b.stop_lat), float(b.stop_lon),
+                                    float(b_ndata.get("y", b.stop_lat)),
+                                    float(b_ndata.get("x", b.stop_lon)))
+            if a_snap_m > MAX_SNAP_DISTANCE_M or b_snap_m > MAX_SNAP_DISTANCE_M:
+                logger.debug(
+                    "Snap-distance gate triggered for leg %s→%s "
+                    "(a_snap=%.0fm, b_snap=%.0fm > %.0fm); using interpolation.",
+                    a.stop_id, b.stop_id, a_snap_m, b_snap_m, MAX_SNAP_DISTANCE_M,
+                )
+                use_interpolated = True
+        except Exception as _exc:
+            logger.debug("Snap failed for leg %s→%s: %s; using interpolation.",
+                         a.stop_id, b.stop_id, _exc)
+            use_interpolated = True
+
+        if use_interpolated:
+            leg = _great_circle_interpolate(
+                (float(a.stop_lat), float(a.stop_lon)),
+                (float(b.stop_lat), float(b.stop_lon)),
+                n=10,
+            )
+            if polyline and leg and polyline[-1] == leg[0]:
+                polyline.extend(leg[1:])
+            else:
+                polyline.extend(leg)
+            continue
+
+        # ── Road-network routing ──────────────────────────────────────
+        # Step 6: Compute hybrid edge weight combining travel_time and length.
+        # Assign to each edge before calling shortest_path so the weight is
+        # consistent across all legs. We do this once per leg pair; for a
+        # production system this would be pre-computed on graph load.
+        try:
+            for u, v, k, data in G.edges(data=True, keys=True):
+                tt = float(data.get("travel_time", 30.0))
+                ln = float(data.get("length", 100.0))
+                data["hybrid"] = (
+                    PATH_WEIGHT_TIME_FRACTION * tt
+                    + (1.0 - PATH_WEIGHT_TIME_FRACTION) * ln
+                )
+        except Exception as _we:
+            logger.debug("Hybrid weight assignment failed (%s); using travel_time.", _we)
+        try:
+            path = nx.shortest_path(G, a_node, b_node, weight="hybrid")
+        except Exception:
+            # If routing fails for this leg, fall back to straight-line interpolation.
+            leg = _great_circle_interpolate(
+                (float(a.stop_lat), float(a.stop_lon)),
+                (float(b.stop_lat), float(b.stop_lon)),
+                n=10,
+            )
+            if polyline and leg and polyline[-1] == leg[0]:
+                polyline.extend(leg[1:])
+            else:
+                polyline.extend(leg)
+            continue
+
+        # Pull (y, x) for each node on the path.
+        leg = []
+        for node_id in path:
+            ndata = G.nodes[node_id]
+            lat = ndata.get("y")
+            lon = ndata.get("x")
+            if lat is not None and lon is not None:
+                leg.append((float(lat), float(lon)))
+
+        # ── Degenerate-path expansion (Step 4b) ──────────────────────
+        # If routing returned only 2 nodes (trivial path), interpolate.
+        if len(leg) < 3:
+            leg = _great_circle_interpolate(
+                (float(a.stop_lat), float(a.stop_lon)),
+                (float(b.stop_lat), float(b.stop_lon)),
+                n=10,
+            )
+
+        if not leg:
+            leg = _great_circle_interpolate(
+                (float(a.stop_lat), float(a.stop_lon)),
+                (float(b.stop_lat), float(b.stop_lon)),
+                n=10,
+            )
+
+        # Avoid duplicating the joining vertex between consecutive legs.
+        if polyline and leg and polyline[-1] == leg[0]:
+            polyline.extend(leg[1:])
+        else:
+            polyline.extend(leg)
+
+    # Step 8: Warn if any polyline point is outside the Los Gatos bbox.
+    # Load bbox from config; fall back to hardcoded defaults.
+    try:
+        import yaml as _yaml
+        from pathlib import Path as _Path
+        _cfg_path = _Path(__file__).resolve().parent.parent / "config.yaml"
+        _bbox = {"lat_min": 37.10, "lat_max": 37.30, "lon_min": -122.05, "lon_max": -121.90}
+        if _cfg_path.exists():
+            with open(_cfg_path, "r", encoding="utf-8") as _f:
+                _cfg = _yaml.safe_load(_f)
+            _bbox = _cfg.get("optimization", {}).get("los_gatos_bbox", _bbox)
+        _outside = [
+            (lat, lon) for lat, lon in polyline
+            if not (
+                _bbox["lat_min"] <= lat <= _bbox["lat_max"]
+                and _bbox["lon_min"] <= lon <= _bbox["lon_max"]
+            )
+        ]
+        if _outside:
+            logger.warning(
+                "BBox guard: %d polyline point(s) outside Los Gatos bbox "
+                "(lat %.3f-%.3f, lon %.3f-%.3f). First outlier: %.5f, %.5f.",
+                len(_outside),
+                _bbox["lat_min"], _bbox["lat_max"],
+                _bbox["lon_min"], _bbox["lon_max"],
+                _outside[0][0], _outside[0][1],
+            )
+    except Exception as _bbox_exc:
+        logger.debug("BBox check failed (%s).", _bbox_exc)
+
+    return polyline
+
+
+def compute_route_polylines(
+    routes: list,
+    G,
+    stops_snapped_df: Optional[pd.DataFrame] = None,
+) -> Dict[str, list]:
+    """Compute road-following polylines for a list of OptimisedRoute objects.
+
+    Returns dict route_id -> list of (lat, lon).
+    """
+    result: Dict[str, list] = {}
+    for r in routes:
+        result[r.route_id] = compute_route_polyline(r.stops, G, stops_snapped_df)
+    return result
+
+
+# =====================================================================
 # SERIALIZATION
 # =====================================================================
 
@@ -333,6 +599,15 @@ def run_network_graph(
     G = None
     if not force_rebuild:
         G = load_graph(graph_cache_path)
+        # Step 6: Invalidate cache if network_type doesn't match current setting
+        if G is not None:
+            cached_type = G.graph.get("network_type", None)
+            if cached_type != _NETWORK_TYPE:
+                logger.warning(
+                    "Cached graph network_type=%r does not match required %r; rebuilding.",
+                    cached_type, _NETWORK_TYPE,
+                )
+                G = None
 
     if G is None:
         G = build_road_network(bbox, config)

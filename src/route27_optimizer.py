@@ -85,11 +85,18 @@ from src.route27_corridor import (
     SUBURBAN_DISTRICTS,
     STOP_SPACING,
     _haversine_ft,
+    project_to_path,
+    project_to_path_with_point,
 )
 from src.route27_walkshed import (
     compute_marginal_walkshed,
     _walk_buffer_ft,
     EQUITY_MULTIPLIER,
+)
+from src.route27_calibration import (
+    LGAnchor,
+    load_lg_anchor,
+    estimate_new_stop_daily_boardings,
 )
 
 logger = logging.getLogger(__name__)
@@ -193,6 +200,8 @@ def select_route27_stops(
     candidates_df: pd.DataFrame,
     existing_stops_df: Optional[pd.DataFrame],
     config: dict,
+    path_coords: Optional[list] = None,
+    path_s_coords: Optional[list] = None,
 ) -> Tuple[pd.DataFrame, pd.DataFrame]:
     """Select the optimal linear stop sequence for Route 27.
 
@@ -211,6 +220,9 @@ def select_route27_stops(
             If provided, these are merged into the candidate set as high-priority
             existing stops.
         config: Pipeline config dict.
+        path_coords: Corridor path [(lat, lon), ...] — used to project
+            unmatched existing stops to their correct s-coordinate (Bug 1 fix).
+        path_s_coords: Cumulative arc-length (ft) at each path node.
 
     Returns:
         (selected_df, unselected_df) — both sorted by s_coord_ft.
@@ -225,7 +237,11 @@ def select_route27_stops(
 
     # Merge existing GTFS stops as preferred candidates
     if existing_stops_df is not None and len(existing_stops_df) > 0:
-        df = _merge_existing_stops(df, existing_stops_df)
+        df = _merge_existing_stops(
+            df, existing_stops_df,
+            path_coords=path_coords,
+            path_s_coords=path_s_coords,
+        )
 
     selected_indices: List[int] = []
     last_s_ft = -99_999.0
@@ -284,6 +300,30 @@ def select_route27_stops(
     selected_df = df.loc[selected_indices].copy()
     unselected_df = df.drop(index=selected_indices).copy()
 
+    # Cap non-existing, non-mandatory new stops at max_new_stops.
+    # The demand_score > 0 inclusion clause is effectively unbounded when many
+    # OSM candidates have any equity population; this cap prevents the optimizer
+    # from selecting 80+ new stops and inflating boardings projections.
+    r27_cfg = config.get("route27_optimization", {})
+    max_new_stops = int(r27_cfg.get("max_new_stops", 10))
+    is_existing_s = selected_df.get("is_existing", pd.Series([False] * len(selected_df), index=selected_df.index)).fillna(False)
+    is_mandatory_s = selected_df.get("is_mandatory", pd.Series([False] * len(selected_df), index=selected_df.index)).fillna(False)
+    is_forced_s = selected_df.get("is_forced", pd.Series([False] * len(selected_df), index=selected_df.index)).fillna(False)
+    new_mask = (~is_existing_s) & (~is_mandatory_s) & (~is_forced_s)
+    n_new = int(new_mask.sum())
+    if n_new > max_new_stops:
+        new_indices = selected_df[new_mask].index.tolist()
+        # Score each new stop; keep only the top max_new_stops by demand_score
+        demand_col = selected_df.loc[new_mask, :].apply(_score_candidate, axis=1)
+        keep_new = demand_col.nlargest(max_new_stops).index.tolist()
+        drop_new = [i for i in new_indices if i not in keep_new]
+        logger.info(
+            "max_new_stops cap (%d): trimming %d new stops → keeping %d highest-demand.",
+            max_new_stops, len(drop_new), max_new_stops,
+        )
+        unselected_df = pd.concat([unselected_df, selected_df.loc[drop_new]], ignore_index=False)
+        selected_df = selected_df.drop(index=drop_new)
+
     logger.info(
         "Linear stop selection: %d stops selected (%d existing, %d new mandatory, "
         "%d gap-fill), %d unselected candidates remain.",
@@ -322,6 +362,8 @@ def _score_candidate(row: pd.Series) -> float:
 def _merge_existing_stops(
     candidates_df: pd.DataFrame,
     existing_stops_df: pd.DataFrame,
+    path_coords: Optional[list] = None,
+    path_s_coords: Optional[list] = None,
 ) -> pd.DataFrame:
     """Tag existing GTFS stops as preferred candidates.
 
@@ -330,6 +372,19 @@ def _merge_existing_stops(
     there; removing it would require capital destruction).
 
     Existing stops not already in candidates_df are appended.
+
+    Bug 1 fix: unmatched existing stops previously defaulted to
+    s_coord_ft=0.0 (clustering at Winchester TC), causing the spacing
+    filter to drop all but one.  This function now projects each
+    unmatched stop onto the corridor path to compute the correct
+    s_coord_ft.  Stops that project more than 500 ft from the path
+    are skipped (they belong to a different alignment).
+
+    Args:
+        candidates_df: Candidate stop DataFrame.
+        existing_stops_df: VTA GTFS existing stops.
+        path_coords: Corridor path [(lat, lon), ...].
+        path_s_coords: Cumulative arc-length (ft) at each path node.
     """
     df = candidates_df.copy()
     if "is_existing" not in df.columns:
@@ -337,10 +392,19 @@ def _merge_existing_stops(
     if "is_mandatory" not in df.columns:
         df["is_mandatory"] = False
 
+    have_path = (
+        path_coords is not None
+        and path_s_coords is not None
+        and len(path_coords) >= 2
+    )
+    # Max distance from path for an "existing" stop to be considered on-route
+    _MAX_SNAP_FT = 500.0
+
     added = []
+    skipped = 0
     for _, ex in existing_stops_df.iterrows():
-        ex_lat = ex.get("stop_lat", ex.get("lat", 0.0))
-        ex_lon = ex.get("stop_lon", ex.get("lon", 0.0))
+        ex_lat = float(ex.get("stop_lat", ex.get("lat", 0.0)))
+        ex_lon = float(ex.get("stop_lon", ex.get("lon", 0.0)))
 
         # Check if a candidate is already close to this existing stop
         matched = False
@@ -353,31 +417,63 @@ def _merge_existing_stops(
                 break
 
         if not matched:
-            # Append as a new candidate row (will be treated as existing)
+            # Bug 1 / P3 fix: compute s_coord_ft AND snap lat/lon via path projection.
+            # Previously stop_lat/stop_lon was kept at the original GPS coords, which
+            # could be up to _MAX_SNAP_FT (500 ft) off the drawn polyline.  Now we
+            # snap to the path so the stop marker sits ON the route line in the map.
+            if have_path:
+                s_ft, snap_dist_ft, snap_lat, snap_lon = project_to_path_with_point(
+                    ex_lat, ex_lon, path_coords, path_s_coords
+                )
+                if snap_dist_ft > _MAX_SNAP_FT:
+                    logger.debug(
+                        "Existing stop %s skipped: snap_dist=%.0f ft > %.0f ft "
+                        "(not on Route 27 alignment).",
+                        ex.get("stop_id", "?"), snap_dist_ft, _MAX_SNAP_FT,
+                    )
+                    skipped += 1
+                    continue
+            else:
+                # No path available — use stored value if present, else 0
+                s_ft = float(ex.get("s_coord_ft", 0.0))
+                snap_dist_ft = 0.0
+                snap_lat, snap_lon = ex_lat, ex_lon
+
             new_row = {
-                "candidate_id":        str(ex.get("stop_id", f"EX_{len(added)}")),
-                "stop_lat":            ex_lat,
-                "stop_lon":            ex_lon,
-                "s_coord_ft":          ex.get("s_coord_ft", 0.0),
-                "district_id":         ex.get("district_id", None),
-                "is_existing":         True,
-                "is_mandatory":        True,
-                "is_forced":           False,
-                "street_names":        ex.get("stop_name", ""),
-                "raw_walkshed_pop":    0,
-                "equity_walkshed_pop": 0.0,
+                "candidate_id":          str(ex.get("stop_id", f"EX_{len(added)}")),
+                # P3 fix: use snapped coords so marker sits on the drawn polyline.
+                # Original GPS coords are stored separately for traceability.
+                "stop_lat":              snap_lat,
+                "stop_lon":              snap_lon,
+                "s_coord_ft":            round(s_ft, 1),
+                "district_id":           ex.get("district_id", None),
+                "is_existing":           True,
+                "is_mandatory":          True,
+                "is_forced":             False,
+                "street_names":          ex.get("stop_name", ""),
+                "raw_walkshed_pop":      0,
+                "equity_walkshed_pop":   0.0,
                 "marginal_walkshed_pop": 0,
-                "tdi":                 0.2,
-                "equity_priority":     False,
-                "activity_type":       "existing_vta_stop",
-                "source":              "VTA GTFS stops.txt",
+                "tdi":                   0.2,
+                "equity_priority":       False,
+                "activity_type":         "existing_vta_stop",
+                "source":                "VTA GTFS stops.txt",
             }
             added.append(new_row)
 
     if added:
         df = pd.concat([df, pd.DataFrame(added)], ignore_index=True)
         df = df.sort_values("s_coord_ft").reset_index(drop=True)
-        logger.info("Appended %d existing GTFS stops not in candidate set.", len(added))
+        logger.info(
+            "Appended %d existing GTFS stops not in candidate set "
+            "(%d skipped — off-route).",
+            len(added), skipped,
+        )
+    elif skipped:
+        logger.info(
+            "%d existing GTFS stops skipped as off-route (snap > %.0f ft).",
+            skipped, _MAX_SNAP_FT,
+        )
 
     return df
 
@@ -515,6 +611,7 @@ def compute_stop_bcr(
     value_per_boarding: float = VALUE_PER_BOARDING_USD,
     discount_rate: float = DISCOUNT_RATE_PRIMARY,
     horizon_years: int = HORIZON_YEARS,
+    anchor: Optional[LGAnchor] = None,
 ) -> dict:
     """Compute Benefit-Cost Ratio for a suggested new stop.
 
@@ -554,7 +651,22 @@ def compute_stop_bcr(
     # still get evaluated fairly.  Source: TCRP Report 167 §4.3.2.
     tdi_adj = max(0.75, min(1.25, 1.0 + (tdi - 0.5) * 0.5))
 
-    new_riders_daily = marginal_pop * diversion_rate * tdi_adj
+    # Anchored estimator (W1): cap predicted per-stop boardings at the empirical
+    # 90th percentile of currently observed LG Route 27 stops. Without this cap
+    # the raw walkshed * diversion estimator will assign hundreds of daily
+    # boardings to a single new stop in a small suburban town that has <1%
+    # transit mode share -- physically impossible. The cap is bypassed only when
+    # no anchor is loaded (legacy-call path), and the call site logs that the
+    # uncapped estimator is in use.
+    raw_riders_daily = marginal_pop * diversion_rate * tdi_adj
+    if anchor is not None:
+        new_riders_daily, capping_basis = estimate_new_stop_daily_boardings(
+            walkshed_pop=marginal_pop, tdi=tdi, anchor=anchor,
+            diversion_rate=diversion_rate,
+        )
+    else:
+        new_riders_daily = raw_riders_daily
+        capping_basis = "uncapped_no_anchor"
     annual_boardings = new_riders_daily * SERVICE_DAYS_PER_YEAR
     annual_benefit   = annual_boardings * value_per_boarding
 
@@ -586,6 +698,9 @@ def compute_stop_bcr(
         "horizon_years":            horizon_years,
         "capital_cost_usd":         capital_cost,
         "annual_operating_cost_usd": annual_operating,
+        # Cap diagnostics (W1)
+        "raw_riders_daily_uncapped": round(raw_riders_daily, 1),
+        "boardings_cap_basis":       capping_basis,
         # Outputs
         "est_new_riders_daily":     round(new_riders_daily, 1),
         "est_annual_boardings":     round(annual_boardings),
@@ -615,6 +730,7 @@ def build_stop_suggestions(
     gaps_df: pd.DataFrame,
     candidates_df: pd.DataFrame,
     config: dict,
+    anchor: Optional[LGAnchor] = None,
 ) -> pd.DataFrame:
     """Combine selected stops and gap-fill suggestions into a single output table.
 
@@ -642,7 +758,55 @@ def build_stop_suggestions(
 
     # -- Existing/selected stops --
     for _, row in selected_df.iterrows():
-        status = "EXISTING_KEEP" if row.get("is_existing", False) else "NEW_IN_SELECTION"
+        is_existing = bool(row.get("is_existing", False))
+        status = "EXISTING_KEEP" if is_existing else "NEW_IN_SELECTION"
+        is_school = "school" in str(row.get("activity_type", "")).lower()
+
+        # P1.12: NEW_IN_SELECTION rows incur new capital + operating cost just
+        # like NEW_SUGGEST gap-fills.  The previous code zeroed all BCR fields
+        # for everything in this loop, so the dashboard showed NaN/0 for every
+        # newly-selected stop.  Compute BCR for non-existing rows by reusing
+        # compute_stop_bcr with a synthetic "best_*" record built from the
+        # selection row's walkshed population and TDI.
+        if is_existing:
+            bcr_fields = {
+                "est_new_riders_daily": 0,
+                "est_annual_boardings": 0,
+                "annual_benefit_usd":   0,
+                "capital_cost_usd":     0,
+                "pv_benefits_usd":      0,
+                "pv_total_costs_usd":   0,
+                "net_pv_usd":           0,
+                "bcr_20yr":             None,
+                "fta_cei_per_user_hr":  None,
+                "justification":        "Existing VTA stop retained in optimized sequence.",
+            }
+        else:
+            sel_record = pd.Series({
+                "best_raw_walkshed_pop": row.get("marginal_walkshed_pop",
+                                                 row.get("raw_walkshed_pop", 0)),
+                "best_tdi":              row.get("tdi", 0.2),
+                "best_district_id":      row.get("district_id", None),
+                "best_street_names":     row.get("street_names", "") if is_school else "",
+            })
+            bcr_inputs = compute_stop_bcr(sel_record, anchor=anchor)
+            bcr_fields = {
+                "est_new_riders_daily": bcr_inputs["est_new_riders_daily"],
+                "est_annual_boardings": bcr_inputs["est_annual_boardings"],
+                "annual_benefit_usd":   bcr_inputs["annual_benefit_usd"],
+                "capital_cost_usd":     bcr_inputs["capital_cost_usd"],
+                "pv_benefits_usd":      bcr_inputs["pv_benefits_usd"],
+                "pv_total_costs_usd":   bcr_inputs["pv_total_costs_usd"],
+                "net_pv_usd":           bcr_inputs["net_pv_usd"],
+                "bcr_20yr":             bcr_inputs["bcr_20yr"],
+                "fta_cei_per_user_hr":  bcr_inputs["fta_cei_per_user_hr"],
+                "justification":        (
+                    f"Selected via FTA §5.2.2 spacing algorithm.  "
+                    f"BCR={bcr_inputs['bcr_20yr']:.2f} at 3.5% over 20 yr "
+                    f"(walk-shed pop {bcr_inputs['marginal_walkshed_pop']:,})."
+                ),
+            }
+
         rows.append({
             "stop_id":              row.get("candidate_id", ""),
             "stop_name":            row.get("street_names", ""),
@@ -654,9 +818,9 @@ def build_stop_suggestions(
             "zone_type":            _zone_type(row.get("district_id")),
             "status":               status,
             "priority":             "—",
-            "is_existing":          bool(row.get("is_existing", False)),
+            "is_existing":          is_existing,
             "is_mandatory":         bool(row.get("is_mandatory", False)),
-            "is_school_stop":       "school" in str(row.get("activity_type", "")).lower(),
+            "is_school_stop":       is_school,
             "wheelchair_boarding":  1,   # ADA: all stops — 49 CFR Part 37
             "walk_buffer_ft":       row.get("walk_buffer_ft", _walk_buffer_ft(row.get("district_id"))),
             "raw_walkshed_pop":     row.get("raw_walkshed_pop", 0),
@@ -664,19 +828,9 @@ def build_stop_suggestions(
             "equity_walkshed_pop":  row.get("equity_walkshed_pop", 0),
             "tdi":                  round(row.get("tdi", 0.2), 3),
             "equity_priority":      bool(row.get("equity_priority", False)),
-            # BCR fields blank for existing stops (no new cost incurred)
-            "est_new_riders_daily": 0,
-            "est_annual_boardings": 0,
-            "annual_benefit_usd":   0,
-            "capital_cost_usd":     0,
-            "pv_benefits_usd":      0,
-            "pv_total_costs_usd":   0,
-            "net_pv_usd":           0,
-            "bcr_20yr":             None,
-            "fta_cei_per_user_hr":  None,
+            **bcr_fields,
             "gap_before_ft":        None,
             "gap_after_ft":         None,
-            "justification":        "Existing VTA stop or selected via spacing algorithm.",
             "data_sources":         row.get("source", "VTA GTFS / OSM"),
         })
 
@@ -685,7 +839,7 @@ def build_stop_suggestions(
         if gap.get("best_candidate_id") is None:
             continue  # No candidate found in gap — log but skip
 
-        bcr_inputs = compute_stop_bcr(gap)
+        bcr_inputs = compute_stop_bcr(gap, anchor=anchor)
         bcr_val = bcr_inputs["bcr_20yr"]
 
         priority = gap["priority"]
@@ -755,6 +909,27 @@ def build_stop_suggestions(
     result_df = pd.DataFrame(rows)
     if len(result_df) > 0:
         result_df = result_df.sort_values("s_coord_ft").reset_index(drop=True)
+
+        # BCR >= 1.0 enforcement (FTA CIG 49 U.S.C. §5309).
+        # Drop non-mandatory NEW_IN_SELECTION stops whose computed BCR falls below
+        # the minimum threshold.  Mandatory stops (schools, LRT transfers with
+        # is_mandatory=True) are exempt — their inclusion is required regardless
+        # of BCR by FTA Title VI and equity obligations.
+        sub_bcr_mask = (
+            (result_df["status"] == "NEW_IN_SELECTION")
+            & (~result_df["is_mandatory"].fillna(False))
+            & (~result_df["is_school_stop"].fillna(False))
+            & (result_df["bcr_20yr"].notna())
+            & (result_df["bcr_20yr"] < BCR_MEDIUM)
+        )
+        n_dropped = int(sub_bcr_mask.sum())
+        if n_dropped:
+            logger.info(
+                "BCR filter: dropping %d NEW_IN_SELECTION stop(s) with BCR < %.1f "
+                "(FTA CIG 49 U.S.C. §5309 minimum threshold).",
+                n_dropped, BCR_MEDIUM,
+            )
+            result_df = result_df[~sub_bcr_mask].reset_index(drop=True)
 
     n_new = (result_df["status"] == "NEW_SUGGEST").sum() if len(result_df) > 0 else 0
     n_high = ((result_df["status"] == "NEW_SUGGEST") & (result_df["priority"] == "HIGH")).sum() \
@@ -872,6 +1047,7 @@ def run_route27_optimization(
     tdi_df: pd.DataFrame,
     unmet_need_df: Optional[pd.DataFrame],
     config: dict,
+    census_df: Optional[pd.DataFrame] = None,
 ) -> dict:
     """Run the full Route 27 stop optimization pipeline.
 
@@ -907,8 +1083,14 @@ def run_route27_optimization(
     config["_equity_districts"] = equity_districts
 
     # Stage 1: Linear stop selection
+    # Thread path geometry through so _merge_existing_stops can project
+    # unmatched stops to their correct s_coord_ft (Bug 1 fix).
+    path_coords   = corridor_result.get("path_coords")
+    path_s_coords = corridor_result.get("path_s_coords")
     selected_df, unselected_df = select_route27_stops(
-        walkshed_df, existing_stops_df, config
+        walkshed_df, existing_stops_df, config,
+        path_coords=path_coords,
+        path_s_coords=path_s_coords,
     )
 
     # Update marginal walk-shed for selected stops
@@ -919,19 +1101,67 @@ def run_route27_optimization(
         sel_di = selected_df.get("district_id", pd.Series([None] * len(selected_df))).tolist()
 
         walkshed_df = compute_marginal_walkshed(
-            walkshed_df, sel_s, sel_la, sel_lo, sel_di
+            walkshed_df, sel_s, sel_la, sel_lo, sel_di,
+            census_df=census_df,
         )
-        # Refresh unselected with updated marginal pops
+        # Bug 1 fix: merge marginal_walkshed_pop back onto the ORIGINAL selected_df
+        # (which contains is_existing=True flags and appended existing-stop rows
+        # from _merge_existing_stops).  Replacing selected_df wholesale from
+        # walkshed_df would drop any appended rows whose indices don't exist in
+        # walkshed_df, wiping is_existing and turning every stop into NEW_IN_SELECTION.
+        #
+        # Strategy: only copy the recomputed walkshed column(s) back; leave all
+        # other columns (is_existing, is_mandatory, candidate_id, etc.) intact.
+        walkshed_cols = [c for c in walkshed_df.columns if c not in selected_df.columns
+                         or c == "marginal_walkshed_pop"]
+        # Rows that exist in walkshed_df (original candidates — not appended existing stops)
+        in_walkshed_mask = selected_df.index.isin(walkshed_df.index)
+        for col in walkshed_cols:
+            if col not in selected_df.columns:
+                selected_df[col] = None
+            selected_df.loc[in_walkshed_mask, col] = walkshed_df.loc[
+                walkshed_df.index.isin(selected_df.index), col
+            ].values
+
+        # For unselected_df (all rows exist in walkshed_df), a full refresh is safe.
         unselected_df = walkshed_df[
             ~walkshed_df.index.isin(selected_df.index)
         ].copy()
 
+    # Guard: warn (and fail in test) if any NEW_IN_SELECTION row has 0 marginal pop
+    # This catches future regressions where the walkshed join breaks silently.
+    sel_new_mask = ~selected_df.get("is_existing", pd.Series([True] * len(selected_df))).fillna(True)
+    if sel_new_mask.any():
+        zero_pop_new = selected_df[sel_new_mask & (selected_df.get("marginal_walkshed_pop", pd.Series([0] * len(selected_df))).fillna(0) == 0)]
+        if len(zero_pop_new) > 0:
+            logger.warning(
+                "P2 data quality: %d NEW_IN_SELECTION stop(s) have marginal_walkshed_pop=0.  "
+                "This may indicate the walkshed join did not populate population data.  "
+                "Check that district_demographic_profile.csv has lat/lon centroids, or that "
+                "OSM candidates have district_id assigned.  "
+                "Affected stops: %s",
+                len(zero_pop_new),
+                zero_pop_new["candidate_id"].tolist()[:5] if "candidate_id" in zero_pop_new.columns else "see log",
+            )
+
     # Stage 2: Coverage gap detection
     gaps_df = detect_coverage_gaps(selected_df, unselected_df)
 
-    # Stages 3+4: BCR and output table
+    # Stages 3+4: BCR and output table.
+    # W1: load LG empirical anchor so per-stop boardings are capped at the p90
+    # of currently observed LG stops. If the anchor file is missing, the BCR
+    # reverts to the legacy uncapped estimator and logs a warning per stop.
+    try:
+        anchor = load_lg_anchor()
+    except FileNotFoundError as e:
+        logger.warning(
+            "LG anchor not loaded; BCR estimator will run UNCAPPED. "
+            "Run `python -m src.vta_rbs` to build the anchor. (%s)", e,
+        )
+        anchor = None
+
     suggestions_df = build_stop_suggestions(
-        selected_df, gaps_df, walkshed_df, config
+        selected_df, gaps_df, walkshed_df, config, anchor=anchor,
     )
 
     n_new  = int((suggestions_df["status"] == "NEW_SUGGEST").sum())

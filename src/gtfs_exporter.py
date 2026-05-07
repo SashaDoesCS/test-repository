@@ -193,38 +193,56 @@ def _write_stop_times(output_dir: Path, all_trips: list) -> None:
                 "stop_sequence", "pickup_type", "drop_off_type", "timepoint"])
 
 
-def _write_shapes(output_dir: Path, routes: list) -> None:
-    """Write shapes.txt using straight-line interpolation between stops.
+def _write_shapes(
+    output_dir: Path,
+    routes: list,
+    polylines: Optional[dict] = None,
+) -> None:
+    """Write shapes.txt — using OSM road-network polylines when supplied,
+    otherwise straight-line stop-to-stop fallback.
 
-    Each route gets a shape with one point per stop.
-    When OSMnx is available and stops have osm_node_id, the full road
-    geometry could replace this. For now, straight-line is GTFS-valid.
+    `polylines` is dict route_id -> list of (lat, lon) along real roads,
+    produced by network_graph.compute_route_polylines(), or each route's
+    .polyline attribute when polylines dict is None.
     """
+    import math
+
+    def _haversine_m(lat1, lon1, lat2, lon2):
+        R = 6371000.0
+        dlat = math.radians(lat2 - lat1)
+        dlon = math.radians(lon2 - lon1)
+        a = (math.sin(dlat / 2) ** 2
+             + math.cos(math.radians(lat1)) * math.cos(math.radians(lat2))
+             * math.sin(dlon / 2) ** 2)
+        return R * 2 * math.asin(math.sqrt(a))
+
     rows = []
     for route in routes:
         shape_id = f"shape_{route.route_id}"
-        cumulative_dist = 0.0
-        for seq, stop in enumerate(route.stops):
-            if seq > 0:
-                prev = route.stops[seq - 1]
-                import math
-                R = 6371.0
-                dlat = math.radians(stop.stop_lat - prev.stop_lat)
-                dlon = math.radians(stop.stop_lon - prev.stop_lon)
-                a = (math.sin(dlat / 2) ** 2
-                     + math.cos(math.radians(prev.stop_lat))
-                     * math.cos(math.radians(stop.stop_lat))
-                     * math.sin(dlon / 2) ** 2)
-                dist_km = R * 2 * math.asin(math.sqrt(a))
-                cumulative_dist += dist_km * 1000  # metres
+        # Prefer road-network geometry from polylines dict, then route.polyline,
+        # fall back to stop centroids.
+        coords = None
+        if polylines and route.route_id in polylines and polylines[route.route_id]:
+            coords = polylines[route.route_id]
+        elif getattr(route, "polyline", None):
+            coords = route.polyline
+        if not coords:
+            coords = [(s.stop_lat, s.stop_lon) for s in route.stops]
 
+        cumulative = 0.0
+        prev = None
+        for seq, (lat, lon) in enumerate(coords):
+            if prev is not None:
+                cumulative += _haversine_m(prev[0], prev[1], lat, lon)
             rows.append({
                 "shape_id": shape_id,
-                "shape_pt_lat": f"{stop.stop_lat:.6f}",
-                "shape_pt_lon": f"{stop.stop_lon:.6f}",
+                "shape_pt_lat": f"{lat:.6f}",
+                "shape_pt_lon": f"{lon:.6f}",
                 "shape_pt_sequence": seq,
-                "shape_dist_traveled": round(cumulative_dist, 1),
+                "shape_dist_traveled": round(cumulative, 1),
             })
+            prev = (lat, lon)
+
     _write_csv(output_dir / "shapes.txt", rows,
                ["shape_id", "shape_pt_lat", "shape_pt_lon",
                 "shape_pt_sequence", "shape_dist_traveled"])
@@ -300,6 +318,30 @@ def export_gtfs(
     _write_stop_times(out, all_trips)
     _write_shapes(out, routes)
 
+    # Mirror road-following geometry as a flat CSV for the dashboard.
+    shapes_table_path = "outputs/tables/route_shapes.csv"
+    shape_path = Path(shapes_table_path)
+    shape_path.parent.mkdir(parents=True, exist_ok=True)
+    shape_rows = []
+    for route in routes:
+        coords = getattr(route, "polyline", None) or [
+            (s.stop_lat, s.stop_lon) for s in route.stops
+        ]
+        for seq, (lat, lon) in enumerate(coords):
+            shape_rows.append({
+                "route_id": route.route_id,
+                "source_route_id": route.source_route_id or "",
+                "seq": seq,
+                "lat": round(float(lat), 6),
+                "lon": round(float(lon), 6),
+            })
+    shape_df = pd.DataFrame(shape_rows)
+    # Fill NaN in source_route_id so JSON serialisation in dashboard is clean.
+    if "source_route_id" in shape_df.columns:
+        shape_df["source_route_id"] = shape_df["source_route_id"].fillna("")
+    shape_df.to_csv(shape_path, index=False)
+    logger.info("Route shapes CSV written: %s (%d rows)", shape_path, len(shape_rows))
+
     n_routes = len(routes)
     n_stops = len(selected_stops)
     n_trips = len(all_trips)
@@ -332,11 +374,37 @@ def export_gtfs(
 
     school_cov = schedule.get("school_coverage")
     if school_cov is not None and len(school_cov) > 0:
-        print(f"\n  School pickup verification:")
+        print()
+        print("=" * 70)
+        print("SCHOOL PICKUP VERIFICATION")
+        print("  Pass criterion: bus must arrive within window [dismissal - 5 min, dismissal + 10 min]")
+        print("  Why: FTA on-time guidance; arriving too early misses students still in class,")
+        print("       arriving too late leaves them waiting beyond the 10-min tolerance.")
+        print("=" * 70)
+        print(f"  {'School':<26} {'Dismissal':<11} {'Window-end':<12} {'Scheduled-arr':<15} {'Slack(min)':<12} Status")
         for _, row in school_cov.iterrows():
             status = "PASS" if row["constraint_met"] else "FAIL"
-            print(f"    [{status}] {row['school']} dismissal {row['dismissal_time']} "
-                  f"-> deadline {row['pickup_deadline']} | "
-                  f"trip {row.get('satisfying_trip_id', 'N/A')} @ {row.get('actual_arrival', 'N/A')}")
+            school_name = str(row["school"])
+            dismissal = str(row["dismissal_time"])
+            # Truncate HH:MM:SS to HH:MM for column alignment
+            _deadline_raw = str(row.get("pickup_deadline", "N/A"))
+            deadline = ":".join(_deadline_raw.split(":")[:2])
+            _actual_raw = str(row.get("actual_arrival", "N/A"))
+            actual = ":".join(_actual_raw.split(":")[:2])
+            # Compute slack in minutes (dismissal + window_min - actual_arrival)
+            try:
+                import datetime as _dt
+                def _parse_hms(t):
+                    """Parse HH:MM or HH:MM:SS string to timedelta."""
+                    parts = str(t).split(":")
+                    h, m = int(parts[0]), int(parts[1])
+                    s = int(parts[2]) if len(parts) > 2 else 0
+                    return _dt.timedelta(hours=h, minutes=m, seconds=s)
+                slack_td = _parse_hms(_deadline_raw) - _parse_hms(_actual_raw)
+                slack_min = slack_td.total_seconds() / 60.0
+                slack_str = f"+{slack_min:.1f}" if slack_min >= 0 else f"{slack_min:.1f}"
+            except Exception:
+                slack_str = "N/A"
+            print(f"  {school_name:<26} {dismissal:<11} {deadline:<12} {actual:<15} {slack_str:<12} {status}")
 
     return str(out)

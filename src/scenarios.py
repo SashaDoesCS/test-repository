@@ -248,6 +248,7 @@ def compute_scenario_benefits(
         total_boardings, scenario.avg_auto_trip_min, params,
         congestion_variability_pct=scenario.congestion_variability_pct,
         pct_diverted_from_auto=scenario.pct_diverted_from_auto,
+        pct_business_trips=scenario.pct_business_trips,
     ))
     benefits.append(compute_option_value(
         service_area_pop, params,

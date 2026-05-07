@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stop Placard — Synthetic U6 #8</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#141720;color:#d8dce8;font-family:IBM Plex Mono,Consolas,monospace;font-size:12px;padding:16px;max-width:720px;margin:0 auto}
+  .card{background:rgba(20,23,40,.9);border:1px solid rgba(42,48,80,.8);border-radius:8px;padding:16px;margin-bottom:12px}
+  h2{font-size:15px;font-weight:700;color:#fff;margin-bottom:8px}
+  .section-label{font-size:9px;color:#7a8098;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+  #mini-map{height:220px;border-radius:6px;border:1px solid rgba(42,48,80,.8)}
+  a{color:#6c9bff;text-decoration:none}
+  a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div style="margin-bottom:10px">
+  <a href="index.html" style="font-size:10px;color:#7a8098">← All placards</a>
+  &nbsp;|&nbsp;
+  <a href="../route_optimization.html" style="font-size:10px;color:#7a8098">Route dashboard →</a>
+</div>
+
+<!-- Header band -->
+<div class="card">
+  <div class="section-label">Routes serving this stop</div>
+  <div style="margin-bottom:10px"><span style="background:#6c9bff22;border:1px solid #6c9bff;border-radius:4px;padding:2px 8px;color:#6c9bff;font-size:11px;font-weight:700;margin-right:6px">&#9679; Route OPT_01 → Santa Teresa Station (derived from VTA 27)</span></div>
+  <h2>Synthetic U6 #8</h2>
+  <div style="color:#7a8098;font-size:10px;margin-top:4px">
+    Stop ID: NEW_U6_8 &nbsp;|&nbsp; District: U6 &nbsp;|&nbsp; <span style="color:#ffa94d">New stop</span>
+     &nbsp;|&nbsp; ♿ ADA accessible
+  </div>
+</div>
+
+<!-- Strip diagram -->
+
+<div style="margin:16px 0">
+  <div style="font-size:10px;color:#7a8098;margin-bottom:6px">Stop sequence</div>
+  <div class="mermaid" style="font-size:10px">graph LR
+  s23["Synthetic U6 #4"]
+  s24["Synthetic U6 #6"]
+  THIS["**Synthetic U6 #8**"]
+  s26["Synthetic U6 #2"]
+  s27["Synthetic U4 #5"]
+  s23 --> s24 --> THIS --> s26 --> s27</div>
+</div>
+
+<!-- Mini-map -->
+<div class="card">
+  <div class="section-label">Map</div>
+  <div id="mini-map"></div>
+</div>
+
+<!-- Timetable -->
+<div class="card">
+  <div class="section-label">Schedule (from optimised GTFS)</div>
+  
+<table style="border-collapse:collapse;font-size:10px;width:100%;color:#d8dce8">
+  <thead><tr style="color:#7a8098;border-bottom:1px solid rgba(42,48,80,.6)">
+    <th style="padding:3px 8px;text-align:left">Weekday</th>
+    <th style="padding:3px 8px;text-align:left">Weekend</th>
+  </tr></thead>
+  <tbody><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">06:40</td><td style="padding:2px 8px">06:40</td></tr><tr style="background:transparent"><td style="padding:2px 8px">06:48</td><td style="padding:2px 8px">06:48</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">06:56</td><td style="padding:2px 8px">06:56</td></tr><tr style="background:transparent"><td style="padding:2px 8px">07:04</td><td style="padding:2px 8px">07:04</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">07:12</td><td style="padding:2px 8px">07:12</td></tr><tr style="background:transparent"><td style="padding:2px 8px">07:20</td><td style="padding:2px 8px">07:20</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">07:28</td><td style="padding:2px 8px">07:28</td></tr><tr style="background:transparent"><td style="padding:2px 8px">07:36</td><td style="padding:2px 8px">07:36</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">07:44</td><td style="padding:2px 8px">07:44</td></tr><tr style="background:transparent"><td style="padding:2px 8px">07:52</td><td style="padding:2px 8px">07:52</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">08:00</td><td style="padding:2px 8px">08:00</td></tr><tr style="background:transparent"><td style="padding:2px 8px">08:08</td><td style="padding:2px 8px">08:08</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">08:16</td><td style="padding:2px 8px">08:16</td></tr><tr style="background:transparent"><td style="padding:2px 8px">08:24</td><td style="padding:2px 8px">08:24</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">08:32</td><td style="padding:2px 8px">08:32</td></tr><tr style="background:transparent"><td style="padding:2px 8px">08:40</td><td style="padding:2px 8px">08:40</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">08:48</td><td style="padding:2px 8px">08:48</td></tr><tr style="background:transparent"><td style="padding:2px 8px">08:56</td><td style="padding:2px 8px">08:56</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">09:04</td><td style="padding:2px 8px">09:04</td></tr><tr style="background:transparent"><td style="padding:2px 8px">09:12</td><td style="padding:2px 8px">09:12</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">09:20</td><td style="padding:2px 8px">09:20</td></tr><tr style="background:transparent"><td style="padding:2px 8px">09:28</td><td style="padding:2px 8px">09:28</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">09:36</td><td style="padding:2px 8px">09:36</td></tr><tr style="background:transparent"><td style="padding:2px 8px">09:44</td><td style="padding:2px 8px">09:44</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">10:14</td><td style="padding:2px 8px">10:14</td></tr><tr style="background:transparent"><td style="padding:2px 8px">10:44</td><td style="padding:2px 8px">10:44</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">11:14</td><td style="padding:2px 8px">11:14</td></tr><tr style="background:transparent"><td style="padding:2px 8px">11:44</td><td style="padding:2px 8px">11:44</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">12:14</td><td style="padding:2px 8px">12:14</td></tr><tr style="background:transparent"><td style="padding:2px 8px">12:44</td><td style="padding:2px 8px">12:44</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">13:14</td><td style="padding:2px 8px">13:14</td></tr><tr style="background:transparent"><td style="padding:2px 8px">13:44</td><td style="padding:2px 8px">13:44</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">14:14</td><td style="padding:2px 8px">14:14</td></tr><tr style="background:transparent"><td style="padding:2px 8px">14:44</td><td style="padding:2px 8px">14:44</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">15:14</td><td style="padding:2px 8px">15:14</td></tr><tr style="background:transparent"><td style="padding:2px 8px">15:20</td><td style="padding:2px 8px">15:20</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">15:26</td><td style="padding:2px 8px">15:26</td></tr><tr style="background:transparent"><td style="padding:2px 8px">15:32</td><td style="padding:2px 8px">15:32</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">15:38</td><td style="padding:2px 8px">15:38</td></tr><tr style="background:transparent"><td style="padding:2px 8px">15:44</td><td style="padding:2px 8px">15:44</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">15:50</td><td style="padding:2px 8px">15:50</td></tr><tr style="background:transparent"><td style="padding:2px 8px">15:56</td><td style="padding:2px 8px">15:56</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">16:02</td><td style="padding:2px 8px">16:02</td></tr><tr style="background:transparent"><td style="padding:2px 8px">16:08</td><td style="padding:2px 8px">16:08</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">16:14</td><td style="padding:2px 8px">16:14</td></tr><tr style="background:transparent"><td style="padding:2px 8px">16:20</td><td style="padding:2px 8px">16:20</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">16:26</td><td style="padding:2px 8px">16:26</td></tr><tr style="background:transparent"><td style="padding:2px 8px">16:32</td><td style="padding:2px 8px">16:32</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">16:38</td><td style="padding:2px 8px">16:38</td></tr><tr style="background:transparent"><td style="padding:2px 8px">16:44</td><td style="padding:2px 8px">16:44</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">16:50</td><td style="padding:2px 8px">16:50</td></tr><tr style="background:transparent"><td style="padding:2px 8px">16:56</td><td style="padding:2px 8px">16:56</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">17:02</td><td style="padding:2px 8px">17:02</td></tr><tr style="background:transparent"><td style="padding:2px 8px">17:08</td><td style="padding:2px 8px">17:08</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">17:14</td><td style="padding:2px 8px">17:14</td></tr><tr style="background:transparent"><td style="padding:2px 8px">17:20</td><td style="padding:2px 8px">17:20</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">17:26</td><td style="padding:2px 8px">17:26</td></tr><tr style="background:transparent"><td style="padding:2px 8px">17:32</td><td style="padding:2px 8px">17:32</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">17:38</td><td style="padding:2px 8px">17:38</td></tr><tr style="background:transparent"><td style="padding:2px 8px">17:44</td><td style="padding:2px 8px">17:44</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">17:50</td><td style="padding:2px 8px">17:50</td></tr><tr style="background:transparent"><td style="padding:2px 8px">17:56</td><td style="padding:2px 8px">17:56</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">18:02</td><td style="padding:2px 8px">18:02</td></tr><tr style="background:transparent"><td style="padding:2px 8px">18:08</td><td style="padding:2px 8px">18:08</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">18:14</td><td style="padding:2px 8px">18:14</td></tr><tr style="background:transparent"><td style="padding:2px 8px">18:20</td><td style="padding:2px 8px">18:20</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">18:26</td><td style="padding:2px 8px">18:26</td></tr><tr style="background:transparent"><td style="padding:2px 8px">18:32</td><td style="padding:2px 8px">18:32</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">18:38</td><td style="padding:2px 8px">18:38</td></tr><tr style="background:transparent"><td style="padding:2px 8px">18:44</td><td style="padding:2px 8px">18:44</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">18:50</td><td style="padding:2px 8px">18:50</td></tr><tr style="background:transparent"><td style="padding:2px 8px">18:56</td><td style="padding:2px 8px">18:56</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">19:02</td><td style="padding:2px 8px">19:02</td></tr><tr style="background:transparent"><td style="padding:2px 8px">19:08</td><td style="padding:2px 8px">19:08</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">19:14</td><td style="padding:2px 8px">19:14</td></tr><tr style="background:transparent"><td style="padding:2px 8px">19:34</td><td style="padding:2px 8px">19:34</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">19:54</td><td style="padding:2px 8px">19:54</td></tr><tr style="background:transparent"><td style="padding:2px 8px">20:14</td><td style="padding:2px 8px">20:14</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">20:34</td><td style="padding:2px 8px">20:34</td></tr><tr style="background:transparent"><td style="padding:2px 8px">20:54</td><td style="padding:2px 8px">20:54</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">21:14</td><td style="padding:2px 8px">21:14</td></tr><tr style="background:transparent"><td style="padding:2px 8px">21:34</td><td style="padding:2px 8px">21:34</td></tr></tbody>
+</table>
+</div>
+
+<!-- Footer: QR -->
+<div class="card" style="display:flex;gap:16px;align-items:flex-start">
+  <div>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXIAAAFyAQAAAADAX2ykAAAChklEQVR4nO2by2nsQBBFT70WeCmBA3AoPRm8kF5MzkAdigMwSMsBifsW/bFsYxuDRoygaiFmNGdxoaiuT9eY+I2lP7/CwXnnnXfeeeed/4q3Yh0wd5gNq8HcAXP97XKgHud35qMkaQK7AMSXB+VPECRJes/fWo/zO/NzjdD0tKAxv1zzuxLYh+pxfh+++/giPneLAab0tHz69e70O/+9ffSg0hAgPg9YnFbEfKwe5/flq397QfOl0hAWg5Cz7nYEcm/6nf/ein+TARCwOD3mB8yPi8Xn1Y7U4/y+fPbvJkLTEID+asBqJbCP0+P8vjy5+Sn9UcifiBNAv6CRII2V03hv+p3/wdQsO1QTQK/m1QXi5P49Kd/q57UTc4dBWEgXgygwCMrvjtHj/L785nwu8ZsDNoioBejrI3r8npCv5+5bmp3Ko2biII19PcPdvyfjqalXLWAlWutbKi1K4eX+PRtf+6PZUDJQzsSsJsj5d7H29f70O/+Dlfw7bU/q8nUKLZKDn8/n5nspXyL9a4d0GlaTdDWN1IvDu9Xv/BdW4zdIY62VNfZ1yFEmHfL8e06+1lfQbn1La7SZdLRy2v17Ur71utmXaQC75Ep6NdKT72+clN/UV+WQzvVVUO2UAO+PTsu3+yMBLBj9q4m5dErEEawgR+hx/hb82/5kqZX7q5HqOiVRV3vH31qP8zvzbX8SCNI4P2znz2kInn/Pzbf9ybzwPNStjWRWb/oP1eP8zfgSq3aB3AlrJNR16BPod35jn/djp0eU/r525Kr5xYB+7by+OiX/cT+nDjnK/FlSWdLx/uiU/GZ+xdtCrOq4Mt8J+/3vaXnTz8zG/P/dzjvvvPPOO78D/x8wHMGreXI8KwAAAABJRU5ErkJggg==" style="width:80px;height:80px;border-radius:4px" alt="QR">
+    <div style="font-size:9px;color:#7a8098;margin-top:4px;text-align:center">Scan to open<br>route dashboard</div>
+  </div>
+  <div style="font-size:10px;color:#7a8098">
+    <div><b style="color:#d8dce8">Synthetic U6 #8</b></div>
+    <div>ID: NEW_U6_8</div>
+    <div>Lat: 37.23161 / Lon: -121.91654</div>
+    <div>♿ ADA accessible</div>
+    <div style="margin-top:8px">Generated by Los Gatos Transit CBA</div>
+  </div>
+</div>
+
+<script>
+mermaid.initialize({startOnLoad:true,theme:'dark',themeVariables:{fontSize:'10px'}});
+
+const NEARBY=[{"id": "1100", "name": "Blossom Hill & Seifert", "lat": 37.245909, "lon": -121.886549, "is_this": false}, {"id": "1097", "name": "Blossom Hill & Meridian", "lat": 37.243466, "lon": -121.889251, "is_this": false}, {"id": "1095", "name": "Blossom Hill & Chambertin", "lat": 37.239294, "lon": -121.895254, "is_this": false}, {"id": "NEW_U6_4", "name": "Synthetic U6 #4", "lat": 37.233441, "lon": -121.909336, "is_this": false}, {"id": "NEW_U6_6", "name": "Synthetic U6 #6", "lat": 37.231283, "lon": -121.909278, "is_this": false}, {"id": "NEW_U6_8", "name": "Synthetic U6 #8", "lat": 37.23161, "lon": -121.916539, "is_this": true}, {"id": "NEW_U6_2", "name": "Synthetic U6 #2", "lat": 37.236166, "lon": -121.925867, "is_this": false}, {"id": "NEW_U4_5", "name": "Synthetic U4 #5", "lat": 37.240872, "lon": -121.907896, "is_this": false}, {"id": "NEW_U4_1", "name": "Synthetic U4 #1", "lat": 37.240196, "lon": -121.902455, "is_this": false}];
+const MAP_LAT=37.23161;
+const MAP_LON=-121.916539;
+
+const map=L.map('mini-map',{attributionControl:false,zoomControl:true}).setView([MAP_LAT,MAP_LON],15);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',{
+  attribution:'&copy; OpenStreetMap / CartoDB'
+}).addTo(map);
+
+// Route polyline (dim) from nearby stops
+if(NEARBY.length>1){
+  const pts=NEARBY.map(s=>[s.lat,s.lon]);
+  L.polyline(pts,{color:'#6c9bff',weight:2,opacity:.35,dashArray:'4 4'}).addTo(map);
+}
+
+// Upstream/downstream stops
+NEARBY.forEach(s=>{
+  if(s.is_this){
+    L.circleMarker([s.lat,s.lon],{radius:10,color:'#fff',weight:2,fillColor:'#ffa94d',fillOpacity:.95})
+      .addTo(map).bindPopup('<b>'+s.name+'</b><br><i>This stop</i>');
+  }else{
+    L.circleMarker([s.lat,s.lon],{radius:5,color:'#fff',weight:1,fillColor:'#6c9bff',fillOpacity:.75})
+      .addTo(map).bindPopup(s.name);
+  }
+});
+</script>
+</body>
+</html>

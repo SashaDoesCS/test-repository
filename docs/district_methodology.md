@@ -2,7 +2,7 @@
 
 ## Overview
 
-The study area is divided into two parallel analysis zones, each with road-bounded districts:
+The study area is divided into two parallel analysis zones, each with road-bounded districts. Key concepts: [walk-shed](../outputs/cba_dashboard.html#gl-walk-shed) (the area reachable on foot from a transit stop), [ACS](../outputs/cba_dashboard.html#gl-acs) (U.S. Census Bureau's American Community Survey providing demographic data), [GTFS](../outputs/cba_dashboard.html#gl-gtfs) (transit feed specification).
 
 - **LGHS Zone (D1–D10):** 10 districts covering the Los Gatos High School service area (ZIP codes 95030, 95032, 95033). Includes the incorporated town (~11.6 sq mi) and ~100 sq mi of unincorporated mountain area.
 - **Union SD Zone (U1–U6):** 6 districts covering the Union School District (portions of ZIP codes 95032, 95124, 95118, 95120). ~7 sq mi across eastern Los Gatos, Cambrian, and north Almaden in San Jose.

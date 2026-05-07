@@ -398,6 +398,7 @@ def compute_reliability_benefits(
     params: dict,
     congestion_variability_pct: float = 0.30,
     pct_diverted_from_auto: float = 0.35,
+    pct_business_trips: float = 0.25,
 ) -> dict:
     """Compute reliability benefits from transit vs auto.
 
@@ -415,29 +416,39 @@ def compute_reliability_benefits(
         params: Benefit parameters.
         congestion_variability_pct: Auto travel time std dev as % of mean.
         pct_diverted_from_auto: Share diverted from auto.
+        pct_business_trips: Share of trips that are business (uses higher VOT).
+            Must match the share used in compute_travel_time_savings to keep
+            the two reliability/time benefits internally consistent.
 
     Returns:
         Dict with annual benefit.
 
     Standard: USDOT BCA Guidance 2024, Section 5.3 (Reliability).
-    Assumptions: Reliability valued at 80% of travel time value.
-        Auto variability at 30% of mean (PeMS SR-17 peak data).
+    Assumptions: Reliability valued at 80% of travel time value, using the
+        same purpose-weighted VOT as the travel-time category (USDOT 2024
+        Table 4) so cat 1 and cat 6 cannot disagree on trip purpose.
     """
     diverted = int(annual_boardings * pct_diverted_from_auto)
-    vot = params["vot_all"]
+
+    # Purpose-weighted VOT — same blend used in compute_travel_time_savings.
+    # USDOT BCA 2024 §5.3 values reliability at the same VOT as the trip.
+    vot_weighted = (pct_business_trips * params["vot_business"]
+                    + (1 - pct_business_trips) * params["vot_personal"])
 
     # Reliability benefit = value of reduced variability
     # = trips * (auto_variability_minutes / 60) * VOT * 0.80
     variability_min = avg_auto_trip_min * congestion_variability_pct
-    benefit_per_trip = (variability_min / 60) * vot * 0.80
+    benefit_per_trip = (variability_min / 60) * vot_weighted * 0.80
     total = diverted * benefit_per_trip
 
-    logger.info("Reliability benefits: $%.0f/yr", total)
+    logger.info("Reliability benefits: $%.0f/yr (VOT=$%.2f weighted)", total, vot_weighted)
     return {
         "category": "Reliability Benefits",
         "annual_benefit": round(total, 2),
         "variability_minutes": round(variability_min, 1),
         "per_trip_benefit": round(benefit_per_trip, 2),
+        "vot_weighted": round(vot_weighted, 2),
+        "pct_business_trips": pct_business_trips,
         "source": "USDOT BCA Guidance 2024, Section 5.3",
     }
 
@@ -580,6 +591,9 @@ def compute_all_benefits(
     avg_auto_trip_min: float = 22.0,
     avg_transit_trip_min: float = 35.0,
     avg_auto_trip_miles: float = 7.5,
+    pct_diverted_from_auto: float = 0.35,
+    pct_business_trips: float = 0.25,
+    induced_share: float = 0.20,
 ) -> list[dict]:
     """Compute all seven benefit categories.
 
@@ -591,6 +605,17 @@ def compute_all_benefits(
         avg_auto_trip_min: Average auto trip duration (minutes).
         avg_transit_trip_min: Average transit trip duration (minutes).
         avg_auto_trip_miles: Average auto trip distance (miles).
+        pct_diverted_from_auto: Share of riders diverted from auto. Threaded
+            into every category that depends on diversion (travel time, VOC,
+            crash, emissions, reliability) so a single override in the caller
+            propagates consistently. Audit fix: previously each sub-call had
+            its own default 0.35, with no propagation from the wrapper.
+        pct_business_trips: Share of trips that are employer-paid. Used by
+            travel-time AND reliability so the two categories agree on VOT.
+        induced_share: Share of boardings that are induced (TCRP 95). Must
+            obey induced_share + pct_diverted_from_auto <= 1.0 — the caller
+            is responsible for keeping that constraint; the model logs a
+            warning if violated.
 
     Returns:
         List of benefit dicts, one per category.
@@ -605,26 +630,40 @@ def compute_all_benefits(
     params = get_benefit_params(config)
     total_boardings = int(ridership[ridership.get("status", "active") == "active"]["annual_boardings"].sum()) if "status" in ridership.columns else int(ridership["annual_boardings"].sum())
 
+    if induced_share + pct_diverted_from_auto > 1.0:
+        logger.warning(
+            "induced_share (%.2f) + pct_diverted (%.2f) > 1.0 -- "
+            "induced and diverted populations may overlap; check scenario.",
+            induced_share, pct_diverted_from_auto,
+        )
+
     # Avoided VMT (needed for crash and emission calculations)
-    pct_diverted = 0.35
-    diverted_trips = int(total_boardings * pct_diverted)
+    diverted_trips = int(total_boardings * pct_diverted_from_auto)
     avoided_vmt = diverted_trips * avg_auto_trip_miles
 
     benefits = [
         compute_travel_time_savings(
-            total_boardings, avg_auto_trip_min, avg_transit_trip_min, params
+            total_boardings, avg_auto_trip_min, avg_transit_trip_min, params,
+            pct_diverted_from_auto=pct_diverted_from_auto,
+            pct_business_trips=pct_business_trips,
         ),
-        compute_voc_savings(total_boardings, avg_auto_trip_miles, params),
+        compute_voc_savings(
+            total_boardings, avg_auto_trip_miles, params,
+            pct_diverted_from_auto=pct_diverted_from_auto,
+        ),
         compute_crash_reduction_benefits(avoided_vmt, params),
         compute_emission_benefits(avoided_vmt, bus_revenue_miles, params),
         compute_health_benefits(total_boardings, params),
         compute_reliability_benefits(
-            total_boardings, avg_auto_trip_min, params
+            total_boardings, avg_auto_trip_min, params,
+            pct_diverted_from_auto=pct_diverted_from_auto,
+            pct_business_trips=pct_business_trips,
         ),
         compute_option_value(service_area_pop, params),
         # TCRP Report 95: induced demand (trips enabled by transit existence)
         compute_induced_demand_benefits(
             total_boardings, params,
+            induced_share=induced_share,
             avg_auto_trip_miles=avg_auto_trip_miles,
             avg_auto_trip_min=avg_auto_trip_min,
         ),

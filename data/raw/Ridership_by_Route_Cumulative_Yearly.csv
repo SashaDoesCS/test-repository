@@ -1,0 +1,3565 @@
+﻿Route,LineType,DayofWeek,Boardings,Year,FID2
+13,Community,Weekday,3023,2006,1
+14,Community,Weekday,0,2006,2
+16,Community,Weekday,1990,2006,3
+17,Community,Weekday,1488,2006,4
+18,Community,Weekday,0,2006,5
+19,Community,Weekday,1898,2006,6
+32,Community,Weekday,10393,2006,7
+34,Community,Weekday,3132,2006,8
+37,Community,Weekday,2559,2006,9
+39,Community,Weekday,5216,2006,10
+42,Community,Weekday,0,2006,11
+45,Community,Weekday,413,2006,12
+48,Community,Weekday,2577,2006,13
+49,Community,Weekday,3085,2006,14
+65,Community,Weekday,9108,2006,15
+88,Community,Weekday,5253,2006,16
+13,Community,Saturday,928,2006,17
+14,Community,Saturday,0,2006,18
+16,Community,Saturday,0,2006,19
+17,Community,Saturday,861,2006,20
+18,Community,Saturday,0,2006,21
+19,Community,Saturday,809,2006,22
+32,Community,Saturday,3188,2006,23
+34,Community,Saturday,1402,2006,24
+37,Community,Saturday,948,2006,25
+39,Community,Saturday,3256,2006,26
+42,Community,Saturday,0,2006,27
+45,Community,Saturday,273,2006,28
+48,Community,Saturday,1764,2006,29
+49,Community,Saturday,1824,2006,30
+65,Community,Saturday,3322,2006,31
+88,Community,Saturday,1075,2006,32
+13,Community,Sunday,942,2006,33
+14,Community,Sunday,0,2006,34
+16,Community,Sunday,0,2006,35
+17,Community,Sunday,698,2006,36
+18,Community,Sunday,0,2006,37
+19,Community,Sunday,716,2006,38
+32,Community,Sunday,0,2006,39
+34,Community,Sunday,0,2006,40
+37,Community,Sunday,0,2006,41
+39,Community,Sunday,3132,2006,42
+42,Community,Sunday,0,2006,43
+45,Community,Sunday,286,2006,44
+48,Community,Sunday,1251,2006,45
+49,Community,Sunday,1473,2006,46
+65,Community,Sunday,2363,2006,47
+88,Community,Sunday,0,2006,48
+22,Core,Weekday,189829,2006,49
+23,Core,Weekday,68323,2006,50
+323,Core,Sunday,0,2006,51
+522,Core,Sunday,0,2006,52
+101,Express,Weekday,1064,2006,53
+102,Express,Weekday,1349,2006,54
+103,Express,Weekday,1208,2006,55
+104,Express,Weekday,881,2006,56
+120,Express,Weekday,927,2006,57
+121,Express,Weekday,2034,2006,58
+122,Express,Weekday,385,2006,59
+140,Express,Weekday,1587,2006,60
+168,Express,Weekday,0,2006,61
+180,Express,Weekday,20003,2006,62
+181,Express,Weekday,0,2006,63
+182,Express,Weekday,983,2006,64
+185,Express,Weekday,0,2006,65
+101,Express,Saturday,0,2006,66
+102,Express,Saturday,0,2006,67
+103,Express,Saturday,0,2006,68
+104,Express,Saturday,0,2006,69
+120,Express,Saturday,0,2006,70
+121,Express,Saturday,0,2006,71
+122,Express,Saturday,0,2006,72
+140,Express,Saturday,0,2006,73
+168,Express,Saturday,0,2006,74
+180,Express,Saturday,13576,2006,75
+181,Express,Saturday,0,2006,76
+182,Express,Saturday,0,2006,77
+101,Express,Sunday,0,2006,78
+102,Express,Sunday,0,2006,79
+103,Express,Sunday,0,2006,80
+104,Express,Sunday,0,2006,81
+120,Express,Sunday,0,2006,82
+121,Express,Sunday,0,2006,83
+122,Express,Sunday,0,2006,84
+140,Express,Sunday,0,2006,85
+168,Express,Sunday,0,2006,86
+180,Express,Sunday,10629,2006,87
+181,Express,Sunday,0,2006,88
+182,Express,Sunday,0,2006,89
+304,Limited,Weekday,2619,2006,90
+321,Limited,Weekday,370,2006,91
+328,Limited,Weekday,318,2006,92
+330,Limited,Weekday,1323,2006,93
+304,Limited,Saturday,0,2006,94
+321,Limited,Saturday,0,2006,95
+328,Limited,Saturday,0,2006,96
+330,Limited,Saturday,0,2006,97
+304,Limited,Sunday,0,2006,98
+321,Limited,Sunday,0,2006,99
+328,Limited,Sunday,0,2006,100
+330,Limited,Sunday,0,2006,101
+10,Local,Weekday,16149,2006,102
+27,Local,Weekday,13634,2006,103
+31,Local,Weekday,16543,2006,104
+35,Local,Weekday,17014,2006,105
+40,Local,Weekday,6091,2006,106
+46,Local,Weekday,8947,2006,107
+47,Local,Weekday,12115,2006,108
+52,Local,Weekday,3746,2006,109
+53,Local,Weekday,7819,2006,110
+54,Local,Weekday,13538,2006,111
+57,Local,Weekday,14499,2006,112
+58,Local,Weekday,16018,2006,113
+63,Local,Weekday,10956,2006,114
+81,Local,Weekday,38761,2006,115
+82,Local,Weekday,18164,2006,116
+89,Local,Weekday,0,2006,117
+201,Local,Weekday,0,2006,118
+10,Local,Saturday,11472,2006,119
+27,Local,Saturday,7091,2006,120
+31,Local,Saturday,8090,2006,121
+35,Local,Saturday,11046,2006,122
+40,Local,Saturday,3706,2006,123
+46,Local,Saturday,2222,2006,124
+47,Local,Saturday,6959,2006,125
+52,Local,Saturday,0,2006,126
+53,Local,Saturday,0,2006,127
+54,Local,Saturday,5211,2006,128
+57,Local,Saturday,5794,2006,129
+58,Local,Saturday,5903,2006,130
+63,Local,Saturday,3588,2006,131
+81,Local,Saturday,16090,2006,132
+82,Local,Saturday,7819,2006,133
+89,Local,Saturday,0,2006,134
+201,Local,Saturday,0,2006,135
+10,Local,Sunday,12553,2006,136
+27,Local,Sunday,4450,2006,137
+31,Local,Sunday,6272,2006,138
+35,Local,Sunday,5350,2006,139
+40,Local,Sunday,2313,2006,140
+46,Local,Sunday,1581,2006,141
+47,Local,Sunday,4206,2006,142
+52,Local,Sunday,0,2006,143
+53,Local,Sunday,0,2006,144
+54,Local,Sunday,3772,2006,145
+57,Local,Sunday,4347,2006,146
+58,Local,Sunday,4594,2006,147
+63,Local,Sunday,2610,2006,148
+81,Local,Sunday,12760,2006,149
+82,Local,Sunday,6188,2006,150
+25,Core,Weekday,78045,2006,151
+26,Core,Weekday,44323,2006,152
+55,Core,Weekday,30051,2006,153
+60,Core,Weekday,27780,2006,154
+61,Core,Weekday,0,2006,155
+62,Core,Weekday,33511,2006,156
+64,Core,Weekday,34338,2006,157
+66,Core,Weekday,61516,2006,158
+68,Core,Weekday,56003,2006,159
+70,Core,Weekday,69343,2006,160
+71,Core,Weekday,22553,2006,161
+72,Core,Weekday,35594,2006,162
+73,Core,Weekday,24616,2006,163
+77,Core,Weekday,21604,2006,164
+323,Core,Weekday,0,2006,165
+522,Core,Weekday,65502,2006,166
+22,Core,Saturday,129402,2006,167
+23,Core,Saturday,44009,2006,168
+25,Core,Saturday,48704,2006,169
+26,Core,Saturday,25696,2006,170
+55,Core,Saturday,9298,2006,171
+60,Core,Saturday,15130,2006,172
+61,Core,Saturday,0,2006,173
+62,Core,Saturday,16512,2006,174
+64,Core,Saturday,23533,2006,175
+66,Core,Saturday,34781,2006,176
+68,Core,Saturday,35175,2006,177
+70,Core,Saturday,42583,2006,178
+71,Core,Saturday,12511,2006,179
+72,Core,Saturday,15956,2006,180
+73,Core,Saturday,9541,2006,181
+77,Core,Saturday,13667,2006,182
+323,Core,Saturday,0,2006,183
+522,Core,Saturday,43652,2006,184
+22,Core,Sunday,128411,2006,185
+23,Core,Sunday,34628,2006,186
+25,Core,Sunday,38011,2006,187
+26,Core,Sunday,21526,2006,188
+55,Core,Sunday,6602,2006,189
+60,Core,Sunday,11563,2006,190
+61,Core,Sunday,0,2006,191
+62,Core,Sunday,13008,2006,192
+64,Core,Sunday,22596,2006,193
+66,Core,Sunday,29115,2006,194
+68,Core,Sunday,29785,2006,195
+70,Core,Sunday,34160,2006,196
+71,Core,Sunday,8511,2006,197
+72,Core,Sunday,13837,2006,198
+73,Core,Sunday,5936,2006,199
+77,Core,Sunday,11699,2006,200
+60,Core,Weekday,28196,2007,201
+17,Community,Weekday,1135,2007,202
+61,Core,Weekday,0,2007,203
+62,Core,Weekday,31092,2007,204
+64,Core,Weekday,32250,2007,205
+66,Core,Weekday,60606,2007,206
+68,Core,Weekday,57978,2007,207
+70,Core,Weekday,67930,2007,208
+71,Core,Weekday,21974,2007,209
+72,Core,Weekday,34745,2007,210
+73,Core,Weekday,24387,2007,211
+77,Core,Weekday,21311,2007,212
+323,Core,Weekday,0,2007,213
+522,Core,Weekday,71941,2007,214
+22,Core,Saturday,140950,2007,215
+23,Core,Saturday,45164,2007,216
+25,Core,Saturday,48547,2007,217
+26,Core,Saturday,27913,2007,218
+55,Core,Saturday,9798,2007,219
+60,Core,Saturday,16012,2007,220
+61,Core,Saturday,0,2007,221
+62,Core,Saturday,16221,2007,222
+64,Core,Saturday,23258,2007,223
+66,Core,Saturday,37119,2007,224
+68,Core,Saturday,37849,2007,225
+70,Core,Saturday,42663,2007,226
+71,Core,Saturday,12580,2007,227
+72,Core,Saturday,16722,2007,228
+73,Core,Saturday,9700,2007,229
+77,Core,Saturday,14250,2007,230
+323,Core,Saturday,0,2007,231
+522,Core,Saturday,46223,2007,232
+22,Core,Sunday,141667,2007,233
+23,Core,Sunday,34435,2007,234
+25,Core,Sunday,39096,2007,235
+26,Core,Sunday,24210,2007,236
+55,Core,Sunday,6677,2007,237
+60,Core,Sunday,13023,2007,238
+61,Core,Sunday,0,2007,239
+62,Core,Sunday,12870,2007,240
+64,Core,Sunday,24122,2007,241
+66,Core,Sunday,31153,2007,242
+68,Core,Sunday,32867,2007,243
+70,Core,Sunday,35463,2007,244
+71,Core,Sunday,9238,2007,245
+72,Core,Sunday,14489,2007,246
+73,Core,Sunday,6317,2007,247
+77,Core,Sunday,12474,2007,248
+323,Core,Sunday,0,2007,249
+522,Core,Sunday,0,2007,250
+101,Express,Weekday,1140,2007,251
+18,Community,Weekday,984,2007,252
+19,Community,Weekday,1884,2007,253
+32,Community,Weekday,10651,2007,254
+34,Community,Weekday,3185,2007,255
+37,Community,Weekday,2470,2007,256
+39,Community,Weekday,5043,2007,257
+42,Community,Weekday,0,2007,258
+45,Community,Weekday,0,2007,259
+48,Community,Weekday,5194,2007,260
+49,Community,Weekday,6296,2007,261
+65,Community,Weekday,8803,2007,262
+88,Community,Weekday,5644,2007,263
+13,Community,Saturday,1000,2007,264
+14,Community,Saturday,286,2007,265
+16,Community,Saturday,0,2007,266
+17,Community,Saturday,686,2007,267
+18,Community,Saturday,56,2007,268
+19,Community,Saturday,819,2007,269
+32,Community,Saturday,3306,2007,270
+34,Community,Saturday,1583,2007,271
+37,Community,Saturday,890,2007,272
+39,Community,Saturday,3164,2007,273
+42,Community,Saturday,0,2007,274
+45,Community,Saturday,0,2007,275
+48,Community,Saturday,3856,2007,276
+49,Community,Saturday,4119,2007,277
+65,Community,Saturday,2961,2007,278
+88,Community,Saturday,1211,2007,279
+13,Community,Sunday,825,2007,280
+14,Community,Sunday,254,2007,281
+16,Community,Sunday,0,2007,282
+17,Community,Sunday,632,2007,283
+18,Community,Sunday,50,2007,284
+19,Community,Sunday,762,2007,285
+32,Community,Sunday,0,2007,286
+34,Community,Sunday,0,2007,287
+37,Community,Sunday,0,2007,288
+39,Community,Sunday,2745,2007,289
+42,Community,Sunday,0,2007,290
+45,Community,Sunday,0,2007,291
+48,Community,Sunday,3395,2007,292
+49,Community,Sunday,3718,2007,293
+65,Community,Sunday,2360,2007,294
+88,Community,Sunday,0,2007,295
+22,Core,Weekday,199579,2007,296
+23,Core,Weekday,68642,2007,297
+25,Core,Weekday,76850,2007,298
+67,Out of Service,Saturday,0,2006,299
+26,Core,Weekday,46481,2007,300
+55,Core,Weekday,29138,2007,301
+76,Out of Service,Saturday,0,2006,302
+85,Out of Service,Saturday,0,2006,303
+141,Out of Service,Saturday,1505,2006,304
+202,Out of Service,Saturday,0,2006,305
+203,Out of Service,Saturday,0,2006,306
+231,Out of Service,Saturday,0,2006,307
+251,Out of Service,Saturday,0,2006,308
+252,Out of Service,Saturday,0,2006,309
+253,Out of Service,Saturday,0,2006,310
+254,Out of Service,Saturday,0,2006,311
+255,Out of Service,Saturday,0,2006,312
+256,Out of Service,Saturday,0,2006,313
+305,Out of Service,Saturday,0,2006,314
+903,Out of Service,Saturday,0,2006,315
+920,Out of Service,Saturday,0,2006,316
+11,Out of Service,Sunday,0,2006,317
+12,Out of Service,Sunday,11211,2006,318
+15,Out of Service,Sunday,0,2006,319
+33,Out of Service,Sunday,2265,2006,320
+36,Out of Service,Sunday,8906,2006,321
+38,Out of Service,Sunday,0,2006,322
+41,Out of Service,Sunday,0,2006,323
+43,Out of Service,Sunday,0,2006,324
+44,Out of Service,Sunday,0,2006,325
+51,Out of Service,Sunday,0,2006,326
+59,Out of Service,Sunday,0,2006,327
+67,Out of Service,Sunday,0,2006,328
+76,Out of Service,Sunday,0,2006,329
+85,Out of Service,Sunday,0,2006,330
+141,Out of Service,Sunday,425,2006,331
+202,Out of Service,Sunday,0,2006,332
+203,Out of Service,Sunday,0,2006,333
+231,Out of Service,Sunday,0,2006,334
+251,Out of Service,Sunday,0,2006,335
+252,Out of Service,Sunday,0,2006,336
+253,Out of Service,Sunday,0,2006,337
+254,Out of Service,Sunday,0,2006,338
+255,Out of Service,Sunday,0,2006,339
+256,Out of Service,Sunday,0,2006,340
+261,Out of Service,Sunday,0,2006,341
+305,Out of Service,Sunday,0,2006,342
+903,Out of Service,Sunday,0,2006,343
+920,Out of Service,Sunday,0,2006,344
+200,Other,Weekday,0,2006,345
+200,Other,Saturday,0,2006,346
+200,Other,Sunday,0,2006,347
+13,Community,Weekday,2798,2007,348
+14,Community,Weekday,389,2007,349
+16,Community,Weekday,2049,2007,350
+89,Local,Sunday,0,2006,351
+201,Local,Sunday,0,2006,352
+900,LRT,Weekday,0,2006,353
+901,LRT,Weekday,0,2006,354
+902,LRT,Weekday,0,2006,355
+900,LRT,Saturday,0,2006,356
+901,LRT,Saturday,0,2006,357
+902,LRT,Saturday,0,2006,358
+900,LRT,Sunday,0,2006,359
+901,LRT,Sunday,0,2006,360
+902,LRT,Sunday,0,2006,361
+11,Out of Service,Weekday,0,2006,362
+12,Out of Service,Weekday,0,2006,363
+15,Out of Service,Weekday,568,2006,364
+33,Out of Service,Weekday,4317,2006,365
+36,Out of Service,Weekday,8286,2006,366
+38,Out of Service,Weekday,2309,2006,367
+41,Out of Service,Weekday,0,2006,368
+43,Out of Service,Weekday,0,2006,369
+44,Out of Service,Weekday,466,2006,370
+51,Out of Service,Weekday,10619,2006,371
+59,Out of Service,Weekday,4159,2006,372
+67,Out of Service,Weekday,1152,2006,373
+76,Out of Service,Weekday,678,2006,374
+85,Out of Service,Weekday,13835,2006,375
+141,Out of Service,Weekday,0,2006,376
+183,Out of Service,Weekday,0,2006,377
+202,Out of Service,Weekday,0,2006,378
+203,Out of Service,Weekday,0,2006,379
+231,Out of Service,Weekday,0,2006,380
+251,Out of Service,Weekday,0,2006,381
+252,Out of Service,Weekday,0,2006,382
+253,Out of Service,Weekday,0,2006,383
+254,Out of Service,Weekday,0,2006,384
+255,Out of Service,Weekday,0,2006,385
+256,Out of Service,Weekday,0,2006,386
+261,Out of Service,Weekday,0,2006,387
+305,Out of Service,Weekday,1520,2006,388
+920,Out of Service,Weekday,0,2006,389
+11,Out of Service,Saturday,0,2006,390
+12,Out of Service,Saturday,10773,2006,391
+15,Out of Service,Saturday,0,2006,392
+33,Out of Service,Saturday,3421,2006,393
+36,Out of Service,Saturday,8599,2006,394
+38,Out of Service,Saturday,0,2006,395
+41,Out of Service,Saturday,0,2006,396
+43,Out of Service,Saturday,0,2006,397
+44,Out of Service,Saturday,0,2006,398
+51,Out of Service,Saturday,1745,2006,399
+59,Out of Service,Saturday,0,2006,400
+102,Express,Weekday,1278,2007,401
+103,Express,Weekday,1251,2007,402
+104,Express,Weekday,1061,2007,403
+120,Express,Weekday,893,2007,404
+121,Express,Weekday,2144,2007,405
+122,Express,Weekday,397,2007,406
+140,Express,Weekday,1903,2007,407
+168,Express,Weekday,0,2007,408
+64,Core,Weekday,42750,2008,409
+180,Express,Weekday,21067,2007,410
+181,Express,Weekday,0,2007,411
+182,Express,Weekday,1075,2007,412
+185,Express,Weekday,0,2007,413
+66,Core,Weekday,72514,2008,414
+101,Express,Saturday,0,2007,415
+68,Core,Weekday,63155,2008,416
+31,Local,Weekday,23391,2007,417
+102,Express,Saturday,0,2007,418
+70,Core,Weekday,70710,2008,419
+35,Local,Weekday,16993,2007,420
+103,Express,Saturday,0,2007,421
+71,Core,Weekday,25874,2008,422
+40,Local,Weekday,8218,2007,423
+104,Express,Saturday,0,2007,424
+72,Core,Weekday,31235,2008,425
+46,Local,Weekday,8954,2007,426
+120,Express,Saturday,0,2007,427
+73,Core,Weekday,29304,2008,428
+47,Local,Weekday,12042,2007,429
+121,Express,Saturday,0,2007,430
+77,Core,Weekday,29529,2008,431
+52,Local,Weekday,4067,2007,432
+122,Express,Saturday,0,2007,433
+323,Core,Weekday,0,2008,434
+53,Local,Weekday,8118,2007,435
+140,Express,Saturday,0,2007,436
+522,Core,Weekday,76177,2008,437
+54,Local,Weekday,14427,2007,438
+168,Express,Saturday,0,2007,439
+22,Core,Saturday,144047,2008,440
+57,Local,Weekday,14959,2007,441
+180,Express,Saturday,14661,2007,442
+23,Core,Saturday,64275,2008,443
+58,Local,Weekday,17381,2007,444
+181,Express,Saturday,0,2007,445
+25,Core,Saturday,52752,2008,446
+63,Local,Weekday,10862,2007,447
+182,Express,Saturday,0,2007,448
+26,Core,Saturday,31754,2008,449
+81,Local,Weekday,40852,2007,450
+101,Express,Sunday,0,2007,451
+55,Core,Saturday,12105,2008,452
+82,Local,Weekday,17639,2007,453
+102,Express,Sunday,0,2007,454
+60,Core,Saturday,16262,2008,455
+89,Local,Weekday,0,2007,456
+103,Express,Sunday,0,2007,457
+61,Core,Saturday,11651,2008,458
+201,Local,Weekday,4096,2007,459
+104,Express,Sunday,0,2007,460
+62,Core,Saturday,15260,2008,461
+10,Local,Saturday,12130,2007,462
+120,Express,Sunday,0,2007,463
+64,Core,Saturday,23122,2008,464
+27,Local,Saturday,7124,2007,465
+121,Express,Sunday,0,2007,466
+66,Core,Saturday,39728,2008,467
+31,Local,Saturday,11178,2007,468
+122,Express,Sunday,0,2007,469
+68,Core,Saturday,41258,2008,470
+35,Local,Saturday,11947,2007,471
+140,Express,Sunday,0,2007,472
+70,Core,Saturday,45463,2008,473
+40,Local,Saturday,4249,2007,474
+168,Express,Sunday,0,2007,475
+71,Core,Saturday,13777,2008,476
+46,Local,Saturday,2528,2007,477
+180,Express,Sunday,11932,2007,478
+72,Core,Saturday,14870,2008,479
+47,Local,Saturday,7083,2007,480
+181,Express,Sunday,0,2007,481
+73,Core,Saturday,12584,2008,482
+52,Local,Saturday,0,2007,483
+182,Express,Sunday,0,2007,484
+304,Limited,Weekday,2326,2007,485
+321,Limited,Weekday,384,2007,486
+328,Limited,Weekday,284,2007,487
+330,Limited,Weekday,1578,2007,488
+304,Limited,Saturday,0,2007,489
+321,Limited,Saturday,0,2007,490
+328,Limited,Saturday,0,2007,491
+330,Limited,Saturday,0,2007,492
+304,Limited,Sunday,0,2007,493
+321,Limited,Sunday,0,2007,494
+328,Limited,Sunday,0,2007,495
+330,Limited,Sunday,0,2007,496
+10,Local,Weekday,16000,2007,497
+27,Local,Weekday,14120,2007,498
+77,Core,Saturday,17684,2008,499
+323,Core,Saturday,0,2008,500
+522,Core,Saturday,49414,2008,501
+22,Core,Sunday,141356,2008,502
+23,Core,Sunday,54212,2008,503
+25,Core,Sunday,44058,2008,504
+26,Core,Sunday,26277,2008,505
+55,Core,Sunday,8494,2008,506
+60,Core,Sunday,13283,2008,507
+61,Core,Sunday,9101,2008,508
+62,Core,Sunday,12935,2008,509
+64,Core,Sunday,16772,2008,510
+66,Core,Sunday,32058,2008,511
+68,Core,Sunday,34541,2008,512
+70,Core,Sunday,36240,2008,513
+71,Core,Sunday,11158,2008,514
+72,Core,Sunday,12578,2008,515
+73,Core,Sunday,10038,2008,516
+77,Core,Sunday,12906,2008,517
+323,Core,Sunday,0,2008,518
+522,Core,Sunday,0,2008,519
+101,Express,Weekday,943,2008,520
+102,Express,Weekday,1695,2008,521
+103,Express,Weekday,1893,2008,522
+53,Local,Saturday,0,2007,523
+104,Express,Weekday,1194,2008,524
+32,Community,Weekday,11402,2008,525
+54,Local,Saturday,6323,2007,526
+57,Local,Saturday,5879,2007,527
+901,LRT,Weekday,0,2007,528
+34,Community,Weekday,1248,2008,529
+58,Local,Saturday,6777,2007,530
+37,Community,Weekday,8421,2008,531
+902,LRT,Weekday,0,2007,532
+63,Local,Saturday,3693,2007,533
+120,Express,Weekday,1753,2008,534
+46,Local,Weekday,10464,2008,535
+39,Community,Weekday,4798,2008,536
+900,LRT,Saturday,0,2007,537
+81,Local,Saturday,16630,2007,538
+121,Express,Weekday,3344,2008,539
+47,Local,Weekday,11447,2008,540
+42,Community,Weekday,3886,2008,541
+901,LRT,Saturday,0,2007,542
+82,Local,Saturday,7884,2007,543
+122,Express,Weekday,604,2008,544
+52,Local,Weekday,4123,2008,545
+45,Community,Weekday,3822,2008,546
+902,LRT,Saturday,0,2007,547
+89,Local,Saturday,0,2007,548
+140,Express,Weekday,1774,2008,549
+53,Local,Weekday,10835,2008,550
+48,Community,Weekday,5099,2008,551
+900,LRT,Sunday,0,2007,552
+201,Local,Saturday,0,2007,553
+168,Express,Weekday,3012,2008,554
+54,Local,Weekday,13221,2008,555
+49,Community,Weekday,4879,2008,556
+901,LRT,Sunday,0,2007,557
+10,Local,Sunday,13649,2007,558
+180,Express,Weekday,18995,2008,559
+57,Local,Weekday,20893,2008,560
+65,Community,Weekday,5493,2008,561
+902,LRT,Sunday,0,2007,562
+27,Local,Sunday,4711,2007,563
+181,Express,Weekday,7353,2008,564
+58,Local,Weekday,10416,2008,565
+88,Community,Weekday,3926,2008,566
+11,Out of Service,Weekday,0,2007,567
+31,Local,Sunday,8667,2007,568
+182,Express,Weekday,933,2008,569
+63,Local,Weekday,12265,2008,570
+13,Community,Saturday,906,2008,571
+12,Out of Service,Weekday,0,2007,572
+35,Local,Sunday,5706,2007,573
+185,Express,Weekday,0,2008,574
+81,Local,Weekday,15139,2008,575
+14,Community,Saturday,993,2008,576
+15,Out of Service,Weekday,571,2007,577
+40,Local,Sunday,2835,2007,578
+101,Express,Saturday,0,2008,579
+82,Local,Weekday,18702,2008,580
+141,Out of Service,Saturday,0,2007,581
+16,Community,Saturday,0,2008,582
+33,Out of Service,Weekday,4059,2007,583
+46,Local,Sunday,1488,2007,584
+102,Express,Saturday,0,2008,585
+89,Local,Weekday,2336,2008,586
+202,Out of Service,Saturday,1131,2007,587
+203,Out of Service,Saturday,0,2007,588
+231,Out of Service,Saturday,0,2007,589
+251,Out of Service,Saturday,0,2007,590
+252,Out of Service,Saturday,0,2007,591
+253,Out of Service,Saturday,0,2007,592
+254,Out of Service,Saturday,0,2007,593
+255,Out of Service,Saturday,0,2007,594
+256,Out of Service,Saturday,0,2007,595
+305,Out of Service,Saturday,0,2007,596
+903,Out of Service,Saturday,0,2007,597
+920,Out of Service,Saturday,0,2007,598
+11,Out of Service,Sunday,0,2007,599
+12,Out of Service,Sunday,11424,2007,600
+15,Out of Service,Sunday,0,2007,601
+33,Out of Service,Sunday,2478,2007,602
+36,Out of Service,Sunday,9279,2007,603
+38,Out of Service,Sunday,0,2007,604
+41,Out of Service,Sunday,0,2007,605
+43,Out of Service,Sunday,0,2007,606
+44,Out of Service,Sunday,0,2007,607
+51,Out of Service,Sunday,0,2007,608
+59,Out of Service,Sunday,0,2007,609
+67,Out of Service,Sunday,0,2007,610
+76,Out of Service,Sunday,0,2007,611
+85,Out of Service,Sunday,0,2007,612
+141,Out of Service,Sunday,0,2007,613
+202,Out of Service,Sunday,999,2007,614
+203,Out of Service,Sunday,0,2007,615
+231,Out of Service,Sunday,0,2007,616
+251,Out of Service,Sunday,0,2007,617
+252,Out of Service,Sunday,0,2007,618
+253,Out of Service,Sunday,0,2007,619
+254,Out of Service,Sunday,0,2007,620
+255,Out of Service,Sunday,0,2007,621
+256,Out of Service,Sunday,0,2007,622
+261,Out of Service,Sunday,0,2007,623
+305,Out of Service,Sunday,0,2007,624
+903,Out of Service,Sunday,0,2007,625
+920,Out of Service,Sunday,0,2007,626
+200,Other,Weekday,0,2007,627
+200,Other,Saturday,0,2007,628
+200,Other,Sunday,0,2007,629
+13,Community,Weekday,3409,2008,630
+14,Community,Weekday,1153,2008,631
+16,Community,Weekday,2777,2008,632
+17,Community,Weekday,1405,2008,633
+18,Community,Weekday,2554,2008,634
+19,Community,Weekday,3077,2008,635
+17,Community,Saturday,739,2008,636
+36,Out of Service,Weekday,7849,2007,637
+201,Local,Weekday,12047,2008,638
+103,Express,Saturday,0,2008,639
+47,Local,Sunday,4281,2007,640
+18,Community,Saturday,315,2008,641
+38,Out of Service,Weekday,2542,2007,642
+10,Local,Saturday,9765,2008,643
+104,Express,Saturday,0,2008,644
+52,Local,Sunday,0,2007,645
+19,Community,Saturday,1154,2008,646
+41,Out of Service,Weekday,0,2007,647
+27,Local,Saturday,8568,2008,648
+120,Express,Saturday,0,2008,649
+53,Local,Sunday,0,2007,650
+32,Community,Saturday,3471,2008,651
+43,Out of Service,Weekday,0,2007,652
+31,Local,Saturday,3844,2008,653
+121,Express,Saturday,0,2008,654
+54,Local,Sunday,4211,2007,655
+34,Community,Saturday,56,2008,656
+44,Out of Service,Weekday,463,2007,657
+35,Local,Saturday,9865,2008,658
+122,Express,Saturday,0,2008,659
+57,Local,Sunday,4886,2007,660
+37,Community,Saturday,23,2008,661
+51,Out of Service,Weekday,11010,2007,662
+40,Local,Saturday,4787,2008,663
+140,Express,Saturday,0,2008,664
+58,Local,Sunday,5253,2007,665
+39,Community,Saturday,3147,2008,666
+59,Out of Service,Weekday,5301,2007,667
+46,Local,Saturday,2236,2008,668
+168,Express,Saturday,0,2008,669
+63,Local,Sunday,2745,2007,670
+42,Community,Saturday,2738,2008,671
+67,Out of Service,Weekday,1330,2007,672
+47,Local,Saturday,5920,2008,673
+180,Express,Saturday,16569,2008,674
+81,Local,Sunday,13799,2007,675
+82,Local,Sunday,6554,2007,676
+89,Local,Sunday,0,2007,677
+201,Local,Sunday,0,2007,678
+900,LRT,Weekday,0,2007,679
+181,Express,Saturday,0,2008,680
+182,Express,Saturday,0,2008,681
+101,Express,Sunday,0,2008,682
+102,Express,Sunday,0,2008,683
+103,Express,Sunday,0,2008,684
+104,Express,Sunday,0,2008,685
+120,Express,Sunday,0,2008,686
+121,Express,Sunday,0,2008,687
+122,Express,Sunday,0,2008,688
+140,Express,Sunday,0,2008,689
+168,Express,Sunday,0,2008,690
+180,Express,Sunday,12309,2008,691
+181,Express,Sunday,0,2008,692
+182,Express,Sunday,0,2008,693
+304,Limited,Weekday,2852,2008,694
+321,Limited,Weekday,157,2008,695
+328,Limited,Weekday,423,2008,696
+330,Limited,Weekday,2122,2008,697
+304,Limited,Saturday,0,2008,698
+321,Limited,Saturday,0,2008,699
+328,Limited,Saturday,0,2008,700
+330,Limited,Saturday,0,2008,701
+304,Limited,Sunday,0,2008,702
+321,Limited,Sunday,0,2008,703
+328,Limited,Sunday,0,2008,704
+330,Limited,Sunday,0,2008,705
+10,Local,Weekday,14262,2008,706
+27,Local,Weekday,12882,2008,707
+31,Local,Weekday,10632,2008,708
+35,Local,Weekday,17655,2008,709
+40,Local,Weekday,14639,2008,710
+76,Out of Service,Weekday,649,2007,711
+85,Out of Service,Weekday,12978,2007,712
+141,Out of Service,Weekday,0,2007,713
+183,Out of Service,Weekday,0,2007,714
+202,Out of Service,Weekday,652,2007,715
+203,Out of Service,Weekday,427,2007,716
+231,Out of Service,Weekday,0,2007,717
+251,Out of Service,Weekday,427,2007,718
+252,Out of Service,Weekday,0,2007,719
+253,Out of Service,Weekday,0,2007,720
+254,Out of Service,Weekday,0,2007,721
+255,Out of Service,Weekday,0,2007,722
+256,Out of Service,Weekday,0,2007,723
+261,Out of Service,Weekday,0,2007,724
+305,Out of Service,Weekday,1455,2007,725
+920,Out of Service,Weekday,0,2007,726
+11,Out of Service,Saturday,0,2007,727
+12,Out of Service,Saturday,10089,2007,728
+15,Out of Service,Saturday,0,2007,729
+33,Out of Service,Saturday,3442,2007,730
+36,Out of Service,Saturday,8648,2007,731
+38,Out of Service,Saturday,0,2007,732
+41,Out of Service,Saturday,0,2007,733
+43,Out of Service,Saturday,0,2007,734
+44,Out of Service,Saturday,0,2007,735
+51,Out of Service,Saturday,1782,2007,736
+52,Local,Saturday,0,2008,737
+59,Out of Service,Saturday,0,2007,738
+53,Local,Saturday,0,2008,739
+67,Out of Service,Saturday,0,2007,740
+54,Local,Saturday,6080,2008,741
+76,Out of Service,Saturday,0,2007,742
+57,Local,Saturday,10259,2008,743
+85,Out of Service,Saturday,0,2007,744
+58,Local,Saturday,202,2008,745
+63,Local,Saturday,5589,2008,746
+81,Local,Saturday,4215,2008,747
+82,Local,Saturday,8899,2008,748
+89,Local,Saturday,0,2008,749
+201,Local,Saturday,0,2008,750
+10,Local,Sunday,11116,2008,751
+27,Local,Sunday,4722,2008,752
+31,Local,Sunday,2007,2008,753
+35,Local,Sunday,5457,2008,754
+40,Local,Sunday,2145,2008,755
+46,Local,Sunday,1678,2008,756
+47,Local,Sunday,4236,2008,757
+52,Local,Sunday,0,2008,758
+53,Local,Sunday,0,2008,759
+54,Local,Sunday,3334,2008,760
+57,Local,Sunday,7886,2008,761
+58,Local,Sunday,377,2008,762
+63,Local,Sunday,3475,2008,763
+81,Local,Sunday,2502,2008,764
+82,Local,Sunday,7321,2008,765
+89,Local,Sunday,0,2008,766
+201,Local,Sunday,0,2008,767
+900,LRT,Weekday,0,2008,768
+901,LRT,Weekday,0,2008,769
+902,LRT,Weekday,0,2008,770
+900,LRT,Saturday,0,2008,771
+45,Community,Saturday,2130,2008,772
+48,Community,Saturday,2947,2008,773
+49,Community,Saturday,2464,2008,774
+65,Community,Saturday,92,2008,775
+88,Community,Saturday,75,2008,776
+13,Community,Sunday,632,2008,777
+14,Community,Sunday,670,2008,778
+16,Community,Sunday,0,2008,779
+17,Community,Sunday,405,2008,780
+18,Community,Sunday,187,2008,781
+19,Community,Sunday,868,2008,782
+32,Community,Sunday,0,2008,783
+34,Community,Sunday,0,2008,784
+37,Community,Sunday,0,2008,785
+39,Community,Sunday,2169,2008,786
+42,Community,Sunday,1377,2008,787
+45,Community,Sunday,1087,2008,788
+48,Community,Sunday,1538,2008,789
+49,Community,Sunday,1819,2008,790
+65,Community,Sunday,116,2008,791
+88,Community,Sunday,0,2008,792
+22,Core,Weekday,195901,2008,793
+23,Core,Weekday,97823,2008,794
+25,Core,Weekday,86186,2008,795
+26,Core,Weekday,52906,2008,796
+55,Core,Weekday,33519,2008,797
+60,Core,Weekday,31097,2008,798
+61,Core,Weekday,23439,2008,799
+62,Core,Weekday,22907,2008,800
+140,Express,Weekday,1751,2009,801
+168,Express,Weekday,2843,2009,802
+180,Express,Weekday,13209,2009,803
+181,Express,Weekday,11435,2009,804
+182,Express,Weekday,816,2009,805
+185,Express,Weekday,0,2009,806
+101,Express,Saturday,0,2009,807
+102,Express,Saturday,0,2009,808
+103,Express,Saturday,0,2009,809
+104,Express,Saturday,0,2009,810
+120,Express,Saturday,0,2009,811
+121,Express,Saturday,0,2009,812
+122,Express,Saturday,0,2009,813
+140,Express,Saturday,0,2009,814
+168,Express,Saturday,0,2009,815
+180,Express,Saturday,15703,2009,816
+181,Express,Saturday,0,2009,817
+182,Express,Saturday,0,2009,818
+101,Express,Sunday,0,2009,819
+102,Express,Sunday,0,2009,820
+103,Express,Sunday,0,2009,821
+104,Express,Sunday,0,2009,822
+120,Express,Sunday,0,2009,823
+121,Express,Sunday,0,2009,824
+122,Express,Sunday,0,2009,825
+140,Express,Sunday,0,2009,826
+53,Local,Weekday,10190,2009,827
+168,Express,Sunday,0,2009,828
+180,Express,Sunday,13245,2009,829
+181,Express,Sunday,0,2009,830
+54,Local,Weekday,12607,2009,831
+231,Out of Service,Saturday,0,2008,832
+182,Express,Sunday,0,2009,833
+39,Community,Weekday,4826,2009,834
+57,Local,Weekday,19104,2009,835
+251,Out of Service,Saturday,0,2008,836
+304,Limited,Weekday,2366,2009,837
+42,Community,Weekday,3389,2009,838
+58,Local,Weekday,8471,2009,839
+252,Out of Service,Saturday,0,2008,840
+321,Limited,Weekday,190,2009,841
+45,Community,Weekday,3257,2009,842
+63,Local,Weekday,11740,2009,843
+253,Out of Service,Saturday,0,2008,844
+328,Limited,Weekday,342,2009,845
+48,Community,Weekday,5152,2009,846
+81,Local,Weekday,13873,2009,847
+254,Out of Service,Saturday,0,2008,848
+330,Limited,Weekday,1956,2009,849
+49,Community,Weekday,4243,2009,850
+82,Local,Weekday,19344,2009,851
+255,Out of Service,Saturday,0,2008,852
+304,Limited,Saturday,0,2009,853
+65,Community,Weekday,4738,2009,854
+89,Local,Weekday,1825,2009,855
+256,Out of Service,Saturday,0,2008,856
+321,Limited,Saturday,0,2009,857
+88,Community,Weekday,3857,2009,858
+201,Local,Weekday,11608,2009,859
+305,Out of Service,Saturday,0,2008,860
+328,Limited,Saturday,0,2009,861
+13,Community,Saturday,920,2009,862
+10,Local,Saturday,9610,2009,863
+903,Out of Service,Saturday,0,2008,864
+330,Limited,Saturday,0,2009,865
+304,Limited,Sunday,0,2009,866
+321,Limited,Sunday,0,2009,867
+328,Limited,Sunday,0,2009,868
+330,Limited,Sunday,0,2009,869
+10,Local,Weekday,13606,2009,870
+27,Local,Weekday,12432,2009,871
+31,Local,Weekday,11647,2009,872
+35,Local,Weekday,14796,2009,873
+40,Local,Weekday,13714,2009,874
+46,Local,Weekday,10822,2009,875
+47,Local,Weekday,10277,2009,876
+52,Local,Weekday,4673,2009,877
+901,LRT,Sunday,0,2009,878
+920,Out of Service,Saturday,0,2008,879
+11,Out of Service,Sunday,0,2008,880
+12,Out of Service,Sunday,11618,2008,881
+15,Out of Service,Sunday,0,2008,882
+33,Out of Service,Sunday,2154,2008,883
+36,Out of Service,Sunday,404,2008,884
+38,Out of Service,Sunday,0,2008,885
+41,Out of Service,Sunday,40,2008,886
+43,Out of Service,Sunday,1253,2008,887
+44,Out of Service,Sunday,0,2008,888
+51,Out of Service,Sunday,0,2008,889
+59,Out of Service,Sunday,0,2008,890
+67,Out of Service,Sunday,0,2008,891
+76,Out of Service,Sunday,0,2008,892
+85,Out of Service,Sunday,0,2008,893
+141,Out of Service,Sunday,0,2008,894
+202,Out of Service,Sunday,1750,2008,895
+203,Out of Service,Sunday,0,2008,896
+231,Out of Service,Sunday,0,2008,897
+251,Out of Service,Sunday,0,2008,898
+252,Out of Service,Sunday,0,2008,899
+253,Out of Service,Sunday,0,2008,900
+254,Out of Service,Sunday,0,2008,901
+255,Out of Service,Sunday,0,2008,902
+256,Out of Service,Sunday,0,2008,903
+261,Out of Service,Sunday,0,2008,904
+305,Out of Service,Sunday,0,2008,905
+903,Out of Service,Sunday,0,2008,906
+920,Out of Service,Sunday,0,2008,907
+200,Other,Weekday,0,2008,908
+200,Other,Saturday,0,2008,909
+200,Other,Sunday,0,2008,910
+13,Community,Weekday,2909,2009,911
+14,Community,Weekday,1594,2009,912
+16,Community,Weekday,2208,2009,913
+17,Community,Weekday,1072,2009,914
+18,Community,Weekday,2253,2009,915
+19,Community,Weekday,3089,2009,916
+32,Community,Weekday,10351,2009,917
+34,Community,Weekday,1235,2009,918
+37,Community,Weekday,8600,2009,919
+901,LRT,Saturday,0,2008,920
+902,LRT,Saturday,0,2008,921
+900,LRT,Sunday,0,2008,922
+901,LRT,Sunday,0,2008,923
+902,LRT,Sunday,0,2008,924
+11,Out of Service,Weekday,1589,2008,925
+12,Out of Service,Weekday,0,2008,926
+15,Out of Service,Weekday,915,2008,927
+33,Out of Service,Weekday,2949,2008,928
+36,Out of Service,Weekday,227,2008,929
+38,Out of Service,Weekday,69,2008,930
+41,Out of Service,Weekday,0,2008,931
+43,Out of Service,Weekday,0,2008,932
+44,Out of Service,Weekday,11,2008,933
+51,Out of Service,Weekday,12733,2008,934
+59,Out of Service,Weekday,324,2008,935
+67,Out of Service,Weekday,117,2008,936
+76,Out of Service,Weekday,815,2008,937
+85,Out of Service,Weekday,1000,2008,938
+14,Community,Saturday,1014,2009,939
+141,Out of Service,Weekday,0,2008,940
+902,LRT,Sunday,0,2009,941
+16,Community,Saturday,0,2009,942
+27,Local,Saturday,7591,2009,943
+183,Out of Service,Weekday,0,2008,944
+11,Out of Service,Weekday,1364,2009,945
+17,Community,Saturday,329,2009,946
+31,Local,Saturday,3357,2009,947
+202,Out of Service,Weekday,1401,2008,948
+12,Out of Service,Weekday,0,2009,949
+18,Community,Saturday,236,2009,950
+35,Local,Saturday,9588,2009,951
+253,Out of Service,Saturday,0,2009,952
+203,Out of Service,Weekday,1144,2008,953
+15,Out of Service,Weekday,436,2009,954
+19,Community,Saturday,1135,2009,955
+70,Core,Weekday,65813,2009,956
+40,Local,Saturday,4607,2009,957
+46,Local,Saturday,2152,2009,958
+47,Local,Saturday,5213,2009,959
+52,Local,Saturday,0,2009,960
+53,Local,Saturday,0,2009,961
+54,Local,Saturday,5929,2009,962
+57,Local,Saturday,10792,2009,963
+58,Local,Saturday,0,2009,964
+63,Local,Saturday,5093,2009,965
+81,Local,Saturday,3617,2009,966
+82,Local,Saturday,10318,2009,967
+89,Local,Saturday,0,2009,968
+201,Local,Saturday,0,2009,969
+10,Local,Sunday,10544,2009,970
+27,Local,Sunday,4457,2009,971
+31,Local,Sunday,1927,2009,972
+35,Local,Sunday,5210,2009,973
+40,Local,Sunday,2226,2009,974
+46,Local,Sunday,1655,2009,975
+47,Local,Sunday,3603,2009,976
+52,Local,Sunday,0,2009,977
+53,Local,Sunday,0,2009,978
+54,Local,Sunday,3151,2009,979
+57,Local,Sunday,7303,2009,980
+58,Local,Sunday,0,2009,981
+63,Local,Sunday,3433,2009,982
+81,Local,Sunday,2386,2009,983
+82,Local,Sunday,8652,2009,984
+89,Local,Sunday,0,2009,985
+201,Local,Sunday,0,2009,986
+900,LRT,Weekday,6334,2009,987
+901,LRT,Weekday,117342,2009,988
+902,LRT,Weekday,75521,2009,989
+900,LRT,Saturday,0,2009,990
+901,LRT,Saturday,0,2009,991
+902,LRT,Saturday,0,2009,992
+900,LRT,Sunday,0,2009,993
+33,Out of Service,Weekday,2633,2009,994
+231,Out of Service,Weekday,0,2008,995
+71,Core,Weekday,25168,2009,996
+32,Community,Saturday,3723,2009,997
+254,Out of Service,Saturday,0,2009,998
+251,Out of Service,Weekday,1144,2008,999
+36,Out of Service,Weekday,0,2009,1000
+72,Core,Weekday,30470,2009,1001
+34,Community,Saturday,0,2009,1002
+255,Out of Service,Saturday,0,2009,1003
+252,Out of Service,Weekday,0,2008,1004
+38,Out of Service,Weekday,0,2009,1005
+73,Core,Weekday,33576,2009,1006
+37,Community,Saturday,0,2009,1007
+256,Out of Service,Saturday,0,2009,1008
+253,Out of Service,Weekday,0,2008,1009
+77,Core,Weekday,26667,2009,1010
+39,Community,Saturday,2500,2009,1011
+41,Out of Service,Weekday,0,2009,1012
+305,Out of Service,Saturday,0,2009,1013
+323,Core,Weekday,0,2009,1014
+42,Community,Saturday,2165,2009,1015
+254,Out of Service,Weekday,0,2008,1016
+43,Out of Service,Weekday,0,2009,1017
+903,Out of Service,Saturday,0,2009,1018
+522,Core,Weekday,72825,2009,1019
+45,Community,Saturday,1887,2009,1020
+255,Out of Service,Weekday,0,2008,1021
+44,Out of Service,Weekday,0,2009,1022
+920,Out of Service,Saturday,0,2009,1023
+22,Core,Saturday,135239,2009,1024
+48,Community,Saturday,2503,2009,1025
+256,Out of Service,Weekday,0,2008,1026
+51,Out of Service,Weekday,12853,2009,1027
+11,Out of Service,Sunday,0,2009,1028
+23,Core,Saturday,63994,2009,1029
+49,Community,Saturday,2053,2009,1030
+261,Out of Service,Weekday,0,2008,1031
+59,Out of Service,Weekday,0,2009,1032
+12,Out of Service,Sunday,9962,2009,1033
+25,Core,Saturday,50244,2009,1034
+65,Community,Saturday,0,2009,1035
+305,Out of Service,Weekday,78,2008,1036
+67,Out of Service,Weekday,0,2009,1037
+15,Out of Service,Sunday,0,2009,1038
+26,Core,Saturday,30239,2009,1039
+88,Community,Saturday,0,2009,1040
+920,Out of Service,Weekday,0,2008,1041
+76,Out of Service,Weekday,782,2009,1042
+33,Out of Service,Sunday,1721,2009,1043
+55,Core,Saturday,11805,2009,1044
+13,Community,Sunday,620,2009,1045
+11,Out of Service,Saturday,804,2008,1046
+85,Out of Service,Weekday,0,2009,1047
+36,Out of Service,Sunday,0,2009,1048
+60,Core,Saturday,17156,2009,1049
+14,Community,Sunday,639,2009,1050
+16,Community,Sunday,0,2009,1051
+17,Community,Sunday,201,2009,1052
+18,Community,Sunday,147,2009,1053
+19,Community,Sunday,824,2009,1054
+32,Community,Sunday,0,2009,1055
+34,Community,Sunday,0,2009,1056
+37,Community,Sunday,0,2009,1057
+39,Community,Sunday,2080,2009,1058
+42,Community,Sunday,1415,2009,1059
+45,Community,Sunday,1016,2009,1060
+48,Community,Sunday,2361,2009,1061
+49,Community,Sunday,1516,2009,1062
+65,Community,Sunday,0,2009,1063
+88,Community,Sunday,0,2009,1064
+22,Core,Weekday,185562,2009,1065
+23,Core,Weekday,97933,2009,1066
+25,Core,Weekday,85174,2009,1067
+26,Core,Weekday,50516,2009,1068
+55,Core,Weekday,32947,2009,1069
+60,Core,Weekday,31180,2009,1070
+61,Core,Weekday,21491,2009,1071
+62,Core,Weekday,21727,2009,1072
+64,Core,Weekday,39254,2009,1073
+66,Core,Weekday,71590,2009,1074
+68,Core,Weekday,62823,2009,1075
+141,Out of Service,Weekday,0,2009,1076
+12,Out of Service,Saturday,10032,2008,1077
+15,Out of Service,Saturday,0,2008,1078
+33,Out of Service,Saturday,2703,2008,1079
+36,Out of Service,Saturday,222,2008,1080
+38,Out of Service,Sunday,0,2009,1081
+38,Out of Service,Saturday,0,2008,1082
+183,Out of Service,Weekday,0,2009,1083
+41,Out of Service,Sunday,0,2009,1084
+61,Core,Saturday,11588,2009,1085
+41,Out of Service,Saturday,0,2008,1086
+202,Out of Service,Weekday,0,2009,1087
+43,Out of Service,Sunday,1170,2009,1088
+62,Core,Saturday,14929,2009,1089
+43,Out of Service,Saturday,0,2008,1090
+203,Out of Service,Weekday,1010,2009,1091
+44,Out of Service,Sunday,0,2009,1092
+64,Core,Saturday,20693,2009,1093
+44,Out of Service,Saturday,0,2008,1094
+231,Out of Service,Weekday,0,2009,1095
+51,Out of Service,Sunday,0,2009,1096
+66,Core,Saturday,40571,2009,1097
+51,Out of Service,Saturday,177,2008,1098
+251,Out of Service,Weekday,1010,2009,1099
+59,Out of Service,Sunday,0,2009,1100
+68,Core,Saturday,39775,2009,1101
+59,Out of Service,Saturday,0,2008,1102
+252,Out of Service,Weekday,0,2009,1103
+67,Out of Service,Sunday,0,2009,1104
+70,Core,Saturday,43136,2009,1105
+67,Out of Service,Saturday,0,2008,1106
+253,Out of Service,Weekday,0,2009,1107
+76,Out of Service,Sunday,0,2009,1108
+71,Core,Saturday,13882,2009,1109
+76,Out of Service,Saturday,0,2008,1110
+254,Out of Service,Weekday,0,2009,1111
+85,Out of Service,Sunday,0,2009,1112
+72,Core,Saturday,14705,2009,1113
+85,Out of Service,Saturday,0,2008,1114
+255,Out of Service,Weekday,0,2009,1115
+141,Out of Service,Sunday,0,2009,1116
+73,Core,Saturday,13555,2009,1117
+141,Out of Service,Saturday,0,2008,1118
+256,Out of Service,Weekday,0,2009,1119
+202,Out of Service,Sunday,0,2009,1120
+77,Core,Saturday,15245,2009,1121
+202,Out of Service,Saturday,2466,2008,1122
+261,Out of Service,Weekday,0,2009,1123
+203,Out of Service,Sunday,0,2009,1124
+323,Core,Saturday,0,2009,1125
+203,Out of Service,Saturday,0,2008,1126
+305,Out of Service,Weekday,0,2009,1127
+231,Out of Service,Sunday,0,2009,1128
+522,Core,Saturday,46755,2009,1129
+920,Out of Service,Weekday,0,2009,1130
+251,Out of Service,Sunday,0,2009,1131
+22,Core,Sunday,125788,2009,1132
+11,Out of Service,Saturday,759,2009,1133
+252,Out of Service,Sunday,0,2009,1134
+23,Core,Sunday,55674,2009,1135
+12,Out of Service,Saturday,9568,2009,1136
+253,Out of Service,Sunday,0,2009,1137
+25,Core,Sunday,41392,2009,1138
+26,Core,Sunday,25033,2009,1139
+55,Core,Sunday,8590,2009,1140
+60,Core,Sunday,13294,2009,1141
+61,Core,Sunday,9440,2009,1142
+62,Core,Sunday,12317,2009,1143
+64,Core,Sunday,14968,2009,1144
+66,Core,Sunday,33091,2009,1145
+68,Core,Sunday,32823,2009,1146
+70,Core,Sunday,35040,2009,1147
+71,Core,Sunday,11399,2009,1148
+72,Core,Sunday,12660,2009,1149
+73,Core,Sunday,10099,2009,1150
+77,Core,Sunday,13056,2009,1151
+323,Core,Sunday,0,2009,1152
+522,Core,Sunday,0,2009,1153
+101,Express,Weekday,809,2009,1154
+102,Express,Weekday,1720,2009,1155
+103,Express,Weekday,1510,2009,1156
+104,Express,Weekday,1073,2009,1157
+120,Express,Weekday,1870,2009,1158
+121,Express,Weekday,3059,2009,1159
+122,Express,Weekday,475,2009,1160
+15,Out of Service,Saturday,0,2009,1161
+33,Out of Service,Saturday,2521,2009,1162
+36,Out of Service,Saturday,0,2009,1163
+38,Out of Service,Saturday,0,2009,1164
+41,Out of Service,Saturday,0,2009,1165
+43,Out of Service,Saturday,0,2009,1166
+44,Out of Service,Saturday,0,2009,1167
+51,Out of Service,Saturday,0,2009,1168
+59,Out of Service,Saturday,0,2009,1169
+67,Out of Service,Saturday,0,2009,1170
+76,Out of Service,Saturday,0,2009,1171
+85,Out of Service,Saturday,0,2009,1172
+141,Out of Service,Saturday,0,2009,1173
+202,Out of Service,Saturday,0,2009,1174
+203,Out of Service,Saturday,0,2009,1175
+231,Out of Service,Saturday,0,2009,1176
+251,Out of Service,Saturday,0,2009,1177
+252,Out of Service,Saturday,0,2009,1178
+254,Out of Service,Sunday,0,2009,1179
+255,Out of Service,Sunday,0,2009,1180
+256,Out of Service,Sunday,0,2009,1181
+261,Out of Service,Sunday,0,2009,1182
+305,Out of Service,Sunday,0,2009,1183
+903,Out of Service,Sunday,0,2009,1184
+920,Out of Service,Sunday,0,2009,1185
+200,Other,Weekday,0,2009,1186
+200,Other,Saturday,0,2009,1187
+200,Other,Sunday,0,2009,1188
+13,Community,Weekday,1948,2010,1189
+14,Community,Weekday,2094,2010,1190
+16,Community,Weekday,1914,2010,1191
+17,Community,Weekday,722,2010,1192
+18,Community,Weekday,2030,2010,1193
+19,Community,Weekday,2471,2010,1194
+32,Community,Weekday,10070,2010,1195
+34,Community,Weekday,1086,2010,1196
+37,Community,Weekday,7449,2010,1197
+39,Community,Weekday,4545,2010,1198
+42,Community,Weekday,3192,2010,1199
+45,Community,Weekday,2160,2010,1200
+88,Community,Weekday,3763,2011,1201
+12,Out of Service,Weekday,0,2010,1202
+13,Community,Saturday,0,2011,1203
+15,Out of Service,Weekday,0,2010,1204
+14,Community,Saturday,1217,2011,1205
+33,Out of Service,Weekday,43,2010,1206
+16,Community,Saturday,0,2011,1207
+36,Out of Service,Weekday,0,2010,1208
+17,Community,Saturday,0,2011,1209
+38,Out of Service,Weekday,0,2010,1210
+18,Community,Saturday,464,2011,1211
+41,Out of Service,Weekday,0,2010,1212
+19,Community,Saturday,1045,2011,1213
+43,Out of Service,Weekday,0,2010,1214
+32,Community,Saturday,3634,2011,1215
+44,Out of Service,Weekday,0,2010,1216
+34,Community,Saturday,0,2011,1217
+51,Out of Service,Weekday,11701,2010,1218
+37,Community,Saturday,554,2011,1219
+59,Out of Service,Weekday,0,2010,1220
+39,Community,Saturday,2404,2011,1221
+67,Out of Service,Weekday,0,2010,1222
+42,Community,Saturday,1478,2011,1223
+76,Out of Service,Weekday,555,2010,1224
+45,Community,Saturday,805,2011,1225
+85,Out of Service,Weekday,0,2010,1226
+48,Community,Saturday,1976,2011,1227
+49,Community,Saturday,1546,2011,1228
+65,Community,Saturday,0,2011,1229
+88,Community,Saturday,0,2011,1230
+13,Community,Sunday,0,2011,1231
+14,Community,Sunday,865,2011,1232
+16,Community,Sunday,0,2011,1233
+17,Community,Sunday,0,2011,1234
+18,Community,Sunday,284,2011,1235
+19,Community,Sunday,841,2011,1236
+32,Community,Sunday,0,2011,1237
+34,Community,Sunday,0,2011,1238
+37,Community,Sunday,0,2011,1239
+39,Community,Sunday,2146,2011,1240
+42,Community,Sunday,0,2011,1241
+45,Community,Sunday,0,2011,1242
+48,Community,Sunday,1327,2011,1243
+49,Community,Sunday,993,2011,1244
+65,Community,Sunday,0,2011,1245
+88,Community,Sunday,0,2011,1246
+22,Core,Weekday,176994,2011,1247
+23,Core,Weekday,104327,2011,1248
+25,Core,Weekday,85026,2011,1249
+26,Core,Weekday,45538,2011,1250
+55,Core,Weekday,34844,2011,1251
+60,Core,Weekday,28589,2011,1252
+61,Core,Weekday,20872,2011,1253
+62,Core,Weekday,21434,2011,1254
+64,Core,Weekday,38603,2011,1255
+66,Core,Weekday,72870,2011,1256
+68,Core,Weekday,66253,2011,1257
+70,Core,Weekday,63462,2011,1258
+71,Core,Weekday,24967,2011,1259
+72,Core,Weekday,27046,2011,1260
+73,Core,Weekday,30421,2011,1261
+77,Core,Weekday,24683,2011,1262
+323,Core,Weekday,0,2011,1263
+256,Out of Service,Saturday,0,2010,1264
+58,Local,Weekday,8348,2010,1265
+181,Express,Weekday,18080,2010,1266
+63,Local,Weekday,9603,2010,1267
+81,Local,Weekday,12395,2010,1268
+82,Local,Weekday,18322,2010,1269
+89,Local,Weekday,1757,2010,1270
+201,Local,Weekday,10244,2010,1271
+10,Local,Saturday,10374,2010,1272
+27,Local,Saturday,4859,2010,1273
+31,Local,Saturday,2262,2010,1274
+35,Local,Saturday,6826,2010,1275
+40,Local,Saturday,3489,2010,1276
+46,Local,Saturday,1824,2010,1277
+47,Local,Saturday,6452,2010,1278
+52,Local,Saturday,0,2010,1279
+53,Local,Saturday,0,2010,1280
+54,Local,Saturday,5141,2010,1281
+57,Local,Saturday,9652,2010,1282
+58,Local,Saturday,0,2010,1283
+63,Local,Saturday,4082,2010,1284
+81,Local,Saturday,1116,2010,1285
+82,Local,Saturday,7538,2010,1286
+89,Local,Saturday,0,2010,1287
+201,Local,Saturday,0,2010,1288
+10,Local,Sunday,10841,2010,1289
+27,Local,Sunday,2989,2010,1290
+182,Express,Weekday,828,2010,1291
+31,Local,Sunday,1188,2010,1292
+141,Out of Service,Weekday,0,2010,1293
+305,Out of Service,Saturday,0,2010,1294
+185,Express,Weekday,0,2010,1295
+35,Local,Sunday,4541,2010,1296
+183,Out of Service,Weekday,0,2010,1297
+903,Out of Service,Saturday,0,2010,1298
+101,Express,Saturday,0,2010,1299
+40,Local,Sunday,1741,2010,1300
+202,Out of Service,Weekday,0,2010,1301
+920,Out of Service,Saturday,0,2010,1302
+102,Express,Saturday,0,2010,1303
+46,Local,Sunday,50,2010,1304
+203,Out of Service,Weekday,467,2010,1305
+11,Out of Service,Sunday,0,2010,1306
+103,Express,Saturday,0,2010,1307
+47,Local,Sunday,4314,2010,1308
+231,Out of Service,Weekday,0,2010,1309
+12,Out of Service,Sunday,9012,2010,1310
+104,Express,Saturday,0,2010,1311
+52,Local,Sunday,0,2010,1312
+251,Out of Service,Weekday,467,2010,1313
+15,Out of Service,Sunday,0,2010,1314
+120,Express,Saturday,0,2010,1315
+53,Local,Sunday,0,2010,1316
+252,Out of Service,Weekday,0,2010,1317
+33,Out of Service,Sunday,31,2010,1318
+121,Express,Saturday,0,2010,1319
+54,Local,Sunday,3201,2010,1320
+253,Out of Service,Weekday,0,2010,1321
+36,Out of Service,Sunday,0,2010,1322
+122,Express,Saturday,0,2010,1323
+57,Local,Sunday,5757,2010,1324
+254,Out of Service,Weekday,0,2010,1325
+255,Out of Service,Weekday,0,2010,1326
+256,Out of Service,Weekday,0,2010,1327
+261,Out of Service,Weekday,0,2010,1328
+305,Out of Service,Weekday,0,2010,1329
+920,Out of Service,Weekday,0,2010,1330
+11,Out of Service,Saturday,26,2010,1331
+12,Out of Service,Saturday,9230,2010,1332
+15,Out of Service,Saturday,0,2010,1333
+33,Out of Service,Saturday,47,2010,1334
+36,Out of Service,Saturday,0,2010,1335
+38,Out of Service,Saturday,0,2010,1336
+41,Out of Service,Saturday,0,2010,1337
+43,Out of Service,Saturday,0,2010,1338
+44,Out of Service,Saturday,0,2010,1339
+51,Out of Service,Saturday,0,2010,1340
+59,Out of Service,Saturday,0,2010,1341
+67,Out of Service,Saturday,0,2010,1342
+76,Out of Service,Saturday,0,2010,1343
+85,Out of Service,Saturday,0,2010,1344
+141,Out of Service,Saturday,0,2010,1345
+202,Out of Service,Saturday,0,2010,1346
+203,Out of Service,Saturday,0,2010,1347
+231,Out of Service,Saturday,0,2010,1348
+251,Out of Service,Saturday,0,2010,1349
+252,Out of Service,Saturday,0,2010,1350
+253,Out of Service,Saturday,0,2010,1351
+254,Out of Service,Saturday,0,2010,1352
+255,Out of Service,Saturday,0,2010,1353
+140,Express,Saturday,0,2010,1354
+168,Express,Saturday,0,2010,1355
+180,Express,Saturday,14871,2010,1356
+181,Express,Saturday,0,2010,1357
+182,Express,Saturday,0,2010,1358
+101,Express,Sunday,0,2010,1359
+102,Express,Sunday,0,2010,1360
+103,Express,Sunday,0,2010,1361
+104,Express,Sunday,0,2010,1362
+120,Express,Sunday,0,2010,1363
+121,Express,Sunday,0,2010,1364
+122,Express,Sunday,0,2010,1365
+140,Express,Sunday,0,2010,1366
+168,Express,Sunday,0,2010,1367
+180,Express,Sunday,11297,2010,1368
+181,Express,Sunday,0,2010,1369
+182,Express,Sunday,0,2010,1370
+304,Limited,Weekday,2052,2010,1371
+321,Limited,Weekday,195,2010,1372
+328,Limited,Weekday,315,2010,1373
+330,Limited,Weekday,1834,2010,1374
+304,Limited,Saturday,0,2010,1375
+321,Limited,Saturday,0,2010,1376
+328,Limited,Saturday,0,2010,1377
+330,Limited,Saturday,0,2010,1378
+38,Out of Service,Sunday,0,2010,1379
+304,Limited,Sunday,0,2010,1380
+41,Out of Service,Sunday,0,2010,1381
+58,Local,Sunday,0,2010,1382
+321,Limited,Sunday,0,2010,1383
+43,Out of Service,Sunday,27,2010,1384
+63,Local,Sunday,2353,2010,1385
+328,Limited,Sunday,0,2010,1386
+44,Out of Service,Sunday,0,2010,1387
+81,Local,Sunday,837,2010,1388
+330,Limited,Sunday,0,2010,1389
+51,Out of Service,Sunday,0,2010,1390
+82,Local,Sunday,3930,2010,1391
+10,Local,Weekday,13564,2010,1392
+59,Out of Service,Sunday,0,2010,1393
+89,Local,Sunday,0,2010,1394
+27,Local,Weekday,10171,2010,1395
+67,Out of Service,Sunday,0,2010,1396
+201,Local,Sunday,0,2010,1397
+31,Local,Weekday,9229,2010,1398
+76,Out of Service,Sunday,0,2010,1399
+900,LRT,Weekday,11954,2010,1400
+35,Local,Weekday,13978,2010,1401
+85,Out of Service,Sunday,0,2010,1402
+901,LRT,Weekday,226513,2010,1403
+40,Local,Weekday,14970,2010,1404
+141,Out of Service,Sunday,0,2010,1405
+902,LRT,Weekday,147408,2010,1406
+46,Local,Weekday,10034,2010,1407
+202,Out of Service,Sunday,0,2010,1408
+900,LRT,Saturday,0,2010,1409
+47,Local,Weekday,9585,2010,1410
+203,Out of Service,Sunday,0,2010,1411
+901,LRT,Saturday,0,2010,1412
+52,Local,Weekday,5185,2010,1413
+231,Out of Service,Sunday,0,2010,1414
+902,LRT,Saturday,0,2010,1415
+900,LRT,Sunday,0,2010,1416
+901,LRT,Sunday,0,2010,1417
+902,LRT,Sunday,0,2010,1418
+11,Out of Service,Weekday,1295,2010,1419
+53,Local,Weekday,9516,2010,1420
+54,Local,Weekday,11665,2010,1421
+57,Local,Weekday,18524,2010,1422
+251,Out of Service,Sunday,0,2010,1423
+252,Out of Service,Sunday,0,2010,1424
+253,Out of Service,Sunday,0,2010,1425
+254,Out of Service,Sunday,0,2010,1426
+255,Out of Service,Sunday,0,2010,1427
+256,Out of Service,Sunday,0,2010,1428
+261,Out of Service,Sunday,0,2010,1429
+305,Out of Service,Sunday,0,2010,1430
+903,Out of Service,Sunday,0,2010,1431
+920,Out of Service,Sunday,0,2010,1432
+200,Other,Weekday,142,2010,1433
+200,Other,Saturday,141,2010,1434
+200,Other,Sunday,108,2010,1435
+13,Community,Weekday,2290,2011,1436
+14,Community,Weekday,2118,2011,1437
+16,Community,Weekday,2322,2011,1438
+17,Community,Weekday,912,2011,1439
+18,Community,Weekday,2244,2011,1440
+19,Community,Weekday,2715,2011,1441
+32,Community,Weekday,11301,2011,1442
+34,Community,Weekday,991,2011,1443
+37,Community,Weekday,8205,2011,1444
+39,Community,Weekday,4782,2011,1445
+42,Community,Weekday,3227,2011,1446
+45,Community,Weekday,1963,2011,1447
+48,Community,Weekday,4297,2011,1448
+49,Community,Weekday,3640,2011,1449
+65,Community,Weekday,4402,2011,1450
+522,Core,Weekday,73725,2011,1451
+22,Core,Saturday,136704,2011,1452
+23,Core,Saturday,66010,2011,1453
+25,Core,Saturday,48660,2011,1454
+26,Core,Saturday,28450,2011,1455
+55,Core,Saturday,12186,2011,1456
+60,Core,Saturday,16893,2011,1457
+61,Core,Saturday,9083,2011,1458
+62,Core,Saturday,13186,2011,1459
+64,Core,Saturday,19043,2011,1460
+66,Core,Saturday,38969,2011,1461
+68,Core,Saturday,40997,2011,1462
+70,Core,Saturday,40849,2011,1463
+71,Core,Saturday,13342,2011,1464
+72,Core,Saturday,12451,2011,1465
+73,Core,Saturday,11114,2011,1466
+77,Core,Saturday,14749,2011,1467
+323,Core,Saturday,0,2011,1468
+522,Core,Saturday,37256,2011,1469
+22,Core,Sunday,127336,2011,1470
+23,Core,Sunday,56754,2011,1471
+25,Core,Sunday,39475,2011,1472
+26,Core,Sunday,24706,2011,1473
+55,Core,Sunday,7730,2011,1474
+60,Core,Sunday,11563,2011,1475
+61,Core,Sunday,6945,2011,1476
+62,Core,Sunday,10754,2011,1477
+64,Core,Sunday,15006,2011,1478
+66,Core,Sunday,32170,2011,1479
+68,Core,Sunday,34953,2011,1480
+70,Core,Sunday,33474,2011,1481
+71,Core,Sunday,9983,2011,1482
+72,Core,Sunday,8898,2011,1483
+73,Core,Sunday,7864,2011,1484
+77,Core,Sunday,11360,2011,1485
+323,Core,Sunday,0,2011,1486
+522,Core,Sunday,0,2011,1487
+101,Express,Weekday,457,2011,1488
+102,Express,Weekday,2262,2011,1489
+103,Express,Weekday,1823,2011,1490
+104,Express,Weekday,973,2011,1491
+120,Express,Weekday,2179,2011,1492
+121,Express,Weekday,3126,2011,1493
+122,Express,Weekday,379,2011,1494
+140,Express,Weekday,1421,2011,1495
+168,Express,Weekday,2901,2011,1496
+180,Express,Weekday,7355,2011,1497
+181,Express,Weekday,21564,2011,1498
+182,Express,Weekday,743,2011,1499
+185,Express,Weekday,0,2011,1500
+73,Core,Weekday,32810,2010,1501
+77,Core,Weekday,23854,2010,1502
+323,Core,Weekday,0,2010,1503
+522,Core,Weekday,72799,2010,1504
+22,Core,Saturday,139999,2010,1505
+23,Core,Saturday,65310,2010,1506
+25,Core,Saturday,49016,2010,1507
+26,Core,Saturday,29363,2010,1508
+55,Core,Saturday,10818,2010,1509
+60,Core,Saturday,15819,2010,1510
+61,Core,Saturday,9148,2010,1511
+62,Core,Saturday,13049,2010,1512
+64,Core,Saturday,18946,2010,1513
+66,Core,Saturday,39210,2010,1514
+68,Core,Saturday,40526,2010,1515
+70,Core,Saturday,39154,2010,1516
+71,Core,Saturday,12909,2010,1517
+72,Core,Saturday,12732,2010,1518
+73,Core,Saturday,12190,2010,1519
+77,Core,Saturday,14754,2010,1520
+323,Core,Saturday,0,2010,1521
+522,Core,Saturday,34693,2010,1522
+22,Core,Sunday,131280,2010,1523
+23,Core,Sunday,54290,2010,1524
+25,Core,Sunday,38886,2010,1525
+26,Core,Sunday,24818,2010,1526
+55,Core,Sunday,7145,2010,1527
+60,Core,Sunday,10915,2010,1528
+61,Core,Sunday,7066,2010,1529
+62,Core,Sunday,10968,2010,1530
+64,Core,Sunday,14782,2010,1531
+66,Core,Sunday,30782,2010,1532
+68,Core,Sunday,32855,2010,1533
+70,Core,Sunday,32680,2010,1534
+71,Core,Sunday,9750,2010,1535
+72,Core,Sunday,9531,2010,1536
+73,Core,Sunday,8367,2010,1537
+77,Core,Sunday,10928,2010,1538
+323,Core,Sunday,0,2010,1539
+522,Core,Sunday,0,2010,1540
+101,Express,Weekday,454,2010,1541
+102,Express,Weekday,1683,2010,1542
+103,Express,Weekday,1528,2010,1543
+104,Express,Weekday,918,2010,1544
+120,Express,Weekday,1898,2010,1545
+121,Express,Weekday,2872,2010,1546
+122,Express,Weekday,394,2010,1547
+140,Express,Weekday,1279,2010,1548
+168,Express,Weekday,2407,2010,1549
+180,Express,Weekday,7449,2010,1550
+48,Community,Weekday,4017,2010,1551
+49,Community,Weekday,3152,2010,1552
+65,Community,Weekday,3977,2010,1553
+88,Community,Weekday,3106,2010,1554
+13,Community,Saturday,23,2010,1555
+14,Community,Saturday,1198,2010,1556
+16,Community,Saturday,0,2010,1557
+17,Community,Saturday,0,2010,1558
+18,Community,Saturday,221,2010,1559
+19,Community,Saturday,961,2010,1560
+32,Community,Saturday,3551,2010,1561
+34,Community,Saturday,0,2010,1562
+37,Community,Saturday,0,2010,1563
+39,Community,Saturday,2510,2010,1564
+42,Community,Saturday,1582,2010,1565
+45,Community,Saturday,889,2010,1566
+48,Community,Saturday,1990,2010,1567
+49,Community,Saturday,1687,2010,1568
+65,Community,Saturday,0,2010,1569
+88,Community,Saturday,0,2010,1570
+13,Community,Sunday,50,2010,1571
+14,Community,Sunday,734,2010,1572
+16,Community,Sunday,0,2010,1573
+17,Community,Sunday,0,2010,1574
+18,Community,Sunday,165,2010,1575
+19,Community,Sunday,741,2010,1576
+32,Community,Sunday,0,2010,1577
+34,Community,Sunday,0,2010,1578
+37,Community,Sunday,0,2010,1579
+39,Community,Sunday,1849,2010,1580
+42,Community,Sunday,93,2010,1581
+45,Community,Sunday,53,2010,1582
+48,Community,Sunday,1202,2010,1583
+49,Community,Sunday,987,2010,1584
+65,Community,Sunday,0,2010,1585
+88,Community,Sunday,0,2010,1586
+22,Core,Weekday,183090,2010,1587
+23,Core,Weekday,97173,2010,1588
+25,Core,Weekday,81080,2010,1589
+26,Core,Weekday,45228,2010,1590
+55,Core,Weekday,31208,2010,1591
+60,Core,Weekday,27242,2010,1592
+61,Core,Weekday,20581,2010,1593
+62,Core,Weekday,20664,2010,1594
+64,Core,Weekday,37602,2010,1595
+66,Core,Weekday,69815,2010,1596
+68,Core,Weekday,62390,2010,1597
+70,Core,Weekday,60582,2010,1598
+71,Core,Weekday,23621,2010,1599
+72,Core,Weekday,28060,2010,1600
+16,Community,Saturday,0,2012,1601
+17,Community,Saturday,0,2012,1602
+18,Community,Saturday,236,2012,1603
+19,Community,Saturday,1163,2012,1604
+32,Community,Saturday,3584,2012,1605
+34,Community,Saturday,0,2012,1606
+37,Community,Saturday,1154,2012,1607
+39,Community,Saturday,2318,2012,1608
+42,Community,Saturday,1365,2012,1609
+36,Out of Service,Weekday,0,2011,1610
+920,Out of Service,Saturday,0,2011,1611
+45,Community,Saturday,0,2012,1612
+48,Community,Saturday,2147,2012,1613
+49,Community,Saturday,1597,2012,1614
+65,Community,Saturday,0,2012,1615
+88,Community,Saturday,0,2012,1616
+13,Community,Sunday,0,2012,1617
+14,Community,Sunday,855,2012,1618
+16,Community,Sunday,0,2012,1619
+17,Community,Sunday,0,2012,1620
+18,Community,Sunday,231,2012,1621
+19,Community,Sunday,868,2012,1622
+32,Community,Sunday,0,2012,1623
+34,Community,Sunday,0,2012,1624
+37,Community,Sunday,0,2012,1625
+39,Community,Sunday,2074,2012,1626
+42,Community,Sunday,0,2012,1627
+45,Community,Sunday,0,2012,1628
+48,Community,Sunday,1533,2012,1629
+49,Community,Sunday,896,2012,1630
+65,Community,Sunday,0,2012,1631
+88,Community,Sunday,0,2012,1632
+22,Core,Weekday,175372,2012,1633
+23,Core,Weekday,110351,2012,1634
+25,Core,Weekday,83872,2012,1635
+26,Core,Weekday,45381,2012,1636
+55,Core,Weekday,33592,2012,1637
+60,Core,Weekday,28265,2012,1638
+61,Core,Weekday,20905,2012,1639
+62,Core,Weekday,20449,2012,1640
+64,Core,Weekday,39706,2012,1641
+66,Core,Weekday,70824,2012,1642
+68,Core,Weekday,65630,2012,1643
+70,Core,Weekday,62287,2012,1644
+71,Core,Weekday,24873,2012,1645
+72,Core,Weekday,26960,2012,1646
+73,Core,Weekday,29634,2012,1647
+77,Core,Weekday,25186,2012,1648
+323,Core,Weekday,5305,2012,1649
+522,Core,Weekday,71568,2012,1650
+22,Core,Saturday,136243,2012,1651
+23,Core,Saturday,69787,2012,1652
+25,Core,Saturday,47071,2012,1653
+104,Express,Saturday,0,2012,1654
+82,Local,Weekday,18166,2011,1655
+101,Express,Saturday,0,2011,1656
+10,Local,Saturday,8726,2012,1657
+120,Express,Saturday,0,2012,1658
+27,Local,Saturday,5012,2012,1659
+121,Express,Saturday,0,2012,1660
+38,Out of Service,Weekday,0,2011,1661
+31,Local,Saturday,1871,2012,1662
+122,Express,Saturday,0,2012,1663
+89,Local,Weekday,1622,2011,1664
+26,Core,Saturday,28086,2012,1665
+41,Out of Service,Weekday,0,2011,1666
+11,Out of Service,Sunday,0,2011,1667
+35,Local,Saturday,6233,2012,1668
+140,Express,Saturday,0,2012,1669
+201,Local,Weekday,10473,2011,1670
+102,Express,Saturday,0,2011,1671
+55,Core,Saturday,11559,2012,1672
+43,Out of Service,Weekday,0,2011,1673
+12,Out of Service,Sunday,9974,2011,1674
+40,Local,Saturday,3436,2012,1675
+168,Express,Saturday,0,2012,1676
+10,Local,Saturday,9296,2011,1677
+103,Express,Saturday,0,2011,1678
+60,Core,Saturday,16642,2012,1679
+44,Out of Service,Weekday,0,2011,1680
+15,Out of Service,Sunday,0,2011,1681
+46,Local,Saturday,1806,2012,1682
+180,Express,Saturday,0,2012,1683
+27,Local,Saturday,5226,2011,1684
+104,Express,Saturday,0,2011,1685
+61,Core,Saturday,8676,2012,1686
+51,Out of Service,Weekday,11944,2011,1687
+33,Out of Service,Sunday,0,2011,1688
+47,Local,Saturday,6989,2012,1689
+181,Express,Saturday,19669,2012,1690
+31,Local,Saturday,2141,2011,1691
+120,Express,Saturday,0,2011,1692
+62,Core,Saturday,11618,2012,1693
+59,Out of Service,Weekday,0,2011,1694
+36,Out of Service,Sunday,0,2011,1695
+52,Local,Saturday,0,2012,1696
+182,Express,Saturday,0,2012,1697
+35,Local,Saturday,6277,2011,1698
+121,Express,Saturday,0,2011,1699
+64,Core,Saturday,19168,2012,1700
+67,Out of Service,Weekday,0,2011,1701
+38,Out of Service,Sunday,0,2011,1702
+53,Local,Saturday,0,2012,1703
+101,Express,Sunday,0,2012,1704
+40,Local,Saturday,3484,2011,1705
+122,Express,Saturday,0,2011,1706
+66,Core,Saturday,38561,2012,1707
+76,Out of Service,Weekday,0,2011,1708
+41,Out of Service,Sunday,0,2011,1709
+54,Local,Saturday,4800,2012,1710
+102,Express,Sunday,0,2012,1711
+46,Local,Saturday,1687,2011,1712
+47,Local,Saturday,6470,2011,1713
+52,Local,Saturday,0,2011,1714
+53,Local,Saturday,0,2011,1715
+54,Local,Saturday,4650,2011,1716
+57,Local,Saturday,10070,2011,1717
+58,Local,Saturday,0,2011,1718
+63,Local,Saturday,4259,2011,1719
+81,Local,Saturday,881,2011,1720
+82,Local,Saturday,7557,2011,1721
+89,Local,Saturday,0,2011,1722
+201,Local,Saturday,0,2011,1723
+10,Local,Sunday,9872,2011,1724
+27,Local,Sunday,3329,2011,1725
+31,Local,Sunday,1897,2011,1726
+35,Local,Sunday,4838,2011,1727
+40,Local,Sunday,1787,2011,1728
+46,Local,Sunday,0,2011,1729
+47,Local,Sunday,4381,2011,1730
+52,Local,Sunday,0,2011,1731
+53,Local,Sunday,0,2011,1732
+54,Local,Sunday,3190,2011,1733
+57,Local,Sunday,5543,2011,1734
+58,Local,Sunday,0,2011,1735
+63,Local,Sunday,2862,2011,1736
+81,Local,Sunday,733,2011,1737
+82,Local,Sunday,3750,2011,1738
+89,Local,Sunday,0,2011,1739
+201,Local,Sunday,0,2011,1740
+900,LRT,Weekday,12606,2011,1741
+901,LRT,Weekday,228697,2011,1742
+902,LRT,Weekday,148124,2011,1743
+900,LRT,Saturday,5579,2011,1744
+901,LRT,Saturday,77417,2011,1745
+902,LRT,Saturday,40814,2011,1746
+900,LRT,Sunday,4320,2011,1747
+901,LRT,Sunday,64381,2011,1748
+902,LRT,Sunday,31517,2011,1749
+11,Out of Service,Weekday,1808,2011,1750
+12,Out of Service,Weekday,0,2011,1751
+15,Out of Service,Weekday,0,2011,1752
+33,Out of Service,Weekday,0,2011,1753
+140,Express,Saturday,0,2011,1754
+103,Express,Sunday,0,2012,1755
+168,Express,Saturday,0,2011,1756
+104,Express,Sunday,0,2012,1757
+43,Out of Service,Sunday,0,2011,1758
+180,Express,Saturday,1293,2011,1759
+120,Express,Sunday,0,2012,1760
+44,Out of Service,Sunday,0,2011,1761
+85,Out of Service,Weekday,0,2011,1762
+181,Express,Saturday,17388,2011,1763
+121,Express,Sunday,0,2012,1764
+51,Out of Service,Sunday,0,2011,1765
+141,Out of Service,Weekday,0,2011,1766
+68,Core,Saturday,42873,2012,1767
+57,Local,Saturday,9994,2012,1768
+182,Express,Saturday,0,2011,1769
+122,Express,Sunday,0,2012,1770
+59,Out of Service,Sunday,0,2011,1771
+183,Out of Service,Weekday,0,2011,1772
+70,Core,Saturday,39153,2012,1773
+58,Local,Saturday,0,2012,1774
+101,Express,Sunday,0,2011,1775
+140,Express,Sunday,0,2012,1776
+67,Out of Service,Sunday,0,2011,1777
+202,Out of Service,Weekday,0,2011,1778
+71,Core,Saturday,12903,2012,1779
+63,Local,Saturday,4565,2012,1780
+102,Express,Sunday,0,2011,1781
+168,Express,Sunday,0,2012,1782
+76,Out of Service,Sunday,0,2011,1783
+203,Out of Service,Weekday,0,2011,1784
+72,Core,Saturday,12691,2012,1785
+81,Local,Saturday,997,2012,1786
+103,Express,Sunday,0,2011,1787
+180,Express,Sunday,0,2012,1788
+85,Out of Service,Sunday,0,2011,1789
+231,Out of Service,Weekday,0,2011,1790
+73,Core,Saturday,11112,2012,1791
+82,Local,Saturday,7414,2012,1792
+181,Express,Sunday,15449,2012,1793
+104,Express,Sunday,0,2011,1794
+141,Out of Service,Sunday,0,2011,1795
+251,Out of Service,Weekday,0,2011,1796
+77,Core,Saturday,13825,2012,1797
+89,Local,Saturday,0,2012,1798
+182,Express,Sunday,0,2012,1799
+120,Express,Sunday,0,2011,1800
+202,Out of Service,Sunday,0,2011,1801
+252,Out of Service,Weekday,0,2011,1802
+323,Core,Saturday,0,2012,1803
+201,Local,Saturday,0,2012,1804
+304,Limited,Weekday,2226,2012,1805
+121,Express,Sunday,0,2011,1806
+203,Out of Service,Sunday,0,2011,1807
+253,Out of Service,Weekday,0,2011,1808
+254,Out of Service,Weekday,0,2011,1809
+255,Out of Service,Weekday,0,2011,1810
+256,Out of Service,Weekday,0,2011,1811
+261,Out of Service,Weekday,0,2011,1812
+305,Out of Service,Weekday,0,2011,1813
+920,Out of Service,Weekday,0,2011,1814
+11,Out of Service,Saturday,0,2011,1815
+12,Out of Service,Saturday,9745,2011,1816
+15,Out of Service,Saturday,0,2011,1817
+33,Out of Service,Saturday,0,2011,1818
+36,Out of Service,Saturday,0,2011,1819
+38,Out of Service,Saturday,0,2011,1820
+41,Out of Service,Saturday,0,2011,1821
+43,Out of Service,Saturday,0,2011,1822
+44,Out of Service,Saturday,0,2011,1823
+51,Out of Service,Saturday,0,2011,1824
+59,Out of Service,Saturday,0,2011,1825
+67,Out of Service,Saturday,0,2011,1826
+76,Out of Service,Saturday,0,2011,1827
+85,Out of Service,Saturday,0,2011,1828
+141,Out of Service,Saturday,0,2011,1829
+202,Out of Service,Saturday,0,2011,1830
+203,Out of Service,Saturday,0,2011,1831
+231,Out of Service,Saturday,0,2011,1832
+251,Out of Service,Saturday,0,2011,1833
+252,Out of Service,Saturday,0,2011,1834
+253,Out of Service,Saturday,0,2011,1835
+254,Out of Service,Saturday,0,2011,1836
+255,Out of Service,Saturday,0,2011,1837
+256,Out of Service,Saturday,0,2011,1838
+305,Out of Service,Saturday,0,2011,1839
+903,Out of Service,Saturday,0,2011,1840
+10,Local,Sunday,9182,2012,1841
+122,Express,Sunday,0,2011,1842
+27,Local,Sunday,3005,2012,1843
+522,Core,Saturday,36235,2012,1844
+140,Express,Sunday,0,2011,1845
+31,Local,Sunday,1088,2012,1846
+22,Core,Sunday,125985,2012,1847
+168,Express,Sunday,0,2011,1848
+35,Local,Sunday,4868,2012,1849
+321,Limited,Weekday,177,2012,1850
+231,Out of Service,Sunday,0,2011,1851
+23,Core,Sunday,57950,2012,1852
+180,Express,Sunday,772,2011,1853
+40,Local,Sunday,1847,2012,1854
+328,Limited,Weekday,644,2012,1855
+251,Out of Service,Sunday,0,2011,1856
+25,Core,Sunday,37794,2012,1857
+181,Express,Sunday,14269,2011,1858
+46,Local,Sunday,0,2012,1859
+330,Limited,Weekday,2095,2012,1860
+252,Out of Service,Sunday,0,2011,1861
+26,Core,Sunday,24946,2012,1862
+182,Express,Sunday,0,2011,1863
+47,Local,Sunday,4501,2012,1864
+304,Limited,Saturday,0,2012,1865
+253,Out of Service,Sunday,0,2011,1866
+55,Core,Sunday,7337,2012,1867
+304,Limited,Weekday,2105,2011,1868
+52,Local,Sunday,0,2012,1869
+321,Limited,Saturday,0,2012,1870
+254,Out of Service,Sunday,0,2011,1871
+60,Core,Sunday,11116,2012,1872
+321,Limited,Weekday,184,2011,1873
+53,Local,Sunday,0,2012,1874
+328,Limited,Saturday,0,2012,1875
+255,Out of Service,Sunday,0,2011,1876
+61,Core,Sunday,6784,2012,1877
+328,Limited,Weekday,345,2011,1878
+54,Local,Sunday,3317,2012,1879
+330,Limited,Saturday,0,2012,1880
+256,Out of Service,Sunday,0,2011,1881
+62,Core,Sunday,10134,2012,1882
+330,Limited,Weekday,1909,2011,1883
+57,Local,Sunday,5662,2012,1884
+304,Limited,Sunday,0,2012,1885
+261,Out of Service,Sunday,0,2011,1886
+64,Core,Sunday,15860,2012,1887
+304,Limited,Saturday,0,2011,1888
+58,Local,Sunday,0,2012,1889
+321,Limited,Sunday,0,2012,1890
+305,Out of Service,Sunday,0,2011,1891
+66,Core,Sunday,31411,2012,1892
+321,Limited,Saturday,0,2011,1893
+63,Local,Sunday,2898,2012,1894
+328,Limited,Sunday,0,2012,1895
+903,Out of Service,Sunday,0,2011,1896
+68,Core,Sunday,35615,2012,1897
+328,Limited,Saturday,0,2011,1898
+330,Limited,Saturday,0,2011,1899
+304,Limited,Sunday,0,2011,1900
+321,Limited,Sunday,0,2011,1901
+328,Limited,Sunday,0,2011,1902
+330,Limited,Sunday,0,2011,1903
+10,Local,Weekday,13182,2011,1904
+27,Local,Weekday,9841,2011,1905
+31,Local,Weekday,9057,2011,1906
+35,Local,Weekday,14457,2011,1907
+40,Local,Weekday,14271,2011,1908
+46,Local,Weekday,8982,2011,1909
+47,Local,Weekday,9711,2011,1910
+52,Local,Weekday,4751,2011,1911
+53,Local,Weekday,9481,2011,1912
+54,Local,Weekday,12811,2011,1913
+57,Local,Weekday,18605,2011,1914
+58,Local,Weekday,8158,2011,1915
+63,Local,Weekday,9941,2011,1916
+81,Local,Weekday,12741,2011,1917
+70,Core,Sunday,32553,2012,1918
+920,Out of Service,Sunday,0,2011,1919
+330,Limited,Sunday,0,2012,1920
+71,Core,Sunday,9574,2012,1921
+81,Local,Sunday,0,2012,1922
+200,Other,Weekday,113,2011,1923
+10,Local,Weekday,13157,2012,1924
+72,Core,Sunday,9489,2012,1925
+82,Local,Sunday,3963,2012,1926
+200,Other,Saturday,125,2011,1927
+27,Local,Weekday,10482,2012,1928
+73,Core,Sunday,7393,2012,1929
+89,Local,Sunday,0,2012,1930
+200,Other,Sunday,79,2011,1931
+31,Local,Weekday,9178,2012,1932
+77,Core,Sunday,11575,2012,1933
+201,Local,Sunday,0,2012,1934
+13,Community,Weekday,2074,2012,1935
+35,Local,Weekday,13934,2012,1936
+323,Core,Sunday,0,2012,1937
+900,LRT,Weekday,12001,2012,1938
+14,Community,Weekday,2138,2012,1939
+40,Local,Weekday,14550,2012,1940
+522,Core,Sunday,0,2012,1941
+901,LRT,Weekday,233083,2012,1942
+16,Community,Weekday,2020,2012,1943
+46,Local,Weekday,9357,2012,1944
+101,Express,Weekday,755,2012,1945
+902,LRT,Weekday,153137,2012,1946
+17,Community,Weekday,747,2012,1947
+47,Local,Weekday,9717,2012,1948
+102,Express,Weekday,3082,2012,1949
+900,LRT,Saturday,10733,2012,1950
+18,Community,Weekday,2231,2012,1951
+52,Local,Weekday,4855,2012,1952
+103,Express,Weekday,2318,2012,1953
+901,LRT,Saturday,154142,2012,1954
+19,Community,Weekday,2908,2012,1955
+53,Local,Weekday,10562,2012,1956
+104,Express,Weekday,946,2012,1957
+902,LRT,Saturday,78778,2012,1958
+32,Community,Weekday,11375,2012,1959
+54,Local,Weekday,13206,2012,1960
+120,Express,Weekday,2762,2012,1961
+900,LRT,Sunday,8684,2012,1962
+34,Community,Weekday,894,2012,1963
+57,Local,Weekday,19447,2012,1964
+121,Express,Weekday,3614,2012,1965
+901,LRT,Sunday,123764,2012,1966
+37,Community,Weekday,7990,2012,1967
+58,Local,Weekday,7821,2012,1968
+122,Express,Weekday,636,2012,1969
+902,LRT,Sunday,63582,2012,1970
+39,Community,Weekday,4521,2012,1971
+63,Local,Weekday,10602,2012,1972
+140,Express,Weekday,1613,2012,1973
+11,Out of Service,Weekday,900,2012,1974
+42,Community,Weekday,3215,2012,1975
+81,Local,Weekday,12627,2012,1976
+168,Express,Weekday,3238,2012,1977
+12,Out of Service,Weekday,0,2012,1978
+45,Community,Weekday,1773,2012,1979
+82,Local,Weekday,17709,2012,1980
+180,Express,Weekday,7623,2012,1981
+15,Out of Service,Weekday,0,2012,1982
+48,Community,Weekday,4636,2012,1983
+89,Local,Weekday,1868,2012,1984
+181,Express,Weekday,26566,2012,1985
+33,Out of Service,Weekday,0,2012,1986
+49,Community,Weekday,3286,2012,1987
+201,Local,Weekday,10730,2012,1988
+182,Express,Weekday,685,2012,1989
+36,Out of Service,Weekday,0,2012,1990
+65,Community,Weekday,5238,2012,1991
+185,Express,Weekday,0,2012,1992
+38,Out of Service,Weekday,0,2012,1993
+88,Community,Weekday,4053,2012,1994
+101,Express,Saturday,0,2012,1995
+102,Express,Saturday,0,2012,1996
+103,Express,Saturday,0,2012,1997
+13,Community,Saturday,0,2012,1998
+14,Community,Saturday,1259,2012,1999
+41,Out of Service,Weekday,0,2012,2000
+122,Express,Saturday,0,2013,2001
+140,Express,Saturday,0,2013,2002
+168,Express,Saturday,0,2013,2003
+180,Express,Saturday,0,2013,2004
+181,Express,Saturday,20370,2013,2005
+182,Express,Saturday,0,2013,2006
+101,Express,Sunday,0,2013,2007
+102,Express,Sunday,0,2013,2008
+103,Express,Sunday,0,2013,2009
+104,Express,Sunday,0,2013,2010
+120,Express,Sunday,0,2013,2011
+121,Express,Sunday,0,2013,2012
+122,Express,Sunday,0,2013,2013
+140,Express,Sunday,0,2013,2014
+168,Express,Sunday,0,2013,2015
+180,Express,Sunday,0,2013,2016
+181,Express,Sunday,16288,2013,2017
+182,Express,Sunday,0,2013,2018
+304,Limited,Weekday,2420,2013,2019
+321,Limited,Weekday,217,2013,2020
+328,Limited,Weekday,908,2013,2021
+330,Limited,Weekday,2302,2013,2022
+304,Limited,Saturday,0,2013,2023
+321,Limited,Saturday,0,2013,2024
+328,Limited,Saturday,0,2013,2025
+330,Limited,Saturday,0,2013,2026
+304,Limited,Sunday,0,2013,2027
+321,Limited,Sunday,0,2013,2028
+328,Limited,Sunday,0,2013,2029
+330,Limited,Sunday,0,2013,2030
+10,Local,Weekday,14291,2013,2031
+27,Local,Weekday,9780,2013,2032
+31,Local,Weekday,8741,2013,2033
+35,Local,Weekday,13166,2013,2034
+40,Local,Weekday,14886,2013,2035
+46,Local,Weekday,8474,2013,2036
+47,Local,Weekday,9505,2013,2037
+52,Local,Weekday,5188,2013,2038
+53,Local,Weekday,10194,2013,2039
+54,Local,Weekday,13889,2013,2040
+57,Local,Weekday,19527,2013,2041
+58,Local,Weekday,8113,2013,2042
+63,Local,Weekday,10247,2013,2043
+81,Local,Weekday,12032,2013,2044
+82,Local,Weekday,17576,2013,2045
+89,Local,Weekday,1750,2013,2046
+201,Local,Weekday,10932,2013,2047
+10,Local,Saturday,9255,2013,2048
+27,Local,Saturday,5242,2013,2049
+31,Local,Saturday,2019,2013,2050
+59,Out of Service,Weekday,0,2013,2051
+67,Out of Service,Weekday,0,2013,2052
+76,Out of Service,Weekday,0,2013,2053
+85,Out of Service,Weekday,0,2013,2054
+141,Out of Service,Weekday,0,2013,2055
+43,Out of Service,Weekday,0,2012,2056
+183,Out of Service,Weekday,361,2013,2057
+202,Out of Service,Weekday,0,2013,2058
+203,Out of Service,Weekday,0,2013,2059
+231,Out of Service,Weekday,0,2013,2060
+44,Out of Service,Weekday,0,2012,2061
+251,Out of Service,Weekday,0,2013,2062
+51,Out of Service,Weekday,13231,2012,2063
+38,Out of Service,Sunday,0,2013,2064
+252,Out of Service,Weekday,0,2013,2065
+15,Out of Service,Sunday,0,2012,2066
+59,Out of Service,Weekday,0,2012,2067
+41,Out of Service,Sunday,0,2013,2068
+253,Out of Service,Weekday,0,2013,2069
+60,Core,Saturday,16260,2013,2070
+33,Out of Service,Sunday,0,2012,2071
+67,Out of Service,Weekday,0,2012,2072
+43,Out of Service,Sunday,0,2013,2073
+254,Out of Service,Weekday,0,2013,2074
+61,Core,Saturday,8077,2013,2075
+36,Out of Service,Sunday,0,2012,2076
+76,Out of Service,Weekday,0,2012,2077
+44,Out of Service,Sunday,0,2013,2078
+255,Out of Service,Weekday,0,2013,2079
+62,Core,Saturday,11032,2013,2080
+38,Out of Service,Sunday,0,2012,2081
+85,Out of Service,Weekday,0,2012,2082
+51,Out of Service,Sunday,0,2013,2083
+256,Out of Service,Weekday,0,2013,2084
+64,Core,Saturday,19728,2013,2085
+41,Out of Service,Sunday,0,2012,2086
+141,Out of Service,Weekday,0,2012,2087
+59,Out of Service,Sunday,0,2013,2088
+261,Out of Service,Weekday,0,2013,2089
+66,Core,Saturday,38256,2013,2090
+68,Core,Saturday,41806,2013,2091
+70,Core,Saturday,38853,2013,2092
+71,Core,Saturday,12900,2013,2093
+72,Core,Saturday,13340,2013,2094
+73,Core,Saturday,11568,2013,2095
+77,Core,Saturday,14354,2013,2096
+323,Core,Saturday,0,2013,2097
+522,Core,Saturday,42814,2013,2098
+22,Core,Sunday,134423,2013,2099
+23,Core,Sunday,59648,2013,2100
+25,Core,Sunday,39817,2013,2101
+26,Core,Sunday,25482,2013,2102
+55,Core,Sunday,7695,2013,2103
+60,Core,Sunday,11556,2013,2104
+61,Core,Sunday,6538,2013,2105
+62,Core,Sunday,10607,2013,2106
+64,Core,Sunday,15803,2013,2107
+66,Core,Sunday,32271,2013,2108
+68,Core,Sunday,34705,2013,2109
+70,Core,Sunday,33528,2013,2110
+71,Core,Sunday,10184,2013,2111
+72,Core,Sunday,10142,2013,2112
+73,Core,Sunday,7451,2013,2113
+77,Core,Sunday,11709,2013,2114
+323,Core,Sunday,0,2013,2115
+522,Core,Sunday,0,2013,2116
+101,Express,Weekday,903,2013,2117
+102,Express,Weekday,3572,2013,2118
+103,Express,Weekday,2461,2013,2119
+104,Express,Weekday,970,2013,2120
+120,Express,Weekday,3035,2013,2121
+121,Express,Weekday,4578,2013,2122
+122,Express,Weekday,739,2013,2123
+140,Express,Weekday,1892,2013,2124
+168,Express,Weekday,3462,2013,2125
+180,Express,Weekday,6938,2013,2126
+181,Express,Weekday,25363,2013,2127
+182,Express,Weekday,466,2013,2128
+185,Express,Weekday,0,2013,2129
+101,Express,Saturday,0,2013,2130
+102,Express,Saturday,0,2013,2131
+103,Express,Saturday,0,2013,2132
+104,Express,Saturday,0,2013,2133
+120,Express,Saturday,0,2013,2134
+121,Express,Saturday,0,2013,2135
+19,Community,Saturday,1204,2013,2136
+35,Local,Saturday,5974,2013,2137
+305,Out of Service,Weekday,0,2013,2138
+40,Local,Saturday,3648,2013,2139
+32,Community,Saturday,3741,2013,2140
+920,Out of Service,Weekday,37,2013,2141
+67,Out of Service,Sunday,0,2013,2142
+46,Local,Saturday,1590,2013,2143
+34,Community,Saturday,0,2013,2144
+11,Out of Service,Saturday,0,2013,2145
+76,Out of Service,Sunday,0,2013,2146
+43,Out of Service,Sunday,0,2012,2147
+47,Local,Saturday,6194,2013,2148
+183,Out of Service,Weekday,576,2012,2149
+37,Community,Saturday,611,2013,2150
+12,Out of Service,Saturday,9483,2013,2151
+85,Out of Service,Sunday,0,2013,2152
+44,Out of Service,Sunday,0,2012,2153
+52,Local,Saturday,0,2013,2154
+202,Out of Service,Weekday,0,2012,2155
+39,Community,Saturday,2648,2013,2156
+15,Out of Service,Saturday,0,2013,2157
+141,Out of Service,Sunday,0,2013,2158
+51,Out of Service,Sunday,0,2012,2159
+53,Local,Saturday,0,2013,2160
+203,Out of Service,Weekday,0,2012,2161
+42,Community,Saturday,1423,2013,2162
+33,Out of Service,Saturday,0,2013,2163
+202,Out of Service,Sunday,0,2013,2164
+59,Out of Service,Sunday,0,2012,2165
+54,Local,Saturday,4942,2013,2166
+231,Out of Service,Weekday,0,2012,2167
+45,Community,Saturday,0,2013,2168
+36,Out of Service,Saturday,0,2013,2169
+203,Out of Service,Sunday,0,2013,2170
+67,Out of Service,Sunday,0,2012,2171
+57,Local,Saturday,9784,2013,2172
+251,Out of Service,Weekday,0,2012,2173
+48,Community,Saturday,1917,2013,2174
+38,Out of Service,Saturday,0,2013,2175
+231,Out of Service,Sunday,0,2013,2176
+76,Out of Service,Sunday,0,2012,2177
+58,Local,Saturday,0,2013,2178
+252,Out of Service,Weekday,0,2012,2179
+49,Community,Saturday,1552,2013,2180
+41,Out of Service,Saturday,0,2013,2181
+251,Out of Service,Sunday,0,2013,2182
+85,Out of Service,Sunday,0,2012,2183
+63,Local,Saturday,4331,2013,2184
+253,Out of Service,Weekday,0,2012,2185
+254,Out of Service,Weekday,0,2012,2186
+255,Out of Service,Weekday,0,2012,2187
+256,Out of Service,Weekday,0,2012,2188
+261,Out of Service,Weekday,0,2012,2189
+305,Out of Service,Weekday,0,2012,2190
+920,Out of Service,Weekday,0,2012,2191
+11,Out of Service,Saturday,0,2012,2192
+12,Out of Service,Saturday,9099,2012,2193
+15,Out of Service,Saturday,0,2012,2194
+33,Out of Service,Saturday,0,2012,2195
+36,Out of Service,Saturday,0,2012,2196
+38,Out of Service,Saturday,0,2012,2197
+41,Out of Service,Saturday,0,2012,2198
+43,Out of Service,Saturday,0,2012,2199
+44,Out of Service,Saturday,0,2012,2200
+51,Out of Service,Saturday,0,2012,2201
+59,Out of Service,Saturday,0,2012,2202
+67,Out of Service,Saturday,0,2012,2203
+76,Out of Service,Saturday,0,2012,2204
+85,Out of Service,Saturday,0,2012,2205
+141,Out of Service,Saturday,0,2012,2206
+202,Out of Service,Saturday,0,2012,2207
+203,Out of Service,Saturday,0,2012,2208
+231,Out of Service,Saturday,0,2012,2209
+251,Out of Service,Saturday,0,2012,2210
+252,Out of Service,Saturday,0,2012,2211
+253,Out of Service,Saturday,0,2012,2212
+254,Out of Service,Saturday,0,2012,2213
+255,Out of Service,Saturday,0,2012,2214
+256,Out of Service,Saturday,0,2012,2215
+305,Out of Service,Saturday,0,2012,2216
+903,Out of Service,Saturday,0,2012,2217
+920,Out of Service,Saturday,0,2012,2218
+11,Out of Service,Sunday,0,2012,2219
+12,Out of Service,Sunday,9761,2012,2220
+252,Out of Service,Sunday,0,2013,2221
+81,Local,Saturday,964,2013,2222
+65,Community,Saturday,0,2013,2223
+253,Out of Service,Sunday,0,2013,2224
+43,Out of Service,Saturday,0,2013,2225
+82,Local,Saturday,7709,2013,2226
+88,Community,Saturday,0,2013,2227
+254,Out of Service,Sunday,0,2013,2228
+44,Out of Service,Saturday,0,2013,2229
+89,Local,Saturday,0,2013,2230
+141,Out of Service,Sunday,0,2012,2231
+13,Community,Sunday,0,2013,2232
+255,Out of Service,Sunday,0,2013,2233
+51,Out of Service,Saturday,0,2013,2234
+201,Local,Saturday,0,2013,2235
+202,Out of Service,Sunday,0,2012,2236
+14,Community,Sunday,826,2013,2237
+256,Out of Service,Sunday,0,2013,2238
+59,Out of Service,Saturday,0,2013,2239
+10,Local,Sunday,10281,2013,2240
+203,Out of Service,Sunday,0,2012,2241
+16,Community,Sunday,0,2013,2242
+261,Out of Service,Sunday,0,2013,2243
+67,Out of Service,Saturday,0,2013,2244
+27,Local,Sunday,3133,2013,2245
+231,Out of Service,Sunday,0,2012,2246
+17,Community,Sunday,0,2013,2247
+305,Out of Service,Sunday,0,2013,2248
+76,Out of Service,Saturday,0,2013,2249
+31,Local,Sunday,1221,2013,2250
+251,Out of Service,Sunday,0,2012,2251
+18,Community,Sunday,142,2013,2252
+903,Out of Service,Sunday,0,2013,2253
+85,Out of Service,Saturday,0,2013,2254
+35,Local,Sunday,5054,2013,2255
+252,Out of Service,Sunday,0,2012,2256
+19,Community,Sunday,896,2013,2257
+920,Out of Service,Sunday,299,2013,2258
+141,Out of Service,Saturday,0,2013,2259
+40,Local,Sunday,1961,2013,2260
+253,Out of Service,Sunday,0,2012,2261
+32,Community,Sunday,0,2013,2262
+200,Other,Weekday,127,2013,2263
+202,Out of Service,Saturday,0,2013,2264
+46,Local,Sunday,0,2013,2265
+254,Out of Service,Sunday,0,2012,2266
+34,Community,Sunday,0,2013,2267
+200,Other,Saturday,131,2013,2268
+203,Out of Service,Saturday,0,2013,2269
+47,Local,Sunday,4819,2013,2270
+52,Local,Sunday,0,2013,2271
+53,Local,Sunday,0,2013,2272
+54,Local,Sunday,3756,2013,2273
+57,Local,Sunday,5680,2013,2274
+58,Local,Sunday,0,2013,2275
+63,Local,Sunday,3041,2013,2276
+81,Local,Sunday,0,2013,2277
+82,Local,Sunday,3958,2013,2278
+89,Local,Sunday,0,2013,2279
+201,Local,Sunday,0,2013,2280
+900,LRT,Weekday,11183,2013,2281
+901,LRT,Weekday,242495,2013,2282
+902,LRT,Weekday,161443,2013,2283
+900,LRT,Saturday,9869,2013,2284
+901,LRT,Saturday,152369,2013,2285
+902,LRT,Saturday,82305,2013,2286
+900,LRT,Sunday,8021,2013,2287
+901,LRT,Sunday,127104,2013,2288
+902,LRT,Sunday,67991,2013,2289
+11,Out of Service,Weekday,0,2013,2290
+12,Out of Service,Weekday,0,2013,2291
+15,Out of Service,Weekday,0,2013,2292
+33,Out of Service,Weekday,0,2013,2293
+36,Out of Service,Weekday,0,2013,2294
+38,Out of Service,Weekday,0,2013,2295
+41,Out of Service,Weekday,0,2013,2296
+43,Out of Service,Weekday,0,2013,2297
+44,Out of Service,Weekday,0,2013,2298
+51,Out of Service,Weekday,14069,2013,2299
+200,Other,Sunday,99,2013,2300
+255,Out of Service,Sunday,0,2012,2301
+13,Community,Weekday,1865,2014,2302
+231,Out of Service,Saturday,0,2013,2303
+256,Out of Service,Sunday,0,2012,2304
+14,Community,Weekday,1924,2014,2305
+251,Out of Service,Saturday,0,2013,2306
+261,Out of Service,Sunday,0,2012,2307
+37,Community,Sunday,0,2013,2308
+16,Community,Weekday,1316,2014,2309
+252,Out of Service,Saturday,0,2013,2310
+305,Out of Service,Sunday,0,2012,2311
+39,Community,Sunday,2344,2013,2312
+17,Community,Weekday,736,2014,2313
+253,Out of Service,Saturday,0,2013,2314
+903,Out of Service,Sunday,0,2012,2315
+42,Community,Sunday,0,2013,2316
+18,Community,Weekday,2082,2014,2317
+254,Out of Service,Saturday,0,2013,2318
+920,Out of Service,Sunday,0,2012,2319
+45,Community,Sunday,0,2013,2320
+19,Community,Weekday,2655,2014,2321
+255,Out of Service,Saturday,0,2013,2322
+200,Other,Weekday,131,2012,2323
+48,Community,Sunday,1465,2013,2324
+32,Community,Weekday,12173,2014,2325
+256,Out of Service,Saturday,0,2013,2326
+200,Other,Saturday,178,2012,2327
+49,Community,Sunday,848,2013,2328
+34,Community,Weekday,799,2014,2329
+305,Out of Service,Saturday,0,2013,2330
+200,Other,Sunday,104,2012,2331
+65,Community,Sunday,0,2013,2332
+37,Community,Weekday,7373,2014,2333
+903,Out of Service,Saturday,472,2013,2334
+13,Community,Weekday,2105,2013,2335
+88,Community,Sunday,0,2013,2336
+39,Community,Weekday,4839,2014,2337
+920,Out of Service,Saturday,0,2013,2338
+14,Community,Weekday,2133,2013,2339
+22,Core,Weekday,175231,2013,2340
+42,Community,Weekday,5881,2014,2341
+11,Out of Service,Sunday,0,2013,2342
+16,Community,Weekday,1733,2013,2343
+23,Core,Weekday,100463,2013,2344
+45,Community,Weekday,2158,2014,2345
+12,Out of Service,Sunday,10226,2013,2346
+17,Community,Weekday,762,2013,2347
+25,Core,Weekday,84656,2013,2348
+48,Community,Weekday,4161,2014,2349
+15,Out of Service,Sunday,0,2013,2350
+18,Community,Weekday,2238,2013,2351
+26,Core,Weekday,46328,2013,2352
+49,Community,Weekday,3164,2014,2353
+33,Out of Service,Sunday,0,2013,2354
+19,Community,Weekday,2986,2013,2355
+55,Core,Weekday,32381,2013,2356
+65,Community,Weekday,6755,2014,2357
+36,Out of Service,Sunday,0,2013,2358
+32,Community,Weekday,11432,2013,2359
+60,Core,Weekday,28216,2013,2360
+88,Community,Weekday,2770,2014,2361
+34,Community,Weekday,836,2013,2362
+61,Core,Weekday,20737,2013,2363
+37,Community,Weekday,7757,2013,2364
+62,Core,Weekday,19536,2013,2365
+39,Community,Weekday,4745,2013,2366
+64,Core,Weekday,40223,2013,2367
+42,Community,Weekday,3960,2013,2368
+66,Core,Weekday,71149,2013,2369
+13,Community,Saturday,0,2014,2370
+45,Community,Weekday,2063,2013,2371
+68,Core,Weekday,64493,2013,2372
+14,Community,Saturday,926,2014,2373
+48,Community,Weekday,4616,2013,2374
+70,Core,Weekday,61573,2013,2375
+16,Community,Saturday,0,2014,2376
+49,Community,Weekday,3181,2013,2377
+71,Core,Weekday,24158,2013,2378
+17,Community,Saturday,0,2014,2379
+65,Community,Weekday,6579,2013,2380
+72,Core,Weekday,27817,2013,2381
+18,Community,Saturday,180,2014,2382
+88,Community,Weekday,3864,2013,2383
+73,Core,Weekday,29771,2013,2384
+19,Community,Saturday,1224,2014,2385
+13,Community,Saturday,0,2013,2386
+77,Core,Weekday,25172,2013,2387
+32,Community,Saturday,3522,2014,2388
+14,Community,Saturday,1091,2013,2389
+323,Core,Weekday,23180,2013,2390
+34,Community,Saturday,0,2014,2391
+16,Community,Saturday,0,2013,2392
+522,Core,Weekday,72780,2013,2393
+17,Community,Saturday,0,2013,2394
+22,Core,Saturday,133962,2013,2395
+18,Community,Saturday,173,2013,2396
+23,Core,Saturday,70378,2013,2397
+25,Core,Saturday,48763,2013,2398
+26,Core,Saturday,28798,2013,2399
+55,Core,Saturday,10686,2013,2400
+37,Community,Saturday,0,2014,2401
+39,Community,Saturday,2473,2014,2402
+42,Community,Saturday,1366,2014,2403
+45,Community,Saturday,0,2014,2404
+48,Community,Saturday,1692,2014,2405
+49,Community,Saturday,1644,2014,2406
+65,Community,Saturday,0,2014,2407
+88,Community,Saturday,0,2014,2408
+13,Community,Sunday,0,2014,2409
+14,Community,Sunday,789,2014,2410
+16,Community,Sunday,0,2014,2411
+17,Community,Sunday,0,2014,2412
+18,Community,Sunday,152,2014,2413
+19,Community,Sunday,862,2014,2414
+32,Community,Sunday,0,2014,2415
+34,Community,Sunday,0,2014,2416
+37,Community,Sunday,0,2014,2417
+39,Community,Sunday,2210,2014,2418
+42,Community,Sunday,0,2014,2419
+45,Community,Sunday,0,2014,2420
+48,Community,Sunday,1188,2014,2421
+49,Community,Sunday,941,2014,2422
+65,Community,Sunday,0,2014,2423
+88,Community,Sunday,0,2014,2424
+22,Core,Weekday,163915,2014,2425
+23,Core,Weekday,102310,2014,2426
+25,Core,Weekday,85574,2014,2427
+26,Core,Weekday,40866,2014,2428
+55,Core,Weekday,33848,2014,2429
+60,Core,Weekday,28888,2014,2430
+61,Core,Weekday,20022,2014,2431
+62,Core,Weekday,18725,2014,2432
+64,Core,Weekday,42034,2014,2433
+66,Core,Weekday,75666,2014,2434
+68,Core,Weekday,66612,2014,2435
+70,Core,Weekday,57693,2014,2436
+71,Core,Weekday,21114,2014,2437
+72,Core,Weekday,28763,2014,2438
+73,Core,Weekday,31809,2014,2439
+77,Core,Weekday,23105,2014,2440
+323,Core,Weekday,23927,2014,2441
+522,Core,Weekday,69751,2014,2442
+22,Core,Saturday,119061,2014,2443
+23,Core,Saturday,66725,2014,2444
+25,Core,Saturday,49802,2014,2445
+26,Core,Saturday,26882,2014,2446
+55,Core,Saturday,11211,2014,2447
+60,Core,Saturday,16045,2014,2448
+61,Core,Saturday,8155,2014,2449
+62,Core,Saturday,11248,2014,2450
+85,Out of Service,Weekday,0,2014,2451
+141,Out of Service,Weekday,0,2014,2452
+183,Out of Service,Weekday,0,2014,2453
+202,Out of Service,Weekday,0,2014,2454
+203,Out of Service,Weekday,0,2014,2455
+231,Out of Service,Weekday,0,2014,2456
+251,Out of Service,Weekday,123,2014,2457
+252,Out of Service,Weekday,0,2014,2458
+253,Out of Service,Weekday,0,2014,2459
+254,Out of Service,Weekday,0,2014,2460
+255,Out of Service,Weekday,0,2014,2461
+256,Out of Service,Weekday,0,2014,2462
+261,Out of Service,Weekday,0,2014,2463
+305,Out of Service,Weekday,0,2014,2464
+920,Out of Service,Weekday,0,2014,2465
+11,Out of Service,Saturday,0,2014,2466
+12,Out of Service,Saturday,7592,2014,2467
+15,Out of Service,Saturday,0,2014,2468
+33,Out of Service,Saturday,0,2014,2469
+36,Out of Service,Saturday,0,2014,2470
+38,Out of Service,Saturday,0,2014,2471
+41,Out of Service,Saturday,0,2014,2472
+43,Out of Service,Saturday,0,2014,2473
+44,Out of Service,Saturday,0,2014,2474
+51,Out of Service,Saturday,0,2014,2475
+59,Out of Service,Saturday,0,2014,2476
+67,Out of Service,Saturday,0,2014,2477
+76,Out of Service,Saturday,0,2014,2478
+85,Out of Service,Saturday,0,2014,2479
+141,Out of Service,Saturday,0,2014,2480
+202,Out of Service,Saturday,0,2014,2481
+203,Out of Service,Saturday,0,2014,2482
+231,Out of Service,Saturday,0,2014,2483
+251,Out of Service,Saturday,236,2014,2484
+252,Out of Service,Saturday,28,2014,2485
+253,Out of Service,Saturday,33,2014,2486
+254,Out of Service,Saturday,15,2014,2487
+255,Out of Service,Saturday,35,2014,2488
+256,Out of Service,Saturday,246,2014,2489
+305,Out of Service,Saturday,0,2014,2490
+903,Out of Service,Saturday,0,2014,2491
+920,Out of Service,Saturday,0,2014,2492
+11,Out of Service,Sunday,0,2014,2493
+12,Out of Service,Sunday,7841,2014,2494
+15,Out of Service,Sunday,0,2014,2495
+33,Out of Service,Sunday,0,2014,2496
+36,Out of Service,Sunday,0,2014,2497
+38,Out of Service,Sunday,0,2014,2498
+41,Out of Service,Sunday,0,2014,2499
+43,Out of Service,Sunday,0,2014,2500
+44,Out of Service,Sunday,0,2014,2501
+64,Core,Saturday,20406,2014,2502
+180,Express,Saturday,0,2014,2503
+70,Core,Saturday,37131,2015,2504
+45,Community,Saturday,0,2015,2505
+47,Local,Saturday,6292,2014,2506
+71,Core,Saturday,12896,2015,2507
+181,Express,Saturday,24171,2014,2508
+66,Core,Saturday,39858,2014,2509
+72,Core,Saturday,14601,2015,2510
+51,Out of Service,Sunday,0,2014,2511
+182,Express,Saturday,0,2014,2512
+68,Core,Saturday,40854,2014,2513
+73,Core,Saturday,12419,2015,2514
+59,Out of Service,Sunday,0,2014,2515
+101,Express,Sunday,0,2014,2516
+52,Local,Saturday,0,2014,2517
+70,Core,Saturday,37036,2014,2518
+48,Community,Saturday,1730,2015,2519
+77,Core,Saturday,21712,2015,2520
+67,Out of Service,Sunday,0,2014,2521
+102,Express,Sunday,0,2014,2522
+53,Local,Saturday,0,2014,2523
+71,Core,Saturday,10797,2014,2524
+49,Community,Saturday,1761,2015,2525
+323,Core,Saturday,14643,2015,2526
+76,Out of Service,Sunday,0,2014,2527
+103,Express,Sunday,0,2014,2528
+54,Local,Saturday,4665,2014,2529
+72,Core,Saturday,14523,2014,2530
+65,Community,Saturday,0,2015,2531
+522,Core,Saturday,53568,2015,2532
+85,Out of Service,Sunday,0,2014,2533
+104,Express,Sunday,0,2014,2534
+57,Local,Saturday,9787,2014,2535
+73,Core,Saturday,12214,2014,2536
+88,Community,Saturday,0,2015,2537
+22,Core,Sunday,114348,2015,2538
+141,Out of Service,Sunday,0,2014,2539
+120,Express,Sunday,0,2014,2540
+58,Local,Saturday,0,2014,2541
+77,Core,Saturday,12573,2014,2542
+13,Community,Sunday,0,2015,2543
+23,Core,Sunday,52585,2015,2544
+202,Out of Service,Sunday,0,2014,2545
+121,Express,Sunday,0,2014,2546
+63,Local,Saturday,4524,2014,2547
+323,Core,Saturday,4992,2014,2548
+25,Core,Sunday,37953,2015,2549
+14,Community,Sunday,929,2015,2550
+26,Core,Sunday,24722,2015,2551
+16,Community,Sunday,0,2015,2552
+81,Local,Saturday,1072,2014,2553
+122,Express,Sunday,0,2014,2554
+17,Community,Sunday,0,2015,2555
+55,Core,Sunday,7736,2015,2556
+522,Core,Saturday,44481,2014,2557
+203,Out of Service,Sunday,0,2014,2558
+18,Community,Sunday,386,2015,2559
+140,Express,Sunday,0,2014,2560
+22,Core,Sunday,107849,2014,2561
+82,Local,Saturday,7646,2014,2562
+231,Out of Service,Sunday,0,2014,2563
+60,Core,Sunday,11115,2015,2564
+19,Community,Sunday,1153,2015,2565
+168,Express,Sunday,0,2014,2566
+23,Core,Sunday,56892,2014,2567
+89,Local,Saturday,0,2014,2568
+251,Out of Service,Sunday,6958,2014,2569
+61,Core,Sunday,6607,2015,2570
+32,Community,Sunday,0,2015,2571
+180,Express,Sunday,0,2014,2572
+25,Core,Sunday,39427,2014,2573
+201,Local,Saturday,0,2014,2574
+252,Out of Service,Sunday,1276,2014,2575
+62,Core,Sunday,9829,2015,2576
+34,Community,Sunday,0,2015,2577
+181,Express,Sunday,18906,2014,2578
+26,Core,Sunday,22731,2014,2579
+10,Local,Sunday,11049,2014,2580
+253,Out of Service,Sunday,1301,2014,2581
+64,Core,Sunday,15649,2015,2582
+37,Community,Sunday,0,2015,2583
+182,Express,Sunday,0,2014,2584
+55,Core,Sunday,8556,2014,2585
+27,Local,Sunday,2874,2014,2586
+254,Out of Service,Sunday,1201,2014,2587
+66,Core,Sunday,33459,2015,2588
+39,Community,Sunday,2667,2015,2589
+304,Limited,Weekday,2939,2014,2590
+60,Core,Sunday,12790,2014,2591
+31,Local,Sunday,1066,2014,2592
+255,Out of Service,Sunday,2019,2014,2593
+68,Core,Sunday,34271,2015,2594
+42,Community,Sunday,0,2015,2595
+321,Limited,Weekday,228,2014,2596
+61,Core,Sunday,6468,2014,2597
+35,Local,Sunday,4678,2014,2598
+256,Out of Service,Sunday,1771,2014,2599
+70,Core,Sunday,32022,2015,2600
+45,Community,Sunday,0,2015,2601
+328,Limited,Weekday,984,2014,2602
+62,Core,Sunday,9798,2014,2603
+40,Local,Sunday,2039,2014,2604
+261,Out of Service,Sunday,1682,2014,2605
+71,Core,Sunday,9741,2015,2606
+48,Community,Sunday,1250,2015,2607
+330,Limited,Weekday,2468,2014,2608
+64,Core,Sunday,15164,2014,2609
+46,Local,Sunday,0,2014,2610
+305,Out of Service,Sunday,0,2014,2611
+72,Core,Sunday,10636,2015,2612
+49,Community,Sunday,920,2015,2613
+304,Limited,Saturday,0,2014,2614
+66,Core,Sunday,33364,2014,2615
+47,Local,Sunday,4531,2014,2616
+903,Out of Service,Sunday,0,2014,2617
+73,Core,Sunday,8320,2015,2618
+65,Community,Sunday,0,2015,2619
+321,Limited,Saturday,0,2014,2620
+68,Core,Sunday,35309,2014,2621
+52,Local,Sunday,0,2014,2622
+920,Out of Service,Sunday,0,2014,2623
+77,Core,Sunday,13429,2015,2624
+88,Community,Sunday,0,2015,2625
+328,Limited,Saturday,0,2014,2626
+70,Core,Sunday,32105,2014,2627
+53,Local,Sunday,0,2014,2628
+200,Other,Weekday,106,2014,2629
+323,Core,Sunday,7628,2015,2630
+22,Core,Weekday,165225,2015,2631
+330,Limited,Saturday,0,2014,2632
+71,Core,Sunday,9041,2014,2633
+54,Local,Sunday,3430,2014,2634
+200,Other,Saturday,99,2014,2635
+522,Core,Sunday,32610,2015,2636
+23,Core,Weekday,98740,2015,2637
+304,Limited,Sunday,0,2014,2638
+72,Core,Sunday,10342,2014,2639
+57,Local,Sunday,7622,2014,2640
+200,Other,Sunday,82,2014,2641
+101,Express,Weekday,945,2015,2642
+25,Core,Weekday,84708,2015,2643
+321,Limited,Sunday,0,2014,2644
+73,Core,Sunday,8224,2014,2645
+58,Local,Sunday,0,2014,2646
+13,Community,Weekday,2151,2015,2647
+14,Community,Weekday,2075,2015,2648
+16,Community,Weekday,1121,2015,2649
+17,Community,Weekday,977,2015,2650
+18,Community,Weekday,2322,2015,2651
+19,Community,Weekday,2826,2015,2652
+32,Community,Weekday,12583,2015,2653
+34,Community,Weekday,793,2015,2654
+37,Community,Weekday,7509,2015,2655
+39,Community,Weekday,5132,2015,2656
+42,Community,Weekday,6646,2015,2657
+45,Community,Weekday,2520,2015,2658
+48,Community,Weekday,4053,2015,2659
+49,Community,Weekday,3273,2015,2660
+65,Community,Weekday,7307,2015,2661
+88,Community,Weekday,2664,2015,2662
+13,Community,Saturday,0,2015,2663
+14,Community,Saturday,1112,2015,2664
+16,Community,Saturday,0,2015,2665
+17,Community,Saturday,0,2015,2666
+18,Community,Saturday,345,2015,2667
+19,Community,Saturday,1332,2015,2668
+32,Community,Saturday,3114,2015,2669
+34,Community,Saturday,0,2015,2670
+37,Community,Saturday,0,2015,2671
+39,Community,Saturday,2596,2015,2672
+42,Community,Saturday,1357,2015,2673
+328,Limited,Sunday,0,2014,2674
+63,Local,Sunday,2910,2014,2675
+330,Limited,Sunday,0,2014,2676
+77,Core,Sunday,9827,2014,2677
+81,Local,Sunday,0,2014,2678
+26,Core,Weekday,45684,2015,2679
+10,Local,Weekday,15347,2014,2680
+323,Core,Sunday,0,2014,2681
+82,Local,Sunday,4003,2014,2682
+102,Express,Weekday,3766,2015,2683
+55,Core,Weekday,30988,2015,2684
+27,Local,Weekday,9700,2014,2685
+522,Core,Sunday,27345,2014,2686
+89,Local,Sunday,0,2014,2687
+103,Express,Weekday,2210,2015,2688
+60,Core,Weekday,27781,2015,2689
+31,Local,Weekday,6885,2014,2690
+101,Express,Weekday,917,2014,2691
+201,Local,Sunday,0,2014,2692
+104,Express,Weekday,972,2015,2693
+61,Core,Weekday,20063,2015,2694
+35,Local,Weekday,13188,2014,2695
+102,Express,Weekday,3707,2014,2696
+900,LRT,Weekday,10493,2014,2697
+120,Express,Weekday,3184,2015,2698
+62,Core,Weekday,19110,2015,2699
+40,Local,Weekday,14966,2014,2700
+103,Express,Weekday,2292,2014,2701
+901,LRT,Weekday,246960,2014,2702
+121,Express,Weekday,4497,2015,2703
+64,Core,Weekday,42286,2015,2704
+46,Local,Weekday,8279,2014,2705
+104,Express,Weekday,1032,2014,2706
+902,LRT,Weekday,167799,2014,2707
+122,Express,Weekday,556,2015,2708
+66,Core,Weekday,76065,2015,2709
+47,Local,Weekday,9541,2014,2710
+120,Express,Weekday,3298,2014,2711
+900,LRT,Saturday,9448,2014,2712
+140,Express,Weekday,2108,2015,2713
+68,Core,Weekday,64885,2015,2714
+52,Local,Weekday,5340,2014,2715
+121,Express,Weekday,5044,2014,2716
+901,LRT,Saturday,158271,2014,2717
+168,Express,Weekday,3738,2015,2718
+70,Core,Weekday,60011,2015,2719
+53,Local,Weekday,9993,2014,2720
+122,Express,Weekday,654,2014,2721
+902,LRT,Saturday,99847,2014,2722
+180,Express,Weekday,12234,2015,2723
+71,Core,Weekday,24763,2015,2724
+54,Local,Weekday,13495,2014,2725
+140,Express,Weekday,2257,2014,2726
+900,LRT,Sunday,8297,2014,2727
+181,Express,Weekday,33103,2015,2728
+72,Core,Weekday,30519,2015,2729
+57,Local,Weekday,19640,2014,2730
+168,Express,Weekday,3882,2014,2731
+901,LRT,Sunday,141182,2014,2732
+182,Express,Weekday,403,2015,2733
+73,Core,Weekday,31257,2015,2734
+58,Local,Weekday,8145,2014,2735
+180,Express,Weekday,7608,2014,2736
+902,LRT,Sunday,84738,2014,2737
+185,Express,Weekday,0,2015,2738
+77,Core,Weekday,33102,2015,2739
+63,Local,Weekday,10230,2014,2740
+181,Express,Weekday,30209,2014,2741
+11,Out of Service,Weekday,0,2014,2742
+101,Express,Saturday,0,2015,2743
+323,Core,Weekday,27469,2015,2744
+81,Local,Weekday,12141,2014,2745
+82,Local,Weekday,18107,2014,2746
+89,Local,Weekday,1484,2014,2747
+201,Local,Weekday,11401,2014,2748
+10,Local,Saturday,9757,2014,2749
+27,Local,Saturday,5009,2014,2750
+31,Local,Saturday,1666,2014,2751
+35,Local,Saturday,5854,2014,2752
+40,Local,Saturday,3694,2014,2753
+46,Local,Saturday,1840,2014,2754
+522,Core,Weekday,80045,2015,2755
+102,Express,Saturday,0,2015,2756
+22,Core,Saturday,126285,2015,2757
+12,Out of Service,Weekday,0,2014,2758
+103,Express,Saturday,0,2015,2759
+23,Core,Saturday,62800,2015,2760
+15,Out of Service,Weekday,0,2014,2761
+104,Express,Saturday,0,2015,2762
+25,Core,Saturday,48142,2015,2763
+182,Express,Weekday,396,2014,2764
+33,Out of Service,Weekday,0,2014,2765
+120,Express,Saturday,0,2015,2766
+26,Core,Saturday,28843,2015,2767
+185,Express,Weekday,0,2014,2768
+36,Out of Service,Weekday,0,2014,2769
+121,Express,Saturday,0,2015,2770
+55,Core,Saturday,12441,2015,2771
+101,Express,Saturday,0,2014,2772
+38,Out of Service,Weekday,0,2014,2773
+122,Express,Saturday,0,2015,2774
+60,Core,Saturday,14973,2015,2775
+102,Express,Saturday,0,2014,2776
+41,Out of Service,Weekday,0,2014,2777
+140,Express,Saturday,0,2015,2778
+61,Core,Saturday,8416,2015,2779
+103,Express,Saturday,0,2014,2780
+43,Out of Service,Weekday,0,2014,2781
+168,Express,Saturday,0,2015,2782
+62,Core,Saturday,11435,2015,2783
+104,Express,Saturday,0,2014,2784
+44,Out of Service,Weekday,0,2014,2785
+180,Express,Saturday,0,2015,2786
+64,Core,Saturday,19838,2015,2787
+120,Express,Saturday,0,2014,2788
+51,Out of Service,Weekday,13231,2014,2789
+181,Express,Saturday,33022,2015,2790
+66,Core,Saturday,41213,2015,2791
+121,Express,Saturday,0,2014,2792
+59,Out of Service,Weekday,0,2014,2793
+182,Express,Saturday,0,2015,2794
+68,Core,Saturday,40650,2015,2795
+122,Express,Saturday,0,2014,2796
+67,Out of Service,Weekday,0,2014,2797
+140,Express,Saturday,0,2014,2798
+76,Out of Service,Weekday,0,2014,2799
+168,Express,Saturday,0,2014,2800
+65,Community,Saturday,0,2016,2801
+88,Community,Saturday,0,2016,2802
+13,Community,Sunday,0,2016,2803
+14,Community,Sunday,731,2016,2804
+16,Community,Sunday,0,2016,2805
+17,Community,Sunday,342,2016,2806
+18,Community,Sunday,28,2016,2807
+19,Community,Sunday,989,2016,2808
+32,Community,Sunday,0,2016,2809
+34,Community,Sunday,0,2016,2810
+37,Community,Sunday,0,2016,2811
+39,Community,Sunday,2321,2016,2812
+42,Community,Sunday,0,2016,2813
+45,Community,Sunday,0,2016,2814
+48,Community,Sunday,1187,2016,2815
+49,Community,Sunday,833,2016,2816
+65,Community,Sunday,0,2016,2817
+88,Community,Sunday,0,2016,2818
+22,Core,Weekday,149012,2016,2819
+23,Core,Weekday,87691,2016,2820
+25,Core,Weekday,77347,2016,2821
+26,Core,Weekday,40994,2016,2822
+55,Core,Weekday,27264,2016,2823
+60,Core,Weekday,24749,2016,2824
+61,Core,Weekday,19230,2016,2825
+62,Core,Weekday,18842,2016,2826
+64,Core,Weekday,38602,2016,2827
+66,Core,Weekday,69816,2016,2828
+68,Core,Weekday,59641,2016,2829
+70,Core,Weekday,54446,2016,2830
+71,Core,Weekday,22540,2016,2831
+72,Core,Weekday,29058,2016,2832
+73,Core,Weekday,28712,2016,2833
+77,Core,Weekday,26966,2016,2834
+323,Core,Weekday,24850,2016,2835
+522,Core,Weekday,73191,2016,2836
+101,Express,Sunday,0,2015,2837
+54,Local,Saturday,4533,2015,2838
+22,Core,Saturday,111083,2016,2839
+23,Core,Saturday,53321,2016,2840
+25,Core,Saturday,42094,2016,2841
+26,Core,Saturday,24006,2016,2842
+55,Core,Saturday,9382,2016,2843
+60,Core,Saturday,11908,2016,2844
+61,Core,Saturday,7352,2016,2845
+62,Core,Saturday,9472,2016,2846
+64,Core,Saturday,16530,2016,2847
+66,Core,Saturday,39319,2016,2848
+68,Core,Saturday,37841,2016,2849
+70,Core,Saturday,33863,2016,2850
+71,Core,Saturday,11154,2016,2851
+72,Core,Saturday,12788,2016,2852
+202,Out of Service,Weekday,0,2015,2853
+73,Core,Saturday,10389,2016,2854
+67,Out of Service,Sunday,0,2015,2855
+104,Express,Sunday,0,2016,2856
+63,Local,Saturday,3657,2016,2857
+81,Local,Saturday,3001,2016,2858
+102,Express,Sunday,0,2015,2859
+57,Local,Saturday,9759,2015,2860
+82,Local,Saturday,6093,2016,2861
+120,Express,Sunday,0,2016,2862
+77,Core,Saturday,16485,2016,2863
+103,Express,Sunday,0,2015,2864
+58,Local,Saturday,0,2015,2865
+203,Out of Service,Weekday,0,2015,2866
+89,Local,Saturday,0,2016,2867
+121,Express,Sunday,0,2016,2868
+323,Core,Saturday,12656,2016,2869
+76,Out of Service,Sunday,0,2015,2870
+104,Express,Sunday,0,2015,2871
+63,Local,Saturday,4461,2015,2872
+231,Out of Service,Weekday,197,2015,2873
+201,Local,Saturday,0,2016,2874
+122,Express,Sunday,0,2016,2875
+522,Core,Saturday,43633,2016,2876
+85,Out of Service,Sunday,0,2015,2877
+120,Express,Sunday,0,2015,2878
+81,Local,Saturday,1026,2015,2879
+251,Out of Service,Weekday,88,2015,2880
+10,Local,Sunday,11484,2016,2881
+140,Express,Sunday,0,2016,2882
+22,Core,Sunday,105655,2016,2883
+141,Out of Service,Sunday,0,2015,2884
+121,Express,Sunday,0,2015,2885
+82,Local,Saturday,7190,2015,2886
+252,Out of Service,Weekday,0,2015,2887
+27,Local,Sunday,2919,2016,2888
+168,Express,Sunday,0,2016,2889
+23,Core,Sunday,47463,2016,2890
+202,Out of Service,Sunday,0,2015,2891
+122,Express,Sunday,0,2015,2892
+89,Local,Saturday,0,2015,2893
+253,Out of Service,Weekday,0,2015,2894
+31,Local,Sunday,1162,2016,2895
+180,Express,Sunday,0,2016,2896
+25,Core,Sunday,34907,2016,2897
+203,Out of Service,Sunday,0,2015,2898
+140,Express,Sunday,0,2015,2899
+201,Local,Saturday,0,2015,2900
+254,Out of Service,Weekday,0,2015,2901
+35,Local,Sunday,4299,2016,2902
+181,Express,Sunday,20181,2016,2903
+26,Core,Sunday,22520,2016,2904
+231,Out of Service,Sunday,681,2015,2905
+168,Express,Sunday,0,2015,2906
+10,Local,Sunday,13654,2015,2907
+255,Out of Service,Weekday,0,2015,2908
+40,Local,Sunday,1711,2016,2909
+182,Express,Sunday,0,2016,2910
+55,Core,Sunday,6597,2016,2911
+251,Out of Service,Sunday,1929,2015,2912
+180,Express,Sunday,0,2015,2913
+27,Local,Sunday,2866,2015,2914
+256,Out of Service,Weekday,0,2015,2915
+46,Local,Sunday,0,2016,2916
+304,Limited,Weekday,2441,2016,2917
+60,Core,Sunday,10595,2016,2918
+252,Out of Service,Sunday,271,2015,2919
+181,Express,Sunday,23758,2015,2920
+31,Local,Sunday,1269,2015,2921
+261,Out of Service,Weekday,0,2015,2922
+47,Local,Sunday,4479,2016,2923
+321,Limited,Weekday,271,2016,2924
+61,Core,Sunday,6007,2016,2925
+253,Out of Service,Sunday,262,2015,2926
+182,Express,Sunday,0,2015,2927
+35,Local,Sunday,4675,2015,2928
+305,Out of Service,Weekday,0,2015,2929
+52,Local,Sunday,0,2016,2930
+328,Limited,Weekday,874,2016,2931
+62,Core,Sunday,8567,2016,2932
+254,Out of Service,Sunday,29,2015,2933
+304,Limited,Weekday,2255,2015,2934
+40,Local,Sunday,1901,2015,2935
+920,Out of Service,Weekday,0,2015,2936
+53,Local,Sunday,0,2016,2937
+330,Limited,Weekday,1836,2016,2938
+64,Core,Sunday,14455,2016,2939
+255,Out of Service,Sunday,163,2015,2940
+256,Out of Service,Sunday,553,2015,2941
+261,Out of Service,Sunday,0,2015,2942
+305,Out of Service,Sunday,0,2015,2943
+903,Out of Service,Sunday,0,2015,2944
+920,Out of Service,Sunday,45,2015,2945
+200,Other,Weekday,123,2015,2946
+200,Other,Saturday,142,2015,2947
+200,Other,Sunday,98,2015,2948
+13,Community,Weekday,2205,2016,2949
+14,Community,Weekday,1662,2016,2950
+16,Community,Weekday,1426,2016,2951
+17,Community,Weekday,1195,2016,2952
+18,Community,Weekday,2652,2016,2953
+19,Community,Weekday,2618,2016,2954
+32,Community,Weekday,12842,2016,2955
+34,Community,Weekday,853,2016,2956
+37,Community,Weekday,7496,2016,2957
+39,Community,Weekday,4781,2016,2958
+42,Community,Weekday,6260,2016,2959
+45,Community,Weekday,2328,2016,2960
+48,Community,Weekday,3522,2016,2961
+49,Community,Weekday,2733,2016,2962
+65,Community,Weekday,7191,2016,2963
+88,Community,Weekday,2695,2016,2964
+13,Community,Saturday,0,2016,2965
+14,Community,Saturday,825,2016,2966
+16,Community,Saturday,0,2016,2967
+17,Community,Saturday,414,2016,2968
+18,Community,Saturday,8,2016,2969
+19,Community,Saturday,1165,2016,2970
+32,Community,Saturday,2723,2016,2971
+34,Community,Saturday,0,2016,2972
+37,Community,Saturday,0,2016,2973
+39,Community,Saturday,2425,2016,2974
+42,Community,Saturday,1151,2016,2975
+45,Community,Saturday,0,2016,2976
+48,Community,Saturday,1544,2016,2977
+49,Community,Saturday,1355,2016,2978
+11,Out of Service,Saturday,0,2015,2979
+66,Core,Sunday,33038,2016,2980
+304,Limited,Saturday,0,2016,2981
+12,Out of Service,Saturday,8573,2015,2982
+46,Local,Sunday,0,2015,2983
+321,Limited,Weekday,264,2015,2984
+68,Core,Sunday,33488,2016,2985
+321,Limited,Saturday,0,2016,2986
+54,Local,Sunday,2839,2016,2987
+15,Out of Service,Saturday,0,2015,2988
+47,Local,Sunday,4880,2015,2989
+328,Limited,Weekday,926,2015,2990
+70,Core,Sunday,30373,2016,2991
+328,Limited,Saturday,0,2016,2992
+57,Local,Sunday,6878,2016,2993
+33,Out of Service,Saturday,0,2015,2994
+52,Local,Sunday,0,2015,2995
+330,Limited,Weekday,2040,2015,2996
+71,Core,Sunday,9172,2016,2997
+330,Limited,Saturday,0,2016,2998
+58,Local,Sunday,0,2016,2999
+36,Out of Service,Saturday,0,2015,3000
+53,Local,Sunday,0,2015,3001
+304,Limited,Saturday,0,2015,3002
+63,Local,Sunday,2656,2016,3003
+304,Limited,Sunday,0,2016,3004
+72,Core,Sunday,9712,2016,3005
+38,Out of Service,Saturday,0,2015,3006
+54,Local,Sunday,3206,2015,3007
+321,Limited,Saturday,0,2015,3008
+81,Local,Sunday,0,2016,3009
+321,Limited,Sunday,0,2016,3010
+73,Core,Sunday,7702,2016,3011
+41,Out of Service,Saturday,0,2015,3012
+57,Local,Sunday,6345,2015,3013
+328,Limited,Saturday,0,2015,3014
+82,Local,Sunday,3970,2016,3015
+328,Limited,Sunday,0,2016,3016
+77,Core,Sunday,12740,2016,3017
+43,Out of Service,Saturday,0,2015,3018
+58,Local,Sunday,0,2015,3019
+330,Limited,Saturday,0,2015,3020
+89,Local,Sunday,0,2016,3021
+330,Limited,Sunday,0,2016,3022
+323,Core,Sunday,7286,2016,3023
+44,Out of Service,Saturday,0,2015,3024
+63,Local,Sunday,3006,2015,3025
+304,Limited,Sunday,0,2015,3026
+201,Local,Sunday,0,2016,3027
+10,Local,Weekday,15063,2016,3028
+522,Core,Sunday,30093,2016,3029
+51,Out of Service,Saturday,0,2015,3030
+81,Local,Sunday,0,2015,3031
+321,Limited,Sunday,0,2015,3032
+900,LRT,Weekday,9896,2016,3033
+27,Local,Weekday,9182,2016,3034
+31,Local,Weekday,6788,2016,3035
+35,Local,Weekday,11918,2016,3036
+40,Local,Weekday,10738,2016,3037
+46,Local,Weekday,6720,2016,3038
+47,Local,Weekday,9557,2016,3039
+52,Local,Weekday,5875,2016,3040
+53,Local,Weekday,8956,2016,3041
+54,Local,Weekday,11479,2016,3042
+57,Local,Weekday,16822,2016,3043
+58,Local,Weekday,8490,2016,3044
+63,Local,Weekday,9753,2016,3045
+81,Local,Weekday,23268,2016,3046
+82,Local,Weekday,16012,2016,3047
+89,Local,Weekday,3097,2016,3048
+201,Local,Weekday,12384,2016,3049
+10,Local,Saturday,10830,2016,3050
+27,Local,Saturday,4530,2016,3051
+31,Local,Saturday,1591,2016,3052
+35,Local,Saturday,5396,2016,3053
+40,Local,Saturday,2869,2016,3054
+46,Local,Saturday,1306,2016,3055
+47,Local,Saturday,6135,2016,3056
+52,Local,Saturday,0,2016,3057
+53,Local,Saturday,0,2016,3058
+54,Local,Saturday,3727,2016,3059
+57,Local,Saturday,8054,2016,3060
+58,Local,Saturday,0,2016,3061
+328,Limited,Sunday,0,2015,3062
+330,Limited,Sunday,0,2015,3063
+10,Local,Weekday,16929,2015,3064
+27,Local,Weekday,9689,2015,3065
+31,Local,Weekday,7685,2015,3066
+35,Local,Weekday,12980,2015,3067
+40,Local,Weekday,12315,2015,3068
+46,Local,Weekday,7299,2015,3069
+47,Local,Weekday,10565,2015,3070
+52,Local,Weekday,5907,2015,3071
+53,Local,Weekday,8925,2015,3072
+54,Local,Weekday,12736,2015,3073
+57,Local,Weekday,18129,2015,3074
+58,Local,Weekday,9070,2015,3075
+63,Local,Weekday,10468,2015,3076
+81,Local,Weekday,11526,2015,3077
+82,Local,Weekday,15874,2015,3078
+89,Local,Weekday,2033,2015,3079
+201,Local,Weekday,12525,2015,3080
+101,Express,Weekday,846,2016,3081
+10,Local,Saturday,12082,2015,3082
+82,Local,Sunday,4099,2015,3083
+59,Out of Service,Saturday,0,2015,3084
+102,Express,Weekday,3959,2016,3085
+27,Local,Saturday,4868,2015,3086
+901,LRT,Weekday,214676,2016,3087
+89,Local,Sunday,0,2015,3088
+67,Out of Service,Saturday,0,2015,3089
+103,Express,Weekday,2214,2016,3090
+31,Local,Saturday,1966,2015,3091
+902,LRT,Weekday,152592,2016,3092
+201,Local,Sunday,0,2015,3093
+76,Out of Service,Saturday,0,2015,3094
+104,Express,Weekday,960,2016,3095
+35,Local,Saturday,5710,2015,3096
+900,LRT,Saturday,10657,2016,3097
+900,LRT,Weekday,9931,2015,3098
+85,Out of Service,Saturday,0,2015,3099
+120,Express,Weekday,2799,2016,3100
+40,Local,Saturday,3561,2015,3101
+901,LRT,Saturday,164396,2016,3102
+901,LRT,Weekday,240368,2015,3103
+141,Out of Service,Saturday,0,2015,3104
+121,Express,Weekday,4224,2016,3105
+46,Local,Saturday,1814,2015,3106
+902,LRT,Saturday,106238,2016,3107
+902,LRT,Weekday,160724,2015,3108
+202,Out of Service,Saturday,0,2015,3109
+122,Express,Weekday,507,2016,3110
+47,Local,Saturday,7049,2015,3111
+900,LRT,Sunday,7138,2016,3112
+900,LRT,Saturday,8597,2015,3113
+203,Out of Service,Saturday,0,2015,3114
+140,Express,Weekday,1595,2016,3115
+52,Local,Saturday,0,2015,3116
+901,LRT,Sunday,112267,2016,3117
+901,LRT,Saturday,153739,2015,3118
+231,Out of Service,Saturday,1241,2015,3119
+168,Express,Weekday,3540,2016,3120
+53,Local,Saturday,0,2015,3121
+902,LRT,Sunday,67273,2016,3122
+902,LRT,Saturday,109437,2015,3123
+251,Out of Service,Saturday,1340,2015,3124
+180,Express,Weekday,9108,2016,3125
+11,Out of Service,Weekday,0,2016,3126
+900,LRT,Sunday,7221,2015,3127
+252,Out of Service,Saturday,54,2015,3128
+181,Express,Weekday,30115,2016,3129
+12,Out of Service,Weekday,0,2016,3130
+901,LRT,Sunday,133343,2015,3131
+902,LRT,Sunday,84368,2015,3132
+11,Out of Service,Weekday,0,2015,3133
+12,Out of Service,Weekday,0,2015,3134
+15,Out of Service,Weekday,0,2015,3135
+33,Out of Service,Weekday,0,2015,3136
+36,Out of Service,Weekday,0,2015,3137
+38,Out of Service,Weekday,0,2015,3138
+41,Out of Service,Weekday,0,2015,3139
+43,Out of Service,Weekday,0,2015,3140
+44,Out of Service,Weekday,0,2015,3141
+51,Out of Service,Weekday,10004,2015,3142
+59,Out of Service,Weekday,0,2015,3143
+67,Out of Service,Weekday,0,2015,3144
+76,Out of Service,Weekday,0,2015,3145
+85,Out of Service,Weekday,0,2015,3146
+141,Out of Service,Weekday,0,2015,3147
+183,Out of Service,Weekday,0,2015,3148
+182,Express,Weekday,410,2016,3149
+185,Express,Weekday,0,2016,3150
+101,Express,Saturday,0,2016,3151
+102,Express,Saturday,0,2016,3152
+103,Express,Saturday,0,2016,3153
+104,Express,Saturday,0,2016,3154
+120,Express,Saturday,0,2016,3155
+121,Express,Saturday,0,2016,3156
+122,Express,Saturday,0,2016,3157
+140,Express,Saturday,0,2016,3158
+168,Express,Saturday,0,2016,3159
+180,Express,Saturday,0,2016,3160
+181,Express,Saturday,25788,2016,3161
+182,Express,Saturday,0,2016,3162
+101,Express,Sunday,0,2016,3163
+102,Express,Sunday,0,2016,3164
+103,Express,Sunday,0,2016,3165
+253,Out of Service,Saturday,36,2015,3166
+254,Out of Service,Saturday,11,2015,3167
+255,Out of Service,Saturday,35,2015,3168
+256,Out of Service,Saturday,191,2015,3169
+305,Out of Service,Saturday,0,2015,3170
+903,Out of Service,Saturday,54,2015,3171
+920,Out of Service,Saturday,0,2015,3172
+11,Out of Service,Sunday,0,2015,3173
+12,Out of Service,Sunday,8853,2015,3174
+15,Out of Service,Sunday,0,2015,3175
+33,Out of Service,Sunday,0,2015,3176
+36,Out of Service,Sunday,0,2015,3177
+38,Out of Service,Sunday,0,2015,3178
+41,Out of Service,Sunday,0,2015,3179
+43,Out of Service,Sunday,0,2015,3180
+44,Out of Service,Sunday,0,2015,3181
+51,Out of Service,Sunday,0,2015,3182
+15,Out of Service,Weekday,0,2016,3183
+59,Out of Service,Sunday,0,2015,3184
+33,Out of Service,Weekday,0,2016,3185
+36,Out of Service,Weekday,0,2016,3186
+38,Out of Service,Weekday,0,2016,3187
+41,Out of Service,Weekday,0,2016,3188
+43,Out of Service,Weekday,0,2016,3189
+44,Out of Service,Weekday,0,2016,3190
+51,Out of Service,Weekday,0,2016,3191
+59,Out of Service,Weekday,0,2016,3192
+67,Out of Service,Weekday,0,2016,3193
+76,Out of Service,Weekday,0,2016,3194
+85,Out of Service,Weekday,0,2016,3195
+141,Out of Service,Weekday,0,2016,3196
+183,Out of Service,Weekday,0,2016,3197
+202,Out of Service,Weekday,12,2016,3198
+203,Out of Service,Weekday,0,2016,3199
+231,Out of Service,Weekday,120,2016,3200
+41,Out of Service,Saturday,0,2017,3201
+43,Out of Service,Saturday,0,2017,3202
+44,Out of Service,Saturday,0,2017,3203
+51,Out of Service,Saturday,0,2017,3204
+59,Out of Service,Saturday,0,2017,3205
+67,Out of Service,Saturday,0,2017,3206
+76,Out of Service,Saturday,0,2017,3207
+85,Out of Service,Saturday,0,2017,3208
+141,Out of Service,Saturday,0,2017,3209
+202,Out of Service,Saturday,0,2017,3210
+203,Out of Service,Saturday,0,2017,3211
+231,Out of Service,Saturday,677,2017,3212
+251,Out of Service,Saturday,109,2017,3213
+60,Core,Sunday,9863,2017,3214
+251,Out of Service,Weekday,419,2016,3215
+252,Out of Service,Saturday,0,2017,3216
+253,Out of Service,Saturday,0,2017,3217
+254,Out of Service,Saturday,0,2017,3218
+255,Out of Service,Saturday,0,2017,3219
+256,Out of Service,Saturday,0,2017,3220
+305,Out of Service,Saturday,0,2017,3221
+903,Out of Service,Saturday,1154,2017,3222
+920,Out of Service,Saturday,325,2017,3223
+11,Out of Service,Sunday,0,2017,3224
+12,Out of Service,Sunday,6556,2017,3225
+15,Out of Service,Sunday,0,2017,3226
+33,Out of Service,Sunday,0,2017,3227
+36,Out of Service,Sunday,0,2017,3228
+38,Out of Service,Sunday,0,2017,3229
+41,Out of Service,Sunday,0,2017,3230
+43,Out of Service,Sunday,0,2017,3231
+44,Out of Service,Sunday,0,2017,3232
+51,Out of Service,Sunday,0,2017,3233
+59,Out of Service,Sunday,0,2017,3234
+67,Out of Service,Sunday,0,2017,3235
+76,Out of Service,Sunday,0,2017,3236
+85,Out of Service,Sunday,0,2017,3237
+141,Out of Service,Sunday,0,2017,3238
+202,Out of Service,Sunday,0,2017,3239
+203,Out of Service,Sunday,0,2017,3240
+231,Out of Service,Sunday,462,2017,3241
+251,Out of Service,Sunday,641,2017,3242
+252,Out of Service,Sunday,0,2017,3243
+253,Out of Service,Sunday,0,2017,3244
+254,Out of Service,Sunday,0,2017,3245
+255,Out of Service,Sunday,0,2017,3246
+256,Out of Service,Sunday,0,2017,3247
+261,Out of Service,Sunday,0,2017,3248
+305,Out of Service,Sunday,0,2017,3249
+903,Out of Service,Sunday,1679,2017,3250
+920,Out of Service,Sunday,121,2017,3251
+200,Other,Weekday,101,2017,3252
+200,Other,Saturday,100,2017,3253
+200,Other,Sunday,69,2017,3254
+53,Local,Sunday,0,2017,3255
+328,Limited,Weekday,665,2017,3256
+203,Out of Service,Sunday,0,2016,3257
+19,Community,Sunday,1031,2017,3258
+54,Local,Sunday,2825,2017,3259
+330,Limited,Weekday,1504,2017,3260
+57,Local,Sunday,6258,2017,3261
+61,Core,Sunday,5456,2017,3262
+252,Out of Service,Weekday,3,2016,3263
+304,Limited,Saturday,0,2017,3264
+58,Local,Sunday,0,2017,3265
+62,Core,Sunday,7155,2017,3266
+253,Out of Service,Weekday,4,2016,3267
+321,Limited,Saturday,0,2017,3268
+63,Local,Sunday,2235,2017,3269
+32,Community,Sunday,0,2017,3270
+231,Out of Service,Sunday,679,2016,3271
+64,Core,Sunday,13381,2017,3272
+254,Out of Service,Weekday,0,2016,3273
+328,Limited,Saturday,0,2017,3274
+81,Local,Sunday,0,2017,3275
+34,Community,Sunday,0,2017,3276
+251,Out of Service,Sunday,1701,2016,3277
+66,Core,Sunday,32956,2017,3278
+255,Out of Service,Weekday,0,2016,3279
+330,Limited,Saturday,0,2017,3280
+82,Local,Sunday,3812,2017,3281
+37,Community,Sunday,0,2017,3282
+252,Out of Service,Sunday,249,2016,3283
+68,Core,Sunday,34033,2017,3284
+256,Out of Service,Weekday,0,2016,3285
+304,Limited,Sunday,0,2017,3286
+89,Local,Sunday,0,2017,3287
+39,Community,Sunday,2405,2017,3288
+253,Out of Service,Sunday,250,2016,3289
+70,Core,Sunday,28472,2017,3290
+261,Out of Service,Weekday,0,2016,3291
+321,Limited,Sunday,0,2017,3292
+201,Local,Sunday,0,2017,3293
+42,Community,Sunday,0,2017,3294
+254,Out of Service,Sunday,3,2016,3295
+71,Core,Sunday,8983,2017,3296
+305,Out of Service,Weekday,0,2016,3297
+328,Limited,Sunday,0,2017,3298
+900,LRT,Weekday,9181,2017,3299
+45,Community,Sunday,0,2017,3300
+255,Out of Service,Sunday,22,2016,3301
+72,Core,Sunday,9236,2017,3302
+920,Out of Service,Weekday,3,2016,3303
+330,Limited,Sunday,0,2017,3304
+901,LRT,Weekday,191020,2017,3305
+48,Community,Sunday,971,2017,3306
+256,Out of Service,Sunday,135,2016,3307
+73,Core,Sunday,7298,2017,3308
+902,LRT,Weekday,131892,2017,3309
+11,Out of Service,Saturday,0,2016,3310
+12,Out of Service,Saturday,6621,2016,3311
+15,Out of Service,Saturday,0,2016,3312
+900,LRT,Saturday,7686,2017,3313
+10,Local,Weekday,13616,2017,3314
+901,LRT,Saturday,110733,2017,3315
+33,Out of Service,Saturday,0,2016,3316
+49,Community,Sunday,657,2017,3317
+261,Out of Service,Sunday,0,2016,3318
+77,Core,Sunday,10140,2017,3319
+27,Local,Weekday,8390,2017,3320
+305,Out of Service,Sunday,0,2016,3321
+65,Community,Sunday,0,2017,3322
+323,Core,Sunday,6231,2017,3323
+36,Out of Service,Saturday,0,2016,3324
+902,LRT,Saturday,61477,2017,3325
+31,Local,Weekday,7240,2017,3326
+903,Out of Service,Sunday,0,2016,3327
+88,Community,Sunday,0,2017,3328
+522,Core,Sunday,27822,2017,3329
+38,Out of Service,Saturday,0,2016,3330
+900,LRT,Sunday,6750,2017,3331
+35,Local,Weekday,10513,2017,3332
+920,Out of Service,Sunday,0,2016,3333
+22,Core,Weekday,128597,2017,3334
+101,Express,Weekday,694,2017,3335
+41,Out of Service,Saturday,0,2016,3336
+901,LRT,Sunday,97253,2017,3337
+40,Local,Weekday,10348,2017,3338
+200,Other,Weekday,119,2016,3339
+23,Core,Weekday,83878,2017,3340
+102,Express,Weekday,3894,2017,3341
+43,Out of Service,Saturday,0,2016,3342
+902,LRT,Sunday,63674,2017,3343
+46,Local,Weekday,7599,2017,3344
+200,Other,Saturday,306,2016,3345
+25,Core,Weekday,74509,2017,3346
+103,Express,Weekday,2007,2017,3347
+44,Out of Service,Saturday,0,2016,3348
+11,Out of Service,Weekday,0,2017,3349
+47,Local,Weekday,8227,2017,3350
+200,Other,Sunday,82,2016,3351
+26,Core,Weekday,35685,2017,3352
+104,Express,Weekday,865,2017,3353
+51,Out of Service,Saturday,0,2016,3354
+12,Out of Service,Weekday,0,2017,3355
+52,Local,Weekday,5503,2017,3356
+13,Community,Weekday,1874,2017,3357
+55,Core,Weekday,24935,2017,3358
+120,Express,Weekday,2271,2017,3359
+59,Out of Service,Saturday,0,2016,3360
+15,Out of Service,Weekday,0,2017,3361
+53,Local,Weekday,8211,2017,3362
+14,Community,Weekday,1609,2017,3363
+60,Core,Weekday,22446,2017,3364
+121,Express,Weekday,3901,2017,3365
+67,Out of Service,Saturday,0,2016,3366
+33,Out of Service,Weekday,0,2017,3367
+54,Local,Weekday,11150,2017,3368
+16,Community,Weekday,1682,2017,3369
+61,Core,Weekday,18477,2017,3370
+122,Express,Weekday,476,2017,3371
+76,Out of Service,Saturday,0,2016,3372
+36,Out of Service,Weekday,0,2017,3373
+57,Local,Weekday,15733,2017,3374
+17,Community,Weekday,1291,2017,3375
+62,Core,Weekday,17532,2017,3376
+140,Express,Weekday,1195,2017,3377
+85,Out of Service,Saturday,0,2016,3378
+38,Out of Service,Weekday,0,2017,3379
+58,Local,Weekday,7618,2017,3380
+18,Community,Weekday,2564,2017,3381
+64,Core,Weekday,35715,2017,3382
+168,Express,Weekday,3311,2017,3383
+141,Out of Service,Saturday,0,2016,3384
+41,Out of Service,Weekday,0,2017,3385
+63,Local,Weekday,9237,2017,3386
+19,Community,Weekday,2455,2017,3387
+66,Core,Weekday,66114,2017,3388
+180,Express,Weekday,6576,2017,3389
+202,Out of Service,Saturday,0,2016,3390
+43,Out of Service,Weekday,0,2017,3391
+81,Local,Weekday,21190,2017,3392
+32,Community,Weekday,12516,2017,3393
+68,Core,Weekday,57212,2017,3394
+181,Express,Weekday,26161,2017,3395
+203,Out of Service,Saturday,0,2016,3396
+44,Out of Service,Weekday,0,2017,3397
+82,Local,Weekday,15868,2017,3398
+34,Community,Weekday,808,2017,3399
+70,Core,Weekday,52451,2017,3400
+182,Express,Weekday,444,2017,3401
+231,Out of Service,Saturday,469,2016,3402
+251,Out of Service,Saturday,82,2016,3403
+252,Out of Service,Saturday,0,2016,3404
+253,Out of Service,Saturday,0,2016,3405
+254,Out of Service,Saturday,0,2016,3406
+255,Out of Service,Saturday,0,2016,3407
+256,Out of Service,Saturday,0,2016,3408
+305,Out of Service,Saturday,0,2016,3409
+903,Out of Service,Saturday,20,2016,3410
+920,Out of Service,Saturday,0,2016,3411
+11,Out of Service,Sunday,0,2016,3412
+12,Out of Service,Sunday,7418,2016,3413
+15,Out of Service,Sunday,0,2016,3414
+33,Out of Service,Sunday,0,2016,3415
+36,Out of Service,Sunday,0,2016,3416
+38,Out of Service,Sunday,0,2016,3417
+41,Out of Service,Sunday,0,2016,3418
+43,Out of Service,Sunday,0,2016,3419
+44,Out of Service,Sunday,0,2016,3420
+51,Out of Service,Sunday,0,2016,3421
+59,Out of Service,Sunday,0,2016,3422
+67,Out of Service,Sunday,0,2016,3423
+76,Out of Service,Sunday,0,2016,3424
+85,Out of Service,Sunday,0,2016,3425
+141,Out of Service,Sunday,0,2016,3426
+202,Out of Service,Sunday,0,2016,3427
+89,Local,Weekday,3341,2017,3428
+37,Community,Weekday,6865,2017,3429
+201,Local,Weekday,12091,2017,3430
+39,Community,Weekday,4863,2017,3431
+71,Core,Weekday,21980,2017,3432
+10,Local,Saturday,9201,2017,3433
+42,Community,Weekday,6219,2017,3434
+72,Core,Weekday,28405,2017,3435
+27,Local,Saturday,4461,2017,3436
+51,Out of Service,Weekday,0,2017,3437
+45,Community,Weekday,2359,2017,3438
+185,Express,Weekday,551,2017,3439
+73,Core,Weekday,28265,2017,3440
+31,Local,Saturday,1536,2017,3441
+59,Out of Service,Weekday,0,2017,3442
+48,Community,Weekday,3129,2017,3443
+101,Express,Saturday,0,2017,3444
+77,Core,Weekday,24362,2017,3445
+35,Local,Saturday,4914,2017,3446
+67,Out of Service,Weekday,0,2017,3447
+49,Community,Weekday,2477,2017,3448
+102,Express,Saturday,0,2017,3449
+323,Core,Weekday,21806,2017,3450
+40,Local,Saturday,2614,2017,3451
+76,Out of Service,Weekday,0,2017,3452
+65,Community,Weekday,6480,2017,3453
+103,Express,Saturday,0,2017,3454
+522,Core,Weekday,76693,2017,3455
+46,Local,Saturday,1372,2017,3456
+85,Out of Service,Weekday,0,2017,3457
+88,Community,Weekday,2668,2017,3458
+104,Express,Saturday,0,2017,3459
+22,Core,Saturday,108169,2017,3460
+47,Local,Saturday,5559,2017,3461
+141,Out of Service,Weekday,0,2017,3462
+13,Community,Saturday,0,2017,3463
+120,Express,Saturday,0,2017,3464
+23,Core,Saturday,53030,2017,3465
+52,Local,Saturday,0,2017,3466
+183,Out of Service,Weekday,0,2017,3467
+14,Community,Saturday,950,2017,3468
+121,Express,Saturday,0,2017,3469
+25,Core,Saturday,43716,2017,3470
+53,Local,Saturday,0,2017,3471
+202,Out of Service,Weekday,0,2017,3472
+16,Community,Saturday,0,2017,3473
+122,Express,Saturday,0,2017,3474
+26,Core,Saturday,23390,2017,3475
+54,Local,Saturday,3800,2017,3476
+203,Out of Service,Weekday,0,2017,3477
+17,Community,Saturday,523,2017,3478
+140,Express,Saturday,0,2017,3479
+55,Core,Saturday,8969,2017,3480
+57,Local,Saturday,7900,2017,3481
+231,Out of Service,Weekday,36,2017,3482
+18,Community,Saturday,0,2017,3483
+168,Express,Saturday,0,2017,3484
+60,Core,Saturday,12253,2017,3485
+58,Local,Saturday,0,2017,3486
+251,Out of Service,Weekday,54,2017,3487
+19,Community,Saturday,1184,2017,3488
+180,Express,Saturday,0,2017,3489
+61,Core,Saturday,7472,2017,3490
+63,Local,Saturday,3500,2017,3491
+252,Out of Service,Weekday,0,2017,3492
+253,Out of Service,Weekday,0,2017,3493
+254,Out of Service,Weekday,0,2017,3494
+255,Out of Service,Weekday,0,2017,3495
+256,Out of Service,Weekday,0,2017,3496
+261,Out of Service,Weekday,0,2017,3497
+305,Out of Service,Weekday,0,2017,3498
+920,Out of Service,Weekday,28,2017,3499
+11,Out of Service,Saturday,0,2017,3500
+12,Out of Service,Saturday,6589,2017,3501
+15,Out of Service,Saturday,0,2017,3502
+33,Out of Service,Saturday,0,2017,3503
+36,Out of Service,Saturday,0,2017,3504
+38,Out of Service,Saturday,0,2017,3505
+62,Core,Saturday,8981,2017,3506
+81,Local,Saturday,3568,2017,3507
+64,Core,Saturday,16752,2017,3508
+32,Community,Saturday,2925,2017,3509
+82,Local,Saturday,6063,2017,3510
+66,Core,Saturday,39488,2017,3511
+34,Community,Saturday,0,2017,3512
+89,Local,Saturday,0,2017,3513
+68,Core,Saturday,38987,2017,3514
+181,Express,Saturday,19557,2017,3515
+37,Community,Saturday,0,2017,3516
+201,Local,Saturday,0,2017,3517
+70,Core,Saturday,33867,2017,3518
+182,Express,Saturday,0,2017,3519
+39,Community,Saturday,2429,2017,3520
+10,Local,Sunday,9607,2017,3521
+71,Core,Saturday,11982,2017,3522
+101,Express,Sunday,0,2017,3523
+42,Community,Saturday,1168,2017,3524
+27,Local,Sunday,2643,2017,3525
+72,Core,Saturday,12705,2017,3526
+102,Express,Sunday,0,2017,3527
+45,Community,Saturday,0,2017,3528
+31,Local,Sunday,1147,2017,3529
+73,Core,Saturday,10631,2017,3530
+103,Express,Sunday,0,2017,3531
+48,Community,Saturday,1491,2017,3532
+35,Local,Sunday,3894,2017,3533
+77,Core,Saturday,11641,2017,3534
+104,Express,Sunday,0,2017,3535
+49,Community,Saturday,1166,2017,3536
+40,Local,Sunday,1474,2017,3537
+323,Core,Saturday,11374,2017,3538
+120,Express,Sunday,0,2017,3539
+65,Community,Saturday,0,2017,3540
+46,Local,Sunday,0,2017,3541
+522,Core,Saturday,43568,2017,3542
+121,Express,Sunday,0,2017,3543
+88,Community,Saturday,0,2017,3544
+47,Local,Sunday,3985,2017,3545
+22,Core,Sunday,98889,2017,3546
+122,Express,Sunday,0,2017,3547
+13,Community,Sunday,0,2017,3548
+52,Local,Sunday,0,2017,3549
+23,Core,Sunday,43484,2017,3550
+140,Express,Sunday,0,2017,3551
+14,Community,Sunday,814,2017,3552
+25,Core,Sunday,34688,2017,3553
+16,Community,Sunday,0,2017,3554
+168,Express,Sunday,0,2017,3555
+26,Core,Sunday,20309,2017,3556
+17,Community,Sunday,488,2017,3557
+55,Core,Sunday,5868,2017,3558
+180,Express,Sunday,0,2017,3559
+18,Community,Sunday,0,2017,3560
+181,Express,Sunday,16021,2017,3561
+182,Express,Sunday,0,2017,3562
+304,Limited,Weekday,1983,2017,3563
+321,Limited,Weekday,187,2017,3564

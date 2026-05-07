@@ -77,8 +77,16 @@ logging.basicConfig(
 logger = logging.getLogger("run_analysis")
 
 
-def main():
-    """Execute the full Phase A1 pipeline."""
+def main(cba_only: bool = False):
+    """Execute the pipeline.
+
+    Args:
+        cba_only: If True, run only Phase A1–A4 + scenario comparison
+            (the cost-benefit analysis), skipping Phase B route optimization,
+            schedule generation, GTFS export, and Route 27 corridor work.
+            The dashboard is still generated; Phase B panels render empty
+            via their existing fallback messages.
+    """
     logger.info("=" * 70)
     logger.info("LOS GATOS TRANSIT CBA -- Phase A1 Pipeline")
     logger.info("=" * 70)
@@ -918,6 +926,35 @@ def main():
         json.dump(scenario_results, f, indent=2, default=str)
 
     # =========================================================
+    # CBA-ONLY EXIT POINT
+    # =========================================================
+    # When invoked with cba_only=True (e.g. via run_cba.py), stop here:
+    # generate the dashboard from the A1-A4 + scenario outputs only and
+    # return. The dashboard already renders empty Phase B / Route 27
+    # panels gracefully via their existing fallback messages.
+    if cba_only:
+        logger.info("\n" + "=" * 70)
+        logger.info("CBA-ONLY MODE -- Skipping Phase B (route optimization)")
+        logger.info("=" * 70)
+        from src.generate_dashboard import generate_dashboard
+        dashboard_path = generate_dashboard("outputs/cba_dashboard.html")
+        print("\n" + "=" * 70)
+        print("CBA PIPELINE COMPLETE (Phase A1-A4 + Scenarios)")
+        print("=" * 70)
+        print(f"  Districts loaded:     {len(dm.districts)} (10 LGHS + 6 Union)")
+        print(f"  Census block groups:  {len(census)}")
+        print(f"  Transit stops:        {len(stops)}")
+        print(f"  Routes:               {len(routes)}")
+        print(f"  Crash records:        {len(crashes)}")
+        print(f"  Traffic profiles:     {len(traffic)} hourly records")
+        print(f"  Closures:             {len(closures)}")
+        print(f"\n  All CBA outputs in: outputs/tables/")
+        print(f"  Dashboard:          {dashboard_path}")
+        print(f"\n  Phase B (route optimization) skipped.")
+        print(f"  Run `python run_analysis.py` for the full pipeline.")
+        return 0
+
+    # =========================================================
     # PHASE B: Routing Optimization
     # =========================================================
     logger.info("\n" + "=" * 70)
@@ -961,6 +998,22 @@ def main():
         stop_district[["stop_id", "district_id"]].dropna(subset=["stop_id"]),
         on="stop_id", how="left",
     )
+
+    # Augment with synthetic candidates in underserved districts
+    from src.candidate_generator import generate_synthetic_candidates
+    districts_df = pd.read_csv("outputs/tables/district_profile_initial.csv")
+    synthetic = generate_synthetic_candidates(
+        existing_stops=candidate_stops,
+        districts=districts_df,
+        unmet_need=unmet_df,
+        tdi=tdi_df,
+    )
+    candidate_stops = pd.concat([candidate_stops, synthetic], ignore_index=True)
+    logger.info(
+        "Candidate pool: %d existing + %d synthetic = %d",
+        len(stops), len(synthetic), len(candidate_stops),
+    )
+
     opt_result = run_route_optimisation(
         candidate_stops=candidate_stops,
         coverage_gaps=coverage_df,
@@ -971,6 +1024,10 @@ def main():
         config=config,
         route_costs_df=route_costs,
         scenario_results=scenario_results,
+        existing_routes=routes,
+        districts_df=pd.read_csv("outputs/tables/district_demographic_profile.csv"),
+        road_graph=network_result["graph"],
+        stops_snapped_df=network_result["stops_snapped"],
     )
     opt_result["routes_df"].to_csv("outputs/tables/optimised_routes.csv", index=False)
     pd.DataFrame([{
@@ -980,11 +1037,21 @@ def main():
         "is_school_stop": s.is_school_stop, "is_mandatory": s.is_mandatory,
         "wheelchair_boarding": s.wheelchair_boarding,
         "demand_score": round(s.demand_score, 4),
+        "estimated_daily_boardings": round(getattr(s, "estimated_daily_boardings", 0.0), 1),
     } for s in opt_result["selected_stops"]]).to_csv(
         "outputs/tables/selected_stops.csv", index=False)
     n_new = sum(1 for s in opt_result["selected_stops"] if not s.is_existing)
     logger.info("  Routes: %d  |  Stops: %d (%d new)",
                 len(opt_result["routes"]), len(opt_result["selected_stops"]), n_new)
+    assert n_new > 0, "No new stops selected — synthetic pipeline is broken"
+
+    # Boardings sanity check vs VTA RBS active-route daily baseline
+    total_daily = sum(getattr(s, "estimated_daily_boardings", 0.0) for s in opt_result["selected_stops"])
+    vta_total_daily = route_costs[route_costs["status"] == "active"]["annual_boardings"].sum() / 310
+    assert total_daily < 10 * vta_total_daily, (
+        f"Daily boardings {total_daily:.0f} implausibly high vs VTA actual {vta_total_daily:.0f}"
+    )
+    logger.info("  Est. daily boardings: %.0f (VTA baseline %.0f/day)", total_daily, vta_total_daily)
 
     # -- Step B3b: Route 27 Stop Optimization (new stop suggestions) ----------
     logger.info("\nStep B3b: Route 27 stop optimization (new stop suggestions)...")
@@ -1030,9 +1097,11 @@ def main():
         r27_result["suggestions"].to_csv(
             "outputs/tables/route27_stop_suggestions.csv", index=False
         )
+        # Always write gaps CSV (even if empty) so mtime reflects current run.
+        # A stale CSV from a prior run is not acceptable as evidence of 0 gaps.
         r27_result["gaps"].to_csv(
             "outputs/tables/route27_coverage_gaps.csv", index=False
-        ) if len(r27_result["gaps"]) > 0 else None
+        )
 
         # Console report
         print_route27_report(r27_result["suggestions"])
@@ -1077,6 +1146,18 @@ def main():
     )
     logger.info("  GTFS feed written to %s", gtfs_dir)
 
+    # -- Step B5b: Render stop placards --
+    logger.info("\nStep B5b: Rendering rider-facing stop placards...")
+    from src.placard_renderer import render_all_placards
+    render_all_placards(
+        gtfs_dir="outputs/gtfs_optimised",
+        selected_stops=opt_result["selected_stops"],
+        out_dir="outputs/placards",
+        parent_route_lookup={r.route_id: r.parent_route_id for r in opt_result["routes"]
+                             if r.parent_route_id},
+    )
+    logger.info("  Placards written to outputs/placards/")
+
     # -- Step B6: Generate Dashboard --
     logger.info("\nStep B6: Generating interactive dashboard...")
     from src.generate_dashboard import generate_dashboard
@@ -1101,10 +1182,10 @@ def main():
     print(f"  GTFS feed:            {gtfs_dir}")
     print(f"\n  ROUTE 27 STOP SUGGESTIONS (new stops only — route 27 is the only modifiable route):")
     print(f"  New stop suggestions: {r27_result['n_new_suggested']}")
-    print(f"  HIGH priority (BCR≥2): {r27_result['n_high_priority']}")
+    print(f"  HIGH priority (BCR>=2): {r27_result['n_high_priority']}")
     print(f"  Suggestions CSV:      outputs/tables/route27_stop_suggestions.csv")
     print(f"  Path GeoJSON:         data/geospatial/route27_path.geojson")
-    print(f"\n  All outputs in: outputs/tables/  +  outputs/gtfs_optimised/")
+    print(f"\n  All outputs in: outputs/tables/  +  outputs/gtfs_optimised/  +  outputs/placards/")
     print(f"  GeoJSON in: data/geospatial/districts/")
     print(f"  Dashboard:  {dashboard_path}")
     print(f"\n  Open the dashboard in your browser to visualize all results.")
@@ -1113,4 +1194,5 @@ def main():
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    cba_only = "--cba-only" in sys.argv
+    sys.exit(main(cba_only=cba_only))

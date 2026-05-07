@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stop Placard — Synthetic D10 #4</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#141720;color:#d8dce8;font-family:IBM Plex Mono,Consolas,monospace;font-size:12px;padding:16px;max-width:720px;margin:0 auto}
+  .card{background:rgba(20,23,40,.9);border:1px solid rgba(42,48,80,.8);border-radius:8px;padding:16px;margin-bottom:12px}
+  h2{font-size:15px;font-weight:700;color:#fff;margin-bottom:8px}
+  .section-label{font-size:9px;color:#7a8098;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+  #mini-map{height:220px;border-radius:6px;border:1px solid rgba(42,48,80,.8)}
+  a{color:#6c9bff;text-decoration:none}
+  a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div style="margin-bottom:10px">
+  <a href="index.html" style="font-size:10px;color:#7a8098">← All placards</a>
+  &nbsp;|&nbsp;
+  <a href="../route_optimization.html" style="font-size:10px;color:#7a8098">Route dashboard →</a>
+</div>
+
+<!-- Header band -->
+<div class="card">
+  <div class="section-label">Routes serving this stop</div>
+  <div style="margin-bottom:10px"><span style="background:#fc5c6522;border:1px solid #fc5c65;border-radius:4px;padding:2px 8px;color:#fc5c65;font-size:11px;font-weight:700;margin-right:6px">&#9679; Route OPT_04 → Synthetic D10 #4</span></div>
+  <h2>Synthetic D10 #4</h2>
+  <div style="color:#7a8098;font-size:10px;margin-top:4px">
+    Stop ID: NEW_D10_4 &nbsp;|&nbsp; District: D10 &nbsp;|&nbsp; <span style="color:#ffa94d">New stop</span>
+     &nbsp;|&nbsp; ♿ ADA accessible
+  </div>
+</div>
+
+<!-- Strip diagram -->
+
+<div style="margin:16px 0">
+  <div style="font-size:10px;color:#7a8098;margin-bottom:6px">Stop sequence</div>
+  <div class="mermaid" style="font-size:10px">graph LR
+  s0["Synthetic D10 #2"]
+  s1["Synthetic D10 #1"]
+  THIS["**Synthetic D10 #4**"]
+  s0 --> s1 --> THIS</div>
+</div>
+
+<!-- Mini-map -->
+<div class="card">
+  <div class="section-label">Map</div>
+  <div id="mini-map"></div>
+</div>
+
+<!-- Timetable -->
+<div class="card">
+  <div class="section-label">Schedule (from optimised GTFS)</div>
+  
+<table style="border-collapse:collapse;font-size:10px;width:100%;color:#d8dce8">
+  <thead><tr style="color:#7a8098;border-bottom:1px solid rgba(42,48,80,.6)">
+    <th style="padding:3px 8px;text-align:left">Weekday</th>
+    <th style="padding:3px 8px;text-align:left">Weekend</th>
+  </tr></thead>
+  <tbody><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">06:11</td><td style="padding:2px 8px">06:11</td></tr><tr style="background:transparent"><td style="padding:2px 8px">06:26</td><td style="padding:2px 8px">06:26</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">06:41</td><td style="padding:2px 8px">06:41</td></tr><tr style="background:transparent"><td style="padding:2px 8px">06:56</td><td style="padding:2px 8px">06:56</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">07:11</td><td style="padding:2px 8px">07:11</td></tr><tr style="background:transparent"><td style="padding:2px 8px">07:26</td><td style="padding:2px 8px">07:26</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">07:41</td><td style="padding:2px 8px">07:41</td></tr><tr style="background:transparent"><td style="padding:2px 8px">07:56</td><td style="padding:2px 8px">07:56</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">08:11</td><td style="padding:2px 8px">08:11</td></tr><tr style="background:transparent"><td style="padding:2px 8px">08:26</td><td style="padding:2px 8px">08:26</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">08:41</td><td style="padding:2px 8px">08:41</td></tr><tr style="background:transparent"><td style="padding:2px 8px">08:56</td><td style="padding:2px 8px">08:56</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">09:11</td><td style="padding:2px 8px">09:11</td></tr><tr style="background:transparent"><td style="padding:2px 8px">09:41</td><td style="padding:2px 8px">09:41</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">10:11</td><td style="padding:2px 8px">10:11</td></tr><tr style="background:transparent"><td style="padding:2px 8px">10:41</td><td style="padding:2px 8px">10:41</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">11:11</td><td style="padding:2px 8px">11:11</td></tr><tr style="background:transparent"><td style="padding:2px 8px">11:41</td><td style="padding:2px 8px">11:41</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">12:11</td><td style="padding:2px 8px">12:11</td></tr><tr style="background:transparent"><td style="padding:2px 8px">12:41</td><td style="padding:2px 8px">12:41</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">13:11</td><td style="padding:2px 8px">13:11</td></tr><tr style="background:transparent"><td style="padding:2px 8px">13:41</td><td style="padding:2px 8px">13:41</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">14:11</td><td style="padding:2px 8px">14:11</td></tr><tr style="background:transparent"><td style="padding:2px 8px">14:41</td><td style="padding:2px 8px">14:41</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">14:56</td><td style="padding:2px 8px">14:56</td></tr><tr style="background:transparent"><td style="padding:2px 8px">15:11</td><td style="padding:2px 8px">15:11</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">15:26</td><td style="padding:2px 8px">15:26</td></tr><tr style="background:transparent"><td style="padding:2px 8px">15:41</td><td style="padding:2px 8px">15:41</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">15:56</td><td style="padding:2px 8px">15:56</td></tr><tr style="background:transparent"><td style="padding:2px 8px">16:11</td><td style="padding:2px 8px">16:11</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">16:26</td><td style="padding:2px 8px">16:26</td></tr><tr style="background:transparent"><td style="padding:2px 8px">16:41</td><td style="padding:2px 8px">16:41</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">16:56</td><td style="padding:2px 8px">16:56</td></tr><tr style="background:transparent"><td style="padding:2px 8px">17:11</td><td style="padding:2px 8px">17:11</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">17:26</td><td style="padding:2px 8px">17:26</td></tr><tr style="background:transparent"><td style="padding:2px 8px">17:41</td><td style="padding:2px 8px">17:41</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">17:56</td><td style="padding:2px 8px">17:56</td></tr><tr style="background:transparent"><td style="padding:2px 8px">18:11</td><td style="padding:2px 8px">18:11</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">18:26</td><td style="padding:2px 8px">18:26</td></tr><tr style="background:transparent"><td style="padding:2px 8px">18:41</td><td style="padding:2px 8px">18:41</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">19:41</td><td style="padding:2px 8px">19:41</td></tr><tr style="background:transparent"><td style="padding:2px 8px">20:41</td><td style="padding:2px 8px">20:41</td></tr></tbody>
+</table>
+</div>
+
+<!-- Footer: QR -->
+<div class="card" style="display:flex;gap:16px;align-items:flex-start">
+  <div>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXIAAAFyAQAAAADAX2ykAAACn0lEQVR4nO2bQYrjMBBF/x8bspShD5CjyDcb+khzA/soOUCDtAzI/FmUlXZPSE8343hsqFoE2XqLD4pUpaoyhe/Y+ONbOOC8884777zzzj/iOVsLjN1E9rkFRpJArnP9hnqcX4uHJAlRkpQaIabbVCiQUqMFMuxNv/Nf4/O8Q/XaNZISIF1am7ONva0e55/GT2QfJPZo7i9PB9Dv/MLaP56JkGwk4ErEX9vqcX5dvq5vEIAMCJkAwptNyN5tp8f5p/AjSbID2KMR4uUkxNSIPSYLn7fV4/xKvMXPCxvsdSMg3ALr99m96Xf+Kzz73NqP3YoGABowcZ6to73qd/6R3eKriRrPVwq5tUfEBHFkUzR2SYzDFnqcX5evYRRKy3hpYfs0ppdSJwDGNNX/wd70O/8Vnv3N4SJI5Plq6Ur2ADS834T3qd/5h7aMnhKgIRQgSgJCuSEFHl8dm59IngvY55OATCKmRrBIOs87ecf6nf+Ep53P+SQN4Uq9nmUHsoZQQNbHvep3/pF9yE+GBCIAQG4Lxu6tVUxTK8Djq4PytT6YgFofvKsqaAjufw/K13UL+lDmBTCH02gkaY65fH2PyfNnwq1ho61raaMrMfLk/veY/JzfGAmY/x07cPbElpVsxCjPTx6UX/hfs1ibdDSEW9Ts/vfY/ML/moUCKzfEuvrsN9Tj/Fq8nc/19G2Kxg7E2CXN53N+KUB+EbfR4/xT+Fjzk3U0cc46h4L3muFu9Tv/F772Ty6aOBBKjam31+P8c3gNmKjXbq7529XXeir/ix7n/42/65+01qtLW6z0i/AGjGzc/x6Tv++fxOxwaU2U+STGYaK20eP8ujyWtyLU71Oi5kVGVA2tPD95RJ73nyh8Zv59t/POO++8886vwP8GCDSa78rOyo8AAAAASUVORK5CYII=" style="width:80px;height:80px;border-radius:4px" alt="QR">
+    <div style="font-size:9px;color:#7a8098;margin-top:4px;text-align:center">Scan to open<br>route dashboard</div>
+  </div>
+  <div style="font-size:10px;color:#7a8098">
+    <div><b style="color:#d8dce8">Synthetic D10 #4</b></div>
+    <div>ID: NEW_D10_4</div>
+    <div>Lat: 37.07325 / Lon: -122.05478</div>
+    <div>♿ ADA accessible</div>
+    <div style="margin-top:8px">Generated by Los Gatos Transit CBA</div>
+  </div>
+</div>
+
+<script>
+mermaid.initialize({startOnLoad:true,theme:'dark',themeVariables:{fontSize:'10px'}});
+
+const NEARBY=[{"id": "NEW_D10_2", "name": "Synthetic D10 #2", "lat": 37.068223, "lon": -122.087495, "is_this": false}, {"id": "NEW_D10_1", "name": "Synthetic D10 #1", "lat": 37.079691, "lon": -122.084776, "is_this": false}, {"id": "NEW_D10_4", "name": "Synthetic D10 #4", "lat": 37.073254, "lon": -122.054782, "is_this": true}];
+const MAP_LAT=37.073254;
+const MAP_LON=-122.054782;
+
+const map=L.map('mini-map',{attributionControl:false,zoomControl:true}).setView([MAP_LAT,MAP_LON],15);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',{
+  attribution:'&copy; OpenStreetMap / CartoDB'
+}).addTo(map);
+
+// Route polyline (dim) from nearby stops
+if(NEARBY.length>1){
+  const pts=NEARBY.map(s=>[s.lat,s.lon]);
+  L.polyline(pts,{color:'#6c9bff',weight:2,opacity:.35,dashArray:'4 4'}).addTo(map);
+}
+
+// Upstream/downstream stops
+NEARBY.forEach(s=>{
+  if(s.is_this){
+    L.circleMarker([s.lat,s.lon],{radius:10,color:'#fff',weight:2,fillColor:'#ffa94d',fillOpacity:.95})
+      .addTo(map).bindPopup('<b>'+s.name+'</b><br><i>This stop</i>');
+  }else{
+    L.circleMarker([s.lat,s.lon],{radius:5,color:'#fff',weight:1,fillColor:'#6c9bff',fillOpacity:.75})
+      .addTo(map).bindPopup(s.name);
+  }
+});
+</script>
+</body>
+</html>

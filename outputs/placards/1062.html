@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stop Placard — Main & Santa Cruz</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#141720;color:#d8dce8;font-family:IBM Plex Mono,Consolas,monospace;font-size:12px;padding:16px;max-width:720px;margin:0 auto}
+  .card{background:rgba(20,23,40,.9);border:1px solid rgba(42,48,80,.8);border-radius:8px;padding:16px;margin-bottom:12px}
+  h2{font-size:15px;font-weight:700;color:#fff;margin-bottom:8px}
+  .section-label{font-size:9px;color:#7a8098;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+  #mini-map{height:220px;border-radius:6px;border:1px solid rgba(42,48,80,.8)}
+  a{color:#6c9bff;text-decoration:none}
+  a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div style="margin-bottom:10px">
+  <a href="index.html" style="font-size:10px;color:#7a8098">← All placards</a>
+  &nbsp;|&nbsp;
+  <a href="../route_optimization.html" style="font-size:10px;color:#7a8098">Route dashboard →</a>
+</div>
+
+<!-- Header band -->
+<div class="card">
+  <div class="section-label">Routes serving this stop</div>
+  <div style="margin-bottom:10px"><span style="background:#26de8122;border:1px solid #26de81;border-radius:4px;padding:2px 8px;color:#26de81;font-size:11px;font-weight:700;margin-right:6px">&#9679; Route OPT_03 → Winchester & Daves</span></div>
+  <h2>Main & Santa Cruz</h2>
+  <div style="color:#7a8098;font-size:10px;margin-top:4px">
+    Stop ID: 1062 &nbsp;|&nbsp; District: D1 &nbsp;|&nbsp; Existing stop
+     &nbsp;|&nbsp; ♿ ADA accessible
+  </div>
+</div>
+
+<!-- Strip diagram -->
+
+<div style="margin:16px 0">
+  <div style="font-size:10px;color:#7a8098;margin-bottom:6px">Stop sequence</div>
+  <div class="mermaid" style="font-size:10px">graph LR
+  s9["Synthetic D8 #2"]
+  s10["Synthetic D2 #6"]
+  THIS["**Main & Santa Cruz**"]
+  s12["Synthetic D2 #2"]
+  s13["Synthetic D2 #1"]
+  s9 --> s10 --> THIS --> s12 --> s13</div>
+</div>
+
+<!-- Mini-map -->
+<div class="card">
+  <div class="section-label">Map</div>
+  <div id="mini-map"></div>
+</div>
+
+<!-- Timetable -->
+<div class="card">
+  <div class="section-label">Schedule (from optimised GTFS)</div>
+  
+<table style="border-collapse:collapse;font-size:10px;width:100%;color:#d8dce8">
+  <thead><tr style="color:#7a8098;border-bottom:1px solid rgba(42,48,80,.6)">
+    <th style="padding:3px 8px;text-align:left">Weekday</th>
+    <th style="padding:3px 8px;text-align:left">Weekend</th>
+  </tr></thead>
+  <tbody><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">07:01</td><td style="padding:2px 8px">07:01</td></tr><tr style="background:transparent"><td style="padding:2px 8px">07:16</td><td style="padding:2px 8px">07:16</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">07:31</td><td style="padding:2px 8px">07:31</td></tr><tr style="background:transparent"><td style="padding:2px 8px">07:46</td><td style="padding:2px 8px">07:46</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">08:01</td><td style="padding:2px 8px">08:01</td></tr><tr style="background:transparent"><td style="padding:2px 8px">08:16</td><td style="padding:2px 8px">08:16</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">08:31</td><td style="padding:2px 8px">08:31</td></tr><tr style="background:transparent"><td style="padding:2px 8px">08:46</td><td style="padding:2px 8px">08:46</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">09:01</td><td style="padding:2px 8px">09:01</td></tr><tr style="background:transparent"><td style="padding:2px 8px">09:16</td><td style="padding:2px 8px">09:16</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">09:31</td><td style="padding:2px 8px">09:31</td></tr><tr style="background:transparent"><td style="padding:2px 8px">09:46</td><td style="padding:2px 8px">09:46</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">10:01</td><td style="padding:2px 8px">10:01</td></tr><tr style="background:transparent"><td style="padding:2px 8px">10:31</td><td style="padding:2px 8px">10:31</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">11:01</td><td style="padding:2px 8px">11:01</td></tr><tr style="background:transparent"><td style="padding:2px 8px">11:31</td><td style="padding:2px 8px">11:31</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">12:01</td><td style="padding:2px 8px">12:01</td></tr><tr style="background:transparent"><td style="padding:2px 8px">12:31</td><td style="padding:2px 8px">12:31</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">13:01</td><td style="padding:2px 8px">13:01</td></tr><tr style="background:transparent"><td style="padding:2px 8px">13:31</td><td style="padding:2px 8px">13:31</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">14:01</td><td style="padding:2px 8px">14:01</td></tr><tr style="background:transparent"><td style="padding:2px 8px">14:31</td><td style="padding:2px 8px">14:31</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">15:01</td><td style="padding:2px 8px">15:01</td></tr><tr style="background:transparent"><td style="padding:2px 8px">15:31</td><td style="padding:2px 8px">15:31</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">15:46</td><td style="padding:2px 8px">15:46</td></tr><tr style="background:transparent"><td style="padding:2px 8px">16:01</td><td style="padding:2px 8px">16:01</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">16:16</td><td style="padding:2px 8px">16:16</td></tr><tr style="background:transparent"><td style="padding:2px 8px">16:31</td><td style="padding:2px 8px">16:31</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">16:46</td><td style="padding:2px 8px">16:46</td></tr><tr style="background:transparent"><td style="padding:2px 8px">17:01</td><td style="padding:2px 8px">17:01</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">17:16</td><td style="padding:2px 8px">17:16</td></tr><tr style="background:transparent"><td style="padding:2px 8px">17:31</td><td style="padding:2px 8px">17:31</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">17:46</td><td style="padding:2px 8px">17:46</td></tr><tr style="background:transparent"><td style="padding:2px 8px">18:01</td><td style="padding:2px 8px">18:01</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">18:16</td><td style="padding:2px 8px">18:16</td></tr><tr style="background:transparent"><td style="padding:2px 8px">18:31</td><td style="padding:2px 8px">18:31</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">18:46</td><td style="padding:2px 8px">18:46</td></tr><tr style="background:transparent"><td style="padding:2px 8px">19:01</td><td style="padding:2px 8px">19:01</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">19:16</td><td style="padding:2px 8px">19:16</td></tr><tr style="background:transparent"><td style="padding:2px 8px">19:31</td><td style="padding:2px 8px">19:31</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">20:31</td><td style="padding:2px 8px">20:31</td></tr><tr style="background:transparent"><td style="padding:2px 8px">21:31</td><td style="padding:2px 8px">21:31</td></tr></tbody>
+</table>
+</div>
+
+<!-- Footer: QR -->
+<div class="card" style="display:flex;gap:16px;align-items:flex-start">
+  <div>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXIAAAFyAQAAAADAX2ykAAACgklEQVR4nO2bXYrbMBSFv1sb8qjALCBLkXfQJZXZmb2ULKAgPQY0nD5IcpKB0g543HG598EQ/D0cEPfvWDHxkVi+fQgH55133nnnnXf+d7y1GDE7A+QRFhuB3N9NO+pxfmM+SpISaM4jEArE9GY2MUiS9Mx/th7nN+Zzz9CoAssZzC6lvjOzcW89zm/Dj+9+G+HnqHg1RB4ReV89zn86P6g14SDZ9O/1OL8BHyTNAOQRzQwC3gwASWVvPc5vyi9mVrM2JrAfCWzKp3rIZma2rx7nN+Jr/300KUOpXVfL5WYQng3Mr6bf+T9EXX6iJGKizc8wCMK6FYWGaP5q+p3/G16vZlaPcTkPknQzzXlESgDZ6/NB+XU/GootNhTiDAbrI5RR5Jdi++hxflt+rc+ll+ZQ0Bz6wBzTIM1BLbw+H5NvXvPd7ej9tw5ZvLn/fEz+YX42gjDySQaGlmksIo9YTMjr85H5xcxYzExzuNnd0LAplD597anH+Y34h/1Icyh1YG5Tc1i/KYWC999D8mgNYgLNdesd+qMebcH330PyPX/rmNytjaiClIaav8Q0uL9xTL7nb+LpGNcXNZ2D5+9B+afvv9V6filGSLBMQ7F4HeuopX30OL8tT798c2+4PWG5mxzef4/NS+pjVDU58kn3cl1/7qnH+W35+/3JGlHNtWrHHW6+/x6av9+fbB+M1vuxoV2321eP8xvx635En5/T4+rbwv2N/4XX66W0+lxPOkjS9dRv2n11/c4/x/v7sZANyGe02FDqWLV89/57UL6fbxCQgZheCstFQEhYe+ymx/lt+XX/BZo1KdV1aQ7dk66Dl/ffA/Lm/+923nnnnXfe+d35X501rbNnVDasAAAAAElFTkSuQmCC" style="width:80px;height:80px;border-radius:4px" alt="QR">
+    <div style="font-size:9px;color:#7a8098;margin-top:4px;text-align:center">Scan to open<br>route dashboard</div>
+  </div>
+  <div style="font-size:10px;color:#7a8098">
+    <div><b style="color:#d8dce8">Main & Santa Cruz</b></div>
+    <div>ID: 1062</div>
+    <div>Lat: 37.22230 / Lon: -121.98356</div>
+    <div>♿ ADA accessible</div>
+    <div style="margin-top:8px">Generated by Los Gatos Transit CBA</div>
+  </div>
+</div>
+
+<script>
+mermaid.initialize({startOnLoad:true,theme:'dark',themeVariables:{fontSize:'10px'}});
+
+const NEARBY=[{"id": "NEW_D2_3", "name": "Synthetic D2 #3", "lat": 37.234672, "lon": -121.991553, "is_this": false}, {"id": "NEW_D2_8", "name": "Synthetic D2 #8", "lat": 37.242976, "lon": -121.994839, "is_this": false}, {"id": "NEW_D8_7", "name": "Synthetic D8 #7", "lat": 37.229813, "lon": -121.989114, "is_this": false}, {"id": "NEW_D8_2", "name": "Synthetic D8 #2", "lat": 37.233141, "lon": -121.990378, "is_this": false}, {"id": "NEW_D2_6", "name": "Synthetic D2 #6", "lat": 37.241297, "lon": -121.993634, "is_this": false}, {"id": "1062", "name": "Main & Santa Cruz", "lat": 37.222298, "lon": -121.983565, "is_this": true}, {"id": "NEW_D2_2", "name": "Synthetic D2 #2", "lat": 37.246335, "lon": -121.992313, "is_this": false}, {"id": "NEW_D2_1", "name": "Synthetic D2 #1", "lat": 37.23535, "lon": -121.980488, "is_this": false}, {"id": "2696", "name": "Main & Jackson", "lat": 37.220976, "lon": -121.974169, "is_this": false}, {"id": "NEW_D2_4", "name": "Synthetic D2 #4", "lat": 37.238638, "lon": -121.980666, "is_this": false}, {"id": "NEW_D5_3", "name": "Synthetic D5 #3", "lat": 37.237992, "lon": -121.979331, "is_this": false}];
+const MAP_LAT=37.222298;
+const MAP_LON=-121.983565;
+
+const map=L.map('mini-map',{attributionControl:false,zoomControl:true}).setView([MAP_LAT,MAP_LON],15);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',{
+  attribution:'&copy; OpenStreetMap / CartoDB'
+}).addTo(map);
+
+// Route polyline (dim) from nearby stops
+if(NEARBY.length>1){
+  const pts=NEARBY.map(s=>[s.lat,s.lon]);
+  L.polyline(pts,{color:'#6c9bff',weight:2,opacity:.35,dashArray:'4 4'}).addTo(map);
+}
+
+// Upstream/downstream stops
+NEARBY.forEach(s=>{
+  if(s.is_this){
+    L.circleMarker([s.lat,s.lon],{radius:10,color:'#fff',weight:2,fillColor:'#ffa94d',fillOpacity:.95})
+      .addTo(map).bindPopup('<b>'+s.name+'</b><br><i>This stop</i>');
+  }else{
+    L.circleMarker([s.lat,s.lon],{radius:5,color:'#fff',weight:1,fillColor:'#6c9bff',fillOpacity:.75})
+      .addTo(map).bindPopup(s.name);
+  }
+});
+</script>
+</body>
+</html>
