@@ -93,6 +93,11 @@ from src.route27_walkshed import (
     _walk_buffer_ft,
     EQUITY_MULTIPLIER,
 )
+from src.route27_calibration import (
+    LGAnchor,
+    load_lg_anchor,
+    estimate_new_stop_daily_boardings,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -606,6 +611,7 @@ def compute_stop_bcr(
     value_per_boarding: float = VALUE_PER_BOARDING_USD,
     discount_rate: float = DISCOUNT_RATE_PRIMARY,
     horizon_years: int = HORIZON_YEARS,
+    anchor: Optional[LGAnchor] = None,
 ) -> dict:
     """Compute Benefit-Cost Ratio for a suggested new stop.
 
@@ -645,7 +651,22 @@ def compute_stop_bcr(
     # still get evaluated fairly.  Source: TCRP Report 167 §4.3.2.
     tdi_adj = max(0.75, min(1.25, 1.0 + (tdi - 0.5) * 0.5))
 
-    new_riders_daily = marginal_pop * diversion_rate * tdi_adj
+    # Anchored estimator (W1): cap predicted per-stop boardings at the empirical
+    # 90th percentile of currently observed LG Route 27 stops. Without this cap
+    # the raw walkshed * diversion estimator will assign hundreds of daily
+    # boardings to a single new stop in a small suburban town that has <1%
+    # transit mode share -- physically impossible. The cap is bypassed only when
+    # no anchor is loaded (legacy-call path), and the call site logs that the
+    # uncapped estimator is in use.
+    raw_riders_daily = marginal_pop * diversion_rate * tdi_adj
+    if anchor is not None:
+        new_riders_daily, capping_basis = estimate_new_stop_daily_boardings(
+            walkshed_pop=marginal_pop, tdi=tdi, anchor=anchor,
+            diversion_rate=diversion_rate,
+        )
+    else:
+        new_riders_daily = raw_riders_daily
+        capping_basis = "uncapped_no_anchor"
     annual_boardings = new_riders_daily * SERVICE_DAYS_PER_YEAR
     annual_benefit   = annual_boardings * value_per_boarding
 
@@ -677,6 +698,9 @@ def compute_stop_bcr(
         "horizon_years":            horizon_years,
         "capital_cost_usd":         capital_cost,
         "annual_operating_cost_usd": annual_operating,
+        # Cap diagnostics (W1)
+        "raw_riders_daily_uncapped": round(raw_riders_daily, 1),
+        "boardings_cap_basis":       capping_basis,
         # Outputs
         "est_new_riders_daily":     round(new_riders_daily, 1),
         "est_annual_boardings":     round(annual_boardings),
@@ -706,6 +730,7 @@ def build_stop_suggestions(
     gaps_df: pd.DataFrame,
     candidates_df: pd.DataFrame,
     config: dict,
+    anchor: Optional[LGAnchor] = None,
 ) -> pd.DataFrame:
     """Combine selected stops and gap-fill suggestions into a single output table.
 
@@ -764,7 +789,7 @@ def build_stop_suggestions(
                 "best_district_id":      row.get("district_id", None),
                 "best_street_names":     row.get("street_names", "") if is_school else "",
             })
-            bcr_inputs = compute_stop_bcr(sel_record)
+            bcr_inputs = compute_stop_bcr(sel_record, anchor=anchor)
             bcr_fields = {
                 "est_new_riders_daily": bcr_inputs["est_new_riders_daily"],
                 "est_annual_boardings": bcr_inputs["est_annual_boardings"],
@@ -814,7 +839,7 @@ def build_stop_suggestions(
         if gap.get("best_candidate_id") is None:
             continue  # No candidate found in gap — log but skip
 
-        bcr_inputs = compute_stop_bcr(gap)
+        bcr_inputs = compute_stop_bcr(gap, anchor=anchor)
         bcr_val = bcr_inputs["bcr_20yr"]
 
         priority = gap["priority"]
@@ -884,6 +909,27 @@ def build_stop_suggestions(
     result_df = pd.DataFrame(rows)
     if len(result_df) > 0:
         result_df = result_df.sort_values("s_coord_ft").reset_index(drop=True)
+
+        # BCR >= 1.0 enforcement (FTA CIG 49 U.S.C. §5309).
+        # Drop non-mandatory NEW_IN_SELECTION stops whose computed BCR falls below
+        # the minimum threshold.  Mandatory stops (schools, LRT transfers with
+        # is_mandatory=True) are exempt — their inclusion is required regardless
+        # of BCR by FTA Title VI and equity obligations.
+        sub_bcr_mask = (
+            (result_df["status"] == "NEW_IN_SELECTION")
+            & (~result_df["is_mandatory"].fillna(False))
+            & (~result_df["is_school_stop"].fillna(False))
+            & (result_df["bcr_20yr"].notna())
+            & (result_df["bcr_20yr"] < BCR_MEDIUM)
+        )
+        n_dropped = int(sub_bcr_mask.sum())
+        if n_dropped:
+            logger.info(
+                "BCR filter: dropping %d NEW_IN_SELECTION stop(s) with BCR < %.1f "
+                "(FTA CIG 49 U.S.C. §5309 minimum threshold).",
+                n_dropped, BCR_MEDIUM,
+            )
+            result_df = result_df[~sub_bcr_mask].reset_index(drop=True)
 
     n_new = (result_df["status"] == "NEW_SUGGEST").sum() if len(result_df) > 0 else 0
     n_high = ((result_df["status"] == "NEW_SUGGEST") & (result_df["priority"] == "HIGH")).sum() \
@@ -1101,9 +1147,21 @@ def run_route27_optimization(
     # Stage 2: Coverage gap detection
     gaps_df = detect_coverage_gaps(selected_df, unselected_df)
 
-    # Stages 3+4: BCR and output table
+    # Stages 3+4: BCR and output table.
+    # W1: load LG empirical anchor so per-stop boardings are capped at the p90
+    # of currently observed LG stops. If the anchor file is missing, the BCR
+    # reverts to the legacy uncapped estimator and logs a warning per stop.
+    try:
+        anchor = load_lg_anchor()
+    except FileNotFoundError as e:
+        logger.warning(
+            "LG anchor not loaded; BCR estimator will run UNCAPPED. "
+            "Run `python -m src.vta_rbs` to build the anchor. (%s)", e,
+        )
+        anchor = None
+
     suggestions_df = build_stop_suggestions(
-        selected_df, gaps_df, walkshed_df, config
+        selected_df, gaps_df, walkshed_df, config, anchor=anchor,
     )
 
     n_new  = int((suggestions_df["status"] == "NEW_SUGGEST").sum())

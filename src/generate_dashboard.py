@@ -298,6 +298,17 @@ def load_pipeline_data() -> dict:
     except Exception as _gtfs_exc:
         pass  # silently degrade; layer will be empty
 
+    # P4 (pre-meeting fix): Load ridership validation data for headline cards.
+    result["ridership_validation"] = {}
+    rv_path = tables / "ridership_validation.csv"
+    if rv_path.exists():
+        try:
+            rv_df = pd.read_csv(rv_path)
+            rv_dict = dict(zip(rv_df["metric"], rv_df["value"]))
+            result["ridership_validation"] = rv_dict
+        except Exception:
+            pass
+
     return result
 
 
@@ -1503,6 +1514,81 @@ def generate_route_optimization_html(data: dict) -> str:
     js_gtfs_r27_stops = json.dumps(data.get("gtfs_route27_stops", []))
     js_gtfs_r27_shape = json.dumps(data.get("gtfs_route27_shape", []))
 
+    # P4: Ridership validation data
+    rv = data.get("ridership_validation", {})
+    rv_observed  = rv.get("observed_baseline_annual_boardings")
+    rv_cal_opt   = rv.get("predicted_optimised_calibrated_annual_boardings")
+    rv_raw_opt   = rv.get("predicted_optimised_raw_annual_boardings")
+    rv_cal_err   = rv.get("calibration_error_pct")
+    rv_credible  = rv.get("model_credibility_flag", "")
+    rv_has_data  = rv_observed is not None and rv_cal_opt is not None
+    rv_caution   = rv_has_data and str(rv_credible).startswith("CAUTION")
+    # W1: LG plausibility cap status (set by scripts/validate_ridership.py).
+    rv_cap_status = str(rv.get("lg_plausibility_cap_status", "")).upper()
+    rv_cap_warn = rv.get("lg_plausibility_warn_threshold")
+    rv_cap_hard = rv.get("lg_plausibility_hard_cap")
+
+    def _fmt_k(v):
+        """Format a number as e.g. '61.4k'."""
+        try:
+            v = float(v)
+            if v >= 1000:
+                return f"{v/1000:.0f}k"
+            return f"{v:.0f}"
+        except (TypeError, ValueError):
+            return "—"
+
+    rv_observed_str = _fmt_k(rv_observed) if rv_has_data else "—"
+    rv_cal_opt_str  = _fmt_k(rv_cal_opt)  if rv_has_data else "—"
+    rv_delta_str    = (
+        f"+{_fmt_k(float(rv_cal_opt) - float(rv_observed))}"
+        if rv_has_data else "—"
+    )
+    rv_cal_err_str  = (
+        f"{float(rv_cal_err):+.0f}%" if rv_cal_err is not None else "N/A"
+    )
+    rv_caution_banner = (
+        f'<div class="callout warn" style="margin-bottom:10px;font-size:12px">'
+        f'<strong>⚠ Calibration warning:</strong> Model baseline differs from '
+        f'observed ridership by {rv_cal_err_str} (OMB Circular A-4 threshold: ±25%). '
+        f'Use calibrated number ({rv_cal_opt_str}/yr) rather than raw model '
+        f'({_fmt_k(rv_raw_opt)}/yr) in meeting materials.</div>'
+        if rv_caution else ""
+    )
+
+    # W1: LG plausibility cap banner -- very visible if model exceeds the
+    # 150k/yr cap, amber if above the 120k warning. Anchors to current
+    # observed LG ridership (~60k/yr) and citing comparable VTA projects so
+    # the analyst can immediately see whether the projection is credible.
+    if rv_cap_status == "OVER_CAP":
+        rv_cap_banner = (
+            f'<div class="callout" style="margin-bottom:10px;font-size:13px;'
+            f'background:rgba(255,107,107,.15);border:2px solid var(--red);'
+            f'color:var(--red)">'
+            f'<strong style="color:var(--red);font-size:15px">'
+            f'⛔ MODEL OUTPUT EXCEEDS PLAUSIBILITY CAP</strong><br>'
+            f'<span style="color:var(--tx)">'
+            f'Predicted LG-only optimised ridership ({rv_cal_opt_str}/yr) exceeds '
+            f'the {_fmt_k(rv_cap_hard)} hard cap '
+            f'(current observed: {rv_observed_str}/yr; warn at {_fmt_k(rv_cap_warn)}). '
+            f'<br>This indicates a model bug -- check the per-stop p90 cap, '
+            f'walkshed double-counting, and calibration scaling. '
+            f'<strong>Do not publish this number.</strong>'
+            f'</span></div>'
+        )
+    elif rv_cap_status == "WARN":
+        rv_cap_banner = (
+            f'<div class="callout warn" style="margin-bottom:10px;font-size:12px">'
+            f'<strong>⚠ Plausibility warning:</strong> Predicted LG-only optimised '
+            f'ridership ({rv_cal_opt_str}/yr) exceeds the {_fmt_k(rv_cap_warn)} '
+            f'warning threshold (current observed: {rv_observed_str}/yr). '
+            f'At the upper edge of comparable VTA projects '
+            f'(Next Network +4%, Visionary +45-70%). '
+            f'Verify per-stop estimates before publishing.</div>'
+        )
+    else:
+        rv_cap_banner = ""
+
     route_design_mode = (
         data.get("config", {})
         .get("optimization", {})
@@ -1641,6 +1727,14 @@ td.n{{text-align:right;font-variant-numeric:tabular-nums}}
 <div class="ssub">Linear spacing per FTA 9040.1G §5.2.2. BCR: USDOT BCA 2024 / TCRP Report 167 / NTD FY2023 / OMB A-94 3.5%.
   <strong style="color:var(--ac)">Teal = existing | Orange = suggested NEW (BCR ≥ 1) | Red = HIGH priority (BCR ≥ 2)</strong></div>
 {'<div class="callout warn" style="margin-bottom:12px"><strong>Route 27 not yet run.</strong> Execute <code>python run_analysis.py</code>.</div>' if not r27_run else ''}
+{rv_cap_banner}
+{rv_caution_banner}
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:6px">
+  <div class="metric"><div class="lb">Current (observed, LG-only)</div><div class="vl ac">{rv_observed_str}</div><div class="su">boardings/yr — VTA OCT 2025 RBS</div></div>
+  <div class="metric"><div class="lb">Optimised (calibrated)</div><div class="vl" style="color:var(--ac)">{rv_cal_opt_str}</div><div class="su">boardings/yr — anchored, cap {_fmt_k(rv_cap_hard) if rv_cap_hard else '150k'}</div></div>
+  <div class="metric"><div class="lb">Δ Boardings</div><div class="vl" style="color:var(--amber)">{rv_delta_str}</div><div class="su">net gain from optimisation</div></div>
+  {'<div class="metric"><div class="lb">Model raw</div><div class="vl" style="font-size:13px;color:var(--tm)">'+_fmt_k(rv_raw_opt)+'</div><div class="su">before calibration</div></div>' if rv_has_data else ''}
+</div>
 <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px">
   <div class="metric"><div class="lb">Stops in sequence</div><div class="vl ac" id="r27TotalStops">—</div><div class="su">optimized corridor</div></div>
   <div class="metric"><div class="lb">Existing retained</div><div class="vl" id="r27ExistingStops">—</div></div>

@@ -1,0 +1,2504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bus timetable, route map, and turn-by-turn directions for VTA Route 27 between Winchester Station and Santa Teresa Station, including weekday, Saturday, and Sunday/holiday service in both directions.">
+    <meta name="keywords" content="VTA, Route 27, Winchester Station, Santa Teresa Station, bus schedule, weekday, weekend, map, timetable, directions">
+    <meta name="author" content="DocAccess">
+    <title>Route 27 - Winchester Stn - Santa Teresa Stn - Accessible Transcript</title>
+    <style>
+        /* Base styles for accessibility and readability */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Skip link for screen readers */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #000;
+            color: #fff;
+            padding: 8px;
+            text-decoration: none;
+            z-index: 100;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Image placeholder styles */
+        .transcript-page-image {
+            background-color: #f0f0f0;
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-right: 10px;
+            margin-bottom: 5px;
+        }
+
+        .transcript-page-image img {
+            opacity: 0.001; /* fully transparent ignored by some screen readers */
+            display: inline-block;
+            position: absolute;
+            width: 1em;
+            height: 1em;
+        }
+
+        .transcript-page-image-alt {
+            display: inline; /* display the alt text for instructors and visual interpreters in aria-hidden block */
+            font-size: 0.9em;
+            color: #333;
+            vertical-align: middle;
+            line-height: 1.5em;
+        }
+
+        .transcript-page-image-alt::before {
+            content: '';
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            margin-right: 10px;
+            vertical-align: middle;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiBmaWxsPSIjZjNmNGY2IiBzdHJva2U9IiNhY2IzYmYiIHN0cm9rZS13aWR0aD0iMSIvPjxjaXJjbGUgY3g9IjIwIiBjeT0iMjIiIHI9IjYiIGZpbGw9IiNhY2IzYmYiLz48cG9seWxpbmUgcG9pbnRzPSI2LDU4IDIyLDQyIDMyLDUyIDQyLDQwIDU4LDU4IiBmaWxsPSJub25lIiBzdHJva2U9IiM5Y2EzYWYiIHN0cm9rZS13aWR0aD0iNCIvPjwvc3ZnPg==');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        /* Header styles */
+        header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+            text-align: center;
+        }
+
+        .document-title {
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 1.5em;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin: 0 0 10px 0;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        /* Main content styles */
+        main {
+            margin-bottom: 40px;
+        }
+
+        .transcript-page {
+            margin-bottom: 40px;
+            page-break-inside: avoid;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            margin: 30px 0 15px;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        h3 {
+            font-size: 1.25em;
+            margin: 20px 0 10px;
+            color: #34495e;
+            font-weight: 600;
+        }
+
+        h4, h5, h6 {
+            font-size: 1.1em;
+            margin: 15px 0 10px;
+            color: #34495e;
+            font-weight: 600;
+        }
+
+        p {
+            margin: 15px 0;
+        }
+
+        /* Link styles with sufficient contrast */
+        a {
+            color: #0066cc;
+            text-decoration: underline;
+        }
+
+        a:hover {
+            color: #0052a3;
+        }
+
+        a:focus {
+            outline: 2px solid #0066cc;
+            outline-offset: 2px;
+        }
+
+        /* Table styles for accessibility */
+        table {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        .section-label {
+            background-color: #f5f5f5;
+            font-weight: normal;
+        }
+
+        th {
+            background-color: #f5f5f5;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        /* List styles */
+        ul, ol {
+            margin: 15px 0;
+            padding-left: 40px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        dl {
+            margin: 10px 0;
+        }
+
+        dt {
+            font-weight: 600;
+        }
+
+        dd {
+            padding-left: 40px;
+            margin-bottom: 10px;
+        }
+
+        /* Fillable form notice */
+        .fillable-form-notice {
+            font-size: 0.95em;
+            font-style: italic;
+            text-align: left;
+        }
+
+        .fillable-form-notice p {
+            margin: 0;
+        }
+
+        /* Footer styles */
+        footer {
+            margin-top: 40px;
+            padding: 20px;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        footer p {
+            margin: 10px 0;
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            .skip-link {
+                display: none;
+            }
+
+            a {
+                color: #000;
+                text-decoration: underline;
+            }
+
+            footer {
+                page-break-inside: avoid;
+            }
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            body {
+                color: #000;
+                background: #fff;
+            }
+
+            a {
+                color: #0000ff;
+            }
+
+            th {
+                background-color: #e0e0e0;
+            }
+            }
+
+            .da-contrast-added-4ca3 {
+                position: absolute;
+                background: url(//docaccess.com/high-contrast-bg.png?colorhex=4fb4efb7);
+            }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <header role="banner">
+        <p class="document-title">Route 27 - Winchester Stn - Santa Teresa Stn</p>
+        <p>Accessible Document Transcript from vta.org</p>
+
+    </header>
+
+    <main id="main-content" role="main">
+<div class="transcript-page content" data-page-number="1"><h1 data-el-num="1" id="el-1">Route 27 — Winchester Stn to Santa Teresa Stn</h1>
+
+<h2 class="style-9e57" data-el-num="2" id="el-2">Weekday Eastbound Timetable</h2>
+
+<table aria-label="Weekday eastbound timetable for Route 27 from Winchester Station to Santa Teresa Station" data-el-num="3" id="el-3">
+  <thead>
+    <tr style="background-color:#e0e0e0;" data-el-num="4" id="el-4">
+      <th scope="col" data-el-num="5" id="el-5">Winchester Station (Bay 2)</th>
+      <th scope="col" data-el-num="6" id="el-6">Burrows &amp; Hacienda (S)</th>
+      <th scope="col" data-el-num="7" id="el-7">Santa Cruz &amp; Los Gatos-Saratoga (S)</th>
+      <th scope="col" data-el-num="8" id="el-8">Main &amp; Santa Cruz (E)</th>
+      <th scope="col" data-el-num="9" id="el-9">Los Gatos &amp; Los Gatos-Almaden (Chirco) (N)</th>
+      <th scope="col" data-el-num="10" id="el-10">Good Samaritan Hospital (E)</th>
+      <th scope="col" data-el-num="11" id="el-11">Leigh &amp; Los Gatos-Almaden (S)</th>
+      <th scope="col" data-el-num="12" id="el-12">Blossom Hill &amp; Meridian (E)</th>
+      <th scope="col" data-el-num="13" id="el-13">Blossom Hill &amp; Almaden (E)</th>
+      <th scope="col" data-el-num="14" id="el-14">Blossom Hill Station (W)</th>
+      <th scope="col" data-el-num="15" id="el-15">Cottle &amp; Poughkeepsie (S)</th>
+      <th scope="col" data-el-num="16" id="el-16">Santa Teresa Station</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background-color:#f5f5f5;" data-el-num="17" id="el-17">
+      <td data-el-num="18" id="el-18">-</td>
+      <td data-el-num="19" id="el-19">-</td>
+      <td data-el-num="20" id="el-20">-</td>
+      <td data-el-num="21" id="el-21">-</td>
+      <td data-el-num="22" id="el-22">-</td>
+      <td data-el-num="23" id="el-23">5:39 AM</td>
+      <td data-el-num="24" id="el-24">5:45 AM</td>
+      <td data-el-num="25" id="el-25">5:52 AM</td>
+      <td data-el-num="26" id="el-26">5:56 AM</td>
+      <td data-el-num="27" id="el-27">6:03 AM</td>
+      <td data-el-num="28" id="el-28">6:11 AM</td>
+      <td data-el-num="29" id="el-29">6:20 AM</td>
+    </tr>
+    <tr data-el-num="30" id="el-30">
+      <td data-el-num="31" id="el-31">5:42 AM</td>
+      <td data-el-num="32" id="el-32">5:46 AM</td>
+      <td data-el-num="33" id="el-33">5:55 AM</td>
+      <td data-el-num="34" id="el-34">5:58 AM</td>
+      <td data-el-num="35" id="el-35">6:06 AM</td>
+      <td data-el-num="36" id="el-36">6:10 AM</td>
+      <td data-el-num="37" id="el-37">6:16 AM</td>
+      <td data-el-num="38" id="el-38">6:23 AM</td>
+      <td data-el-num="39" id="el-39">6:27 AM</td>
+      <td data-el-num="40" id="el-40">6:35 AM</td>
+      <td data-el-num="41" id="el-41">6:44 AM</td>
+      <td data-el-num="42" id="el-42">6:54 AM</td>
+    </tr>
+    <tr style="background-color:#f5f5f5;" data-el-num="43" id="el-43">
+      <td data-el-num="44" id="el-44">6:12 AM</td>
+      <td data-el-num="45" id="el-45">6:16 AM</td>
+      <td data-el-num="46" id="el-46">6:25 AM</td>
+      <td data-el-num="47" id="el-47">6:28 AM</td>
+      <td data-el-num="48" id="el-48">6:36 AM</td>
+      <td data-el-num="49" id="el-49">6:40 AM</td>
+      <td data-el-num="50" id="el-50">6:46 AM</td>
+      <td data-el-num="51" id="el-51">6:54 AM</td>
+      <td data-el-num="52" id="el-52">6:58 AM</td>
+      <td data-el-num="53" id="el-53">7:07 AM</td>
+      <td data-el-num="54" id="el-54">7:17 AM</td>
+      <td data-el-num="55" id="el-55">7:27 AM</td>
+    </tr>
+    <tr data-el-num="56" id="el-56">
+      <td data-el-num="57" id="el-57">6:42 AM</td>
+      <td data-el-num="58" id="el-58">6:47 AM</td>
+      <td data-el-num="59" id="el-59">6:57 AM</td>
+      <td data-el-num="60" id="el-60">7:00 AM</td>
+      <td data-el-num="61" id="el-61">7:08 AM</td>
+      <td data-el-num="62" id="el-62">7:13 AM</td>
+      <td data-el-num="63" id="el-63">7:20 AM</td>
+      <td data-el-num="64" id="el-64">7:28 AM</td>
+      <td data-el-num="65" id="el-65">7:32 AM</td>
+      <td data-el-num="66" id="el-66">7:41 AM</td>
+      <td data-el-num="67" id="el-67">7:51 AM</td>
+      <td data-el-num="68" id="el-68">8:02 AM</td>
+    </tr>
+    <tr style="background-color:#f5f5f5;" data-el-num="69" id="el-69">
+      <td data-el-num="70" id="el-70">7:13 AM</td>
+      <td data-el-num="71" id="el-71">7:19 AM</td>
+      <td data-el-num="72" id="el-72">7:30 AM</td>
+      <td data-el-num="73" id="el-73">7:34 AM</td>
+      <td data-el-num="74" id="el-74">7:43 AM</td>
+      <td data-el-num="75" id="el-75">7:48 AM</td>
+      <td data-el-num="76" id="el-76">7:56 AM</td>
+      <td data-el-num="77" id="el-77">8:05 AM</td>
+      <td data-el-num="78" id="el-78">8:10 AM</td>
+      <td data-el-num="79" id="el-79">8:20 AM</td>
+      <td data-el-num="80" id="el-80">8:30 AM</td>
+      <td data-el-num="81" id="el-81">8:41 AM</td>
+    </tr>
+    <tr data-el-num="82" id="el-82">
+      <td data-el-num="83" id="el-83">7:40 AM</td>
+      <td data-el-num="84" id="el-84">7:46 AM</td>
+      <td data-el-num="85" id="el-85">7:59 AM</td>
+      <td data-el-num="86" id="el-86">8:04 AM</td>
+      <td data-el-num="87" id="el-87">8:18 AM</td>
+      <td data-el-num="88" id="el-88">8:23 AM</td>
+      <td data-el-num="89" id="el-89">8:30 AM</td>
+      <td data-el-num="90" id="el-90">8:38 AM</td>
+      <td data-el-num="91" id="el-91">8:43 AM</td>
+      <td data-el-num="92" id="el-92">8:53 AM</td>
+      <td data-el-num="93" id="el-93">9:03 AM</td>
+      <td data-el-num="94" id="el-94">9:14 AM</td>
+    </tr>
+    <tr style="background-color:#f5f5f5;" data-el-num="95" id="el-95">
+      <td data-el-num="96" id="el-96">8:13 AM</td>
+      <td data-el-num="97" id="el-97">8:19 AM</td>
+      <td data-el-num="98" id="el-98">8:31 AM</td>
+      <td data-el-num="99" id="el-99">8:35 AM</td>
+      <td data-el-num="100" id="el-100">8:44 AM</td>
+      <td data-el-num="101" id="el-101">8:49 AM</td>
+      <td data-el-num="102" id="el-102">8:56 AM</td>
+      <td data-el-num="103" id="el-103">9:04 AM</td>
+      <td data-el-num="104" id="el-104">9:09 AM</td>
+      <td data-el-num="105" id="el-105">9:19 AM</td>
+      <td data-el-num="106" id="el-106">9:29 AM</td>
+      <td data-el-num="107" id="el-107">9:40 AM</td>
+    </tr>
+    <tr data-el-num="108" id="el-108">
+      <td data-el-num="109" id="el-109">8:44 AM</td>
+      <td data-el-num="110" id="el-110">8:50 AM</td>
+      <td data-el-num="111" id="el-111">9:01 AM</td>
+      <td data-el-num="112" id="el-112">9:05 AM</td>
+      <td data-el-num="113" id="el-113">9:14 AM</td>
+      <td data-el-num="114" id="el-114">9:19 AM</td>
+      <td data-el-num="115" id="el-115">9:26 AM</td>
+      <td data-el-num="116" id="el-116">9:34 AM</td>
+      <td data-el-num="117" id="el-117">9:39 AM</td>
+      <td data-el-num="118" id="el-118">9:49 AM</td>
+      <td data-el-num="119" id="el-119">9:59 AM</td>
+      <td data-el-num="120" id="el-120">10:10 AM</td>
+    </tr>
+    <tr style="background-color:#f5f5f5;" data-el-num="121" id="el-121">
+      <td data-el-num="122" id="el-122">9:13 AM</td>
+      <td data-el-num="123" id="el-123">9:19 AM</td>
+      <td data-el-num="124" id="el-124">9:30 AM</td>
+      <td data-el-num="125" id="el-125">9:34 AM</td>
+      <td data-el-num="126" id="el-126">9:43 AM</td>
+      <td data-el-num="127" id="el-127">9:49 AM</td>
+      <td data-el-num="128" id="el-128">9:56 AM</td>
+      <td data-el-num="129" id="el-129">10:04 AM</td>
+      <td data-el-num="130" id="el-130">10:09 AM</td>
+      <td data-el-num="131" id="el-131">10:19 AM</td>
+      <td data-el-num="132" id="el-132">10:29 AM</td>
+      <td data-el-num="133" id="el-133">10:40 AM</td>
+    </tr>
+    <tr data-el-num="134" id="el-134">
+      <td data-el-num="135" id="el-135">9:43 AM</td>
+      <td data-el-num="136" id="el-136">9:49 AM</td>
+      <td data-el-num="137" id="el-137">10:00 AM</td>
+      <td data-el-num="138" id="el-138">10:04 AM</td>
+      <td data-el-num="139" id="el-139">10:13 AM</td>
+      <td data-el-num="140" id="el-140">10:19 AM</td>
+      <td data-el-num="141" id="el-141">10:26 AM</td>
+      <td data-el-num="142" id="el-142">10:34 AM</td>
+      <td data-el-num="143" id="el-143">10:39 AM</td>
+      <td data-el-num="144" id="el-144">10:49 AM</td>
+      <td data-el-num="145" id="el-145">10:59 AM</td>
+      <td data-el-num="146" id="el-146">11:10 AM</td>
+    </tr>
+    <tr style="background-color:#f5f5f5;" data-el-num="147" id="el-147">
+      <td data-el-num="148" id="el-148">10:11 AM</td>
+      <td data-el-num="149" id="el-149">10:17 AM</td>
+      <td data-el-num="150" id="el-150">10:28 AM</td>
+      <td data-el-num="151" id="el-151">10:33 AM</td>
+      <td data-el-num="152" id="el-152">10:42 AM</td>
+      <td data-el-num="153" id="el-153">10:48 AM</td>
+      <td data-el-num="154" id="el-154">10:55 AM</td>
+      <td data-el-num="155" id="el-155">11:03 AM</td>
+      <td data-el-num="156" id="el-156">11:08 AM</td>
+      <td data-el-num="157" id="el-157">11:18 AM</td>
+      <td data-el-num="158" id="el-158">11:28 AM</td>
+      <td data-el-num="159" id="el-159">11:39 AM</td>
+    </tr>
+    <tr data-el-num="160" id="el-160">
+      <td data-el-num="161" id="el-161">10:41 AM</td>
+      <td data-el-num="162" id="el-162">10:47 AM</td>
+      <td data-el-num="163" id="el-163">10:58 AM</td>
+      <td data-el-num="164" id="el-164">11:03 AM</td>
+      <td data-el-num="165" id="el-165">11:12 AM</td>
+      <td data-el-num="166" id="el-166">11:18 AM</td>
+      <td data-el-num="167" id="el-167">11:25 AM</td>
+      <td data-el-num="168" id="el-168">11:33 AM</td>
+      <td data-el-num="169" id="el-169">11:38 AM</td>
+      <td data-el-num="170" id="el-170">11:49 AM</td>
+      <td data-el-num="171" id="el-171">11:59 AM</td>
+      <td data-el-num="172" id="el-172">12:10 PM</td>
+    </tr>
+    <tr style="background-color:#f5f5f5;" data-el-num="173" id="el-173">
+      <td data-el-num="174" id="el-174">11:11 AM</td>
+      <td data-el-num="175" id="el-175">11:17 AM</td>
+      <td data-el-num="176" id="el-176">11:28 AM</td>
+      <td data-el-num="177" id="el-177">11:33 AM</td>
+      <td data-el-num="178" id="el-178">11:42 AM</td>
+      <td data-el-num="179" id="el-179">11:48 AM</td>
+      <td data-el-num="180" id="el-180">11:55 AM</td>
+      <td data-el-num="181" id="el-181">12:03 PM</td>
+      <td data-el-num="182" id="el-182">12:08 PM</td>
+      <td data-el-num="183" id="el-183">12:20 PM</td>
+      <td data-el-num="184" id="el-184">12:30 PM</td>
+      <td data-el-num="185" id="el-185">12:41 PM</td>
+    </tr>
+  </tbody>
+</table>
+
+<footer>Route 27 - 27 - Winchester Stn - Santa Teresa Stn - Page 1</footer></div><div class="transcript-page content" data-page-number="2"><table aria-label="Weekday eastbound timetable for Route 27 from Winchester Station to Santa Teresa Station" data-el-num="186" id="el-186">
+  <thead>
+    <tr style="background-color:#e0e0e0;" data-el-num="187" id="el-187">
+      <th scope="col" data-el-num="188" id="el-188">Winchester Station (Bay 2)</th>
+      <th scope="col" data-el-num="189" id="el-189">Burrows &amp; Hacienda (S)</th>
+      <th scope="col" data-el-num="190" id="el-190">Santa Cruz &amp; Los Gatos-Saratoga (S)</th>
+      <th scope="col" data-el-num="191" id="el-191">Main &amp; Santa Cruz (E)</th>
+      <th scope="col" data-el-num="192" id="el-192">Los Gatos &amp; Los Gatos-Almaden (Chirco) (N)</th>
+      <th scope="col" data-el-num="193" id="el-193">Good Samaritan Hospital (E)</th>
+      <th scope="col" data-el-num="194" id="el-194">Leigh &amp; Los Gatos-Almaden (S)</th>
+      <th scope="col" data-el-num="195" id="el-195">Blossom Hill &amp; Meridian (E)</th>
+      <th scope="col" data-el-num="196" id="el-196">Blossom Hill &amp; Almaden (E)</th>
+      <th scope="col" data-el-num="197" id="el-197">Blossom Hill Station (W)</th>
+      <th scope="col" data-el-num="198" id="el-198">Cottle &amp; Poughkeepsie (S)</th>
+      <th scope="col" data-el-num="199" id="el-199">Santa Teresa Station</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr data-el-num="200" id="el-200">
+      <td data-el-num="201" id="el-201">11:41 AM</td>
+      <td data-el-num="202" id="el-202">11:47 AM</td>
+      <td data-el-num="203" id="el-203">11:58 AM</td>
+      <td data-el-num="204" id="el-204">12:03 PM</td>
+      <td data-el-num="205" id="el-205">12:13 PM</td>
+      <td data-el-num="206" id="el-206">12:19 PM</td>
+      <td data-el-num="207" id="el-207">12:26 PM</td>
+      <td data-el-num="208" id="el-208">12:34 PM</td>
+      <td data-el-num="209" id="el-209">12:39 PM</td>
+      <td data-el-num="210" id="el-210">12:51 PM</td>
+      <td data-el-num="211" id="el-211">1:01 PM</td>
+      <td data-el-num="212" id="el-212">1:12 PM</td>
+    </tr>
+    <tr style="background-color:#f5f5f5;" data-el-num="213" id="el-213">
+      <td data-el-num="214" id="el-214">12:11 PM</td>
+      <td data-el-num="215" id="el-215">12:17 PM</td>
+      <td data-el-num="216" id="el-216">12:28 PM</td>
+      <td data-el-num="217" id="el-217">12:33 PM</td>
+      <td data-el-num="218" id="el-218">12:43 PM</td>
+      <td data-el-num="219" id="el-219">12:49 PM</td>
+      <td data-el-num="220" id="el-220">12:56 PM</td>
+      <td data-el-num="221" id="el-221">1:04 PM</td>
+      <td data-el-num="222" id="el-222">1:09 PM</td>
+      <td data-el-num="223" id="el-223">1:21 PM</td>
+      <td data-el-num="224" id="el-224">1:31 PM</td>
+      <td data-el-num="225" id="el-225">1:42 PM</td>
+    </tr>
+    <tr data-el-num="226" id="el-226">
+      <td data-el-num="227" id="el-227">12:41 PM</td>
+      <td data-el-num="228" id="el-228">12:47 PM</td>
+      <td data-el-num="229" id="el-229">12:58 PM</td>
+      <td data-el-num="230" id="el-230">1:02 PM</td>
+      <td data-el-num="231" id="el-231">1:12 PM</td>
+      <td data-el-num="232" id="el-232">1:18 PM</td>
+      <td data-el-num="233" id="el-233">1:25 PM</td>
+      <td data-el-num="234" id="el-234">1:33 PM</td>
+      <td data-el-num="235" id="el-235">1:38 PM</td>
+      <td data-el-num="236" id="el-236">1:50 PM</td>
+      <td data-el-num="237" id="el-237">2:00 PM</td>
+      <td data-el-num="238" id="el-238">2:11 PM</td>
+    </tr>
+    <tr style="background-color:#f5f5f5;" data-el-num="239" id="el-239">
+      <td data-el-num="240" id="el-240">1:11 PM</td>
+      <td data-el-num="241" id="el-241">1:17 PM</td>
+      <td data-el-num="242" id="el-242">1:28 PM</td>
+      <td data-el-num="243" id="el-243">1:32 PM</td>
+      <td data-el-num="244" id="el-244">1:42 PM</td>
+      <td data-el-num="245" id="el-245">1:48 PM</td>
+      <td data-el-num="246" id="el-246">1:55 PM</td>
+      <td data-el-num="247" id="el-247">2:03 PM</td>
+      <td data-el-num="248" id="el-248">2:08 PM</td>
+      <td data-el-num="249" id="el-249">2:20 PM</td>
+      <td data-el-num="250" id="el-250">2:31 PM</td>
+      <td data-el-num="251" id="el-251">2:44 PM</td>
+    </tr>
+    <tr data-el-num="252" id="el-252">
+      <td data-el-num="253" id="el-253">1:41 PM</td>
+      <td data-el-num="254" id="el-254">1:47 PM</td>
+      <td data-el-num="255" id="el-255">1:58 PM</td>
+      <td data-el-num="256" id="el-256">2:02 PM</td>
+      <td data-el-num="257" id="el-257">2:12 PM</td>
+      <td data-el-num="258" id="el-258">2:18 PM</td>
+      <td data-el-num="259" id="el-259">2:26 PM</td>
+      <td data-el-num="260" id="el-260">2:35 PM</td>
+      <td data-el-num="261" id="el-261">2:40 PM</td>
+      <td data-el-num="262" id="el-262">2:53 PM</td>
+      <td data-el-num="263" id="el-263">3:04 PM</td>
+      <td data-el-num="264" id="el-264">3:17 PM</td>
+    </tr>
+    <tr style="background-color:#f5f5f5;" data-el-num="265" id="el-265">
+      <td data-el-num="266" id="el-266">2:11 PM</td>
+      <td data-el-num="267" id="el-267">2:17 PM</td>
+      <td data-el-num="268" id="el-268">2:28 PM</td>
+      <td data-el-num="269" id="el-269">2:32 PM</td>
+      <td data-el-num="270" id="el-270">2:43 PM</td>
+      <td data-el-num="271" id="el-271">2:49 PM</td>
+      <td data-el-num="272" id="el-272">2:56 PM</td>
+      <td data-el-num="273" id="el-273">3:03 PM</td>
+      <td data-el-num="274" id="el-274">3:11 PM</td>
+      <td data-el-num="275" id="el-275">3:20 PM</td>
+      <td data-el-num="276" id="el-276">3:28 PM</td>
+      <td data-el-num="277" id="el-277">3:41 PM</td>
+    </tr>
+    <tr data-el-num="278" id="el-278">
+      <td data-el-num="279" id="el-279">2:41 PM</td>
+      <td data-el-num="280" id="el-280">2:47 PM</td>
+      <td data-el-num="281" id="el-281">2:59 PM</td>
+      <td data-el-num="282" id="el-282">3:03 PM</td>
+      <td data-el-num="283" id="el-283">3:14 PM</td>
+      <td data-el-num="284" id="el-284">3:21 PM</td>
+      <td data-el-num="285" id="el-285">3:29 PM</td>
+      <td data-el-num="286" id="el-286">3:38 PM</td>
+      <td data-el-num="287" id="el-287">3:43 PM</td>
+      <td data-el-num="288" id="el-288">3:55 PM</td>
+      <td data-el-num="289" id="el-289">4:06 PM</td>
+      <td data-el-num="290" id="el-290">4:18 PM</td>
+    </tr>
+    <tr style="background-color:#f5f5f5;" data-el-num="291" id="el-291">
+      <td data-el-num="292" id="el-292">3:11 PM</td>
+      <td data-el-num="293" id="el-293">3:17 PM</td>
+      <td data-el-num="294" id="el-294">3:29 PM</td>
+      <td data-el-num="295" id="el-295">3:33 PM</td>
+      <td data-el-num="296" id="el-296">3:43 PM</td>
+      <td data-el-num="297" id="el-297">3:49 PM</td>
+      <td data-el-num="298" id="el-298">3:57 PM</td>
+      <td data-el-num="299" id="el-299">4:06 PM</td>
+      <td data-el-num="300" id="el-300">4:11 PM</td>
+      <td data-el-num="301" id="el-301">4:23 PM</td>
+      <td data-el-num="302" id="el-302">4:34 PM</td>
+      <td data-el-num="303" id="el-303">4:46 PM</td>
+    </tr>
+    <tr data-el-num="304" id="el-304">
+      <td data-el-num="305" id="el-305">3:41 PM</td>
+      <td data-el-num="306" id="el-306">3:47 PM</td>
+      <td data-el-num="307" id="el-307">3:59 PM</td>
+      <td data-el-num="308" id="el-308">4:03 PM</td>
+      <td data-el-num="309" id="el-309">4:14 PM</td>
+      <td data-el-num="310" id="el-310">4:20 PM</td>
+      <td data-el-num="311" id="el-311">4:28 PM</td>
+      <td data-el-num="312" id="el-312">4:36 PM</td>
+      <td data-el-num="313" id="el-313">4:41 PM</td>
+      <td data-el-num="314" id="el-314">4:53 PM</td>
+      <td data-el-num="315" id="el-315">5:04 PM</td>
+      <td data-el-num="316" id="el-316">5:16 PM</td>
+    </tr>
+    <tr style="background-color:#f5f5f5;" data-el-num="317" id="el-317">
+      <td data-el-num="318" id="el-318">4:11 PM</td>
+      <td data-el-num="319" id="el-319">4:17 PM</td>
+      <td data-el-num="320" id="el-320">4:29 PM</td>
+      <td data-el-num="321" id="el-321">4:33 PM</td>
+      <td data-el-num="322" id="el-322">4:44 PM</td>
+      <td data-el-num="323" id="el-323">4:50 PM</td>
+      <td data-el-num="324" id="el-324">4:59 PM</td>
+      <td data-el-num="325" id="el-325">5:07 PM</td>
+      <td data-el-num="326" id="el-326">5:12 PM</td>
+      <td data-el-num="327" id="el-327">5:24 PM</td>
+      <td data-el-num="328" id="el-328">5:35 PM</td>
+      <td data-el-num="329" id="el-329">5:47 PM</td>
+    </tr>
+    <tr data-el-num="330" id="el-330">
+      <td data-el-num="331" id="el-331">4:41 PM</td>
+      <td data-el-num="332" id="el-332">4:47 PM</td>
+      <td data-el-num="333" id="el-333">4:59 PM</td>
+      <td data-el-num="334" id="el-334">5:03 PM</td>
+      <td data-el-num="335" id="el-335">5:13 PM</td>
+      <td data-el-num="336" id="el-336">5:20 PM</td>
+      <td data-el-num="337" id="el-337">5:29 PM</td>
+      <td data-el-num="338" id="el-338">5:37 PM</td>
+      <td data-el-num="339" id="el-339">5:42 PM</td>
+      <td data-el-num="340" id="el-340">5:54 PM</td>
+      <td data-el-num="341" id="el-341">6:05 PM</td>
+      <td data-el-num="342" id="el-342">6:16 PM</td>
+    </tr>
+    <tr style="background-color:#f5f5f5;" data-el-num="343" id="el-343">
+      <td data-el-num="344" id="el-344">5:12 PM</td>
+      <td data-el-num="345" id="el-345">5:18 PM</td>
+      <td data-el-num="346" id="el-346">5:30 PM</td>
+      <td data-el-num="347" id="el-347">5:34 PM</td>
+      <td data-el-num="348" id="el-348">5:44 PM</td>
+      <td data-el-num="349" id="el-349">5:49 PM</td>
+      <td data-el-num="350" id="el-350">5:57 PM</td>
+      <td data-el-num="351" id="el-351">6:05 PM</td>
+      <td data-el-num="352" id="el-352">6:10 PM</td>
+      <td data-el-num="353" id="el-353">6:22 PM</td>
+      <td data-el-num="354" id="el-354">6:33 PM</td>
+      <td data-el-num="355" id="el-355">6:44 PM</td>
+    </tr>
+    <tr data-el-num="356" id="el-356">
+      <td data-el-num="357" id="el-357">5:43 PM</td>
+      <td data-el-num="358" id="el-358">5:49 PM</td>
+      <td data-el-num="359" id="el-359">6:01 PM</td>
+      <td data-el-num="360" id="el-360">6:05 PM</td>
+      <td data-el-num="361" id="el-361">6:15 PM</td>
+      <td data-el-num="362" id="el-362">6:20 PM</td>
+      <td data-el-num="363" id="el-363">6:27 PM</td>
+      <td data-el-num="364" id="el-364">6:35 PM</td>
+      <td data-el-num="365" id="el-365">6:40 PM</td>
+      <td data-el-num="366" id="el-366">6:50 PM</td>
+      <td data-el-num="367" id="el-367">7:01 PM</td>
+      <td data-el-num="368" id="el-368">7:12 PM</td>
+    </tr>
+    <tr style="background-color:#f5f5f5;" data-el-num="369" id="el-369">
+      <td data-el-num="370" id="el-370">6:17 PM</td>
+      <td data-el-num="371" id="el-371">6:22 PM</td>
+      <td data-el-num="372" id="el-372">6:32 PM</td>
+      <td data-el-num="373" id="el-373">6:36 PM</td>
+      <td data-el-num="374" id="el-374">6:45 PM</td>
+      <td data-el-num="375" id="el-375">6:50 PM</td>
+      <td data-el-num="376" id="el-376">6:56 PM</td>
+      <td data-el-num="377" id="el-377">7:04 PM</td>
+      <td data-el-num="378" id="el-378">7:09 PM</td>
+      <td data-el-num="379" id="el-379">7:19 PM</td>
+      <td data-el-num="380" id="el-380">7:29 PM</td>
+      <td data-el-num="381" id="el-381">7:40 PM</td>
+    </tr>
+  </tbody>
+</table>
+
+<footer>Route 27 - 27 - Winchester Stn - Santa Teresa Stn - Page 2</footer></div><div class="transcript-page content" data-page-number="3"><table aria-label="Weekday eastbound timetable for Route 27 from Winchester Station to Santa Teresa Station" data-el-num="382" id="el-382">
+  <thead>
+    <tr style="background-color:#e0e0e0;" data-el-num="383" id="el-383">
+      <th scope="col" data-el-num="384" id="el-384">Winchester Station (Bay 2)</th>
+      <th scope="col" data-el-num="385" id="el-385">Burrows &amp; Hacienda (S)</th>
+      <th scope="col" data-el-num="386" id="el-386">Santa Cruz &amp; Los Gatos-Saratoga (S)</th>
+      <th scope="col" data-el-num="387" id="el-387">Main &amp; Santa Cruz (E)</th>
+      <th scope="col" data-el-num="388" id="el-388">Los Gatos &amp; Los Gatos-Almaden (Chirco) (N)</th>
+      <th scope="col" data-el-num="389" id="el-389">Good Samaritan Hospital (E)</th>
+      <th scope="col" data-el-num="390" id="el-390">Leigh &amp; Los Gatos-Almaden (S)</th>
+      <th scope="col" data-el-num="391" id="el-391">Blossom Hill &amp; Meridian (E)</th>
+      <th scope="col" data-el-num="392" id="el-392">Blossom Hill &amp; Almaden (E)</th>
+      <th scope="col" data-el-num="393" id="el-393">Blossom Hill Station (W)</th>
+      <th scope="col" data-el-num="394" id="el-394">Cottle &amp; Poughkeepsie (S)</th>
+      <th scope="col" data-el-num="395" id="el-395">Santa Teresa Station</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background-color:#f5f5f5;" data-el-num="396" id="el-396">
+      <td data-el-num="397" id="el-397">6:56 PM</td>
+      <td data-el-num="398" id="el-398">7:01 PM</td>
+      <td data-el-num="399" id="el-399">7:11 PM</td>
+      <td data-el-num="400" id="el-400">7:15 PM</td>
+      <td data-el-num="401" id="el-401">7:24 PM</td>
+      <td data-el-num="402" id="el-402">7:28 PM</td>
+      <td data-el-num="403" id="el-403">7:34 PM</td>
+      <td data-el-num="404" id="el-404">7:41 PM</td>
+      <td data-el-num="405" id="el-405">7:46 PM</td>
+      <td data-el-num="406" id="el-406">7:56 PM</td>
+      <td data-el-num="407" id="el-407">8:06 PM</td>
+      <td data-el-num="408" id="el-408">8:16 PM</td>
+    </tr>
+    <tr data-el-num="409" id="el-409">
+      <td data-el-num="410" id="el-410">7:40 PM</td>
+      <td data-el-num="411" id="el-411">7:45 PM</td>
+      <td data-el-num="412" id="el-412">7:54 PM</td>
+      <td data-el-num="413" id="el-413">7:58 PM</td>
+      <td data-el-num="414" id="el-414">8:06 PM</td>
+      <td data-el-num="415" id="el-415">8:10 PM</td>
+      <td data-el-num="416" id="el-416">8:16 PM</td>
+      <td data-el-num="417" id="el-417">8:23 PM</td>
+      <td data-el-num="418" id="el-418">8:28 PM</td>
+      <td data-el-num="419" id="el-419">8:37 PM</td>
+      <td data-el-num="420" id="el-420">8:46 PM</td>
+      <td data-el-num="421" id="el-421">8:56 PM</td>
+    </tr>
+    <tr style="background-color:#f5f5f5;" data-el-num="422" id="el-422">
+      <td data-el-num="423" id="el-423">8:34 PM</td>
+      <td data-el-num="424" id="el-424">8:39 PM</td>
+      <td data-el-num="425" id="el-425">8:48 PM</td>
+      <td data-el-num="426" id="el-426">8:51 PM</td>
+      <td data-el-num="427" id="el-427">8:59 PM</td>
+      <td data-el-num="428" id="el-428">9:03 PM</td>
+      <td data-el-num="429" id="el-429">9:09 PM</td>
+      <td data-el-num="430" id="el-430">9:16 PM</td>
+      <td data-el-num="431" id="el-431">9:21 PM</td>
+      <td data-el-num="432" id="el-432">9:30 PM</td>
+      <td data-el-num="433" id="el-433">9:39 PM</td>
+      <td data-el-num="434" id="el-434">9:48 PM</td>
+    </tr>
+    <tr data-el-num="435" id="el-435">
+      <td data-el-num="436" id="el-436">9:20 PM</td>
+      <td data-el-num="437" id="el-437">9:25 PM</td>
+      <td data-el-num="438" id="el-438">9:34 PM</td>
+      <td data-el-num="439" id="el-439">9:37 PM</td>
+      <td data-el-num="440" id="el-440">9:44 PM</td>
+      <td data-el-num="441" id="el-441">9:48 PM</td>
+      <td data-el-num="442" id="el-442">9:54 PM</td>
+      <td data-el-num="443" id="el-443">10:01 PM</td>
+      <td data-el-num="444" id="el-444">10:05 PM</td>
+      <td data-el-num="445" id="el-445">10:13 PM</td>
+      <td data-el-num="446" id="el-446">10:21 PM</td>
+      <td data-el-num="447" id="el-447">10:29 PM</td>
+    </tr>
+  </tbody>
+</table>
+
+<footer>Route 27 - 27 - Winchester Stn - Santa Teresa Stn - Page 3</footer></div><div class="transcript-page content" data-page-number="4"><h2 data-el-num="448" id="el-448">Weekday Westbound Timetable</h2>
+
+<table aria-label="Weekday westbound timetable for Route 27" data-el-num="449" id="el-449">
+  <caption style="text-align:left; font-weight:bold;">Route 27 westbound, Santa Teresa Station to Winchester Station (Bay 2), weekday service.</caption>
+  <thead>
+    <tr style="background-color:#e0e0e0;" data-el-num="450" id="el-450">
+      <th scope="col" data-el-num="451" id="el-451">Santa Teresa Station</th>
+      <th scope="col" data-el-num="452" id="el-452">Poughkeepsie &amp; Cottle (W)</th>
+      <th scope="col" data-el-num="453" id="el-453">Blossom Hill Station (W)</th>
+      <th scope="col" data-el-num="454" id="el-454">Blossom Hill &amp; Almaden Plaza (W)</th>
+      <th scope="col" data-el-num="455" id="el-455">Blossom Hill &amp; Meridian (W)</th>
+      <th scope="col" data-el-num="456" id="el-456">Los Gatos-Almaden &amp; Leigh (W)</th>
+      <th scope="col" data-el-num="457" id="el-457">Good Samaritan Hospital (W)</th>
+      <th scope="col" data-el-num="458" id="el-458">Los Gatos &amp; Los Gatos-Almaden (S)</th>
+      <th scope="col" data-el-num="459" id="el-459">Santa Cruz &amp; Main (N)</th>
+      <th scope="col" data-el-num="460" id="el-460">Santa Cruz &amp; Los Gatos-Saratoga (N)</th>
+      <th scope="col" data-el-num="461" id="el-461">Burrows &amp; Hacienda (N)</th>
+      <th scope="col" data-el-num="462" id="el-462">Winchester Station (Bay 2)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr data-el-num="463" id="el-463">
+      <td data-el-num="464" id="el-464">5:10 AM</td>
+      <td data-el-num="465" id="el-465">5:16 AM</td>
+      <td data-el-num="466" id="el-466">5:23 AM</td>
+      <td data-el-num="467" id="el-467">5:29 AM</td>
+      <td data-el-num="468" id="el-468">5:33 AM</td>
+      <td data-el-num="469" id="el-469">5:40 AM</td>
+      <td data-el-num="470" id="el-470">5:46 AM</td>
+      <td data-el-num="471" id="el-471">5:51 AM</td>
+      <td data-el-num="472" id="el-472">5:58 AM</td>
+      <td data-el-num="473" id="el-473">6:02 AM</td>
+      <td data-el-num="474" id="el-474">6:11 AM</td>
+      <td data-el-num="475" id="el-475">6:18 AM</td>
+    </tr>
+    <tr style="background-color:#f5f5f5;" data-el-num="476" id="el-476">
+      <td data-el-num="477" id="el-477">5:38 AM</td>
+      <td data-el-num="478" id="el-478">5:44 AM</td>
+      <td data-el-num="479" id="el-479">5:53 AM</td>
+      <td data-el-num="480" id="el-480">5:59 AM</td>
+      <td data-el-num="481" id="el-481">6:03 AM</td>
+      <td data-el-num="482" id="el-482">6:10 AM</td>
+      <td data-el-num="483" id="el-483">6:16 AM</td>
+      <td data-el-num="484" id="el-484">6:22 AM</td>
+      <td data-el-num="485" id="el-485">6:30 AM</td>
+      <td data-el-num="486" id="el-486">6:34 AM</td>
+      <td data-el-num="487" id="el-487">6:44 AM</td>
+      <td data-el-num="488" id="el-488">6:51 AM</td>
+    </tr>
+    <tr data-el-num="489" id="el-489">
+      <td data-el-num="490" id="el-490">5:59 AM</td>
+      <td data-el-num="491" id="el-491">6:05 AM</td>
+      <td data-el-num="492" id="el-492">6:14 AM</td>
+      <td data-el-num="493" id="el-493">6:20 AM</td>
+      <td data-el-num="494" id="el-494">6:25 AM</td>
+      <td data-el-num="495" id="el-495">6:32 AM</td>
+      <td data-el-num="496" id="el-496">6:38 AM</td>
+      <td data-el-num="497" id="el-497">6:44 AM</td>
+      <td data-el-num="498" id="el-498">6:52 AM</td>
+      <td data-el-num="499" id="el-499">6:56 AM</td>
+      <td data-el-num="500" id="el-500">7:06 AM</td>
+      <td data-el-num="501" id="el-501">7:14 AM</td>
+    </tr>
+    <tr style="background-color:#f5f5f5;" data-el-num="502" id="el-502">
+      <td data-el-num="503" id="el-503">6:23 AM</td>
+      <td data-el-num="504" id="el-504">6:30 AM</td>
+      <td data-el-num="505" id="el-505">6:40 AM</td>
+      <td data-el-num="506" id="el-506">6:47 AM</td>
+      <td data-el-num="507" id="el-507">6:52 AM</td>
+      <td data-el-num="508" id="el-508">6:59 AM</td>
+      <td data-el-num="509" id="el-509">7:05 AM</td>
+      <td data-el-num="510" id="el-510">7:11 AM</td>
+      <td data-el-num="511" id="el-511">7:20 AM</td>
+      <td data-el-num="512" id="el-512">7:25 AM</td>
+      <td data-el-num="513" id="el-513">7:36 AM</td>
+      <td data-el-num="514" id="el-514">7:44 AM</td>
+    </tr>
+    <tr data-el-num="515" id="el-515">
+      <td data-el-num="516" id="el-516">6:46 AM</td>
+      <td data-el-num="517" id="el-517">6:53 AM</td>
+      <td data-el-num="518" id="el-518">7:03 AM</td>
+      <td data-el-num="519" id="el-519">7:11 AM</td>
+      <td data-el-num="520" id="el-520">7:16 AM</td>
+      <td data-el-num="521" id="el-521">7:24 AM</td>
+      <td data-el-num="522" id="el-522">7:31 AM</td>
+      <td data-el-num="523" id="el-523">7:37 AM</td>
+      <td data-el-num="524" id="el-524">7:50 AM</td>
+      <td data-el-num="525" id="el-525">7:55 AM</td>
+      <td data-el-num="526" id="el-526">8:08 AM</td>
+      <td data-el-num="527" id="el-527">8:17 AM</td>
+    </tr>
+    <tr style="background-color:#f5f5f5;" data-el-num="528" id="el-528">
+      <td data-el-num="529" id="el-529">7:08 AM</td>
+      <td data-el-num="530" id="el-530">7:15 AM</td>
+      <td data-el-num="531" id="el-531">7:25 AM</td>
+      <td data-el-num="532" id="el-532">7:33 AM</td>
+      <td data-el-num="533" id="el-533">7:38 AM</td>
+      <td data-el-num="534" id="el-534">7:47 AM</td>
+      <td data-el-num="535" id="el-535">7:56 AM</td>
+      <td data-el-num="536" id="el-536">8:02 AM</td>
+      <td data-el-num="537" id="el-537">8:23 AM</td>
+      <td data-el-num="538" id="el-538">8:28 AM</td>
+      <td data-el-num="539" id="el-539">8:40 AM</td>
+      <td data-el-num="540" id="el-540">8:49 AM</td>
+    </tr>
+    <tr data-el-num="541" id="el-541">
+      <td data-el-num="542" id="el-542">7:42 AM</td>
+      <td data-el-num="543" id="el-543">7:51 AM</td>
+      <td data-el-num="544" id="el-544">8:03 AM</td>
+      <td data-el-num="545" id="el-545">8:12 AM</td>
+      <td data-el-num="546" id="el-546">8:17 AM</td>
+      <td data-el-num="547" id="el-547">8:28 AM</td>
+      <td data-el-num="548" id="el-548">8:37 AM</td>
+      <td data-el-num="549" id="el-549">8:44 AM</td>
+      <td data-el-num="550" id="el-550">8:54 AM</td>
+      <td data-el-num="551" id="el-551">8:59 AM</td>
+      <td data-el-num="552" id="el-552">9:10 AM</td>
+      <td data-el-num="553" id="el-553">9:19 AM</td>
+    </tr>
+    <tr style="background-color:#f5f5f5;" data-el-num="554" id="el-554">
+      <td data-el-num="555" id="el-555">8:18 AM</td>
+      <td data-el-num="556" id="el-556">8:27 AM</td>
+      <td data-el-num="557" id="el-557">8:39 AM</td>
+      <td data-el-num="558" id="el-558">8:47 AM</td>
+      <td data-el-num="559" id="el-559">8:52 AM</td>
+      <td data-el-num="560" id="el-560">9:00 AM</td>
+      <td data-el-num="561" id="el-561">9:08 AM</td>
+      <td data-el-num="562" id="el-562">9:15 AM</td>
+      <td data-el-num="563" id="el-563">9:24 AM</td>
+      <td data-el-num="564" id="el-564">9:29 AM</td>
+      <td data-el-num="565" id="el-565">9:40 AM</td>
+      <td data-el-num="566" id="el-566">9:49 AM</td>
+    </tr>
+    <tr data-el-num="567" id="el-567">
+      <td data-el-num="568" id="el-568">8:51 AM</td>
+      <td data-el-num="569" id="el-569">8:59 AM</td>
+      <td data-el-num="570" id="el-570">9:11 AM</td>
+      <td data-el-num="571" id="el-571">9:19 AM</td>
+      <td data-el-num="572" id="el-572">9:24 AM</td>
+      <td data-el-num="573" id="el-573">9:32 AM</td>
+      <td data-el-num="574" id="el-574">9:39 AM</td>
+      <td data-el-num="575" id="el-575">9:46 AM</td>
+      <td data-el-num="576" id="el-576">9:55 AM</td>
+      <td data-el-num="577" id="el-577">10:00 AM</td>
+      <td data-el-num="578" id="el-578">10:11 AM</td>
+      <td data-el-num="579" id="el-579">10:19 AM</td>
+    </tr>
+    <tr style="background-color:#f5f5f5;" data-el-num="580" id="el-580">
+      <td data-el-num="581" id="el-581">9:22 AM</td>
+      <td data-el-num="582" id="el-582">9:30 AM</td>
+      <td data-el-num="583" id="el-583">9:42 AM</td>
+      <td data-el-num="584" id="el-584">9:50 AM</td>
+      <td data-el-num="585" id="el-585">9:55 AM</td>
+      <td data-el-num="586" id="el-586">10:03 AM</td>
+      <td data-el-num="587" id="el-587">10:10 AM</td>
+      <td data-el-num="588" id="el-588">10:16 AM</td>
+      <td data-el-num="589" id="el-589">10:25 AM</td>
+      <td data-el-num="590" id="el-590">10:30 AM</td>
+      <td data-el-num="591" id="el-591">10:41 AM</td>
+      <td data-el-num="592" id="el-592">10:49 AM</td>
+    </tr>
+    <tr data-el-num="593" id="el-593">
+      <td data-el-num="594" id="el-594">9:51 AM</td>
+      <td data-el-num="595" id="el-595">9:59 AM</td>
+      <td data-el-num="596" id="el-596">10:10 AM</td>
+      <td data-el-num="597" id="el-597">10:19 AM</td>
+      <td data-el-num="598" id="el-598">10:24 AM</td>
+      <td data-el-num="599" id="el-599">10:32 AM</td>
+      <td data-el-num="600" id="el-600">10:39 AM</td>
+      <td data-el-num="601" id="el-601">10:45 AM</td>
+      <td data-el-num="602" id="el-602">10:55 AM</td>
+      <td data-el-num="603" id="el-603">11:00 AM</td>
+      <td data-el-num="604" id="el-604">11:11 AM</td>
+      <td data-el-num="605" id="el-605">11:19 AM</td>
+    </tr>
+    <tr style="background-color:#f5f5f5;" data-el-num="606" id="el-606">
+      <td data-el-num="607" id="el-607">10:20 AM</td>
+      <td data-el-num="608" id="el-608">10:28 AM</td>
+      <td data-el-num="609" id="el-609">10:39 AM</td>
+      <td data-el-num="610" id="el-610">10:48 AM</td>
+      <td data-el-num="611" id="el-611">10:53 AM</td>
+      <td data-el-num="612" id="el-612">11:01 AM</td>
+      <td data-el-num="613" id="el-613">11:08 AM</td>
+      <td data-el-num="614" id="el-614">11:14 AM</td>
+      <td data-el-num="615" id="el-615">11:24 AM</td>
+      <td data-el-num="616" id="el-616">11:30 AM</td>
+      <td data-el-num="617" id="el-617">11:41 AM</td>
+      <td data-el-num="618" id="el-618">11:49 AM</td>
+    </tr>
+    <tr data-el-num="619" id="el-619">
+      <td data-el-num="620" id="el-620">10:50 AM</td>
+      <td data-el-num="621" id="el-621">10:58 AM</td>
+      <td data-el-num="622" id="el-622">11:09 AM</td>
+      <td data-el-num="623" id="el-623">11:18 AM</td>
+      <td data-el-num="624" id="el-624">11:23 AM</td>
+      <td data-el-num="625" id="el-625">11:31 AM</td>
+      <td data-el-num="626" id="el-626">11:38 AM</td>
+      <td data-el-num="627" id="el-627">11:44 AM</td>
+      <td data-el-num="628" id="el-628">11:54 AM</td>
+      <td data-el-num="629" id="el-629">12:00 PM</td>
+      <td data-el-num="630" id="el-630">12:11 PM</td>
+      <td data-el-num="631" id="el-631">12:19 PM</td>
+    </tr>
+  </tbody>
+</table>
+
+<footer>Route 27 - 27 - Winchester Stn - Santa Teresa Stn - Page 4</footer></div><div class="transcript-page content" data-page-number="5"><table aria-label="Weekday westbound timetable for Route 27 (continued)" data-el-num="632" id="el-632">
+  <thead>
+    <tr style="background-color:#e0e0e0;" data-el-num="633" id="el-633">
+      <th scope="col" data-el-num="634" id="el-634">Santa Teresa Station</th>
+      <th scope="col" data-el-num="635" id="el-635">Poughkeepsie &amp; Cottle (W)</th>
+      <th scope="col" data-el-num="636" id="el-636">Blossom Hill Station (W)</th>
+      <th scope="col" data-el-num="637" id="el-637">Blossom Hill &amp; Almaden Plaza (W)</th>
+      <th scope="col" data-el-num="638" id="el-638">Blossom Hill &amp; Meridian (W)</th>
+      <th scope="col" data-el-num="639" id="el-639">Los Gatos-Almaden &amp; Leigh (W)</th>
+      <th scope="col" data-el-num="640" id="el-640">Good Samaritan Hospital (W)</th>
+      <th scope="col" data-el-num="641" id="el-641">Los Gatos &amp; Los Gatos-Almaden (S)</th>
+      <th scope="col" data-el-num="642" id="el-642">Santa Cruz &amp; Main (N)</th>
+      <th scope="col" data-el-num="643" id="el-643">Santa Cruz &amp; Los Gatos-Saratoga (N)</th>
+      <th scope="col" data-el-num="644" id="el-644">Burrows &amp; Hacienda (N)</th>
+      <th scope="col" data-el-num="645" id="el-645">Winchester Station (Bay 2)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background-color:#f5f5f5;" data-el-num="646" id="el-646">
+      <td data-el-num="647" id="el-647">11:18 AM</td>
+      <td data-el-num="648" id="el-648">11:26 AM</td>
+      <td data-el-num="649" id="el-649">11:37 AM</td>
+      <td data-el-num="650" id="el-650">11:46 AM</td>
+      <td data-el-num="651" id="el-651">11:51 AM</td>
+      <td data-el-num="652" id="el-652">11:59 AM</td>
+      <td data-el-num="653" id="el-653">12:07 PM</td>
+      <td data-el-num="654" id="el-654">12:14 PM</td>
+      <td data-el-num="655" id="el-655">12:24 PM</td>
+      <td data-el-num="656" id="el-656">12:30 PM</td>
+      <td data-el-num="657" id="el-657">12:42 PM</td>
+      <td data-el-num="658" id="el-658">12:50 PM</td>
+    </tr>
+    <tr data-el-num="659" id="el-659">
+      <td data-el-num="660" id="el-660">11:47 AM</td>
+      <td data-el-num="661" id="el-661">11:55 AM</td>
+      <td data-el-num="662" id="el-662">12:07 PM</td>
+      <td data-el-num="663" id="el-663">12:16 PM</td>
+      <td data-el-num="664" id="el-664">12:21 PM</td>
+      <td data-el-num="665" id="el-665">12:29 PM</td>
+      <td data-el-num="666" id="el-666">12:37 PM</td>
+      <td data-el-num="667" id="el-667">12:44 PM</td>
+      <td data-el-num="668" id="el-668">12:54 PM</td>
+      <td data-el-num="669" id="el-669">1:00 PM</td>
+      <td data-el-num="670" id="el-670">1:12 PM</td>
+      <td data-el-num="671" id="el-671">1:20 PM</td>
+    </tr>
+    <tr style="background-color:#f5f5f5;" data-el-num="672" id="el-672">
+      <td data-el-num="673" id="el-673">12:17 PM</td>
+      <td data-el-num="674" id="el-674">12:25 PM</td>
+      <td data-el-num="675" id="el-675">12:37 PM</td>
+      <td data-el-num="676" id="el-676">12:46 PM</td>
+      <td data-el-num="677" id="el-677">12:51 PM</td>
+      <td data-el-num="678" id="el-678">12:59 PM</td>
+      <td data-el-num="679" id="el-679">1:07 PM</td>
+      <td data-el-num="680" id="el-680">1:14 PM</td>
+      <td data-el-num="681" id="el-681">1:24 PM</td>
+      <td data-el-num="682" id="el-682">1:30 PM</td>
+      <td data-el-num="683" id="el-683">1:42 PM</td>
+      <td data-el-num="684" id="el-684">1:50 PM</td>
+    </tr>
+    <tr data-el-num="685" id="el-685">
+      <td data-el-num="686" id="el-686">12:47 PM</td>
+      <td data-el-num="687" id="el-687">12:55 PM</td>
+      <td data-el-num="688" id="el-688">1:07 PM</td>
+      <td data-el-num="689" id="el-689">1:16 PM</td>
+      <td data-el-num="690" id="el-690">1:21 PM</td>
+      <td data-el-num="691" id="el-691">1:29 PM</td>
+      <td data-el-num="692" id="el-692">1:36 PM</td>
+      <td data-el-num="693" id="el-693">1:43 PM</td>
+      <td data-el-num="694" id="el-694">1:53 PM</td>
+      <td data-el-num="695" id="el-695">1:59 PM</td>
+      <td data-el-num="696" id="el-696">2:11 PM</td>
+      <td data-el-num="697" id="el-697">2:19 PM</td>
+    </tr>
+    <tr style="background-color:#f5f5f5;" data-el-num="698" id="el-698">
+      <td data-el-num="699" id="el-699">1:16 PM</td>
+      <td data-el-num="700" id="el-700">1:24 PM</td>
+      <td data-el-num="701" id="el-701">1:36 PM</td>
+      <td data-el-num="702" id="el-702">1:45 PM</td>
+      <td data-el-num="703" id="el-703">1:50 PM</td>
+      <td data-el-num="704" id="el-704">1:58 PM</td>
+      <td data-el-num="705" id="el-705">2:05 PM</td>
+      <td data-el-num="706" id="el-706">2:12 PM</td>
+      <td data-el-num="707" id="el-707">2:23 PM</td>
+      <td data-el-num="708" id="el-708">2:29 PM</td>
+      <td data-el-num="709" id="el-709">2:41 PM</td>
+      <td data-el-num="710" id="el-710">2:49 PM</td>
+    </tr>
+    <tr data-el-num="711" id="el-711">
+      <td data-el-num="712" id="el-712">1:44 PM</td>
+      <td data-el-num="713" id="el-713">1:52 PM</td>
+      <td data-el-num="714" id="el-714">2:04 PM</td>
+      <td data-el-num="715" id="el-715">2:13 PM</td>
+      <td data-el-num="716" id="el-716">2:18 PM</td>
+      <td data-el-num="717" id="el-717">2:28 PM</td>
+      <td data-el-num="718" id="el-718">2:35 PM</td>
+      <td data-el-num="719" id="el-719">2:42 PM</td>
+      <td data-el-num="720" id="el-720">2:54 PM</td>
+      <td data-el-num="721" id="el-721">3:00 PM</td>
+      <td data-el-num="722" id="el-722">3:12 PM</td>
+      <td data-el-num="723" id="el-723">3:20 PM</td>
+    </tr>
+    <tr style="background-color:#f5f5f5;" data-el-num="724" id="el-724">
+      <td data-el-num="725" id="el-725">2:12 PM</td>
+      <td data-el-num="726" id="el-726">2:20 PM</td>
+      <td data-el-num="727" id="el-727">2:32 PM</td>
+      <td data-el-num="728" id="el-728">2:41 PM</td>
+      <td data-el-num="729" id="el-729">2:46 PM</td>
+      <td data-el-num="730" id="el-730">2:56 PM</td>
+      <td data-el-num="731" id="el-731">3:03 PM</td>
+      <td data-el-num="732" id="el-732">3:10 PM</td>
+      <td data-el-num="733" id="el-733">3:22 PM</td>
+      <td data-el-num="734" id="el-734">3:28 PM</td>
+      <td data-el-num="735" id="el-735">3:41 PM</td>
+      <td data-el-num="736" id="el-736">3:50 PM</td>
+    </tr>
+    <tr data-el-num="737" id="el-737">
+      <td data-el-num="738" id="el-738">2:43 PM</td>
+      <td data-el-num="739" id="el-739">2:51 PM</td>
+      <td data-el-num="740" id="el-740">3:03 PM</td>
+      <td data-el-num="741" id="el-741">3:12 PM</td>
+      <td data-el-num="742" id="el-742">3:17 PM</td>
+      <td data-el-num="743" id="el-743">3:26 PM</td>
+      <td data-el-num="744" id="el-744">3:33 PM</td>
+      <td data-el-num="745" id="el-745">3:40 PM</td>
+      <td data-el-num="746" id="el-746">3:52 PM</td>
+      <td data-el-num="747" id="el-747">3:58 PM</td>
+      <td data-el-num="748" id="el-748">4:11 PM</td>
+      <td data-el-num="749" id="el-749">4:20 PM</td>
+    </tr>
+    <tr style="background-color:#f5f5f5;" data-el-num="750" id="el-750">
+      <td data-el-num="751" id="el-751">3:14 PM</td>
+      <td data-el-num="752" id="el-752">3:23 PM</td>
+      <td data-el-num="753" id="el-753">3:35 PM</td>
+      <td data-el-num="754" id="el-754">3:44 PM</td>
+      <td data-el-num="755" id="el-755">3:49 PM</td>
+      <td data-el-num="756" id="el-756">3:57 PM</td>
+      <td data-el-num="757" id="el-757">4:04 PM</td>
+      <td data-el-num="758" id="el-758">4:11 PM</td>
+      <td data-el-num="759" id="el-759">4:22 PM</td>
+      <td data-el-num="760" id="el-760">4:28 PM</td>
+      <td data-el-num="761" id="el-761">4:41 PM</td>
+      <td data-el-num="762" id="el-762">4:50 PM</td>
+    </tr>
+    <tr data-el-num="763" id="el-763">
+      <td data-el-num="764" id="el-764">3:44 PM</td>
+      <td data-el-num="765" id="el-765">3:52 PM</td>
+      <td data-el-num="766" id="el-766">4:04 PM</td>
+      <td data-el-num="767" id="el-767">4:13 PM</td>
+      <td data-el-num="768" id="el-768">4:18 PM</td>
+      <td data-el-num="769" id="el-769">4:26 PM</td>
+      <td data-el-num="770" id="el-770">4:33 PM</td>
+      <td data-el-num="771" id="el-771">4:40 PM</td>
+      <td data-el-num="772" id="el-772">4:51 PM</td>
+      <td data-el-num="773" id="el-773">4:57 PM</td>
+      <td data-el-num="774" id="el-774">5:10 PM</td>
+      <td data-el-num="775" id="el-775">5:19 PM</td>
+    </tr>
+    <tr style="background-color:#f5f5f5;" data-el-num="776" id="el-776">
+      <td data-el-num="777" id="el-777">4:13 PM</td>
+      <td data-el-num="778" id="el-778">4:21 PM</td>
+      <td data-el-num="779" id="el-779">4:34 PM</td>
+      <td data-el-num="780" id="el-780">4:43 PM</td>
+      <td data-el-num="781" id="el-781">4:48 PM</td>
+      <td data-el-num="782" id="el-782">4:56 PM</td>
+      <td data-el-num="783" id="el-783">5:03 PM</td>
+      <td data-el-num="784" id="el-784">5:10 PM</td>
+      <td data-el-num="785" id="el-785">5:21 PM</td>
+      <td data-el-num="786" id="el-786">5:27 PM</td>
+      <td data-el-num="787" id="el-787">5:40 PM</td>
+      <td data-el-num="788" id="el-788">5:49 PM</td>
+    </tr>
+    <tr data-el-num="789" id="el-789">
+      <td data-el-num="790" id="el-790">4:47 PM</td>
+      <td data-el-num="791" id="el-791">4:55 PM</td>
+      <td data-el-num="792" id="el-792">5:07 PM</td>
+      <td data-el-num="793" id="el-793">5:16 PM</td>
+      <td data-el-num="794" id="el-794">5:20 PM</td>
+      <td data-el-num="795" id="el-795">5:28 PM</td>
+      <td data-el-num="796" id="el-796">5:35 PM</td>
+      <td data-el-num="797" id="el-797">5:41 PM</td>
+      <td data-el-num="798" id="el-798">5:52 PM</td>
+      <td data-el-num="799" id="el-799">5:58 PM</td>
+      <td data-el-num="800" id="el-800">6:10 PM</td>
+      <td data-el-num="801" id="el-801">6:19 PM</td>
+    </tr>
+    <tr style="background-color:#f5f5f5;" data-el-num="802" id="el-802">
+      <td data-el-num="803" id="el-803">5:24 PM</td>
+      <td data-el-num="804" id="el-804">5:32 PM</td>
+      <td data-el-num="805" id="el-805">5:43 PM</td>
+      <td data-el-num="806" id="el-806">5:52 PM</td>
+      <td data-el-num="807" id="el-807">5:56 PM</td>
+      <td data-el-num="808" id="el-808">6:04 PM</td>
+      <td data-el-num="809" id="el-809">6:11 PM</td>
+      <td data-el-num="810" id="el-810">6:17 PM</td>
+      <td data-el-num="811" id="el-811">6:27 PM</td>
+      <td data-el-num="812" id="el-812">6:32 PM</td>
+      <td data-el-num="813" id="el-813">6:43 PM</td>
+      <td data-el-num="814" id="el-814">6:51 PM</td>
+    </tr>
+    <tr data-el-num="815" id="el-815">
+      <td data-el-num="816" id="el-816">5:55 PM</td>
+      <td data-el-num="817" id="el-817">6:03 PM</td>
+      <td data-el-num="818" id="el-818">6:13 PM</td>
+      <td data-el-num="819" id="el-819">6:22 PM</td>
+      <td data-el-num="820" id="el-820">6:26 PM</td>
+      <td data-el-num="821" id="el-821">6:34 PM</td>
+      <td data-el-num="822" id="el-822">6:41 PM</td>
+      <td data-el-num="823" id="el-823">6:46 PM</td>
+      <td data-el-num="824" id="el-824">6:56 PM</td>
+      <td data-el-num="825" id="el-825">7:01 PM</td>
+      <td data-el-num="826" id="el-826">7:11 PM</td>
+      <td data-el-num="827" id="el-827">7:19 PM</td>
+    </tr>
+  </tbody>
+</table>
+
+<footer>Route 27 - 27 - Winchester Stn - Santa Teresa Stn - Page 5</footer></div><div class="transcript-page content" data-page-number="6"><table aria-label="Weekday westbound timetable for Route 27" data-el-num="828" id="el-828">
+  <caption style="text-align:left; font-weight:bold;">Route 27 westbound, Santa Teresa Station to Winchester Station (Bay 2), weekday service.</caption>
+  <thead>
+    <tr style="background-color:#e0e0e0;" data-el-num="829" id="el-829">
+      <th scope="col" data-el-num="830" id="el-830">Santa Teresa Station</th>
+      <th scope="col" data-el-num="831" id="el-831">Poughkeepsie &amp; Cottle (W)</th>
+      <th scope="col" data-el-num="832" id="el-832">Blossom Hill Station (W)</th>
+      <th scope="col" data-el-num="833" id="el-833">Blossom Hill &amp; Almaden Plaza (W)</th>
+      <th scope="col" data-el-num="834" id="el-834">Blossom Hill &amp; Meridian (W)</th>
+      <th scope="col" data-el-num="835" id="el-835">Los Gatos-Almaden &amp; Leigh (W)</th>
+      <th scope="col" data-el-num="836" id="el-836">Good Samaritan Hospital (W)</th>
+      <th scope="col" data-el-num="837" id="el-837">Los Gatos &amp; Los Gatos-Almaden (S)</th>
+      <th scope="col" data-el-num="838" id="el-838">Santa Cruz &amp; Main (N)</th>
+      <th scope="col" data-el-num="839" id="el-839">Santa Cruz &amp; Los Gatos-Saratoga (N)</th>
+      <th scope="col" data-el-num="840" id="el-840">Burrows &amp; Hacienda (N)</th>
+      <th scope="col" data-el-num="841" id="el-841">Winchester Station (Bay 2)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr data-el-num="842" id="el-842">
+      <td data-el-num="843" id="el-843">6:25 PM</td>
+      <td data-el-num="844" id="el-844">6:33 PM</td>
+      <td data-el-num="845" id="el-845">6:43 PM</td>
+      <td data-el-num="846" id="el-846">6:51 PM</td>
+      <td data-el-num="847" id="el-847">6:55 PM</td>
+      <td data-el-num="848" id="el-848">7:03 PM</td>
+      <td data-el-num="849" id="el-849">7:10 PM</td>
+      <td data-el-num="850" id="el-850">7:15 PM</td>
+      <td data-el-num="851" id="el-851">7:24 PM</td>
+      <td data-el-num="852" id="el-852">7:29 PM</td>
+      <td data-el-num="853" id="el-853">7:38 PM</td>
+      <td data-el-num="854" id="el-854">7:45 PM</td>
+    </tr>
+    <tr style="background-color:#f5f5f5;" data-el-num="855" id="el-855">
+      <td data-el-num="856" id="el-856">7:00 PM</td>
+      <td data-el-num="857" id="el-857">7:08 PM</td>
+      <td data-el-num="858" id="el-858">7:18 PM</td>
+      <td data-el-num="859" id="el-859">7:26 PM</td>
+      <td data-el-num="860" id="el-860">7:30 PM</td>
+      <td data-el-num="861" id="el-861">7:37 PM</td>
+      <td data-el-num="862" id="el-862">7:44 PM</td>
+      <td data-el-num="863" id="el-863">7:49 PM</td>
+      <td data-el-num="864" id="el-864">7:57 PM</td>
+      <td data-el-num="865" id="el-865">8:02 PM</td>
+      <td data-el-num="866" id="el-866">8:11 PM</td>
+      <td data-el-num="867" id="el-867">8:18 PM</td>
+    </tr>
+    <tr data-el-num="868" id="el-868">
+      <td data-el-num="869" id="el-869">7:33 PM</td>
+      <td data-el-num="870" id="el-870">7:40 PM</td>
+      <td data-el-num="871" id="el-871">7:50 PM</td>
+      <td data-el-num="872" id="el-872">7:58 PM</td>
+      <td data-el-num="873" id="el-873">8:02 PM</td>
+      <td data-el-num="874" id="el-874">8:09 PM</td>
+      <td data-el-num="875" id="el-875">8:15 PM</td>
+      <td data-el-num="876" id="el-876">8:20 PM</td>
+      <td data-el-num="877" id="el-877">8:28 PM</td>
+      <td data-el-num="878" id="el-878">8:33 PM</td>
+      <td data-el-num="879" id="el-879">8:42 PM</td>
+      <td data-el-num="880" id="el-880">8:49 PM</td>
+    </tr>
+    <tr style="background-color:#f5f5f5;" data-el-num="881" id="el-881">
+      <td data-el-num="882" id="el-882">8:24 PM</td>
+      <td data-el-num="883" id="el-883">8:31 PM</td>
+      <td data-el-num="884" id="el-884">8:41 PM</td>
+      <td data-el-num="885" id="el-885">8:49 PM</td>
+      <td data-el-num="886" id="el-886">8:53 PM</td>
+      <td data-el-num="887" id="el-887">9:00 PM</td>
+      <td data-el-num="888" id="el-888">9:06 PM</td>
+      <td data-el-num="889" id="el-889">9:11 PM</td>
+      <td data-el-num="890" id="el-890">9:19 PM</td>
+      <td data-el-num="891" id="el-891">9:23 PM</td>
+      <td data-el-num="892" id="el-892">9:32 PM</td>
+      <td data-el-num="893" id="el-893">9:39 PM</td>
+    </tr>
+    <tr data-el-num="894" id="el-894">
+      <td data-el-num="895" id="el-895">9:09 PM</td>
+      <td data-el-num="896" id="el-896">9:16 PM</td>
+      <td data-el-num="897" id="el-897">9:25 PM</td>
+      <td data-el-num="898" id="el-898">9:32 PM</td>
+      <td data-el-num="899" id="el-899">9:36 PM</td>
+      <td data-el-num="900" id="el-900">9:42 PM</td>
+      <td data-el-num="901" id="el-901">9:47 PM</td>
+      <td data-el-num="902" id="el-902">9:52 PM</td>
+      <td data-el-num="903" id="el-903">10:00 PM</td>
+      <td data-el-num="904" id="el-904">10:04 PM</td>
+      <td data-el-num="905" id="el-905">10:13 PM</td>
+      <td data-el-num="906" id="el-906">10:20 PM</td>
+    </tr>
+  </tbody>
+</table>
+
+<footer>Route 27 - 27 - Winchester Stn - Santa Teresa Stn - Page 6</footer></div><div class="transcript-page content" data-page-number="7"><h2 data-el-num="907" id="el-907">Saturday Eastbound Timetable</h2>
+
+<table aria-label="Route 27 Saturday eastbound timetable" data-el-num="908" id="el-908">
+  <caption>Saturday eastbound departure and arrival times from Winchester Station (Bay 2) to Santa Teresa Station.</caption>
+  <thead>
+    <tr style="background-color:#e0e7ef;" data-el-num="909" id="el-909">
+      <th scope="col" data-el-num="910" id="el-910">Winchester Station (Bay 2)</th>
+      <th scope="col" data-el-num="911" id="el-911">Burrows &amp; Hacienda (S)</th>
+      <th scope="col" data-el-num="912" id="el-912">Santa Cruz &amp; Los Gatos-Saratoga (S)</th>
+      <th scope="col" data-el-num="913" id="el-913">Los Gatos &amp; Los Gatos-Almaden (Chirco) (N)</th>
+      <th scope="col" data-el-num="914" id="el-914">Good Samaritan Hospital (E)</th>
+      <th scope="col" data-el-num="915" id="el-915">Leigh &amp; Los Gatos-Almaden (S)</th>
+      <th scope="col" data-el-num="916" id="el-916">Blossom Hill &amp; Meridian (E)</th>
+      <th scope="col" data-el-num="917" id="el-917">Blossom Hill &amp; Almaden (E)</th>
+      <th scope="col" data-el-num="918" id="el-918">Blossom Hill Station (W)</th>
+      <th scope="col" data-el-num="919" id="el-919">Cottle &amp; Poughkeepsie (S)</th>
+      <th scope="col" data-el-num="920" id="el-920">Santa Teresa Station</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr data-el-num="921" id="el-921">
+      <td data-el-num="922" id="el-922">7:16 AM</td>
+      <td data-el-num="923" id="el-923">7:21 AM</td>
+      <td data-el-num="924" id="el-924">7:30 AM</td>
+      <td data-el-num="925" id="el-925">7:38 AM</td>
+      <td data-el-num="926" id="el-926">7:42 AM</td>
+      <td data-el-num="927" id="el-927">7:48 AM</td>
+      <td data-el-num="928" id="el-928">7:54 AM</td>
+      <td data-el-num="929" id="el-929">7:59 AM</td>
+      <td data-el-num="930" id="el-930">8:09 AM</td>
+      <td data-el-num="931" id="el-931">8:17 AM</td>
+      <td data-el-num="932" id="el-932">8:27 AM</td>
+    </tr>
+    <tr data-el-num="933" id="el-933">
+      <td data-el-num="934" id="el-934">8:14 AM</td>
+      <td data-el-num="935" id="el-935">8:19 AM</td>
+      <td data-el-num="936" id="el-936">8:29 AM</td>
+      <td data-el-num="937" id="el-937">8:38 AM</td>
+      <td data-el-num="938" id="el-938">8:42 AM</td>
+      <td data-el-num="939" id="el-939">8:48 AM</td>
+      <td data-el-num="940" id="el-940">8:54 AM</td>
+      <td data-el-num="941" id="el-941">8:59 AM</td>
+      <td data-el-num="942" id="el-942">9:09 AM</td>
+      <td data-el-num="943" id="el-943">9:18 AM</td>
+      <td data-el-num="944" id="el-944">9:28 AM</td>
+    </tr>
+    <tr data-el-num="945" id="el-945">
+      <td data-el-num="946" id="el-946">9:15 AM</td>
+      <td data-el-num="947" id="el-947">9:21 AM</td>
+      <td data-el-num="948" id="el-948">9:31 AM</td>
+      <td data-el-num="949" id="el-949">9:40 AM</td>
+      <td data-el-num="950" id="el-950">9:44 AM</td>
+      <td data-el-num="951" id="el-951">9:50 AM</td>
+      <td data-el-num="952" id="el-952">9:56 AM</td>
+      <td data-el-num="953" id="el-953">10:01 AM</td>
+      <td data-el-num="954" id="el-954">10:12 AM</td>
+      <td data-el-num="955" id="el-955">10:21 AM</td>
+      <td data-el-num="956" id="el-956">10:31 AM</td>
+    </tr>
+    <tr data-el-num="957" id="el-957">
+      <td data-el-num="958" id="el-958">9:56 AM</td>
+      <td data-el-num="959" id="el-959">10:01 AM</td>
+      <td data-el-num="960" id="el-960">10:11 AM</td>
+      <td data-el-num="961" id="el-961">10:20 AM</td>
+      <td data-el-num="962" id="el-962">10:25 AM</td>
+      <td data-el-num="963" id="el-963">10:31 AM</td>
+      <td data-el-num="964" id="el-964">10:37 AM</td>
+      <td data-el-num="965" id="el-965">10:42 AM</td>
+      <td data-el-num="966" id="el-966">10:53 AM</td>
+      <td data-el-num="967" id="el-967">11:03 AM</td>
+      <td data-el-num="968" id="el-968">11:14 AM</td>
+    </tr>
+    <tr data-el-num="969" id="el-969">
+      <td data-el-num="970" id="el-970">10:36 AM</td>
+      <td data-el-num="971" id="el-971">10:41 AM</td>
+      <td data-el-num="972" id="el-972">10:51 AM</td>
+      <td data-el-num="973" id="el-973">11:00 AM</td>
+      <td data-el-num="974" id="el-974">11:05 AM</td>
+      <td data-el-num="975" id="el-975">11:11 AM</td>
+      <td data-el-num="976" id="el-976">11:17 AM</td>
+      <td data-el-num="977" id="el-977">11:22 AM</td>
+      <td data-el-num="978" id="el-978">11:34 AM</td>
+      <td data-el-num="979" id="el-979">11:44 AM</td>
+      <td data-el-num="980" id="el-980">11:55 AM</td>
+    </tr>
+    <tr data-el-num="981" id="el-981">
+      <td data-el-num="982" id="el-982">11:16 AM</td>
+      <td data-el-num="983" id="el-983">11:21 AM</td>
+      <td data-el-num="984" id="el-984">11:31 AM</td>
+      <td data-el-num="985" id="el-985">11:40 AM</td>
+      <td data-el-num="986" id="el-986">11:45 AM</td>
+      <td data-el-num="987" id="el-987">11:52 AM</td>
+      <td data-el-num="988" id="el-988">11:58 AM</td>
+      <td data-el-num="989" id="el-989">12:03 PM</td>
+      <td data-el-num="990" id="el-990">12:16 PM</td>
+      <td data-el-num="991" id="el-991">12:26 PM</td>
+      <td data-el-num="992" id="el-992">12:37 PM</td>
+    </tr>
+    <tr data-el-num="993" id="el-993">
+      <td data-el-num="994" id="el-994">11:56 AM</td>
+      <td data-el-num="995" id="el-995">12:01 PM</td>
+      <td data-el-num="996" id="el-996">12:12 PM</td>
+      <td data-el-num="997" id="el-997">12:21 PM</td>
+      <td data-el-num="998" id="el-998">12:26 PM</td>
+      <td data-el-num="999" id="el-999">12:32 PM</td>
+      <td data-el-num="1000" id="el-1000">12:38 PM</td>
+      <td data-el-num="1001" id="el-1001">12:43 PM</td>
+      <td data-el-num="1002" id="el-1002">12:55 PM</td>
+      <td data-el-num="1003" id="el-1003">1:05 PM</td>
+      <td data-el-num="1004" id="el-1004">1:16 PM</td>
+    </tr>
+    <tr data-el-num="1005" id="el-1005">
+      <td data-el-num="1006" id="el-1006">12:36 PM</td>
+      <td data-el-num="1007" id="el-1007">12:41 PM</td>
+      <td data-el-num="1008" id="el-1008">12:52 PM</td>
+      <td data-el-num="1009" id="el-1009">1:01 PM</td>
+      <td data-el-num="1010" id="el-1010">1:06 PM</td>
+      <td data-el-num="1011" id="el-1011">1:12 PM</td>
+      <td data-el-num="1012" id="el-1012">1:18 PM</td>
+      <td data-el-num="1013" id="el-1013">1:23 PM</td>
+      <td data-el-num="1014" id="el-1014">1:35 PM</td>
+      <td data-el-num="1015" id="el-1015">1:45 PM</td>
+      <td data-el-num="1016" id="el-1016">1:56 PM</td>
+    </tr>
+    <tr data-el-num="1017" id="el-1017">
+      <td data-el-num="1018" id="el-1018">1:16 PM</td>
+      <td data-el-num="1019" id="el-1019">1:21 PM</td>
+      <td data-el-num="1020" id="el-1020">1:32 PM</td>
+      <td data-el-num="1021" id="el-1021">1:41 PM</td>
+      <td data-el-num="1022" id="el-1022">1:46 PM</td>
+      <td data-el-num="1023" id="el-1023">1:52 PM</td>
+      <td data-el-num="1024" id="el-1024">1:58 PM</td>
+      <td data-el-num="1025" id="el-1025">2:03 PM</td>
+      <td data-el-num="1026" id="el-1026">2:16 PM</td>
+      <td data-el-num="1027" id="el-1027">2:26 PM</td>
+      <td data-el-num="1028" id="el-1028">2:37 PM</td>
+    </tr>
+    <tr data-el-num="1029" id="el-1029">
+      <td data-el-num="1030" id="el-1030">1:56 PM</td>
+      <td data-el-num="1031" id="el-1031">2:01 PM</td>
+      <td data-el-num="1032" id="el-1032">2:12 PM</td>
+      <td data-el-num="1033" id="el-1033">2:21 PM</td>
+      <td data-el-num="1034" id="el-1034">2:26 PM</td>
+      <td data-el-num="1035" id="el-1035">2:33 PM</td>
+      <td data-el-num="1036" id="el-1036">2:39 PM</td>
+      <td data-el-num="1037" id="el-1037">2:44 PM</td>
+      <td data-el-num="1038" id="el-1038">2:57 PM</td>
+      <td data-el-num="1039" id="el-1039">3:07 PM</td>
+      <td data-el-num="1040" id="el-1040">3:18 PM</td>
+    </tr>
+    <tr data-el-num="1041" id="el-1041">
+      <td data-el-num="1042" id="el-1042">2:36 PM</td>
+      <td data-el-num="1043" id="el-1043">2:41 PM</td>
+      <td data-el-num="1044" id="el-1044">2:52 PM</td>
+      <td data-el-num="1045" id="el-1045">3:01 PM</td>
+      <td data-el-num="1046" id="el-1046">3:06 PM</td>
+      <td data-el-num="1047" id="el-1047">3:12 PM</td>
+      <td data-el-num="1048" id="el-1048">3:18 PM</td>
+      <td data-el-num="1049" id="el-1049">3:23 PM</td>
+      <td data-el-num="1050" id="el-1050">3:35 PM</td>
+      <td data-el-num="1051" id="el-1051">3:45 PM</td>
+      <td data-el-num="1052" id="el-1052">3:56 PM</td>
+    </tr>
+    <tr data-el-num="1053" id="el-1053">
+      <td data-el-num="1054" id="el-1054">3:16 PM</td>
+      <td data-el-num="1055" id="el-1055">3:21 PM</td>
+      <td data-el-num="1056" id="el-1056">3:32 PM</td>
+      <td data-el-num="1057" id="el-1057">3:41 PM</td>
+      <td data-el-num="1058" id="el-1058">3:46 PM</td>
+      <td data-el-num="1059" id="el-1059">3:52 PM</td>
+      <td data-el-num="1060" id="el-1060">3:58 PM</td>
+      <td data-el-num="1061" id="el-1061">4:03 PM</td>
+      <td data-el-num="1062" id="el-1062">4:15 PM</td>
+      <td data-el-num="1063" id="el-1063">4:25 PM</td>
+      <td data-el-num="1064" id="el-1064">4:36 PM</td>
+    </tr>
+    <tr data-el-num="1065" id="el-1065">
+      <td data-el-num="1066" id="el-1066">3:56 PM</td>
+      <td data-el-num="1067" id="el-1067">4:01 PM</td>
+      <td data-el-num="1068" id="el-1068">4:12 PM</td>
+      <td data-el-num="1069" id="el-1069">4:21 PM</td>
+      <td data-el-num="1070" id="el-1070">4:26 PM</td>
+      <td data-el-num="1071" id="el-1071">4:33 PM</td>
+      <td data-el-num="1072" id="el-1072">4:39 PM</td>
+      <td data-el-num="1073" id="el-1073">4:44 PM</td>
+      <td data-el-num="1074" id="el-1074">4:56 PM</td>
+      <td data-el-num="1075" id="el-1075">5:06 PM</td>
+      <td data-el-num="1076" id="el-1076">5:17 PM</td>
+    </tr>
+    <tr data-el-num="1077" id="el-1077">
+      <td data-el-num="1078" id="el-1078">4:36 PM</td>
+      <td data-el-num="1079" id="el-1079">4:41 PM</td>
+      <td data-el-num="1080" id="el-1080">4:52 PM</td>
+      <td data-el-num="1081" id="el-1081">5:01 PM</td>
+      <td data-el-num="1082" id="el-1082">5:06 PM</td>
+      <td data-el-num="1083" id="el-1083">5:12 PM</td>
+      <td data-el-num="1084" id="el-1084">5:18 PM</td>
+      <td data-el-num="1085" id="el-1085">5:23 PM</td>
+      <td data-el-num="1086" id="el-1086">5:35 PM</td>
+      <td data-el-num="1087" id="el-1087">5:45 PM</td>
+      <td data-el-num="1088" id="el-1088">5:56 PM</td>
+    </tr>
+    <tr data-el-num="1089" id="el-1089">
+      <td data-el-num="1090" id="el-1090">5:16 PM</td>
+      <td data-el-num="1091" id="el-1091">5:21 PM</td>
+      <td data-el-num="1092" id="el-1092">5:31 PM</td>
+      <td data-el-num="1093" id="el-1093">5:39 PM</td>
+      <td data-el-num="1094" id="el-1094">5:44 PM</td>
+      <td data-el-num="1095" id="el-1095">5:50 PM</td>
+      <td data-el-num="1096" id="el-1096">5:56 PM</td>
+      <td data-el-num="1097" id="el-1097">6:01 PM</td>
+      <td data-el-num="1098" id="el-1098">6:13 PM</td>
+      <td data-el-num="1099" id="el-1099">6:23 PM</td>
+      <td data-el-num="1100" id="el-1100">6:34 PM</td>
+    </tr>
+    <tr data-el-num="1101" id="el-1101">
+      <td data-el-num="1102" id="el-1102">6:16 PM</td>
+      <td data-el-num="1103" id="el-1103">6:21 PM</td>
+      <td data-el-num="1104" id="el-1104">6:31 PM</td>
+      <td data-el-num="1105" id="el-1105">6:39 PM</td>
+      <td data-el-num="1106" id="el-1106">6:44 PM</td>
+      <td data-el-num="1107" id="el-1107">6:50 PM</td>
+      <td data-el-num="1108" id="el-1108">6:56 PM</td>
+      <td data-el-num="1109" id="el-1109">7:01 PM</td>
+      <td data-el-num="1110" id="el-1110">7:13 PM</td>
+      <td data-el-num="1111" id="el-1111">7:22 PM</td>
+      <td data-el-num="1112" id="el-1112">7:33 PM</td>
+    </tr>
+    <tr data-el-num="1113" id="el-1113">
+      <td data-el-num="1114" id="el-1114">7:18 PM</td>
+      <td data-el-num="1115" id="el-1115">7:23 PM</td>
+      <td data-el-num="1116" id="el-1116">7:33 PM</td>
+      <td data-el-num="1117" id="el-1117">7:41 PM</td>
+      <td data-el-num="1118" id="el-1118">7:46 PM</td>
+      <td data-el-num="1119" id="el-1119">7:52 PM</td>
+      <td data-el-num="1120" id="el-1120">7:58 PM</td>
+      <td data-el-num="1121" id="el-1121">8:03 PM</td>
+      <td data-el-num="1122" id="el-1122">8:14 PM</td>
+      <td data-el-num="1123" id="el-1123">8:23 PM</td>
+      <td data-el-num="1124" id="el-1124">8:34 PM</td>
+    </tr>
+    <tr data-el-num="1125" id="el-1125">
+      <td data-el-num="1126" id="el-1126">8:20 PM</td>
+      <td data-el-num="1127" id="el-1127">8:25 PM</td>
+      <td data-el-num="1128" id="el-1128">8:34 PM</td>
+      <td data-el-num="1129" id="el-1129">8:41 PM</td>
+      <td data-el-num="1130" id="el-1130">8:45 PM</td>
+      <td data-el-num="1131" id="el-1131">8:51 PM</td>
+      <td data-el-num="1132" id="el-1132">8:57 PM</td>
+      <td data-el-num="1133" id="el-1133">9:01 PM</td>
+      <td data-el-num="1134" id="el-1134">9:11 PM</td>
+      <td data-el-num="1135" id="el-1135">9:20 PM</td>
+      <td data-el-num="1136" id="el-1136">9:30 PM</td>
+    </tr>
+    <tr data-el-num="1137" id="el-1137">
+      <td data-el-num="1138" id="el-1138">9:18 PM</td>
+      <td data-el-num="1139" id="el-1139">9:23 PM</td>
+      <td data-el-num="1140" id="el-1140">9:32 PM</td>
+      <td data-el-num="1141" id="el-1141">9:39 PM</td>
+      <td data-el-num="1142" id="el-1142">9:43 PM</td>
+      <td data-el-num="1143" id="el-1143">9:49 PM</td>
+      <td data-el-num="1144" id="el-1144">9:55 PM</td>
+      <td data-el-num="1145" id="el-1145">9:59 PM</td>
+      <td data-el-num="1146" id="el-1146">10:08 PM</td>
+      <td data-el-num="1147" id="el-1147">10:17 PM</td>
+      <td data-el-num="1148" id="el-1148">10:27 PM</td>
+    </tr>
+  </tbody>
+</table>
+
+<footer>
+  Route 27 - 27 - Winchester Stn - Santa Teresa Stn - Page 7
+</footer></div><span class="da-contrast-added-4ca3"></span><div class="transcript-page content" data-page-number="8"><h2 data-el-num="1149" id="el-1149">Saturday Westbound Timetable</h2>
+
+<table data-el-num="1150" id="el-1150">
+  <caption>Saturday westbound timetable from Santa Teresa Station to Winchester Station (Bay 2).</caption>
+  <thead>
+    <tr style="background-color:#e0e0e0;" data-el-num="1151" id="el-1151">
+      <th scope="col" data-el-num="1152" id="el-1152">Santa Teresa Station</th>
+      <th scope="col" data-el-num="1153" id="el-1153">Poughkeepsie &amp; Cottle (W)</th>
+      <th scope="col" data-el-num="1154" id="el-1154">Blossom Hill Station (W)</th>
+      <th scope="col" data-el-num="1155" id="el-1155">Blossom Hill &amp; Almaden Plaza (W)</th>
+      <th scope="col" data-el-num="1156" id="el-1156">Blossom Hill &amp; Meridian (W)</th>
+      <th scope="col" data-el-num="1157" id="el-1157">Los Gatos-Almaden &amp; Leigh (W)</th>
+      <th scope="col" data-el-num="1158" id="el-1158">Good Samaritan Hospital (W)</th>
+      <th scope="col" data-el-num="1159" id="el-1159">Los Gatos &amp; Los Gatos-Almaden (S)</th>
+      <th scope="col" data-el-num="1160" id="el-1160">Santa Cruz &amp; Los Gatos-Saratoga (N)</th>
+      <th scope="col" data-el-num="1161" id="el-1161">Burrows &amp; Hacienda (N)</th>
+      <th scope="col" data-el-num="1162" id="el-1162">Winchester Station (Bay 2)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr data-el-num="1163" id="el-1163">
+      <td data-el-num="1164" id="el-1164">6:45 AM</td>
+      <td data-el-num="1165" id="el-1165">6:51 AM</td>
+      <td data-el-num="1166" id="el-1166">7:00 AM</td>
+      <td data-el-num="1167" id="el-1167">7:07 AM</td>
+      <td data-el-num="1168" id="el-1168">7:10 AM</td>
+      <td data-el-num="1169" id="el-1169">7:16 AM</td>
+      <td data-el-num="1170" id="el-1170">7:23 AM</td>
+      <td data-el-num="1171" id="el-1171">7:29 AM</td>
+      <td data-el-num="1172" id="el-1172">7:36 AM</td>
+      <td data-el-num="1173" id="el-1173">7:45 AM</td>
+      <td data-el-num="1174" id="el-1174">7:52 AM</td>
+    </tr>
+    <tr data-el-num="1175" id="el-1175">
+      <td data-el-num="1176" id="el-1176">7:44 AM</td>
+      <td data-el-num="1177" id="el-1177">7:50 AM</td>
+      <td data-el-num="1178" id="el-1178">7:59 AM</td>
+      <td data-el-num="1179" id="el-1179">8:06 AM</td>
+      <td data-el-num="1180" id="el-1180">8:10 AM</td>
+      <td data-el-num="1181" id="el-1181">8:16 AM</td>
+      <td data-el-num="1182" id="el-1182">8:23 AM</td>
+      <td data-el-num="1183" id="el-1183">8:29 AM</td>
+      <td data-el-num="1184" id="el-1184">8:36 AM</td>
+      <td data-el-num="1185" id="el-1185">8:46 AM</td>
+      <td data-el-num="1186" id="el-1186">8:53 AM</td>
+    </tr>
+    <tr data-el-num="1187" id="el-1187">
+      <td data-el-num="1188" id="el-1188">8:38 AM</td>
+      <td data-el-num="1189" id="el-1189">8:46 AM</td>
+      <td data-el-num="1190" id="el-1190">8:56 AM</td>
+      <td data-el-num="1191" id="el-1191">9:04 AM</td>
+      <td data-el-num="1192" id="el-1192">9:08 AM</td>
+      <td data-el-num="1193" id="el-1193">9:15 AM</td>
+      <td data-el-num="1194" id="el-1194">9:22 AM</td>
+      <td data-el-num="1195" id="el-1195">9:28 AM</td>
+      <td data-el-num="1196" id="el-1196">9:35 AM</td>
+      <td data-el-num="1197" id="el-1197">9:45 AM</td>
+      <td data-el-num="1198" id="el-1198">9:53 AM</td>
+    </tr>
+    <tr data-el-num="1199" id="el-1199">
+      <td data-el-num="1200" id="el-1200">9:36 AM</td>
+      <td data-el-num="1201" id="el-1201">9:44 AM</td>
+      <td data-el-num="1202" id="el-1202">9:54 AM</td>
+      <td data-el-num="1203" id="el-1203">10:02 AM</td>
+      <td data-el-num="1204" id="el-1204">10:06 AM</td>
+      <td data-el-num="1205" id="el-1205">10:13 AM</td>
+      <td data-el-num="1206" id="el-1206">10:21 AM</td>
+      <td data-el-num="1207" id="el-1207">10:27 AM</td>
+      <td data-el-num="1208" id="el-1208">10:35 AM</td>
+      <td data-el-num="1209" id="el-1209">10:46 AM</td>
+      <td data-el-num="1210" id="el-1210">10:53 AM</td>
+    </tr>
+    <tr data-el-num="1211" id="el-1211">
+      <td data-el-num="1212" id="el-1212">10:17 AM</td>
+      <td data-el-num="1213" id="el-1213">10:25 AM</td>
+      <td data-el-num="1214" id="el-1214">10:35 AM</td>
+      <td data-el-num="1215" id="el-1215">10:43 AM</td>
+      <td data-el-num="1216" id="el-1216">10:47 AM</td>
+      <td data-el-num="1217" id="el-1217">10:54 AM</td>
+      <td data-el-num="1218" id="el-1218">11:02 AM</td>
+      <td data-el-num="1219" id="el-1219">11:08 AM</td>
+      <td data-el-num="1220" id="el-1220">11:16 AM</td>
+      <td data-el-num="1221" id="el-1221">11:26 AM</td>
+      <td data-el-num="1222" id="el-1222">11:33 AM</td>
+    </tr>
+    <tr data-el-num="1223" id="el-1223">
+      <td data-el-num="1224" id="el-1224">10:53 AM</td>
+      <td data-el-num="1225" id="el-1225">11:01 AM</td>
+      <td data-el-num="1226" id="el-1226">11:11 AM</td>
+      <td data-el-num="1227" id="el-1227">11:20 AM</td>
+      <td data-el-num="1228" id="el-1228">11:24 AM</td>
+      <td data-el-num="1229" id="el-1229">11:31 AM</td>
+      <td data-el-num="1230" id="el-1230">11:39 AM</td>
+      <td data-el-num="1231" id="el-1231">11:45 AM</td>
+      <td data-el-num="1232" id="el-1232">11:54 AM</td>
+      <td data-el-num="1233" id="el-1233">12:04 PM</td>
+      <td data-el-num="1234" id="el-1234">12:11 PM</td>
+    </tr>
+    <tr data-el-num="1235" id="el-1235">
+      <td data-el-num="1236" id="el-1236">11:34 AM</td>
+      <td data-el-num="1237" id="el-1237">11:42 AM</td>
+      <td data-el-num="1238" id="el-1238">11:53 AM</td>
+      <td data-el-num="1239" id="el-1239">12:02 PM</td>
+      <td data-el-num="1240" id="el-1240">12:06 PM</td>
+      <td data-el-num="1241" id="el-1241">12:13 PM</td>
+      <td data-el-num="1242" id="el-1242">12:21 PM</td>
+      <td data-el-num="1243" id="el-1243">12:27 PM</td>
+      <td data-el-num="1244" id="el-1244">12:36 PM</td>
+      <td data-el-num="1245" id="el-1245">12:46 PM</td>
+      <td data-el-num="1246" id="el-1246">12:53 PM</td>
+    </tr>
+    <tr data-el-num="1247" id="el-1247">
+      <td data-el-num="1248" id="el-1248">12:11 PM</td>
+      <td data-el-num="1249" id="el-1249">12:19 PM</td>
+      <td data-el-num="1250" id="el-1250">12:31 PM</td>
+      <td data-el-num="1251" id="el-1251">12:41 PM</td>
+      <td data-el-num="1252" id="el-1252">12:45 PM</td>
+      <td data-el-num="1253" id="el-1253">12:52 PM</td>
+      <td data-el-num="1254" id="el-1254">1:01 PM</td>
+      <td data-el-num="1255" id="el-1255">1:07 PM</td>
+      <td data-el-num="1256" id="el-1256">1:16 PM</td>
+      <td data-el-num="1257" id="el-1257">1:26 PM</td>
+      <td data-el-num="1258" id="el-1258">1:33 PM</td>
+    </tr>
+    <tr data-el-num="1259" id="el-1259">
+      <td data-el-num="1260" id="el-1260">12:53 PM</td>
+      <td data-el-num="1261" id="el-1261">1:01 PM</td>
+      <td data-el-num="1262" id="el-1262">1:13 PM</td>
+      <td data-el-num="1263" id="el-1263">1:23 PM</td>
+      <td data-el-num="1264" id="el-1264">1:27 PM</td>
+      <td data-el-num="1265" id="el-1265">1:34 PM</td>
+      <td data-el-num="1266" id="el-1266">1:41 PM</td>
+      <td data-el-num="1267" id="el-1267">1:47 PM</td>
+      <td data-el-num="1268" id="el-1268">1:56 PM</td>
+      <td data-el-num="1269" id="el-1269">2:06 PM</td>
+      <td data-el-num="1270" id="el-1270">2:13 PM</td>
+    </tr>
+    <tr data-el-num="1271" id="el-1271">
+      <td data-el-num="1272" id="el-1272">1:34 PM</td>
+      <td data-el-num="1273" id="el-1273">1:42 PM</td>
+      <td data-el-num="1274" id="el-1274">1:54 PM</td>
+      <td data-el-num="1275" id="el-1275">2:04 PM</td>
+      <td data-el-num="1276" id="el-1276">2:08 PM</td>
+      <td data-el-num="1277" id="el-1277">2:15 PM</td>
+      <td data-el-num="1278" id="el-1278">2:22 PM</td>
+      <td data-el-num="1279" id="el-1279">2:28 PM</td>
+      <td data-el-num="1280" id="el-1280">2:36 PM</td>
+      <td data-el-num="1281" id="el-1281">2:46 PM</td>
+      <td data-el-num="1282" id="el-1282">2:53 PM</td>
+    </tr>
+    <tr data-el-num="1283" id="el-1283">
+      <td data-el-num="1284" id="el-1284">2:13 PM</td>
+      <td data-el-num="1285" id="el-1285">2:21 PM</td>
+      <td data-el-num="1286" id="el-1286">2:33 PM</td>
+      <td data-el-num="1287" id="el-1287">2:43 PM</td>
+      <td data-el-num="1288" id="el-1288">2:47 PM</td>
+      <td data-el-num="1289" id="el-1289">2:54 PM</td>
+      <td data-el-num="1290" id="el-1290">3:02 PM</td>
+      <td data-el-num="1291" id="el-1291">3:08 PM</td>
+      <td data-el-num="1292" id="el-1292">3:16 PM</td>
+      <td data-el-num="1293" id="el-1293">3:26 PM</td>
+      <td data-el-num="1294" id="el-1294">3:33 PM</td>
+    </tr>
+    <tr data-el-num="1295" id="el-1295">
+      <td data-el-num="1296" id="el-1296">2:55 PM</td>
+      <td data-el-num="1297" id="el-1297">3:03 PM</td>
+      <td data-el-num="1298" id="el-1298">3:14 PM</td>
+      <td data-el-num="1299" id="el-1299">3:24 PM</td>
+      <td data-el-num="1300" id="el-1300">3:28 PM</td>
+      <td data-el-num="1301" id="el-1301">3:35 PM</td>
+      <td data-el-num="1302" id="el-1302">3:42 PM</td>
+      <td data-el-num="1303" id="el-1303">3:48 PM</td>
+      <td data-el-num="1304" id="el-1304">3:56 PM</td>
+      <td data-el-num="1305" id="el-1305">4:06 PM</td>
+      <td data-el-num="1306" id="el-1306">4:13 PM</td>
+    </tr>
+    <tr data-el-num="1307" id="el-1307">
+      <td data-el-num="1308" id="el-1308">3:35 PM</td>
+      <td data-el-num="1309" id="el-1309">3:43 PM</td>
+      <td data-el-num="1310" id="el-1310">3:54 PM</td>
+      <td data-el-num="1311" id="el-1311">4:04 PM</td>
+      <td data-el-num="1312" id="el-1312">4:08 PM</td>
+      <td data-el-num="1313" id="el-1313">4:15 PM</td>
+      <td data-el-num="1314" id="el-1314">4:22 PM</td>
+      <td data-el-num="1315" id="el-1315">4:28 PM</td>
+      <td data-el-num="1316" id="el-1316">4:37 PM</td>
+      <td data-el-num="1317" id="el-1317">4:47 PM</td>
+      <td data-el-num="1318" id="el-1318">4:54 PM</td>
+    </tr>
+    <tr data-el-num="1319" id="el-1319">
+      <td data-el-num="1320" id="el-1320">4:15 PM</td>
+      <td data-el-num="1321" id="el-1321">4:23 PM</td>
+      <td data-el-num="1322" id="el-1322">4:34 PM</td>
+      <td data-el-num="1323" id="el-1323">4:44 PM</td>
+      <td data-el-num="1324" id="el-1324">4:48 PM</td>
+      <td data-el-num="1325" id="el-1325">4:55 PM</td>
+      <td data-el-num="1326" id="el-1326">5:02 PM</td>
+      <td data-el-num="1327" id="el-1327">5:08 PM</td>
+      <td data-el-num="1328" id="el-1328">5:16 PM</td>
+      <td data-el-num="1329" id="el-1329">5:26 PM</td>
+      <td data-el-num="1330" id="el-1330">5:33 PM</td>
+    </tr>
+    <tr data-el-num="1331" id="el-1331">
+      <td data-el-num="1332" id="el-1332">4:58 PM</td>
+      <td data-el-num="1333" id="el-1333">5:06 PM</td>
+      <td data-el-num="1334" id="el-1334">5:16 PM</td>
+      <td data-el-num="1335" id="el-1335">5:26 PM</td>
+      <td data-el-num="1336" id="el-1336">5:30 PM</td>
+      <td data-el-num="1337" id="el-1337">5:37 PM</td>
+      <td data-el-num="1338" id="el-1338">5:44 PM</td>
+      <td data-el-num="1339" id="el-1339">5:49 PM</td>
+      <td data-el-num="1340" id="el-1340">5:56 PM</td>
+      <td data-el-num="1341" id="el-1341">6:06 PM</td>
+      <td data-el-num="1342" id="el-1342">6:13 PM</td>
+    </tr>
+    <tr data-el-num="1343" id="el-1343">
+      <td data-el-num="1344" id="el-1344">5:40 PM</td>
+      <td data-el-num="1345" id="el-1345">5:48 PM</td>
+      <td data-el-num="1346" id="el-1346">5:58 PM</td>
+      <td data-el-num="1347" id="el-1347">6:08 PM</td>
+      <td data-el-num="1348" id="el-1348">6:12 PM</td>
+      <td data-el-num="1349" id="el-1349">6:19 PM</td>
+      <td data-el-num="1350" id="el-1350">6:26 PM</td>
+      <td data-el-num="1351" id="el-1351">6:31 PM</td>
+      <td data-el-num="1352" id="el-1352">6:38 PM</td>
+      <td data-el-num="1353" id="el-1353">6:48 PM</td>
+      <td data-el-num="1354" id="el-1354">6:54 PM</td>
+    </tr>
+    <tr data-el-num="1355" id="el-1355">
+      <td data-el-num="1356" id="el-1356">6:41 PM</td>
+      <td data-el-num="1357" id="el-1357">6:49 PM</td>
+      <td data-el-num="1358" id="el-1358">6:59 PM</td>
+      <td data-el-num="1359" id="el-1359">7:09 PM</td>
+      <td data-el-num="1360" id="el-1360">7:13 PM</td>
+      <td data-el-num="1361" id="el-1361">7:20 PM</td>
+      <td data-el-num="1362" id="el-1362">7:27 PM</td>
+      <td data-el-num="1363" id="el-1363">7:32 PM</td>
+      <td data-el-num="1364" id="el-1364">7:39 PM</td>
+      <td data-el-num="1365" id="el-1365">7:49 PM</td>
+      <td data-el-num="1366" id="el-1366">7:55 PM</td>
+    </tr>
+    <tr data-el-num="1367" id="el-1367">
+      <td data-el-num="1368" id="el-1368">7:38 PM</td>
+      <td data-el-num="1369" id="el-1369">7:45 PM</td>
+      <td data-el-num="1370" id="el-1370">7:55 PM</td>
+      <td data-el-num="1371" id="el-1371">8:04 PM</td>
+      <td data-el-num="1372" id="el-1372">8:08 PM</td>
+      <td data-el-num="1373" id="el-1373">8:15 PM</td>
+      <td data-el-num="1374" id="el-1374">8:22 PM</td>
+      <td data-el-num="1375" id="el-1375">8:27 PM</td>
+      <td data-el-num="1376" id="el-1376">8:34 PM</td>
+      <td data-el-num="1377" id="el-1377">8:44 PM</td>
+      <td data-el-num="1378" id="el-1378">8:50 PM</td>
+    </tr>
+    <tr data-el-num="1379" id="el-1379">
+      <td data-el-num="1380" id="el-1380">8:41 PM</td>
+      <td data-el-num="1381" id="el-1381">8:48 PM</td>
+      <td data-el-num="1382" id="el-1382">8:57 PM</td>
+      <td data-el-num="1383" id="el-1383">9:06 PM</td>
+      <td data-el-num="1384" id="el-1384">9:09 PM</td>
+      <td data-el-num="1385" id="el-1385">9:16 PM</td>
+      <td data-el-num="1386" id="el-1386">9:23 PM</td>
+      <td data-el-num="1387" id="el-1387">9:28 PM</td>
+      <td data-el-num="1388" id="el-1388">9:35 PM</td>
+      <td data-el-num="1389" id="el-1389">9:44 PM</td>
+      <td data-el-num="1390" id="el-1390">9:50 PM</td>
+    </tr>
+  </tbody>
+</table>
+
+<footer>
+  Route 27 - 27 - Winchester Stn - Santa Teresa Stn - Page 8
+</footer></div><div class="transcript-page content" data-page-number="9"><h2 data-el-num="1391" id="el-1391">Sunday/Holiday Eastbound Timetable</h2>
+
+<table aria-label="Route 27 Sunday and holiday eastbound timetable" data-el-num="1392" id="el-1392">
+  <caption>Route 27 Sunday and holiday eastbound timetable from Winchester Station to Santa Teresa Station.</caption>
+  <thead>
+    <tr style="background-color: #e0e0e0;" data-el-num="1393" id="el-1393">
+      <th scope="col" data-el-num="1394" id="el-1394">Winchester Station (Bay 2)</th>
+      <th scope="col" data-el-num="1395" id="el-1395">Burrows &amp; Hacienda (S)</th>
+      <th scope="col" data-el-num="1396" id="el-1396">Santa Cruz &amp; Los Gatos-Saratoga (S)</th>
+      <th scope="col" data-el-num="1397" id="el-1397">Los Gatos &amp; Los Gatos-Almaden (Chirco) (N)</th>
+      <th scope="col" data-el-num="1398" id="el-1398">Good Samaritan Hospital (E)</th>
+      <th scope="col" data-el-num="1399" id="el-1399">Leigh &amp; Los Gatos-Almaden (S)</th>
+      <th scope="col" data-el-num="1400" id="el-1400">Blossom Hill &amp; Meridian (E)</th>
+      <th scope="col" data-el-num="1401" id="el-1401">Blossom Hill &amp; Almaden (E)</th>
+      <th scope="col" data-el-num="1402" id="el-1402">Blossom Hill Station (W)</th>
+      <th scope="col" data-el-num="1403" id="el-1403">Cottle &amp; Poughkeepsie (S)</th>
+      <th scope="col" data-el-num="1404" id="el-1404">Santa Teresa Station</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr data-el-num="1405" id="el-1405">
+      <td data-el-num="1406" id="el-1406">7:38 AM</td>
+      <td data-el-num="1407" id="el-1407">7:43 AM</td>
+      <td data-el-num="1408" id="el-1408">7:52 AM</td>
+      <td data-el-num="1409" id="el-1409">8:00 AM</td>
+      <td data-el-num="1410" id="el-1410">8:04 AM</td>
+      <td data-el-num="1411" id="el-1411">8:09 AM</td>
+      <td data-el-num="1412" id="el-1412">8:15 AM</td>
+      <td data-el-num="1413" id="el-1413">8:21 AM</td>
+      <td data-el-num="1414" id="el-1414">8:28 AM</td>
+      <td data-el-num="1415" id="el-1415">8:36 AM</td>
+      <td data-el-num="1416" id="el-1416">8:46 AM</td>
+    </tr>
+    <tr style="background-color: #f2f2f2;" data-el-num="1417" id="el-1417">
+      <td data-el-num="1418" id="el-1418">8:38 AM</td>
+      <td data-el-num="1419" id="el-1419">8:43 AM</td>
+      <td data-el-num="1420" id="el-1420">8:52 AM</td>
+      <td data-el-num="1421" id="el-1421">9:00 AM</td>
+      <td data-el-num="1422" id="el-1422">9:04 AM</td>
+      <td data-el-num="1423" id="el-1423">9:10 AM</td>
+      <td data-el-num="1424" id="el-1424">9:16 AM</td>
+      <td data-el-num="1425" id="el-1425">9:21 AM</td>
+      <td data-el-num="1426" id="el-1426">9:29 AM</td>
+      <td data-el-num="1427" id="el-1427">9:37 AM</td>
+      <td data-el-num="1428" id="el-1428">9:47 AM</td>
+    </tr>
+    <tr data-el-num="1429" id="el-1429">
+      <td data-el-num="1430" id="el-1430">9:36 AM</td>
+      <td data-el-num="1431" id="el-1431">9:41 AM</td>
+      <td data-el-num="1432" id="el-1432">9:51 AM</td>
+      <td data-el-num="1433" id="el-1433">9:59 AM</td>
+      <td data-el-num="1434" id="el-1434">10:04 AM</td>
+      <td data-el-num="1435" id="el-1435">10:10 AM</td>
+      <td data-el-num="1436" id="el-1436">10:16 AM</td>
+      <td data-el-num="1437" id="el-1437">10:21 AM</td>
+      <td data-el-num="1438" id="el-1438">10:30 AM</td>
+      <td data-el-num="1439" id="el-1439">10:38 AM</td>
+      <td data-el-num="1440" id="el-1440">10:49 AM</td>
+    </tr>
+    <tr style="background-color: #f2f2f2;" data-el-num="1441" id="el-1441">
+      <td data-el-num="1442" id="el-1442">10:36 AM</td>
+      <td data-el-num="1443" id="el-1443">10:41 AM</td>
+      <td data-el-num="1444" id="el-1444">10:51 AM</td>
+      <td data-el-num="1445" id="el-1445">11:00 AM</td>
+      <td data-el-num="1446" id="el-1446">11:05 AM</td>
+      <td data-el-num="1447" id="el-1447">11:11 AM</td>
+      <td data-el-num="1448" id="el-1448">11:17 AM</td>
+      <td data-el-num="1449" id="el-1449">11:22 AM</td>
+      <td data-el-num="1450" id="el-1450">11:33 AM</td>
+      <td data-el-num="1451" id="el-1451">11:42 AM</td>
+      <td data-el-num="1452" id="el-1452">11:53 AM</td>
+    </tr>
+    <tr data-el-num="1453" id="el-1453">
+      <td data-el-num="1454" id="el-1454">11:36 AM</td>
+      <td data-el-num="1455" id="el-1455">11:41 AM</td>
+      <td data-el-num="1456" id="el-1456">11:51 AM</td>
+      <td data-el-num="1457" id="el-1457">12:00 PM</td>
+      <td data-el-num="1458" id="el-1458">12:05 PM</td>
+      <td data-el-num="1459" id="el-1459">12:11 PM</td>
+      <td data-el-num="1460" id="el-1460">12:17 PM</td>
+      <td data-el-num="1461" id="el-1461">12:22 PM</td>
+      <td data-el-num="1462" id="el-1462">12:33 PM</td>
+      <td data-el-num="1463" id="el-1463">12:42 PM</td>
+      <td data-el-num="1464" id="el-1464">12:53 PM</td>
+    </tr>
+    <tr style="background-color: #f2f2f2;" data-el-num="1465" id="el-1465">
+      <td data-el-num="1466" id="el-1466">12:36 PM</td>
+      <td data-el-num="1467" id="el-1467">12:41 PM</td>
+      <td data-el-num="1468" id="el-1468">12:52 PM</td>
+      <td data-el-num="1469" id="el-1469">1:01 PM</td>
+      <td data-el-num="1470" id="el-1470">1:06 PM</td>
+      <td data-el-num="1471" id="el-1471">1:12 PM</td>
+      <td data-el-num="1472" id="el-1472">1:18 PM</td>
+      <td data-el-num="1473" id="el-1473">1:23 PM</td>
+      <td data-el-num="1474" id="el-1474">1:34 PM</td>
+      <td data-el-num="1475" id="el-1475">1:43 PM</td>
+      <td data-el-num="1476" id="el-1476">1:54 PM</td>
+    </tr>
+    <tr data-el-num="1477" id="el-1477">
+      <td data-el-num="1478" id="el-1478">1:35 PM</td>
+      <td data-el-num="1479" id="el-1479">1:40 PM</td>
+      <td data-el-num="1480" id="el-1480">1:50 PM</td>
+      <td data-el-num="1481" id="el-1481">1:59 PM</td>
+      <td data-el-num="1482" id="el-1482">2:04 PM</td>
+      <td data-el-num="1483" id="el-1483">2:10 PM</td>
+      <td data-el-num="1484" id="el-1484">2:16 PM</td>
+      <td data-el-num="1485" id="el-1485">2:21 PM</td>
+      <td data-el-num="1486" id="el-1486">2:32 PM</td>
+      <td data-el-num="1487" id="el-1487">2:42 PM</td>
+      <td data-el-num="1488" id="el-1488">2:53 PM</td>
+    </tr>
+    <tr style="background-color: #f2f2f2;" data-el-num="1489" id="el-1489">
+      <td data-el-num="1490" id="el-1490">2:36 PM</td>
+      <td data-el-num="1491" id="el-1491">2:41 PM</td>
+      <td data-el-num="1492" id="el-1492">2:51 PM</td>
+      <td data-el-num="1493" id="el-1493">3:00 PM</td>
+      <td data-el-num="1494" id="el-1494">3:05 PM</td>
+      <td data-el-num="1495" id="el-1495">3:11 PM</td>
+      <td data-el-num="1496" id="el-1496">3:17 PM</td>
+      <td data-el-num="1497" id="el-1497">3:22 PM</td>
+      <td data-el-num="1498" id="el-1498">3:33 PM</td>
+      <td data-el-num="1499" id="el-1499">3:43 PM</td>
+      <td data-el-num="1500" id="el-1500">3:54 PM</td>
+    </tr>
+    <tr data-el-num="1501" id="el-1501">
+      <td data-el-num="1502" id="el-1502">3:36 PM</td>
+      <td data-el-num="1503" id="el-1503">3:41 PM</td>
+      <td data-el-num="1504" id="el-1504">3:51 PM</td>
+      <td data-el-num="1505" id="el-1505">4:00 PM</td>
+      <td data-el-num="1506" id="el-1506">4:05 PM</td>
+      <td data-el-num="1507" id="el-1507">4:11 PM</td>
+      <td data-el-num="1508" id="el-1508">4:17 PM</td>
+      <td data-el-num="1509" id="el-1509">4:22 PM</td>
+      <td data-el-num="1510" id="el-1510">4:33 PM</td>
+      <td data-el-num="1511" id="el-1511">4:43 PM</td>
+      <td data-el-num="1512" id="el-1512">4:54 PM</td>
+    </tr>
+    <tr style="background-color: #f2f2f2;" data-el-num="1513" id="el-1513">
+      <td data-el-num="1514" id="el-1514">4:36 PM</td>
+      <td data-el-num="1515" id="el-1515">4:41 PM</td>
+      <td data-el-num="1516" id="el-1516">4:52 PM</td>
+      <td data-el-num="1517" id="el-1517">5:00 PM</td>
+      <td data-el-num="1518" id="el-1518">5:05 PM</td>
+      <td data-el-num="1519" id="el-1519">5:11 PM</td>
+      <td data-el-num="1520" id="el-1520">5:18 PM</td>
+      <td data-el-num="1521" id="el-1521">5:23 PM</td>
+      <td data-el-num="1522" id="el-1522">5:34 PM</td>
+      <td data-el-num="1523" id="el-1523">5:44 PM</td>
+      <td data-el-num="1524" id="el-1524">5:55 PM</td>
+    </tr>
+    <tr data-el-num="1525" id="el-1525">
+      <td data-el-num="1526" id="el-1526">5:36 PM</td>
+      <td data-el-num="1527" id="el-1527">5:41 PM</td>
+      <td data-el-num="1528" id="el-1528">5:51 PM</td>
+      <td data-el-num="1529" id="el-1529">5:59 PM</td>
+      <td data-el-num="1530" id="el-1530">6:04 PM</td>
+      <td data-el-num="1531" id="el-1531">6:10 PM</td>
+      <td data-el-num="1532" id="el-1532">6:16 PM</td>
+      <td data-el-num="1533" id="el-1533">6:21 PM</td>
+      <td data-el-num="1534" id="el-1534">6:32 PM</td>
+      <td data-el-num="1535" id="el-1535">6:42 PM</td>
+      <td data-el-num="1536" id="el-1536">6:53 PM</td>
+    </tr>
+    <tr style="background-color: #f2f2f2;" data-el-num="1537" id="el-1537">
+      <td data-el-num="1538" id="el-1538">6:36 PM</td>
+      <td data-el-num="1539" id="el-1539">6:41 PM</td>
+      <td data-el-num="1540" id="el-1540">6:51 PM</td>
+      <td data-el-num="1541" id="el-1541">6:58 PM</td>
+      <td data-el-num="1542" id="el-1542">7:03 PM</td>
+      <td data-el-num="1543" id="el-1543">7:09 PM</td>
+      <td data-el-num="1544" id="el-1544">7:15 PM</td>
+      <td data-el-num="1545" id="el-1545">7:20 PM</td>
+      <td data-el-num="1546" id="el-1546">7:30 PM</td>
+      <td data-el-num="1547" id="el-1547">7:40 PM</td>
+      <td data-el-num="1548" id="el-1548">7:51 PM</td>
+    </tr>
+    <tr data-el-num="1549" id="el-1549">
+      <td data-el-num="1550" id="el-1550">7:37 PM</td>
+      <td data-el-num="1551" id="el-1551">7:42 PM</td>
+      <td data-el-num="1552" id="el-1552">7:52 PM</td>
+      <td data-el-num="1553" id="el-1553">7:59 PM</td>
+      <td data-el-num="1554" id="el-1554">8:03 PM</td>
+      <td data-el-num="1555" id="el-1555">8:09 PM</td>
+      <td data-el-num="1556" id="el-1556">8:15 PM</td>
+      <td data-el-num="1557" id="el-1557">8:20 PM</td>
+      <td data-el-num="1558" id="el-1558">8:30 PM</td>
+      <td data-el-num="1559" id="el-1559">8:39 PM</td>
+      <td data-el-num="1560" id="el-1560">8:49 PM</td>
+    </tr>
+  </tbody>
+</table>
+
+<footer>Route 27 - 27 - Winchester Stn - Santa Teresa Stn - Page 9</footer></div><div class="transcript-page content" data-page-number="10"><h2 data-el-num="1561" id="el-1561">Sunday/Holiday Westbound</h2>
+
+<table aria-label="Route 27 Sunday and holiday westbound timetable" data-el-num="1562" id="el-1562">
+  <thead>
+    <tr data-el-num="1563" id="el-1563">
+      <th scope="col" data-el-num="1564" id="el-1564">Santa Teresa Station</th>
+      <th scope="col" data-el-num="1565" id="el-1565">Poughkeepsie &amp; Cottle (W)</th>
+      <th scope="col" data-el-num="1566" id="el-1566">Blossom Hill Station (W)</th>
+      <th scope="col" data-el-num="1567" id="el-1567">Blossom Hill &amp; Almaden Plaza (W)</th>
+      <th scope="col" data-el-num="1568" id="el-1568">Blossom Hill &amp; Meridian (W)</th>
+      <th scope="col" data-el-num="1569" id="el-1569">Los Gatos-Almaden &amp; Leigh (W)</th>
+      <th scope="col" data-el-num="1570" id="el-1570">Good Samaritan Hospital (W)</th>
+      <th scope="col" data-el-num="1571" id="el-1571">Los Gatos &amp; Los Gatos-Almaden (S)</th>
+      <th scope="col" data-el-num="1572" id="el-1572">Santa Cruz &amp; Los Gatos-Saratoga (N)</th>
+      <th scope="col" data-el-num="1573" id="el-1573">Burrows &amp; Hacienda (N)</th>
+      <th scope="col" data-el-num="1574" id="el-1574">Winchester Station (Bay 2)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr data-el-num="1575" id="el-1575">
+      <td data-el-num="1576" id="el-1576">-</td>
+      <td data-el-num="1577" id="el-1577">-</td>
+      <td data-el-num="1578" id="el-1578">-</td>
+      <td data-el-num="1579" id="el-1579">-</td>
+      <td data-el-num="1580" id="el-1580">-</td>
+      <td data-el-num="1581" id="el-1581">7:40 AM</td>
+      <td data-el-num="1582" id="el-1582">7:45 AM</td>
+      <td data-el-num="1583" id="el-1583">7:50 AM</td>
+      <td data-el-num="1584" id="el-1584">7:56 AM</td>
+      <td data-el-num="1585" id="el-1585">8:05 AM</td>
+      <td data-el-num="1586" id="el-1586">8:11 AM</td>
+    </tr>
+    <tr data-el-num="1587" id="el-1587">
+      <td data-el-num="1588" id="el-1588">8:05 AM</td>
+      <td data-el-num="1589" id="el-1589">8:11 AM</td>
+      <td data-el-num="1590" id="el-1590">8:20 AM</td>
+      <td data-el-num="1591" id="el-1591">8:28 AM</td>
+      <td data-el-num="1592" id="el-1592">8:31 AM</td>
+      <td data-el-num="1593" id="el-1593">8:37 AM</td>
+      <td data-el-num="1594" id="el-1594">8:44 AM</td>
+      <td data-el-num="1595" id="el-1595">8:50 AM</td>
+      <td data-el-num="1596" id="el-1596">8:56 AM</td>
+      <td data-el-num="1597" id="el-1597">9:06 AM</td>
+      <td data-el-num="1598" id="el-1598">9:13 AM</td>
+    </tr>
+    <tr data-el-num="1599" id="el-1599">
+      <td data-el-num="1600" id="el-1600">9:01 AM</td>
+      <td data-el-num="1601" id="el-1601">9:08 AM</td>
+      <td data-el-num="1602" id="el-1602">9:17 AM</td>
+      <td data-el-num="1603" id="el-1603">9:25 AM</td>
+      <td data-el-num="1604" id="el-1604">9:28 AM</td>
+      <td data-el-num="1605" id="el-1605">9:35 AM</td>
+      <td data-el-num="1606" id="el-1606">9:42 AM</td>
+      <td data-el-num="1607" id="el-1607">9:48 AM</td>
+      <td data-el-num="1608" id="el-1608">9:56 AM</td>
+      <td data-el-num="1609" id="el-1609">10:06 AM</td>
+      <td data-el-num="1610" id="el-1610">10:13 AM</td>
+    </tr>
+    <tr data-el-num="1611" id="el-1611">
+      <td data-el-num="1612" id="el-1612">9:58 AM</td>
+      <td data-el-num="1613" id="el-1613">10:05 AM</td>
+      <td data-el-num="1614" id="el-1614">10:15 AM</td>
+      <td data-el-num="1615" id="el-1615">10:23 AM</td>
+      <td data-el-num="1616" id="el-1616">10:26 AM</td>
+      <td data-el-num="1617" id="el-1617">10:33 AM</td>
+      <td data-el-num="1618" id="el-1618">10:40 AM</td>
+      <td data-el-num="1619" id="el-1619">10:46 AM</td>
+      <td data-el-num="1620" id="el-1620">10:54 AM</td>
+      <td data-el-num="1621" id="el-1621">11:04 AM</td>
+      <td data-el-num="1622" id="el-1622">11:11 AM</td>
+    </tr>
+    <tr data-el-num="1623" id="el-1623">
+      <td data-el-num="1624" id="el-1624">10:55 AM</td>
+      <td data-el-num="1625" id="el-1625">11:02 AM</td>
+      <td data-el-num="1626" id="el-1626">11:13 AM</td>
+      <td data-el-num="1627" id="el-1627">11:22 AM</td>
+      <td data-el-num="1628" id="el-1628">11:26 AM</td>
+      <td data-el-num="1629" id="el-1629">11:33 AM</td>
+      <td data-el-num="1630" id="el-1630">11:40 AM</td>
+      <td data-el-num="1631" id="el-1631">11:46 AM</td>
+      <td data-el-num="1632" id="el-1632">11:54 AM</td>
+      <td data-el-num="1633" id="el-1633">12:04 PM</td>
+      <td data-el-num="1634" id="el-1634">12:11 PM</td>
+    </tr>
+    <tr data-el-num="1635" id="el-1635">
+      <td data-el-num="1636" id="el-1636">11:55 AM</td>
+      <td data-el-num="1637" id="el-1637">12:02 PM</td>
+      <td data-el-num="1638" id="el-1638">12:13 PM</td>
+      <td data-el-num="1639" id="el-1639">12:22 PM</td>
+      <td data-el-num="1640" id="el-1640">12:26 PM</td>
+      <td data-el-num="1641" id="el-1641">12:33 PM</td>
+      <td data-el-num="1642" id="el-1642">12:40 PM</td>
+      <td data-el-num="1643" id="el-1643">12:46 PM</td>
+      <td data-el-num="1644" id="el-1644">12:54 PM</td>
+      <td data-el-num="1645" id="el-1645">1:04 PM</td>
+      <td data-el-num="1646" id="el-1646">1:11 PM</td>
+    </tr>
+    <tr data-el-num="1647" id="el-1647">
+      <td data-el-num="1648" id="el-1648">12:55 PM</td>
+      <td data-el-num="1649" id="el-1649">1:02 PM</td>
+      <td data-el-num="1650" id="el-1650">1:13 PM</td>
+      <td data-el-num="1651" id="el-1651">1:22 PM</td>
+      <td data-el-num="1652" id="el-1652">1:26 PM</td>
+      <td data-el-num="1653" id="el-1653">1:33 PM</td>
+      <td data-el-num="1654" id="el-1654">1:40 PM</td>
+      <td data-el-num="1655" id="el-1655">1:46 PM</td>
+      <td data-el-num="1656" id="el-1656">1:54 PM</td>
+      <td data-el-num="1657" id="el-1657">2:04 PM</td>
+      <td data-el-num="1658" id="el-1658">2:11 PM</td>
+    </tr>
+    <tr data-el-num="1659" id="el-1659">
+      <td data-el-num="1660" id="el-1660">1:55 PM</td>
+      <td data-el-num="1661" id="el-1661">2:03 PM</td>
+      <td data-el-num="1662" id="el-1662">2:12 PM</td>
+      <td data-el-num="1663" id="el-1663">2:22 PM</td>
+      <td data-el-num="1664" id="el-1664">2:26 PM</td>
+      <td data-el-num="1665" id="el-1665">2:33 PM</td>
+      <td data-el-num="1666" id="el-1666">2:40 PM</td>
+      <td data-el-num="1667" id="el-1667">2:46 PM</td>
+      <td data-el-num="1668" id="el-1668">2:54 PM</td>
+      <td data-el-num="1669" id="el-1669">3:04 PM</td>
+      <td data-el-num="1670" id="el-1670">3:11 PM</td>
+    </tr>
+    <tr data-el-num="1671" id="el-1671">
+      <td data-el-num="1672" id="el-1672">2:54 PM</td>
+      <td data-el-num="1673" id="el-1673">3:02 PM</td>
+      <td data-el-num="1674" id="el-1674">3:12 PM</td>
+      <td data-el-num="1675" id="el-1675">3:22 PM</td>
+      <td data-el-num="1676" id="el-1676">3:26 PM</td>
+      <td data-el-num="1677" id="el-1677">3:33 PM</td>
+      <td data-el-num="1678" id="el-1678">3:40 PM</td>
+      <td data-el-num="1679" id="el-1679">3:46 PM</td>
+      <td data-el-num="1680" id="el-1680">3:54 PM</td>
+      <td data-el-num="1681" id="el-1681">4:04 PM</td>
+      <td data-el-num="1682" id="el-1682">4:11 PM</td>
+    </tr>
+    <tr data-el-num="1683" id="el-1683">
+      <td data-el-num="1684" id="el-1684">3:54 PM</td>
+      <td data-el-num="1685" id="el-1685">4:02 PM</td>
+      <td data-el-num="1686" id="el-1686">4:12 PM</td>
+      <td data-el-num="1687" id="el-1687">4:21 PM</td>
+      <td data-el-num="1688" id="el-1688">4:25 PM</td>
+      <td data-el-num="1689" id="el-1689">4:32 PM</td>
+      <td data-el-num="1690" id="el-1690">4:39 PM</td>
+      <td data-el-num="1691" id="el-1691">4:45 PM</td>
+      <td data-el-num="1692" id="el-1692">4:53 PM</td>
+      <td data-el-num="1693" id="el-1693">5:03 PM</td>
+      <td data-el-num="1694" id="el-1694">5:10 PM</td>
+    </tr>
+    <tr data-el-num="1695" id="el-1695">
+      <td data-el-num="1696" id="el-1696">4:54 PM</td>
+      <td data-el-num="1697" id="el-1697">5:02 PM</td>
+      <td data-el-num="1698" id="el-1698">5:12 PM</td>
+      <td data-el-num="1699" id="el-1699">5:21 PM</td>
+      <td data-el-num="1700" id="el-1700">5:24 PM</td>
+      <td data-el-num="1701" id="el-1701">5:31 PM</td>
+      <td data-el-num="1702" id="el-1702">5:38 PM</td>
+      <td data-el-num="1703" id="el-1703">5:44 PM</td>
+      <td data-el-num="1704" id="el-1704">5:52 PM</td>
+      <td data-el-num="1705" id="el-1705">6:02 PM</td>
+      <td data-el-num="1706" id="el-1706">6:08 PM</td>
+    </tr>
+    <tr data-el-num="1707" id="el-1707">
+      <td data-el-num="1708" id="el-1708">6:05 PM</td>
+      <td data-el-num="1709" id="el-1709">6:13 PM</td>
+      <td data-el-num="1710" id="el-1710">6:22 PM</td>
+      <td data-el-num="1711" id="el-1711">6:31 PM</td>
+      <td data-el-num="1712" id="el-1712">6:34 PM</td>
+      <td data-el-num="1713" id="el-1713">6:41 PM</td>
+      <td data-el-num="1714" id="el-1714">6:48 PM</td>
+      <td data-el-num="1715" id="el-1715">6:54 PM</td>
+      <td data-el-num="1716" id="el-1716">7:01 PM</td>
+      <td data-el-num="1717" id="el-1717">7:11 PM</td>
+      <td data-el-num="1718" id="el-1718">7:17 PM</td>
+    </tr>
+    <tr data-el-num="1719" id="el-1719">
+      <td data-el-num="1720" id="el-1720">7:05 PM</td>
+      <td data-el-num="1721" id="el-1721">7:12 PM</td>
+      <td data-el-num="1722" id="el-1722">7:20 PM</td>
+      <td data-el-num="1723" id="el-1723">7:29 PM</td>
+      <td data-el-num="1724" id="el-1724">7:32 PM</td>
+      <td data-el-num="1725" id="el-1725">7:39 PM</td>
+      <td data-el-num="1726" id="el-1726">7:46 PM</td>
+      <td data-el-num="1727" id="el-1727">7:52 PM</td>
+      <td data-el-num="1728" id="el-1728">7:59 PM</td>
+      <td data-el-num="1729" id="el-1729">8:08 PM</td>
+      <td data-el-num="1730" id="el-1730">8:14 PM</td>
+    </tr>
+    <tr data-el-num="1731" id="el-1731">
+      <td data-el-num="1732" id="el-1732">8:06 PM</td>
+      <td data-el-num="1733" id="el-1733">8:13 PM</td>
+      <td data-el-num="1734" id="el-1734">8:21 PM</td>
+      <td data-el-num="1735" id="el-1735">8:29 PM</td>
+      <td data-el-num="1736" id="el-1736">8:32 PM</td>
+      <td data-el-num="1737" id="el-1737">8:39 PM</td>
+      <td data-el-num="1738" id="el-1738">8:46 PM</td>
+      <td data-el-num="1739" id="el-1739">-</td>
+      <td data-el-num="1740" id="el-1740">-</td>
+      <td data-el-num="1741" id="el-1741">-</td>
+      <td data-el-num="1742" id="el-1742">-</td>
+    </tr>
+  </tbody>
+</table>
+
+<footer>
+  <p style="font-size: 0.9em;" data-el-num="1743" id="el-1743">Route 27 - 27 - Winchester Stn - Santa Teresa Stn - Page 10</p>
+</footer></div><div class="transcript-page content" data-page-number="11"><h2 data-el-num="1744" id="el-1744">Route 27 Map</h2>
+
+<p data-el-num="1745" id="el-1745"><strong>Map</strong></p>
+
+<span class="transcript-page-image"><img alt="Schematic map for VTA Route 27 (Local), showing the bus route as a blue line running generally northwest to southeast between Winchester Station in Campbell and Santa Teresa Station in south San Jose. The map covers the cities of Campbell, Monte Sereno, Los Gatos, and San Jose. From northwest to southeast, the route begins at Winchester Station (Green Line) near Downtown Campbell Station and San Tomas Expressway, travels south on Winchester toward Los Gatos, loops through downtown Los Gatos and the Los Gatos Civic Center and Los Gatos High School area, then continues east along Los Gatos Boulevard and Blossom Hill Road past Good Samaritan Hospital and Samaritan, Los Gatos-Almaden, Leigh (near Leigh High School), and Blossom Hill. The route then proceeds east along Blossom Hill Road and north-south along nearby streets including Union and Cottle, serving locations such as Princeton Plaza, Pioneer High School, Almaden Plaza, Westfield Oakridge, Blossom Hill Station, Snell Station, Cottle Station, Kaiser San Jose, and finally Santa Teresa Station (Blue Line). The map shows nearby freeways 17, 85, 87, and 101, Caltrain and light rail lines, connecting bus route 22, a north arrow, and labels for surrounding neighborhoods and landmarks such as El Camino Hospital Los Gatos, Good Samaritan Hospital, Town Plaza, Los Gatos Civic Center, Los Gatos High School, Vineland Branch Library, and Kaiser San Jose. Key intersections and street names along the route include San Tomas Expressway, Burrows, Hacienda, Knowles, Pollard, Winchester, Lark, Los Gatos, Blossom Hill, National, Union, Leigh, Harwood, Camden, Kooser, Meridian, Branham, Snell, Cottle, Santa Teresa, Poughkeepsie, and Camino Verde. Major rail stations shown include Winchester Station, Downtown Campbell Station, Ohlone/Chynoweth Station, Blossom Hill Station, Cottle Station, and Santa Teresa Station. Timepoint letters from A through L mark principal stops along the route. A legend indicates that a solid blue line represents Route 27, a dashed blue line indicates Route 27 service on weekends only, a white circle with a blue letter indicates a timepoint, a black P symbol indicates a Park &amp; Ride, a thin dotted line with a train icon indicates light rail or Caltrain and station, and a dashed line marked 22 indicates a connecting bus route 22. The map is labeled as a schematic map not to scale, and an effective date of October 28, 2024 appears in the lower right corner."><span class="transcript-page-image-alt" aria-hidden="true">Schematic map for VTA Route 27 (Local), showing the bus route as a blue line running generally northwest to southeast between Winchester Station in Campbell and Santa Teresa Station in south San Jose. The map covers the cities of Campbell, Monte Sereno, Los Gatos, and San Jose. From northwest to southeast, the route begins at Winchester Station (Green Line) near Downtown Campbell Station and San Tomas Expressway, travels south on Winchester toward Los Gatos, loops through downtown Los Gatos and the Los Gatos Civic Center and Los Gatos High School area, then continues east along Los Gatos Boulevard and Blossom Hill Road past Good Samaritan Hospital and Samaritan, Los Gatos-Almaden, Leigh (near Leigh High School), and Blossom Hill. The route then proceeds east along Blossom Hill Road and north-south along nearby streets including Union and Cottle, serving locations such as Princeton Plaza, Pioneer High School, Almaden Plaza, Westfield Oakridge, Blossom Hill Station, Snell Station, Cottle Station, Kaiser San Jose, and finally Santa Teresa Station (Blue Line). The map shows nearby freeways 17, 85, 87, and 101, Caltrain and light rail lines, connecting bus route 22, a north arrow, and labels for surrounding neighborhoods and landmarks such as El Camino Hospital Los Gatos, Good Samaritan Hospital, Town Plaza, Los Gatos Civic Center, Los Gatos High School, Vineland Branch Library, and Kaiser San Jose. Key intersections and street names along the route include San Tomas Expressway, Burrows, Hacienda, Knowles, Pollard, Winchester, Lark, Los Gatos, Blossom Hill, National, Union, Leigh, Harwood, Camden, Kooser, Meridian, Branham, Snell, Cottle, Santa Teresa, Poughkeepsie, and Camino Verde. Major rail stations shown include Winchester Station, Downtown Campbell Station, Ohlone/Chynoweth Station, Blossom Hill Station, Cottle Station, and Santa Teresa Station. Timepoint letters from A through L mark principal stops along the route. A legend indicates that a solid blue line represents Route 27, a dashed blue line indicates Route 27 service on weekends only, a white circle with a blue letter indicates a timepoint, a black P symbol indicates a Park &amp; Ride, a thin dotted line with a train icon indicates light rail or Caltrain and station, and a dashed line marked 22 indicates a connecting bus route 22. The map is labeled as a schematic map not to scale, and an effective date of October 28, 2024 appears in the lower right corner.</span></span>
+
+<h3 data-el-num="1746" id="el-1746">Route 27 map legend</h3>
+<table data-el-num="1747" id="el-1747">
+  <tr data-el-num="1748" id="el-1748">
+    <th scope="col" data-el-num="1749" id="el-1749">Symbol or line</th>
+    <th scope="col" data-el-num="1750" id="el-1750">Meaning</th>
+  </tr>
+  <tr data-el-num="1751" id="el-1751">
+    <td data-el-num="1752" id="el-1752">Solid blue line</td>
+    <td data-el-num="1753" id="el-1753">Route 27</td>
+  </tr>
+  <tr data-el-num="1754" id="el-1754">
+    <td data-el-num="1755" id="el-1755">Dashed blue line</td>
+    <td data-el-num="1756" id="el-1756">Route 27 (weekends only)</td>
+  </tr>
+  <tr data-el-num="1757" id="el-1757">
+    <td data-el-num="1758" id="el-1758">Circle with letter (for example, A, B, C ... L)</td>
+    <td data-el-num="1759" id="el-1759">Timepoint</td>
+  </tr>
+  <tr data-el-num="1760" id="el-1760">
+    <td data-el-num="1761" id="el-1761">Black square with white letter P</td>
+    <td data-el-num="1762" id="el-1762">Park &amp; Ride</td>
+  </tr>
+  <tr data-el-num="1763" id="el-1763">
+    <td data-el-num="1764" id="el-1764">Dotted line with rail icon</td>
+    <td data-el-num="1765" id="el-1765">Light rail, Caltrain and station</td>
+  </tr>
+  <tr data-el-num="1766" id="el-1766">
+    <td data-el-num="1767" id="el-1767">Dashed line labeled 22</td>
+    <td data-el-num="1768" id="el-1768">Connecting route 22</td>
+  </tr>
+  <tr data-el-num="1769" id="el-1769">
+    <td data-el-num="1770" id="el-1770">North arrow labeled N</td>
+    <td data-el-num="1771" id="el-1771">Indicates map orientation (north)</td>
+  </tr>
+  <tr data-el-num="1772" id="el-1772">
+    <td data-el-num="1773" id="el-1773">Note</td>
+    <td data-el-num="1774" id="el-1774">Schematic map not to scale</td>
+  </tr>
+</table>
+
+<h3 data-el-num="1775" id="el-1775">Major Route 27 timepoints and locations (A–L)</h3>
+<ul data-el-num="1776" id="el-1776">
+  <li data-el-num="1777" id="el-1777"><strong>A – Winchester Station</strong> (Green Line; near Downtown Campbell Station and San Tomas Expressway).</li>
+  <li data-el-num="1778" id="el-1778"><strong>B – El Camino Hospital / Knowles</strong> area in Campbell.</li>
+  <li data-el-num="1779" id="el-1779"><strong>C – Saratoga–Los Gatos</strong> area near Los Gatos High School.</li>
+  <li data-el-num="1780" id="el-1780"><strong>D – Town Plaza</strong> in downtown Los Gatos (near Main Street and University Avenue, Los Gatos Civic Center, and Los Gatos High School).</li>
+  <li data-el-num="1781" id="el-1781"><strong>E – Los Gatos</strong> along Los Gatos Boulevard between Lark and Blossom Hill.</li>
+  <li data-el-num="1782" id="el-1782"><strong>F – Samaritan</strong> (near Good Samaritan Hospital).</li>
+  <li data-el-num="1783" id="el-1783"><strong>G – Los Gatos–Almaden</strong> (near Union Avenue and Blossom Hill Road, close to Leigh High School).</li>
+  <li data-el-num="1784" id="el-1784"><strong>H – Princeton Plaza</strong> / Pioneer High School area (Blossom Hill Road).</li>
+  <li data-el-num="1785" id="el-1785"><strong>J – Westfield Oakridge / Almaden Plaza</strong> area (near the intersection of Blossom Hill Road and Almaden Expressway, adjacent to the Blue Line).</li>
+  <li data-el-num="1786" id="el-1786"><strong>K – Blossom Hill</strong> / Poughkeepsie area (near Blossom Hill Road and Cottle Road, close to Blossom Hill Station and Cottle Station).</li>
+  <li data-el-num="1787" id="el-1787"><strong>L – Santa Teresa Station</strong> (Blue Line; near Kaiser San Jose and Santa Teresa Boulevard).</li>
+</ul>
+
+<p data-el-num="1788" id="el-1788"><strong>Service area and nearby cities:</strong> Campbell, Monte Sereno, Los Gatos, and San Jose.</p>
+
+<p data-el-num="1789" id="el-1789"><strong>Freeways shown:</strong> 17, 85, 87, and 101.</p>
+
+<p data-el-num="1790" id="el-1790"><strong>Effective date:</strong> October 28, 2024.</p>
+
+<footer>
+  <p data-el-num="1791" id="el-1791">Route 27 - 27 - Winchester Stn - Santa Teresa Stn - Page 11</p>
+</footer>
+</div><div class="transcript-page content" data-page-number="12"><h2 data-el-num="1792" id="el-1792">Turn by Turn Directions</h2>
+
+<p data-el-num="1793" id="el-1793">Directions for Route 27</p>
+
+<section aria-label="Service route eastbound weekday only" data-el-num="1794" id="el-1794">
+  <h3 data-el-num="1795" id="el-1795">Service Route — Eastbound (Weekday Only)</h3>
+  <p data-el-num="1796" id="el-1796"><strong>Winchester Station - Santa Teresa Station (Weekday Only)</strong></p>
+  <ol data-el-num="1797" id="el-1797">
+    <li data-el-num="1798" id="el-1798">From stop at Winchester Transit Center</li>
+    <li data-el-num="1799" id="el-1799">Continue around island to exit driveway</li>
+    <li data-el-num="1800" id="el-1800">Left on Winchester</li>
+    <li data-el-num="1801" id="el-1801">Right on Hacienda</li>
+    <li data-el-num="1802" id="el-1802">Left on Burrows</li>
+    <li data-el-num="1803" id="el-1803">Left on Pollard</li>
+    <li data-el-num="1804" id="el-1804">Onto Knowles</li>
+    <li data-el-num="1805" id="el-1805">Right on Winchester</li>
+    <li data-el-num="1806" id="el-1806">Onto Santa Cruz</li>
+    <li data-el-num="1807" id="el-1807">Left on Main</li>
+    <li data-el-num="1808" id="el-1808">Onto Los Gatos Blvd</li>
+    <li data-el-num="1809" id="el-1809">Right on Samaritan</li>
+    <li data-el-num="1810" id="el-1810">Right on Union</li>
+    <li data-el-num="1811" id="el-1811">Left on Los Gatos-Almaden</li>
+    <li data-el-num="1812" id="el-1812">Right on Leigh</li>
+    <li data-el-num="1813" id="el-1813">Left on Blossom Hill</li>
+    <li data-el-num="1814" id="el-1814">Left Blossom Hill Station entrance driveway</li>
+    <li data-el-num="1815" id="el-1815">Bear to right into bus only lane</li>
+    <li data-el-num="1816" id="el-1816">Continue around loop</li>
+    <li data-el-num="1817" id="el-1817">Right exit driveway</li>
+    <li data-el-num="1818" id="el-1818">Left on Blossom Hill</li>
+    <li data-el-num="1819" id="el-1819">Right on Poughkeepsie</li>
+  </ol>
+</section>
+
+<section aria-label="Service route westbound weekday only" data-el-num="1820" id="el-1820">
+  <h3 data-el-num="1821" id="el-1821">Service Route — Westbound (Weekday Only)</h3>
+  <p data-el-num="1822" id="el-1822"><strong>Santa Teresa Station - Winchester Station (Weekday Only)</strong></p>
+  <ol data-el-num="1823" id="el-1823">
+    <li data-el-num="1824" id="el-1824">From stop at Santa Teresa Station</li>
+    <li data-el-num="1825" id="el-1825">Continue around loop</li>
+    <li data-el-num="1826" id="el-1826">Onto exit driveway</li>
+    <li data-el-num="1827" id="el-1827">Right on Santa Teresa</li>
+    <li data-el-num="1828" id="el-1828">Right on Cottle</li>
+    <li data-el-num="1829" id="el-1829">Left on Poughkeepsie</li>
+    <li data-el-num="1830" id="el-1830">Left on Blossom Hill</li>
+    <li data-el-num="1831" id="el-1831">Right Blossom Hill Station entrance driveway</li>
+    <li data-el-num="1832" id="el-1832">Bear to right into bus only lane</li>
+    <li data-el-num="1833" id="el-1833">Continue around loop</li>
+    <li data-el-num="1834" id="el-1834">Right exit driveway</li>
+    <li data-el-num="1835" id="el-1835">Right on Blossom Hill</li>
+    <li data-el-num="1836" id="el-1836">Right on Leigh</li>
+    <li data-el-num="1837" id="el-1837">Left on Los Gatos-Almaden Rd</li>
+    <li data-el-num="1838" id="el-1838">Right on Union</li>
+    <li data-el-num="1839" id="el-1839">Left on Samaritan</li>
+    <li data-el-num="1840" id="el-1840">Left on Los Gatos</li>
+    <li data-el-num="1841" id="el-1841">Onto Main</li>
+    <li data-el-num="1842" id="el-1842">Left on Montebello</li>
+    <li data-el-num="1843" id="el-1843">Onto Broadway</li>
+    <li data-el-num="1844" id="el-1844">Right on Santa Cruz</li>
+    <li data-el-num="1845" id="el-1845">Right on Main</li>
+    <li data-el-num="1846" id="el-1846">Left on University</li>
+    <li data-el-num="1847" id="el-1847">Left on Los Gatos-Saratoga</li>
+  </ol>
+</section>
+
+<footer>
+  <p data-el-num="1848" id="el-1848">Route 27 - 27 - Winchester Stn - Santa Teresa Stn - Page 12</p>
+</footer></div><div class="transcript-page content" data-page-number="13"><p data-el-num="1849" id="el-1849"><strong>Additional content from previous item (Service Route — Eastbound, Weekday Only):</strong></p>
+<ol start="22" data-el-num="1850" id="el-1850">
+  <li data-el-num="1851" id="el-1851">Right on Cottle</li>
+  <li data-el-num="1852" id="el-1852">Left on Santa Teresa</li>
+  <li data-el-num="1853" id="el-1853">Left Santa Teresa Station entrance driveway to stop</li>
+</ol>
+
+<p data-el-num="1854" id="el-1854"><strong>Additional content from previous item (Service Route — Westbound, Weekday Only):</strong></p>
+<ol start="25" data-el-num="1855" id="el-1855">
+  <li data-el-num="1856" id="el-1856">Right on Santa Cruz</li>
+  <li data-el-num="1857" id="el-1857">onto Winchester</li>
+  <li data-el-num="1858" id="el-1858">Left on Knowles</li>
+  <li data-el-num="1859" id="el-1859">onto Pollard</li>
+  <li data-el-num="1860" id="el-1860">Right on Burrows</li>
+  <li data-el-num="1861" id="el-1861">Right on Hacienda</li>
+  <li data-el-num="1862" id="el-1862">Left on Winchester</li>
+  <li data-el-num="1863" id="el-1863">Right Winchester Transit Center entrance driveway to stop</li>
+</ol>
+
+<section aria-label="Service route eastbound Saturday and Sunday only" data-el-num="1864" id="el-1864">
+  <h3 data-el-num="1865" id="el-1865">Service Route — Eastbound (Saturday &amp; Sunday Only)</h3>
+  <p data-el-num="1866" id="el-1866"><strong>Winchester Station - Santa Teresa Station (Saturday &amp; Sunday Only)</strong></p>
+  <ol data-el-num="1867" id="el-1867">
+    <li data-el-num="1868" id="el-1868">From stop at Winchester Transit Center</li>
+    <li data-el-num="1869" id="el-1869">continue around island to exit driveway</li>
+    <li data-el-num="1870" id="el-1870">Left on Winchester</li>
+    <li data-el-num="1871" id="el-1871">Right on Hacienda</li>
+    <li data-el-num="1872" id="el-1872">Left on Burrows</li>
+    <li data-el-num="1873" id="el-1873">Left on Pollard</li>
+    <li data-el-num="1874" id="el-1874">onto Knowles</li>
+    <li data-el-num="1875" id="el-1875">Right on Winchester</li>
+    <li data-el-num="1876" id="el-1876">onto Santa Cruz</li>
+    <li data-el-num="1877" id="el-1877">Left on Los Gatos-Saratoga</li>
+    <li data-el-num="1878" id="el-1878">Left on Los Gatos</li>
+    <li data-el-num="1879" id="el-1879">Right on Samaritan</li>
+    <li data-el-num="1880" id="el-1880">Right on Union</li>
+    <li data-el-num="1881" id="el-1881">Left on Los Gatos-Almaden</li>
+    <li data-el-num="1882" id="el-1882">Right on Leigh</li>
+    <li data-el-num="1883" id="el-1883">Left on Blossom Hill</li>
+    <li data-el-num="1884" id="el-1884">Left Blossom Hill Station entrance driveway</li>
+    <li data-el-num="1885" id="el-1885">bear to right into BUS ONLY lane</li>
+    <li data-el-num="1886" id="el-1886">continue around loop</li>
+    <li data-el-num="1887" id="el-1887">Right exit driveway</li>
+    <li data-el-num="1888" id="el-1888">Left on Blossom Hill</li>
+    <li data-el-num="1889" id="el-1889">Right on Poughkeepsie</li>
+    <li data-el-num="1890" id="el-1890">Right on Cottle</li>
+    <li data-el-num="1891" id="el-1891">Left on Santa Teresa</li>
+    <li data-el-num="1892" id="el-1892">Left Santa Teresa Station entrance driveway to stop</li>
+  </ol>
+</section>
+
+<section aria-label="Service route westbound Saturday and Sunday only" data-el-num="1893" id="el-1893">
+  <h3 data-el-num="1894" id="el-1894">Service Route — Westbound (Saturday &amp; Sunday Only)</h3>
+  <p data-el-num="1895" id="el-1895"><strong>Santa Teresa Station - Winchester Station (Saturday &amp; Sunday Only)</strong></p>
+  <ol data-el-num="1896" id="el-1896">
+    <li data-el-num="1897" id="el-1897">From stop at Santa Teresa Station</li>
+    <li data-el-num="1898" id="el-1898">continue around loop</li>
+    <li data-el-num="1899" id="el-1899">onto exit driveway</li>
+    <li data-el-num="1900" id="el-1900">Right on Santa Teresa</li>
+    <li data-el-num="1901" id="el-1901">Right on Cottle</li>
+    <li data-el-num="1902" id="el-1902">Left on Poughkeepsie</li>
+    <li data-el-num="1903" id="el-1903">Left on Blossom Hill</li>
+    <li data-el-num="1904" id="el-1904">Right Blossom Hill Station entrance driveway</li>
+    <li data-el-num="1905" id="el-1905">bear to right into BUS ONLY lane</li>
+    <li data-el-num="1906" id="el-1906">continue around loop</li>
+    <li data-el-num="1907" id="el-1907">Right exit driveway</li>
+    <li data-el-num="1908" id="el-1908">Right on Blossom Hill</li>
+    <li data-el-num="1909" id="el-1909">Right on Leigh</li>
+    <li data-el-num="1910" id="el-1910">Left on Los Gatos-Almaden Rd</li>
+    <li data-el-num="1911" id="el-1911">Right on Union</li>
+  </ol>
+</section>
+
+<footer>
+  <p data-el-num="1912" id="el-1912">Route 27 - 27 - Winchester Stn - Santa Teresa Stn - Page 13</p>
+</footer></div><div class="transcript-page content" data-page-number="14"><p data-el-num="1913" id="el-1913"><strong>Additional content from previous list: Service Route — Westbound (Saturday and Sunday only)</strong></p>
+
+<ol start="12" data-el-num="1914" id="el-1914">
+  <li data-el-num="1915" id="el-1915">Left on Santa Teresa</li>
+  <li data-el-num="1916" id="el-1916">Left Santa Teresa Station entrance driveway to stop</li>
+  <li data-el-num="1917" id="el-1917">Left on Samaritan</li>
+  <li data-el-num="1918" id="el-1918">Left on Los Gatos</li>
+  <li data-el-num="1919" id="el-1919">Right on Los Gatos-Saratoga</li>
+  <li data-el-num="1920" id="el-1920">Right on Santa Cruz</li>
+  <li data-el-num="1921" id="el-1921">Onto Winchester</li>
+  <li data-el-num="1922" id="el-1922">Left on Knowles</li>
+  <li data-el-num="1923" id="el-1923">Onto Pollard</li>
+  <li data-el-num="1924" id="el-1924">Right on Burrows</li>
+  <li data-el-num="1925" id="el-1925">Right on Hacienda</li>
+  <li data-el-num="1926" id="el-1926">Left on Winchester</li>
+  <li data-el-num="1927" id="el-1927">Right Winchester Transit Center entrance driveway to stop</li>
+</ol>
+
+<footer>
+  <p data-el-num="1928" id="el-1928">Route 27 - 27 - Winchester Stn - Santa Teresa Stn - Page 14</p>
+</footer></div>
+    </main>
+
+    <footer role="contentinfo">
+        <p><strong>License Information</strong></p>
+        <p>Licensed for personal use</p>
+        <p>Available at: <a href="https://docaccess.com/go">docaccess.com/go</a></p>
+        <p>Document ID: 309-F4A-A72</p>
+        <p>Reproduction and distribution prohibited</p>
+        <p style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #dee2e6;">
+            <small>This transcript was generated using AI technology and may contain errors. 
+            Live accessibility assistance is available at the link above. By using this app, you agree to the 
+            DocAccess <a href="https://docaccess.com/terms-of-use" target="_blank">Terms</a> and 
+            <a href="https://docaccess.com/privacy-policy" target="_blank">Privacy Policy</a>.</small>
+        </p>
+    </footer>
+</body>
+</html>
