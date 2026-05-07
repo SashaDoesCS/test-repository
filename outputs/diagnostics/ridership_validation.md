@@ -9,9 +9,9 @@
 | Predicted baseline (model, current stops) | **60,925 boardings/year** | Model output (existing stops) |
 | Calibration error | **+2.2%** | (predicted − observed) / observed |
 | Model credible? | YES — within ±25% threshold | OMB Circular A-4 §E.3 (±25%) |
-| Predicted optimised (raw model) | **49,196 boardings/year** | Route 27 optimizer model |
-| Predicted optimised (calibrated) | **48,118 boardings/year** | Raw × calibration factor 0.978 |
-| Delta (calibrated optimised − observed) | **-11,472 boardings/year** | Net gain from optimisation |
+| Predicted optimised (raw model) | **73,794 boardings/year** | Route 27 optimizer model |
+| Predicted optimised (calibrated) | **72,177 boardings/year** | Raw × calibration factor 0.978 |
+| Delta (calibrated optimised − observed) | **+12,587 boardings/year** | Net gain from optimisation |
 
 
 
@@ -81,13 +81,13 @@ The route optimizer (`src/route27_optimizer.py`) outputs:
 - **New stops**: `est_annual_boardings` from BCR model (USDOT BCA 2024 /
   TCRP Report 167 / NTD FY2023)
 
-**Raw model total:** 49,196 boardings/year
+**Raw model total:** 73,794 boardings/year
 
 **Calibrated total** (applying factor 0.9781):
-49,196 × 0.9781 = **48,118 boardings/year**
+73,794 × 0.9781 = **72,177 boardings/year**
 
-**Net gain (calibrated):** -11,472 boardings/year
-(-19.3% above observed baseline)
+**Net gain (calibrated):** +12,587 boardings/year
+(+21.1% above observed baseline)
 
 ---
 
@@ -110,8 +110,8 @@ The route optimizer (`src/route27_optimizer.py`) outputs:
 
 Per PLAN_PRE_MEETING.md §P4:
 
-- **Headline card:** "Current (observed): 59,590 / Optimised (calibrated): 48,118 / Δ: -11,472"
-- **Secondary line:** "Model raw: 49,196 (calibration factor 0.978)"
+- **Headline card:** "Current (observed): 59,590 / Optimised (calibrated): 72,177 / Δ: +12,587"
+- **Secondary line:** "Model raw: 73,794 (calibration factor 0.978)"
 - **Caveat banner:** NOT required — model within ±25% threshold
 
 ---
