@@ -312,6 +312,110 @@ def load_gtfs_stops(config: dict, data_dir: str = "data") -> pd.DataFrame:
     return result
 
 
+def load_route27_existing_stops(
+    stops_txt_path: "Path" = None,
+    rbs_full_csv: "Path" = None,
+) -> "pd.DataFrame":
+    """Return the full Route 27 existing-stop set enriched with observed boardings.
+
+    Reads stops.txt without any bbox filter, then inner-merges with the W0
+    RBS dataset (route27_full_stops.csv) so every Route 27 stop observed in
+    the Oct-2025 RBS appears in the result regardless of its longitude.
+
+    This avoids the STUDY_LON_MAX=-121.88 clip that previously excluded
+    Winchester Station (lon=-121.79) and the San Jose end of the corridor.
+
+    Args:
+        stops_txt_path: Path to GTFS stops.txt. Defaults to
+            data/geospatial/gtfs/stops.txt relative to this file.
+        rbs_full_csv: Path to route27_full_stops.csv. Defaults to
+            data/processed/route27_full_stops.csv relative to this file.
+
+    Returns:
+        DataFrame with columns:
+            stop_id, stop_name, stop_lat, stop_lon, route_ids,
+            weekday_boardings, saturday_boardings, sunday_boardings,
+            annual_boardings, in_lg_geofence
+        Falls back to bbox-filtered load_gtfs_stops result (today's behaviour)
+        if the RBS CSV is missing.
+    """
+    import pandas as _pd
+
+    _root = Path(__file__).resolve().parent.parent
+    if stops_txt_path is None:
+        stops_txt_path = _root / "data" / "geospatial" / "gtfs" / "stops.txt"
+    if rbs_full_csv is None:
+        rbs_full_csv = _root / "data" / "processed" / "route27_full_stops.csv"
+
+    if not Path(rbs_full_csv).exists():
+        logger.warning(
+            "W7-1: %s not found — falling back to bbox-filtered stops (run src.vta_rbs first).",
+            rbs_full_csv,
+        )
+        fallback = load_gtfs_stops()
+        r27 = fallback[
+            fallback["route_ids"].astype(str).str.contains(r"\b27\b", regex=True, na=False)
+        ].copy()
+        # Add missing RBS columns so callers always get the same schema.
+        for col in ("weekday_boardings", "saturday_boardings", "sunday_boardings",
+                    "annual_boardings"):
+            if col not in r27.columns:
+                r27[col] = 0.0
+        r27["in_lg_geofence"] = False
+        return r27[["stop_id", "stop_name", "stop_lat", "stop_lon", "route_ids",
+                    "weekday_boardings", "saturday_boardings", "sunday_boardings",
+                    "annual_boardings", "in_lg_geofence"]].reset_index(drop=True)
+
+    # Read stops.txt with NO bbox filter.
+    stops_path = Path(stops_txt_path)
+    if not stops_path.exists():
+        logger.warning("W7-1: %s not found — falling back to load_gtfs_stops().", stops_path)
+        fallback = load_gtfs_stops()
+        r27 = fallback[
+            fallback["route_ids"].astype(str).str.contains(r"\b27\b", regex=True, na=False)
+        ].copy()
+        for col in ("weekday_boardings", "saturday_boardings", "sunday_boardings",
+                    "annual_boardings"):
+            if col not in r27.columns:
+                r27[col] = 0.0
+        r27["in_lg_geofence"] = False
+        return r27[["stop_id", "stop_name", "stop_lat", "stop_lon", "route_ids",
+                    "weekday_boardings", "saturday_boardings", "sunday_boardings",
+                    "annual_boardings", "in_lg_geofence"]].reset_index(drop=True)
+
+    raw_stops = _pd.read_csv(stops_path, dtype={"stop_id": str})
+    if "stop_lng" in raw_stops.columns and "stop_lon" not in raw_stops.columns:
+        raw_stops = raw_stops.rename(columns={"stop_lng": "stop_lon"})
+
+    rbs = _pd.read_csv(Path(rbs_full_csv), dtype={"stop_id": str})
+
+    # Inner merge: only stops that appear in the RBS dataset.
+    rbs_cols = ["stop_id", "weekday_boardings", "saturday_boardings",
+                "sunday_boardings", "annual_boardings"]
+    # in_geofence may be named in_geofence; rename for clarity.
+    if "in_geofence" in rbs.columns:
+        rbs = rbs.rename(columns={"in_geofence": "in_lg_geofence"})
+    if "in_lg_geofence" in rbs.columns:
+        rbs_cols.append("in_lg_geofence")
+
+    merged = raw_stops.merge(rbs[rbs_cols], on="stop_id", how="inner")
+
+    if "in_lg_geofence" not in merged.columns:
+        merged["in_lg_geofence"] = False
+
+    merged["route_ids"] = "27"
+
+    result = merged[["stop_id", "stop_name", "stop_lat", "stop_lon", "route_ids",
+                      "weekday_boardings", "saturday_boardings", "sunday_boardings",
+                      "annual_boardings", "in_lg_geofence"]].copy()
+
+    logger.info(
+        "W7-1: load_route27_existing_stops returning %d stops (full RBS set, no bbox clip).",
+        len(result),
+    )
+    return result.reset_index(drop=True)
+
+
 def count_system_stops_per_route(data_dir: str = "data") -> dict:
     """Count total stops per route from the full GTFS (no area filter).
 

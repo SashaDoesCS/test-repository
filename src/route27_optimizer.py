@@ -163,6 +163,11 @@ ON_CORRIDOR_TOLERANCE_FT = 100.0
 BCR_HIGH    = 2.0    # "HIGH" priority threshold (BCR >= 2.0)
 BCR_MEDIUM  = 1.0    # "MEDIUM" priority threshold (BCR >= 1.0)
 
+# W7-2: Stops with observed daily boardings >= this threshold are hard-preserved.
+# Stops with observed daily boardings >= 5 represent active ridership and cannot
+# be removed by spacing rules without losing existing riders.
+MIN_PRESERVE_DAILY_BOARDINGS = 5.0
+
 # Gap thresholds that trigger HIGH vs MEDIUM priority even before BCR
 GAP_HIGH_PRIORITY_FT    = 5_280   # 1.0 mile — significant coverage failure
 GAP_MEDIUM_PRIORITY_FT  = 3_960   # 0.75 mile
@@ -273,14 +278,16 @@ def select_route27_stops(
         is_mandatory = bool(row.get("is_mandatory", False))
         is_forced = bool(row.get("is_forced", False))
         is_existing = bool(row.get("is_existing", False))
+        is_preserved = bool(row.get("is_preserved", False))
 
         min_ft, max_ft = _spacing_limits(did)
 
         gap_since_last = s_ft - last_s_ft
 
         # Always include mandatory stops (schools, LRT transfers, existing stops
-        # from GTFS that VTA has already committed infrastructure to)
-        if is_mandatory or is_forced or is_existing:
+        # from GTFS that VTA has already committed infrastructure to).
+        # W7-2: also bypass spacing for preserved stops (observed ridership >= threshold).
+        if is_mandatory or is_forced or is_existing or is_preserved:
             _add_stop(
                 selected_indices, sel_s_coords, sel_lats, sel_lons, sel_dids,
                 idx, s_ft, row["stop_lat"], row["stop_lon"], did,
@@ -321,7 +328,9 @@ def select_route27_stops(
     is_existing_s = selected_df.get("is_existing", pd.Series([False] * len(selected_df), index=selected_df.index)).fillna(False)
     is_mandatory_s = selected_df.get("is_mandatory", pd.Series([False] * len(selected_df), index=selected_df.index)).fillna(False)
     is_forced_s = selected_df.get("is_forced", pd.Series([False] * len(selected_df), index=selected_df.index)).fillna(False)
-    new_mask = (~is_existing_s) & (~is_mandatory_s) & (~is_forced_s)
+    # W7-2: preserved stops (observed ridership) must not be counted as new or capped.
+    is_preserved_s = selected_df.get("is_preserved", pd.Series([False] * len(selected_df), index=selected_df.index)).fillna(False)
+    new_mask = (~is_existing_s) & (~is_mandatory_s) & (~is_forced_s) & (~is_preserved_s)
     n_new = int(new_mask.sum())
     if n_new > max_new_stops:
         new_indices = selected_df[new_mask].index.tolist()
@@ -403,6 +412,12 @@ def _merge_existing_stops(
         df["is_existing"] = False
     if "is_mandatory" not in df.columns:
         df["is_mandatory"] = False
+    if "is_preserved" not in df.columns:
+        df["is_preserved"] = False
+    if "weekday_boardings" not in df.columns:
+        df["weekday_boardings"] = 0.0
+    if "annual_boardings" not in df.columns:
+        df["annual_boardings"] = 0.0
 
     have_path = (
         path_coords is not None
@@ -418,6 +433,11 @@ def _merge_existing_stops(
         ex_lat = float(ex.get("stop_lat", ex.get("lat", 0.0)))
         ex_lon = float(ex.get("stop_lon", ex.get("lon", 0.0)))
 
+        # Carry observed ridership from the existing-stop record into the candidate.
+        ex_wkdy = float(ex.get("weekday_boardings", 0.0) or 0.0)
+        ex_annual = float(ex.get("annual_boardings", 0.0) or 0.0)
+        ex_preserved = ex_wkdy >= MIN_PRESERVE_DAILY_BOARDINGS
+
         # Check if a candidate is already close to this existing stop
         matched = False
         for i, cand in df.iterrows():
@@ -425,6 +445,14 @@ def _merge_existing_stops(
             if dist_ft < 300:
                 df.at[i, "is_existing"] = True
                 df.at[i, "is_mandatory"] = True
+                # W7-2: propagate observed ridership and preserve flag.
+                if ex_wkdy > float(df.at[i, "weekday_boardings"] or 0.0):
+                    df.at[i, "weekday_boardings"] = ex_wkdy
+                if ex_annual > float(df.at[i, "annual_boardings"] or 0.0):
+                    df.at[i, "annual_boardings"] = ex_annual
+                if ex_preserved:
+                    df.at[i, "is_preserved"] = True
+                    df.at[i, "is_mandatory"] = True
                 matched = True
                 break
 
@@ -460,7 +488,9 @@ def _merge_existing_stops(
                 "s_coord_ft":            round(s_ft, 1),
                 "district_id":           ex.get("district_id", None),
                 "is_existing":           True,
-                "is_mandatory":          True,
+                # W7-2: preserved stops are always mandatory regardless of spacing.
+                "is_mandatory":          True if ex_preserved else True,
+                "is_preserved":          ex_preserved,
                 "is_forced":             False,
                 "street_names":          ex.get("stop_name", ""),
                 "raw_walkshed_pop":      0,
@@ -470,6 +500,9 @@ def _merge_existing_stops(
                 "equity_priority":       False,
                 "activity_type":         "existing_vta_stop",
                 "source":                "VTA GTFS stops.txt",
+                # W7-2: carry observed ridership for BCR + comparison downstream.
+                "weekday_boardings":     ex_wkdy,
+                "annual_boardings":      ex_annual,
             }
             added.append(new_row)
 
@@ -882,6 +915,7 @@ def build_stop_suggestions(
             "priority":             "—",
             "is_existing":          is_existing,
             "is_mandatory":         bool(row.get("is_mandatory", False)),
+            "is_preserved":         bool(row.get("is_preserved", False)),
             "is_school_stop":       is_school,
             "wheelchair_boarding":  1,   # ADA: all stops — 49 CFR Part 37
             "walk_buffer_ft":       row.get("walk_buffer_ft", _walk_buffer_ft(row.get("district_id"))),
@@ -934,6 +968,7 @@ def build_stop_suggestions(
             "priority":             priority,
             "is_existing":          False,
             "is_mandatory":         False,
+            "is_preserved":         False,
             "is_school_stop":       "school" in str(gap.get("best_street_names", "")).lower(),
             "wheelchair_boarding":  1,
             "walk_buffer_ft":       _walk_buffer_ft(gap.get("best_district_id")),
@@ -978,26 +1013,40 @@ def build_stop_suggestions(
     if len(result_df) > 0:
         result_df = result_df.sort_values("s_coord_ft").reset_index(drop=True)
 
-        # BCR >= 1.0 enforcement (FTA CIG 49 U.S.C. §5309).
-        # Drop non-mandatory NEW_IN_SELECTION stops whose computed BCR falls below
-        # the minimum threshold.  Mandatory stops (schools, LRT transfers with
-        # is_mandatory=True) are exempt — their inclusion is required regardless
-        # of BCR by FTA Title VI and equity obligations.
+        # W7-3: BCR >= 1.0 enforcement (FTA CIG 49 U.S.C. §5309).
+        # Drop ANY row in {NEW_IN_SELECTION, NEW_SUGGEST} where:
+        #   - not mandatory, not a school stop, not preserved (observed ridership)
+        #   - BCR is known and < 1.0
+        # Also drop zero-value OSM-noise rows with no riders and no policy reason.
+        # Preserved-ridership stops are exempt: removing them would cost existing riders.
+        _is_new_status = result_df["status"].isin({"NEW_IN_SELECTION", "NEW_SUGGEST"})
+        _not_exempt = (
+            ~result_df["is_mandatory"].fillna(False)
+            & ~result_df["is_school_stop"].fillna(False)
+            & ~result_df.get("is_preserved", pd.Series(False, index=result_df.index)).fillna(False)
+        )
         sub_bcr_mask = (
-            (result_df["status"] == "NEW_IN_SELECTION")
-            & (~result_df["is_mandatory"].fillna(False))
-            & (~result_df["is_school_stop"].fillna(False))
+            _is_new_status
+            & _not_exempt
             & (result_df["bcr_20yr"].notna())
             & (result_df["bcr_20yr"] < BCR_MEDIUM)
         )
-        n_dropped = int(sub_bcr_mask.sum())
+        # Also drop OSM-noise rows: no estimated riders, no observed riders, not exempt.
+        _zero_riders = (
+            (result_df.get("est_new_riders_daily", pd.Series(0, index=result_df.index)).fillna(0) == 0)
+            & (result_df.get("weekday_boardings", pd.Series(0, index=result_df.index)).fillna(0) == 0)
+        )
+        noise_mask = _is_new_status & _not_exempt & _zero_riders & result_df["bcr_20yr"].isna()
+        drop_mask = sub_bcr_mask | noise_mask
+        n_dropped = int(drop_mask.sum())
         if n_dropped:
             logger.info(
-                "BCR filter: dropping %d NEW_IN_SELECTION stop(s) with BCR < %.1f "
-                "(FTA CIG 49 U.S.C. §5309 minimum threshold).",
-                n_dropped, BCR_MEDIUM,
+                "BCR filter: dropping %d stop(s) with BCR < 1.0 "
+                "(FTA CIG 49 U.S.C. §5309). Includes NEW_SUGGEST + non-mandatory "
+                "forced stops; preserved-ridership stops are exempt.",
+                n_dropped,
             )
-            result_df = result_df[~sub_bcr_mask].reset_index(drop=True)
+            result_df = result_df[~drop_mask].reset_index(drop=True)
 
     n_new = (result_df["status"] == "NEW_SUGGEST").sum() if len(result_df) > 0 else 0
     n_high = ((result_df["status"] == "NEW_SUGGEST") & (result_df["priority"] == "HIGH")).sum() \

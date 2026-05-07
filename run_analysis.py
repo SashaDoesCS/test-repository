@@ -1078,10 +1078,22 @@ def main(cba_only: bool = False):
             unmet_need_df=unmet_df,
         )
 
-        # Filter existing stops to Route 27 only for the optimizer
-        r27_existing = stops[
-            stops["route_ids"].astype(str).str.contains(r"\b27\b", regex=True, na=False)
-        ].copy() if stops is not None and len(stops) > 0 else None
+        # W7-1: Load Route 27 existing stops from the full RBS dataset (no bbox clip).
+        # Previously this filtered the bbox-clipped `stops` DataFrame, which excluded
+        # Winchester Station (lon=-121.79) and the San Jose end of the corridor.
+        from src.data_ingestion import load_route27_existing_stops as _load_r27_stops
+        r27_existing = _load_r27_stops()
+        _bbox_count = 0
+        if stops is not None and len(stops) > 0:
+            _bbox_count = int(stops["route_ids"].astype(str).str.contains(
+                r"\b27\b", regex=True, na=False).sum())
+        logger.info(
+            "W7-1: r27_existing=%d stops (RBS-merged, no bbox). "
+            "Previous bbox-filtered count was ~%d. Delta=%+d.",
+            len(r27_existing), _bbox_count, len(r27_existing) - _bbox_count,
+        )
+        if len(r27_existing) == 0:
+            r27_existing = None
 
         # Run linear optimization and gap detection
         r27_result = run_route27_optimization(
@@ -1110,22 +1122,39 @@ def main(cba_only: bool = False):
         # and what the LG-only vs full-route ridership change is.
         try:
             from src.route27_comparison import (
-                build_stop_comparison, compute_summary_tiles,
+                build_stop_comparison, compute_summary_tiles, assess_lg_improvement,
             )
+            import pandas as _pd
             cmp_df = build_stop_comparison()
             sum_df = compute_summary_tiles(cmp_df)
+            assessment = assess_lg_improvement(sum_df)
             cmp_df.to_csv(
                 "outputs/tables/route27_stop_comparison.csv", index=False
             )
             sum_df.to_csv(
                 "outputs/tables/route27_comparison_summary.csv", index=False
             )
+            # W7-4: write LG assessment and surface regression as an ERROR.
+            _pd.DataFrame([assessment]).to_csv(
+                "outputs/tables/route27_lg_assessment.csv", index=False
+            )
+            if assessment["status"] == "REGRESSION":
+                logger.error(
+                    "LG OPTIMIZATION REGRESSION: LG annual boardings delta = %+,d/yr (%+.1f%%). "
+                    "The proposed stop changes degrade LG service. Inspect "
+                    "outputs/tables/route27_stop_comparison.csv (status=REMOVED) for stops being dropped.",
+                    assessment["lg_delta_annual"],
+                    assessment["lg_delta_pct"],
+                )
             logger.info(
-                "  Stop comparison written: %d stops total (%d KEPT, %d NEW, %d REMOVED)",
+                "  Stop comparison written: %d stops total (%d KEPT, %d NEW, %d REMOVED). "
+                "LG assessment: %s (%+,d/yr).",
                 len(cmp_df),
                 int((cmp_df["status"] == "KEPT").sum()),
                 int((cmp_df["status"] == "NEW").sum()),
                 int((cmp_df["status"] == "REMOVED").sum()),
+                assessment["status"],
+                assessment["lg_delta_annual"],
             )
         except Exception as exc:
             logger.warning("Stop comparison step skipped: %s", exc)

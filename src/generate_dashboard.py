@@ -326,6 +326,17 @@ def load_pipeline_data() -> dict:
         except Exception:
             pass
 
+    # W7-4: LG regression assessment (one-row CSV).
+    result["lg_assessment"] = {}
+    assess_path = tables / "route27_lg_assessment.csv"
+    if assess_path.exists():
+        try:
+            adf = pd.read_csv(assess_path)
+            if not adf.empty:
+                result["lg_assessment"] = adf.iloc[0].to_dict()
+        except Exception:
+            pass
+
     return result
 
 
@@ -1611,6 +1622,29 @@ def generate_route_optimization_html(data: dict) -> str:
     else:
         rv_cap_banner = ""
 
+    # W7-4: LG regression banner (rendered ABOVE rv_cap_banner so it's the
+    # first thing the reviewer sees when the optimization degrades LG service).
+    lg_assess = data.get("lg_assessment", {})
+    lg_assess_status = str(lg_assess.get("status", "")).upper()
+    if lg_assess_status == "REGRESSION":
+        _lg_delta = int(lg_assess.get("lg_delta_annual", 0))
+        _lg_pct = float(lg_assess.get("lg_delta_pct", 0.0))
+        rv_lg_regression_banner = (
+            f'<div class="callout" style="margin-bottom:10px;font-size:13px;'
+            f'background:rgba(255,107,107,.15);border:2px solid var(--red);'
+            f'color:var(--red)">'
+            f'<strong style="color:var(--red);font-size:15px">'
+            f'OPTIMIZATION REGRESSION — LG SERVICE DEGRADED</strong><br>'
+            f'<span style="font-size:12px">'
+            f'LG annual boardings delta = {_lg_delta:+,}/yr ({_lg_pct:+.1f}%). '
+            f'The proposed stop changes remove more LG ridership than they add. '
+            f'Inspect the REMOVED stops in route27_stop_comparison.csv before publishing. '
+            f'<strong>Do not present these projections as an improvement.</strong>'
+            f'</span></div>'
+        )
+    else:
+        rv_lg_regression_banner = ""
+
     route_design_mode = (
         data.get("config", {})
         .get("optimization", {})
@@ -1749,6 +1783,7 @@ td.n{{text-align:right;font-variant-numeric:tabular-nums}}
 <div class="ssub">Linear spacing per FTA 9040.1G §5.2.2. BCR: USDOT BCA 2024 / TCRP Report 167 / NTD FY2023 / OMB A-94 3.5%.
   <strong style="color:var(--ac)">Teal = existing | Orange = suggested NEW (BCR ≥ 1) | Red = HIGH priority (BCR ≥ 2)</strong></div>
 {'<div class="callout warn" style="margin-bottom:12px"><strong>Route 27 not yet run.</strong> Execute <code>python run_analysis.py</code>.</div>' if not r27_run else ''}
+{rv_lg_regression_banner}
 {rv_cap_banner}
 {rv_caution_banner}
 <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:6px">

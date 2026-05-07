@@ -47,6 +47,34 @@ REABSORPTION_RATE = 0.60     # ~60% of riders at a removed stop walk to a nearby
 _FEET_PER_DEGREE_LAT = 364_000   # at 37 N
 _FEET_PER_DEGREE_LON = 287_000   # cos(37) * 364,000
 
+# W7-5: frequency elasticity of ridership.
+# Source: TCRP Report 95 Ch.9, standard elasticity for service frequency on
+# local bus routes: 0.5 (doubling frequency increases ridership by 50%).
+FREQUENCY_ELASTICITY = 0.5
+
+
+def frequency_uplift_factor(
+    baseline_headway_min: float,
+    optimised_headway_min: float,
+) -> float:
+    """Return ridership multiplier from headway improvement.
+
+    Formula: 1 + elasticity * (delta_freq / baseline_freq)
+    where freq = 1/headway (trips per unit time).
+
+    Example: 30->15 min = freq doubles (delta_freq/baseline_freq = 1.0)
+    -> factor = 1 + 0.5 * 1.0 = 1.50 (+50%).
+
+    Source: TCRP Report 95 Ch.9 standard frequency elasticity = 0.5.
+    """
+    if baseline_headway_min <= 0 or optimised_headway_min <= 0:
+        return 1.0
+    # freq is inversely proportional to headway
+    baseline_freq = 1.0 / baseline_headway_min
+    optimised_freq = 1.0 / optimised_headway_min
+    delta_freq_pct = (optimised_freq - baseline_freq) / baseline_freq
+    return 1.0 + FREQUENCY_ELASTICITY * delta_freq_pct
+
 
 def _ft_distance(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
     """Equirectangular distance in feet -- adequate at <1 mile separations."""
@@ -231,12 +259,27 @@ def build_stop_comparison(
 def compute_summary_tiles(
     comparison_df: pd.DataFrame,
     reabsorption_rate: float = REABSORPTION_RATE,
+    baseline_headway_min: float = 30.0,
+    optimised_headway_min: float = 15.0,
 ) -> pd.DataFrame:
     """Produce two summary rows: scope=LG_only and scope=full_corridor.
 
     Each row reports the daily-boarding totals before and after, with the
     delta broken down into removed / new / reabsorbed components.
+
+    W7-5: the projected_annual figure now includes a frequency-elasticity uplift
+    on the kept+reabsorbed portion (NOT the new-stop component, which already
+    has its own ridership estimate from the BCR model). The pre-uplift figure is
+    preserved as projected_annual_pre_frequency for traceability.
+
+    Args:
+        comparison_df: From build_stop_comparison().
+        reabsorption_rate: Fraction of removed-stop riders walking to a kept stop.
+        baseline_headway_min: Current typical peak headway (min). Default 30.
+        optimised_headway_min: Proposed peak headway (min). Default 15 (W4 schedule).
     """
+    uplift = frequency_uplift_factor(baseline_headway_min, optimised_headway_min)
+    uplift_pct = round((uplift - 1.0) * 100.0, 2)
 
     def _summary(df: pd.DataFrame, scope: str) -> dict:
         kept = df[df["status"] == "KEPT"]
@@ -262,7 +305,12 @@ def compute_summary_tiles(
         new_annual = float(new["projected_annual_boardings"].sum())
         removed_annual = float(removed["current_annual_boardings"].sum())
         reabsorbed_annual = removed_annual * reabsorption_rate
-        projected_annual = kept_annual + reabsorbed_annual + new_annual
+
+        # W7-5: apply frequency uplift only to the retained ridership base
+        # (kept + reabsorbed). New-stop ridership uses its own BCR estimate.
+        pre_frequency_annual = kept_annual + reabsorbed_annual + new_annual
+        uplifted_kept_reabsorbed = (kept_annual + reabsorbed_annual) * uplift
+        projected_annual = uplifted_kept_reabsorbed + new_annual
 
         return {
             "scope":                  scope,
@@ -278,8 +326,12 @@ def compute_summary_tiles(
             "reabsorbed_daily_estimate": reabsorbed_daily,
             "reabsorption_rate_used": reabsorption_rate,
             "baseline_annual":        int(round(baseline_annual)),
+            "projected_annual_pre_frequency": int(round(pre_frequency_annual)),
             "projected_annual":       int(round(projected_annual)),
             "delta_annual":           int(round(projected_annual - baseline_annual)),
+            "baseline_headway_min":   baseline_headway_min,
+            "optimised_headway_min":  optimised_headway_min,
+            "frequency_uplift_pct":   uplift_pct,
         }
 
     rows = [
@@ -287,6 +339,54 @@ def compute_summary_tiles(
         _summary(comparison_df, "full_corridor"),
     ]
     return pd.DataFrame(rows)
+
+
+def assess_lg_improvement(summary_df: pd.DataFrame) -> dict:
+    """W7-4: Assess whether the optimisation improves LG-only annual ridership.
+
+    Returns:
+        dict with keys:
+            lg_delta_annual: int -- delta from LG_only row's delta_annual
+            lg_delta_pct:    float -- delta / baseline * 100 (0 if baseline 0)
+            status:          str -- "REGRESSION" if delta_annual <= 0, "IMPROVED" otherwise
+            banner_text:     str -- text for the dashboard regression banner
+    """
+    lg = next(
+        (r for r in summary_df.to_dict("records") if r.get("scope") == "LG_only"),
+        None,
+    )
+    if lg is None:
+        return {
+            "lg_delta_annual": 0,
+            "lg_delta_pct": 0.0,
+            "status": "REGRESSION",
+            "banner_text": "LG_only row missing from summary — cannot assess improvement.",
+        }
+
+    delta = int(lg.get("delta_annual", 0))
+    baseline = float(lg.get("baseline_annual", 0))
+    pct = (delta / baseline * 100.0) if baseline > 0 else 0.0
+
+    if delta <= 0:
+        status = "REGRESSION"
+        banner_text = (
+            f"OPTIMIZATION REGRESSION: LG annual boardings delta = {delta:+,}/yr "
+            f"({pct:+.1f}%). The proposed stop changes degrade LG service. "
+            f"Inspect route27_stop_comparison.csv (status=REMOVED) for stops being dropped."
+        )
+    else:
+        status = "IMPROVED"
+        banner_text = (
+            f"LG ridership improved: {delta:+,}/yr ({pct:+.1f}%) above baseline "
+            f"({int(baseline):,}/yr)."
+        )
+
+    return {
+        "lg_delta_annual": delta,
+        "lg_delta_pct": round(pct, 2),
+        "status": status,
+        "banner_text": banner_text,
+    }
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -297,8 +397,13 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--full-stops", default="data/processed/route27_full_stops.csv")
     p.add_argument("--out-comparison", default="outputs/tables/route27_stop_comparison.csv")
     p.add_argument("--out-summary", default="outputs/tables/route27_comparison_summary.csv")
+    p.add_argument("--out-assessment", default="outputs/tables/route27_lg_assessment.csv")
     p.add_argument("--tolerance-ft", type=float, default=MATCH_TOLERANCE_FT)
     p.add_argument("--reabsorption-rate", type=float, default=REABSORPTION_RATE)
+    p.add_argument("--baseline-headway-min", type=float, default=30.0,
+                   help="Current peak headway in minutes (default 30)")
+    p.add_argument("--optimised-headway-min", type=float, default=15.0,
+                   help="Proposed peak headway in minutes (default 15, per W4 schedule)")
     args = p.parse_args(argv)
 
     logging.basicConfig(
@@ -312,19 +417,40 @@ def main(argv: list[str] | None = None) -> int:
         match_tolerance_ft=args.tolerance_ft,
         reabsorption_rate=args.reabsorption_rate,
     )
-    summary_df = compute_summary_tiles(cmp_df, reabsorption_rate=args.reabsorption_rate)
+    summary_df = compute_summary_tiles(
+        cmp_df,
+        reabsorption_rate=args.reabsorption_rate,
+        baseline_headway_min=args.baseline_headway_min,
+        optimised_headway_min=args.optimised_headway_min,
+    )
+
+    # W7-4: regression gate
+    assessment = assess_lg_improvement(summary_df)
+    if assessment["status"] == "REGRESSION":
+        logger.error(
+            "LG OPTIMIZATION REGRESSION: LG annual boardings delta = %+,d/yr (%+.1f%%). "
+            "The proposed stop changes degrade LG service. Inspect "
+            "outputs/tables/route27_stop_comparison.csv (status=REMOVED) for stops being dropped.",
+            assessment["lg_delta_annual"],
+            assessment["lg_delta_pct"],
+        )
 
     Path(args.out_comparison).parent.mkdir(parents=True, exist_ok=True)
     cmp_df.to_csv(args.out_comparison, index=False)
     summary_df.to_csv(args.out_summary, index=False)
+    pd.DataFrame([assessment]).to_csv(args.out_assessment, index=False)
 
     print("=" * 78)
     print("Route 27 stop comparison")
     print("-" * 78)
     print(summary_df.to_string(index=False))
     print("-" * 78)
+    print(f"LG assessment: {assessment['status']} ({assessment['lg_delta_annual']:+,}/yr, "
+          f"{assessment['lg_delta_pct']:+.1f}%)")
+    print("-" * 78)
     print(f"Wrote: {args.out_comparison}")
     print(f"Wrote: {args.out_summary}")
+    print(f"Wrote: {args.out_assessment}")
     print("=" * 78)
     return 0
 
