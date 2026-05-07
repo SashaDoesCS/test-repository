@@ -147,6 +147,18 @@ CAPITAL_COST_NEW_STOP = {
 #   Annual cost = 20/3600 × 50 × $195.50 × 260 = ~$14,100/yr
 ANNUAL_OPERATING_COST_PER_STOP = 14_100
 
+# W3: corridor-deviation operating cost. A stop that sits off the nominal
+# corridor (e.g., a school the route must detour to reach) imposes ongoing
+# operating cost on top of the per-stop dwell time. Uses snap_dist_ft from
+# add_forced_candidates as the perpendicular distance candidate-to-corridor;
+# round-trip detour = 2 x snap_dist_ft.
+NTD_OPERATING_COST_PER_REVENUE_HR = 195.50   # NTD FY2023 VTA agency profile
+ROUTE27_TRIPS_PER_WEEKDAY = 63               # observed in OCT 2025 RBS schedule
+AVG_BUS_SPEED_MPH = 15.0                     # TCRP 165: suburban local bus avg
+# Stops inside this radius are treated as on-corridor (no detour cost). Within
+# 100 ft a route still naturally passes the stop without measurable extra time.
+ON_CORRIDOR_TOLERANCE_FT = 100.0
+
 # Priority thresholds for BCR-based classification
 BCR_HIGH    = 2.0    # "HIGH" priority threshold (BCR >= 2.0)
 BCR_MEDIUM  = 1.0    # "MEDIUM" priority threshold (BCR >= 1.0)
@@ -571,6 +583,9 @@ def detect_coverage_gaps(
                 "best_raw_walkshed_pop":   best.get("raw_walkshed_pop", 0),
                 "best_equity_walkshed_pop": best.get("equity_walkshed_pop", 0.0),
                 "best_tdi":                best.get("tdi", 0.2),
+                # W3: forward snap_dist_ft so compute_stop_bcr can charge
+                # corridor-deviation operating cost for off-corridor candidates.
+                "snap_dist_ft":            best.get("snap_dist_ft", 0.0),
             })
         else:
             gap_record.update({
@@ -673,11 +688,34 @@ def compute_stop_bcr(
     capital_cost     = _capital_cost(district_id, is_school_gap)
     annual_operating = ANNUAL_OPERATING_COST_PER_STOP
 
+    # W3: corridor-deviation operating cost. snap_dist_ft is the perpendicular
+    # distance from the candidate's original coord to the nominal corridor path
+    # (computed in add_forced_candidates / extract_intersection_candidates).
+    # Stops on the corridor have snap_dist ~= 0; off-corridor activity generators
+    # (schools, retail anchors) have snap_dist > 0 and require the route to
+    # detour to reach them. Detour adds operating-cost PV on top of per-stop
+    # dwell. A 500 ft detour at 15 mph adds ~0.76 min/trip x 63 trips/day x 260
+    # days = ~770 min/yr ~= $2.5k/yr; PV20 ~= $35k. A 5,000 ft detour ~= $350k PV20.
+    snap_dist_ft = max(0.0, float(gap_record.get("snap_dist_ft", 0.0)))
+    if snap_dist_ft <= ON_CORRIDOR_TOLERANCE_FT:
+        deviation_ft = 0.0
+        annual_deviation_cost = 0.0
+    else:
+        deviation_ft = 2.0 * snap_dist_ft   # round-trip detour
+        deviation_mi = deviation_ft / 5280.0
+        extra_hr_per_trip = deviation_mi / AVG_BUS_SPEED_MPH
+        annual_extra_hr = extra_hr_per_trip * ROUTE27_TRIPS_PER_WEEKDAY * SERVICE_DAYS_PER_YEAR
+        annual_deviation_cost = annual_extra_hr * NTD_OPERATING_COST_PER_REVENUE_HR
+    pv_deviation_cost = _annuity_pv(annual_deviation_cost, discount_rate, horizon_years)
+
     pv_benefits = _annuity_pv(annual_benefit, discount_rate, horizon_years)
     pv_op_costs = _annuity_pv(annual_operating, discount_rate, horizon_years)
-    pv_costs    = capital_cost + pv_op_costs
+    pv_costs    = capital_cost + pv_op_costs + pv_deviation_cost
     net_pv      = pv_benefits - pv_costs
     bcr         = pv_benefits / max(pv_costs, 1)
+    # Pre-deviation BCR for transparency (what the BCR would be if the route
+    # naturally passed this stop with no detour)
+    bcr_pre_deviation = pv_benefits / max(capital_cost + pv_op_costs, 1)
 
     # FTA Cost-Effectiveness Index (CEI): annualized cost per hour of user benefit
     # CEI = annualized_cost / (annual_boardings × avg_time_saved_hr)
@@ -701,6 +739,12 @@ def compute_stop_bcr(
         # Cap diagnostics (W1)
         "raw_riders_daily_uncapped": round(raw_riders_daily, 1),
         "boardings_cap_basis":       capping_basis,
+        # Deviation diagnostics (W3)
+        "corridor_deviation_ft":         round(snap_dist_ft, 1),
+        "round_trip_detour_ft":          round(deviation_ft, 1),
+        "annual_deviation_op_cost_usd":  round(annual_deviation_cost),
+        "pv_deviation_cost_usd":         round(pv_deviation_cost),
+        "bcr_20yr_pre_deviation":        round(bcr_pre_deviation, 3),
         # Outputs
         "est_new_riders_daily":     round(new_riders_daily, 1),
         "est_annual_boardings":     round(annual_boardings),
@@ -778,6 +822,13 @@ def build_stop_suggestions(
                 "pv_total_costs_usd":   0,
                 "net_pv_usd":           0,
                 "bcr_20yr":             None,
+                # W3: existing stops have no deviation cost (the route already
+                # passes them by definition).
+                "corridor_deviation_ft":         0,
+                "round_trip_detour_ft":          0,
+                "annual_deviation_op_cost_usd":  0,
+                "pv_deviation_cost_usd":         0,
+                "bcr_20yr_pre_deviation":        None,
                 "fta_cei_per_user_hr":  None,
                 "justification":        "Existing VTA stop retained in optimized sequence.",
             }
@@ -788,6 +839,9 @@ def build_stop_suggestions(
                 "best_tdi":              row.get("tdi", 0.2),
                 "best_district_id":      row.get("district_id", None),
                 "best_street_names":     row.get("street_names", "") if is_school else "",
+                # W3: feed snap_dist_ft so deviation cost is computed for
+                # off-corridor forced stops (schools, retail anchors).
+                "snap_dist_ft":          row.get("snap_dist_ft", 0.0),
             })
             bcr_inputs = compute_stop_bcr(sel_record, anchor=anchor)
             bcr_fields = {
@@ -799,11 +853,19 @@ def build_stop_suggestions(
                 "pv_total_costs_usd":   bcr_inputs["pv_total_costs_usd"],
                 "net_pv_usd":           bcr_inputs["net_pv_usd"],
                 "bcr_20yr":             bcr_inputs["bcr_20yr"],
+                # W3 deviation diagnostics
+                "corridor_deviation_ft":         bcr_inputs["corridor_deviation_ft"],
+                "round_trip_detour_ft":          bcr_inputs["round_trip_detour_ft"],
+                "annual_deviation_op_cost_usd":  bcr_inputs["annual_deviation_op_cost_usd"],
+                "pv_deviation_cost_usd":         bcr_inputs["pv_deviation_cost_usd"],
+                "bcr_20yr_pre_deviation":        bcr_inputs["bcr_20yr_pre_deviation"],
                 "fta_cei_per_user_hr":  bcr_inputs["fta_cei_per_user_hr"],
                 "justification":        (
                     f"Selected via FTA §5.2.2 spacing algorithm.  "
-                    f"BCR={bcr_inputs['bcr_20yr']:.2f} at 3.5% over 20 yr "
-                    f"(walk-shed pop {bcr_inputs['marginal_walkshed_pop']:,})."
+                    f"BCR={bcr_inputs['bcr_20yr']:.2f} (pre-deviation "
+                    f"{bcr_inputs['bcr_20yr_pre_deviation']:.2f}) at 3.5% over 20 yr "
+                    f"(walk-shed pop {bcr_inputs['marginal_walkshed_pop']:,}, "
+                    f"detour {bcr_inputs['round_trip_detour_ft']:.0f} ft)."
                 ),
             }
 
@@ -890,6 +952,12 @@ def build_stop_suggestions(
             "pv_total_costs_usd":       bcr_inputs["pv_total_costs_usd"],
             "net_pv_usd":               bcr_inputs["net_pv_usd"],
             "bcr_20yr":                 bcr_val,
+            # W3 deviation diagnostics
+            "corridor_deviation_ft":         bcr_inputs["corridor_deviation_ft"],
+            "round_trip_detour_ft":          bcr_inputs["round_trip_detour_ft"],
+            "annual_deviation_op_cost_usd":  bcr_inputs["annual_deviation_op_cost_usd"],
+            "pv_deviation_cost_usd":         bcr_inputs["pv_deviation_cost_usd"],
+            "bcr_20yr_pre_deviation":        bcr_inputs["bcr_20yr_pre_deviation"],
             "fta_cei_per_user_hr":      bcr_inputs["fta_cei_per_user_hr"],
             "gap_before_ft":            round(gap_before, 0),
             "gap_after_ft":             round(gap_after, 0),
