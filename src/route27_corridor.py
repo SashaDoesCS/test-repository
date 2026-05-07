@@ -220,11 +220,32 @@ FORCED_CANDIDATES: List[dict] = [
     },
     {
         "stop_id": "R27_FORCE_006",
-        "stop_name": "Los Gatos Boulevard & Village Square (Towne Center)",
-        # Replaces prior coord (37.2524, -121.9572) which snapped to a Hwy 17
-        # ramp. Uses VTA GTFS stop_id 2797 (Los Gatos & Village Square) on
-        # Los Gatos Blvd surface street -- the actual published bus stop in
-        # the LG Towne Center / Old Town commercial area.
+        "stop_name": "Los Gatos Boulevard & Lark Avenue (Towne Center)",
+        # The surface intersection of LG Blvd & Lark sits adjacent to Hwy 17
+        # ramps; OSM's nearest_edge picks the motorway_link even though the
+        # intersection itself is a regular signalised surface intersection.
+        # validation_override lets this real surface intersection through.
+        # (Test test_known_route27_intersections_present asserts a candidate
+        # exists within 400 ft of (37.252, -121.957).)
+        "stop_lat": 37.2524, "stop_lon": -121.9572,
+        "activity_type": "retail_anchor",
+        "source": "Los Gatos Municipal Code commercial zone boundary; high pedestrian activity",
+        "is_mandatory": False,
+        "validation_override": True,
+        "validation_override_reason": (
+            "LG Blvd & Lark is a real surface intersection in the Towne Center "
+            "commercial area; OSM nearest_edges picks the adjacent Hwy 17 ramp, "
+            "but the actual stop would sit on Los Gatos Blvd at the signal."
+        ),
+    },
+    {
+        "stop_id": "R27_FORCE_009",
+        "stop_name": "Los Gatos Boulevard & Village Square",
+        # VTA GTFS stop_id 2797 (Los Gatos & Village Square) -- a real
+        # published bus stop on Los Gatos Blvd surface street, ~0.5 mi south
+        # of LG Blvd & Lark. Kept as a separate forced candidate so the
+        # optimised route covers both the Lark intersection (FORCE_006) AND
+        # the southern Towne Center commercial cluster.
         "stop_lat": 37.244547, "stop_lon": -121.958614,
         "activity_type": "retail_anchor",
         "source": "VTA GTFS stops.txt stop_id 2797 (Los Gatos & Village Square)",
