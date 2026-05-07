@@ -288,6 +288,20 @@ def validate_forced_candidates(
             failures.append(f"{sid} ({name}): missing stop_lat/stop_lon")
             continue
         v = is_valid_stop_placement(lat, lon, graph=G)
+        # Honor explicit override for stops legitimately wedged in freeway
+        # interchanges (e.g., LRT stations whose bus bays sit on loop roads
+        # OSM tags as motorway_link). The candidate must declare the override
+        # with a justification string in `validation_override_reason`.
+        if not v.ok and cand.get("validation_override"):
+            why = cand.get("validation_override_reason", "(no reason given)")
+            v = StopValidation(
+                ok=True,
+                reason=f"override_accepted: {why}  [orig: {v.reason}]",
+                snap_distance_ft=v.snap_distance_ft,
+                nearest_road_class=v.nearest_road_class,
+                nearest_road_name=v.nearest_road_name,
+                warnings=v.warnings + ["validation_override flag set"],
+            )
         results.append((cand, v))
         log_fn = logger.info if v.ok else logger.error
         log_fn("Stop validation %s: %s -- %s", sid, name, v)

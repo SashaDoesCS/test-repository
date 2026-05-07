@@ -202,17 +202,32 @@ FORCED_CANDIDATES: List[dict] = [
     {
         "stop_id": "R27_FORCE_005",
         "stop_name": "Blossom Hill LRT Station (transfer)",
-        "stop_lat": 37.2528, "stop_lon": -121.8411,
+        # VTA published bus bay coord (GTFS stop_id 1143 -- one of the named
+        # bus bays at the station). The whole station is wedged inside the
+        # Hwy 85 / Snell Ave / Blossom Hill Rd interchange, so every published
+        # bay snaps to motorway/motorway_link in OSM. The validation_override
+        # flag is therefore required for this specific transit center.
+        "stop_lat": 37.252223, "stop_lon": -121.841152,
         "activity_type": "lrt_transfer",
-        "source": "VTA GTFS stops.txt (stop_id PS_BLSM)",
+        "source": "VTA GTFS stops.txt stop_id 1143 (Blossom Hill Station bus bay)",
         "is_mandatory": False,
+        "validation_override": True,
+        "validation_override_reason": (
+            "Blossom Hill LRT bus bays are physically located on a loop road "
+            "OSM tags as motorway_link; this is a real published VTA stop "
+            "(GTFS 1143) with daily boardings recorded in OCT 2025 RBS."
+        ),
     },
     {
         "stop_id": "R27_FORCE_006",
-        "stop_name": "Los Gatos Towne Center (LG Blvd & Lark)",
-        "stop_lat": 37.2524, "stop_lon": -121.9572,
+        "stop_name": "Los Gatos Boulevard & Village Square (Towne Center)",
+        # Replaces prior coord (37.2524, -121.9572) which snapped to a Hwy 17
+        # ramp. Uses VTA GTFS stop_id 2797 (Los Gatos & Village Square) on
+        # Los Gatos Blvd surface street -- the actual published bus stop in
+        # the LG Towne Center / Old Town commercial area.
+        "stop_lat": 37.244547, "stop_lon": -121.958614,
         "activity_type": "retail_anchor",
-        "source": "Los Gatos Municipal Code commercial zone boundary; high pedestrian activity",
+        "source": "VTA GTFS stops.txt stop_id 2797 (Los Gatos & Village Square)",
         "is_mandatory": False,
     },
     {
