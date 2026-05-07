@@ -1103,6 +1103,33 @@ def main(cba_only: bool = False):
             "outputs/tables/route27_coverage_gaps.csv", index=False
         )
 
+        # W5: stop comparison (KEPT/NEW/REMOVED, LG-only and full-corridor
+        # summary tiles). Spatially joins the optimised stop set to the
+        # current observed Route 27 stops from VTA OCT 2025 RBS so reviewers
+        # can see exactly which current stops were dropped, which were kept,
+        # and what the LG-only vs full-route ridership change is.
+        try:
+            from src.route27_comparison import (
+                build_stop_comparison, compute_summary_tiles,
+            )
+            cmp_df = build_stop_comparison()
+            sum_df = compute_summary_tiles(cmp_df)
+            cmp_df.to_csv(
+                "outputs/tables/route27_stop_comparison.csv", index=False
+            )
+            sum_df.to_csv(
+                "outputs/tables/route27_comparison_summary.csv", index=False
+            )
+            logger.info(
+                "  Stop comparison written: %d stops total (%d KEPT, %d NEW, %d REMOVED)",
+                len(cmp_df),
+                int((cmp_df["status"] == "KEPT").sum()),
+                int((cmp_df["status"] == "NEW").sum()),
+                int((cmp_df["status"] == "REMOVED").sum()),
+            )
+        except Exception as exc:
+            logger.warning("Stop comparison step skipped: %s", exc)
+
         # Console report
         print_route27_report(r27_result["suggestions"])
 

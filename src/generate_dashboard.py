@@ -309,6 +309,23 @@ def load_pipeline_data() -> dict:
         except Exception:
             pass
 
+    # W5: load stop comparison summary (LG-only vs full corridor) and the
+    # full per-stop comparison table for the dashboard's KEPT/NEW/REMOVED block.
+    result["stop_comparison_summary"] = []
+    sum_path = tables / "route27_comparison_summary.csv"
+    if sum_path.exists():
+        try:
+            result["stop_comparison_summary"] = pd.read_csv(sum_path).to_dict("records")
+        except Exception:
+            pass
+    result["stop_comparison"] = []
+    cmp_path = tables / "route27_stop_comparison.csv"
+    if cmp_path.exists():
+        try:
+            result["stop_comparison"] = pd.read_csv(cmp_path).to_dict("records")
+        except Exception:
+            pass
+
     return result
 
 
@@ -1528,6 +1545,11 @@ def generate_route_optimization_html(data: dict) -> str:
     rv_cap_warn = rv.get("lg_plausibility_warn_threshold")
     rv_cap_hard = rv.get("lg_plausibility_hard_cap")
 
+    # W5: stop comparison summary tiles (LG-only vs full corridor).
+    sc_summary = data.get("stop_comparison_summary", []) or []
+    sc_lg = next((r for r in sc_summary if r.get("scope") == "LG_only"), {})
+    sc_full = next((r for r in sc_summary if r.get("scope") == "full_corridor"), {})
+
     def _fmt_k(v):
         """Format a number as e.g. '61.4k'."""
         try:
@@ -1742,6 +1764,7 @@ td.n{{text-align:right;font-variant-numeric:tabular-nums}}
   <div class="metric"><div class="lb">HIGH priority</div><div class="vl" style="color:var(--red)" id="r27HighStops">—</div><div class="su">BCR ≥ 2.0</div></div>
   <div class="metric"><div class="lb">Corridor length</div><div class="vl" id="r27Miles">—</div><div class="su">Winchester → Meridian</div></div>
 </div>
+{('<div style="margin-bottom:10px;padding:10px 12px;background:var(--s2);border:1px solid var(--bd);border-radius:7px"><div style="font-size:9px;color:var(--tm);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">LG-only vs full-corridor stop comparison (W5)</div><div style="display:flex;gap:10px;flex-wrap:wrap"><div class="metric"><div class="lb">LG kept / new / removed</div><div class="vl" style="font-size:14px">' + str(int(sc_lg.get("n_kept", 0))) + ' / <span style="color:var(--amber)">' + str(int(sc_lg.get("n_new", 0))) + '</span> / <span style="color:var(--red)">' + str(int(sc_lg.get("n_removed", 0))) + '</span></div><div class="su">stops</div></div><div class="metric"><div class="lb">LG daily boardings (before -> after)</div><div class="vl" style="font-size:14px">' + str(round(sc_lg.get("baseline_daily", 0), 0)) + ' &rarr; <span style="color:var(--ac)">' + str(round(sc_lg.get("projected_daily", 0), 0)) + '</span></div><div class="su">delta ' + ("+" if sc_lg.get("delta_daily", 0) >= 0 else "") + str(round(sc_lg.get("delta_daily", 0), 1)) + '/day; reabsorption ' + str(int(round(sc_lg.get("reabsorption_rate_used", 0)*100))) + '%</div></div><div class="metric"><div class="lb">Full route kept / new / removed</div><div class="vl" style="font-size:14px">' + str(int(sc_full.get("n_kept", 0))) + ' / <span style="color:var(--amber)">' + str(int(sc_full.get("n_new", 0))) + '</span> / <span style="color:var(--red)">' + str(int(sc_full.get("n_removed", 0))) + '</span></div><div class="su">stops</div></div><div class="metric"><div class="lb">Full route daily boardings (before -> after)</div><div class="vl" style="font-size:14px">' + str(round(sc_full.get("baseline_daily", 0), 0)) + ' &rarr; <span style="color:var(--ac)">' + str(round(sc_full.get("projected_daily", 0), 0)) + '</span></div><div class="su">delta ' + ("+" if sc_full.get("delta_daily", 0) >= 0 else "") + str(round(sc_full.get("delta_daily", 0), 1)) + '/day</div></div></div></div>') if sc_lg else ''}
 <div id="route27Map"></div>
 <div id="route27SuggTable" style="margin-top:14px"></div>
 </div>

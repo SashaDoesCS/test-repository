@@ -1,0 +1,189 @@
+stop_id,stop_name,stop_lat,stop_lon,in_los_gatos,status,current_daily_boardings,projected_daily_boardings,delta_daily,bcr_20yr,corridor_deviation_ft,match_distance_ft,matched_current_stop_id,matched_current_stop_name,notes
+R27_OSM_1079474796,Winchester Boulevard,37.26950637991838,-121.95604319460656,False,KEPT,2.91,2.91,0.0,,0.0,91.6,2704.0,Winchester & Hacienda,Existing stop retained; current ridership held forward.
+R27_OSM_65433241,McMurdie Drive; West Hacienda Avenue,37.26914517535965,-121.95788642497472,False,KEPT,2.04,2.04,0.0,,0.0,181.8,1836.0,Hacienda & Walnut,Existing stop retained; current ridership held forward.
+R27_OSM_65599193,McMurdie Drive; Morrison Lane,37.26914290440518,-121.958074899314,False,KEPT,2.04,2.04,0.0,,0.0,128.4,1836.0,Hacienda & Walnut,Existing stop retained; current ridership held forward.
+R27_OSM_5910933691,Capri Drive,37.26912689,-121.961396,False,KEPT,0.09,0.09,0.0,,0.0,90.3,2772.0,Hacienda & Capri,Existing stop retained; current ridership held forward.
+R27_OSM_65433252,Via Ranchero; West Hacienda Avenue,37.269119182532464,-121.96607233261912,False,KEPT,0.52,0.52,0.0,,0.0,96.1,2773.0,Hacienda & Via Ranchero,Existing stop retained; current ridership held forward.
+R27_OSM_4529528927,South San Tomas Aquino Road,37.269104,-121.9721673,False,KEPT,5.87,5.87,0.0,,0.0,113.3,1833.0,Burrows & Hacienda,Existing stop retained; current ridership held forward.
+R27_OSM_65548364,Audrey Avenue; Burrows Road,37.265913556,-121.973011468,False,NEW,0.0,0.0,0.0,,0.0,280.4,,,New stop; nearest current is 280 ft away (>250 ft tolerance).
+R27_OSM_65606356,Bracebridge Court; Pollard Road,37.26489829292198,-121.97298240571592,False,KEPT,1.3,1.3,0.0,,0.0,97.3,1832.0,Pollard & Bracebridge,Existing stop retained; current ridership held forward.
+R27_OSM_13485295663,Pollard Road,37.26258842856836,-121.97067993917676,False,KEPT,0.83,0.83,0.0,,0.0,30.3,2776.0,Pollard & Teakwood,Existing stop retained; current ridership held forward.
+R27_OSM_65526482,Dardanelli Lane; Knowles Drive,37.26157328936026,-121.9675132354191,True,KEPT,2.52,2.52,0.0,,0.0,107.8,2777.0,Knowles & Dardanelli,Existing stop retained; current ridership held forward.
+1830,Knowles & Dardanelli,37.261586606208525,-121.96631959723904,True,KEPT,5.17,5.17,0.0,,0.0,46.4,1830.0,Knowles & Dardanelli,Existing stop retained; current ridership held forward.
+R27_OSM_65526483,Capri Drive; Knowles Drive,37.26164580375248,-121.96326849514789,True,KEPT,2.22,2.22,0.0,,0.0,73.6,2778.0,Knowles & Capri,Existing stop retained; current ridership held forward.
+R27_OSM_1079589775,Winchester Boulevard,37.25727059088235,-121.9651101514706,False,NEW,0.0,0.0,0.0,,0.0,285.4,,,New stop; nearest current is 285 ft away (>250 ft tolerance).
+1740,Winchester & Albright,37.25540585399646,-121.9662915512017,True,KEPT,0.78,0.78,0.0,,0.0,15.5,1740.0,Winchester & Albright,Existing stop retained; current ridership held forward.
+R27_OSM_1103393620,Wimbledon Drive; Winchester Boulevard,37.25443233956203,-121.96684172682852,True,KEPT,3.83,3.83,0.0,,0.0,150.9,1826.0,Winchester & Lark,Existing stop retained; current ridership held forward.
+R27_OSM_65545843,La Rinconada Drive; Winchester Boulevard,37.250830122727095,-121.96917182062458,True,KEPT,0.43,0.43,0.0,,0.0,76.4,2780.0,Winchester & La Rinconada,Existing stop retained; current ridership held forward.
+R27_OSM_11048950407,Wild Way; Winchester Boulevard,37.24938431959984,-121.97050700521244,True,KEPT,0.09,0.09,0.0,,0.0,84.3,2781.0,Winchester & Eaton,Existing stop retained; current ridership held forward.
+R27_OSM_315406407,Sereno Court; Winchester Boulevard,37.2472573438021,-121.97214823893354,False,NEW,0.0,0.0,0.0,,0.0,268.3,,,New stop; nearest current is 268 ft away (>250 ft tolerance).
+R27_OSM_65545853,Buena Vista Avenue; Winchester Boulevard,37.24715520875269,-121.97225396891024,True,KEPT,2.09,2.09,0.0,,0.0,221.2,2782.0,Winchester & Valley Oak,Existing stop retained; current ridership held forward.
+R27_OSM_315406826,Creekside Court; Winchester Boulevard,37.24423957951647,-121.97507042334362,True,KEPT,1.26,1.26,0.0,,0.0,180.5,2700.0,Winchester & Vineland,Existing stop retained; current ridership held forward.
+R27_OSM_65545884,Daves Avenue; Winchester Boulevard,37.24011022050225,-121.97685506452883,True,KEPT,1.91,1.91,0.0,,0.0,133.3,2699.0,Winchester & Daves,Existing stop retained; current ridership held forward.
+R27_OSM_4167678992,North Santa Cruz Avenue,37.23674764920592,-121.97720981730644,True,KEPT,1.17,1.17,0.0,,0.0,184.4,2698.0,Santa Cruz & Blossom Hill,Existing stop retained; current ridership held forward.
+R27_OSM_2906017086,North Santa Cruz Avenue,37.236162465596,-121.9774488654556,True,KEPT,1.17,1.17,0.0,,0.0,46.7,2698.0,Santa Cruz & Blossom Hill,Existing stop retained; current ridership held forward.
+R27_OSM_65468033,Ashler Avenue; North Santa Cruz Avenue,37.23408187696487,-121.97848332451944,True,KEPT,5.17,5.17,0.0,,0.0,69.2,1068.0,Santa Cruz & Roberts,Existing stop retained; current ridership held forward.
+1066,Santa Cruz & Los Gatos-Saratoga,37.23046843115453,-121.9802104861534,True,KEPT,8.83,8.83,0.0,,0.0,23.9,1066.0,Santa Cruz & Los Gatos-Saratoga,Existing stop retained; current ridership held forward.
+R27_OSM_2657050049,North Santa Cruz Avenue,37.22928619,-121.9808197,True,KEPT,0.57,0.57,0.0,,0.0,249.1,1065.0,Los Gatos-Saratoga & University,Existing stop retained; current ridership held forward.
+R27_OSM_2657050044,Los Gatos-Saratoga Road,37.22903442,-121.98093414,True,KEPT,0.57,0.57,0.0,,0.0,215.6,1065.0,Los Gatos-Saratoga & University,Existing stop retained; current ridership held forward.
+R27_FORCE_002,Downtown Los Gatos (N. Santa Cruz & Main),37.22779083,-121.97897339,False,NEW,0.0,34.8,34.8,2.202,0.0,432.6,,,New stop; nearest current is 433 ft away (>250 ft tolerance).
+R27_OSM_65382445,Los Gatos-Saratoga Road,37.22593843037461,-121.97279519490807,False,NEW,0.0,66.8,66.8,4.223,0.0,1132.9,,,New stop; nearest current is 1133 ft away (>250 ft tolerance).
+R27_OSM_65566980,Fillmer Avenue; Los Gatos Boulevard,37.226827260732826,-121.96830314426734,True,KEPT,1.0,1.0,0.0,,0.0,123.5,2792.0,Los Gatos & Fillmer,Existing stop retained; current ridership held forward.
+R27_OSM_360010720,Los Gatos Boulevard,37.22998004187598,-121.96565203308836,True,KEPT,2.52,2.52,0.0,,0.0,221.2,2793.0,Los Gatos & Nino,Existing stop retained; current ridership held forward.
+R27_OSM_65531981,Los Gatos Boulevard; Mitchell Avenue,37.23229599,-121.96455383,True,KEPT,1.04,1.04,0.0,,0.0,161.2,2895.0,Los Gatos & Roberts,Existing stop retained; current ridership held forward.
+R27_OSM_4556191447,Los Gatos Boulevard,37.23313881787669,-121.96416747179276,True,KEPT,1.04,1.04,0.0,,0.0,189.7,2895.0,Los Gatos & Roberts,Existing stop retained; current ridership held forward.
+R27_OSM_2031016791,Los Gatos Boulevard,37.236214898834255,-121.96269167066622,True,KEPT,5.78,5.78,0.0,,0.0,235.6,1181.0,Los Gatos & Blossom Hill,Existing stop retained; current ridership held forward.
+R27_OSM_360010711,Los Gatos Boulevard,37.24059462054972,-121.9606014553514,True,KEPT,3.43,3.43,0.0,,0.0,93.8,1179.0,Los Gatos & Los Gatos-Almaden,Existing stop retained; current ridership held forward.
+2894,Los Gatos & Garden (New Town Center),37.242999677887255,-121.95944923773712,True,KEPT,2.74,2.74,0.0,,0.0,75.9,2894.0,Los Gatos & Garden (New Town Center),Existing stop retained; current ridership held forward.
+2797,Los Gatos & Village Square,37.24456920254777,-121.95865588189086,True,KEPT,4.57,4.57,0.0,,0.0,14.5,2797.0,Los Gatos & Village Square,Existing stop retained; current ridership held forward.
+R27_OSM_65451069,Garden Lane; Oak Park Drive,37.24578444163322,-121.95794805391404,True,KEPT,3.83,3.83,0.0,,0.0,81.0,2893.0,Los Gatos & Garden,Existing stop retained; current ridership held forward.
+R27_OSM_65493269,Garden Lane; Los Gatos Boulevard,37.24616470870512,-121.95766838076511,True,KEPT,2.26,2.26,0.0,,0.0,148.5,2798.0,Los Gatos & Gateway,Existing stop retained; current ridership held forward.
+R27_OSM_11245168962,Los Gatos Boulevard,37.24910991192684,-121.95556935161764,True,KEPT,0.74,0.74,0.0,,0.0,217.8,1824.0,Los Gatos & Bennett,Existing stop retained; current ridership held forward.
+R27_OSM_11245168966,Los Gatos Boulevard; Walker Street,37.250470433923454,-121.95450862254046,True,KEPT,1.52,1.52,0.0,,0.0,54.9,1743.0,Los Gatos & Del Sol,Existing stop retained; current ridership held forward.
+R27_FORCE_006,Los Gatos Towne Center (LG Blvd & Lark),37.2509346,-121.95414734,False,NEW,0.0,77.5,77.5,4.898,0.0,252.4,,,New stop; nearest current is 252 ft away (>250 ft tolerance).
+R27_OSM_65468410,Burton Road; Los Gatos Boulevard; Samaritan Drive,37.25316556385236,-121.95242097667489,True,KEPT,2.35,2.35,0.0,,0.0,201.5,1823.0,Los Gatos & Burton,Existing stop retained; current ridership held forward.
+R27_FORCE_001,Winchester Transit Center,37.25305939,-121.95095062,True,KEPT,5.48,69.7,64.22,4.408,0.0,191.7,1744.0,Samaritan & National,Existing stop retained; current ridership held forward.
+1822,Samaritan & Medical Center,37.25226186715815,-121.9501815455051,True,KEPT,0.13,0.13,0.0,,0.0,29.8,1822.0,Samaritan & Medical Center,Existing stop retained; current ridership held forward.
+R27_OSM_65433338,Kinghurst Drive; Lost Oaks Drive,37.25106812,-121.9485841,True,KEPT,11.43,11.43,0.0,,0.0,237.6,1821.0,Good Samaritan Hospital,Existing stop retained; current ridership held forward.
+R27_OSM_8367846709,Samaritan Drive,37.251075687902656,-121.9449449338283,True,KEPT,4.22,4.22,0.0,,0.0,114.0,1746.0,Samaritan & Samaritan,Existing stop retained; current ridership held forward.
+1820,Samaritan & Saidel,37.25059693353855,-121.9429737351242,True,KEPT,2.78,2.78,0.0,,0.0,20.4,1820.0,Samaritan & Saidel,Existing stop retained; current ridership held forward.
+R27_OSM_65468462,Samaritan Drive; Winton Way,37.25057983,-121.9416424,True,KEPT,1.91,1.91,0.0,,0.0,58.8,1747.0,Samaritan & Winton,Existing stop retained; current ridership held forward.
+R27_OSM_65468455,Charlotte Avenue; Samaritan Drive,37.25058746,-121.9395119,True,KEPT,0.13,0.13,0.0,,0.0,179.1,1818.0,Samaritan & Cooper,Existing stop retained; current ridership held forward.
+R27_OSM_65436205,Cooper Avenue; Samaritan Drive,37.25059853865236,-121.93844992360212,True,KEPT,1.0,1.0,0.0,,0.0,86.3,1748.0,Samaritan & Cooper,Existing stop retained; current ridership held forward.
+1817,Samaritan & Esther,37.2506285415184,-121.9356464306719,False,KEPT,0.96,0.96,0.0,,0.0,28.6,1817.0,Samaritan & Esther,Existing stop retained; current ridership held forward.
+1749,Samaritan & Esther,37.25063324,-121.935196,False,KEPT,0.43,0.43,0.0,,0.0,15.7,1749.0,Samaritan & Esther,Existing stop retained; current ridership held forward.
+R27_OSM_65474075,Bel Escou Drive; Roline Court,37.2506485,-121.9325357,False,KEPT,1.17,1.17,0.0,,0.0,88.8,1816.0,Samaritan & Union,Existing stop retained; current ridership held forward.
+R27_OSM_65500263,Ronda Drive; Union Avenue,37.2496723,-121.93131256,False,KEPT,5.17,5.17,0.0,,0.0,189.8,1750.0,Union & Samaritan,Existing stop retained; current ridership held forward.
+R27_OSM_65445041,Carlton Avenue; Union Avenue,37.24829145401432,-121.9313118522752,False,KEPT,1.13,1.13,0.0,,0.0,104.8,1751.0,Union & Carlton,Existing stop retained; current ridership held forward.
+R27_FORCE_003,"Union Middle School (2130 Los Gatos-Almaden Rd, San Jose)",37.2462,-121.93128967,False,NEW,0.0,28.9,28.9,1.756,0.0,659.0,,,New stop; nearest current is 659 ft away (>250 ft tolerance).
+R27_OSM_65451613,Heather Drive; Union Avenue,37.244677,-121.93127441,False,KEPT,4.87,4.87,0.0,,0.0,170.3,1814.0,Union & Heather,Existing stop retained; current ridership held forward.
+R27_OSM_65500241,Los Gatos Almaden Road; Union Avenue,37.243418237195066,-121.93125927289924,False,KEPT,7.52,7.52,0.0,,0.0,184.0,1084.0,Los Gatos-Almaden & Union,Existing stop retained; current ridership held forward.
+R27_OSM_65632733,Hershner Drive; Kensington Way,37.24342889190493,-121.92755801521513,False,NEW,0.0,0.0,0.0,,0.0,293.9,,,New stop; nearest current is 294 ft away (>250 ft tolerance).
+R27_OSM_65626669,Herbert Drive; Hershner Drive; Kentfield Drive,37.24342210919483,-121.92659454390112,False,KEPT,0.74,0.74,0.0,,0.0,46.0,1170.0,Los Gatos-Almaden & Sandy,Existing stop retained; current ridership held forward.
+R27_OSM_65586650,Gregg Drive; Hershner Drive,37.24346485469678,-121.92365548652336,False,KEPT,8.83,8.83,0.0,,0.0,182.9,1169.0,Los Gatos-Almaden & Leigh,Existing stop retained; current ridership held forward.
+R27_OSM_65586641,Gregg Drive; Leigh Avenue,37.24022512702021,-121.92269828550774,False,KEPT,0.78,0.78,0.0,,0.0,155.9,1168.0,Leigh & Anne,Existing stop retained; current ridership held forward.
+R27_OSM_65562673,Kay Drive; Laura Drive; Sharon Lane,37.23705292,-121.92262268,False,KEPT,0.7,0.7,0.0,,0.0,126.2,1088.0,Leigh & Kay,Existing stop retained; current ridership held forward.
+R27_OSM_65600318,Del Oro Drive; Del Oro Place,37.23619859566955,-121.92075663082495,False,KEPT,0.35,0.35,0.0,,0.0,33.0,1089.0,Blossom Hill & Del Oro,Existing stop retained; current ridership held forward.
+R27_OSM_65450491,Blossom Hill Road; Bobbywood Avenue,37.23622142403965,-121.91773155654016,False,KEPT,2.26,2.26,0.0,,0.0,167.8,1165.0,Blossom Hill & Mary Jo,Existing stop retained; current ridership held forward.
+R27_OSM_65616258,Belwood Gateway; Blossom Hill Road,37.23622513,-121.9170611,False,KEPT,2.26,2.26,0.0,,0.0,44.1,1165.0,Blossom Hill & Mary Jo,Existing stop retained; current ridership held forward.
+R27_OSM_65554050,Blossom Hill Road; Thureson Way,37.23624456675133,-121.91389950210102,False,KEPT,4.74,4.74,0.0,,0.0,35.9,1091.0,Blossom Hill & Harwood,Existing stop retained; current ridership held forward.
+R27_OSM_65422739,Blossom Hill Road; Drysdale Drive,37.23632422718122,-121.90785508475936,False,KEPT,2.13,2.13,0.0,,0.0,105.4,1163.0,Blossom Hill & Drysdale,Existing stop retained; current ridership held forward.
+R27_OSM_4513029003,Blossom Hill Road,37.23656423004205,-121.90396687885207,False,KEPT,4.96,4.96,0.0,,0.0,249.9,1162.0,Blossom Hill & Camden,Existing stop retained; current ridership held forward.
+R27_OSM_4513029006,Camden Avenue,37.23659940876925,-121.90368700553095,False,KEPT,4.96,4.96,0.0,,0.0,174.2,1162.0,Blossom Hill & Camden,Existing stop retained; current ridership held forward.
+R27_OSM_65432007,Ardmore Way; Ferndale Drive; Kooser Road,37.24180433123515,-121.89988950581947,False,NEW,0.0,84.5,84.5,5.346,0.0,1443.7,,,New stop; nearest current is 1444 ft away (>250 ft tolerance).
+R27_FORCE_004,"Dartmouth Middle School (5575 Dartmouth Dr, San Jose)",37.2444,-121.8998,False,NEW,0.0,84.5,84.5,5.136,0.0,2186.4,,,New stop; nearest current is 2186 ft away (>250 ft tolerance).
+R27_FORCE_007,Camden Ave & Highway 85 (transit hub area),37.2444,-121.8998,False,NEW,0.0,84.5,84.5,5.346,0.0,2186.4,,,New stop; nearest current is 2186 ft away (>250 ft tolerance).
+R27_OSM_65616276,Blossom Hill Road,37.23807837422037,-121.89828526839916,False,KEPT,1.17,1.17,0.0,,0.0,139.3,1094.0,Blossom Hill & Park Crest,Existing stop retained; current ridership held forward.
+R27_OSM_65429495,Bordelais Drive; Bouchard Drive; Domaine Drive; Mireille Drive,37.23849573418303,-121.895902930251,False,KEPT,0.78,0.78,0.0,,0.0,241.4,1160.0,Blossom Hill & Dartmouth,Existing stop retained; current ridership held forward.
+R27_OSM_6800622803,Blossom Hill Road; Chambertin Drive,37.238798773687925,-121.89551857915173,False,KEPT,0.65,0.65,0.0,,0.0,195.6,1095.0,Blossom Hill & Chambertin,Existing stop retained; current ridership held forward.
+R27_OSM_8700990669,Blossom Hill Road,37.240546217712485,-121.8926788084936,False,KEPT,1.57,1.57,0.0,,0.0,27.7,1096.0,Blossom Hill & Vassar,Existing stop retained; current ridership held forward.
+R27_OSM_65633346,Helmond Lane; Meridian Avenue,37.2431488,-121.88954926,False,KEPT,11.57,11.57,0.0,,0.0,143.7,1097.0,Blossom Hill & Meridian,Existing stop retained; current ridership held forward.
+R27_OSM_5860059193,Kooser Road,37.24542121608026,-121.88770364142296,False,KEPT,4.91,4.91,0.0,,0.0,69.3,1155.0,Blossom Hill & Kooser,Existing stop retained; current ridership held forward.
+R27_OSM_65427335,,37.24560547,-121.8873291,False,KEPT,4.91,4.91,0.0,,0.0,171.5,1155.0,Blossom Hill & Kooser,Existing stop retained; current ridership held forward.
+R27_OSM_7715611578,Blossom Hill Road,37.24820423486564,-121.8826955407412,False,KEPT,12.96,12.96,0.0,,0.0,53.9,1101.0,Blossom Hill & Ayrshire,Existing stop retained; current ridership held forward.
+R27_OSM_4549966664,Blossom Hill Road,37.25069603248597,-121.87588407460996,False,NEW,0.0,8.0,8.0,0.503,0.0,276.2,,,New stop; nearest current is 276 ft away (>250 ft tolerance).
+R27_OSM_5376562627,Blossom Hill Road; Blossom River Drive,37.250346774925,-121.8696760241107,False,NEW,0.0,5.3,5.3,0.335,0.0,380.3,,,New stop; nearest current is 380 ft away (>250 ft tolerance).
+R27_OSM_1100547331,Blossom Hill Road; Hillview Avenue,37.25028991690124,-121.86123607239078,False,NEW,0.0,3.5,3.5,0.219,0.0,276.0,,,New stop; nearest current is 276 ft away (>250 ft tolerance).
+R27_OSM_1677588847,Allen Avenue; Blossom Hill Road,37.250213645546566,-121.85443600144563,False,NEW,0.0,2.0,2.0,0.129,0.0,368.6,,,New stop; nearest current is 369 ft away (>250 ft tolerance).
+R27_OSM_1053676249,Blossom Hill Road; Cooney Place,37.25046539,-121.84820557,False,KEPT,3.7,1.8,-1.9,0.116,0.0,121.3,1145.0,Blossom Hill & Cahalan,Existing stop retained; current ridership held forward.
+R27_OSM_6697571128,Blossom Hill Road; Indian Avenue,37.25052826189177,-121.8413535256514,False,NEW,0.0,1.5,1.5,0.095,0.0,591.3,,,New stop; nearest current is 591 ft away (>250 ft tolerance).
+R27_FORCE_005,Blossom Hill LRT Station (transfer),37.25236893,-121.84146881,False,KEPT,12.78,9.4,-3.38,0.593,0.0,11.7,1110.0,Blossom Hill Station,Existing stop retained; current ridership held forward.
+5396,Winchester Station (Bay 2),37.279378,-121.948538,False,REMOVED,105.91,0.0,-105.91,,,4189.4,,,Removed; ~60% of riders (63.5/day) assumed to walk to nearest kept stop 4189 ft away.
+1141,Blossom Hill & Snell,37.251461,-121.829865,False,REMOVED,45.17,0.0,-45.17,,,3346.7,,,Removed; ~60% of riders (27.1/day) assumed to walk to nearest kept stop 3347 ft away.
+3304,Santa Teresa Station,37.236285,-121.789479,False,REMOVED,35.0,0.0,-35.0,,,16028.5,,,Removed; ~60% of riders (21.0/day) assumed to walk to nearest kept stop 16029 ft away.
+1135,Poughkeepsie & Cottle,37.251595,-121.80523,False,REMOVED,29.61,0.0,-29.61,,,10404.4,,,Removed; ~60% of riders (17.8/day) assumed to walk to nearest kept stop 10404 ft away.
+1106,Blossom Hill & Hillview,37.250256,-121.862691,False,REMOVED,26.26,0.0,-26.26,,,4158.0,,,Removed; ~60% of riders (15.8/day) assumed to walk to nearest kept stop 4158 ft away.
+1143,Blossom Hill Station,37.252223,-121.841152,False,REMOVED,25.91,0.0,-25.91,,,105.3,,,Removed; ~60% of riders (15.6/day) assumed to walk to nearest kept stop 105 ft away.
+1102,Blossom Hill & Plaza,37.250513,-121.876818,False,REMOVED,25.0,0.0,-25.0,,,1884.6,,,Removed; ~60% of riders (15.0/day) assumed to walk to nearest kept stop 1885 ft away.
+1138,Blossom Hill & Lean,37.251617,-121.816974,False,REMOVED,24.57,0.0,-24.57,,,7035.3,,,Removed; ~60% of riders (14.7/day) assumed to walk to nearest kept stop 7035 ft away.
+1745,Good Samaritan Hospital,37.251009,-121.947555,True,REMOVED,17.52,0.0,-17.52,,,296.1,,,Removed; ~60% of riders (10.5/day) assumed to walk to nearest kept stop 296 ft away.
+1107,Blossom Hill & Santa Teresa,37.250202,-121.858057,False,REMOVED,14.48,0.0,-14.48,,,2829.0,,,Removed; ~60% of riders (8.7/day) assumed to walk to nearest kept stop 2829 ft away.
+1153,Blossom Hill & Almaden Plaza,37.250826,-121.877094,False,REMOVED,14.04,0.0,-14.04,,,1869.6,,,Removed; ~60% of riders (8.4/day) assumed to walk to nearest kept stop 1870 ft away.
+1093,Blossom Hill & Camden,37.236319,-121.90276,False,REMOVED,12.04,0.0,-12.04,,,285.0,,,Removed; ~60% of riders (7.2/day) assumed to walk to nearest kept stop 285 ft away.
+2791,Santa Cruz & Main,37.222231,-121.983921,True,REMOVED,12.0,0.0,-12.0,,,2620.6,,,Removed; ~60% of riders (7.2/day) assumed to walk to nearest kept stop 2621 ft away.
+1156,Blossom Hill & Meridian,37.243639,-121.889382,False,REMOVED,10.87,0.0,-10.87,,,184.8,,,Removed; ~60% of riders (6.5/day) assumed to walk to nearest kept stop 185 ft away.
+1112,Blossom Hill & Snell,37.251147,-121.829768,False,REMOVED,10.52,0.0,-10.52,,,3387.5,,,Removed; ~60% of riders (6.3/day) assumed to walk to nearest kept stop 3387 ft away.
+1100,Blossom Hill & Seifert,37.245909,-121.886549,False,REMOVED,10.26,0.0,-10.26,,,249.7,,,Removed; ~60% of riders (6.2/day) assumed to walk to nearest kept stop 250 ft away.
+1148,Blossom Hill & Santa Teresa,37.250521,-121.86032,False,REMOVED,10.04,0.0,-10.04,,,3476.9,,,Removed; ~60% of riders (6.0/day) assumed to walk to nearest kept stop 3477 ft away.
+3306,Santa Teresa & Del Canto,37.237132,-121.79949,False,REMOVED,9.96,0.0,-9.96,,,13263.2,,,Removed; ~60% of riders (6.0/day) assumed to walk to nearest kept stop 13263 ft away.
+1149,Blossom Hill & Oakridge Mall,37.250544,-121.863345,False,REMOVED,9.61,0.0,-9.61,,,4345.1,,,Removed; ~60% of riders (5.8/day) assumed to walk to nearest kept stop 4345 ft away.
+1150,Blossom Hill & Winfield,37.25055,-121.867,False,REMOVED,9.17,0.0,-9.17,,,4584.8,,,Removed; ~60% of riders (5.5/day) assumed to walk to nearest kept stop 4585 ft away.
+1131,Cottle & Raleigh,37.245181,-121.803751,False,REMOVED,8.91,0.0,-8.91,,,11136.7,,,Removed; ~60% of riders (5.3/day) assumed to walk to nearest kept stop 11137 ft away.
+1147,Blossom Hill & Playa Del Rey,37.250446,-121.853186,False,REMOVED,8.57,0.0,-8.57,,,1429.4,,,Removed; ~60% of riders (5.1/day) assumed to walk to nearest kept stop 1429 ft away.
+1140,Blossom Hill & Judith,37.251536,-121.825394,False,REMOVED,7.57,0.0,-7.57,,,4623.4,,,Removed; ~60% of riders (4.5/day) assumed to walk to nearest kept stop 4623 ft away.
+2774,Burrows & Hacienda,37.26881,-121.972367,False,REMOVED,7.3,0.0,-7.3,,,121.4,,,Removed; ~60% of riders (4.4/day) assumed to walk to nearest kept stop 121 ft away.
+2696,Main & Jackson,37.220976,-121.974169,True,REMOVED,6.35,0.0,-6.35,,,2714.9,,,Removed; ~60% of riders (3.8/day) assumed to walk to nearest kept stop 2715 ft away.
+1142,Blossom Hill & Entrada Cedros,37.251413,-121.833276,False,REMOVED,6.3,0.0,-6.3,,,2376.9,,,Removed; ~60% of riders (3.8/day) assumed to walk to nearest kept stop 2377 ft away.
+1074,Los Gatos & Leroy,37.236889,-121.962267,True,REMOVED,6.26,0.0,-6.26,,,274.0,,,Removed; ~60% of riders (3.8/day) assumed to walk to nearest kept stop 274 ft away.
+1108,Blossom Hill & Playa Del Rey,37.250186,-121.852512,False,REMOVED,6.09,0.0,-6.09,,,1240.1,,,Removed; ~60% of riders (3.6/day) assumed to walk to nearest kept stop 1240 ft away.
+2788,Main & Pleasant,37.221126,-121.974711,True,REMOVED,5.78,0.0,-5.78,,,2772.9,,,Removed; ~60% of riders (3.5/day) assumed to walk to nearest kept stop 2773 ft away.
+2695,Main & Los Gatos Civic Center,37.221205,-121.979109,True,REMOVED,5.74,0.0,-5.74,,,2897.6,,,Removed; ~60% of riders (3.4/day) assumed to walk to nearest kept stop 2898 ft away.
+2783,Winchester & Vineland,37.243587,-121.975538,True,REMOVED,5.74,0.0,-5.74,,,272.8,,,Removed; ~60% of riders (3.4/day) assumed to walk to nearest kept stop 273 ft away.
+1105,Blossom Hill & Winfield,37.250258,-121.865507,False,REMOVED,5.65,0.0,-5.65,,,4966.1,,,Removed; ~60% of riders (3.4/day) assumed to walk to nearest kept stop 4966 ft away.
+2767,Winchester & Camden,37.277942,-121.949872,False,REMOVED,5.61,0.0,-5.61,,,3544.8,,,Removed; ~60% of riders (3.4/day) assumed to walk to nearest kept stop 3545 ft away.
+1062,Main & Santa Cruz,37.222298,-121.983565,True,REMOVED,5.3,0.0,-5.3,,,2565.7,,,Removed; ~60% of riders (3.2/day) assumed to walk to nearest kept stop 2566 ft away.
+1103,Blossom Hill & Almaden,37.250614,-121.873522,False,REMOVED,5.09,0.0,-5.09,,,2775.1,,,Removed; ~60% of riders (3.0/day) assumed to walk to nearest kept stop 2775 ft away.
+1115,Blossom Hill & Lean,37.251321,-121.817071,False,REMOVED,4.91,0.0,-4.91,,,7012.6,,,Removed; ~60% of riders (3.0/day) assumed to walk to nearest kept stop 7013 ft away.
+1188,Santa Cruz & Los Gatos-Saratoga,37.230014,-121.980542,True,REMOVED,4.74,0.0,-4.74,,,190.8,,,Removed; ~60% of riders (2.8/day) assumed to walk to nearest kept stop 191 ft away.
+1130,Cottle Park & Ride,37.242189,-121.803716,False,REMOVED,4.43,0.0,-4.43,,,11451.2,,,Removed; ~60% of riders (2.7/day) assumed to walk to nearest kept stop 11451 ft away.
+1086,Leigh & Los Gatos-Almaden,37.243106,-121.922772,False,REMOVED,4.22,0.0,-4.22,,,285.2,,,Removed; ~60% of riders (2.5/day) assumed to walk to nearest kept stop 285 ft away.
+2789,Main & Villa,37.221226,-121.977956,True,REMOVED,4.17,0.0,-4.17,,,2968.0,,,Removed; ~60% of riders (2.5/day) assumed to walk to nearest kept stop 2968 ft away.
+1137,Blossom Hill & Calpine,37.251641,-121.81229,False,REMOVED,4.13,0.0,-4.13,,,8378.5,,,Removed; ~60% of riders (2.5/day) assumed to walk to nearest kept stop 8379 ft away.
+1118,Cottle & Poughkeepsie,37.250912,-121.804193,False,REMOVED,4.13,0.0,-4.13,,,10711.3,,,Removed; ~60% of riders (2.5/day) assumed to walk to nearest kept stop 10711 ft away.
+1139,Blossom Hill & Lathrop,37.25157,-121.821149,False,REMOVED,4.0,0.0,-4.0,,,5839.0,,,Removed; ~60% of riders (2.4/day) assumed to walk to nearest kept stop 5839 ft away.
+1136,Blossom Hill & Beswick,37.25159,-121.808568,False,REMOVED,3.91,0.0,-3.91,,,9446.8,,,Removed; ~60% of riders (2.4/day) assumed to walk to nearest kept stop 9447 ft away.
+1154,Blossom Hill & Ayrshire,37.248246,-121.883055,False,REMOVED,3.61,0.0,-3.61,,,104.3,,,Removed; ~60% of riders (2.2/day) assumed to walk to nearest kept stop 104 ft away.
+1109,Blossom Hill & Cahalan,37.250434,-121.846206,False,REMOVED,3.61,0.0,-3.61,,,574.0,,,Removed; ~60% of riders (2.2/day) assumed to walk to nearest kept stop 574 ft away.
+2779,Winchester & Newell,37.253832,-121.967294,True,REMOVED,3.43,0.0,-3.43,,,254.2,,,Removed; ~60% of riders (2.1/day) assumed to walk to nearest kept stop 254 ft away.
+1104,Blossom Hill & Sanchez,37.250405,-121.870999,False,REMOVED,3.39,0.0,-3.39,,,3451.2,,,Removed; ~60% of riders (2.0/day) assumed to walk to nearest kept stop 3451 ft away.
+1113,Blossom Hill & Judith,37.251263,-121.824846,False,REMOVED,3.3,0.0,-3.3,,,4787.7,,,Removed; ~60% of riders (2.0/day) assumed to walk to nearest kept stop 4788 ft away.
+1063,University & Mullen,37.223566,-121.981812,True,REMOVED,3.17,0.0,-3.17,,,2006.4,,,Removed; ~60% of riders (1.9/day) assumed to walk to nearest kept stop 2006 ft away.
+2794,Los Gatos & Magneson,37.233655,-121.963815,True,REMOVED,2.96,0.0,-2.96,,,213.4,,,Removed; ~60% of riders (1.8/day) assumed to walk to nearest kept stop 213 ft away.
+1185,Santa Cruz & Mariposa,37.235547,-121.977838,True,REMOVED,2.78,0.0,-2.78,,,250.3,,,Removed; ~60% of riders (1.7/day) assumed to walk to nearest kept stop 250 ft away.
+1111,Blossom Hill & Entrada Cedros,37.251122,-121.83261,False,REMOVED,2.7,0.0,-2.7,,,2582.7,,,Removed; ~60% of riders (1.6/day) assumed to walk to nearest kept stop 2583 ft away.
+1186,Santa Cruz & Olive,37.233718,-121.978725,True,REMOVED,2.7,0.0,-2.7,,,149.5,,,Removed; ~60% of riders (1.6/day) assumed to walk to nearest kept stop 150 ft away.
+1144,Blossom Hill & Chesbro,37.250742,-121.843396,False,REMOVED,2.65,0.0,-2.65,,,810.3,,,Removed; ~60% of riders (1.6/day) assumed to walk to nearest kept stop 810 ft away.
+1828,Knowles & Capri,37.261739,-121.963036,True,REMOVED,2.61,0.0,-2.61,,,74.9,,,Removed; ~60% of riders (1.6/day) assumed to walk to nearest kept stop 75 ft away.
+2775,Pollard & Bracebridge,37.264401,-121.97257,False,REMOVED,2.43,0.0,-2.43,,,216.3,,,Removed; ~60% of riders (1.5/day) assumed to walk to nearest kept stop 216 ft away.
+1124,Santa Teresa & Cottle,37.236847,-121.802919,False,REMOVED,2.22,0.0,-2.22,,,12423.0,,,Removed; ~60% of riders (1.3/day) assumed to walk to nearest kept stop 12423 ft away.
+1087,Leigh & Gregg,37.239651,-121.922812,False,REMOVED,2.17,0.0,-2.17,,,211.5,,,Removed; ~60% of riders (1.3/day) assumed to walk to nearest kept stop 212 ft away.
+1831,Pollard & El Camino Hospital Los Gatos,37.26218,-121.970152,False,REMOVED,2.17,0.0,-2.17,,,212.3,,,Removed; ~60% of riders (1.3/day) assumed to walk to nearest kept stop 212 ft away.
+1167,Leigh & Blossom Hill,37.236438,-121.922506,False,REMOVED,2.04,0.0,-2.04,,,226.3,,,Removed; ~60% of riders (1.2/day) assumed to walk to nearest kept stop 226 ft away.
+1114,Blossom Hill & Eagles,37.251286,-121.822051,False,REMOVED,2.0,0.0,-2.0,,,5586.8,,,Removed; ~60% of riders (1.2/day) assumed to walk to nearest kept stop 5587 ft away.
+2897,Los Gatos & Caldwell,37.22716,-121.968105,True,REMOVED,1.96,0.0,-1.96,,,133.8,,,Removed; ~60% of riders (1.2/day) assumed to walk to nearest kept stop 134 ft away.
+1064,University & Royce,37.225412,-121.980787,True,REMOVED,1.87,0.0,-1.87,,,1319.2,,,Removed; ~60% of riders (1.1/day) assumed to walk to nearest kept stop 1319 ft away.
+1827,Winchester & Albright,37.256509,-121.965346,True,REMOVED,1.78,0.0,-1.78,,,484.6,,,Removed; ~60% of riders (1.1/day) assumed to walk to nearest kept stop 485 ft away.
+1092,Blossom Hill & Drysdale,37.236257,-121.907398,False,REMOVED,1.61,0.0,-1.61,,,133.4,,,Removed; ~60% of riders (1.0/day) assumed to walk to nearest kept stop 133 ft away.
+1151,Blossom Hill & Sanchez,37.250699,-121.871001,False,REMOVED,1.57,0.0,-1.57,,,3477.0,,,Removed; ~60% of riders (0.9/day) assumed to walk to nearest kept stop 3477 ft away.
+1164,Blossom Hill & Harwood,37.236338,-121.91328,False,REMOVED,1.52,0.0,-1.52,,,181.0,,,Removed; ~60% of riders (0.9/day) assumed to walk to nearest kept stop 181 ft away.
+1119,Cottle & Coronado,37.247311,-121.80413,False,REMOVED,1.52,0.0,-1.52,,,10873.2,,,Removed; ~60% of riders (0.9/day) assumed to walk to nearest kept stop 10873 ft away.
+1123,Cottle & Beswick,37.245633,-121.804132,False,REMOVED,1.39,0.0,-1.39,,,10992.6,,,Removed; ~60% of riders (0.8/day) assumed to walk to nearest kept stop 10993 ft away.
+1152,Blossom Hill & Almaden (Sutter Health),37.250974,-121.874343,False,REMOVED,1.35,0.0,-1.35,,,2600.6,,,Removed; ~60% of riders (0.8/day) assumed to walk to nearest kept stop 2601 ft away.
+3305,Santa Teresa & Miyuki,37.236923,-121.79444,False,REMOVED,1.35,0.0,-1.35,,,14621.4,,,Removed; ~60% of riders (0.8/day) assumed to walk to nearest kept stop 14621 ft away.
+2795,Los Gatos & Los Gatos-Almaden (Chirco),37.241314,-121.960178,True,REMOVED,1.35,0.0,-1.35,,,288.7,,,Removed; ~60% of riders (0.8/day) assumed to walk to nearest kept stop 289 ft away.
+1061,Santa Cruz & Nicholson,37.226048,-121.982318,True,REMOVED,1.3,0.0,-1.3,,,1157.3,,,Removed; ~60% of riders (0.8/day) assumed to walk to nearest kept stop 1157 ft away.
+1159,Blossom Hill & Vassar,37.240607,-121.892925,False,REMOVED,1.3,0.0,-1.3,,,74.0,,,Removed; ~60% of riders (0.8/day) assumed to walk to nearest kept stop 74 ft away.
+1835,Hacienda & Capri,37.269084,-121.961761,False,REMOVED,1.13,0.0,-1.13,,,105.9,,,Removed; ~60% of riders (0.7/day) assumed to walk to nearest kept stop 106 ft away.
+2701,Winchester & Milani,37.2465,-121.972805,True,REMOVED,1.13,0.0,-1.13,,,286.2,,,Removed; ~60% of riders (0.7/day) assumed to walk to nearest kept stop 286 ft away.
+2896,Los Gatos & Nino,37.230625,-121.965574,True,REMOVED,1.09,0.0,-1.09,,,235.8,,,Removed; ~60% of riders (0.7/day) assumed to walk to nearest kept stop 236 ft away.
+1117,Blossom Hill & Beswick,37.25136,-121.808372,False,REMOVED,1.09,0.0,-1.09,,,9505.9,,,Removed; ~60% of riders (0.7/day) assumed to walk to nearest kept stop 9506 ft away.
+1834,Hacienda & Gay,37.269062,-121.966717,False,REMOVED,1.04,0.0,-1.04,,,186.2,,,Removed; ~60% of riders (0.6/day) assumed to walk to nearest kept stop 186 ft away.
+2784,Winchester & Daves,37.23975,-121.977014,True,REMOVED,0.96,0.0,-0.96,,,138.8,,,Removed; ~60% of riders (0.6/day) assumed to walk to nearest kept stop 139 ft away.
+2771,Hacienda & Walnut,37.269247,-121.959049,False,REMOVED,0.91,0.0,-0.91,,,282.1,,,Removed; ~60% of riders (0.6/day) assumed to walk to nearest kept stop 282 ft away.
+2769,Winchester & Sunnyoaks,37.271789,-121.954372,False,REMOVED,0.87,0.0,-0.87,,,959.4,,,Removed; ~60% of riders (0.5/day) assumed to walk to nearest kept stop 959 ft away.
+1166,Blossom Hill & Del Oro,37.236285,-121.921069,False,REMOVED,0.65,0.0,-0.65,,,95.0,,,Removed; ~60% of riders (0.4/day) assumed to walk to nearest kept stop 95 ft away.
+1085,Los Gatos-Almaden & Kentfield,37.243384,-121.925995,False,REMOVED,0.57,0.0,-0.57,,,172.6,,,Removed; ~60% of riders (0.3/day) assumed to walk to nearest kept stop 173 ft away.
+2787,Los Gatos & Simons,37.222994,-121.971516,True,REMOVED,0.52,0.0,-0.52,,,1672.5,,,Removed; ~60% of riders (0.3/day) assumed to walk to nearest kept stop 1672 ft away.
+2770,Hacienda & Winchester,37.269243,-121.956971,False,REMOVED,0.52,0.0,-0.52,,,265.1,,,Removed; ~60% of riders (0.3/day) assumed to walk to nearest kept stop 265 ft away.
+1116,Blossom Hill & Calpine,37.251351,-121.812286,False,REMOVED,0.43,0.0,-0.43,,,8383.7,,,Removed; ~60% of riders (0.3/day) assumed to walk to nearest kept stop 8384 ft away.
+2768,Winchester & Friar,37.275752,-121.951334,False,REMOVED,0.43,0.0,-0.43,,,2644.8,,,Removed; ~60% of riders (0.3/day) assumed to walk to nearest kept stop 2645 ft away.
+2703,Winchester & La Rinconada,37.250631,-121.969297,True,REMOVED,0.43,0.0,-0.43,,,80.9,,,Removed; ~60% of riders (0.3/day) assumed to walk to nearest kept stop 81 ft away.
+1161,Blossom Hill & Parkcrest,37.237942,-121.898746,False,REMOVED,0.39,0.0,-0.39,,,141.2,,,Removed; ~60% of riders (0.2/day) assumed to walk to nearest kept stop 141 ft away.
+2697,Los Gatos & Stacia,37.223,-121.971331,True,REMOVED,0.35,0.0,-0.35,,,1641.9,,,Removed; ~60% of riders (0.2/day) assumed to walk to nearest kept stop 1642 ft away.
+2705,Winchester & Camden,37.27843,-121.949632,False,REMOVED,0.26,0.0,-0.26,,,3733.2,,,Removed; ~60% of riders (0.2/day) assumed to walk to nearest kept stop 3733 ft away.
+3343,Santa Teresa & Encinal,37.236795,-121.795928,False,REMOVED,0.22,0.0,-0.22,,,14246.6,,,Removed; ~60% of riders (0.1/day) assumed to walk to nearest kept stop 14247 ft away.
+1090,Blossom Hill & Belwood,37.236141,-121.916592,False,REMOVED,0.22,0.0,-0.22,,,138.1,,,Removed; ~60% of riders (0.1/day) assumed to walk to nearest kept stop 138 ft away.
+1819,Samaritan & Clydelle,37.250672,-121.940729,True,REMOVED,0.09,0.0,-0.09,,,264.3,,,Removed; ~60% of riders (0.1/day) assumed to walk to nearest kept stop 264 ft away.
+2702,Winchester & Wild,37.249537,-121.970271,True,REMOVED,0.04,0.0,-0.04,,,87.6,,,Removed; ~60% of riders (0.0/day) assumed to walk to nearest kept stop 88 ft away.
+5656,Cottle & Palmia,37.240573,-121.804082,False,REMOVED,0.04,0.0,-0.04,,,11557.2,,,Removed; ~60% of riders (0.0/day) assumed to walk to nearest kept stop 11557 ft away.
+2786,Los Gatos-Saratoga & Village Lane,37.228452,-121.980226,True,REMOVED,0.0,0.0,-0.0,,,293.7,,,Removed; ~60% of riders (0.0/day) assumed to walk to nearest kept stop 294 ft away.
