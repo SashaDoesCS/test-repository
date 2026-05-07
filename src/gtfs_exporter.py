@@ -163,8 +163,8 @@ def _write_trips(output_dir: Path, all_trips: list) -> None:
             "service_id": trip.service_id,
             "trip_id": trip.trip_id,
             "trip_headsign": trip.headsign,
-            "direction_id": 0,
-            "shape_id": f"shape_{trip.route_id}",
+            "direction_id": int(getattr(trip, "direction_id", 0)),
+            "shape_id": f"shape_{trip.route_id}_d{int(getattr(trip, 'direction_id', 0))}",
             "wheelchair_accessible": 1,
             "bikes_allowed": 1,
         })
