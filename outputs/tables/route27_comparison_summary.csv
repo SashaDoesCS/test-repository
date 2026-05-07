@@ -1,0 +1,3 @@
+scope,n_kept,n_new,n_removed,baseline_daily,projected_daily,delta_daily,kept_daily_boardings,new_daily_boardings,removed_daily_boardings,reabsorbed_daily_estimate,reabsorption_rate_used,baseline_annual,projected_annual,delta_annual
+LG_only,37,0,30,201.8,160.15,-41.65,97.68,0.0,104.12,62.47,0.6,51459,40838,-10621
+full_corridor,73,16,99,898.27,1109.66,211.39,222.24,481.8,676.03,405.62,0.6,229059,282963,53904
