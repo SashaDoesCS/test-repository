@@ -223,6 +223,22 @@ FORCED_CANDIDATES: List[dict] = [
         "source": "Caltrans SR-85 / Camden Ave interchange; existing VTA stop stop_id 1757",
         "is_mandatory": False,
     },
+    {
+        "stop_id": "R27_FORCE_008",
+        "stop_name": "Los Gatos High School (20 High School Ct)",
+        # User-supplied corrected coordinates (May 2026): the prior coord
+        # (37.2270, -121.9745) snapped to the Hwy 17/85 cloverleaf interchange
+        # and rendered the stop inside the freeway median on the dashboard.
+        # The current coord is the LGHS main entrance on Blossom Hill Rd.
+        "stop_lat": 37.22106811402752, "stop_lon": -121.97631348385276,
+        "activity_type": "school",
+        "source": (
+            "LGUHSD facility map (20 High School Ct, Los Gatos, CA 95030); "
+            "FTA Title VI Circular 4702.1B §7 school-access requirement; "
+            "user-validated coordinate (May 2026, replacing freeway-median pin)"
+        ),
+        "is_mandatory": True,
+    },
 ]
 
 # ---------------------------------------------------------------------------
@@ -859,6 +875,18 @@ def add_forced_candidates(
     """
     if forced is None:
         forced = FORCED_CANDIDATES
+
+    # W2: validate every forced-stop coordinate against the OSM drivable network
+    # before allowing it into the candidate set. Catches the failure mode where
+    # a hand-coded coord lands on a freeway ramp / interchange median (the
+    # original LGHS bug). Logs failures; does NOT raise here so the pipeline can
+    # finish in offline / no-graph environments. Run `python -m src.stop_validator`
+    # for strict pre-flight validation.
+    try:
+        from src.stop_validator import validate_forced_candidates as _vfc
+        _vfc(forced, raise_on_invalid=False)
+    except Exception as exc:
+        logger.warning("Forced-candidate placement validation skipped: %s", exc)
 
     forced_rows = []
     for fc in forced:
