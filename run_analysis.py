@@ -1134,9 +1134,15 @@ def main(cba_only: bool = False):
         opt_result["routes"], network_result["travel_time_matrix"], config)
     schedule["school_coverage"].to_csv(
         "outputs/tables/school_coverage_verification.csv", index=False)
+    # W4: persist headway-parity report for the dashboard / reviewers.
+    if "headway_parity" in schedule and schedule["headway_parity"] is not None:
+        schedule["headway_parity"].to_csv(
+            "outputs/tables/headway_parity.csv", index=False)
     n_school_trips = sum(1 for t in schedule["all_trips"] if t.is_school_trip)
-    logger.info("  Total trips/day: %d (school: %d)",
-                len(schedule["all_trips"]), n_school_trips)
+    n_d0 = sum(1 for t in schedule["all_trips"] if int(getattr(t, "direction_id", 0)) == 0)
+    n_d1 = sum(1 for t in schedule["all_trips"] if int(getattr(t, "direction_id", 0)) == 1)
+    logger.info("  Total trips/day: %d (school: %d, dir 0: %d, dir 1: %d)",
+                len(schedule["all_trips"]), n_school_trips, n_d0, n_d1)
 
     # -- Step B5: GTFS Export --
     logger.info("\nStep B5: Exporting GTFS feed...")

@@ -47,6 +47,9 @@ class Trip:
     stop_times: List[StopTime]
     is_school_trip: bool = False
     school_window: Optional[str] = None   # e.g. "14:25" dismissal this trip serves
+    # GTFS direction_id: 0 = primary direction (e.g., Winchester -> Santa Teresa),
+    # 1 = reverse direction. Required by GTFS spec for routes operating both ways.
+    direction_id: int = 0
 
 
 # =====================================================================
@@ -199,35 +202,13 @@ def _get_tt(matrix: pd.DataFrame, from_id: str, to_id: str) -> float:
 # REGULAR TRIP GENERATION (FORWARD SCHEDULING)
 # =====================================================================
 
-def generate_headway_trips(
-    route,       # OptimisedRoute
-    travel_time_matrix: pd.DataFrame,
-    service_span: dict,
+def _build_window_schedule(
+    route,
     time_windows: dict,
-    route_counter_start: int = 1,
-) -> List[Trip]:
-    """Generate regular headway trips across the full service span.
-
-    Anchors first trip at service_span.start (e.g., 06:00) and propagates
-    forward at the headway for each time-of-day window.
-
-    Args:
-        route: OptimisedRoute with stops and headways populated.
-        travel_time_matrix: stop_id × stop_id travel time in seconds.
-        service_span: Dict with start and end (HH:MM).
-        time_windows: Dict of window_name → [start, end] from config.
-        route_counter_start: Integer to start trip ID numbering.
-
-    Returns:
-        List of Trip objects for regular service.
-    """
-    if not route.stops:
-        return []
-
-    start_sec = _hhmm_to_seconds(service_span.get("start", "06:00"))
-    end_sec = _hhmm_to_seconds(service_span.get("end", "21:00"))
-
-    # Build window schedule: list of (window_start_sec, window_end_sec, headway_sec)
+    start_sec: int,
+    end_sec: int,
+) -> list:
+    """Return [(window_start_sec, window_end_sec, headway_sec), ...]."""
     window_schedule = []
     window_order = ["am_peak", "midday", "pm_school", "pm_commute", "evening"]
     for wname in window_order:
@@ -240,32 +221,44 @@ def generate_headway_trips(
             _hhmm_to_seconds(wend),
             hw * 60,
         ))
-
     if not window_schedule:
         window_schedule = [(start_sec, end_sec, 30 * 60)]
+    return window_schedule
 
-    trips = []
-    trip_counter = route_counter_start
+
+def _build_trips_one_direction(
+    route,
+    stop_sequence: list,
+    leg_times: list,
+    window_schedule: list,
+    start_sec: int,
+    end_sec: int,
+    direction_id: int,
+    headsign: str,
+    trip_id_prefix: str,
+    trip_counter_start: int,
+) -> List[Trip]:
+    """Generate headway trips along a given stop sequence and direction_id.
+
+    The reverse-direction (direction_id=1) call passes stop_sequence and
+    leg_times in reversed order so departure-time accumulation walks the
+    corridor backwards. Travel times mirror because Route 27 is a linear
+    surface route -- inbound and outbound segment times differ only at the
+    margin (left vs right turns) and the schedule treats them as symmetric.
+    """
+    trips: List[Trip] = []
+    trip_counter = trip_counter_start
     current_departure = start_sec
-
-    # Precompute running times between consecutive stops
-    leg_times = []
-    for i in range(len(route.stops) - 1):
-        tt = _get_tt(travel_time_matrix, route.stops[i].stop_id, route.stops[i + 1].stop_id)
-        leg_times.append(int(tt))
-
     while current_departure <= end_sec:
-        # Determine headway for current position in day
-        headway_sec = 30 * 60  # default 30-min
+        headway_sec = 30 * 60
         for ws, we, hw in window_schedule:
             if ws <= current_departure < we:
                 headway_sec = hw
                 break
 
-        # Build stop times for this trip
         stop_times = []
         cum_sec = current_departure
-        for seq, stop in enumerate(route.stops):
+        for seq, stop in enumerate(stop_sequence):
             dep_sec = cum_sec + 30  # 30s dwell
             stop_times.append(StopTime(
                 stop_id=stop.stop_id,
@@ -276,19 +269,96 @@ def generate_headway_trips(
             if seq < len(leg_times):
                 cum_sec = dep_sec + leg_times[seq]
 
-        trip_id = f"{route.route_id}_T{trip_counter:03d}"
+        trip_id = f"{trip_id_prefix}_T{trip_counter:03d}"
         trips.append(Trip(
             trip_id=trip_id,
             route_id=route.route_id,
             service_id="WEEKDAY",
-            headsign=route.stops[-1].stop_name,
+            headsign=headsign,
             stop_times=stop_times,
             is_school_trip=False,
+            direction_id=direction_id,
         ))
         trip_counter += 1
         current_departure += headway_sec
-
     return trips
+
+
+def generate_headway_trips(
+    route,       # OptimisedRoute
+    travel_time_matrix: pd.DataFrame,
+    service_span: dict,
+    time_windows: dict,
+    route_counter_start: int = 1,
+    bidirectional: bool = True,
+) -> List[Trip]:
+    """Generate regular headway trips across the full service span, BOTH directions.
+
+    For ``bidirectional=True`` (default) emits two trip series with matching
+    headways:
+      direction_id=0  outbound, primary stop sequence
+      direction_id=1  inbound, reversed sequence
+    Headways are mirrored so frequency is identical in both directions, which
+    is the GTFS standard expectation for a two-way local route.
+
+    Args:
+        route: OptimisedRoute with stops and headways populated.
+        travel_time_matrix: stop_id x stop_id travel time in seconds.
+        service_span: Dict with start and end (HH:MM).
+        time_windows: Dict of window_name -> [start, end] from config.
+        route_counter_start: Integer to start trip ID numbering.
+        bidirectional: If True, emit direction_id=0 AND direction_id=1 trips.
+
+    Returns:
+        List of Trip objects for regular service.
+    """
+    if not route.stops:
+        return []
+
+    start_sec = _hhmm_to_seconds(service_span.get("start", "06:00"))
+    end_sec = _hhmm_to_seconds(service_span.get("end", "21:00"))
+    window_schedule = _build_window_schedule(route, time_windows, start_sec, end_sec)
+
+    # Forward leg times
+    leg_times = []
+    for i in range(len(route.stops) - 1):
+        tt = _get_tt(travel_time_matrix, route.stops[i].stop_id, route.stops[i + 1].stop_id)
+        leg_times.append(int(tt))
+
+    # Direction 0: outbound (route.stops as-is). Headsign = last stop name.
+    out_trips = _build_trips_one_direction(
+        route=route,
+        stop_sequence=route.stops,
+        leg_times=leg_times,
+        window_schedule=window_schedule,
+        start_sec=start_sec,
+        end_sec=end_sec,
+        direction_id=0,
+        headsign=route.stops[-1].stop_name,
+        trip_id_prefix=f"{route.route_id}_D0",
+        trip_counter_start=route_counter_start,
+    )
+
+    if not bidirectional:
+        return out_trips
+
+    # Direction 1: inbound. Reverse stop sequence and leg times.
+    rev_stops = list(reversed(route.stops))
+    rev_legs = list(reversed(leg_times))
+    in_trips = _build_trips_one_direction(
+        route=route,
+        stop_sequence=rev_stops,
+        leg_times=rev_legs,
+        window_schedule=window_schedule,
+        start_sec=start_sec,
+        end_sec=end_sec,
+        direction_id=1,
+        headsign=route.stops[0].stop_name,
+        trip_id_prefix=f"{route.route_id}_D1",
+        trip_counter_start=route_counter_start + len(out_trips),
+    )
+
+    return out_trips + in_trips
 
 
 # =====================================================================
@@ -437,6 +507,156 @@ def verify_school_coverage(
 
 
 # =====================================================================
+# W4: HEADWAY PARITY (frequency same-or-better assertion)
+# =====================================================================
+
+# Default published Route 27 headways (minutes) per time window per direction.
+# Derived from VTA's published Route 27 timetable (Bus_Schedules___Observed_Times.md
+# in data/raw); both directions currently run on identical 30-min headways with
+# 60-min gaps in evening / weekend windows. The optimised schedule must match
+# or improve every (window, direction) entry -- never make service less frequent.
+PUBLISHED_ROUTE27_HEADWAYS_MIN = {
+    "am_peak":    30,
+    "midday":     30,
+    "pm_school":  30,
+    "pm_commute": 30,
+    "evening":    60,
+}
+
+
+def measure_effective_headways(
+    trips: List[Trip],
+    time_windows: dict,
+) -> pd.DataFrame:
+    """Compute the effective headway (minutes between successive trips) for
+    each (route, direction, window) from a generated trip list.
+
+    Effective headway is computed as the median gap between consecutive trip
+    departures from the first stop of the direction, restricted to trips whose
+    first departure falls inside the window.
+
+    Returns:
+        DataFrame columns: route_id, direction_id, window, n_trips,
+        median_headway_min, max_headway_min.
+    """
+    rows = []
+    if not trips:
+        return pd.DataFrame(columns=[
+            "route_id", "direction_id", "window", "n_trips",
+            "median_headway_min", "max_headway_min",
+        ])
+
+    # Group trips by (route_id, direction_id)
+    grouped: Dict[Tuple[str, int], List[int]] = {}
+    for t in trips:
+        if not t.stop_times:
+            continue
+        first_dep = _hhmm_to_seconds(t.stop_times[0].departure_time)
+        key = (t.route_id, int(getattr(t, "direction_id", 0)))
+        grouped.setdefault(key, []).append(first_dep)
+
+    for (rid, did), departures in grouped.items():
+        departures.sort()
+        for wname, (wstart, wend) in time_windows.items():
+            ws = _hhmm_to_seconds(wstart)
+            we = _hhmm_to_seconds(wend)
+            in_window = [d for d in departures if ws <= d < we]
+            if len(in_window) < 2:
+                rows.append({
+                    "route_id": rid, "direction_id": did, "window": wname,
+                    "n_trips": len(in_window),
+                    "median_headway_min": None, "max_headway_min": None,
+                })
+                continue
+            gaps_sec = [in_window[i + 1] - in_window[i] for i in range(len(in_window) - 1)]
+            med = sorted(gaps_sec)[len(gaps_sec) // 2] / 60.0
+            mx = max(gaps_sec) / 60.0
+            rows.append({
+                "route_id": rid, "direction_id": did, "window": wname,
+                "n_trips": len(in_window),
+                "median_headway_min": round(med, 1),
+                "max_headway_min": round(mx, 1),
+            })
+    return pd.DataFrame(rows)
+
+
+def check_headway_parity(
+    trips: List[Trip],
+    time_windows: dict,
+    baseline_headways_min: dict = PUBLISHED_ROUTE27_HEADWAYS_MIN,
+    strict: bool = False,
+) -> pd.DataFrame:
+    """Verify the optimised schedule maintains or improves frequency.
+
+    For each (route_id, direction_id, window), compares the measured median
+    headway against the published baseline. A row is OK if
+        measured <= baseline    (same or shorter wait between buses).
+    A row is FAIL if measured > baseline (less frequent service).
+
+    Args:
+        trips: All Trip objects produced by generate_schedule().
+        time_windows: Dict of window_name -> [start, end].
+        baseline_headways_min: Per-window published headways. Default uses
+            VTA Route 27 published values.
+        strict: If True, raises AssertionError on any FAIL row.
+
+    Returns:
+        DataFrame with one row per (route, direction, window) with columns:
+        baseline_min, measured_min, status (OK|FAIL|NO_TRIPS), delta_min.
+    """
+    measured = measure_effective_headways(trips, time_windows)
+    rows = []
+    for _, m in measured.iterrows():
+        baseline = baseline_headways_min.get(m["window"])
+        meas = m["median_headway_min"]
+        if baseline is None:
+            status = "NO_BASELINE"
+            delta = None
+        elif meas is None:
+            status = "NO_TRIPS"
+            delta = None
+        elif meas <= baseline + 0.5:   # 30-second tolerance for rounding
+            status = "OK"
+            delta = round(meas - baseline, 1)
+        else:
+            status = "FAIL"
+            delta = round(meas - baseline, 1)
+        rows.append({
+            "route_id": m["route_id"],
+            "direction_id": m["direction_id"],
+            "window": m["window"],
+            "baseline_headway_min": baseline,
+            "measured_headway_min": meas,
+            "max_headway_min": m["max_headway_min"],
+            "n_trips_in_window": m["n_trips"],
+            "delta_min": delta,
+            "status": status,
+        })
+    df = pd.DataFrame(rows)
+
+    fails = df[df["status"] == "FAIL"]
+    if len(fails) > 0:
+        for _, r in fails.iterrows():
+            logger.error(
+                "HEADWAY PARITY FAIL: route=%s dir=%d window=%s "
+                "measured=%s min vs baseline=%s min (delta +%s)",
+                r["route_id"], r["direction_id"], r["window"],
+                r["measured_headway_min"], r["baseline_headway_min"], r["delta_min"],
+            )
+        if strict:
+            raise AssertionError(
+                f"{len(fails)} (route, direction, window) combination(s) violate "
+                f"the same-or-better frequency requirement. See log for details."
+            )
+    else:
+        logger.info(
+            "Headway parity: OK across %d (route, direction, window) checks.",
+            len(df),
+        )
+    return df
+
+
+# =====================================================================
 # PIPELINE ENTRY POINT
 # =====================================================================
 
@@ -505,10 +725,31 @@ def generate_schedule(
     else:
         logger.info("All school pickup constraints satisfied.")
 
-    logger.info("Schedule generated: %d total trips across %d routes.",
-                len(all_trips), len(routes))
+    # W4: bidirectional + headway-parity check (frequency same-or-better than
+    # the published baseline). Pulled from config when present, else defaults
+    # to PUBLISHED_ROUTE27_HEADWAYS_MIN.
+    baseline_headways = opt_cfg.get("baseline_headways_min", PUBLISHED_ROUTE27_HEADWAYS_MIN)
+    headway_parity = check_headway_parity(
+        all_trips, time_windows, baseline_headways_min=baseline_headways,
+        strict=False,
+    )
+
+    # Direction coverage: every route should now emit trips in BOTH directions.
+    by_dir = {}
+    for t in all_trips:
+        by_dir.setdefault(t.route_id, set()).add(int(getattr(t, "direction_id", 0)))
+    for rid, dirs in by_dir.items():
+        if dirs != {0, 1}:
+            logger.warning(
+                "Route %s only generated trips in directions %s; expected both 0 and 1.",
+                rid, sorted(dirs),
+            )
+
+    logger.info("Schedule generated: %d total trips across %d routes "
+                "(both directions).", len(all_trips), len(routes))
     return {
         "all_trips": all_trips,
         "school_coverage": school_coverage,
         "trips_by_route": trips_by_route,
+        "headway_parity": headway_parity,
     }
