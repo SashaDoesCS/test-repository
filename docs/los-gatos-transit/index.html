@@ -313,8 +313,31 @@
   </div>
   <div class="metric-cell">
     <div class="val">$1.71</div>
-    <div class="desc">In benefits returned per $1 spent, current network, 20-year horizon at 3.5% discount</div>
+    <div class="desc">Benefits per $1 spent, current Route 27 network, 20-yr horizon at 3.5% discount</div>
     <div class="src">USDOT BCA Guidance 2024, OMB Circular A-94</div>
+  </div>
+</div>
+
+<div class="metrics-strip" style="border-top: none;">
+  <div class="metric-cell">
+    <div class="val">$4.51</div>
+    <div class="desc">Benefits per $1 spent, universal LGHS student/staff pass scenario</div>
+    <div class="src">BCR program, S1 ridership (76 new riders)</div>
+  </div>
+  <div class="metric-cell">
+    <div class="val">32%</div>
+    <div class="desc">LGHS students unaware Route 27 exists — and 100% of unaware respondents said they would consider it once told</div>
+    <div class="src">LGHS Bus Survey, N=75</div>
+  </div>
+  <div class="metric-cell">
+    <div class="val warn">~9 min</div>
+    <div class="desc">Gap between the current Route 27 AM arrival and the 08:30 LGUSD bell time at LGHS</div>
+    <div class="src">VTA GTFS feed, LGUSD bell schedule</div>
+  </div>
+  <div class="metric-cell">
+    <div class="val">0</div>
+    <div class="desc">New stops the route optimizer was willing to add on the existing alignment — pure optimization is not the lever</div>
+    <div class="src">Clarke-Wright + OTP + custom optimizer, all configs</div>
   </div>
 </div>
 
@@ -387,14 +410,16 @@
         <p class="arrow">Open the full analysis</p>
       </a>
       <a class="proj-card" href="route-redesign.html">
-        <span class="status soon">In progress</span>
-        <h3>Route redesign</h3>
+        <span class="status">Live</span>
+        <h3>Route 27 redesign</h3>
         <p>
-          A reworked Route 27 with 13 candidate new stops in underserved neighborhoods, plus
-          the case for restoring Route 76 to Summit Road. The interactive corridor map and
-          ridership model are being finalized.
+          Phase B optimization is done. The honest result: mechanical optimization can only
+          remove stops, not fix the things actually limiting ridership. The page covers the
+          ranked-stops map, the methods we ran, why pure optimization is not the answer, and
+          the three coordinated asks we are taking into VTA: a universal pass, bell-aligned
+          schedules, and stop signage.
         </p>
-        <p class="arrow">See what is coming</p>
+        <p class="arrow">Open the route-redesign work</p>
       </a>
       <a class="proj-card" href="analysis.html#glossary">
         <span class="status">Reference</span>
@@ -413,19 +438,19 @@
         <div class="phase">Phase A</div>
         <div class="phase-name">Cost-Benefit Analysis</div>
         <span class="phase-status done">Complete</span>
-        <p>16 districts mapped and costed. 8 benefit categories quantified. BCR and NPV computed at all three OMB discount rates.</p>
+        <p>16 districts mapped and costed. 8 benefit categories quantified. BCR and NPV computed at all three OMB discount rates. Route 27 BCR = 1.71; universal LGHS pass BCR = 4.51.</p>
       </div>
       <div class="timeline-step">
         <div class="phase">Phase B</div>
-        <div class="phase-name">Route Optimization</div>
+        <div class="phase-name">Optimization &amp; Ranking</div>
         <span class="phase-status done">Complete</span>
-        <p>Clarke-Wright routing, Mohring headways, FTA 9040.1G stop spacing. Route 27 corridor with 13 new stop candidates.</p>
+        <p>Clarke-Wright + OpenTripPlanner + custom Python optimizer. 3 stops confirmed for removal, ~6 consolidation candidates, 0 new stops added on the existing alignment. Ridership calibrated to within +0.5% of audited VTA Title VI baseline.</p>
       </div>
       <div class="timeline-step">
         <div class="phase">Phase C</div>
-        <div class="phase-name">Public Presentation</div>
+        <div class="phase-name">VTA Commissioner Input</div>
         <span class="phase-status active">In progress</span>
-        <p>Finalizing the public-facing route-redesign dashboard. Stop-by-stop placards with walkshed maps and benefit-cost ratios.</p>
+        <p>Bell-aligned AM/PM timetable (D1), ranked stop-removal table (D2), reliability-gain BCR (D3), and signage gap inventory (D4) being packaged for a low-pressure Commissioner input session. Stop list not yet finalized.</p>
       </div>
     </div>
   </div>
