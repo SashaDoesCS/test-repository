@@ -282,12 +282,20 @@
         <div class="rs-lbl">BCR, universal LGHS student/staff pass scenario</div>
       </div>
       <div class="route-stat">
-        <div class="rs-val">32%</div>
-        <div class="rs-lbl">LGHS students unaware Route 27 exists (LGHS survey, N=75)</div>
+        <div class="rs-val">44.3%</div>
+        <div class="rs-lbl">LGHS respondents unaware Route 27 exists (N=197, ~10% of student body)</div>
       </div>
       <div class="route-stat">
-        <div class="rs-val warn">~9 min</div>
-        <div class="rs-lbl">Gap between the current Route 27 AM arrival and the 08:30 LGUSD bell at LGHS</div>
+        <div class="rs-val">56.3%</div>
+        <div class="rs-lbl">Union MS driving students unaware of the bus system (N=705, ~70% of student body)</div>
+      </div>
+      <div class="route-stat">
+        <div class="rs-val">42.5%</div>
+        <div class="rs-lbl">LGHS respondents who said better VTA arrival times or closer stops would get them on the bus</div>
+      </div>
+      <div class="route-stat">
+        <div class="rs-val warn">~13 min</div>
+        <div class="rs-lbl">Westbound Main &amp; Pleasant: scheduled 08:17, actually arrives 08:30 — after the 08:30 LGHS bell</div>
       </div>
       <div class="route-stat">
         <div class="rs-val">61,350</div>
@@ -351,9 +359,14 @@
         <div class="fc-num">01 — Highest ROI</div>
         <h3>Universal LGHS student/staff pass</h3>
         <p>
-          $41,080 per year (April 2026 Complete Streets packet quote), <strong>BCR ≈ 4.51</strong>
-          under conservative S1 assumptions (76 new riders). This is the single highest-return
-          marginal intervention in the entire analysis. Partner is separately exploring a
+          VTA has offered the Town a <strong>SmartPass deal at $41,080/year</strong> covering
+          <em>every</em> LGHS student and staff member. For context, buying monthly passes
+          individually for just the survey-identified interested cohort (at $35/mo VTA youth
+          rate, 95% confidence band) would cost $22,830–$78,458 — so the bundled SmartPass is
+          in-range for the interested cohort alone and far cheaper per head once the whole
+          student body is included. Could save students up to <strong>$37,000/yr</strong> and
+          create <strong>76 new riders</strong>. <strong>BCR ≈ 4.51</strong> — the single
+          highest-return marginal intervention in the analysis. Partner is exploring a
           school-purchases-then-resells-via-ASB workaround for the "school should fund it"
           objection.
         </p>
@@ -362,23 +375,29 @@
         <div class="fc-num">02 — Schedule</div>
         <h3>Bell-aligned AM and PM timetable</h3>
         <p>
-          Five LGUSD schools start at 08:30 (LGHS, Union MS, Fisher MS, Dartmouth MS, plus Oak
-          Grove and Leigh for PM coordination). Route 27 currently misses the AM window by
-          ~9 minutes. The proposed retime delivers riders to all four R27-served school stops
-          between 08:10 and 08:25 without breaking Santa Teresa / Winchester LRT connections
-          or Route 37 timed transfers. A Wednesday-only variant covers Dartmouth's 13:50
-          early release.
+          Concrete misalignment example from the survey report: westbound Main &amp; Pleasant
+          near LGHS is scheduled for 08:17 but consistently arrives at 08:30, after the
+          08:30 bell. Eastbound Union Ave &amp; LG-Almaden arrives <em>two minutes before</em>
+          Union's late bell. Survey data shows that if buses arrive within 10 minutes of the
+          rider's preferred time, <strong>≥80% will ride</strong>. The proposed retime
+          delivers riders to all four R27-served school stops between 08:10 and 08:25 without
+          breaking Santa Teresa / Winchester LRT connections or Route 37 timed transfers,
+          with a Wednesday-only variant for Dartmouth's 13:50 early release.
         </p>
       </div>
       <div class="feature-card">
-        <div class="fc-num">03 — Discoverability</div>
-        <h3>Stop signage and basic amenities at school-adjacent stops</h3>
+        <div class="fc-num">03 — Discoverability &amp; education</div>
+        <h3>Stop signage, in-school outreach, Clipper-Card-to-Student-ID</h3>
         <p>
-          The LGHS survey found that <strong>32% of respondents were not aware Route 27
-          exists</strong>, and <strong>100% of unaware respondents</strong> said they would
-          consider the bus once told. Most Route 27 stops are bare signposts with no bench,
-          shelter, real-time display, or wayfinding to the school. A per-stop amenity
-          inventory (D4) and a one-day audit plan are the next deliverable.
+          The paired LGHS + Union survey found <strong>44.3% of LGHS respondents</strong>
+          (N=197) and <strong>56.3% of Union MS driving students</strong> (N=705) did not
+          know the bus system existed. Among LGHS respondents who said the right
+          improvements would get them on the bus, <strong>17.2%</strong> said a definitive
+          yes to "would you take the bus if it stopped nearby and arrived at a reasonable
+          time"; another large slice of Union MS respondents (~44%) answered "maybe." Most
+          Route 27 stops are bare signposts. A per-stop amenity inventory, SR2S-curriculum
+          integration, and an exploratory ask about Clipper-Card-to-Student-ID linkage are
+          the next deliverables.
         </p>
       </div>
       <div class="feature-card">
@@ -557,9 +576,9 @@
           <td>LGUSD bell schedules · GTFS <code>stop_times.txt</code></td>
         </tr>
         <tr>
-          <td>LGHS student survey integration</td>
-          <td>75 responses geocoded (Nominatim with Los Gatos bbox); free-text "where do you board" points cleaned against the Loma Prieta cutoff. Frequency tables on mode, awareness, primary barrier, and willingness-to-switch. Auto-displacement cross-tab used to recalibrate <code>pct_diverted_from_auto</code> for the pass scenario.</td>
-          <td><code>analysis/lghs_combined_findings.md</code></td>
+          <td>Paired LGHS + Union MS bus survey</td>
+          <td>LGHS N=197 (~10% of student body, 3.46% margin of error at 95% confidence), Union MS N=705 (~70% of student body). Frequency tables on mode, awareness, primary barriers, preferred improvements, and willingness-to-switch. Wait-tolerance distributions (5 min / 10 / 20 / 30 / 45 / 1 hr) feed the bell-alignment design. Auto-displacement cross-tab recalibrates <code>pct_diverted_from_auto</code> for the pass scenario.</td>
+          <td>Youth Commission / Traffic Safety Ad-Hoc, Jan–May 2026</td>
         </tr>
         <tr>
           <td>QGIS / GeoPackage export</td>
