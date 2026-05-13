@@ -207,6 +207,19 @@
 
 .corrections li { margin-bottom: 6px; }
 .corrections li:last-child { margin-bottom: 0; }
+
+/* why-not-optimization two-column block */
+.why-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+.why-block h3 { font-size: 18px; margin-bottom: 10px; color: var(--tx); }
+.why-block p { font-size: 15px; color: var(--tm); line-height: 1.7; margin-bottom: 12px; }
+.why-block p strong { color: var(--tx); }
+.why-block p:last-child { margin-bottom: 0; }
+@media (max-width: 860px) { .why-grid { grid-template-columns: 1fr; gap: 24px; } }
 </style>
 </head>
 <body>
@@ -230,18 +243,20 @@
 
 <section class="advo-hero">
   <div class="wrap">
-    <div class="status-banner">In progress, finalizing public dashboard</div>
-    <h1>Route redesign, <em>coming together.</em></h1>
+    <div class="status-banner">Phase B complete — pivoting from route redesign to bell alignment, signage, and a universal student pass</div>
+    <h1>Route 27, <em>why the optimizer is not the answer.</em></h1>
     <p class="lede">
-      The interactive route-redesign tool, corridor maps, candidate stops,
-      headway scheduling, and ridership projections, is being finalized.
-      The numbers it depends on are already published in the
-      <a href="analysis.html">cost-benefit analysis</a>. This page explains what is in it
-      and what comes next.
+      We ran every standard route-optimization tool against VTA Route 27. The honest result:
+      mechanical optimization can only <em>remove</em> stops, not fix the things that are
+      actually holding ridership back. The corridor already returns
+      <strong>$1.71 per $1</strong>; a universal LGHS student/staff pass returns
+      <strong>$4.51 per $1</strong>. The work below explains what we tried, what it found,
+      and what we are now arguing for instead.
     </p>
     <div class="cta-row">
-      <a class="btn" href="analysis.html">Read the analysis now</a>
-      <a class="btn btn-ghost" href="index.html">Back to project home</a>
+      <a class="btn" href="analysis.html">Read the analysis</a>
+      <a class="btn btn-ghost" href="#ranked-stops">Skip to the ranked-stops map</a>
+      <a class="btn btn-ghost" href="#why-not-optimization">Why not pure optimization</a>
     </div>
   </div>
 </section>
@@ -249,102 +264,198 @@
 <!-- Key figures from Phase B -->
 <section class="sec">
   <div class="wrap">
-    <div class="eyebrow">Phase B results, already computed</div>
-    <h2>What the optimization found</h2>
-    <p style="font-size: 16px; color: var(--tm); max-width: 680px; margin-bottom: 0;">
-      The Clarke-Wright routing algorithm and FTA Circular 9040.1G stop spacing standard have
-      already been run. These numbers are from the pipeline output. The public-facing
-      dashboard to present them is what remains.
+    <div class="eyebrow">Phase B results, validated</div>
+    <h2>What the optimization actually found</h2>
+    <p style="font-size: 16px; color: var(--tm); max-width: 720px; margin-bottom: 0;">
+      Clarke-Wright savings, FTA Circular 9040.1G stop spacing, OpenTripPlanner accessibility
+      graphs, and a custom Python optimizer were all run against the corridor. The ridership
+      model was calibrated to within <strong>+0.5%</strong> of the audited VTA Title VI
+      FY2023 figure (61,350 annual boardings). The headline numbers below are from that
+      pipeline.
     </p>
 
     <div class="route-stats">
-      <div class="route-stat">
-        <div class="rs-val">13</div>
-        <div class="rs-lbl">New candidate stops identified on Route 27 corridor</div>
-      </div>
-      <div class="route-stat">
-        <div class="rs-val">117</div>
-        <div class="rs-lbl">Total stops in optimized network (existing + new)</div>
-      </div>
       <div class="route-stat">
         <div class="rs-val ac" style="color:var(--ac)">1.71</div>
         <div class="rs-lbl">BCR, Route 27 current network (20-yr, 3.5% discount)</div>
       </div>
       <div class="route-stat">
-        <div class="rs-val warn">~264K</div>
-        <div class="rs-lbl">Current annual boardings, Route 27</div>
+        <div class="rs-val ac" style="color:var(--ac)">4.51</div>
+        <div class="rs-lbl">BCR, universal LGHS student/staff pass scenario</div>
       </div>
       <div class="route-stat">
-        <div class="rs-val" style="color:var(--ac)">~317K</div>
-        <div class="rs-lbl">Projected annual boardings, optimized Route 27 (+20%)</div>
+        <div class="rs-val">3</div>
+        <div class="rs-lbl">Stops confirmed for removal by the optimizer (5th-percentile usage, ≤153 m from a retained stop)</div>
       </div>
       <div class="route-stat">
-        <div class="rs-val warn" id="r76-bcr-stat">&lt;1.0</div>
-        <div class="rs-lbl">BCR, Route 76 restoration scenario — not yet sufficient to recommend</div>
+        <div class="rs-val warn">0</div>
+        <div class="rs-lbl">New stops the optimizer was willing to add to the existing alignment</div>
+      </div>
+      <div class="route-stat">
+        <div class="rs-val">1.14</div>
+        <div class="rs-lbl">BCR, Config A school-trip extension (only one of three configs to clear 1.0)</div>
+      </div>
+      <div class="route-stat">
+        <div class="rs-val warn">61,350</div>
+        <div class="rs-lbl">Audited annual Route 27 boardings (VTA Title VI FY2023, Table 3.2)</div>
       </div>
     </div>
 
     <div class="data-chips">
-      <span class="data-chip live">Clarke-Wright savings algorithm</span>
+      <span class="data-chip live">VTA GTFS feed</span>
+      <span class="data-chip live">OpenTripPlanner 2.x accessibility graph</span>
+      <span class="data-chip live">Clarke-Wright savings</span>
       <span class="data-chip live">FTA Circular 9040.1G spacing</span>
-      <span class="data-chip live">Mohring (1972) headway formula</span>
-      <span class="data-chip live">BCR per stop, OMB A-94 3.5%, 20 yr</span>
-      <span class="data-chip live">GTFS output, 8 files</span>
-      <span class="data-chip pending">Public corridor map</span>
-      <span class="data-chip pending">Ridership projection display</span>
+      <span class="data-chip live">Mohring (1972) headway</span>
+      <span class="data-chip live">Haversine stop-spacing audit</span>
+      <span class="data-chip live">QGIS walk-shed (400 m / 800 m)</span>
+      <span class="data-chip live">Ridership calibration 0.199 → +0.5% of observed</span>
+      <span class="data-chip pending">D3 reliability-gain BCR (in progress)</span>
+      <span class="data-chip pending">D4 signage / amenity field audit</span>
     </div>
   </div>
 </section>
 
-<!-- What will be on this page -->
+<!-- Why pure optimization fails -->
+<section class="sec" id="why-not-optimization">
+  <div class="wrap">
+    <div class="eyebrow">Strategic pivot</div>
+    <h2>Why pure route optimization is not the way forward</h2>
+    <p style="font-size: 16px; color: var(--tm); max-width: 760px;">
+      Every off-the-shelf optimizer we ran — Clarke-Wright, OpenTripPlanner accessibility
+      scoring, a custom Python scorer using FTA 9040.1G spacing rules — produced the same
+      shape of answer: <strong>remove a handful of redundant stops, decline to add any new
+      ones</strong>. That is not a quirk of the tooling. It is a structural property of how
+      these algorithms work, and it tells us the real constraints on Route 27 ridership are
+      elsewhere.
+    </p>
+
+    <div class="why-grid" style="margin-top: 28px;">
+      <div class="why-block">
+        <h3>What optimizers can do</h3>
+        <p>
+          Mechanical optimization is good at one thing: <strong>shaving redundancy out of an
+          existing alignment</strong>. Given a fixed corridor and a usage proxy, it will
+          identify stops that are too close together or too lightly used, and it will rank
+          them. That work is done. Three stops on Route 27 pass every removal gate
+          (≤153 m from a retained stop, below 5th-percentile usage, not a terminal, not
+          near a school). Another ~6 are <em>consolidation candidates</em> in the 10th-percentile
+          zone — same demand could be served better by one improved stop instead of two bare poles.
+        </p>
+      </div>
+      <div class="why-block">
+        <h3>What optimizers cannot do</h3>
+        <p>
+          Optimizers do not know about <strong>bell times</strong>, <strong>stop legibility</strong>,
+          or the <strong>universal pass</strong>. They cannot see that 32% of LGHS students
+          surveyed did not know Route 27 existed (and 100% of unaware respondents said they
+          would consider the bus once told). They cannot see that the current AM trip arrives
+          ~9 minutes after the 08:30 bell. They cannot see that a $41,080/yr universal pass
+          would unlock more displaced auto trips than any plausible alignment change.
+          These are the binding constraints, and none of them are reachable from inside an
+          optimizer.
+        </p>
+      </div>
+    </div>
+
+    <div class="callout info" style="margin-top: 24px;">
+      <strong>The reframed deliverable.</strong> Treat the optimizer output as a
+      <em>candidate list</em>, not an action plan. Near-school stops default to
+      <code>latent_demand_candidate</code> because APC data is unavailable and the
+      frequency-based usage proxy is blind to bell-time boarding bursts. The real wins are
+      <strong>bell-alignment, signage, and the pass</strong> — three coordinated, low-cost
+      asks that reinforce each other.
+    </div>
+  </div>
+</section>
+
+<!-- Ranked stops map -->
+<section class="sec" id="ranked-stops">
+  <div class="wrap">
+    <div class="eyebrow">Live map</div>
+    <h2>Route 27 ranked stops</h2>
+    <p style="font-size: 16px; color: var(--tm); max-width: 760px;">
+      Pins below are the Route 27 stops ranked by the combined usage-proxy / distance-to-nearest-retained
+      score described in the methodology section. Red pins flag confirmed removal candidates;
+      amber pins are consolidation / upgrade candidates; green pins are near-school stops that
+      should be retained until APC data is in hand. <strong>The list is not final</strong> —
+      it is being reviewed with VTA and LGUSD before any change is recommended.
+    </p>
+    <div style="margin-top: 18px; border: 1px solid var(--bd); border-radius: 8px; overflow: hidden; background: var(--s1);">
+      <iframe src="https://www.google.com/maps/d/embed?mid=1TA8okp5VEvvRPuCrzNDsiPs6jwc50A8&ehbc=2E312F" width="100%" height="520" style="border: 0; display: block;" loading="lazy"></iframe>
+    </div>
+    <p style="font-size: 12px; color: var(--tm); margin-top: 10px; font-family: var(--font-mono);">
+      Source: VTA GTFS current feed · ranking from <code>analysis/d2_stop_candidates.csv</code> · methodology in §<a href="#methodology">Methodology</a>.
+    </p>
+  </div>
+</section>
+
+<!-- The updated plan -->
 <section class="sec">
   <div class="wrap">
-    <h2>What will be on this page</h2>
-
-    <div class="callout info">
-      <strong>Estimated availability:</strong> the pipeline already generates the underlying
-      data. What remains is the public-facing version readable without a transit-planning
-      background. Contact <a href="mailto:elijah.asheghian@icloud.com">elijah.asheghian@icloud.com</a>
-      to say what would be most useful to see first.
-    </div>
+    <div class="eyebrow">Where the work is going</div>
+    <h2>The updated plan — three coordinated asks</h2>
+    <p style="font-size: 16px; color: var(--tm); max-width: 740px;">
+      The Phase A cost-benefit numbers and the Phase B optimizer output both point the same
+      direction. Instead of rebuilding the alignment, the proposal we are taking into VTA
+      Commissioner input is a bundle of three changes that reinforce each other.
+    </p>
 
     <div class="feature-grid">
       <div class="feature-card">
-        <div class="fc-num">01</div>
-        <h3>Redesigned Route 27 corridor</h3>
+        <div class="fc-num">01 — Highest ROI</div>
+        <h3>Universal LGHS student/staff pass</h3>
         <p>
-          The optimized Route 27 spine with 13 new candidate stops placed by the model in
-          neighborhoods that currently have no service. Each stop has a benefit-cost ratio
-          under FTA Circular 9040.1G spacing rules. The highest-ranked are mapped first.
+          $41,080 per year (April 2026 Complete Streets packet quote), <strong>BCR ≈ 4.51</strong>
+          under conservative S1 assumptions (76 new riders). This is the single highest-return
+          marginal intervention in the entire analysis. Partner is separately exploring a
+          school-purchases-then-resells-via-ASB workaround for the "school should fund it"
+          objection.
         </p>
       </div>
       <div class="feature-card">
-        <div class="fc-num">02</div>
-        <h3>Schedule and headways</h3>
+        <div class="fc-num">02 — Schedule</div>
+        <h3>Bell-aligned AM and PM timetable</h3>
         <p>
-          Frequency by time-of-day window using the Mohring (1972) wait-time formula,
-          calibrated to the demand model. Includes peak and off-peak headways and the
-          school-trip windows that drive Route 76 demand at LGHS.
+          Five LGUSD schools start at 08:30 (LGHS, Union MS, Fisher MS, Dartmouth MS, plus Oak
+          Grove and Leigh for PM coordination). Route 27 currently misses the AM window by
+          ~9 minutes. The proposed retime delivers riders to all four R27-served school stops
+          between 08:10 and 08:25 without breaking Santa Teresa / Winchester LRT connections
+          or Route 37 timed transfers. A Wednesday-only variant covers Dartmouth's 13:50
+          early release.
         </p>
       </div>
       <div class="feature-card">
-        <div class="fc-num">03</div>
-        <h3>Ridership projections</h3>
+        <div class="fc-num">03 — Discoverability</div>
+        <h3>Stop signage and basic amenities at school-adjacent stops</h3>
         <p>
-          Daily boardings by route, derived from the Transit Demand Index (population
-          density, zero-vehicle households, transit commute share, income, age dependence,
-          and employment) plus the student survey for school trips.
+          The LGHS survey found that <strong>32% of respondents were not aware Route 27
+          exists</strong>, and <strong>100% of unaware respondents</strong> said they would
+          consider the bus once told. Most Route 27 stops are bare signposts with no bench,
+          shelter, real-time display, or wayfinding to the school. A per-stop amenity
+          inventory (D4) and a one-day audit plan are the next deliverable.
         </p>
       </div>
       <div class="feature-card">
-        <div class="fc-num">04</div>
-        <h3>Route 76 restoration scenario</h3>
+        <div class="fc-num">04 — Phase 2 trigger</div>
+        <h3>When to revisit the alignment</h3>
         <p>
-          The standalone case for restoring service to the 95033 mountain communities
-          that lost their only transit link in 2010. Capital, operating cost, expected
-          boardings, and the BCR comparison against doing nothing.
+          The working baseline: rerun ridership analysis at <strong>T+6 months</strong>
+          post-pass, rerun stop classification at <strong>T+12 months</strong>, and only
+          consider full Phase B route engineering after a full year of post-pass data. Habit
+          formation literature supports a calendar trigger over a ridership-threshold trigger
+          to control for slow-burn mode-shift effects.
         </p>
       </div>
+    </div>
+
+    <div class="callout info" style="margin-top: 24px;">
+      <strong>Open work items from <code>PLAN.md</code>:</strong>
+      D3 reliability-gain BCR (translating runtime savings from stop removal into a wait-time
+      elasticity ridership uplift); D4 signage gap inventory (field audit pending);
+      D5 Phase-2 retrigger criteria discussion paper; replace the WHO HEAT 12-min walk default
+      with the actual Route-27 walk-shed mean; per-rider benefit row-sum by displacement type.
+      Stop-removal list is <strong>not finalized</strong> and is still under partner review.
     </div>
   </div>
 </section>
@@ -400,48 +511,85 @@
   </div>
 </section>
 
-<!-- Methods applied -->
-<section class="sec">
+<!-- Methodology -->
+<section class="sec" id="methodology">
   <div class="wrap-narrow">
-    <h2>Methods applied in Phase B</h2>
+    <h2>Methodology — what we ran, what each thing did</h2>
+    <p style="font-size: 15px; color: var(--tm); line-height: 1.7;">
+      Two worktrees, run end-to-end against the same VTA GTFS feed and Census ACS data. The
+      cost-benefit half is locked-down Phase A from the <code>confident-carson</code> tree;
+      the optimization, accessibility, and ranking work is in <code>zealous-payne</code> and
+      <code>pedantic-antonelli</code>. Every method below was applied to Route 27 and the
+      output is on disk.
+    </p>
 
     <table class="method-table">
       <thead>
         <tr>
-          <th>Method</th>
+          <th>Method / Tool</th>
           <th>What it does</th>
-          <th>Standard</th>
+          <th>Standard / source</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>Clarke-Wright</td>
-          <td>Builds efficient route sequences by merging trip pairs wherever the distance saving is positive. Applied to the 16-district origin-destination matrix.</td>
+          <td>OpenTripPlanner 2.x</td>
+          <td>Built a transit + walk accessibility graph from the VTA GTFS feed plus OpenStreetMap. Used for baseline isochrones, 400 m / 800 m walk-shed buffers around every Route 27 stop, and to compute service-gap polygons.</td>
+          <td>OTP project (Conveyal / community)</td>
+        </tr>
+        <tr>
+          <td>Clarke-Wright savings</td>
+          <td>Builds efficient route sequences by merging trip pairs wherever the distance saving is positive. Applied to the 16-district origin-destination matrix to test whether a redrawn corridor beat the existing one. Result: existing alignment is already near-optimal under current demand assumptions.</td>
           <td>TCRP Report 19</td>
         </tr>
         <tr>
-          <td>FTA 9040.1G spacing</td>
-          <td>Minimum and maximum stop spacing rules: quarter-mile in urban zones (D1 to D5, D7), half-mile in suburban zones. Candidate stops that violate spacing are rejected.</td>
-          <td>FTA Circular 9040.1G, now superseded by 9040.1H</td>
+          <td>Custom Python optimizer</td>
+          <td>Scored every existing and candidate stop on a two-dimensional usage-proxy × distance-to-nearest-retained criterion. Confirmed 3 removes (5th-percentile floor) plus a 10th-percentile consolidation cohort. The optimizer never elected to add stops on the existing alignment.</td>
+          <td><code>fix_stop_removal.py</code> · <code>d2_build_candidates.py</code></td>
+        </tr>
+        <tr>
+          <td>FTA Circular 9040.1G spacing</td>
+          <td>Minimum and maximum stop spacing rules: quarter-mile urban, half-mile suburban. Candidate stops that violated spacing were rejected; existing stops that violated minimum spacing became consolidation candidates.</td>
+          <td>FTA Circular 9040.1G (superseded by 9040.1H)</td>
+        </tr>
+        <tr>
+          <td>Haversine ranking</td>
+          <td>Great-circle distance from every stop to its nearest same-direction retained stop, used as the geometric input to the removal score. <strong>3 stops</strong> are within 153 m of a retained stop; another ~6 fall in the 175–300 m consolidation band.</td>
+          <td><code>analysis/d2_stop_candidates.csv</code></td>
+        </tr>
+        <tr>
+          <td>Frequency-proportioned ridership proxy</td>
+          <td>Per-stop annual boardings estimated as <code>(trips_at_stop ÷ total_trips) × 61,350</code>, anchored to the audited VTA Title VI FY2023 baseline. Used because stop-level APC data was not available from VTA. Calibration factor 0.199 brings the model to within +0.5% of observed.</td>
+          <td>VTA Title VI FY2023 Table 3.2</td>
         </tr>
         <tr>
           <td>Mohring headways</td>
-          <td>Derives optimal frequency from ridership demand. Higher demand justifies shorter headways because the wait-time cost is shared among more passengers.</td>
+          <td>Derives optimal frequency from ridership demand. Higher demand justifies shorter headways because the wait-time cost is shared among more passengers. Used as a sanity check on the existing Route 27 timetable, not to drive a redesign.</td>
           <td>Mohring (1972), Transport Economics</td>
         </tr>
         <tr>
-          <td>Stop BCR</td>
-          <td>Each new candidate stop is evaluated on a 20-year benefit-cost ratio using marginal walkshed population, estimated new boardings, and the USDOT BCA 2024 value per boarding.</td>
-          <td>USDOT BCA Guidance 2024, OMB Circular A-94</td>
+          <td>Wait-time elasticity (TCRP 95)</td>
+          <td>Used by the in-progress D3 deliverable: translate the runtime savings from removing redundant stops (minutes per trip) into a ridership uplift via the standard −0.5 to −0.9 perceived-wait elasticity, then run the uplift through the existing CBA.</td>
+          <td>TCRP Report 95</td>
         </tr>
         <tr>
-          <td>School constraints</td>
-          <td>Union Middle School (14:25 dismissal) and Dartmouth Middle School (15:55 dismissal) are hard constraints. The schedule must deliver a trip within 10 minutes of each dismissal window.</td>
-          <td>Student survey diversion rate, GTFS schedule</td>
+          <td>School-constraint check (D1)</td>
+          <td>Four R27-served schools sit on the corridor: LGHS (164 m), Union MS (96 m), Dartmouth MS (980 m), Fisher MS (1.27 km, marginal). All five LGUSD bell-time schools start 08:30. Bell-aligned retimed trips re-use existing trip patterns; only terminus departure shifts.</td>
+          <td>LGUSD bell schedules · GTFS <code>stop_times.txt</code></td>
+        </tr>
+        <tr>
+          <td>LGHS student survey integration</td>
+          <td>75 responses geocoded (Nominatim with Los Gatos bbox); free-text "where do you board" points cleaned against the Loma Prieta cutoff. Frequency tables on mode, awareness, primary barrier, and willingness-to-switch. Auto-displacement cross-tab used to recalibrate <code>pct_diverted_from_auto</code> for the pass scenario.</td>
+          <td><code>analysis/lghs_combined_findings.md</code></td>
+        </tr>
+        <tr>
+          <td>QGIS / GeoPackage export</td>
+          <td>Five presentation-ready maps: baseline coverage, optimized coverage, service-gap polygons, school walk-sheds, and the ranked-stops layer that backs the embedded map above.</td>
+          <td>QGIS 3.x · GeoPackage 1.3</td>
         </tr>
         <tr>
           <td>GTFS output</td>
-          <td>The pipeline writes a valid GTFS feed for the optimized network: stops.txt, trips.txt, stop_times.txt, routes.txt, calendar.txt, shapes.txt, agency.txt, feed_info.txt.</td>
+          <td>The pipeline writes a valid GTFS feed for the optimized network: stops.txt, trips.txt, stop_times.txt, routes.txt, calendar.txt, shapes.txt, agency.txt, feed_info.txt. Used for the timetable proposal in D1.</td>
           <td>GTFS Schedule Reference v2.0</td>
         </tr>
       </tbody>
