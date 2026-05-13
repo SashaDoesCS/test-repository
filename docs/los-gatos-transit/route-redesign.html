@@ -243,35 +243,33 @@
 
 <section class="advo-hero">
   <div class="wrap">
-    <div class="status-banner">Phase B complete — pivoting from route redesign to bell alignment, signage, and a universal student pass</div>
-    <h1>Route 27, <em>why the optimizer is not the answer.</em></h1>
+    <div class="status-banner">Three coordinated asks for Route 27: a universal student pass, bell-aligned schedules, and better stop signage</div>
+    <h1>Route 27, <em>three changes that reinforce each other.</em></h1>
     <p class="lede">
-      We ran every standard route-optimization tool against VTA Route 27. The honest result:
-      mechanical optimization can only <em>remove</em> stops, not fix the things that are
-      actually holding ridership back. The corridor already returns
-      <strong>$1.71 per $1</strong>; a universal LGHS student/staff pass returns
-      <strong>$4.51 per $1</strong>. The work below explains what we tried, what it found,
-      and what we are now arguing for instead.
+      The corridor already returns <strong>$1.71 per $1</strong>. A universal LGHS
+      student/staff pass returns <strong>$4.51 per $1</strong>. Retiming Route 27 trips to
+      land riders at school before the 08:30 bell, putting real signage and benches at
+      school-adjacent stops, and funding the pass are the three asks we are taking into
+      VTA — each defensible on its own, more powerful together.
     </p>
     <div class="cta-row">
-      <a class="btn" href="analysis.html">Read the analysis</a>
-      <a class="btn btn-ghost" href="#ranked-stops">Skip to the ranked-stops map</a>
-      <a class="btn btn-ghost" href="#why-not-optimization">Why not pure optimization</a>
+      <a class="btn" href="#updated-plan">The three asks</a>
+      <a class="btn btn-ghost" href="#ranked-stops">Ranked-stops map</a>
+      <a class="btn btn-ghost" href="#methodology">Methodology</a>
     </div>
   </div>
 </section>
 
-<!-- Key figures from Phase B -->
+<!-- Headline figures -->
 <section class="sec">
   <div class="wrap">
-    <div class="eyebrow">Phase B results, validated</div>
-    <h2>What the optimization actually found</h2>
+    <div class="eyebrow">The numbers, validated</div>
+    <h2>What we know about Route 27 today</h2>
     <p style="font-size: 16px; color: var(--tm); max-width: 720px; margin-bottom: 0;">
-      Clarke-Wright savings, FTA Circular 9040.1G stop spacing, OpenTripPlanner accessibility
-      graphs, and a custom Python optimizer were all run against the corridor. The ridership
-      model was calibrated to within <strong>+0.5%</strong> of the audited VTA Title VI
-      FY2023 figure (61,350 annual boardings). The headline numbers below are from that
-      pipeline.
+      The ridership model is calibrated to within <strong>+0.5%</strong> of the audited VTA
+      Title VI FY2023 figure (61,350 annual boardings). The benefit-cost numbers are run on
+      the same federally prescribed methodology as the
+      <a href="analysis.html">main analysis</a>.
     </p>
 
     <div class="route-stats">
@@ -284,20 +282,20 @@
         <div class="rs-lbl">BCR, universal LGHS student/staff pass scenario</div>
       </div>
       <div class="route-stat">
-        <div class="rs-val">3</div>
-        <div class="rs-lbl">Stops confirmed for removal by the optimizer (5th-percentile usage, ≤153 m from a retained stop)</div>
+        <div class="rs-val">32%</div>
+        <div class="rs-lbl">LGHS students unaware Route 27 exists (LGHS survey, N=75)</div>
       </div>
       <div class="route-stat">
-        <div class="rs-val warn">0</div>
-        <div class="rs-lbl">New stops the optimizer was willing to add to the existing alignment</div>
+        <div class="rs-val warn">~9 min</div>
+        <div class="rs-lbl">Gap between the current Route 27 AM arrival and the 08:30 LGUSD bell at LGHS</div>
+      </div>
+      <div class="route-stat">
+        <div class="rs-val">61,350</div>
+        <div class="rs-lbl">Audited annual Route 27 boardings (VTA Title VI FY2023, Table 3.2)</div>
       </div>
       <div class="route-stat">
         <div class="rs-val">1.14</div>
-        <div class="rs-lbl">BCR, Config A school-trip extension (only one of three configs to clear 1.0)</div>
-      </div>
-      <div class="route-stat">
-        <div class="rs-val warn">61,350</div>
-        <div class="rs-lbl">Audited annual Route 27 boardings (VTA Title VI FY2023, Table 3.2)</div>
+        <div class="rs-lbl">BCR, Config A school-trip extension (the viable extension scenario)</div>
       </div>
     </div>
 
@@ -312,59 +310,6 @@
       <span class="data-chip live">Ridership calibration 0.199 → +0.5% of observed</span>
       <span class="data-chip pending">D3 reliability-gain BCR (in progress)</span>
       <span class="data-chip pending">D4 signage / amenity field audit</span>
-    </div>
-  </div>
-</section>
-
-<!-- Why pure optimization fails -->
-<section class="sec" id="why-not-optimization">
-  <div class="wrap">
-    <div class="eyebrow">Strategic pivot</div>
-    <h2>Why pure route optimization is not the way forward</h2>
-    <p style="font-size: 16px; color: var(--tm); max-width: 760px;">
-      Every off-the-shelf optimizer we ran — Clarke-Wright, OpenTripPlanner accessibility
-      scoring, a custom Python scorer using FTA 9040.1G spacing rules — produced the same
-      shape of answer: <strong>remove a handful of redundant stops, decline to add any new
-      ones</strong>. That is not a quirk of the tooling. It is a structural property of how
-      these algorithms work, and it tells us the real constraints on Route 27 ridership are
-      elsewhere.
-    </p>
-
-    <div class="why-grid" style="margin-top: 28px;">
-      <div class="why-block">
-        <h3>What optimizers can do</h3>
-        <p>
-          Mechanical optimization is good at one thing: <strong>shaving redundancy out of an
-          existing alignment</strong>. Given a fixed corridor and a usage proxy, it will
-          identify stops that are too close together or too lightly used, and it will rank
-          them. That work is done. Three stops on Route 27 pass every removal gate
-          (≤153 m from a retained stop, below 5th-percentile usage, not a terminal, not
-          near a school). Another ~6 are <em>consolidation candidates</em> in the 10th-percentile
-          zone — same demand could be served better by one improved stop instead of two bare poles.
-        </p>
-      </div>
-      <div class="why-block">
-        <h3>What optimizers cannot do</h3>
-        <p>
-          Optimizers do not know about <strong>bell times</strong>, <strong>stop legibility</strong>,
-          or the <strong>universal pass</strong>. They cannot see that 32% of LGHS students
-          surveyed did not know Route 27 existed (and 100% of unaware respondents said they
-          would consider the bus once told). They cannot see that the current AM trip arrives
-          ~9 minutes after the 08:30 bell. They cannot see that a $41,080/yr universal pass
-          would unlock more displaced auto trips than any plausible alignment change.
-          These are the binding constraints, and none of them are reachable from inside an
-          optimizer.
-        </p>
-      </div>
-    </div>
-
-    <div class="callout info" style="margin-top: 24px;">
-      <strong>The reframed deliverable.</strong> Treat the optimizer output as a
-      <em>candidate list</em>, not an action plan. Near-school stops default to
-      <code>latent_demand_candidate</code> because APC data is unavailable and the
-      frequency-based usage proxy is blind to bell-time boarding bursts. The real wins are
-      <strong>bell-alignment, signage, and the pass</strong> — three coordinated, low-cost
-      asks that reinforce each other.
     </div>
   </div>
 </section>
@@ -391,7 +336,7 @@
 </section>
 
 <!-- The updated plan -->
-<section class="sec">
+<section class="sec" id="updated-plan">
   <div class="wrap">
     <div class="eyebrow">Where the work is going</div>
     <h2>The updated plan — three coordinated asks</h2>
@@ -450,13 +395,47 @@
     </div>
 
     <div class="callout info" style="margin-top: 24px;">
-      <strong>Open work items from <code>PLAN.md</code>:</strong>
-      D3 reliability-gain BCR (translating runtime savings from stop removal into a wait-time
-      elasticity ridership uplift); D4 signage gap inventory (field audit pending);
-      D5 Phase-2 retrigger criteria discussion paper; replace the WHO HEAT 12-min walk default
+      <strong>Open work items:</strong>
+      reliability-gain BCR (translating runtime savings from stop removal into a wait-time
+      elasticity ridership uplift); signage gap inventory (field audit pending);
+      Phase-2 retrigger criteria discussion paper; replace the WHO HEAT 12-min walk default
       with the actual Route-27 walk-shed mean; per-rider benefit row-sum by displacement type.
       Stop-removal list is <strong>not finalized</strong> and is still under partner review.
     </div>
+  </div>
+</section>
+
+<!-- Why optimizing alone doesn't solve it (supporting evidence) -->
+<section class="sec" id="why-not-optimization">
+  <div class="wrap-narrow">
+    <div class="eyebrow">Supporting evidence</div>
+    <h2>Why optimizing alone doesn't solve the issue</h2>
+    <p style="font-size: 15px; color: var(--tm); line-height: 1.7;">
+      A natural question, and one we asked ourselves first: <em>can't this just be solved by
+      redrawing the route?</em> We ran the standard tools to find out. Clarke-Wright savings,
+      OpenTripPlanner accessibility scoring, and a custom Python scorer using FTA 9040.1G
+      spacing rules all produced the same shape of answer: a handful of redundant stops are
+      worth consolidating, and the existing alignment is already near the efficient frontier
+      for the demand it currently sees. Three stops pass every removal gate (≤153 m from a
+      retained stop, below 5th-percentile usage, not a terminal, not near a school); another
+      ~6 are consolidation candidates.
+    </p>
+    <p style="font-size: 15px; color: var(--tm); line-height: 1.7;">
+      That work is useful — it produced the ranked-stops map above and a defensible
+      consolidation list. But optimizers operate on the variables they can see:
+      stop spacing, trip frequency, walk-shed coverage. They are blind to the variables that
+      actually constrain Route 27 ridership today: <strong>whether the bus arrives before
+      the bell</strong>, <strong>whether a student knows the route exists</strong>, and
+      <strong>whether the fare is a barrier</strong>. Those are the three the plan above
+      addresses directly.
+    </p>
+    <p style="font-size: 15px; color: var(--tm); line-height: 1.7;">
+      In other words: the optimizer output is supporting evidence for the consolidation
+      asks, and a useful sanity check that the existing alignment is sound. It is not the
+      lever — and that is consistent with the literature on suburban fixed-route service,
+      where mode-shift is driven primarily by frequency, fare, and reliability rather than
+      by alignment geometry.
+    </p>
   </div>
 </section>
 
