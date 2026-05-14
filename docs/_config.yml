@@ -1,0 +1,22 @@
+title: Los Gatos Think Tank
+url: https://lgthinktank.com
+baseurl: ""
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+collections:
+  articles:
+    output: true
+    permalink: /articles/:slug/
+
+defaults:
+  - scope:
+      path: ""
+      type: articles
+    values:
+      layout: post
+
+exclude:
+  - README.md
