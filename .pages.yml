@@ -1,0 +1,68 @@
+media:
+  input: docs/assets/images
+  output: /assets/images
+
+content:
+  - name: home
+    label: Homepage
+    type: file
+    path: docs/index.html
+    fields:
+      - name: title
+        label: Page title
+        type: string
+      - name: description
+        label: Meta description
+        type: string
+      - name: body
+        label: Page content
+        type: rich-text
+
+  - name: transit-home
+    label: Transit Project Page
+    type: file
+    path: docs/los-gatos-transit/index.html
+    fields:
+      - name: title
+        label: Page title
+        type: string
+      - name: description
+        label: Meta description
+        type: string
+      - name: body
+        label: Page content
+        type: rich-text
+
+  - name: not-found
+    label: 404 Page
+    type: file
+    path: docs/404.html
+    fields:
+      - name: title
+        label: Page title
+        type: string
+      - name: body
+        label: Page content
+        type: rich-text
+
+  - name: articles
+    label: Articles & Research
+    type: collection
+    path: docs/_articles
+    view:
+      fields: [title, date, description]
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: date
+        label: Date
+        type: date
+        required: true
+      - name: description
+        label: Short description (shown as subtitle)
+        type: string
+      - name: body
+        label: Content
+        type: rich-text
