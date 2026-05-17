@@ -1,5 +1,5 @@
 ---
-layout: transit
+layout: transit-home
 title: "Los Gatos Transit, Cost-Benefit Analysis"
 description: "Some Los Gatos bus stops sit empty while whole neighborhoods have no service at all. A federally-grounded cost-benefit analysis of what better transit would actually cost and earn back."
 canonical: "https://lgthinktank.com/los-gatos-transit/"
@@ -8,263 +8,181 @@ og_description: "Some stops sit empty. Whole neighborhoods have no service. The 
 og_url: "https://lgthinktank.com/los-gatos-transit/"
 og_type: "article"
 extra_css: "/assets/transit-index.css"
+
+hero_kicker: "Los Gatos, CA, Public Transit"
+hero_headline: "Some bus stops sit empty. *Whole neighborhoods have no bus at all.*"
+hero_lede_1: |
+  Los Gatos has a transit network drawn for a different town. Some stops see almost no riders
+  because they do not connect anywhere people are going. Meanwhile roughly
+  **13,000 residents** live in districts with **no fixed-route service**, including the mountain
+  communities cut off when Route 76 was discontinued in 2010.
+hero_lede_2: |
+  We ran the federally prescribed cost-benefit analysis. Even the **current** network, flawed as
+  it is, already returns **$1.71 in benefits for every $1 spent** over 20 years. A redesigned
+  network is projected to do meaningfully better.
+hero_ctas:
+  - label: "Read the full analysis"
+    href: "analysis.html"
+    style: "primary"
+  - label: "Route redesign"
+    href: "route-redesign.html"
+    style: "ghost"
+  - label: "Why this matters"
+    href: "#why-now"
+    style: "ghost"
+
+metrics_row_1:
+  - value: "12,918"
+    kind: "alert"
+    desc: "Residents in districts with no transit service at all"
+    src: "Census ACS 2018-2022, GTFS coverage analysis"
+  - value: "5 of 16"
+    kind: "warn"
+    desc: "Districts with zero fixed-route coverage"
+    src: "0.25-mile walkshed analysis, GTFS coverage gap = 100%"
+  - value: "782"
+    kind: "neutral"
+    desc: "Zero-vehicle households in the study area"
+    src: "Census ACS 2018-2022 (table B25044)"
+  - value: "$1.71"
+    kind: "neutral"
+    desc: "Benefits per $1 spent, current Route 27 network, 20-yr horizon at 3.5% discount"
+    src: "USDOT BCA Guidance 2024, OMB Circular A-94"
+
+metrics_row_2:
+  - value: "$4.51"
+    kind: "neutral"
+    desc: "Benefits per $1 spent, universal LGHS student/staff pass scenario"
+    src: "BCR program, S1 ridership (76 new riders)"
+  - value: "44.3%"
+    kind: "neutral"
+    desc: "LGHS respondents unaware Route 27 exists. Union MS: 56.3% of driving students unaware."
+    src: "LGHS + Union Bus Survey 2026, N=197 + N=705"
+  - value: "25.2%"
+    kind: "warn"
+    desc: "Share of Los Gatos residents living more than 0.5 mi from any bus stop"
+    src: "Traffic Safety Ad-Hoc walk-shed model"
+  - value: "$41K/yr"
+    kind: "neutral"
+    desc: "Cost of a universal LGHS student/staff pass — the single highest-ROI intervention in the analysis"
+    src: "April 2026 Complete Streets packet, partner quote"
+
+why_blocks:
+  - heading: "Why transit gets cut, and why that is a mistake"
+    body: |
+      Public transit gets cut whenever ridership numbers drop, and ridership drops whenever
+      the buses do not go where people need to go. It is a feedback loop that ends with
+      the empty stops you can already see around town.
+
+      The federal government has already done the hard work of figuring out how to value
+      transit honestly. Travel-time savings, crash reduction, fewer emissions, health benefits
+      from walking to stops, the option value to people who do not ride today but might
+      tomorrow, all of it has a defined methodology under
+      [FTA cost-benefit guidelines](analysis.html#glossary) and
+      [USDOT BCA Guidance 2024](analysis.html#glossary).
+
+      So we ran the numbers, for the existing network, for restoring Route 76, and
+      for a redesigned Route 27 with stops where the demand actually is.
+  - heading: "What this analysis is and is not"
+    body: |
+      This is a **public-interest analysis**, not a paid advocacy document.
+      Every number links back to its federal source. The pipeline that produces every chart
+      and table is open source, and corrections are applied in public.
+
+      The analysis intentionally uses a **conservative scope**: property value
+      uplift near stops, wider agglomeration effects, and school-access value are excluded
+      from the baseline scenario. The $1.71 BCR holds even without those items.
+    pills:
+      - { label: "USDOT BCA Guidance 2024", highlight: true }
+      - { label: "OMB Circular A-94", highlight: true }
+      - { label: "EPA SCC $120/tCO2", highlight: true }
+      - { label: "FTA CIG / CEI", highlight: false }
+      - { label: "TCRP Report 95", highlight: false }
+      - { label: "SWITRS crash data", highlight: false }
+      - { label: "Census ACS 2018-2022", highlight: false }
+      - { label: "VTA GTFS feed", highlight: false }
+
+subprojects_heading: "What is in this project"
+subprojects_intro: "Three pieces of work, each with the data and methodology open for inspection."
+subprojects:
+  - title: "Cost-benefit analysis"
+    status: "Live"
+    href: "analysis.html"
+    blurb: |
+      16 districts, 8 federally recognized benefit categories, 20-year present value at
+      OMB-prescribed discount rates, peer-benchmarked against VTA and California operators.
+      This is where the $1.71-per-$1 figure comes from.
+    arrow_label: "Open the full analysis"
+  - title: "Route 27 redesign"
+    status: "Live"
+    href: "route-redesign.html"
+    blurb: |
+      Three coordinated asks for VTA: a universal LGHS student/staff pass, a bell-aligned
+      AM/PM timetable, and real signage at school-adjacent stops. Backed by the ranked
+      stops map, the methods we ran end-to-end, and the per-stop ridership ranking.
+    arrow_label: "Open the route-redesign work"
+  - title: "Glossary"
+    status: "Reference"
+    href: "analysis.html#glossary"
+    blurb: |
+      Every acronym and agency cited in this project, defined in plain language with links
+      to primary sources. Hover any underlined term in the analysis pages for an instant
+      definition.
+    arrow_label: "Browse the glossary"
+
+timeline:
+  - phase: "Phase A"
+    name: "Cost-Benefit Analysis"
+    status: "Complete"
+    status_kind: "done"
+    body: "16 districts mapped and costed. 8 benefit categories quantified. BCR and NPV computed at all three OMB discount rates. Route 27 BCR = 1.71; universal LGHS pass BCR = 4.51."
+  - phase: "Phase B"
+    name: "Stop ranking & methodology"
+    status: "Complete"
+    status_kind: "done"
+    body: "Clarke-Wright + OpenTripPlanner + custom Python scorer applied to every Route 27 stop. 3 confirmed removes and ~6 consolidation candidates. Ridership calibrated to within +0.5% of the audited VTA Title VI baseline."
+  - phase: "Phase C"
+    name: "VTA Commissioner Input"
+    status: "In progress"
+    status_kind: "active"
+    body: "Bell-aligned AM/PM timetable (D1), ranked stop-removal table (D2), reliability-gain BCR (D3), and signage gap inventory (D4) being packaged for a low-pressure Commissioner input session. Stop list not yet finalized."
+
+methods_heading: "Methods, briefly"
+sources_col_1: "Source"
+sources_col_2: "What it provides"
+sources_col_3: "Used for"
+sources:
+  - source: "Census ACS 2018-2022"
+    provides: "Block-group demographics, income, commute mode, vehicle ownership"
+    used_for: "Equity analysis, demand model, district profiles"
+  - source: "VTA GTFS feed"
+    provides: "Stop locations, route geometry, schedules, headways"
+    used_for: "Coverage gaps, walkshed analysis, route optimization"
+  - source: "USDOT BCA Guidance 2024"
+    provides: "Value of time ($17.80 personal, $31.90 business), reliability weighting"
+    used_for: "Categories 1 and 6 (time savings, reliability)"
+  - source: "EPA SC-GHG 2022 update"
+    provides: "Social cost of carbon at $120 per metric ton CO2 (3% rate)"
+    used_for: "Category 4 (emission reduction)"
+  - source: "SWITRS / FHWA KABCO"
+    provides: "Santa Clara County crash rates, severity-weighted costs"
+    used_for: "Category 3 (crash reduction)"
+  - source: "WHO HEAT v5.2"
+    provides: "12 walk-minutes per trip, $0.16 per walking minute"
+    used_for: "Category 5 (health benefits)"
+  - source: "TCRP Report 95"
+    provides: "20% induced demand rate, consumer surplus methodology"
+    used_for: "Category 8 (induced demand)"
+  - source: "NTD peer benchmarks"
+    provides: "California transit agency operating costs per revenue hour"
+    used_for: "VTA cost reasonableness check"
+
+callout_body: "**Plain-English glossary built in.** Acronyms in the analysis page are underlined. Hover or tap for a one-line definition. Click to jump to the full glossary entry at the bottom of the page."
+callout_link_href: "analysis.html#glossary"
+callout_link_label: "Jump to glossary"
+
+cta_block_heading: "Ready to dig in?"
+cta_block_body: "The full cost-benefit dashboard has every number, every chart, and every source. The glossary at the bottom defines every term used."
+cta_block_button_label: "Open the full analysis"
+cta_block_button_href: "analysis.html"
 ---
-
-<section class="advo-hero">
-  <div class="wrap">
-    <div class="hero-kicker">Los Gatos, CA, Public Transit</div>
-    <h1>Some bus stops sit empty. <em>Whole neighborhoods have no bus at all.</em></h1>
-    <p class="lede" style="margin-top: 20px;">
-      Los Gatos has a transit network drawn for a different town. Some stops see almost no riders
-      because they do not connect anywhere people are going. Meanwhile roughly
-      <strong>13,000 residents</strong> live in districts with
-      <strong>no fixed-route service</strong>, including the mountain communities cut off when
-      Route 76 was discontinued in 2010.
-    </p>
-    <p class="lede" style="margin-top: 14px;">
-      We ran the federally prescribed cost-benefit analysis. Even the <strong>current</strong>
-      network, flawed as it is, already returns <strong>$1.71 in benefits for every $1 spent</strong>
-      over 20 years. A redesigned network is projected to do meaningfully better.
-    </p>
-    <div class="cta-row">
-      <a class="btn" href="analysis.html">Read the full analysis</a>
-      <a class="btn btn-ghost" href="route-redesign.html">Route redesign</a>
-      <a class="btn btn-ghost" href="#why-now">Why this matters</a>
-    </div>
-  </div>
-</section>
-
-<!-- Key metrics -->
-<div class="metrics-strip">
-  <div class="metric-cell">
-    <div class="val alert">12,918</div>
-    <div class="desc">Residents in districts with no transit service at all</div>
-    <div class="src">Census ACS 2018-2022, GTFS coverage analysis</div>
-  </div>
-  <div class="metric-cell">
-    <div class="val warn">5 of 16</div>
-    <div class="desc">Districts with zero fixed-route coverage</div>
-    <div class="src">0.25-mile walkshed analysis, GTFS coverage gap = 100%</div>
-  </div>
-  <div class="metric-cell">
-    <div class="val">782</div>
-    <div class="desc">Zero-vehicle households in the study area</div>
-    <div class="src">Census ACS 2018-2022 (table B25044)</div>
-  </div>
-  <div class="metric-cell">
-    <div class="val">$1.71</div>
-    <div class="desc">Benefits per $1 spent, current Route 27 network, 20-yr horizon at 3.5% discount</div>
-    <div class="src">USDOT BCA Guidance 2024, OMB Circular A-94</div>
-  </div>
-</div>
-
-<div class="metrics-strip" style="border-top: none;">
-  <div class="metric-cell">
-    <div class="val">$4.51</div>
-    <div class="desc">Benefits per $1 spent, universal LGHS student/staff pass scenario</div>
-    <div class="src">BCR program, S1 ridership (76 new riders)</div>
-  </div>
-  <div class="metric-cell">
-    <div class="val">44.3%</div>
-    <div class="desc">LGHS respondents unaware Route 27 exists. Union MS: 56.3% of driving students unaware.</div>
-    <div class="src">LGHS + Union Bus Survey 2026, N=197 + N=705</div>
-  </div>
-  <div class="metric-cell">
-    <div class="val warn">25.2%</div>
-    <div class="desc">Share of Los Gatos residents living more than 0.5 mi from any bus stop</div>
-    <div class="src">Traffic Safety Ad-Hoc walk-shed model</div>
-  </div>
-  <div class="metric-cell">
-    <div class="val">$41K/yr</div>
-    <div class="desc">Cost of a universal LGHS student/staff pass — the single highest-ROI intervention in the analysis</div>
-    <div class="src">April 2026 Complete Streets packet, partner quote</div>
-  </div>
-</div>
-
-<!-- Why now -->
-<section class="sec" id="why-now">
-  <div class="wrap">
-    <div class="why-grid">
-      <div class="why-block">
-        <h3>Why transit gets cut, and why that is a mistake</h3>
-        <p>
-          Public transit gets cut whenever ridership numbers drop, and ridership drops whenever
-          the buses do not go where people need to go. It is a feedback loop that ends with
-          the empty stops you can already see around town.
-        </p>
-        <p>
-          The federal government has already done the hard work of figuring out how to value
-          transit honestly. Travel-time savings, crash reduction, fewer emissions, health benefits
-          from walking to stops, the option value to people who do not ride today but might
-          tomorrow, all of it has a defined methodology under
-          <a href="analysis.html#glossary">FTA cost-benefit guidelines</a> and
-          <a href="analysis.html#glossary">USDOT BCA Guidance 2024</a>.
-        </p>
-        <p>
-          So we ran the numbers, for the existing network, for restoring Route 76, and
-          for a redesigned Route 27 with stops where the demand actually is.
-        </p>
-      </div>
-      <div class="why-block">
-        <h3>What this analysis is and is not</h3>
-        <p>
-          This is a <strong>public-interest analysis</strong>, not a paid advocacy document.
-          Every number links back to its federal source. The pipeline that produces every chart
-          and table is open source, and corrections are applied in public.
-        </p>
-        <p>
-          The analysis intentionally uses a <strong>conservative scope</strong>: property value
-          uplift near stops, wider agglomeration effects, and school-access value are excluded
-          from the baseline scenario. The $1.71 BCR holds even without those items.
-        </p>
-        <div class="method-pills">
-          <span class="pill hi">USDOT BCA Guidance 2024</span>
-          <span class="pill hi">OMB Circular A-94</span>
-          <span class="pill hi">EPA SCC $120/tCO2</span>
-          <span class="pill">FTA CIG / CEI</span>
-          <span class="pill">TCRP Report 95</span>
-          <span class="pill">SWITRS crash data</span>
-          <span class="pill">Census ACS 2018-2022</span>
-          <span class="pill">VTA GTFS feed</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- What is in this project -->
-<section class="sec">
-  <div class="wrap">
-    <h2>What is in this project</h2>
-    <p class="lede" style="max-width:680px; margin-bottom:0;">Three pieces of work, each with the data and methodology open for inspection.</p>
-
-    <div class="proj-grid">
-      <a class="proj-card" href="analysis.html">
-        <span class="status">Live</span>
-        <h3>Cost-benefit analysis</h3>
-        <p>
-          16 districts, 8 federally recognized benefit categories, 20-year present value at
-          OMB-prescribed discount rates, peer-benchmarked against VTA and California operators.
-          This is where the $1.71-per-$1 figure comes from.
-        </p>
-        <p class="arrow">Open the full analysis</p>
-      </a>
-      <a class="proj-card" href="route-redesign.html">
-        <span class="status">Live</span>
-        <h3>Route 27 redesign</h3>
-        <p>
-          Three coordinated asks for VTA: a universal LGHS student/staff pass, a bell-aligned
-          AM/PM timetable, and real signage at school-adjacent stops. Backed by the ranked
-          stops map, the methods we ran end-to-end, and the per-stop ridership ranking.
-        </p>
-        <p class="arrow">Open the route-redesign work</p>
-      </a>
-      <a class="proj-card" href="analysis.html#glossary">
-        <span class="status">Reference</span>
-        <h3>Glossary</h3>
-        <p>
-          Every acronym and agency cited in this project, defined in plain language with links
-          to primary sources. Hover any underlined term in the analysis pages for an instant
-          definition.
-        </p>
-        <p class="arrow">Browse the glossary</p>
-      </a>
-    </div>
-
-    <div class="timeline">
-      <div class="timeline-step">
-        <div class="phase">Phase A</div>
-        <div class="phase-name">Cost-Benefit Analysis</div>
-        <span class="phase-status done">Complete</span>
-        <p>16 districts mapped and costed. 8 benefit categories quantified. BCR and NPV computed at all three OMB discount rates. Route 27 BCR = 1.71; universal LGHS pass BCR = 4.51.</p>
-      </div>
-      <div class="timeline-step">
-        <div class="phase">Phase B</div>
-        <div class="phase-name">Stop ranking &amp; methodology</div>
-        <span class="phase-status done">Complete</span>
-        <p>Clarke-Wright + OpenTripPlanner + custom Python scorer applied to every Route 27 stop. 3 confirmed removes and ~6 consolidation candidates. Ridership calibrated to within +0.5% of the audited VTA Title VI baseline.</p>
-      </div>
-      <div class="timeline-step">
-        <div class="phase">Phase C</div>
-        <div class="phase-name">VTA Commissioner Input</div>
-        <span class="phase-status active">In progress</span>
-        <p>Bell-aligned AM/PM timetable (D1), ranked stop-removal table (D2), reliability-gain BCR (D3), and signage gap inventory (D4) being packaged for a low-pressure Commissioner input session. Stop list not yet finalized.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Methods summary -->
-<section class="sec">
-  <div class="wrap-narrow">
-    <h2>Methods, briefly</h2>
-
-    <table class="sources-table">
-      <thead>
-        <tr>
-          <th>Source</th>
-          <th>What it provides</th>
-          <th>Used for</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Census ACS 2018-2022</td>
-          <td>Block-group demographics, income, commute mode, vehicle ownership</td>
-          <td>Equity analysis, demand model, district profiles</td>
-        </tr>
-        <tr>
-          <td>VTA GTFS feed</td>
-          <td>Stop locations, route geometry, schedules, headways</td>
-          <td>Coverage gaps, walkshed analysis, route optimization</td>
-        </tr>
-        <tr>
-          <td>USDOT BCA Guidance 2024</td>
-          <td>Value of time ($17.80 personal, $31.90 business), reliability weighting</td>
-          <td>Categories 1 and 6 (time savings, reliability)</td>
-        </tr>
-        <tr>
-          <td>EPA SC-GHG 2022 update</td>
-          <td>Social cost of carbon at $120 per metric ton CO2 (3% rate)</td>
-          <td>Category 4 (emission reduction)</td>
-        </tr>
-        <tr>
-          <td>SWITRS / FHWA KABCO</td>
-          <td>Santa Clara County crash rates, severity-weighted costs</td>
-          <td>Category 3 (crash reduction)</td>
-        </tr>
-        <tr>
-          <td>WHO HEAT v5.2</td>
-          <td>12 walk-minutes per trip, $0.16 per walking minute</td>
-          <td>Category 5 (health benefits)</td>
-        </tr>
-        <tr>
-          <td>TCRP Report 95</td>
-          <td>20% induced demand rate, consumer surplus methodology</td>
-          <td>Category 8 (induced demand)</td>
-        </tr>
-        <tr>
-          <td>NTD peer benchmarks</td>
-          <td>California transit agency operating costs per revenue hour</td>
-          <td>VTA cost reasonableness check</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="callout info" style="margin-top: 24px;">
-      <strong>Plain-English glossary built in.</strong>
-      Acronyms in the analysis page are underlined. Hover or tap for a one-line definition.
-      Click to jump to the full glossary entry at the bottom of the page.
-      <a href="analysis.html#glossary" style="margin-left: 6px;">Jump to glossary</a>
-    </div>
-
-    <div class="cta-block">
-      <div>
-        <h3>Ready to dig in?</h3>
-        <p>The full cost-benefit dashboard has every number, every chart, and every source. The
-          glossary at the bottom defines every term used.</p>
-      </div>
-      <a class="btn" href="analysis.html">Open the full analysis</a>
-    </div>
-  </div>
-</section>
