@@ -1,0 +1,70 @@
+---
+layout: default
+---
+{% assign inline_strip = '<p>|</p>' | split: '|' %}
+
+<section class="advo-hero">
+  <div class="wrap">
+    {% if page.hero_eyebrow %}<div class="eyebrow">{{ page.hero_eyebrow }}</div>{% endif %}
+    {% if page.hero_headline %}
+      <h1>{{ page.hero_headline | markdownify | remove: '<p>' | remove: '</p>' | strip_newlines }}</h1>
+    {% endif %}
+    {% if page.hero_lede %}
+      <div class="lede">{{ page.hero_lede | markdownify }}</div>
+    {% endif %}
+    {% if page.hero_ctas and page.hero_ctas.size > 0 %}
+    <div class="cta-row">
+      {% for cta in page.hero_ctas %}
+        <a class="btn{% if cta.style == 'ghost' %} btn-ghost{% endif %}" href="{{ cta.href }}">{{ cta.label }}</a>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+{% if page.projects_heading or page.projects %}
+<section class="sec" id="projects">
+  <div class="wrap">
+    {% if page.projects_heading %}<h2>{{ page.projects_heading }}</h2>{% endif %}
+    {% if page.projects_intro %}<div class="lede">{{ page.projects_intro | markdownify }}</div>{% endif %}
+
+    {% if page.projects %}
+    <div class="proj-grid">
+      {% for proj in page.projects %}
+        {% if proj.href and proj.href != '' %}
+        <a class="proj-card" href="{{ proj.href }}">
+        {% else %}
+        <div class="proj-card" style="cursor:default; opacity:.85;">
+        {% endif %}
+          {% if proj.status %}
+            <span class="status{% if proj.status_kind == 'soon' %} soon{% endif %}">{{ proj.status }}</span>
+          {% endif %}
+          {% if proj.title %}<h3>{{ proj.title }}</h3>{% endif %}
+          {% if proj.image %}<img src="{{ proj.image | relative_url }}" alt="{{ proj.image_alt | default: proj.title }}" style="max-width:100%; border-radius:8px; margin:10px 0;">{% endif %}
+          {% if proj.blurb %}<div>{{ proj.blurb | markdownify }}</div>{% endif %}
+          {% if proj.arrow_label %}
+            <p class="arrow"{% unless proj.href and proj.href != '' %} style="color:var(--tm);"{% endunless %}>{{ proj.arrow_label }}</p>
+          {% endif %}
+        {% if proj.href and proj.href != '' %}</a>{% else %}</div>{% endif %}
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endif %}
+
+{% if page.about_heading or page.about_body %}
+<section class="sec" id="about">
+  <div class="wrap-narrow">
+    {% if page.about_heading %}<h2>{{ page.about_heading }}</h2>{% endif %}
+    {% if page.about_body %}
+      <div class="about-body" style="font-size:17px;">{{ page.about_body | markdownify }}</div>
+    {% endif %}
+    {% if page.contact_email %}
+      <p style="font-size:17px;">{{ page.contact_prompt | default: 'Want to help, propose a topic, or just argue with a number?' }}
+        <a href="mailto:{{ page.contact_email }}">{{ page.contact_email }}</a>.
+      </p>
+    {% endif %}
+  </div>
+</section>
+{% endif %}
