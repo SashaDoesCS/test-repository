@@ -7,18 +7,32 @@
 {% if page.description %}<meta name="description" content="{{ page.description }}">{% endif %}
 
 <link rel="icon" type="image/svg+xml" href="{{ '/favicon.svg' | relative_url }}">
-{% if page.canonical %}<link rel="canonical" href="{{ page.canonical }}">{% endif %}
 
-{% if page.og_title %}<meta property="og:title" content="{{ page.og_title }}">{% endif %}
-{% if page.og_description %}<meta property="og:description" content="{{ page.og_description }}">{% endif %}
-{% if page.og_url %}<meta property="og:url" content="{{ page.og_url }}">{% endif %}
+{%- comment -%}
+  Canonical / OG tags fall back to computed values so they survive Pages CMS
+  round-trips (CMS strips any front-matter field not declared in .pages.yml).
+{%- endcomment -%}
+{%- assign _canonical = page.canonical | default: page.url | absolute_url -%}
+{%- assign _og_title = page.og_title | default: page.title | default: site.title -%}
+{%- assign _og_desc  = page.og_description | default: page.description -%}
+<link rel="canonical" href="{{ _canonical }}">
+<meta property="og:title" content="{{ _og_title }}">
+{% if _og_desc %}<meta property="og:description" content="{{ _og_desc }}">{% endif %}
+<meta property="og:url" content="{{ page.og_url | default: _canonical }}">
 <meta property="og:type" content="{{ page.og_type | default: 'article' }}">
 <meta property="og:site_name" content="Los Gatos Think Tank">
 <meta name="twitter:card" content="summary_large_image">
 
+<link rel="stylesheet" href="{{ '/assets/theme.css' | relative_url }}">
+{%- comment -%}
+  Per-page CSS is hard-coded here (not driven by page.extra_css) so that
+  Pages CMS cannot strip the link by saving the page without that field.
+  This is what makes the .sources-table styling on the transit landing
+  page survive CMS edits.
+{%- endcomment -%}
+<link rel="stylesheet" href="{{ '/assets/transit-index.css' | relative_url }}">
 {% if page.extra_css %}<link rel="stylesheet" href="{{ page.extra_css | relative_url }}">{% endif %}
 {{ page.extra_head }}
-<link rel="stylesheet" href="{{ '/assets/theme.css' | relative_url }}">
 <script src="{{ '/assets/theme.js' | relative_url }}" defer></script>
 </head>
 <body>
