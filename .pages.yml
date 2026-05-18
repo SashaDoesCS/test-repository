@@ -204,6 +204,18 @@ content:
       - { name: cta_block_button_label, label: Bottom CTA — button text, type: string }
       - { name: cta_block_button_href, label: Bottom CTA — button link, type: string }
 
+  # ── Articles index page ─────────────────────────────
+  - name: articles-index
+    label: Articles Index Page
+    type: file
+    path: docs/articles/index.html
+    fields:
+      - { name: title, label: Browser tab title, type: string }
+      - { name: description, label: Meta description, type: text }
+      - { name: page_heading, label: Page heading, type: string }
+      - { name: page_intro, label: Intro line under the heading, type: text }
+      - { name: empty_state, label: Message shown when there are no articles yet, type: string }
+
   # ── 404 page ─────────────────────────────────────────
   - name: not-found
     label: 404 Page
