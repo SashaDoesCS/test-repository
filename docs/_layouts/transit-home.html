@@ -48,6 +48,37 @@ layout: transit
 </div>
 {% endif %}
 
+{% if page.lghs_arrival %}
+<section class="sec" id="lghs-arrival">
+  <div class="wrap">
+    {% if page.lghs_arrival.heading %}<h2>{{ page.lghs_arrival.heading }}</h2>{% endif %}
+    {% if page.lghs_arrival.intro %}
+      <div class="lede" style="max-width:720px; margin-bottom:8px;">{{ page.lghs_arrival.intro | markdownify }}</div>
+    {% endif %}
+    <div class="arrival-figure">
+      <div class="arrival-point">
+        <div class="ap-time">{{ page.lghs_arrival.scheduled }}</div>
+        <div class="ap-label">{{ page.lghs_arrival.scheduled_label }}</div>
+      </div>
+      <div class="arrival-op">→</div>
+      <div class="arrival-point">
+        <div class="ap-time warn">{{ page.lghs_arrival.actual }}</div>
+        <div class="ap-label">{{ page.lghs_arrival.actual_label }}</div>
+      </div>
+      <div class="arrival-op">vs.</div>
+      <div class="arrival-point">
+        <div class="ap-time alert">{{ page.lghs_arrival.bell }}</div>
+        <div class="ap-label">{{ page.lghs_arrival.bell_label }}</div>
+      </div>
+    </div>
+    {% if page.lghs_arrival.note %}
+      <div class="arrival-note">{{ page.lghs_arrival.note | markdownify }}</div>
+    {% endif %}
+    {% if page.lghs_arrival.src %}<div class="arrival-src">{{ page.lghs_arrival.src }}</div>{% endif %}
+  </div>
+</section>
+{% endif %}
+
 {% if page.why_blocks and page.why_blocks.size > 0 %}
 <section class="sec" id="why-now">
   <div class="wrap">
@@ -108,7 +139,7 @@ layout: transit
 </section>
 {% endif %}
 
-{% if page.methods_heading or page.sources %}
+{% if page.methods_heading or page.sources or page.callout_body or page.cta_block_heading or page.cta_block_body %}
 <section class="sec">
   <div class="wrap-narrow">
     {% if page.methods_heading %}<h2>{{ page.methods_heading }}</h2>{% endif %}
