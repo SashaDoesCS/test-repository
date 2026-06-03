@@ -34,7 +34,7 @@ const GLOSS = {
   },
   "CEI": {
     full: "Cost Effectiveness Index",
-    body: "Annual net project cost divided by annualized user benefits in TSUB-hours. The FTA CIG threshold is below $2 per TSUB-hr for Medium-High rating and below $4 for Medium. Required for federal Capital Investment Grant applications.",
+    body: "Annual net project cost divided by the user benefits it buys, measured in hours of travel time saved or provided (TSUB-hours). In plain terms: how many dollars does the project spend to deliver one hour of user benefit? Lower is better. The FTA uses this number to rate Capital Investment Grant applications — below $2 per benefit-hour earns a Medium-High rating, below $4 a Medium rating — so a project can be compared directly against funded projects elsewhere.",
     link: "https://www.transit.dot.gov/CIG",
     linkText: "FTA CIG Policy Guidance"
   },
@@ -52,7 +52,7 @@ const GLOSS = {
   },
   "consumer surplus": {
     full: "Consumer Surplus",
-    body: "The economic benefit a consumer receives beyond what they pay. In transit cost-benefit analysis, induced riders gain a surplus equal to roughly 50% of the auto trip cost they would have faced, because their willingness to pay is lower than that cost.",
+    body: "The value a rider gets from a trip above what they pay for it. We apply it only to induced riders — people who would not have made the trip at all without transit — because riders who switched from a car already have their benefit counted directly in Categories 1–4 (time, vehicle-cost, crash, and emission savings versus the car trip they avoided). Induced riders can't be valued that way, since there is no avoided car trip to compare against. Instead we reason from the rider's own choice: each one only boards if the trip is worth at least its cost to them, and they capture only the gap between that personal value and the fare. The most marginal rider gains almost nothing; the rider who nearly would have driven gains close to the full value of an equivalent car trip. Assuming riders are spread evenly across that range, the average induced rider gains about half (50%) the value of a comparable car trip — the area of the standard demand-curve triangle.",
     link: "https://www.cambridge.org/us/universitypress/subjects/economics/public-economics-and-public-policy/cost-benefit-analysis-concepts-and-practice-5th-edition",
     linkText: "Boardman et al., Ch. 3"
   },
@@ -114,7 +114,7 @@ const GLOSS = {
   },
   "LGHS": {
     full: "Los Gatos High School",
-    body: "Los Gatos High School, a major trip generator in the study area and the anchor institution for school-trip demand modeling. Route 76 was maintained in part for LGHS student access before discontinuation in June 2010."
+    body: "Los Gatos High School, a major trip generator in the study area and the anchor institution for school-trip demand modeling."
   },
   "Mohring": {
     full: "Mohring (1972) Wait-Time Formula",
@@ -156,7 +156,9 @@ const GLOSS = {
   },
   "PV": {
     full: "Present Value",
-    body: "The current worth of a future sum of money, discounted at a chosen rate to reflect the time value of money. See also: NPV, discount rate, BCR."
+    body: "Economically, receiving money immediately is considered more valuable than receiving money in the future. OMB Circular A-94 provides discount rates to estimate the current worth of a future sum of money — in this case, the costs and benefits of Route 27. See also: NPV, discount rate, BCR.",
+    link: "https://whitehouse.gov/wp-content/uploads/2023/11/CircularA-94.pdf",
+    linkText: "OMB Circular A-94"
   },
   "SCC": {
     full: "Social Cost of Carbon",
@@ -178,7 +180,7 @@ const GLOSS = {
   },
   "TSUB": {
     full: "Transportation System User Benefit",
-    body: "The FTA metric for CIG cost effectiveness. Measures time saved by diverted auto users plus transit travel time for transit-dependent users, in hours per year. Used to compute the Cost Effectiveness Index.",
+    body: "The FTA's single yardstick for how much a transit project helps its users, in hours per year. It adds two things: the travel time saved by riders who switched from driving, and the transit travel time provided to riders who have no car and otherwise could not have made the trip at all. Combining them puts both kinds of benefit — time saved and mobility provided — into one common unit of hours, so the FTA can compare the cost-effectiveness of very different projects on the same scale. Feeds the Cost Effectiveness Index.",
     link: "https://www.transit.dot.gov/CIG",
     linkText: "FTA CIG Policy Guidance"
   },
@@ -206,7 +208,7 @@ const GLOSS = {
   },
   "VTA": {
     full: "Santa Clara Valley Transportation Authority",
-    body: "The regional transit agency that operates bus and light-rail service in Santa Clara County, including Route 27 (Winchester to Los Gatos), the discontinued Route 76 (Los Gatos to Summit Road), and the Highway 17 Express. The primary operator studied in this cost-benefit analysis.",
+    body: "The regional transit agency that operates bus and light-rail service in Santa Clara County, including Route 27 (Winchester to Los Gatos) and the Highway 17 Express. The primary operator studied in this cost-benefit analysis.",
     link: "https://www.vta.org",
     linkText: "vta.org"
   },
