@@ -244,7 +244,7 @@
 <section class="advo-hero">
   <div class="wrap">
     <div class="status-banner">Three coordinated asks for Route 27: a universal student pass, bell-aligned schedules, and better stop signage</div>
-    <h1>Route 27, <em>three changes that reinforce each other.</em></h1>
+    <h1>Route 27, <em>Three Coordinated Asks</em></h1>
     <p class="lede">
       The corridor already returns <strong>$1.71 per $1</strong>. A universal LGHS
       student/staff pass returns <strong>$4.51 per $1</strong>. Retiming Route 27 trips to
@@ -254,91 +254,71 @@
     </p>
     <div class="cta-row">
       <a class="btn" href="#updated-plan">The three asks</a>
-      <a class="btn btn-ghost" href="#ranked-stops">Ranked-stops map</a>
+      <a class="btn btn-ghost" href="#ranked-stops">Stops to change</a>
       <a class="btn btn-ghost" href="#methodology">Methodology</a>
     </div>
   </div>
 </section>
 
-<!-- Headline figures -->
-<section class="sec">
-  <div class="wrap">
-    <div class="eyebrow">The numbers, validated</div>
-    <h2>What we know about Route 27 today</h2>
-    <p style="font-size: 16px; color: var(--tm); max-width: 720px; margin-bottom: 0;">
-      The ridership model is calibrated to within <strong>+0.5%</strong> of the audited VTA
-      Title VI FY2023 figure (61,350 annual boardings). The benefit-cost numbers are run on
-      the same federally prescribed methodology as the
-      <a href="analysis.html">main analysis</a>.
-    </p>
-
-    <div class="route-stats">
-      <div class="route-stat">
-        <div class="rs-val ac" style="color:var(--ac)">1.71</div>
-        <div class="rs-lbl">BCR, Route 27 current network (20-yr, 3.5% discount)</div>
-      </div>
-      <div class="route-stat">
-        <div class="rs-val ac" style="color:var(--ac)">4.51</div>
-        <div class="rs-lbl">BCR, universal LGHS student/staff pass scenario</div>
-      </div>
-      <div class="route-stat">
-        <div class="rs-val">44.3%</div>
-        <div class="rs-lbl">LGHS respondents unaware Route 27 exists (N=197, ~10% of student body)</div>
-      </div>
-      <div class="route-stat">
-        <div class="rs-val">56.3%</div>
-        <div class="rs-lbl">Union MS driving students unaware of the bus system (N=705, ~70% of student body)</div>
-      </div>
-      <div class="route-stat">
-        <div class="rs-val">42.5%</div>
-        <div class="rs-lbl">LGHS respondents who said better VTA arrival times or closer stops would get them on the bus</div>
-      </div>
-      <div class="route-stat">
-        <div class="rs-val warn">~13 min</div>
-        <div class="rs-lbl">Westbound Main &amp; Pleasant: scheduled 08:17, actually arrives 08:30 — after the 08:30 LGHS bell</div>
-      </div>
-      <div class="route-stat">
-        <div class="rs-val">61,350</div>
-        <div class="rs-lbl">Audited annual Route 27 boardings (VTA Title VI FY2023, Table 3.2)</div>
-      </div>
-      <div class="route-stat">
-        <div class="rs-val">1.14</div>
-        <div class="rs-lbl">BCR, Config A school-trip extension (the viable extension scenario)</div>
-      </div>
-    </div>
-
-    <div class="data-chips">
-      <span class="data-chip live">VTA GTFS feed</span>
-      <span class="data-chip live">OpenTripPlanner 2.x accessibility graph</span>
-      <span class="data-chip live">Clarke-Wright savings</span>
-      <span class="data-chip live">FTA Circular 9040.1G spacing</span>
-      <span class="data-chip live">Mohring (1972) headway</span>
-      <span class="data-chip live">Haversine stop-spacing audit</span>
-      <span class="data-chip live">QGIS walk-shed (400 m / 800 m)</span>
-      <span class="data-chip live">Ridership calibration 0.199 → +0.5% of observed</span>
-      <span class="data-chip pending">D3 reliability-gain BCR (in progress)</span>
-      <span class="data-chip pending">D4 signage / amenity field audit</span>
-    </div>
-  </div>
-</section>
-
-<!-- Ranked stops map -->
+<!-- Ranked stops table -->
 <section class="sec" id="ranked-stops">
   <div class="wrap">
-    <div class="eyebrow">Live map</div>
-    <h2>Route 27 ranked stops</h2>
+    <div class="eyebrow">Stop-by-stop</div>
+    <h2>Route 27 stops to change</h2>
     <p style="font-size: 16px; color: var(--tm); max-width: 760px;">
-      Pins below are the Route 27 stops ranked by the combined usage-proxy / distance-to-nearest-retained
-      score described in the methodology section. Red pins flag confirmed removal candidates;
-      amber pins are consolidation / upgrade candidates; green pins are near-school stops that
-      should be retained until APC data is in hand. <strong>The list is not final</strong> —
-      it is being reviewed with VTA and LGUSD before any change is recommended.
+      Every Route 27 stop was scored on how much it is used and how close it sits to the next
+      retained stop. The table below lists the ones flagged for a change: a few redundant stops
+      to <strong style="color:var(--red)">remove</strong>, a cluster to
+      <strong style="color:var(--amber)">consolidate or upgrade</strong>, and school-adjacent
+      stops to <strong style="color:var(--ac)">keep</strong> even at low current usage because
+      removing them could strand students. <strong>The list is not final</strong> — it is being
+      reviewed with VTA and LGUSD before any change is recommended.
     </p>
-    <div style="margin-top: 18px; border: 1px solid var(--bd); border-radius: 8px; overflow: hidden; background: var(--s1);">
-      <iframe src="https://www.google.com/maps/d/embed?mid=1TA8okp5VEvvRPuCrzNDsiPs6jwc50A8&ehbc=2E312F" width="100%" height="520" style="border: 0; display: block;" loading="lazy"></iframe>
-    </div>
+
+    <table class="method-table" style="margin-top:20px;">
+      <thead>
+        <tr>
+          <th>Stop</th>
+          <th>Recommendation</th>
+          <th style="text-align:right">Usage proxy<br>(boardings/yr)</th>
+          <th style="text-align:right">Distance to<br>nearest stop (m)</th>
+          <th>Near a school?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td colspan="5" style="color:var(--red);font-family:var(--font-mono);font-size:10px;letter-spacing:1px;text-transform:uppercase;background:rgba(255,107,107,.05)">Remove — redundant, close to a retained stop</td></tr>
+        <tr><td>Santa Cruz &amp; Nicholson</td><td style="color:var(--red)">Remove</td><td style="text-align:right">181</td><td style="text-align:right">325</td><td>No</td></tr>
+        <tr><td>Main &amp; Santa Cruz</td><td style="color:var(--red)">Remove</td><td style="text-align:right">181</td><td style="text-align:right">413</td><td>No</td></tr>
+        <tr><td>Main &amp; Pleasant</td><td style="color:var(--red)">Remove</td><td style="text-align:right">193</td><td style="text-align:right">288</td><td>Yes (LGHS — riders concentrate at Main &amp; Villa)</td></tr>
+        <tr><td>Main &amp; Jackson</td><td style="color:var(--red)">Remove</td><td style="text-align:right">181</td><td style="text-align:right">337</td><td>Yes (LGHS — riders concentrate at Main &amp; Villa)</td></tr>
+
+        <tr><td colspan="5" style="color:var(--amber);font-family:var(--font-mono);font-size:10px;letter-spacing:1px;text-transform:uppercase;background:rgba(255,169,77,.05)">Consolidate / upgrade — fold into the nearby stop with better shelter &amp; access</td></tr>
+        <tr><td>Los Gatos-Saratoga &amp; Village Lane</td><td style="color:var(--amber)">Consolidate / upgrade</td><td style="text-align:right">193</td><td style="text-align:right">176</td><td>No</td></tr>
+        <tr><td>University &amp; Mullen</td><td style="color:var(--amber)">Consolidate / upgrade</td><td style="text-align:right">193</td><td style="text-align:right">224</td><td>No</td></tr>
+        <tr><td>University &amp; Royce</td><td style="color:var(--amber)">Consolidate / upgrade</td><td style="text-align:right">193</td><td style="text-align:right">224</td><td>No</td></tr>
+        <tr><td>Santa Cruz &amp; Main</td><td style="color:var(--amber)">Consolidate / upgrade</td><td style="text-align:right">193</td><td style="text-align:right">239</td><td>No</td></tr>
+        <tr><td>Blossom Hill &amp; Entrada Cedros</td><td style="color:var(--amber)">Consolidate / upgrade</td><td style="text-align:right">320</td><td style="text-align:right">302</td><td>No</td></tr>
+        <tr><td>Cottle &amp; Palmia</td><td style="color:var(--amber)">Consolidate / upgrade</td><td style="text-align:right">344</td><td style="text-align:right">427</td><td>No</td></tr>
+
+        <tr><td colspan="5" style="color:var(--ac);font-family:var(--font-mono);font-size:10px;letter-spacing:1px;text-transform:uppercase;background:rgba(78,205,196,.05)">Keep — low current usage but near a school (latent demand)</td></tr>
+        <tr><td>Los Gatos &amp; Nino</td><td style="color:var(--ac)">Keep (latent demand)</td><td style="text-align:right">386</td><td style="text-align:right">251</td><td>Yes</td></tr>
+        <tr><td>Los Gatos &amp; Roberts</td><td style="color:var(--ac)">Keep (latent demand)</td><td style="text-align:right">386</td><td style="text-align:right">251</td><td>Yes</td></tr>
+        <tr><td>Blossom Hill &amp; Chambertin</td><td style="color:var(--ac)">Keep (latent demand)</td><td style="text-align:right">380</td><td style="text-align:right">261</td><td>Yes</td></tr>
+        <tr><td>Blossom Hill &amp; Parkcrest</td><td style="color:var(--ac)">Keep (latent demand)</td><td style="text-align:right">386</td><td style="text-align:right">266</td><td>Yes</td></tr>
+        <tr><td>Blossom Hill &amp; Dartmouth</td><td style="color:var(--ac)">Keep (latent demand)</td><td style="text-align:right">386</td><td style="text-align:right">266</td><td>Yes</td></tr>
+        <tr><td>Blossom Hill &amp; Park Crest</td><td style="color:var(--ac)">Keep (latent demand)</td><td style="text-align:right">380</td><td style="text-align:right">341</td><td>Yes</td></tr>
+        <tr><td>Los Gatos &amp; Magneson</td><td style="color:var(--ac)">Keep (latent demand)</td><td style="text-align:right">374</td><td style="text-align:right">372</td><td>Yes</td></tr>
+        <tr><td>Los Gatos &amp; Nino (opp. dir.)</td><td style="color:var(--ac)">Keep (latent demand)</td><td style="text-align:right">374</td><td style="text-align:right">372</td><td>Yes</td></tr>
+        <tr><td>Main &amp; Villa</td><td style="color:var(--ac)">Keep (latent demand)</td><td style="text-align:right">193</td><td style="text-align:right">429</td><td>Yes (LGHS)</td></tr>
+        <tr><td>Main &amp; Los Gatos Civic Center</td><td style="color:var(--ac)">Keep (latent demand)</td><td style="text-align:right">181</td><td style="text-align:right">717</td><td>Yes</td></tr>
+
+        <tr><td colspan="5" style="color:var(--tm);font-family:var(--font-mono);font-size:10px;letter-spacing:1px;text-transform:uppercase;background:var(--s2)">Keep — flagged by the model, retained pending review</td></tr>
+        <tr><td>Los Gatos &amp; Stacia</td><td style="color:var(--tm)">Keep (under review)</td><td style="text-align:right">181</td><td style="text-align:right">540</td><td>No</td></tr>
+      </tbody>
+    </table>
+
     <p style="font-size: 12px; color: var(--tm); margin-top: 10px; font-family: var(--font-mono);">
-      Source: VTA GTFS current feed · ranking from <code>analysis/d2_stop_candidates.csv</code> · methodology in §<a href="#methodology">Methodology</a>.
+      Source: VTA GTFS current feed · ranking from <code>analysis/d2_stop_candidates.csv</code> · methodology in §<a href="#methodology">Methodology</a>. Usage proxy is a frequency-based estimate of annual boardings, not observed counts.
     </p>
   </div>
 </section>
@@ -349,77 +329,142 @@
     <div class="eyebrow">Where the work is going</div>
     <h2>The updated plan — three coordinated asks</h2>
     <p style="font-size: 16px; color: var(--tm); max-width: 740px;">
-      The Phase A cost-benefit numbers and the Phase B optimizer output both point the same
-      direction. Instead of rebuilding the alignment, the proposal we are taking into VTA
-      Commissioner input is a bundle of three changes that reinforce each other.
+      Instead of rebuilding the alignment, the proposal we are taking into VTA Commissioner
+      input is a bundle of three changes that reinforce each other. Each is defensible on its
+      own; together they are far more powerful.
     </p>
+  </div>
+</section>
 
-    <div class="feature-grid">
-      <div class="feature-card">
-        <div class="fc-num">01 — Highest ROI</div>
-        <h3>Universal LGHS student/staff pass</h3>
-        <p>
-          VTA has offered the Town a <strong>SmartPass deal at $41,080/year</strong> covering
-          <em>every</em> LGHS student and staff member. For context, buying monthly passes
-          individually for just the survey-identified interested cohort (at $35/mo VTA youth
-          rate, 95% confidence band) would cost $22,830–$78,458 — so the bundled SmartPass is
-          in-range for the interested cohort alone and far cheaper per head once the whole
-          student body is included. Could save students up to <strong>$37,000/yr</strong> and
-          create <strong>76 new riders</strong>. <strong>BCR ≈ 4.51</strong> — the single
-          highest-return marginal intervention in the analysis. Partner is exploring a
-          school-purchases-then-resells-via-ASB workaround for the "school should fund it"
-          objection.
-        </p>
+<!-- Ask 1 -->
+<section class="sec" id="ask-passes">
+  <div class="wrap">
+    <div class="eyebrow">Ask 1 — Highest return</div>
+    <h2>Free bus passes for every LGHS student and staff member</h2>
+
+    <div class="route-stats">
+      <div class="route-stat">
+        <div class="rs-val">$41,080/yr</div>
+        <div class="rs-lbl">Free bus passes for all LGHS students and staff (VTA SmartPass)</div>
       </div>
-      <div class="feature-card">
-        <div class="fc-num">02 — Schedule</div>
-        <h3>Bell-aligned AM and PM timetable</h3>
-        <p>
-          Concrete misalignment example from the survey report: westbound Main &amp; Pleasant
-          near LGHS is scheduled for 08:17 but consistently arrives at 08:30, after the
-          08:30 bell. Eastbound Union Ave &amp; LG-Almaden arrives <em>two minutes before</em>
-          Union's late bell. Survey data shows that if buses arrive within 10 minutes of the
-          rider's preferred time, <strong>≥80% will ride</strong>. The proposed retime
-          delivers riders to all four R27-served school stops between 08:10 and 08:25 without
-          breaking Santa Teresa / Winchester LRT connections or Route 37 timed transfers,
-          with a Wednesday-only variant for Dartmouth's 13:50 early release.
-        </p>
+      <div class="route-stat">
+        <div class="rs-val">76</div>
+        <div class="rs-lbl">New riders created</div>
       </div>
-      <div class="feature-card">
-        <div class="fc-num">03 — Discoverability &amp; education</div>
-        <h3>Stop signage, in-school outreach, Clipper-Card-to-Student-ID</h3>
-        <p>
-          The paired LGHS + Union survey found <strong>44.3% of LGHS respondents</strong>
-          (N=197) and <strong>56.3% of Union MS driving students</strong> (N=705) did not
-          know the bus system existed. Among LGHS respondents who said the right
-          improvements would get them on the bus, <strong>17.2%</strong> said a definitive
-          yes to "would you take the bus if it stopped nearby and arrived at a reasonable
-          time"; another large slice of Union MS respondents (~44%) answered "maybe." Most
-          Route 27 stops are bare signposts. A per-stop amenity inventory, SR2S-curriculum
-          integration, and an exploratory ask about Clipper-Card-to-Student-ID linkage are
-          the next deliverables.
-        </p>
-      </div>
-      <div class="feature-card">
-        <div class="fc-num">04 — Phase 2 trigger</div>
-        <h3>When to revisit the alignment</h3>
-        <p>
-          The working baseline: rerun ridership analysis at <strong>T+6 months</strong>
-          post-pass, rerun stop classification at <strong>T+12 months</strong>, and only
-          consider full Phase B route engineering after a full year of post-pass data. Habit
-          formation literature supports a calendar trigger over a ridership-threshold trigger
-          to control for slow-burn mode-shift effects.
-        </p>
+      <div class="route-stat">
+        <div class="rs-val">4.51</div>
+        <div class="rs-lbl">BCR — benefit returned per $1 spent</div>
       </div>
     </div>
 
-    <div class="callout info" style="margin-top: 24px;">
-      <strong>Open work items:</strong>
-      reliability-gain BCR (translating runtime savings from stop removal into a wait-time
-      elasticity ridership uplift); signage gap inventory (field audit pending);
-      Phase-2 retrigger criteria discussion paper; replace the WHO HEAT 12-min walk default
-      with the actual Route-27 walk-shed mean; per-rider benefit row-sum by displacement type.
-      Stop-removal list is <strong>not finalized</strong> and is still under partner review.
+    <div class="why-block" style="max-width: 820px;">
+      <p>
+        Free bus passes are the cornerstone of Los Gatos transit improvement. They provide for
+        the most vulnerable members of the community, allowing LGHS students and hardworking
+        staff to thrive regardless of economic background. Furthermore, they address a key gap
+        in knowledge of the public transit system, motivating kids to explore local transit
+        options by placing a bus pass in each student's hand. VTA has offered the Town a
+        SmartPass deal at $41,080/year covering every LGHS student and staff member, starting
+        with a six month pilot program to test efficacy. For context, buying monthly passes
+        individually for just the survey-identified interested cohort would cost
+        $22,830–$78,458, factoring in margin of error. So, for a six month pilot, the Town
+        would waste no more than $9,125 — but could build a system that would save students
+        $37,000/yr while creating 76 new riders. This investment would return $4.51 per dollar
+        spent — the single highest-return marginal intervention in the analysis. Thus,
+        implementing such a system is the primary goal of the Think Tank.
+      </p>
+      <!-- TODO: add evidence on how free-pass programs have performed in other communities -->
+    </div>
+  </div>
+</section>
+
+<!-- Ask 2 -->
+<section class="sec" id="ask-timetable">
+  <div class="wrap">
+    <div class="eyebrow">Ask 2 — Schedule</div>
+    <h2>A bell-aligned AM timetable</h2>
+
+    <p style="font-size: 15px; color: var(--tm); max-width: 820px; margin-bottom: 4px;">
+      One retimed AM trip per school — four trips total — each re-using an existing trip
+      pattern's running times. Only the terminus departure shifts; no new buses are required.
+    </p>
+    <table class="method-table" style="margin-top:12px; max-width: 820px;">
+      <thead>
+        <tr>
+          <th>School delivered</th>
+          <th>Leaves from</th>
+          <th style="text-align:right">Departs terminus</th>
+          <th style="text-align:right">Arrives at school</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>LGHS (Main &amp; Villa)</td><td>Santa Teresa Station</td><td style="text-align:right">7:04</td><td style="text-align:right">8:15</td></tr>
+        <tr><td>Dartmouth MS</td><td>Santa Teresa Station</td><td style="text-align:right">7:44</td><td style="text-align:right">8:15</td></tr>
+        <tr><td>Union MS</td><td>Winchester Station (Bay 2)</td><td style="text-align:right">7:28</td><td style="text-align:right">8:15</td></tr>
+        <tr><td>Fisher MS</td><td>Winchester Station (Bay 2)</td><td style="text-align:right">7:41</td><td style="text-align:right">8:15</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size: 12px; color: var(--tm); margin-top: 8px; font-family: var(--font-mono);">
+      All four arrive comfortably ahead of the 8:30 first bell. Source: <code>analysis/d1_proposed_schedule.md</code>, VTA GTFS feed.
+    </p>
+
+    <div class="why-block" style="max-width: 820px; margin-top: 18px;">
+      <p>
+        Currently, many buses arrive near schools at or directly after school start times due
+        to traffic or poor scheduling, meaning students must take early-morning routes to
+        arrive at school on time. Survey data shows that a minimum of 103 students from just
+        LGHS and Union would switch from driving to busses if timing improved. The proposed
+        retime, using school bell schedules and GTFS realtime bus data as a proxy for
+        congestion, delivers riders to all four R27-served school stops between 08:10 and
+        08:25 without breaking Santa Teresa / Winchester LRT connections or Route 37 timed
+        transfers. It does this all with minimal investment from VTA, merely using existing
+        resources more efficiently to boost ridership and achieve long-term transit goals.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Ask 3 -->
+<section class="sec" id="ask-visibility">
+  <div class="wrap">
+    <div class="eyebrow">Ask 3 — Visibility &amp; education</div>
+    <h2>Make the route impossible to miss</h2>
+
+    <div class="route-stats">
+      <div class="route-stat">
+        <div class="rs-val warn">44.3%</div>
+        <div class="rs-lbl">of LGHS respondents unaware the bus exists</div>
+      </div>
+      <div class="route-stat">
+        <div class="rs-val">51.7%</div>
+        <div class="rs-lbl">of those unaware LGHS students are interested in taking it</div>
+      </div>
+      <div class="route-stat">
+        <div class="rs-val warn">56.3%</div>
+        <div class="rs-lbl">of Union respondents unaware the bus exists</div>
+      </div>
+      <div class="route-stat">
+        <div class="rs-val">56%</div>
+        <div class="rs-lbl">of those unaware Union students are interested in taking it</div>
+      </div>
+    </div>
+
+    <div class="why-block" style="max-width: 820px;">
+      <p>
+        The biggest gap in the bus program right now is simply the fact that it flies under the
+        radar. If no one processes its existence and has the tenacity to find information on its
+        stops and schedule, no one will take it. Town nonprofits including Safe Routes to
+        Schools are already working to integrate instruction on public transit knowledge and
+        competency into their middle school curriculum, addressing this issue at the root. The
+        next step is making the route more visible and appealing. Most Route 27 stops are bare
+        signposts, barely visible to those who do not actively seek them out. Improvements can
+        hugely increase the efficacy of the bus route. LG Think Tank has already identified a
+        number of stops for transit improvements, including those with currently unsatisfactory
+        ridership and those in major downtown areas with high public visibility. Making these
+        target improvements should allow VTA to receive high benefit for low cost by creating a
+        town oriented around transit, instead of one where transit seems to be a visible
+        afterthought.
+      </p>
     </div>
   </div>
 </section>
@@ -455,57 +500,14 @@
       where mode-shift is driven primarily by frequency, fare, and reliability rather than
       by alignment geometry.
     </p>
-  </div>
-</section>
-
-<!-- Route 76 detail -->
-<section class="sec">
-  <div class="wrap-narrow">
-    <h2>Route 76, the case for restoration</h2>
-    <p>
-      Route 76 ran from downtown Los Gatos to Summit Road in the 95033 zip code, serving
-      roughly 8,000 mountain-community residents including students at LGHS. It was
-      discontinued in June 2010. The bus stop signs are still standing.
+    <p style="font-size: 15px; color: var(--tm); line-height: 1.7;">
+      That is also why a full route redesign is a <strong>later</strong> question, not a now
+      question. The working baseline is to rerun the ridership analysis six months after the
+      pass launches and the stop classification at twelve months, and only consider full route
+      engineering after a year of post-pass data. Habit formation takes time, so a calendar
+      trigger is more honest than a ridership threshold for judging when the alignment is worth
+      revisiting.
     </p>
-    <p>
-      The cost-benefit model has already evaluated the restoration scenario.
-      The numbers below are from Phase A3 of the analysis.
-    </p>
-
-    <div class="route-stats" style="margin-top: 20px;">
-      <div class="route-stat">
-        <div class="rs-val alert">$900K</div>
-        <div class="rs-lbl">Capital investment to restore service</div>
-      </div>
-      <div class="route-stat">
-        <div class="rs-val alert">$128K/yr</div>
-        <div class="rs-lbl">Annual operating cost</div>
-      </div>
-      <div class="route-stat">
-        <div class="rs-val warn">$113K/yr</div>
-        <div class="rs-lbl">Net cost (operating minus fare revenue)</div>
-      </div>
-      <div class="route-stat">
-        <div class="rs-val warn">$17.76</div>
-        <div class="rs-lbl">Cost per boarding</div>
-      </div>
-      <div class="route-stat">
-        <div class="rs-val">~40/day</div>
-        <div class="rs-lbl">Estimated boardings on school days</div>
-      </div>
-      <div class="route-stat">
-        <div class="rs-val">8</div>
-        <div class="rs-lbl">Stops to rehabilitate</div>
-      </div>
-    </div>
-
-    <div class="callout warn" style="margin-top: 20px;">
-      <strong>Note on cost per boarding:</strong> $17.76 per boarding is high relative to
-      Route 27 ($9.77), but comparable to rural transit nationally (NTD peer average: $10
-      to $18). The mountain corridor has low density and long distances. The BCR evaluation
-      under Phase A3 will determine whether social benefits justify the net cost.
-      <a href="analysis.html#glossary">See BCR in the glossary.</a>
-    </div>
   </div>
 </section>
 
@@ -577,7 +579,7 @@
         </tr>
         <tr>
           <td>Paired LGHS + Union MS bus survey</td>
-          <td>LGHS N=197 (~10% of student body, 3.46% margin of error at 95% confidence), Union MS N=705 (~70% of student body). Frequency tables on mode, awareness, primary barriers, preferred improvements, and willingness-to-switch. Wait-tolerance distributions (5 min / 10 / 20 / 30 / 45 / 1 hr) feed the bell-alignment design. Auto-displacement cross-tab recalibrates <code>pct_diverted_from_auto</code> for the pass scenario.</td>
+          <td>LGHS N=197 (~10% of student body), Union MS N=705 (~70% of student body). Frequency tables on mode, awareness, primary barriers, preferred improvements, and willingness-to-switch. Wait-tolerance distributions (5 min / 10 / 20 / 30 / 45 / 1 hr) feed the bell-alignment design. Auto-displacement cross-tab recalibrates <code>pct_diverted_from_auto</code> for the pass scenario.</td>
           <td>Youth Commission / Traffic Safety Ad-Hoc, Jan–May 2026</td>
         </tr>
         <tr>
@@ -586,50 +588,12 @@
           <td>QGIS 3.x · GeoPackage 1.3</td>
         </tr>
         <tr>
-          <td>GTFS output</td>
-          <td>The pipeline writes a valid GTFS feed for the optimized network: stops.txt, trips.txt, stop_times.txt, routes.txt, calendar.txt, shapes.txt, agency.txt, feed_info.txt. Used for the timetable proposal in D1.</td>
+          <td>GTFS data</td>
+          <td>Two ways. First, VTA's published schedule (the static GTFS feed) gives every stop's <em>scheduled</em> arrival time. Second, observed GTFS-realtime arrivals show when buses <em>actually</em> show up; the gap between the two is our stand-in for congestion, since a bus that runs consistently late is hitting traffic. The bell-aligned retime sets each new terminus departure so the actual arrival lands in the school window, and the result is written back out as a valid GTFS feed (stops, trips, stop_times, routes, calendar, shapes) encoding the proposed D1 timetable.</td>
           <td>GTFS Schedule Reference v2.0</td>
         </tr>
       </tbody>
     </table>
-  </div>
-</section>
-
-<!-- Corrections applied -->
-<section class="sec">
-  <div class="wrap-narrow">
-    <h2>Model corrections applied</h2>
-
-    <div class="corrections">
-      <strong>Four corrections from federal guidance updates are applied throughout this analysis.
-      They differ from the defaults often seen in older transit reports.</strong>
-      <ul>
-        <li>
-          <strong>Social Cost of Carbon raised from $56 to $120 per metric ton CO2.</strong>
-          Per EPA's 2022 regulatory update, which supersedes the older Interagency Working Group
-          value. This roughly doubles the emission-reduction benefit category.
-        </li>
-        <li>
-          <strong>Value of Time split by trip purpose.</strong>
-          USDOT BCA Guidance 2024 Table 4: personal trips at $17.80 per hour, employer business
-          trips at $31.90 per hour. Prior analyses used a flat $20.60 per hour for all trips.
-        </li>
-        <li>
-          <strong>Induced demand counted as an 8th benefit category.</strong>
-          Per TCRP Report 95, roughly 20% of riders are enabled by transit rather than diverted
-          from auto trips. Older analyses miss this group entirely, which understates benefits.
-        </li>
-        <li>
-          <strong>FTA Cost Effectiveness Index reported for every scenario.</strong>
-          The CEI is the required metric for federal Capital Investment Grant applications.
-          Reporting it allows direct comparison against funded projects elsewhere.
-        </li>
-      </ul>
-    </div>
-
-    <div style="margin-top: 20px;">
-      <a class="btn" href="analysis.html">See all corrections in the full analysis</a>
-    </div>
   </div>
 </section>
 

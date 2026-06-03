@@ -1,198 +1,174 @@
 ---
-title: Los Gatos Transit, Cost-Benefit Analysis
-description: VTA’s Route 27 already punches above its weight. But targeted,
-  data-based improvements can help it truly thrive. A federally-grounded
-  cost-benefit analysis of what better transit would actually cost and earn
-  back.
-hero_kicker: Los Gatos, CA, Public Transit
-hero_headline: Public transit already benefits Los Gatos. But data-based
-  improvements will help busses truly thrive.
-hero_lede_1: Often, Route 27 - Los Gatos’ only bus route - seems resigned to be
-  the anemic southern outpost of the VTA system. VTA continuously cuts back on
-  investment in Los Gatos, first by cutting two routes in 2020, then by
-  downgrading weekend service in 2023, due to low ridership. But VTA still
-  punches above its weight — and latent demand exists that, if unlocked, could
-  reverse this transit death spiral of low ridership and reduced returns.
-hero_lede_2: In collaboration with the **Traffic Safety Ad-Hoc** of the Los
-  Gatos Youth Commission, LG Think Tank ran a federally prescribed cost-benefit
-  analysis to determine the real impact of Route 27. Even the **current**
-  network, flawed as it is, already returns **$1.71 in benefits for every $1
-  spent** over 20 years. A redesigned network is projected to do meaningfully
-  better.
+layout: transit-home
+title: "Los Gatos Transit, Cost-Benefit Analysis"
+description: "Some Los Gatos bus stops sit empty while whole neighborhoods have no service at all. A federally-grounded cost-benefit analysis of what better transit would actually cost and earn back."
+canonical: "https://lgthinktank.com/los-gatos-transit/"
+og_title: "Los Gatos Transit, Cost-Benefit Analysis"
+og_description: "Some stops sit empty. Whole neighborhoods have no service. The analysis says the redesign pays back $1.71 in benefits for every $1 spent."
+og_url: "https://lgthinktank.com/los-gatos-transit/"
+og_type: "article"
+extra_css: "/assets/transit-index.css"
+
+hero_kicker: "Los Gatos, CA, Public Transit"
+hero_headline: "Some bus stops sit empty. *Whole neighborhoods have no bus at all.*"
+hero_lede_1: |
+  Los Gatos has a transit network drawn for a different town. Some stops see almost no riders
+  because they do not connect anywhere people are going. Meanwhile roughly
+  **13,000 residents** live in districts with **no fixed-route service** at all.
+hero_lede_2: |
+  We ran the federally prescribed cost-benefit analysis. Even the **current** network, flawed as
+  it is, already returns **$1.71 in benefits for every $1 spent** over 20 years. A redesigned
+  network is projected to do meaningfully better.
 hero_ctas:
-  - label: Read the full analysis
-    href: analysis.html
-    style: primary
-  - label: Route redesign
-    href: route-redesign.html
-    style: ghost
-  - label: Why this matters
+  - label: "Read the full analysis"
+    href: "analysis.html"
+    style: "primary"
+  - label: "Route redesign"
+    href: "route-redesign.html"
+    style: "ghost"
+  - label: "Why this matters"
     href: "#why-now"
-    style: ghost
+    style: "ghost"
+
 metrics_row_1:
+  - value: "12,918"
+    kind: "alert"
+    desc: "Residents in districts with no transit service at all"
+    src: "Census ACS 2018-2022, GTFS coverage analysis"
+  - value: "5 of 16"
+    kind: "warn"
+    desc: "Districts with zero fixed-route coverage"
+    src: "0.25-mile walkshed analysis, GTFS coverage gap = 100%"
   - value: "782"
-    kind: neutral
-    desc: Households without personal vehicles in the study area
-    src: Census ACS 2018-2022 (table B25044)
-  - value: $1.71
-    kind: warn
-    desc: Economic return to Los Gatos per $1 spent on Route 27
-    src: USDOT BCA Guidance 2024, OMB Circular A-94
-  - value: 44.3%
-    kind: alert
-    desc: "LGHS respondents who drive to school unaware Route 27 exists. Union MS:
-      56.3% of driving students unaware."
-    src: LGHS + Union Bus Surveys 2026, N=197 + N=705
-  - value: "486"
-    kind: neutral
-    desc: Number of students from Union MS & LGHS alone interested in taking the bus
-      regularly.
-    src: LGHS + Union Bus Surveys 2026, N=197 + N=705
+    kind: "neutral"
+    desc: "Zero-vehicle households in the study area"
+    src: "Census ACS 2018-2022 (table B25044)"
+  - value: "$1.71"
+    kind: "neutral"
+    desc: "Benefits per $1 spent, current Route 27 network, 20-yr horizon at 3.5% discount"
+    src: "USDOT BCA Guidance 2024, OMB Circular A-94"
+
+metrics_row_2:
+  - value: "$4.51"
+    kind: "neutral"
+    desc: "Benefits per $1 spent, universal LGHS student/staff pass scenario"
+    src: "BCR program, S1 ridership (76 new riders)"
+  - value: "44.3%"
+    kind: "neutral"
+    desc: "LGHS respondents unaware Route 27 exists. Union MS: 56.3% of driving students unaware."
+    src: "LGHS + Union Bus Survey 2026, N=197 + N=705"
+  - value: "25.2%"
+    kind: "warn"
+    desc: "Share of Los Gatos residents living more than 0.5 mi from any bus stop"
+    src: "Traffic Safety Ad-Hoc walk-shed model"
+  - value: "$41K/yr"
+    kind: "neutral"
+    desc: "Cost of a universal LGHS student/staff pass — the single highest-ROI intervention in the analysis"
+    src: "April 2026 Complete Streets packet, partner quote"
+
+lghs_arrival:
+  heading: "When the bus actually reaches LGHS"
+  intro: |
+    Here is the problem in one figure. The westbound bus at Main & Pleasant, the closest
+    stop to Los Gatos High School, is *scheduled* to arrive before the first bell. In practice
+    it shows up right as the bell rings, so a student who relies on it is already late.
+  scheduled: "8:17"
+  scheduled_label: "Scheduled arrival<br>Main &amp; Pleasant, by LGHS"
+  actual: "8:30"
+  actual_label: "When it actually arrives<br>(observed live bus data)"
+  bell: "8:30"
+  bell_label: "LGHS first bell"
+  note: |
+    A bus that lands students at the bell is a bus they cannot take. This single timing gap is
+    why so many families drive instead, and it is the gap a bell-aligned schedule would close.
+  src: "VTA GTFS-realtime observed arrivals · LGUSD bell schedule"
+
 why_blocks:
-  - heading: Reversing the Transit Death Spiral
-    body: >
-      Public transit gets cut whenever ridership numbers drop, and ridership
-      drops whenever
+  - heading: "Why transit gets cut, and why that is a mistake"
+    body: |
+      Public transit gets cut whenever ridership numbers drop, and ridership drops whenever
+      the buses do not go where people need to go. It is a feedback loop that ends with
+      the empty stops you can already see around town.
 
-      busses on a shoestring budget fail to arrive at the right place and time.
-      This feedback loop - the **public transit death spiral** - ends with the
-      empty stops already visible around town.
-
-
-      The **key to reversing** the Los Gatos transit death spiral **lies in our
-      students**. Adults have convenient transit alternatives and must often
-      travel outside of town for work. But students appear at **predictable
-      times** and **predictable places** in accordance with **school schedules**
-      — a boon for underfunded bus routes looking for the **easy ridership
-      boost** that can justify increased investment in an underserved area. 
-
-
-      Many residents need public transit. Students, for example, gain **true
-      independence** - the ability to attend school, meet up with friends, or go
-      to the movies without finding a ride from parents. Meanwhile, the
-      socioeconomically disadvantaged can afford to live and work in our
-      beautiful town without the exorbitant cost of personal transit.
-
-
-      The federal government has already done the hard work of figuring out how
-      to value
-
-      transit honestly. All the benefits of public transit are quantified under
-
+      The federal government has already done the hard work of figuring out how to value
+      transit honestly. Travel-time savings, crash reduction, fewer emissions, health benefits
+      from walking to stops, the option value to people who do not ride today but might
+      tomorrow, all of it has a defined methodology under
       [FTA cost-benefit guidelines](analysis.html#glossary) and
-
       [USDOT BCA Guidance 2024](analysis.html#glossary).
 
-
-      So we ran the numbers, for the existing network and our redesigned Route
-      27 with stops where the demand actually is. The result? An **exhaustively
-      empirical** picture of the next steps for public transit in Los Gatos, a
-      roadmap for a more vibrant and welcoming community.
-  - heading: What this analysis is and is not
-    body: >
+      So we ran the numbers, for the existing network and for a redesigned Route 27
+      with stops where the demand actually is.
+  - heading: "What this analysis is and is not"
+    body: |
       This is a **public-interest analysis**, not a paid advocacy document.
-
-      Every number links back to its federal source. The pipeline that produces
-      every chart
-
+      Every number links back to its federal source. The pipeline that produces every chart
       and table is open source, and corrections are applied in public.
 
-
       The analysis intentionally uses a **conservative scope**: property value
-
-      uplift near stops, wider agglomeration effects, and school-access value
-      are excluded
-
+      uplift near stops, wider agglomeration effects, and school-access value are excluded
       from the baseline scenario. The $1.71 BCR holds even without those items.
     pills:
-      - label: USDOT BCA Guidance 2024
-        highlight: true
-      - label: OMB Circular A-94
-        highlight: true
-      - label: EPA SCC $120/tCO2
-        highlight: true
-      - label: FTA CIG / CEI
-        highlight: false
-      - label: TCRP Report 95
-        highlight: false
-      - label: SWITRS crash data
-        highlight: false
-      - label: Census ACS 2018-2022
-        highlight: false
-      - label: VTA GTFS feed
-        highlight: false
-subprojects_heading: What is in this project
-subprojects_intro: Three pieces of work, each with the data and methodology open for inspection.
+      - { label: "USDOT BCA Guidance 2024", highlight: true }
+      - { label: "OMB Circular A-94", highlight: true }
+      - { label: "EPA SCC $120/tCO2", highlight: true }
+      - { label: "FTA CIG / CEI", highlight: false }
+      - { label: "TCRP Report 95", highlight: false }
+      - { label: "SWITRS crash data", highlight: false }
+      - { label: "Census ACS 2018-2022", highlight: false }
+      - { label: "VTA GTFS feed", highlight: false }
+
+subprojects_heading: "What is in this project"
+subprojects_intro: "Three pieces of work, each with the data and methodology open for inspection."
 subprojects:
-  - title: Cost-benefit analysis
-    status: Live
-    href: analysis.html
-    blurb: >
-      16 districts, 8 federally recognized benefit categories, peer-benchmarked
-      against VTA and California operators.
-
+  - title: "Cost-benefit analysis"
+    status: "Live"
+    href: "analysis.html"
+    blurb: |
+      16 districts, 8 federally recognized benefit categories, 20-year present value at
+      OMB-prescribed discount rates, peer-benchmarked against VTA and California operators.
       This is where the $1.71-per-$1 figure comes from.
-    arrow_label: Open the full analysis
-  - title: Route 27 redesign
-    status: Live
-    href: route-redesign.html
-    blurb: >-
-      Three coordinated asks for VTA: a universal LGHS student/staff pass, a
-      bell-aligned
-
-      AM/PM timetable, and real signage at school-adjacent stops. Backed by our
-      cost-benefit analysis, open source ridership numbers, and data collected
-      directly from students. 
-    arrow_label: Open the route-redesign work
-  - title: Glossary
-    status: Reference
-    href: analysis.html#glossary
-    blurb: >-
-      Every acronym and agency cited in this project, defined in plain language
-      with links
-
-      to primary sources. Hover any underlined term in the analysis pages for an
-      instant
-
+    arrow_label: "Open the full analysis"
+  - title: "Route 27 redesign"
+    status: "Live"
+    href: "route-redesign.html"
+    blurb: |
+      Three coordinated asks for VTA: a universal LGHS student/staff pass, a bell-aligned
+      AM/PM timetable, and real signage at school-adjacent stops. Backed by the ranked
+      stops map, the methods we ran end-to-end, and the per-stop ridership ranking.
+    arrow_label: "Open the route-redesign work"
+  - title: "Glossary"
+    status: "Reference"
+    href: "analysis.html#glossary"
+    blurb: |
+      Every acronym and agency cited in this project, defined in plain language with links
+      to primary sources. Hover any underlined term in the analysis pages for an instant
       definition.
-    arrow_label: Browse the glossary
-methods_heading: Methods, briefly
-sources_col_1: Source
-sources_col_2: What it provides
-sources_col_3: Used for
-sources:
-  - source: Census ACS 2018-2022
-    provides: Block-group demographics, income, commute mode, vehicle ownership
-    used_for: Equity analysis, demand model, district profiles
-  - source: VTA GTFS feed
-    provides: Stop locations, route geometry, schedules, headways
-    used_for: Coverage gaps, walkshed analysis, route optimization
-  - source: USDOT BCA Guidance 2024
-    provides: Value of time ($17.80 personal, $31.90 business), reliability weighting
-    used_for: Categories 1 and 6 (time savings, reliability)
-  - source: EPA SC-GHG 2022 update
-    provides: Social cost of carbon at $120 per metric ton CO2 (3% rate)
-    used_for: Category 4 (emission reduction)
-  - source: SWITRS / FHWA KABCO
-    provides: Santa Clara County crash rates, severity-weighted costs
-    used_for: Category 3 (crash reduction)
-  - source: WHO HEAT v5.2
-    provides: 12 walk-minutes per trip, $0.16 per walking minute
-    used_for: Category 5 (health benefits)
-  - source: TCRP Report 95
-    provides: 20% induced demand rate, consumer surplus methodology
-    used_for: Category 8 (induced demand)
-  - source: NTD peer benchmarks
-    provides: California transit agency operating costs per revenue hour
-    used_for: VTA cost reasonableness check
-callout_body: "**Plain-English glossary built in.** Acronyms in the analysis
-  page are underlined. Hover or tap for a one-line definition. Click to jump to
-  the full glossary entry at the bottom of the page."
-callout_link_href: analysis.html#glossary
-callout_link_label: Jump to glossary
-cta_block_heading: Ready to dig in?
-cta_block_body: The full cost-benefit dashboard has every number, every chart,
-  and every source. The glossary at the bottom defines every term used.
-cta_block_button_label: Open the full analysis
-cta_block_button_href: analysis.html
+    arrow_label: "Browse the glossary"
+
+timeline:
+  - phase: "Phase A"
+    name: "Cost-Benefit Analysis"
+    status: "Complete"
+    status_kind: "done"
+    body: "16 districts mapped and costed. 8 benefit categories quantified. BCR and NPV computed at all three OMB discount rates. Route 27 BCR = 1.71; universal LGHS pass BCR = 4.51."
+  - phase: "Phase B"
+    name: "Stop ranking & methodology"
+    status: "Complete"
+    status_kind: "done"
+    body: "Clarke-Wright + OpenTripPlanner + custom Python scorer applied to every Route 27 stop. 3 confirmed removes and ~6 consolidation candidates. Ridership calibrated to within +0.5% of the audited VTA Title VI baseline."
+  - phase: "Phase C"
+    name: "VTA Commissioner Input"
+    status: "In progress"
+    status_kind: "active"
+    body: "Bell-aligned AM/PM timetable (D1), ranked stop-removal table (D2), reliability-gain BCR (D3), and signage gap inventory (D4) being packaged for a low-pressure Commissioner input session. Stop list not yet finalized."
+
+callout_body: "**Plain-English glossary built in.** Acronyms in the analysis page are underlined. Hover or tap for a one-line definition. Click to jump to the full glossary entry at the bottom of the page."
+callout_link_href: "analysis.html#glossary"
+callout_link_label: "Jump to glossary"
+
+cta_block_heading: "Ready to dig in?"
+cta_block_body: "The full cost-benefit dashboard has every number, every chart, and every source. The glossary at the bottom defines every term used."
+cta_block_button_label: "Open the full analysis"
+cta_block_button_href: "analysis.html"
 ---

@@ -120,7 +120,7 @@ td .bar { display: inline-block; height: 8px; border-radius: 2px; margin-right: 
     <div class="callout warn" style="margin-top:14px; max-width: 880px;">
       <strong>Reading note for transit-planning reviewers:</strong>
       every figure on this page, including the FTA Cost-Effectiveness Index
-      ($/TSUB-hr) shown inside the &ldquo;Present Value Analysis&rdquo;
+      ($/TSUB-hr) shown inside the &ldquo;Cost Benefit Analysis&rdquo;
       breakdown, describes the <strong>current network as it operates today</strong>,
       not the optimised network. The current CEI rating reflects today&rsquo;s
       service pattern; the optimised redesign is evaluated on
@@ -144,7 +144,7 @@ td .bar { display: inline-block; height: 8px; border-radius: 2px; margin-right: 
 <div class="grid">
 <div class="full">
 <div class="stitle">District Map + Transit</div>
-<div class="ssub">Click any district to see its profile. Teal pins = Route 27 stops. Red = Route 76 (discontinued in 2010). Orange = Highway 17 Express.</div>
+<div class="ssub">These districts represent communities of residents with similar demographics and transit needs in the Union (U#) and LGHS (D#) school districts. Click any district to see its profile. Teal pins = Route 27 stops. Orange = Highway 17 Express.</div>
 <div id="map"></div>
 </div>
 <div>
@@ -159,7 +159,7 @@ td .bar { display: inline-block; height: 8px; border-radius: 2px; margin-right: 
 </div>
 <div>
 <div class="stitle">Population + Density</div>
-<div class="ssub">Bars show how many people live in each district; the line shows how dense it is. Density drives whether transit can work.</div>
+<div class="ssub">Bars show how many people live in each district (residents); the line shows how dense it is (residents per square mile). Density drives whether transit can work.</div>
 <div class="cw tall"><canvas id="cPop"></canvas></div>
 </div>
 <div>
@@ -173,8 +173,8 @@ td .bar { display: inline-block; height: 8px; border-radius: 2px; margin-right: 
 <div class="cw"><canvas id="cPeer"></canvas></div>
 </div>
 <div class="full">
-<div class="stitle">Present Value Analysis</div>
-<div class="ssub">What this network costs to run versus what it returns over 20 years. Click any card for the breakdown by benefit category and discount rate.</div>
+<div class="stitle">Cost Benefit Analysis</div>
+<div class="ssub">What this network costs to run versus what it returns over the next 20 years. All future costs and benefits discounted to present value per federal standards. Click any card for the breakdown by benefit category and discount rate.</div>
 <div class="callout info" style="margin-bottom:12px">
 <strong>Reading these cards:</strong> BCR &gt; 1.0 = benefits exceed costs. The 3.5% rate is OMB&rsquo;s recommended rate for long-lived infrastructure. All costs are the study-area share of VTA route costs (not full system). Benefits use corrected SCC ($120/tCO&#8322;) and include induced demand (8th category).
 </div>
@@ -198,27 +198,6 @@ td .bar { display: inline-block; height: 8px; border-radius: 2px; margin-right: 
 <div class="cw"><canvas id="cNPV"></canvas></div>
 </div>
 <div class="full">
-<div class="stitle">Route 76 Restoration Scenario</div>
-<div class="r76">
-<h3>VTA Route 76, Downtown LG to Summit Road</h3>
-<div class="r76g">
-<div class="r76s"><div class="v" style="color:var(--red)">$900K</div><div class="l">Capital Investment</div></div>
-<div class="r76s"><div class="v" style="color:var(--red)">$128K/yr</div><div class="l">Operating Cost</div></div>
-<div class="r76s"><div class="v" style="color:var(--amber)">$113K/yr</div><div class="l">Net Cost</div></div>
-<div class="r76s"><div class="v" style="color:var(--amber)">$17.76</div><div class="l">Cost/Boarding</div></div>
-<div class="r76s"><div class="v">4 trips/day</div><div class="l">School Days (180/yr)</div></div>
-<div class="r76s"><div class="v">~40/day</div><div class="l">Est. Boardings</div></div>
-<div class="r76s"><div class="v">12 mi</div><div class="l">Route Length</div></div>
-<div class="r76s"><div class="v" style="color:var(--ac)">8 stops</div><div class="l">To Rehabilitate</div></div>
-</div>
-<p style="margin-top:12px;font-size:9px;color:var(--tm);line-height:1.5">
-Discontinued June 2010. Was the only transit to 95033 mountain communities (Summit Road, Loma Prieta, Skyland, about 8,000 residents).
-Maintained for LGHS student access. Bus stop signs still present.
-CBA Phase A3 will evaluate whether benefits justify the $113K/yr net cost.
-</p>
-</div>
-</div>
-<div class="full">
 <div class="stitle">Benefit Category Reference</div>
 <div class="ssub">These are the eight ways transit creates economic value, each with a federally-defined methodology. Add them up over 20 years and compare to costs.</div>
 <div class="callout info" style="margin-bottom:10px">
@@ -229,7 +208,7 @@ CBA Phase A3 will evaluate whether benefits justify the $113K/yr net cost.
 <div class="bc-num">CATEGORY 1</div>
 <div class="bc-name">Travel Time Savings</div>
 <div class="bc-body">
-When a transit rider switches from driving, they save the productive value of reduced auto travel time. Transit in-vehicle time is valued at 60% of auto time (riders can read, work, or rest). VOT is split by trip purpose: personal trips = $17.80/hr, employer business trips = $31.90/hr (25% of LG ridership estimated as work trips via ACS).
+When a transit rider switches from driving, they save the productive value of reduced auto travel time. Because a rider can read, work, or rest on the bus, an hour spent on transit carries only 60% of the time-cost of an hour spent driving. In other words, the same minutes are "cheaper" on the bus, so the rider comes out ahead by switching. The dollar value of time (VOT) is split by trip purpose: personal trips = $17.80/hr, employer business trips = $31.90/hr (25% of LG ridership estimated as work trips via ACS).
 </div>
 <div class="bc-src">USDOT BCA Guidance 2024, Table 4 &bull; OMB Circular A-94</div>
 </div>
@@ -253,7 +232,7 @@ Fewer miles driven means fewer crashes. Using Santa Clara County crash rates (~1
 <div class="bc-num">CATEGORY 4</div>
 <div class="bc-name">Emission Reduction</div>
 <div class="bc-body">
-Avoided auto VMT reduces CO&#8322;, NOx, and PM2.5 emissions. CO&#8322; is valued at <strong style="color:var(--ac)">$120/metric ton</strong> per EPA 2022 regulatory guidance (3% rate), corrected from the prior $56/ton IWG value. This ~114% increase in the SCC substantially raises this benefit category. Criteria pollutant health damage valued via EPA BenMAP-CE.
+Avoided auto VMT reduces CO&#8322;, NOx, and PM2.5 emissions. CO&#8322; is valued at <strong style="color:var(--ac)">$120/metric ton</strong> per EPA 2022 regulatory guidance (3% rate). Criteria pollutant health damage valued via EPA BenMAP-CE.
 </div>
 <div class="bc-src">EPA SC-CO&#8322; Comprehensive Update 2022 &bull; EPA MOVES3.1 &bull; BenMAP-CE</div>
 </div>
@@ -296,8 +275,7 @@ Property value uplift near stops (+2% within 0.5mi, Optimistic scenario only) &b
 Wider agglomeration/labor market effects &bull;
 CEQA/environmental compliance value &bull;
 Tax revenue impacts &bull;
-School access value (Moderate/Optimistic scenarios only) &bull;
-Route 76 restoration benefits (separate scenario analysis below)
+School access value (Moderate/Optimistic scenarios only)
 </div>
 </div>
 <div class="full">
@@ -339,10 +317,10 @@ D.forEach(d=>{
 });
 S.forEach(s=>{
   if(!s.lat)return;
-  const c=s.route.includes('76')?'#ff6b6b':s.route.includes('17')?'#ffa502':'#4ecdc4';
+  if(s.route.includes('76'))return;
+  const c=s.route.includes('17')?'#ffa502':'#4ecdc4';
   L.circleMarker([s.lat,s.lon],{radius:4,fillColor:c,fillOpacity:.9,color:'#fff',weight:1}).addTo(map).bindTooltip(s.name);
 });
-L.polyline(R76,{color:'#ff6b6b',weight:2.5,opacity:.4,dashArray:'5 8'}).addTo(map);
 
 // CHARTS
 Chart.defaults.color='#7a8098';Chart.defaults.borderColor='rgba(42,48,80,.5)';
@@ -362,7 +340,7 @@ const popD=D.filter(d=>d.pop>0);
 new Chart(document.getElementById('cPop'),{type:'bar',data:{labels:popD.map(d=>d.id),datasets:[
 {label:'Population',data:popD.map(d=>d.pop),backgroundColor:popD.map(d=>d.color+'99'),yAxisID:'y'},
 {label:'Density',data:popD.map(d=>d.density),type:'line',borderColor:'#ffd43b',pointRadius:3,yAxisID:'y1'}
-]},options:{responsive:true,maintainAspectRatio:false,scales:{y:{position:'left',title:{display:true,text:'Pop'}},y1:{position:'right',grid:{drawOnChartArea:false},title:{display:true,text:'Density'}}}}
+]},options:{responsive:true,maintainAspectRatio:false,scales:{y:{position:'left',title:{display:true,text:'Population (residents)'}},y1:{position:'right',grid:{drawOnChartArea:false},title:{display:true,text:'Density (residents/mi²)'}}}}
 });
 const eqD=D.filter(d=>d.pop>0&&d.zvr!=null);
 new Chart(document.getElementById('cEq'),{type:'scatter',data:{datasets:[{
@@ -485,7 +463,7 @@ function showNPVBreakdown(idx,nv,pvC,pvB){
 // DISTRICT TABLE
 const t=document.getElementById('tbl');
 const mx=Math.max(...D.map(d=>d.totalAnn),1);
-let ht='<tr><th>ID</th><th>Name</th><th>Zone</th><th style="text-align:right">Pop</th><th style="text-align:right">Density</th><th style="text-align:right">Income</th><th style="text-align:right">ZV%</th><th style="text-align:right">Stops</th><th style="text-align:right">Op Cost</th><th style="text-align:right">Total/yr</th><th style="text-align:right">Crashes</th></tr>';
+let ht='<tr><th>ID</th><th>Name</th><th>Zone</th><th style="text-align:right">Pop (residents)</th><th style="text-align:right">Density (residents/mi&#178;)</th><th style="text-align:right">Median income ($/yr)</th><th style="text-align:right">Zero-vehicle (%)</th><th style="text-align:right">Stops (#)</th><th style="text-align:right">Op cost ($/yr)</th><th style="text-align:right">Total ($/yr)</th><th style="text-align:right">Crashes (count)</th></tr>';
 D.forEach(d=>{
   const bw=Math.max(1,(d.totalAnn||0)/mx*100);
   ht+='<tr><td style="color:'+d.color+';font-weight:600">'+d.id+'</td><td>'+d.name+'</td><td style="color:var(--tm)">'+d.zone+'</td><td class="n">'+(d.pop||0).toLocaleString()+'</td><td class="n">'+(d.density||0).toLocaleString()+'</td><td class="n">'+(d.income?'$'+d.income.toLocaleString():'--')+'</td><td class="n">'+(d.zvr!=null?(d.zvr*100).toFixed(1)+'%':'--')+'</td><td class="n" style="color:'+(d.stops===0?'var(--red)':'var(--ac)')+'">'+d.stops+'</td><td class="n"><span class="bar" style="width:'+bw+'%;background:'+d.color+'"></span>$'+(d.opCost||0).toLocaleString()+'</td><td class="n">$'+(d.totalAnn||0).toLocaleString()+'</td><td class="n">'+(d.crashes||0)+'</td></tr>';
