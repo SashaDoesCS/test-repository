@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stop Placard — Meridian & Blossom Hill</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#141720;color:#d8dce8;font-family:IBM Plex Mono,Consolas,monospace;font-size:12px;padding:16px;max-width:720px;margin:0 auto}
+  .card{background:rgba(20,23,40,.9);border:1px solid rgba(42,48,80,.8);border-radius:8px;padding:16px;margin-bottom:12px}
+  h2{font-size:15px;font-weight:700;color:#fff;margin-bottom:8px}
+  .section-label{font-size:9px;color:#7a8098;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+  #mini-map{height:220px;border-radius:6px;border:1px solid rgba(42,48,80,.8)}
+  a{color:#6c9bff;text-decoration:none}
+  a:hover{text-decoration:underline}
+</style>
+<link rel="stylesheet" href="../../assets/theme.css">
+<script src="../../assets/theme.js" defer></script>
+<style id="lgtt-placard-overrides">
+  body {
+    background: var(--bg) !important;
+    color: var(--tx) !important;
+    font-family: var(--font-body) !important;
+    font-size: 14px !important;
+    line-height: 1.55 !important;
+  }
+  .card {
+    background: var(--s1) !important;
+    border: 1px solid var(--bd) !important;
+    box-shadow: var(--shadow);
+  }
+  h1, h2, h3 { color: var(--tx) !important; font-family: var(--font-display) !important; }
+  .section-label { color: var(--tm) !important; font-size: 11px !important; }
+  /* Leaflet popups + tiles handled the same way as analysis.html */
+  .leaflet-popup-content-wrapper {
+    background: var(--s1) !important; color: var(--tx) !important;
+    border: 1px solid var(--bd) !important;
+  }
+  .leaflet-popup-tip { background: var(--s1) !important; }
+  /* The various inline color:#7a8098 muted text becomes muted in either theme;
+     we re-target them by wrapping main content in a more readable size */
+  body > div { font-size: 14px !important; }
+  a { color: var(--ac) !important; }
+  table { font-size: 13px !important; }
+  th { font-size: 11px !important; padding: 8px !important; }
+  td { padding: 7px !important; }
+  /* Top nav strip */
+  .placard-topnav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 14px; margin: -16px -16px 16px;
+    background: var(--s1); border-bottom: 1px solid var(--bd);
+    font-family: var(--font-mono); font-size: 12px;
+  }
+  .placard-topnav a { color: var(--tm) !important; text-decoration: none; }
+  .placard-topnav a:hover { color: var(--ac) !important; }
+  .placard-topnav .home { font-weight: 700; color: var(--tx) !important; }
+</style>
+</head>
+<body>
+<div class="placard-topnav">
+  <a class="home" href="../../">LG · Policy Research</a>
+  <span><a href="index.html">All stops</a> · <a href="../analysis.html">Analysis</a> · <a href="../route-redesign.html">Route redesign</a></span>
+</div>
+
+<div style="margin-bottom:10px">
+  <a href="index.html" style="font-size:10px;color:#7a8098">← All placards</a>
+  &nbsp;|&nbsp;
+  <a href="../route-redesign.html" style="font-size:10px;color:#7a8098">Route dashboard →</a>
+</div>
+
+<!-- Header band -->
+<div class="card">
+  <div class="section-label">Routes serving this stop</div>
+  <div style="margin-bottom:10px"><span style="color:#7a8098">No optimised routes assigned</span></div>
+  <h2>Meridian & Blossom Hill</h2>
+  <div style="color:#7a8098;font-size:10px;margin-top:4px">
+    Stop ID: 1157 &nbsp;|&nbsp; District: U5 &nbsp;|&nbsp; Existing stop
+     &nbsp;|&nbsp; ♿ ADA accessible
+  </div>
+</div>
+
+<!-- Strip diagram -->
+
+
+<!-- Mini-map -->
+<div class="card">
+  <div class="section-label">Map</div>
+  <div id="mini-map"></div>
+</div>
+
+<!-- Timetable -->
+<div class="card">
+  <div class="section-label">Schedule (from optimised GTFS)</div>
+  
+</div>
+
+<!-- Footer: QR -->
+<div class="card" style="display:flex;gap:16px;align-items:flex-start">
+  <div>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXIAAAFyAQAAAADAX2ykAAACi0lEQVR4nO2bTYrjMBBGX40NWcqQA/RRlBvMkYY5Ut/APkoOMGAtGyS+WchyJ9M0ocFt4qFq4cT2W3xQqP4km/iKTT++hIPzzjvvvPPOO/8Zb4v1MJkZ01CMyczsktq7y456nN+K7+tPHAHSGeI8AKnH4nzOkLoMgO2jx/nv4dOyQs1eMhAkoLRn1u+tx/lt+P7fB/H1JItXg+kl9yLtq8f5bfkP/p0GTCCAsr8e57+HD5LG+i/DEpq7OvyQlPfW4/ym/GRmZgMQryfZJZ1Ui6wLpZbP++pxfiO+xue7IWWx20u4H2A+m37nH5gkiTgD0EkjnZaAHDLS+kKSND6bfucfWPUvQTfG4ulmURLR/XtYXiPF7JJ67JL65fZX8zTUZ/vpcX4rnpsFu9gampUhqo07fP0el69pdimiOxGvPWYDddVKV59fHZqvrREhozH1LO1w6uto0mwo3h8dk28LM8wYnGStNeqJAouv52ywtlDPpt/5B3bTH8W7rkiau1ZOh4zn30PyvHuw5tqR24GkpIxGOq+vjsmvhVMnI8y0SN0J0lB3fY3wx/Pvofl4NSPWMrlY7X9tWIYc75en1e/8J3azPyh4M2qRFWYsjmBRpSJWj3g8m37nH1irrzrVJji223aIA8Dz77F5jaGNqaahGIQ3I87FqrsJb55/j8kvwXe567JIS8jWZADpnIlj8f730HyUanyu80lSf9MOMw1763F+I/5uvtGybttkaPk3zr7/+9/wyYzJTiLOxapXf7+8+fn2Y/Ifzk9Cly2qGOuQA4LPnw/Kr/sLAhIIimmyTkZqWwvTz930OL8tv+7vA7QDsTXhju8z6fX0juffg/Hm33c777zzzjvv/O78XyHjkzR8y3uTAAAAAElFTkSuQmCC" style="width:80px;height:80px;border-radius:4px" alt="QR">
+    <div style="font-size:9px;color:#7a8098;margin-top:4px;text-align:center">Scan to open<br>route dashboard</div>
+  </div>
+  <div style="font-size:10px;color:#7a8098">
+    <div><b style="color:#d8dce8">Meridian & Blossom Hill</b></div>
+    <div>ID: 1157</div>
+    <div>Lat: 37.24348 / Lon: -121.89003</div>
+    <div>♿ ADA accessible</div>
+    <div style="margin-top:8px">Generated by Los Gatos Transit CBA</div>
+  </div>
+</div>
+
+<script>
+mermaid.initialize({startOnLoad:true,theme:'dark',themeVariables:{fontSize:'10px'}});
+
+const NEARBY=[];
+const MAP_LAT=37.243482;
+const MAP_LON=-121.890032;
+
+const map=L.map('mini-map',{attributionControl:false,zoomControl:true}).setView([MAP_LAT,MAP_LON],15);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',{
+  attribution:'&copy; OpenStreetMap / CartoDB'
+}).addTo(map);
+
+// Route polyline (dim) from nearby stops
+if(NEARBY.length>1){
+  const pts=NEARBY.map(s=>[s.lat,s.lon]);
+  L.polyline(pts,{color:'#6c9bff',weight:2,opacity:.35,dashArray:'4 4'}).addTo(map);
+}
+
+// Upstream/downstream stops
+NEARBY.forEach(s=>{
+  if(s.is_this){
+    L.circleMarker([s.lat,s.lon],{radius:10,color:'#fff',weight:2,fillColor:'#ffa94d',fillOpacity:.95})
+      .addTo(map).bindPopup('<b>'+s.name+'</b><br><i>This stop</i>');
+  }else{
+    L.circleMarker([s.lat,s.lon],{radius:5,color:'#fff',weight:1,fillColor:'#6c9bff',fillOpacity:.75})
+      .addTo(map).bindPopup(s.name);
+  }
+});
+</script>
+</body>
+</html>

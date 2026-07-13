@@ -1,0 +1,42 @@
+---
+layout: default
+title: "Articles & Research — Los Gatos Policy Research"
+description: "Short-form research, briefings, and notes from the Los Gatos Policy Research."
+canonical: "https://lgthinktank.com/articles/"
+og_title: "Articles & Research — Los Gatos Policy Research"
+og_description: "Short-form research, briefings, and notes from the Los Gatos Policy Research."
+og_url: "https://lgthinktank.com/articles/"
+og_type: "website"
+
+page_heading: "Articles & Research"
+page_intro: "Short-form research, briefings, and notes. Longer projects live under Projects on the homepage."
+empty_state: "No articles published yet — check back soon."
+---
+
+<section class="sec">
+  <div class="wrap-narrow">
+    <h1 style="font-size: clamp(28px, 4vw, 44px); margin-bottom: 14px;">{{ page.page_heading }}</h1>
+    {% if page.page_intro %}
+      <p class="lede" style="margin-bottom: 36px;">{{ page.page_intro }}</p>
+    {% endif %}
+
+    {% assign articles = site.articles | sort: 'date' | reverse %}
+    {% if articles.size > 0 %}
+      <ul class="article-list" style="list-style:none; padding:0; margin:0;">
+        {% for article in articles %}
+          <li style="border-top:1px solid var(--bd, rgba(255,255,255,0.08)); padding:22px 0;">
+            <div class="eyebrow" style="margin-bottom:6px;">{{ article.date | date: "%B %-d, %Y" }}</div>
+            <h2 style="font-size:22px; margin:0 0 8px 0;">
+              <a href="{{ article.url | relative_url }}" style="text-decoration:none;">{{ article.title }}</a>
+            </h2>
+            {% if article.description %}
+              <p style="margin:0; color:var(--tm, #9aa3b2);">{{ article.description }}</p>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="text-muted" style="font-size:17px;">{{ page.empty_state }}</p>
+    {% endif %}
+  </div>
+</section>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stop Placard — Union & Stratford</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#141720;color:#d8dce8;font-family:IBM Plex Mono,Consolas,monospace;font-size:12px;padding:16px;max-width:720px;margin:0 auto}
+  .card{background:rgba(20,23,40,.9);border:1px solid rgba(42,48,80,.8);border-radius:8px;padding:16px;margin-bottom:12px}
+  h2{font-size:15px;font-weight:700;color:#fff;margin-bottom:8px}
+  .section-label{font-size:9px;color:#7a8098;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+  #mini-map{height:220px;border-radius:6px;border:1px solid rgba(42,48,80,.8)}
+  a{color:#6c9bff;text-decoration:none}
+  a:hover{text-decoration:underline}
+</style>
+<link rel="stylesheet" href="../../assets/theme.css">
+<script src="../../assets/theme.js" defer></script>
+<style id="lgtt-placard-overrides">
+  body {
+    background: var(--bg) !important;
+    color: var(--tx) !important;
+    font-family: var(--font-body) !important;
+    font-size: 14px !important;
+    line-height: 1.55 !important;
+  }
+  .card {
+    background: var(--s1) !important;
+    border: 1px solid var(--bd) !important;
+    box-shadow: var(--shadow);
+  }
+  h1, h2, h3 { color: var(--tx) !important; font-family: var(--font-display) !important; }
+  .section-label { color: var(--tm) !important; font-size: 11px !important; }
+  /* Leaflet popups + tiles handled the same way as analysis.html */
+  .leaflet-popup-content-wrapper {
+    background: var(--s1) !important; color: var(--tx) !important;
+    border: 1px solid var(--bd) !important;
+  }
+  .leaflet-popup-tip { background: var(--s1) !important; }
+  /* The various inline color:#7a8098 muted text becomes muted in either theme;
+     we re-target them by wrapping main content in a more readable size */
+  body > div { font-size: 14px !important; }
+  a { color: var(--ac) !important; }
+  table { font-size: 13px !important; }
+  th { font-size: 11px !important; padding: 8px !important; }
+  td { padding: 7px !important; }
+  /* Top nav strip */
+  .placard-topnav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 14px; margin: -16px -16px 16px;
+    background: var(--s1); border-bottom: 1px solid var(--bd);
+    font-family: var(--font-mono); font-size: 12px;
+  }
+  .placard-topnav a { color: var(--tm) !important; text-decoration: none; }
+  .placard-topnav a:hover { color: var(--ac) !important; }
+  .placard-topnav .home { font-weight: 700; color: var(--tx) !important; }
+</style>
+</head>
+<body>
+<div class="placard-topnav">
+  <a class="home" href="../../">LG · Policy Research</a>
+  <span><a href="index.html">All stops</a> · <a href="../analysis.html">Analysis</a> · <a href="../route-redesign.html">Route redesign</a></span>
+</div>
+
+<div style="margin-bottom:10px">
+  <a href="index.html" style="font-size:10px;color:#7a8098">← All placards</a>
+  &nbsp;|&nbsp;
+  <a href="../route-redesign.html" style="font-size:10px;color:#7a8098">Route dashboard →</a>
+</div>
+
+<!-- Header band -->
+<div class="card">
+  <div class="section-label">Routes serving this stop</div>
+  <div style="margin-bottom:10px"><span style="color:#7a8098">No optimised routes assigned</span></div>
+  <h2>Union & Stratford</h2>
+  <div style="color:#7a8098;font-size:10px;margin-top:4px">
+    Stop ID: 2884 &nbsp;|&nbsp; District: U2 &nbsp;|&nbsp; Existing stop
+     &nbsp;|&nbsp; ♿ ADA accessible
+  </div>
+</div>
+
+<!-- Strip diagram -->
+
+
+<!-- Mini-map -->
+<div class="card">
+  <div class="section-label">Map</div>
+  <div id="mini-map"></div>
+</div>
+
+<!-- Timetable -->
+<div class="card">
+  <div class="section-label">Schedule (from optimised GTFS)</div>
+  
+</div>
+
+<!-- Footer: QR -->
+<div class="card" style="display:flex;gap:16px;align-items:flex-start">
+  <div>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXIAAAFyAQAAAADAX2ykAAACmUlEQVR4nO2bTW6kMBCFvxqQsjQ36KPADeZIUY6UG+CjzAFGMsuWjN4sbCA/SidRuntAqlq0GvgWT0LPrioXJr4T8de3cHDeeeedd9555z/irUaLmbXAZGbDtPwzM7PhjnqcvzLfS5ISSGk2YtdIY8gAjSRJr/lb63H+yvxUHWp2kuwxzUa0tjyrnr6rHuevw7dvrhUHA2iywWzvqqe96Xf+u3yQ9NTVfzb8dz3O/4Rf/BsETGB9mlt6gZjaLCZ4aeK96Xf+S3w0M7MOYHoQTC02ADYwl/T5vnqcvxJf/Ls5VPGUWVx7tmrs++lx/hb8VuuWn9gB0AiYbbPzXvU7f5nXUzebDSFjQ1B9q7GrrxbC2dfnY/JoDfpUuxqSMhAytckRpNICGfem3/mv8ZMZhLPZY4LSv9KfuiprZHb/HpMv+ZVBk4nWiGhgBIAgrH9+EHUnvoce52/Dh3PZfyFk6NO6/3p+dWh+qY+mtjQ06BMvTCzIrfXy9fmgPPVwKEgagySlZjlJ0nJv9PzqqPzyfssO26imzoCUmppTb+Hv95C8RgBCxoapXS/Pdf+NHdhwRz3OX4tf/Qsa2QybkRKUhVsJfH0+MC8lsGFtaFTD1v6k2cnnNw7KL/VvEMbU5uV+I8r5wtRCP65HEHvT7/wnodfBNnDVJ8qq7P3Jo/Pb/CS9cjkOpph4O1i6ox7nr8XX/KrOTzbSSC2NtqyqJlnu3wPz0zrhTCOzbrbSqYzL6EZ9ulf9zn+VD7nUv7USDtJl/tZ6nP8J/3Y+1ghgveZW8ZRbK0nW87L97k6/85fj7fyk4u+5Vez+Yn1CxtRBPK0e3pt+5z+Jlx+fLMe8tZO1pVap8fromPz7LxQuhn/f7bzzzjvvvPNX4P8B3laY8O1nWZ4AAAAASUVORK5CYII=" style="width:80px;height:80px;border-radius:4px" alt="QR">
+    <div style="font-size:9px;color:#7a8098;margin-top:4px;text-align:center">Scan to open<br>route dashboard</div>
+  </div>
+  <div style="font-size:10px;color:#7a8098">
+    <div><b style="color:#d8dce8">Union & Stratford</b></div>
+    <div>ID: 2884</div>
+    <div>Lat: 37.25863 / Lon: -121.93144</div>
+    <div>♿ ADA accessible</div>
+    <div style="margin-top:8px">Generated by Los Gatos Transit CBA</div>
+  </div>
+</div>
+
+<script>
+mermaid.initialize({startOnLoad:true,theme:'dark',themeVariables:{fontSize:'10px'}});
+
+const NEARBY=[];
+const MAP_LAT=37.258631;
+const MAP_LON=-121.931437;
+
+const map=L.map('mini-map',{attributionControl:false,zoomControl:true}).setView([MAP_LAT,MAP_LON],15);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',{
+  attribution:'&copy; OpenStreetMap / CartoDB'
+}).addTo(map);
+
+// Route polyline (dim) from nearby stops
+if(NEARBY.length>1){
+  const pts=NEARBY.map(s=>[s.lat,s.lon]);
+  L.polyline(pts,{color:'#6c9bff',weight:2,opacity:.35,dashArray:'4 4'}).addTo(map);
+}
+
+// Upstream/downstream stops
+NEARBY.forEach(s=>{
+  if(s.is_this){
+    L.circleMarker([s.lat,s.lon],{radius:10,color:'#fff',weight:2,fillColor:'#ffa94d',fillOpacity:.95})
+      .addTo(map).bindPopup('<b>'+s.name+'</b><br><i>This stop</i>');
+  }else{
+    L.circleMarker([s.lat,s.lon],{radius:5,color:'#fff',weight:1,fillColor:'#6c9bff',fillOpacity:.75})
+      .addTo(map).bindPopup(s.name);
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stop Placard — Samaritan & Esther</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#141720;color:#d8dce8;font-family:IBM Plex Mono,Consolas,monospace;font-size:12px;padding:16px;max-width:720px;margin:0 auto}
+  .card{background:rgba(20,23,40,.9);border:1px solid rgba(42,48,80,.8);border-radius:8px;padding:16px;margin-bottom:12px}
+  h2{font-size:15px;font-weight:700;color:#fff;margin-bottom:8px}
+  .section-label{font-size:9px;color:#7a8098;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+  #mini-map{height:220px;border-radius:6px;border:1px solid rgba(42,48,80,.8)}
+  a{color:#6c9bff;text-decoration:none}
+  a:hover{text-decoration:underline}
+</style>
+<link rel="stylesheet" href="../../assets/theme.css">
+<script src="../../assets/theme.js" defer></script>
+<style id="lgtt-placard-overrides">
+  body {
+    background: var(--bg) !important;
+    color: var(--tx) !important;
+    font-family: var(--font-body) !important;
+    font-size: 14px !important;
+    line-height: 1.55 !important;
+  }
+  .card {
+    background: var(--s1) !important;
+    border: 1px solid var(--bd) !important;
+    box-shadow: var(--shadow);
+  }
+  h1, h2, h3 { color: var(--tx) !important; font-family: var(--font-display) !important; }
+  .section-label { color: var(--tm) !important; font-size: 11px !important; }
+  /* Leaflet popups + tiles handled the same way as analysis.html */
+  .leaflet-popup-content-wrapper {
+    background: var(--s1) !important; color: var(--tx) !important;
+    border: 1px solid var(--bd) !important;
+  }
+  .leaflet-popup-tip { background: var(--s1) !important; }
+  /* The various inline color:#7a8098 muted text becomes muted in either theme;
+     we re-target them by wrapping main content in a more readable size */
+  body > div { font-size: 14px !important; }
+  a { color: var(--ac) !important; }
+  table { font-size: 13px !important; }
+  th { font-size: 11px !important; padding: 8px !important; }
+  td { padding: 7px !important; }
+  /* Top nav strip */
+  .placard-topnav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 14px; margin: -16px -16px 16px;
+    background: var(--s1); border-bottom: 1px solid var(--bd);
+    font-family: var(--font-mono); font-size: 12px;
+  }
+  .placard-topnav a { color: var(--tm) !important; text-decoration: none; }
+  .placard-topnav a:hover { color: var(--ac) !important; }
+  .placard-topnav .home { font-weight: 700; color: var(--tx) !important; }
+</style>
+</head>
+<body>
+<div class="placard-topnav">
+  <a class="home" href="../../">LG · Policy Research</a>
+  <span><a href="index.html">All stops</a> · <a href="../analysis.html">Analysis</a> · <a href="../route-redesign.html">Route redesign</a></span>
+</div>
+
+<div style="margin-bottom:10px">
+  <a href="index.html" style="font-size:10px;color:#7a8098">← All placards</a>
+  &nbsp;|&nbsp;
+  <a href="../route-redesign.html" style="font-size:10px;color:#7a8098">Route dashboard →</a>
+</div>
+
+<!-- Header band -->
+<div class="card">
+  <div class="section-label">Routes serving this stop</div>
+  <div style="margin-bottom:10px"><span style="color:#7a8098">No optimised routes assigned</span></div>
+  <h2>Samaritan & Esther</h2>
+  <div style="color:#7a8098;font-size:10px;margin-top:4px">
+    Stop ID: 1817 &nbsp;|&nbsp; District: U2 &nbsp;|&nbsp; Existing stop
+     &nbsp;|&nbsp; ♿ ADA accessible
+  </div>
+</div>
+
+<!-- Strip diagram -->
+
+
+<!-- Mini-map -->
+<div class="card">
+  <div class="section-label">Map</div>
+  <div id="mini-map"></div>
+</div>
+
+<!-- Timetable -->
+<div class="card">
+  <div class="section-label">Schedule (from optimised GTFS)</div>
+  
+</div>
+
+<!-- Footer: QR -->
+<div class="card" style="display:flex;gap:16px;align-items:flex-start">
+  <div>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXIAAAFyAQAAAADAX2ykAAACgElEQVR4nO2bTYrjMBCFvxoJeqlAHyBHUW4wR+oz9Q2so+QG9rLB5s1CkvMDQ09D4omhaqHY+Fs8EJKqniomfhLl149wcN5555133nnn/8Zbi4jZYTE7TRGKRWDq304b6nH+wXyWJI2gAYA0Yx/jYnYiSJJ0yz9bj/MP4mP7nQ6QP9uLymFE5TjXrwZh3kiP84/l4927QYR8NpTPETFtq8f5Z/NpxuwAkCQ7/Xc9zj+CT1I7eqeIBoLsxGIASJrv+Wfrcf6hfDGzumrzGGQfI8D0JmCp6fO2epx/EF/P3xuTcjExLUY5fhmkWwPz1fQ7/03U4idLIo8ABGkgCNJaFaWGaHg1/c5/E7W6HdJMG2rBuz6NHfT53SPf1i9pRhqD6jDUb+Hqg8/vLvm2fuvUXtLk1J/yGKQhNcrnd5+8neiu81WllKSWZLG4/7xrvhz7Jj0ArQieItI5Yh9jcP95n/zqP8dZxcBIQNbSrOc8zFHFVv7V9Dv/Tdzlz+QRWtac1julNOPn7y75Xv+OodW/ue7F61Cndvb6aJ9835/TlwkE5YCpmVjviCli+fNdto0e55/Ba5jeBFOzmc0sUoukcrwk0dvpcf5RfK9/tTqQSepFUmgbN37+7pVf/avuP2f1TOvK5PDzd6/81fq9brMi9DuHS/bl87tb/tI/WSOruVZQPS0/f3fKX90PdhNa97dGdaf29btnfmodzrX/2Q4tq6L01o1mXL6qfuf/jZfOse3PLXWWpPNb77R7df3O38Z9f+wlVCzMNd8qv/383Sm/+leC2uuchBULgjRibdhMj/OP5bmvilgvGYZeE9dLBvc39sib/7/beeedd9555zfn/wAqhcwdIcoHvgAAAABJRU5ErkJggg==" style="width:80px;height:80px;border-radius:4px" alt="QR">
+    <div style="font-size:9px;color:#7a8098;margin-top:4px;text-align:center">Scan to open<br>route dashboard</div>
+  </div>
+  <div style="font-size:10px;color:#7a8098">
+    <div><b style="color:#d8dce8">Samaritan & Esther</b></div>
+    <div>ID: 1817</div>
+    <div>Lat: 37.25071 / Lon: -121.93565</div>
+    <div>♿ ADA accessible</div>
+    <div style="margin-top:8px">Generated by Los Gatos Transit CBA</div>
+  </div>
+</div>
+
+<script>
+mermaid.initialize({startOnLoad:true,theme:'dark',themeVariables:{fontSize:'10px'}});
+
+const NEARBY=[];
+const MAP_LAT=37.250707;
+const MAP_LON=-121.935647;
+
+const map=L.map('mini-map',{attributionControl:false,zoomControl:true}).setView([MAP_LAT,MAP_LON],15);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',{
+  attribution:'&copy; OpenStreetMap / CartoDB'
+}).addTo(map);
+
+// Route polyline (dim) from nearby stops
+if(NEARBY.length>1){
+  const pts=NEARBY.map(s=>[s.lat,s.lon]);
+  L.polyline(pts,{color:'#6c9bff',weight:2,opacity:.35,dashArray:'4 4'}).addTo(map);
+}
+
+// Upstream/downstream stops
+NEARBY.forEach(s=>{
+  if(s.is_this){
+    L.circleMarker([s.lat,s.lon],{radius:10,color:'#fff',weight:2,fillColor:'#ffa94d',fillOpacity:.95})
+      .addTo(map).bindPopup('<b>'+s.name+'</b><br><i>This stop</i>');
+  }else{
+    L.circleMarker([s.lat,s.lon],{radius:5,color:'#fff',weight:1,fillColor:'#6c9bff',fillOpacity:.75})
+      .addTo(map).bindPopup(s.name);
+  }
+});
+</script>
+</body>
+</html>

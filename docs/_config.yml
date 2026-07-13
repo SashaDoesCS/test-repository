@@ -1,0 +1,33 @@
+title: Los Gatos Policy Research
+url: https://lgthinktank.com
+baseurl: ""
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+collections:
+  articles:
+    output: true
+    permalink: /articles/:slug/
+
+# Layout defaults — enforced by Jekyll regardless of front matter.
+# Safety net: Pages CMS strips any front-matter field not declared in
+# .pages.yml (including `layout`), so re-saving a page through the CMS
+# can drop its `layout:` line and render the page blank. These defaults
+# re-apply the correct layout by file path, so the site keeps working
+# even after a CMS round-trip.
+defaults:
+  - scope: { path: "index.html" }
+    values: { layout: home }
+  - scope: { path: "404.html" }
+    values: { layout: not-found }
+  - scope: { path: "los-gatos-transit/index.html" }
+    values: { layout: transit-home }
+  - scope: { path: "articles/index.html" }
+    values: { layout: default }
+  - scope: { path: "", type: articles }
+    values: { layout: post }
+
+exclude:
+  - README.md

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stop Placard — Samaritan & Esther</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#141720;color:#d8dce8;font-family:IBM Plex Mono,Consolas,monospace;font-size:12px;padding:16px;max-width:720px;margin:0 auto}
+  .card{background:rgba(20,23,40,.9);border:1px solid rgba(42,48,80,.8);border-radius:8px;padding:16px;margin-bottom:12px}
+  h2{font-size:15px;font-weight:700;color:#fff;margin-bottom:8px}
+  .section-label{font-size:9px;color:#7a8098;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+  #mini-map{height:220px;border-radius:6px;border:1px solid rgba(42,48,80,.8)}
+  a{color:#6c9bff;text-decoration:none}
+  a:hover{text-decoration:underline}
+</style>
+<link rel="stylesheet" href="../../assets/theme.css">
+<script src="../../assets/theme.js" defer></script>
+<style id="lgtt-placard-overrides">
+  body {
+    background: var(--bg) !important;
+    color: var(--tx) !important;
+    font-family: var(--font-body) !important;
+    font-size: 14px !important;
+    line-height: 1.55 !important;
+  }
+  .card {
+    background: var(--s1) !important;
+    border: 1px solid var(--bd) !important;
+    box-shadow: var(--shadow);
+  }
+  h1, h2, h3 { color: var(--tx) !important; font-family: var(--font-display) !important; }
+  .section-label { color: var(--tm) !important; font-size: 11px !important; }
+  /* Leaflet popups + tiles handled the same way as analysis.html */
+  .leaflet-popup-content-wrapper {
+    background: var(--s1) !important; color: var(--tx) !important;
+    border: 1px solid var(--bd) !important;
+  }
+  .leaflet-popup-tip { background: var(--s1) !important; }
+  /* The various inline color:#7a8098 muted text becomes muted in either theme;
+     we re-target them by wrapping main content in a more readable size */
+  body > div { font-size: 14px !important; }
+  a { color: var(--ac) !important; }
+  table { font-size: 13px !important; }
+  th { font-size: 11px !important; padding: 8px !important; }
+  td { padding: 7px !important; }
+  /* Top nav strip */
+  .placard-topnav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 14px; margin: -16px -16px 16px;
+    background: var(--s1); border-bottom: 1px solid var(--bd);
+    font-family: var(--font-mono); font-size: 12px;
+  }
+  .placard-topnav a { color: var(--tm) !important; text-decoration: none; }
+  .placard-topnav a:hover { color: var(--ac) !important; }
+  .placard-topnav .home { font-weight: 700; color: var(--tx) !important; }
+</style>
+</head>
+<body>
+<div class="placard-topnav">
+  <a class="home" href="../../">LG · Policy Research</a>
+  <span><a href="index.html">All stops</a> · <a href="../analysis.html">Analysis</a> · <a href="../route-redesign.html">Route redesign</a></span>
+</div>
+
+<div style="margin-bottom:10px">
+  <a href="index.html" style="font-size:10px;color:#7a8098">← All placards</a>
+  &nbsp;|&nbsp;
+  <a href="../route-redesign.html" style="font-size:10px;color:#7a8098">Route dashboard →</a>
+</div>
+
+<!-- Header band -->
+<div class="card">
+  <div class="section-label">Routes serving this stop</div>
+  <div style="margin-bottom:10px"><span style="background:#6c9bff22;border:1px solid #6c9bff;border-radius:4px;padding:2px 8px;color:#6c9bff;font-size:11px;font-weight:700;margin-right:6px">&#9679; Route OPT_01 → Santa Teresa Station (derived from VTA 27)</span></div>
+  <h2>Samaritan & Esther</h2>
+  <div style="color:#7a8098;font-size:10px;margin-top:4px">
+    Stop ID: 1749 &nbsp;|&nbsp; District: U2 &nbsp;|&nbsp; Existing stop
+     &nbsp;|&nbsp; ♿ ADA accessible
+  </div>
+</div>
+
+<!-- Strip diagram -->
+
+<div style="margin:16px 0">
+  <div style="font-size:10px;color:#7a8098;margin-bottom:6px">Stop sequence</div>
+  <div class="mermaid" style="font-size:10px">graph LR
+  s2["Samaritan & Winton"]
+  s3["1748"]
+  THIS["**Samaritan & Esther**"]
+  s5["Union & Samaritan"]
+  s6["Union & Carlton"]
+  s2 --> s3 --> THIS --> s5 --> s6</div>
+</div>
+
+<!-- Mini-map -->
+<div class="card">
+  <div class="section-label">Map</div>
+  <div id="mini-map"></div>
+</div>
+
+<!-- Timetable -->
+<div class="card">
+  <div class="section-label">Schedule (from optimised GTFS)</div>
+  
+<table style="border-collapse:collapse;font-size:10px;width:100%;color:#d8dce8">
+  <thead><tr style="color:#7a8098;border-bottom:1px solid rgba(42,48,80,.6)">
+    <th style="padding:3px 8px;text-align:left">Weekday</th>
+    <th style="padding:3px 8px;text-align:left">Weekend</th>
+  </tr></thead>
+  <tbody><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">06:04</td><td style="padding:2px 8px">06:04</td></tr><tr style="background:transparent"><td style="padding:2px 8px">06:12</td><td style="padding:2px 8px">06:12</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">06:20</td><td style="padding:2px 8px">06:20</td></tr><tr style="background:transparent"><td style="padding:2px 8px">06:28</td><td style="padding:2px 8px">06:28</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">06:36</td><td style="padding:2px 8px">06:36</td></tr><tr style="background:transparent"><td style="padding:2px 8px">06:44</td><td style="padding:2px 8px">06:44</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">06:52</td><td style="padding:2px 8px">06:52</td></tr><tr style="background:transparent"><td style="padding:2px 8px">07:00</td><td style="padding:2px 8px">07:00</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">07:08</td><td style="padding:2px 8px">07:08</td></tr><tr style="background:transparent"><td style="padding:2px 8px">07:16</td><td style="padding:2px 8px">07:16</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">07:24</td><td style="padding:2px 8px">07:24</td></tr><tr style="background:transparent"><td style="padding:2px 8px">07:32</td><td style="padding:2px 8px">07:32</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">07:40</td><td style="padding:2px 8px">07:40</td></tr><tr style="background:transparent"><td style="padding:2px 8px">07:48</td><td style="padding:2px 8px">07:48</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">07:56</td><td style="padding:2px 8px">07:56</td></tr><tr style="background:transparent"><td style="padding:2px 8px">08:04</td><td style="padding:2px 8px">08:04</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">08:12</td><td style="padding:2px 8px">08:12</td></tr><tr style="background:transparent"><td style="padding:2px 8px">08:20</td><td style="padding:2px 8px">08:20</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">08:28</td><td style="padding:2px 8px">08:28</td></tr><tr style="background:transparent"><td style="padding:2px 8px">08:36</td><td style="padding:2px 8px">08:36</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">08:44</td><td style="padding:2px 8px">08:44</td></tr><tr style="background:transparent"><td style="padding:2px 8px">08:52</td><td style="padding:2px 8px">08:52</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">09:00</td><td style="padding:2px 8px">09:00</td></tr><tr style="background:transparent"><td style="padding:2px 8px">09:08</td><td style="padding:2px 8px">09:08</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">09:38</td><td style="padding:2px 8px">09:38</td></tr><tr style="background:transparent"><td style="padding:2px 8px">10:08</td><td style="padding:2px 8px">10:08</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">10:38</td><td style="padding:2px 8px">10:38</td></tr><tr style="background:transparent"><td style="padding:2px 8px">11:08</td><td style="padding:2px 8px">11:08</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">11:38</td><td style="padding:2px 8px">11:38</td></tr><tr style="background:transparent"><td style="padding:2px 8px">12:08</td><td style="padding:2px 8px">12:08</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">12:38</td><td style="padding:2px 8px">12:38</td></tr><tr style="background:transparent"><td style="padding:2px 8px">13:08</td><td style="padding:2px 8px">13:08</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">13:38</td><td style="padding:2px 8px">13:38</td></tr><tr style="background:transparent"><td style="padding:2px 8px">14:08</td><td style="padding:2px 8px">14:08</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">14:38</td><td style="padding:2px 8px">14:38</td></tr><tr style="background:transparent"><td style="padding:2px 8px">14:44</td><td style="padding:2px 8px">14:44</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">14:50</td><td style="padding:2px 8px">14:50</td></tr><tr style="background:transparent"><td style="padding:2px 8px">14:56</td><td style="padding:2px 8px">14:56</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">15:02</td><td style="padding:2px 8px">15:02</td></tr><tr style="background:transparent"><td style="padding:2px 8px">15:08</td><td style="padding:2px 8px">15:08</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">15:14</td><td style="padding:2px 8px">15:14</td></tr><tr style="background:transparent"><td style="padding:2px 8px">15:20</td><td style="padding:2px 8px">15:20</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">15:26</td><td style="padding:2px 8px">15:26</td></tr><tr style="background:transparent"><td style="padding:2px 8px">15:32</td><td style="padding:2px 8px">15:32</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">15:38</td><td style="padding:2px 8px">15:38</td></tr><tr style="background:transparent"><td style="padding:2px 8px">15:44</td><td style="padding:2px 8px">15:44</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">15:50</td><td style="padding:2px 8px">15:50</td></tr><tr style="background:transparent"><td style="padding:2px 8px">15:56</td><td style="padding:2px 8px">15:56</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">16:02</td><td style="padding:2px 8px">16:02</td></tr><tr style="background:transparent"><td style="padding:2px 8px">16:08</td><td style="padding:2px 8px">16:08</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">16:14</td><td style="padding:2px 8px">16:14</td></tr><tr style="background:transparent"><td style="padding:2px 8px">16:20</td><td style="padding:2px 8px">16:20</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">16:26</td><td style="padding:2px 8px">16:26</td></tr><tr style="background:transparent"><td style="padding:2px 8px">16:32</td><td style="padding:2px 8px">16:32</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">16:38</td><td style="padding:2px 8px">16:38</td></tr><tr style="background:transparent"><td style="padding:2px 8px">16:44</td><td style="padding:2px 8px">16:44</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">16:50</td><td style="padding:2px 8px">16:50</td></tr><tr style="background:transparent"><td style="padding:2px 8px">16:56</td><td style="padding:2px 8px">16:56</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">17:02</td><td style="padding:2px 8px">17:02</td></tr><tr style="background:transparent"><td style="padding:2px 8px">17:08</td><td style="padding:2px 8px">17:08</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">17:14</td><td style="padding:2px 8px">17:14</td></tr><tr style="background:transparent"><td style="padding:2px 8px">17:20</td><td style="padding:2px 8px">17:20</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">17:26</td><td style="padding:2px 8px">17:26</td></tr><tr style="background:transparent"><td style="padding:2px 8px">17:32</td><td style="padding:2px 8px">17:32</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">17:38</td><td style="padding:2px 8px">17:38</td></tr><tr style="background:transparent"><td style="padding:2px 8px">17:44</td><td style="padding:2px 8px">17:44</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">17:50</td><td style="padding:2px 8px">17:50</td></tr><tr style="background:transparent"><td style="padding:2px 8px">17:56</td><td style="padding:2px 8px">17:56</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">18:02</td><td style="padding:2px 8px">18:02</td></tr><tr style="background:transparent"><td style="padding:2px 8px">18:08</td><td style="padding:2px 8px">18:08</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">18:14</td><td style="padding:2px 8px">18:14</td></tr><tr style="background:transparent"><td style="padding:2px 8px">18:20</td><td style="padding:2px 8px">18:20</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">18:26</td><td style="padding:2px 8px">18:26</td></tr><tr style="background:transparent"><td style="padding:2px 8px">18:32</td><td style="padding:2px 8px">18:32</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">18:38</td><td style="padding:2px 8px">18:38</td></tr><tr style="background:transparent"><td style="padding:2px 8px">18:58</td><td style="padding:2px 8px">18:58</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">19:18</td><td style="padding:2px 8px">19:18</td></tr><tr style="background:transparent"><td style="padding:2px 8px">19:38</td><td style="padding:2px 8px">19:38</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">19:58</td><td style="padding:2px 8px">19:58</td></tr><tr style="background:transparent"><td style="padding:2px 8px">20:18</td><td style="padding:2px 8px">20:18</td></tr><tr style="background:rgba(42,48,80,.3)"><td style="padding:2px 8px">20:38</td><td style="padding:2px 8px">20:38</td></tr><tr style="background:transparent"><td style="padding:2px 8px">20:58</td><td style="padding:2px 8px">20:58</td></tr></tbody>
+</table>
+</div>
+
+<!-- Footer: QR -->
+<div class="card" style="display:flex;gap:16px;align-items:flex-start">
+  <div>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXIAAAFyAQAAAADAX2ykAAAClElEQVR4nO2azW3cMBBG30QCcqSAFOBSqA5Sk0tKB1IpLiCAdFyAwpcDSWnXhh3bWSsSMHPYlcR3+ABiOH808REbv30IB+edd9555513/jXeirXkn342s35ugbmu9Tvqcf7OfJQkTaAhJPTYNYKQABpJkm75r9bj/J34tvzPHcRfYHFaWuLUGaM1CQCD8nQ8/c6/be2zd43dJJgBWOxF9XQ0/c5/hh/z+SxZfwg9zn+Wr/4bBMxghKUlCsTcJjHDtRMfTb/z7+JHMzPrgPj0XTC3WA9Yz5LT5331OH8nPvvv5qEau6Y+h4sVx95Pj/NfwW+1LoSL6bFbTAONgMU2dz6qfudftVzdDoCGIBGnJnushpAgTiAplRJ5OJp+59+2kl/F6Uey+NQmjV2DYCkH9/iQWiNMsn30OH9fvvpvSKV1NXDtulAX3H9PyVOaj6H2JzVB3lWpHNcagor5/p6SlyYwe0hYT6PsumO3GJ5fnZvPYdagSWJu0fhwMcZa7gpSa1GL17/n5Nf4Ww7gkjBPja4WcmLt5/MJ+Rpmb2PtQNnk/G0z39+T8bUMsiYJUp4PlpZVuOT4q/HnhMVhDz3O35e/zp8Hav4cldZMuiTWfj6fki/xd9vV3JXM9e96icPj71n51X/LXZz8raRb9dJG9Ph7Vh7d2uaruQiON998f8/Jb/cnYW7zOJjszttgaUc9zt+ZjzUIS9Niuf4dWGyLvxr21OP8nfm53nAeO2prMqTVkyGvHla/8+/k1/mv9XNbZsL/U4/z/8Q/vx9r0GCE320e/eYk61cNv4fT7/xfbOtPlqh7M/CtQ2Cvj07K1/o3W3NdFa2lUelE+/6ekH9xf3J90dVCSPXpaPqdd9555513/oz8H+cL7W/yg/5FAAAAAElFTkSuQmCC" style="width:80px;height:80px;border-radius:4px" alt="QR">
+    <div style="font-size:9px;color:#7a8098;margin-top:4px;text-align:center">Scan to open<br>route dashboard</div>
+  </div>
+  <div style="font-size:10px;color:#7a8098">
+    <div><b style="color:#d8dce8">Samaritan & Esther</b></div>
+    <div>ID: 1749</div>
+    <div>Lat: 37.25059 / Lon: -121.93520</div>
+    <div>♿ ADA accessible</div>
+    <div style="margin-top:8px">Generated by Los Gatos Transit CBA</div>
+  </div>
+</div>
+
+<script>
+mermaid.initialize({startOnLoad:true,theme:'dark',themeVariables:{fontSize:'10px'}});
+
+const NEARBY=[{"id": "1745", "name": "Good Samaritan Hospital", "lat": 37.251009, "lon": -121.947555, "is_this": false}, {"id": "1747", "name": "Samaritan & Winton", "lat": 37.250563, "lon": -121.941846, "is_this": false}, {"id": "1749", "name": "Samaritan & Esther", "lat": 37.25059, "lon": -121.935196, "is_this": true}, {"id": "1750", "name": "Union & Samaritan", "lat": 37.250184, "lon": -121.931439, "is_this": false}, {"id": "1751", "name": "Union & Carlton", "lat": 37.248009, "lon": -121.931383, "is_this": false}, {"id": "1084", "name": "Los Gatos-Almaden & Union", "lat": 37.243344, "lon": -121.930625, "is_this": false}];
+const MAP_LAT=37.25059;
+const MAP_LON=-121.935196;
+
+const map=L.map('mini-map',{attributionControl:false,zoomControl:true}).setView([MAP_LAT,MAP_LON],15);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',{
+  attribution:'&copy; OpenStreetMap / CartoDB'
+}).addTo(map);
+
+// Route polyline (dim) from nearby stops
+if(NEARBY.length>1){
+  const pts=NEARBY.map(s=>[s.lat,s.lon]);
+  L.polyline(pts,{color:'#6c9bff',weight:2,opacity:.35,dashArray:'4 4'}).addTo(map);
+}
+
+// Upstream/downstream stops
+NEARBY.forEach(s=>{
+  if(s.is_this){
+    L.circleMarker([s.lat,s.lon],{radius:10,color:'#fff',weight:2,fillColor:'#ffa94d',fillOpacity:.95})
+      .addTo(map).bindPopup('<b>'+s.name+'</b><br><i>This stop</i>');
+  }else{
+    L.circleMarker([s.lat,s.lon],{radius:5,color:'#fff',weight:1,fillColor:'#6c9bff',fillOpacity:.75})
+      .addTo(map).bindPopup(s.name);
+  }
+});
+</script>
+</body>
+</html>
